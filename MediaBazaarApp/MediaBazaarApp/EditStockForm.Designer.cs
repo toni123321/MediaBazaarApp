@@ -54,9 +54,10 @@ namespace MediaBazaarApp
             // 
             // btnEditStock
             // 
-            this.btnEditStock.Location = new System.Drawing.Point(17, 515);
+            this.btnEditStock.Location = new System.Drawing.Point(19, 580);
+            this.btnEditStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditStock.Name = "btnEditStock";
-            this.btnEditStock.Size = new System.Drawing.Size(230, 43);
+            this.btnEditStock.Size = new System.Drawing.Size(259, 49);
             this.btnEditStock.TabIndex = 14;
             this.btnEditStock.Text = "Apply changes";
             this.btnEditStock.UseVisualStyleBackColor = true;
@@ -65,7 +66,7 @@ namespace MediaBazaarApp
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(112, 28);
+            this.label1.Location = new System.Drawing.Point(126, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 18);
             this.label1.TabIndex = 2;
@@ -92,24 +93,27 @@ namespace MediaBazaarApp
             this.gbxEditStock.Controls.Add(this.tbxStockBrand);
             this.gbxEditStock.Controls.Add(this.lbStockBrand);
             this.gbxEditStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxEditStock.Location = new System.Drawing.Point(31, 69);
+            this.gbxEditStock.Location = new System.Drawing.Point(35, 77);
+            this.gbxEditStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxEditStock.Name = "gbxEditStock";
-            this.gbxEditStock.Size = new System.Drawing.Size(290, 576);
+            this.gbxEditStock.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxEditStock.Size = new System.Drawing.Size(326, 648);
             this.gbxEditStock.TabIndex = 15;
             this.gbxEditStock.TabStop = false;
             this.gbxEditStock.Text = "Edit stock";
             // 
             // tbxStockDepth
             // 
-            this.tbxStockDepth.Location = new System.Drawing.Point(110, 277);
+            this.tbxStockDepth.Location = new System.Drawing.Point(124, 311);
+            this.tbxStockDepth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockDepth.Name = "tbxStockDepth";
-            this.tbxStockDepth.Size = new System.Drawing.Size(137, 24);
+            this.tbxStockDepth.Size = new System.Drawing.Size(154, 24);
             this.tbxStockDepth.TabIndex = 20;
             // 
             // lbStockDepth
             // 
             this.lbStockDepth.AutoSize = true;
-            this.lbStockDepth.Location = new System.Drawing.Point(37, 277);
+            this.lbStockDepth.Location = new System.Drawing.Point(42, 311);
             this.lbStockDepth.Name = "lbStockDepth";
             this.lbStockDepth.Size = new System.Drawing.Size(51, 18);
             this.lbStockDepth.TabIndex = 19;
@@ -117,15 +121,16 @@ namespace MediaBazaarApp
             // 
             // tbxStockHeight
             // 
-            this.tbxStockHeight.Location = new System.Drawing.Point(110, 233);
+            this.tbxStockHeight.Location = new System.Drawing.Point(124, 262);
+            this.tbxStockHeight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockHeight.Name = "tbxStockHeight";
-            this.tbxStockHeight.Size = new System.Drawing.Size(137, 24);
+            this.tbxStockHeight.Size = new System.Drawing.Size(154, 24);
             this.tbxStockHeight.TabIndex = 18;
             // 
             // lbStockHeight
             // 
             this.lbStockHeight.AutoSize = true;
-            this.lbStockHeight.Location = new System.Drawing.Point(29, 236);
+            this.lbStockHeight.Location = new System.Drawing.Point(33, 265);
             this.lbStockHeight.Name = "lbStockHeight";
             this.lbStockHeight.Size = new System.Drawing.Size(54, 18);
             this.lbStockHeight.TabIndex = 17;
@@ -133,15 +138,16 @@ namespace MediaBazaarApp
             // 
             // tbxStockWidth
             // 
-            this.tbxStockWidth.Location = new System.Drawing.Point(110, 192);
+            this.tbxStockWidth.Location = new System.Drawing.Point(124, 216);
+            this.tbxStockWidth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockWidth.Name = "tbxStockWidth";
-            this.tbxStockWidth.Size = new System.Drawing.Size(137, 24);
+            this.tbxStockWidth.Size = new System.Drawing.Size(154, 24);
             this.tbxStockWidth.TabIndex = 16;
             // 
             // lbStockWidth
             // 
             this.lbStockWidth.AutoSize = true;
-            this.lbStockWidth.Location = new System.Drawing.Point(29, 195);
+            this.lbStockWidth.Location = new System.Drawing.Point(33, 220);
             this.lbStockWidth.Name = "lbStockWidth";
             this.lbStockWidth.Size = new System.Drawing.Size(50, 18);
             this.lbStockWidth.TabIndex = 15;
@@ -149,15 +155,16 @@ namespace MediaBazaarApp
             // 
             // tbxStockQuantity
             // 
-            this.tbxStockQuantity.Location = new System.Drawing.Point(110, 328);
+            this.tbxStockQuantity.Location = new System.Drawing.Point(124, 369);
+            this.tbxStockQuantity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockQuantity.Name = "tbxStockQuantity";
-            this.tbxStockQuantity.Size = new System.Drawing.Size(137, 24);
+            this.tbxStockQuantity.Size = new System.Drawing.Size(154, 24);
             this.tbxStockQuantity.TabIndex = 13;
             // 
             // lbStockQuantity
             // 
             this.lbStockQuantity.AutoSize = true;
-            this.lbStockQuantity.Location = new System.Drawing.Point(14, 328);
+            this.lbStockQuantity.Location = new System.Drawing.Point(16, 369);
             this.lbStockQuantity.Name = "lbStockQuantity";
             this.lbStockQuantity.Size = new System.Drawing.Size(66, 18);
             this.lbStockQuantity.TabIndex = 12;
@@ -165,16 +172,17 @@ namespace MediaBazaarApp
             // 
             // tbxStockShortDescription
             // 
-            this.tbxStockShortDescription.Location = new System.Drawing.Point(17, 406);
+            this.tbxStockShortDescription.Location = new System.Drawing.Point(19, 457);
+            this.tbxStockShortDescription.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockShortDescription.Multiline = true;
             this.tbxStockShortDescription.Name = "tbxStockShortDescription";
-            this.tbxStockShortDescription.Size = new System.Drawing.Size(230, 84);
+            this.tbxStockShortDescription.Size = new System.Drawing.Size(258, 94);
             this.tbxStockShortDescription.TabIndex = 9;
             // 
             // lbStockShortDescription
             // 
             this.lbStockShortDescription.AutoSize = true;
-            this.lbStockShortDescription.Location = new System.Drawing.Point(73, 373);
+            this.lbStockShortDescription.Location = new System.Drawing.Point(82, 419);
             this.lbStockShortDescription.Name = "lbStockShortDescription";
             this.lbStockShortDescription.Size = new System.Drawing.Size(124, 18);
             this.lbStockShortDescription.TabIndex = 8;
@@ -183,7 +191,7 @@ namespace MediaBazaarApp
             // lbStockDimensions
             // 
             this.lbStockDimensions.AutoSize = true;
-            this.lbStockDimensions.Location = new System.Drawing.Point(86, 156);
+            this.lbStockDimensions.Location = new System.Drawing.Point(97, 175);
             this.lbStockDimensions.Name = "lbStockDimensions";
             this.lbStockDimensions.Size = new System.Drawing.Size(91, 18);
             this.lbStockDimensions.TabIndex = 6;
@@ -191,15 +199,16 @@ namespace MediaBazaarApp
             // 
             // tbxStockPrice
             // 
-            this.tbxStockPrice.Location = new System.Drawing.Point(110, 112);
+            this.tbxStockPrice.Location = new System.Drawing.Point(124, 126);
+            this.tbxStockPrice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockPrice.Name = "tbxStockPrice";
-            this.tbxStockPrice.Size = new System.Drawing.Size(137, 24);
+            this.tbxStockPrice.Size = new System.Drawing.Size(154, 24);
             this.tbxStockPrice.TabIndex = 5;
             // 
             // lbStockPrice
             // 
             this.lbStockPrice.AutoSize = true;
-            this.lbStockPrice.Location = new System.Drawing.Point(36, 112);
+            this.lbStockPrice.Location = new System.Drawing.Point(40, 126);
             this.lbStockPrice.Name = "lbStockPrice";
             this.lbStockPrice.Size = new System.Drawing.Size(46, 18);
             this.lbStockPrice.TabIndex = 4;
@@ -207,15 +216,16 @@ namespace MediaBazaarApp
             // 
             // tbxStockModel
             // 
-            this.tbxStockModel.Location = new System.Drawing.Point(110, 68);
+            this.tbxStockModel.Location = new System.Drawing.Point(124, 76);
+            this.tbxStockModel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockModel.Name = "tbxStockModel";
-            this.tbxStockModel.Size = new System.Drawing.Size(137, 24);
+            this.tbxStockModel.Size = new System.Drawing.Size(154, 24);
             this.tbxStockModel.TabIndex = 3;
             // 
             // lbStockModel
             // 
             this.lbStockModel.AutoSize = true;
-            this.lbStockModel.Location = new System.Drawing.Point(29, 71);
+            this.lbStockModel.Location = new System.Drawing.Point(33, 80);
             this.lbStockModel.Name = "lbStockModel";
             this.lbStockModel.Size = new System.Drawing.Size(53, 18);
             this.lbStockModel.TabIndex = 2;
@@ -223,15 +233,16 @@ namespace MediaBazaarApp
             // 
             // tbxStockBrand
             // 
-            this.tbxStockBrand.Location = new System.Drawing.Point(110, 27);
+            this.tbxStockBrand.Location = new System.Drawing.Point(124, 31);
+            this.tbxStockBrand.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockBrand.Name = "tbxStockBrand";
-            this.tbxStockBrand.Size = new System.Drawing.Size(137, 24);
+            this.tbxStockBrand.Size = new System.Drawing.Size(154, 24);
             this.tbxStockBrand.TabIndex = 1;
             // 
             // lbStockBrand
             // 
             this.lbStockBrand.AutoSize = true;
-            this.lbStockBrand.Location = new System.Drawing.Point(29, 30);
+            this.lbStockBrand.Location = new System.Drawing.Point(33, 34);
             this.lbStockBrand.Name = "lbStockBrand";
             this.lbStockBrand.Size = new System.Drawing.Size(51, 18);
             this.lbStockBrand.TabIndex = 0;
@@ -239,11 +250,13 @@ namespace MediaBazaarApp
             // 
             // EditStockForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 672);
+            this.ClientSize = new System.Drawing.Size(393, 756);
             this.Controls.Add(this.gbxEditStock);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EditStockForm";
             this.Text = "EditStockForm";
             this.gbxEditStock.ResumeLayout(false);
