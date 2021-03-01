@@ -31,7 +31,7 @@ namespace MediaBazaarApp
         {
             this.btnEditStock = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.gbxAddStock = new System.Windows.Forms.GroupBox();
+            this.gbxEditStock = new System.Windows.Forms.GroupBox();
             this.tbxStockDepth = new System.Windows.Forms.TextBox();
             this.lbStockDepth = new System.Windows.Forms.Label();
             this.tbxStockHeight = new System.Windows.Forms.TextBox();
@@ -49,7 +49,7 @@ namespace MediaBazaarApp
             this.lbStockModel = new System.Windows.Forms.Label();
             this.tbxStockBrand = new System.Windows.Forms.TextBox();
             this.lbStockBrand = new System.Windows.Forms.Label();
-            this.gbxAddStock.SuspendLayout();
+            this.gbxEditStock.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnEditStock
@@ -71,33 +71,33 @@ namespace MediaBazaarApp
             this.label1.TabIndex = 2;
             this.label1.Text = "Stock with id:(id)";
             // 
-            // gbxAddStock
+            // gbxEditStock
             // 
-            this.gbxAddStock.Controls.Add(this.tbxStockDepth);
-            this.gbxAddStock.Controls.Add(this.lbStockDepth);
-            this.gbxAddStock.Controls.Add(this.btnEditStock);
-            this.gbxAddStock.Controls.Add(this.tbxStockHeight);
-            this.gbxAddStock.Controls.Add(this.lbStockHeight);
-            this.gbxAddStock.Controls.Add(this.tbxStockWidth);
-            this.gbxAddStock.Controls.Add(this.lbStockWidth);
-            this.gbxAddStock.Controls.Add(this.tbxStockQuantity);
-            this.gbxAddStock.Controls.Add(this.lbStockQuantity);
-            this.gbxAddStock.Controls.Add(this.tbxStockShortDescription);
-            this.gbxAddStock.Controls.Add(this.lbStockShortDescription);
-            this.gbxAddStock.Controls.Add(this.lbStockDimensions);
-            this.gbxAddStock.Controls.Add(this.tbxStockPrice);
-            this.gbxAddStock.Controls.Add(this.lbStockPrice);
-            this.gbxAddStock.Controls.Add(this.tbxStockModel);
-            this.gbxAddStock.Controls.Add(this.lbStockModel);
-            this.gbxAddStock.Controls.Add(this.tbxStockBrand);
-            this.gbxAddStock.Controls.Add(this.lbStockBrand);
-            this.gbxAddStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxAddStock.Location = new System.Drawing.Point(31, 69);
-            this.gbxAddStock.Name = "gbxAddStock";
-            this.gbxAddStock.Size = new System.Drawing.Size(290, 576);
-            this.gbxAddStock.TabIndex = 15;
-            this.gbxAddStock.TabStop = false;
-            this.gbxAddStock.Text = "Add stock";
+            this.gbxEditStock.Controls.Add(this.tbxStockDepth);
+            this.gbxEditStock.Controls.Add(this.lbStockDepth);
+            this.gbxEditStock.Controls.Add(this.btnEditStock);
+            this.gbxEditStock.Controls.Add(this.tbxStockHeight);
+            this.gbxEditStock.Controls.Add(this.lbStockHeight);
+            this.gbxEditStock.Controls.Add(this.tbxStockWidth);
+            this.gbxEditStock.Controls.Add(this.lbStockWidth);
+            this.gbxEditStock.Controls.Add(this.tbxStockQuantity);
+            this.gbxEditStock.Controls.Add(this.lbStockQuantity);
+            this.gbxEditStock.Controls.Add(this.tbxStockShortDescription);
+            this.gbxEditStock.Controls.Add(this.lbStockShortDescription);
+            this.gbxEditStock.Controls.Add(this.lbStockDimensions);
+            this.gbxEditStock.Controls.Add(this.tbxStockPrice);
+            this.gbxEditStock.Controls.Add(this.lbStockPrice);
+            this.gbxEditStock.Controls.Add(this.tbxStockModel);
+            this.gbxEditStock.Controls.Add(this.lbStockModel);
+            this.gbxEditStock.Controls.Add(this.tbxStockBrand);
+            this.gbxEditStock.Controls.Add(this.lbStockBrand);
+            this.gbxEditStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbxEditStock.Location = new System.Drawing.Point(31, 69);
+            this.gbxEditStock.Name = "gbxEditStock";
+            this.gbxEditStock.Size = new System.Drawing.Size(290, 576);
+            this.gbxEditStock.TabIndex = 15;
+            this.gbxEditStock.TabStop = false;
+            this.gbxEditStock.Text = "Edit stock";
             // 
             // tbxStockDepth
             // 
@@ -242,12 +242,12 @@ namespace MediaBazaarApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(349, 672);
-            this.Controls.Add(this.gbxAddStock);
+            this.Controls.Add(this.gbxEditStock);
             this.Controls.Add(this.label1);
             this.Name = "EditStockForm";
             this.Text = "EditStockForm";
-            this.gbxAddStock.ResumeLayout(false);
-            this.gbxAddStock.PerformLayout();
+            this.gbxEditStock.ResumeLayout(false);
+            this.gbxEditStock.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,7 +256,7 @@ namespace MediaBazaarApp
         #endregion
         private System.Windows.Forms.Button btnEditStock;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox gbxAddStock;
+        private System.Windows.Forms.GroupBox gbxEditStock;
         private System.Windows.Forms.TextBox tbxStockDepth;
         private System.Windows.Forms.Label lbStockDepth;
         private System.Windows.Forms.TextBox tbxStockHeight;
