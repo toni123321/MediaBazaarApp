@@ -42,10 +42,10 @@ namespace MediaBazaarApp
             // lbEmpInfo
             // 
             this.lbEmpInfo.AutoSize = true;
-            this.lbEmpInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEmpInfo.Location = new System.Drawing.Point(338, 76);
             this.lbEmpInfo.Name = "lbEmpInfo";
-            this.lbEmpInfo.Size = new System.Drawing.Size(159, 17);
+            this.lbEmpInfo.Size = new System.Drawing.Size(165, 18);
             this.lbEmpInfo.TabIndex = 0;
             this.lbEmpInfo.Text = "Employee with Id:(id)";
             // 
@@ -54,7 +54,7 @@ namespace MediaBazaarApp
             this.lbShiftType.AutoSize = true;
             this.lbShiftType.Location = new System.Drawing.Point(61, 57);
             this.lbShiftType.Name = "lbShiftType";
-            this.lbShiftType.Size = new System.Drawing.Size(71, 17);
+            this.lbShiftType.Size = new System.Drawing.Size(72, 18);
             this.lbShiftType.TabIndex = 1;
             this.lbShiftType.Text = "Shift type:";
             // 
@@ -63,7 +63,7 @@ namespace MediaBazaarApp
             this.lbShiftDate.AutoSize = true;
             this.lbShiftDate.Location = new System.Drawing.Point(15, 108);
             this.lbShiftDate.Name = "lbShiftDate";
-            this.lbShiftDate.Size = new System.Drawing.Size(117, 17);
+            this.lbShiftDate.Size = new System.Drawing.Size(120, 18);
             this.lbShiftDate.TabIndex = 3;
             this.lbShiftDate.Text = "Date for the shift:";
             // 
@@ -76,7 +76,7 @@ namespace MediaBazaarApp
             "Evening"});
             this.cbShiftType.Location = new System.Drawing.Point(152, 57);
             this.cbShiftType.Name = "cbShiftType";
-            this.cbShiftType.Size = new System.Drawing.Size(200, 24);
+            this.cbShiftType.Size = new System.Drawing.Size(200, 26);
             this.cbShiftType.TabIndex = 5;
             this.cbShiftType.Text = "Choose shift type";
             // 
@@ -84,7 +84,7 @@ namespace MediaBazaarApp
             // 
             this.dtpShiftDate.Location = new System.Drawing.Point(152, 108);
             this.dtpShiftDate.Name = "dtpShiftDate";
-            this.dtpShiftDate.Size = new System.Drawing.Size(200, 22);
+            this.dtpShiftDate.Size = new System.Drawing.Size(200, 24);
             this.dtpShiftDate.TabIndex = 6;
             // 
             // btnAssign
@@ -103,6 +103,7 @@ namespace MediaBazaarApp
             this.gbxAssignShiftManually.Controls.Add(this.dtpShiftDate);
             this.gbxAssignShiftManually.Controls.Add(this.lbShiftDate);
             this.gbxAssignShiftManually.Controls.Add(this.cbShiftType);
+            this.gbxAssignShiftManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxAssignShiftManually.Location = new System.Drawing.Point(208, 116);
             this.gbxAssignShiftManually.Name = "gbxAssignShiftManually";
             this.gbxAssignShiftManually.Size = new System.Drawing.Size(384, 229);

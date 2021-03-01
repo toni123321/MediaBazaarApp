@@ -58,22 +58,73 @@
     <Compile Include="AssignWorkShiftsManuallyForm.Designer.cs">
       <DependentUpon>AssignWorkShiftsManuallyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DepotWorkersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DepotWorkersForm.Designer.cs">
+      <DependentUpon>DepotWorkersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditEmployeeForm.Designer.cs">
       <DependentUpon>EditEmployeeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditStockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditStockForm.Designer.cs">
+      <DependentUpon>EditStockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAttendanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageAttendanceForm.Designer.cs">
+      <DependentUpon>ManageAttendanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagementForm.Designer.cs">
+      <DependentUpon>ManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SuperuserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuperuserForm.Designer.cs">
+      <DependentUpon>SuperuserForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdministrationForm.resx">
       <DependentUpon>AdministrationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AssignWorkShiftsManuallyForm.resx">
       <DependentUpon>AssignWorkShiftsManuallyForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DepotWorkersForm.resx">
+      <DependentUpon>DepotWorkersForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditEmployeeForm.resx">
       <DependentUpon>EditEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditStockForm.resx">
+      <DependentUpon>EditStockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageAttendanceForm.resx">
+      <DependentUpon>ManageAttendanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementForm.resx">
+      <DependentUpon>ManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -84,6 +135,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SuperuserForm.resx">
+      <DependentUpon>SuperuserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

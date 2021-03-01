@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace MediaBazaarApp
 {
-    public partial class AdministrationForm : Form
+    public partial class LoginForm : Form
     {
-        public AdministrationForm()
+        public LoginForm()
         {
             InitializeComponent();
-        }
-
-        private void ViewStatisticsStocksTab_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
