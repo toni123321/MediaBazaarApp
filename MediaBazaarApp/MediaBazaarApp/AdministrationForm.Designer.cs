@@ -31,12 +31,18 @@ namespace MediaBazaarApp
         {
             this.tabControlAdministration = new System.Windows.Forms.TabControl();
             this.HomeTab = new System.Windows.Forms.TabPage();
+            this.EmployeesTab = new System.Windows.Forms.TabPage();
+            this.StocksTab = new System.Windows.Forms.TabPage();
+            this.StatisticsTab = new System.Windows.Forms.TabPage();
+            this.ScheduleTab = new System.Windows.Forms.TabPage();
             this.lbTime = new System.Windows.Forms.Label();
             this.lbDateDayOfWeek = new System.Windows.Forms.Label();
             this.lbNotificationsShelfRestockRequests = new System.Windows.Forms.Label();
             this.lbNotificationsHolidayRequests = new System.Windows.Forms.Label();
             this.lbGreetingMsg = new System.Windows.Forms.Label();
+            this.tabControlEmployees = new System.Windows.Forms.TabControl();
             this.AddEmpTab = new System.Windows.Forms.TabPage();
+            this.ManageEmpTab = new System.Windows.Forms.TabPage();
             this.gbxAddEmployee = new System.Windows.Forms.GroupBox();
             this.cbEmpDepartment = new System.Windows.Forms.ComboBox();
             this.lbEmpDepartment = new System.Windows.Forms.Label();
@@ -70,7 +76,6 @@ namespace MediaBazaarApp
             this.lbEmpLname = new System.Windows.Forms.Label();
             this.tbxEmpFname = new System.Windows.Forms.TextBox();
             this.lbEmpFname = new System.Windows.Forms.Label();
-            this.ManageEmpTab = new System.Windows.Forms.TabPage();
             this.btnEmpManageAttendance = new System.Windows.Forms.Button();
             this.gbxSearchEmp = new System.Windows.Forms.GroupBox();
             this.btnSearchEmp = new System.Windows.Forms.Button();
@@ -82,7 +87,15 @@ namespace MediaBazaarApp
             this.btnEditEmp = new System.Windows.Forms.Button();
             this.btnRemoveEmp = new System.Windows.Forms.Button();
             this.lbxAllEmployees = new System.Windows.Forms.ListBox();
-            this.ManageScheduleTab = new System.Windows.Forms.TabPage();
+            this.tabControlStocks = new System.Windows.Forms.TabControl();
+            this.AddStocksTab = new System.Windows.Forms.TabPage();
+            this.ManageStocksTab = new System.Windows.Forms.TabPage();
+            this.HolidayRequestsTab = new System.Windows.Forms.TabPage();
+            this.lbHolidayRequestsInfo = new System.Windows.Forms.Label();
+            this.btnHolidayRequestsClearSelected = new System.Windows.Forms.Button();
+            this.btnHolidayRequestsDecline = new System.Windows.Forms.Button();
+            this.btnHolidayRequestsAccept = new System.Windows.Forms.Button();
+            this.lbxAllHolidayRequests = new System.Windows.Forms.ListBox();
             this.gbxAutoShiftsAssignPerDay = new System.Windows.Forms.GroupBox();
             this.btnSubmitAutoShiftsAssignPerDay = new System.Windows.Forms.Button();
             this.tbxSun = new System.Windows.Forms.TextBox();
@@ -110,21 +123,33 @@ namespace MediaBazaarApp
             this.btnScheduleClearSelected = new System.Windows.Forms.Button();
             this.lbScheduleAllEmp = new System.Windows.Forms.Label();
             this.lbxScheduleAllEmp = new System.Windows.Forms.ListBox();
-            this.HolidayRequestsTab = new System.Windows.Forms.TabPage();
-            this.lbHolidayRequestsInfo = new System.Windows.Forms.Label();
-            this.btnHolidayRequestsClearSelected = new System.Windows.Forms.Button();
-            this.btnHolidayRequestsDecline = new System.Windows.Forms.Button();
-            this.btnHolidayRequestsAccept = new System.Windows.Forms.Button();
-            this.lbxAllHolidayRequests = new System.Windows.Forms.ListBox();
-            this.ManageStocksTab = new System.Windows.Forms.TabPage();
-            this.btnShowAllStocks = new System.Windows.Forms.Button();
-            this.gbxSearchStock = new System.Windows.Forms.GroupBox();
-            this.btnSearchStock = new System.Windows.Forms.Button();
-            this.tbxSearchStock = new System.Windows.Forms.TextBox();
-            this.btnStocksClearSelected = new System.Windows.Forms.Button();
-            this.btnEditStock = new System.Windows.Forms.Button();
-            this.btnRemoveStock = new System.Windows.Forms.Button();
-            this.lbAllStocks = new System.Windows.Forms.ListBox();
+            this.ManageShelfRestockRequestsTab = new System.Windows.Forms.TabPage();
+            this.ManageDepartmentsTab = new System.Windows.Forms.TabPage();
+            this.lbHistoryShelfRestockRequests = new System.Windows.Forms.Label();
+            this.lbxHistoryShelfRestockRequests = new System.Windows.Forms.ListBox();
+            this.lbShelfRestockRequestsInfo = new System.Windows.Forms.Label();
+            this.btnSehflRestockRequestsClearSelected = new System.Windows.Forms.Button();
+            this.btnShelftRestockRequestsMarkAsDone = new System.Windows.Forms.Button();
+            this.btnShelftRestockRequestsDecline = new System.Windows.Forms.Button();
+            this.lbxAllShelfRestockRequests = new System.Windows.Forms.ListBox();
+            this.gbxEditDepartment = new System.Windows.Forms.GroupBox();
+            this.lbDepartmentEditInfo = new System.Windows.Forms.Label();
+            this.btnApplyChangesDepartment = new System.Windows.Forms.Button();
+            this.cbDepartmentManagerEdit = new System.Windows.Forms.ComboBox();
+            this.lbDepartmentManagerEdit = new System.Windows.Forms.Label();
+            this.tbxDepartmentNameEdit = new System.Windows.Forms.TextBox();
+            this.lbDepartmentNameEdit = new System.Windows.Forms.Label();
+            this.btnRemoveDepartment = new System.Windows.Forms.Button();
+            this.btnEditDepartment = new System.Windows.Forms.Button();
+            this.btnDepartmentsClearSelected = new System.Windows.Forms.Button();
+            this.lbDepartmentsInfo = new System.Windows.Forms.Label();
+            this.lbxAllDepartments = new System.Windows.Forms.ListBox();
+            this.gbxCreateDeparmtent = new System.Windows.Forms.GroupBox();
+            this.btnCreateDepartment = new System.Windows.Forms.Button();
+            this.cbDepartmentManager = new System.Windows.Forms.ComboBox();
+            this.lbDepartmentManager = new System.Windows.Forms.Label();
+            this.tbxDepartmentName = new System.Windows.Forms.TextBox();
+            this.lbDepartmentName = new System.Windows.Forms.Label();
             this.gbxAddStock = new System.Windows.Forms.GroupBox();
             this.tbxStockDepth = new System.Windows.Forms.TextBox();
             this.lbStockDepth = new System.Windows.Forms.Label();
@@ -144,33 +169,17 @@ namespace MediaBazaarApp
             this.lbStockModel = new System.Windows.Forms.Label();
             this.tbxStockBrand = new System.Windows.Forms.TextBox();
             this.lbStockBrand = new System.Windows.Forms.Label();
-            this.ManageShelfRestockRequestsTab = new System.Windows.Forms.TabPage();
-            this.lbHistoryShelfRestockRequests = new System.Windows.Forms.Label();
-            this.lbxHistoryShelfRestockRequests = new System.Windows.Forms.ListBox();
-            this.lbShelfRestockRequestsInfo = new System.Windows.Forms.Label();
-            this.btnSehflRestockRequestsClearSelected = new System.Windows.Forms.Button();
-            this.btnShelftRestockRequestsMarkAsDone = new System.Windows.Forms.Button();
-            this.btnShelftRestockRequestsDecline = new System.Windows.Forms.Button();
-            this.lbxAllShelfRestockRequests = new System.Windows.Forms.ListBox();
-            this.ManageDepartmentsTab = new System.Windows.Forms.TabPage();
-            this.gbxEditDepartment = new System.Windows.Forms.GroupBox();
-            this.lbDepartmentEditInfo = new System.Windows.Forms.Label();
-            this.btnApplyChangesDepartment = new System.Windows.Forms.Button();
-            this.cbDepartmentManagerEdit = new System.Windows.Forms.ComboBox();
-            this.lbDepartmentManagerEdit = new System.Windows.Forms.Label();
-            this.tbxDepartmentNameEdit = new System.Windows.Forms.TextBox();
-            this.lbDepartmentNameEdit = new System.Windows.Forms.Label();
-            this.btnRemoveDepartment = new System.Windows.Forms.Button();
-            this.btnEditDepartment = new System.Windows.Forms.Button();
-            this.btnDepartmentsClearSelected = new System.Windows.Forms.Button();
-            this.lbDepartmentsInfo = new System.Windows.Forms.Label();
-            this.lbxAllDepartments = new System.Windows.Forms.ListBox();
-            this.gbxCreateDeparmtent = new System.Windows.Forms.GroupBox();
-            this.btnCreateDepartment = new System.Windows.Forms.Button();
-            this.cbDepartmentManager = new System.Windows.Forms.ComboBox();
-            this.lbDepartmentManager = new System.Windows.Forms.Label();
-            this.tbxDepartmentName = new System.Windows.Forms.TextBox();
-            this.lbDepartmentName = new System.Windows.Forms.Label();
+            this.lbStocksMainDetails = new System.Windows.Forms.Label();
+            this.btnShowAllStocks = new System.Windows.Forms.Button();
+            this.gbxSearchStock = new System.Windows.Forms.GroupBox();
+            this.btnSearchStock = new System.Windows.Forms.Button();
+            this.tbxSearchStock = new System.Windows.Forms.TextBox();
+            this.btnStocksClearSelected = new System.Windows.Forms.Button();
+            this.btnEditStock = new System.Windows.Forms.Button();
+            this.btnRemoveStock = new System.Windows.Forms.Button();
+            this.lbAllStocks = new System.Windows.Forms.ListBox();
+            this.tabControlStatistics = new System.Windows.Forms.TabControl();
+            this.ViewStatisticsStocksTab = new System.Windows.Forms.TabPage();
             this.ViewStatisticsEmpTab = new System.Windows.Forms.TabPage();
             this.lbAvgWageEmpDepartment = new System.Windows.Forms.Label();
             this.lbxAvgWageEmpDepartment = new System.Windows.Forms.ListBox();
@@ -180,51 +189,54 @@ namespace MediaBazaarApp
             this.lbxNrEmpPerDepartment = new System.Windows.Forms.ListBox();
             this.tbxNrEmp = new System.Windows.Forms.TextBox();
             this.lbNrEmp = new System.Windows.Forms.Label();
-            this.ViewStatisticsStocksTab = new System.Windows.Forms.TabPage();
             this.btnShowStockStatistics = new System.Windows.Forms.Button();
             this.cbStatisticType = new System.Windows.Forms.ComboBox();
             this.lbxAllStocksStatistics = new System.Windows.Forms.ListBox();
             this.tabControlAdministration.SuspendLayout();
             this.HomeTab.SuspendLayout();
+            this.EmployeesTab.SuspendLayout();
+            this.StocksTab.SuspendLayout();
+            this.StatisticsTab.SuspendLayout();
+            this.ScheduleTab.SuspendLayout();
+            this.tabControlEmployees.SuspendLayout();
             this.AddEmpTab.SuspendLayout();
-            this.gbxAddEmployee.SuspendLayout();
             this.ManageEmpTab.SuspendLayout();
+            this.gbxAddEmployee.SuspendLayout();
             this.gbxSearchEmp.SuspendLayout();
             this.gbxShowAllEmp.SuspendLayout();
-            this.ManageScheduleTab.SuspendLayout();
+            this.tabControlStocks.SuspendLayout();
+            this.AddStocksTab.SuspendLayout();
+            this.ManageStocksTab.SuspendLayout();
+            this.HolidayRequestsTab.SuspendLayout();
             this.gbxAutoShiftsAssignPerDay.SuspendLayout();
             this.gbxAutoShiftsAssignAllDays.SuspendLayout();
             this.gbxAssignShiftsAuto.SuspendLayout();
-            this.HolidayRequestsTab.SuspendLayout();
-            this.ManageStocksTab.SuspendLayout();
-            this.gbxSearchStock.SuspendLayout();
-            this.gbxAddStock.SuspendLayout();
             this.ManageShelfRestockRequestsTab.SuspendLayout();
             this.ManageDepartmentsTab.SuspendLayout();
             this.gbxEditDepartment.SuspendLayout();
             this.gbxCreateDeparmtent.SuspendLayout();
-            this.ViewStatisticsEmpTab.SuspendLayout();
+            this.gbxAddStock.SuspendLayout();
+            this.gbxSearchStock.SuspendLayout();
+            this.tabControlStatistics.SuspendLayout();
             this.ViewStatisticsStocksTab.SuspendLayout();
+            this.ViewStatisticsEmpTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlAdministration
             // 
             this.tabControlAdministration.Controls.Add(this.HomeTab);
-            this.tabControlAdministration.Controls.Add(this.AddEmpTab);
-            this.tabControlAdministration.Controls.Add(this.ManageEmpTab);
-            this.tabControlAdministration.Controls.Add(this.ManageScheduleTab);
-            this.tabControlAdministration.Controls.Add(this.HolidayRequestsTab);
-            this.tabControlAdministration.Controls.Add(this.ManageStocksTab);
+            this.tabControlAdministration.Controls.Add(this.EmployeesTab);
+            this.tabControlAdministration.Controls.Add(this.StocksTab);
+            this.tabControlAdministration.Controls.Add(this.ScheduleTab);
             this.tabControlAdministration.Controls.Add(this.ManageShelfRestockRequestsTab);
+            this.tabControlAdministration.Controls.Add(this.StatisticsTab);
             this.tabControlAdministration.Controls.Add(this.ManageDepartmentsTab);
-            this.tabControlAdministration.Controls.Add(this.ViewStatisticsEmpTab);
-            this.tabControlAdministration.Controls.Add(this.ViewStatisticsStocksTab);
             this.tabControlAdministration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControlAdministration.Location = new System.Drawing.Point(14, 27);
-            this.tabControlAdministration.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabControlAdministration.Location = new System.Drawing.Point(4, 4);
+            this.tabControlAdministration.Multiline = true;
             this.tabControlAdministration.Name = "tabControlAdministration";
             this.tabControlAdministration.SelectedIndex = 0;
-            this.tabControlAdministration.Size = new System.Drawing.Size(1133, 728);
+            this.tabControlAdministration.Size = new System.Drawing.Size(1105, 690);
             this.tabControlAdministration.TabIndex = 0;
             // 
             // HomeTab
@@ -235,70 +247,143 @@ namespace MediaBazaarApp
             this.HomeTab.Controls.Add(this.lbNotificationsHolidayRequests);
             this.HomeTab.Controls.Add(this.lbGreetingMsg);
             this.HomeTab.Location = new System.Drawing.Point(4, 27);
-            this.HomeTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HomeTab.Name = "HomeTab";
-            this.HomeTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.HomeTab.Size = new System.Drawing.Size(1125, 697);
+            this.HomeTab.Padding = new System.Windows.Forms.Padding(3);
+            this.HomeTab.Size = new System.Drawing.Size(1097, 659);
             this.HomeTab.TabIndex = 0;
             this.HomeTab.Text = "Home";
             this.HomeTab.UseVisualStyleBackColor = true;
             // 
+            // EmployeesTab
+            // 
+            this.EmployeesTab.Controls.Add(this.tabControlEmployees);
+            this.EmployeesTab.Location = new System.Drawing.Point(4, 27);
+            this.EmployeesTab.Name = "EmployeesTab";
+            this.EmployeesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.EmployeesTab.Size = new System.Drawing.Size(1097, 659);
+            this.EmployeesTab.TabIndex = 1;
+            this.EmployeesTab.Text = "Employees";
+            this.EmployeesTab.UseVisualStyleBackColor = true;
+            // 
+            // StocksTab
+            // 
+            this.StocksTab.Controls.Add(this.tabControlStocks);
+            this.StocksTab.Location = new System.Drawing.Point(4, 27);
+            this.StocksTab.Name = "StocksTab";
+            this.StocksTab.Size = new System.Drawing.Size(1097, 659);
+            this.StocksTab.TabIndex = 2;
+            this.StocksTab.Text = "Stocks";
+            this.StocksTab.UseVisualStyleBackColor = true;
+            // 
+            // StatisticsTab
+            // 
+            this.StatisticsTab.Controls.Add(this.tabControlStatistics);
+            this.StatisticsTab.Location = new System.Drawing.Point(4, 27);
+            this.StatisticsTab.Name = "StatisticsTab";
+            this.StatisticsTab.Size = new System.Drawing.Size(1097, 659);
+            this.StatisticsTab.TabIndex = 3;
+            this.StatisticsTab.Text = "Statistics";
+            this.StatisticsTab.UseVisualStyleBackColor = true;
+            // 
+            // ScheduleTab
+            // 
+            this.ScheduleTab.Controls.Add(this.gbxAutoShiftsAssignPerDay);
+            this.ScheduleTab.Controls.Add(this.gbxAutoShiftsAssignAllDays);
+            this.ScheduleTab.Controls.Add(this.gbxAssignShiftsAuto);
+            this.ScheduleTab.Controls.Add(this.btnAssignShiftsManually);
+            this.ScheduleTab.Controls.Add(this.btnScheduleClearSelected);
+            this.ScheduleTab.Controls.Add(this.lbScheduleAllEmp);
+            this.ScheduleTab.Controls.Add(this.lbxScheduleAllEmp);
+            this.ScheduleTab.Location = new System.Drawing.Point(4, 27);
+            this.ScheduleTab.Name = "ScheduleTab";
+            this.ScheduleTab.Size = new System.Drawing.Size(1097, 659);
+            this.ScheduleTab.TabIndex = 4;
+            this.ScheduleTab.Text = "Schedule";
+            this.ScheduleTab.UseVisualStyleBackColor = true;
+            // 
             // lbTime
             // 
             this.lbTime.AutoSize = true;
-            this.lbTime.Location = new System.Drawing.Point(126, 328);
+            this.lbTime.Location = new System.Drawing.Point(121, 331);
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(41, 18);
-            this.lbTime.TabIndex = 4;
+            this.lbTime.TabIndex = 9;
             this.lbTime.Text = "Time";
             // 
             // lbDateDayOfWeek
             // 
             this.lbDateDayOfWeek.AutoSize = true;
-            this.lbDateDayOfWeek.Location = new System.Drawing.Point(126, 378);
+            this.lbDateDayOfWeek.Location = new System.Drawing.Point(121, 381);
             this.lbDateDayOfWeek.Name = "lbDateDayOfWeek";
             this.lbDateDayOfWeek.Size = new System.Drawing.Size(125, 18);
-            this.lbDateDayOfWeek.TabIndex = 3;
+            this.lbDateDayOfWeek.TabIndex = 8;
             this.lbDateDayOfWeek.Text = "Date/Day of week";
             // 
             // lbNotificationsShelfRestockRequests
             // 
             this.lbNotificationsShelfRestockRequests.AutoSize = true;
-            this.lbNotificationsShelfRestockRequests.Location = new System.Drawing.Point(791, 43);
+            this.lbNotificationsShelfRestockRequests.Location = new System.Drawing.Point(786, 46);
             this.lbNotificationsShelfRestockRequests.Name = "lbNotificationsShelfRestockRequests";
             this.lbNotificationsShelfRestockRequests.Size = new System.Drawing.Size(239, 18);
-            this.lbNotificationsShelfRestockRequests.TabIndex = 2;
+            this.lbNotificationsShelfRestockRequests.TabIndex = 7;
             this.lbNotificationsShelfRestockRequests.Text = "Shelf restock requests notifications";
             // 
             // lbNotificationsHolidayRequests
             // 
             this.lbNotificationsHolidayRequests.AutoSize = true;
-            this.lbNotificationsHolidayRequests.Location = new System.Drawing.Point(515, 43);
+            this.lbNotificationsHolidayRequests.Location = new System.Drawing.Point(510, 46);
             this.lbNotificationsHolidayRequests.Name = "lbNotificationsHolidayRequests";
             this.lbNotificationsHolidayRequests.Size = new System.Drawing.Size(201, 18);
-            this.lbNotificationsHolidayRequests.TabIndex = 1;
+            this.lbNotificationsHolidayRequests.TabIndex = 6;
             this.lbNotificationsHolidayRequests.Text = "Holiday requests notifications";
             // 
             // lbGreetingMsg
             // 
             this.lbGreetingMsg.AutoSize = true;
-            this.lbGreetingMsg.Location = new System.Drawing.Point(120, 178);
+            this.lbGreetingMsg.Location = new System.Drawing.Point(115, 181);
             this.lbGreetingMsg.Name = "lbGreetingMsg";
             this.lbGreetingMsg.Size = new System.Drawing.Size(129, 18);
-            this.lbGreetingMsg.TabIndex = 0;
+            this.lbGreetingMsg.TabIndex = 5;
             this.lbGreetingMsg.Text = "Greeting message";
+            // 
+            // tabControlEmployees
+            // 
+            this.tabControlEmployees.Controls.Add(this.AddEmpTab);
+            this.tabControlEmployees.Controls.Add(this.ManageEmpTab);
+            this.tabControlEmployees.Controls.Add(this.HolidayRequestsTab);
+            this.tabControlEmployees.Location = new System.Drawing.Point(16, 22);
+            this.tabControlEmployees.Name = "tabControlEmployees";
+            this.tabControlEmployees.SelectedIndex = 0;
+            this.tabControlEmployees.Size = new System.Drawing.Size(1029, 617);
+            this.tabControlEmployees.TabIndex = 0;
             // 
             // AddEmpTab
             // 
             this.AddEmpTab.Controls.Add(this.gbxAddEmployee);
             this.AddEmpTab.Location = new System.Drawing.Point(4, 27);
-            this.AddEmpTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddEmpTab.Name = "AddEmpTab";
-            this.AddEmpTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.AddEmpTab.Size = new System.Drawing.Size(1125, 697);
-            this.AddEmpTab.TabIndex = 1;
-            this.AddEmpTab.Text = "Add employees";
+            this.AddEmpTab.Padding = new System.Windows.Forms.Padding(3);
+            this.AddEmpTab.Size = new System.Drawing.Size(1021, 586);
+            this.AddEmpTab.TabIndex = 0;
+            this.AddEmpTab.Text = "AddEmployees";
             this.AddEmpTab.UseVisualStyleBackColor = true;
+            // 
+            // ManageEmpTab
+            // 
+            this.ManageEmpTab.Controls.Add(this.btnEmpManageAttendance);
+            this.ManageEmpTab.Controls.Add(this.gbxSearchEmp);
+            this.ManageEmpTab.Controls.Add(this.gbxShowAllEmp);
+            this.ManageEmpTab.Controls.Add(this.btnClearSelectedEmp);
+            this.ManageEmpTab.Controls.Add(this.btnEditEmp);
+            this.ManageEmpTab.Controls.Add(this.btnRemoveEmp);
+            this.ManageEmpTab.Controls.Add(this.lbxAllEmployees);
+            this.ManageEmpTab.Location = new System.Drawing.Point(4, 27);
+            this.ManageEmpTab.Name = "ManageEmpTab";
+            this.ManageEmpTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ManageEmpTab.Size = new System.Drawing.Size(1021, 586);
+            this.ManageEmpTab.TabIndex = 1;
+            this.ManageEmpTab.Text = "Manage employees";
+            this.ManageEmpTab.UseVisualStyleBackColor = true;
             // 
             // gbxAddEmployee
             // 
@@ -334,12 +419,12 @@ namespace MediaBazaarApp
             this.gbxAddEmployee.Controls.Add(this.lbEmpLname);
             this.gbxAddEmployee.Controls.Add(this.tbxEmpFname);
             this.gbxAddEmployee.Controls.Add(this.lbEmpFname);
-            this.gbxAddEmployee.Location = new System.Drawing.Point(217, 34);
+            this.gbxAddEmployee.Location = new System.Drawing.Point(152, 9);
             this.gbxAddEmployee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAddEmployee.Name = "gbxAddEmployee";
             this.gbxAddEmployee.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAddEmployee.Size = new System.Drawing.Size(737, 607);
-            this.gbxAddEmployee.TabIndex = 0;
+            this.gbxAddEmployee.Size = new System.Drawing.Size(737, 557);
+            this.gbxAddEmployee.TabIndex = 1;
             this.gbxAddEmployee.TabStop = false;
             this.gbxAddEmployee.Text = "Add/Hire employee";
             // 
@@ -534,7 +619,7 @@ namespace MediaBazaarApp
             // 
             // btnAddEmpoyee
             // 
-            this.btnAddEmpoyee.Location = new System.Drawing.Point(266, 540);
+            this.btnAddEmpoyee.Location = new System.Drawing.Point(266, 498);
             this.btnAddEmpoyee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddEmpoyee.Name = "btnAddEmpoyee";
             this.btnAddEmpoyee.Size = new System.Drawing.Size(216, 47);
@@ -639,30 +724,13 @@ namespace MediaBazaarApp
             this.lbEmpFname.TabIndex = 0;
             this.lbEmpFname.Text = "First name:";
             // 
-            // ManageEmpTab
-            // 
-            this.ManageEmpTab.Controls.Add(this.btnEmpManageAttendance);
-            this.ManageEmpTab.Controls.Add(this.gbxSearchEmp);
-            this.ManageEmpTab.Controls.Add(this.gbxShowAllEmp);
-            this.ManageEmpTab.Controls.Add(this.btnClearSelectedEmp);
-            this.ManageEmpTab.Controls.Add(this.btnEditEmp);
-            this.ManageEmpTab.Controls.Add(this.btnRemoveEmp);
-            this.ManageEmpTab.Controls.Add(this.lbxAllEmployees);
-            this.ManageEmpTab.Location = new System.Drawing.Point(4, 27);
-            this.ManageEmpTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ManageEmpTab.Name = "ManageEmpTab";
-            this.ManageEmpTab.Size = new System.Drawing.Size(1125, 697);
-            this.ManageEmpTab.TabIndex = 7;
-            this.ManageEmpTab.Text = "Manage employees";
-            this.ManageEmpTab.UseVisualStyleBackColor = true;
-            // 
             // btnEmpManageAttendance
             // 
-            this.btnEmpManageAttendance.Location = new System.Drawing.Point(817, 583);
+            this.btnEmpManageAttendance.Location = new System.Drawing.Point(766, 523);
             this.btnEmpManageAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEmpManageAttendance.Name = "btnEmpManageAttendance";
-            this.btnEmpManageAttendance.Size = new System.Drawing.Size(219, 55);
-            this.btnEmpManageAttendance.TabIndex = 11;
+            this.btnEmpManageAttendance.Size = new System.Drawing.Size(219, 44);
+            this.btnEmpManageAttendance.TabIndex = 18;
             this.btnEmpManageAttendance.Text = "Manage attendance";
             this.btnEmpManageAttendance.UseVisualStyleBackColor = true;
             // 
@@ -670,12 +738,12 @@ namespace MediaBazaarApp
             // 
             this.gbxSearchEmp.Controls.Add(this.btnSearchEmp);
             this.gbxSearchEmp.Controls.Add(this.tbxSearchEmp);
-            this.gbxSearchEmp.Location = new System.Drawing.Point(579, 20);
+            this.gbxSearchEmp.Location = new System.Drawing.Point(528, 20);
             this.gbxSearchEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxSearchEmp.Name = "gbxSearchEmp";
             this.gbxSearchEmp.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxSearchEmp.Size = new System.Drawing.Size(457, 101);
-            this.gbxSearchEmp.TabIndex = 10;
+            this.gbxSearchEmp.TabIndex = 17;
             this.gbxSearchEmp.TabStop = false;
             this.gbxSearchEmp.Text = "Search for specific employee";
             // 
@@ -702,12 +770,12 @@ namespace MediaBazaarApp
             // 
             this.gbxShowAllEmp.Controls.Add(this.cbSelectEmpType);
             this.gbxShowAllEmp.Controls.Add(this.btnShowAllEmp);
-            this.gbxShowAllEmp.Location = new System.Drawing.Point(86, 20);
+            this.gbxShowAllEmp.Location = new System.Drawing.Point(35, 20);
             this.gbxShowAllEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxShowAllEmp.Name = "gbxShowAllEmp";
             this.gbxShowAllEmp.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxShowAllEmp.Size = new System.Drawing.Size(384, 101);
-            this.gbxShowAllEmp.TabIndex = 9;
+            this.gbxShowAllEmp.TabIndex = 16;
             this.gbxShowAllEmp.TabStop = false;
             this.gbxShowAllEmp.Text = "Select type of employee to show ";
             // 
@@ -739,31 +807,31 @@ namespace MediaBazaarApp
             // 
             // btnClearSelectedEmp
             // 
-            this.btnClearSelectedEmp.Location = new System.Drawing.Point(86, 583);
+            this.btnClearSelectedEmp.Location = new System.Drawing.Point(35, 523);
             this.btnClearSelectedEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClearSelectedEmp.Name = "btnClearSelectedEmp";
-            this.btnClearSelectedEmp.Size = new System.Drawing.Size(219, 55);
-            this.btnClearSelectedEmp.TabIndex = 4;
+            this.btnClearSelectedEmp.Size = new System.Drawing.Size(219, 44);
+            this.btnClearSelectedEmp.TabIndex = 15;
             this.btnClearSelectedEmp.Text = "Unmark selected";
             this.btnClearSelectedEmp.UseVisualStyleBackColor = true;
             // 
             // btnEditEmp
             // 
-            this.btnEditEmp.Location = new System.Drawing.Point(335, 583);
+            this.btnEditEmp.Location = new System.Drawing.Point(284, 523);
             this.btnEditEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditEmp.Name = "btnEditEmp";
-            this.btnEditEmp.Size = new System.Drawing.Size(219, 55);
-            this.btnEditEmp.TabIndex = 3;
+            this.btnEditEmp.Size = new System.Drawing.Size(219, 44);
+            this.btnEditEmp.TabIndex = 14;
             this.btnEditEmp.Text = "Edit employee";
             this.btnEditEmp.UseVisualStyleBackColor = true;
             // 
             // btnRemoveEmp
             // 
-            this.btnRemoveEmp.Location = new System.Drawing.Point(579, 583);
+            this.btnRemoveEmp.Location = new System.Drawing.Point(528, 523);
             this.btnRemoveEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRemoveEmp.Name = "btnRemoveEmp";
-            this.btnRemoveEmp.Size = new System.Drawing.Size(219, 55);
-            this.btnRemoveEmp.TabIndex = 2;
+            this.btnRemoveEmp.Size = new System.Drawing.Size(219, 44);
+            this.btnRemoveEmp.TabIndex = 13;
             this.btnRemoveEmp.Text = "Remove employee";
             this.btnRemoveEmp.UseVisualStyleBackColor = true;
             // 
@@ -772,28 +840,113 @@ namespace MediaBazaarApp
             this.lbxAllEmployees.FormattingEnabled = true;
             this.lbxAllEmployees.HorizontalScrollbar = true;
             this.lbxAllEmployees.ItemHeight = 18;
-            this.lbxAllEmployees.Location = new System.Drawing.Point(86, 146);
+            this.lbxAllEmployees.Location = new System.Drawing.Point(35, 135);
             this.lbxAllEmployees.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAllEmployees.Name = "lbxAllEmployees";
-            this.lbxAllEmployees.Size = new System.Drawing.Size(950, 400);
-            this.lbxAllEmployees.TabIndex = 0;
+            this.lbxAllEmployees.Size = new System.Drawing.Size(950, 364);
+            this.lbxAllEmployees.TabIndex = 12;
             // 
-            // ManageScheduleTab
+            // tabControlStocks
             // 
-            this.ManageScheduleTab.Controls.Add(this.gbxAutoShiftsAssignPerDay);
-            this.ManageScheduleTab.Controls.Add(this.gbxAutoShiftsAssignAllDays);
-            this.ManageScheduleTab.Controls.Add(this.gbxAssignShiftsAuto);
-            this.ManageScheduleTab.Controls.Add(this.btnAssignShiftsManually);
-            this.ManageScheduleTab.Controls.Add(this.btnScheduleClearSelected);
-            this.ManageScheduleTab.Controls.Add(this.lbScheduleAllEmp);
-            this.ManageScheduleTab.Controls.Add(this.lbxScheduleAllEmp);
-            this.ManageScheduleTab.Location = new System.Drawing.Point(4, 27);
-            this.ManageScheduleTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ManageScheduleTab.Name = "ManageScheduleTab";
-            this.ManageScheduleTab.Size = new System.Drawing.Size(1125, 697);
-            this.ManageScheduleTab.TabIndex = 2;
-            this.ManageScheduleTab.Text = "Manage schedule";
-            this.ManageScheduleTab.UseVisualStyleBackColor = true;
+            this.tabControlStocks.Controls.Add(this.AddStocksTab);
+            this.tabControlStocks.Controls.Add(this.ManageStocksTab);
+            this.tabControlStocks.Location = new System.Drawing.Point(22, 15);
+            this.tabControlStocks.Name = "tabControlStocks";
+            this.tabControlStocks.SelectedIndex = 0;
+            this.tabControlStocks.Size = new System.Drawing.Size(1029, 617);
+            this.tabControlStocks.TabIndex = 1;
+            // 
+            // AddStocksTab
+            // 
+            this.AddStocksTab.Controls.Add(this.gbxAddStock);
+            this.AddStocksTab.Location = new System.Drawing.Point(4, 27);
+            this.AddStocksTab.Name = "AddStocksTab";
+            this.AddStocksTab.Padding = new System.Windows.Forms.Padding(3);
+            this.AddStocksTab.Size = new System.Drawing.Size(1021, 586);
+            this.AddStocksTab.TabIndex = 0;
+            this.AddStocksTab.Text = "AddStocks";
+            this.AddStocksTab.UseVisualStyleBackColor = true;
+            // 
+            // ManageStocksTab
+            // 
+            this.ManageStocksTab.Controls.Add(this.btnShowAllStocks);
+            this.ManageStocksTab.Controls.Add(this.gbxSearchStock);
+            this.ManageStocksTab.Controls.Add(this.btnStocksClearSelected);
+            this.ManageStocksTab.Controls.Add(this.btnEditStock);
+            this.ManageStocksTab.Controls.Add(this.btnRemoveStock);
+            this.ManageStocksTab.Controls.Add(this.lbAllStocks);
+            this.ManageStocksTab.Location = new System.Drawing.Point(4, 27);
+            this.ManageStocksTab.Name = "ManageStocksTab";
+            this.ManageStocksTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ManageStocksTab.Size = new System.Drawing.Size(1021, 586);
+            this.ManageStocksTab.TabIndex = 1;
+            this.ManageStocksTab.Text = "Manage stocks";
+            this.ManageStocksTab.UseVisualStyleBackColor = true;
+            // 
+            // HolidayRequestsTab
+            // 
+            this.HolidayRequestsTab.Controls.Add(this.lbHolidayRequestsInfo);
+            this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsClearSelected);
+            this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsDecline);
+            this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsAccept);
+            this.HolidayRequestsTab.Controls.Add(this.lbxAllHolidayRequests);
+            this.HolidayRequestsTab.Location = new System.Drawing.Point(4, 27);
+            this.HolidayRequestsTab.Name = "HolidayRequestsTab";
+            this.HolidayRequestsTab.Size = new System.Drawing.Size(1021, 586);
+            this.HolidayRequestsTab.TabIndex = 2;
+            this.HolidayRequestsTab.Text = "Holiday requests";
+            this.HolidayRequestsTab.UseVisualStyleBackColor = true;
+            // 
+            // lbHolidayRequestsInfo
+            // 
+            this.lbHolidayRequestsInfo.AutoSize = true;
+            this.lbHolidayRequestsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHolidayRequestsInfo.Location = new System.Drawing.Point(429, 46);
+            this.lbHolidayRequestsInfo.Name = "lbHolidayRequestsInfo";
+            this.lbHolidayRequestsInfo.Size = new System.Drawing.Size(160, 18);
+            this.lbHolidayRequestsInfo.TabIndex = 9;
+            this.lbHolidayRequestsInfo.Text = "New holiday request";
+            // 
+            // btnHolidayRequestsClearSelected
+            // 
+            this.btnHolidayRequestsClearSelected.Location = new System.Drawing.Point(229, 479);
+            this.btnHolidayRequestsClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnHolidayRequestsClearSelected.Name = "btnHolidayRequestsClearSelected";
+            this.btnHolidayRequestsClearSelected.Size = new System.Drawing.Size(163, 44);
+            this.btnHolidayRequestsClearSelected.TabIndex = 8;
+            this.btnHolidayRequestsClearSelected.Text = "Unmark selected";
+            this.btnHolidayRequestsClearSelected.UseVisualStyleBackColor = true;
+            // 
+            // btnHolidayRequestsDecline
+            // 
+            this.btnHolidayRequestsDecline.Location = new System.Drawing.Point(628, 479);
+            this.btnHolidayRequestsDecline.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnHolidayRequestsDecline.Name = "btnHolidayRequestsDecline";
+            this.btnHolidayRequestsDecline.Size = new System.Drawing.Size(163, 44);
+            this.btnHolidayRequestsDecline.TabIndex = 7;
+            this.btnHolidayRequestsDecline.Text = "Decline";
+            this.btnHolidayRequestsDecline.UseVisualStyleBackColor = true;
+            // 
+            // btnHolidayRequestsAccept
+            // 
+            this.btnHolidayRequestsAccept.Location = new System.Drawing.Point(425, 479);
+            this.btnHolidayRequestsAccept.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnHolidayRequestsAccept.Name = "btnHolidayRequestsAccept";
+            this.btnHolidayRequestsAccept.Size = new System.Drawing.Size(163, 44);
+            this.btnHolidayRequestsAccept.TabIndex = 6;
+            this.btnHolidayRequestsAccept.Text = "Accept";
+            this.btnHolidayRequestsAccept.UseVisualStyleBackColor = true;
+            // 
+            // lbxAllHolidayRequests
+            // 
+            this.lbxAllHolidayRequests.FormattingEnabled = true;
+            this.lbxAllHolidayRequests.HorizontalScrollbar = true;
+            this.lbxAllHolidayRequests.ItemHeight = 18;
+            this.lbxAllHolidayRequests.Location = new System.Drawing.Point(229, 94);
+            this.lbxAllHolidayRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbxAllHolidayRequests.Name = "lbxAllHolidayRequests";
+            this.lbxAllHolidayRequests.Size = new System.Drawing.Size(562, 364);
+            this.lbxAllHolidayRequests.TabIndex = 5;
             // 
             // gbxAutoShiftsAssignPerDay
             // 
@@ -812,12 +965,12 @@ namespace MediaBazaarApp
             this.gbxAutoShiftsAssignPerDay.Controls.Add(this.lbTues);
             this.gbxAutoShiftsAssignPerDay.Controls.Add(this.tbxMon);
             this.gbxAutoShiftsAssignPerDay.Controls.Add(this.lbMon);
-            this.gbxAutoShiftsAssignPerDay.Location = new System.Drawing.Point(645, 155);
+            this.gbxAutoShiftsAssignPerDay.Location = new System.Drawing.Point(626, 175);
             this.gbxAutoShiftsAssignPerDay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAutoShiftsAssignPerDay.Name = "gbxAutoShiftsAssignPerDay";
             this.gbxAutoShiftsAssignPerDay.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAutoShiftsAssignPerDay.Size = new System.Drawing.Size(452, 410);
-            this.gbxAutoShiftsAssignPerDay.TabIndex = 7;
+            this.gbxAutoShiftsAssignPerDay.TabIndex = 14;
             this.gbxAutoShiftsAssignPerDay.TabStop = false;
             this.gbxAutoShiftsAssignPerDay.Text = "Choose number of workers per day";
             // 
@@ -955,21 +1108,21 @@ namespace MediaBazaarApp
             this.gbxAutoShiftsAssignAllDays.Controls.Add(this.btnSubmitAutoShiftsAssignAllDays);
             this.gbxAutoShiftsAssignAllDays.Controls.Add(this.lbNrWorkers);
             this.gbxAutoShiftsAssignAllDays.Controls.Add(this.tbxNrWorkers);
-            this.gbxAutoShiftsAssignAllDays.Location = new System.Drawing.Point(70, 514);
+            this.gbxAutoShiftsAssignAllDays.Location = new System.Drawing.Point(85, 504);
             this.gbxAutoShiftsAssignAllDays.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAutoShiftsAssignAllDays.Name = "gbxAutoShiftsAssignAllDays";
             this.gbxAutoShiftsAssignAllDays.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAutoShiftsAssignAllDays.Size = new System.Drawing.Size(452, 157);
-            this.gbxAutoShiftsAssignAllDays.TabIndex = 6;
+            this.gbxAutoShiftsAssignAllDays.Size = new System.Drawing.Size(452, 139);
+            this.gbxAutoShiftsAssignAllDays.TabIndex = 13;
             this.gbxAutoShiftsAssignAllDays.TabStop = false;
             this.gbxAutoShiftsAssignAllDays.Text = "Choose number of workers for the whole week";
             // 
             // btnSubmitAutoShiftsAssignAllDays
             // 
-            this.btnSubmitAutoShiftsAssignAllDays.Location = new System.Drawing.Point(237, 97);
+            this.btnSubmitAutoShiftsAssignAllDays.Location = new System.Drawing.Point(225, 86);
             this.btnSubmitAutoShiftsAssignAllDays.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSubmitAutoShiftsAssignAllDays.Name = "btnSubmitAutoShiftsAssignAllDays";
-            this.btnSubmitAutoShiftsAssignAllDays.Size = new System.Drawing.Size(135, 40);
+            this.btnSubmitAutoShiftsAssignAllDays.Size = new System.Drawing.Size(135, 33);
             this.btnSubmitAutoShiftsAssignAllDays.TabIndex = 4;
             this.btnSubmitAutoShiftsAssignAllDays.Text = "Submit";
             this.btnSubmitAutoShiftsAssignAllDays.UseVisualStyleBackColor = true;
@@ -977,7 +1130,7 @@ namespace MediaBazaarApp
             // lbNrWorkers
             // 
             this.lbNrWorkers.AutoSize = true;
-            this.lbNrWorkers.Location = new System.Drawing.Point(71, 49);
+            this.lbNrWorkers.Location = new System.Drawing.Point(59, 38);
             this.lbNrWorkers.Name = "lbNrWorkers";
             this.lbNrWorkers.Size = new System.Drawing.Size(137, 18);
             this.lbNrWorkers.TabIndex = 2;
@@ -985,7 +1138,7 @@ namespace MediaBazaarApp
             // 
             // tbxNrWorkers
             // 
-            this.tbxNrWorkers.Location = new System.Drawing.Point(237, 49);
+            this.tbxNrWorkers.Location = new System.Drawing.Point(225, 38);
             this.tbxNrWorkers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxNrWorkers.Name = "tbxNrWorkers";
             this.tbxNrWorkers.Size = new System.Drawing.Size(134, 24);
@@ -995,12 +1148,12 @@ namespace MediaBazaarApp
             // 
             this.gbxAssignShiftsAuto.Controls.Add(this.btnChooseAssignTypeAuto);
             this.gbxAssignShiftsAuto.Controls.Add(this.cbAssignTypeAuto);
-            this.gbxAssignShiftsAuto.Location = new System.Drawing.Point(645, 35);
+            this.gbxAssignShiftsAuto.Location = new System.Drawing.Point(626, 55);
             this.gbxAssignShiftsAuto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAssignShiftsAuto.Name = "gbxAssignShiftsAuto";
             this.gbxAssignShiftsAuto.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAssignShiftsAuto.Size = new System.Drawing.Size(452, 98);
-            this.gbxAssignShiftsAuto.TabIndex = 5;
+            this.gbxAssignShiftsAuto.TabIndex = 12;
             this.gbxAssignShiftsAuto.TabStop = false;
             this.gbxAssignShiftsAuto.Text = "Assign work shifts automatically";
             // 
@@ -1029,21 +1182,21 @@ namespace MediaBazaarApp
             // 
             // btnAssignShiftsManually
             // 
-            this.btnAssignShiftsManually.Location = new System.Drawing.Point(344, 442);
+            this.btnAssignShiftsManually.Location = new System.Drawing.Point(342, 430);
             this.btnAssignShiftsManually.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAssignShiftsManually.Name = "btnAssignShiftsManually";
             this.btnAssignShiftsManually.Size = new System.Drawing.Size(259, 44);
-            this.btnAssignShiftsManually.TabIndex = 4;
+            this.btnAssignShiftsManually.TabIndex = 11;
             this.btnAssignShiftsManually.Text = "Assign work shift manually";
             this.btnAssignShiftsManually.UseVisualStyleBackColor = true;
             // 
             // btnScheduleClearSelected
             // 
-            this.btnScheduleClearSelected.Location = new System.Drawing.Point(20, 442);
+            this.btnScheduleClearSelected.Location = new System.Drawing.Point(18, 430);
             this.btnScheduleClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnScheduleClearSelected.Name = "btnScheduleClearSelected";
             this.btnScheduleClearSelected.Size = new System.Drawing.Size(259, 44);
-            this.btnScheduleClearSelected.TabIndex = 3;
+            this.btnScheduleClearSelected.TabIndex = 10;
             this.btnScheduleClearSelected.Text = "Unmark selected";
             this.btnScheduleClearSelected.UseVisualStyleBackColor = true;
             // 
@@ -1051,10 +1204,10 @@ namespace MediaBazaarApp
             // 
             this.lbScheduleAllEmp.AutoSize = true;
             this.lbScheduleAllEmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbScheduleAllEmp.Location = new System.Drawing.Point(158, 35);
+            this.lbScheduleAllEmp.Location = new System.Drawing.Point(157, 35);
             this.lbScheduleAllEmp.Name = "lbScheduleAllEmp";
             this.lbScheduleAllEmp.Size = new System.Drawing.Size(294, 18);
-            this.lbScheduleAllEmp.TabIndex = 2;
+            this.lbScheduleAllEmp.TabIndex = 9;
             this.lbScheduleAllEmp.Text = "Select employee to assign work shifts";
             // 
             // lbxScheduleAllEmp
@@ -1062,362 +1215,11 @@ namespace MediaBazaarApp
             this.lbxScheduleAllEmp.FormattingEnabled = true;
             this.lbxScheduleAllEmp.HorizontalScrollbar = true;
             this.lbxScheduleAllEmp.ItemHeight = 18;
-            this.lbxScheduleAllEmp.Location = new System.Drawing.Point(20, 70);
+            this.lbxScheduleAllEmp.Location = new System.Drawing.Point(19, 70);
             this.lbxScheduleAllEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxScheduleAllEmp.Name = "lbxScheduleAllEmp";
             this.lbxScheduleAllEmp.Size = new System.Drawing.Size(582, 346);
-            this.lbxScheduleAllEmp.TabIndex = 1;
-            // 
-            // HolidayRequestsTab
-            // 
-            this.HolidayRequestsTab.Controls.Add(this.lbHolidayRequestsInfo);
-            this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsClearSelected);
-            this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsDecline);
-            this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsAccept);
-            this.HolidayRequestsTab.Controls.Add(this.lbxAllHolidayRequests);
-            this.HolidayRequestsTab.Location = new System.Drawing.Point(4, 27);
-            this.HolidayRequestsTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.HolidayRequestsTab.Name = "HolidayRequestsTab";
-            this.HolidayRequestsTab.Size = new System.Drawing.Size(1125, 697);
-            this.HolidayRequestsTab.TabIndex = 3;
-            this.HolidayRequestsTab.Text = "Holiday requests";
-            this.HolidayRequestsTab.UseVisualStyleBackColor = true;
-            // 
-            // lbHolidayRequestsInfo
-            // 
-            this.lbHolidayRequestsInfo.AutoSize = true;
-            this.lbHolidayRequestsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHolidayRequestsInfo.Location = new System.Drawing.Point(453, 53);
-            this.lbHolidayRequestsInfo.Name = "lbHolidayRequestsInfo";
-            this.lbHolidayRequestsInfo.Size = new System.Drawing.Size(160, 18);
-            this.lbHolidayRequestsInfo.TabIndex = 4;
-            this.lbHolidayRequestsInfo.Text = "New holiday request";
-            // 
-            // btnHolidayRequestsClearSelected
-            // 
-            this.btnHolidayRequestsClearSelected.Location = new System.Drawing.Point(253, 503);
-            this.btnHolidayRequestsClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnHolidayRequestsClearSelected.Name = "btnHolidayRequestsClearSelected";
-            this.btnHolidayRequestsClearSelected.Size = new System.Drawing.Size(163, 44);
-            this.btnHolidayRequestsClearSelected.TabIndex = 3;
-            this.btnHolidayRequestsClearSelected.Text = "Unmark selected";
-            this.btnHolidayRequestsClearSelected.UseVisualStyleBackColor = true;
-            // 
-            // btnHolidayRequestsDecline
-            // 
-            this.btnHolidayRequestsDecline.Location = new System.Drawing.Point(652, 503);
-            this.btnHolidayRequestsDecline.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnHolidayRequestsDecline.Name = "btnHolidayRequestsDecline";
-            this.btnHolidayRequestsDecline.Size = new System.Drawing.Size(163, 44);
-            this.btnHolidayRequestsDecline.TabIndex = 2;
-            this.btnHolidayRequestsDecline.Text = "Decline";
-            this.btnHolidayRequestsDecline.UseVisualStyleBackColor = true;
-            // 
-            // btnHolidayRequestsAccept
-            // 
-            this.btnHolidayRequestsAccept.Location = new System.Drawing.Point(449, 503);
-            this.btnHolidayRequestsAccept.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnHolidayRequestsAccept.Name = "btnHolidayRequestsAccept";
-            this.btnHolidayRequestsAccept.Size = new System.Drawing.Size(163, 44);
-            this.btnHolidayRequestsAccept.TabIndex = 1;
-            this.btnHolidayRequestsAccept.Text = "Accept";
-            this.btnHolidayRequestsAccept.UseVisualStyleBackColor = true;
-            // 
-            // lbxAllHolidayRequests
-            // 
-            this.lbxAllHolidayRequests.FormattingEnabled = true;
-            this.lbxAllHolidayRequests.HorizontalScrollbar = true;
-            this.lbxAllHolidayRequests.ItemHeight = 18;
-            this.lbxAllHolidayRequests.Location = new System.Drawing.Point(253, 101);
-            this.lbxAllHolidayRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxAllHolidayRequests.Name = "lbxAllHolidayRequests";
-            this.lbxAllHolidayRequests.Size = new System.Drawing.Size(562, 364);
-            this.lbxAllHolidayRequests.TabIndex = 0;
-            // 
-            // ManageStocksTab
-            // 
-            this.ManageStocksTab.Controls.Add(this.btnShowAllStocks);
-            this.ManageStocksTab.Controls.Add(this.gbxSearchStock);
-            this.ManageStocksTab.Controls.Add(this.btnStocksClearSelected);
-            this.ManageStocksTab.Controls.Add(this.btnEditStock);
-            this.ManageStocksTab.Controls.Add(this.btnRemoveStock);
-            this.ManageStocksTab.Controls.Add(this.lbAllStocks);
-            this.ManageStocksTab.Controls.Add(this.gbxAddStock);
-            this.ManageStocksTab.Location = new System.Drawing.Point(4, 27);
-            this.ManageStocksTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ManageStocksTab.Name = "ManageStocksTab";
-            this.ManageStocksTab.Size = new System.Drawing.Size(1125, 697);
-            this.ManageStocksTab.TabIndex = 4;
-            this.ManageStocksTab.Text = "Manages stocks";
-            this.ManageStocksTab.UseVisualStyleBackColor = true;
-            // 
-            // btnShowAllStocks
-            // 
-            this.btnShowAllStocks.Location = new System.Drawing.Point(393, 92);
-            this.btnShowAllStocks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnShowAllStocks.Name = "btnShowAllStocks";
-            this.btnShowAllStocks.Size = new System.Drawing.Size(219, 52);
-            this.btnShowAllStocks.TabIndex = 17;
-            this.btnShowAllStocks.Text = "Show all stocks";
-            this.btnShowAllStocks.UseVisualStyleBackColor = true;
-            // 
-            // gbxSearchStock
-            // 
-            this.gbxSearchStock.Controls.Add(this.btnSearchStock);
-            this.gbxSearchStock.Controls.Add(this.tbxSearchStock);
-            this.gbxSearchStock.Location = new System.Drawing.Point(633, 67);
-            this.gbxSearchStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxSearchStock.Name = "gbxSearchStock";
-            this.gbxSearchStock.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxSearchStock.Size = new System.Drawing.Size(457, 101);
-            this.gbxSearchStock.TabIndex = 16;
-            this.gbxSearchStock.TabStop = false;
-            this.gbxSearchStock.Text = "Search for specific stock";
-            // 
-            // btnSearchStock
-            // 
-            this.btnSearchStock.Location = new System.Drawing.Point(254, 36);
-            this.btnSearchStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSearchStock.Name = "btnSearchStock";
-            this.btnSearchStock.Size = new System.Drawing.Size(186, 32);
-            this.btnSearchStock.TabIndex = 6;
-            this.btnSearchStock.Text = "Search";
-            this.btnSearchStock.UseVisualStyleBackColor = true;
-            // 
-            // tbxSearchStock
-            // 
-            this.tbxSearchStock.Location = new System.Drawing.Point(11, 40);
-            this.tbxSearchStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxSearchStock.Name = "tbxSearchStock";
-            this.tbxSearchStock.Size = new System.Drawing.Size(209, 24);
-            this.tbxSearchStock.TabIndex = 7;
-            this.tbxSearchStock.Text = "Search...";
-            // 
-            // btnStocksClearSelected
-            // 
-            this.btnStocksClearSelected.Location = new System.Drawing.Point(393, 587);
-            this.btnStocksClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnStocksClearSelected.Name = "btnStocksClearSelected";
-            this.btnStocksClearSelected.Size = new System.Drawing.Size(219, 55);
-            this.btnStocksClearSelected.TabIndex = 14;
-            this.btnStocksClearSelected.Text = "Unmark selected";
-            this.btnStocksClearSelected.UseVisualStyleBackColor = true;
-            // 
-            // btnEditStock
-            // 
-            this.btnEditStock.Location = new System.Drawing.Point(634, 587);
-            this.btnEditStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnEditStock.Name = "btnEditStock";
-            this.btnEditStock.Size = new System.Drawing.Size(219, 55);
-            this.btnEditStock.TabIndex = 13;
-            this.btnEditStock.Text = "Edit stock";
-            this.btnEditStock.UseVisualStyleBackColor = true;
-            // 
-            // btnRemoveStock
-            // 
-            this.btnRemoveStock.Location = new System.Drawing.Point(871, 587);
-            this.btnRemoveStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnRemoveStock.Name = "btnRemoveStock";
-            this.btnRemoveStock.Size = new System.Drawing.Size(219, 55);
-            this.btnRemoveStock.TabIndex = 12;
-            this.btnRemoveStock.Text = "Remove stock";
-            this.btnRemoveStock.UseVisualStyleBackColor = true;
-            // 
-            // lbAllStocks
-            // 
-            this.lbAllStocks.FormattingEnabled = true;
-            this.lbAllStocks.HorizontalScrollbar = true;
-            this.lbAllStocks.ItemHeight = 18;
-            this.lbAllStocks.Location = new System.Drawing.Point(393, 187);
-            this.lbAllStocks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbAllStocks.Name = "lbAllStocks";
-            this.lbAllStocks.Size = new System.Drawing.Size(697, 364);
-            this.lbAllStocks.TabIndex = 11;
-            // 
-            // gbxAddStock
-            // 
-            this.gbxAddStock.Controls.Add(this.tbxStockDepth);
-            this.gbxAddStock.Controls.Add(this.lbStockDepth);
-            this.gbxAddStock.Controls.Add(this.tbxStockHeight);
-            this.gbxAddStock.Controls.Add(this.lbStockHeight);
-            this.gbxAddStock.Controls.Add(this.tbxStockWidth);
-            this.gbxAddStock.Controls.Add(this.lbStockWidth);
-            this.gbxAddStock.Controls.Add(this.btnAddStock);
-            this.gbxAddStock.Controls.Add(this.tbxStockQuantity);
-            this.gbxAddStock.Controls.Add(this.lbStockQuantity);
-            this.gbxAddStock.Controls.Add(this.tbxStockShortDescription);
-            this.gbxAddStock.Controls.Add(this.lbStockShortDescription);
-            this.gbxAddStock.Controls.Add(this.lbStockDimensions);
-            this.gbxAddStock.Controls.Add(this.tbxStockPrice);
-            this.gbxAddStock.Controls.Add(this.lbStockPrice);
-            this.gbxAddStock.Controls.Add(this.tbxStockModel);
-            this.gbxAddStock.Controls.Add(this.lbStockModel);
-            this.gbxAddStock.Controls.Add(this.tbxStockBrand);
-            this.gbxAddStock.Controls.Add(this.lbStockBrand);
-            this.gbxAddStock.Location = new System.Drawing.Point(22, 22);
-            this.gbxAddStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAddStock.Name = "gbxAddStock";
-            this.gbxAddStock.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAddStock.Size = new System.Drawing.Size(326, 648);
-            this.gbxAddStock.TabIndex = 0;
-            this.gbxAddStock.TabStop = false;
-            this.gbxAddStock.Text = "Add stock";
-            // 
-            // tbxStockDepth
-            // 
-            this.tbxStockDepth.Location = new System.Drawing.Point(124, 311);
-            this.tbxStockDepth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxStockDepth.Name = "tbxStockDepth";
-            this.tbxStockDepth.Size = new System.Drawing.Size(154, 24);
-            this.tbxStockDepth.TabIndex = 20;
-            // 
-            // lbStockDepth
-            // 
-            this.lbStockDepth.AutoSize = true;
-            this.lbStockDepth.Location = new System.Drawing.Point(42, 311);
-            this.lbStockDepth.Name = "lbStockDepth";
-            this.lbStockDepth.Size = new System.Drawing.Size(51, 18);
-            this.lbStockDepth.TabIndex = 19;
-            this.lbStockDepth.Text = "Depth:";
-            // 
-            // tbxStockHeight
-            // 
-            this.tbxStockHeight.Location = new System.Drawing.Point(124, 262);
-            this.tbxStockHeight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxStockHeight.Name = "tbxStockHeight";
-            this.tbxStockHeight.Size = new System.Drawing.Size(154, 24);
-            this.tbxStockHeight.TabIndex = 18;
-            // 
-            // lbStockHeight
-            // 
-            this.lbStockHeight.AutoSize = true;
-            this.lbStockHeight.Location = new System.Drawing.Point(33, 265);
-            this.lbStockHeight.Name = "lbStockHeight";
-            this.lbStockHeight.Size = new System.Drawing.Size(54, 18);
-            this.lbStockHeight.TabIndex = 17;
-            this.lbStockHeight.Text = "Height:";
-            // 
-            // tbxStockWidth
-            // 
-            this.tbxStockWidth.Location = new System.Drawing.Point(124, 216);
-            this.tbxStockWidth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxStockWidth.Name = "tbxStockWidth";
-            this.tbxStockWidth.Size = new System.Drawing.Size(154, 24);
-            this.tbxStockWidth.TabIndex = 16;
-            // 
-            // lbStockWidth
-            // 
-            this.lbStockWidth.AutoSize = true;
-            this.lbStockWidth.Location = new System.Drawing.Point(33, 220);
-            this.lbStockWidth.Name = "lbStockWidth";
-            this.lbStockWidth.Size = new System.Drawing.Size(50, 18);
-            this.lbStockWidth.TabIndex = 15;
-            this.lbStockWidth.Text = "Width:";
-            // 
-            // btnAddStock
-            // 
-            this.btnAddStock.Location = new System.Drawing.Point(19, 576);
-            this.btnAddStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAddStock.Name = "btnAddStock";
-            this.btnAddStock.Size = new System.Drawing.Size(259, 49);
-            this.btnAddStock.TabIndex = 14;
-            this.btnAddStock.Text = "Add new stock";
-            this.btnAddStock.UseVisualStyleBackColor = true;
-            // 
-            // tbxStockQuantity
-            // 
-            this.tbxStockQuantity.Location = new System.Drawing.Point(124, 369);
-            this.tbxStockQuantity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxStockQuantity.Name = "tbxStockQuantity";
-            this.tbxStockQuantity.Size = new System.Drawing.Size(154, 24);
-            this.tbxStockQuantity.TabIndex = 13;
-            // 
-            // lbStockQuantity
-            // 
-            this.lbStockQuantity.AutoSize = true;
-            this.lbStockQuantity.Location = new System.Drawing.Point(16, 369);
-            this.lbStockQuantity.Name = "lbStockQuantity";
-            this.lbStockQuantity.Size = new System.Drawing.Size(66, 18);
-            this.lbStockQuantity.TabIndex = 12;
-            this.lbStockQuantity.Text = "Quantity:";
-            // 
-            // tbxStockShortDescription
-            // 
-            this.tbxStockShortDescription.Location = new System.Drawing.Point(19, 458);
-            this.tbxStockShortDescription.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxStockShortDescription.Multiline = true;
-            this.tbxStockShortDescription.Name = "tbxStockShortDescription";
-            this.tbxStockShortDescription.Size = new System.Drawing.Size(258, 94);
-            this.tbxStockShortDescription.TabIndex = 9;
-            // 
-            // lbStockShortDescription
-            // 
-            this.lbStockShortDescription.AutoSize = true;
-            this.lbStockShortDescription.Location = new System.Drawing.Point(83, 419);
-            this.lbStockShortDescription.Name = "lbStockShortDescription";
-            this.lbStockShortDescription.Size = new System.Drawing.Size(124, 18);
-            this.lbStockShortDescription.TabIndex = 8;
-            this.lbStockShortDescription.Text = "Short description:";
-            // 
-            // lbStockDimensions
-            // 
-            this.lbStockDimensions.AutoSize = true;
-            this.lbStockDimensions.Location = new System.Drawing.Point(97, 175);
-            this.lbStockDimensions.Name = "lbStockDimensions";
-            this.lbStockDimensions.Size = new System.Drawing.Size(91, 18);
-            this.lbStockDimensions.TabIndex = 6;
-            this.lbStockDimensions.Text = "Dimensions:";
-            // 
-            // tbxStockPrice
-            // 
-            this.tbxStockPrice.Location = new System.Drawing.Point(124, 126);
-            this.tbxStockPrice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxStockPrice.Name = "tbxStockPrice";
-            this.tbxStockPrice.Size = new System.Drawing.Size(154, 24);
-            this.tbxStockPrice.TabIndex = 5;
-            // 
-            // lbStockPrice
-            // 
-            this.lbStockPrice.AutoSize = true;
-            this.lbStockPrice.Location = new System.Drawing.Point(40, 126);
-            this.lbStockPrice.Name = "lbStockPrice";
-            this.lbStockPrice.Size = new System.Drawing.Size(46, 18);
-            this.lbStockPrice.TabIndex = 4;
-            this.lbStockPrice.Text = "Price:";
-            // 
-            // tbxStockModel
-            // 
-            this.tbxStockModel.Location = new System.Drawing.Point(124, 76);
-            this.tbxStockModel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxStockModel.Name = "tbxStockModel";
-            this.tbxStockModel.Size = new System.Drawing.Size(154, 24);
-            this.tbxStockModel.TabIndex = 3;
-            // 
-            // lbStockModel
-            // 
-            this.lbStockModel.AutoSize = true;
-            this.lbStockModel.Location = new System.Drawing.Point(33, 80);
-            this.lbStockModel.Name = "lbStockModel";
-            this.lbStockModel.Size = new System.Drawing.Size(53, 18);
-            this.lbStockModel.TabIndex = 2;
-            this.lbStockModel.Text = "Model:";
-            // 
-            // tbxStockBrand
-            // 
-            this.tbxStockBrand.Location = new System.Drawing.Point(124, 31);
-            this.tbxStockBrand.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxStockBrand.Name = "tbxStockBrand";
-            this.tbxStockBrand.Size = new System.Drawing.Size(154, 24);
-            this.tbxStockBrand.TabIndex = 1;
-            // 
-            // lbStockBrand
-            // 
-            this.lbStockBrand.AutoSize = true;
-            this.lbStockBrand.Location = new System.Drawing.Point(33, 34);
-            this.lbStockBrand.Name = "lbStockBrand";
-            this.lbStockBrand.Size = new System.Drawing.Size(51, 18);
-            this.lbStockBrand.TabIndex = 0;
-            this.lbStockBrand.Text = "Brand:";
+            this.lbxScheduleAllEmp.TabIndex = 8;
             // 
             // ManageShelfRestockRequestsTab
             // 
@@ -1429,83 +1231,11 @@ namespace MediaBazaarApp
             this.ManageShelfRestockRequestsTab.Controls.Add(this.btnShelftRestockRequestsDecline);
             this.ManageShelfRestockRequestsTab.Controls.Add(this.lbxAllShelfRestockRequests);
             this.ManageShelfRestockRequestsTab.Location = new System.Drawing.Point(4, 27);
-            this.ManageShelfRestockRequestsTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ManageShelfRestockRequestsTab.Name = "ManageShelfRestockRequestsTab";
-            this.ManageShelfRestockRequestsTab.Size = new System.Drawing.Size(1125, 697);
-            this.ManageShelfRestockRequestsTab.TabIndex = 6;
+            this.ManageShelfRestockRequestsTab.Size = new System.Drawing.Size(1097, 659);
+            this.ManageShelfRestockRequestsTab.TabIndex = 5;
             this.ManageShelfRestockRequestsTab.Text = "Manage shelf restock requests";
             this.ManageShelfRestockRequestsTab.UseVisualStyleBackColor = true;
-            // 
-            // lbHistoryShelfRestockRequests
-            // 
-            this.lbHistoryShelfRestockRequests.AutoSize = true;
-            this.lbHistoryShelfRestockRequests.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHistoryShelfRestockRequests.Location = new System.Drawing.Point(324, 463);
-            this.lbHistoryShelfRestockRequests.Name = "lbHistoryShelfRestockRequests";
-            this.lbHistoryShelfRestockRequests.Size = new System.Drawing.Size(246, 18);
-            this.lbHistoryShelfRestockRequests.TabIndex = 11;
-            this.lbHistoryShelfRestockRequests.Text = "History of shelf restock request";
-            // 
-            // lbxHistoryShelfRestockRequests
-            // 
-            this.lbxHistoryShelfRestockRequests.FormattingEnabled = true;
-            this.lbxHistoryShelfRestockRequests.ItemHeight = 18;
-            this.lbxHistoryShelfRestockRequests.Location = new System.Drawing.Point(29, 496);
-            this.lbxHistoryShelfRestockRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxHistoryShelfRestockRequests.Name = "lbxHistoryShelfRestockRequests";
-            this.lbxHistoryShelfRestockRequests.Size = new System.Drawing.Size(850, 166);
-            this.lbxHistoryShelfRestockRequests.TabIndex = 10;
-            // 
-            // lbShelfRestockRequestsInfo
-            // 
-            this.lbShelfRestockRequestsInfo.AutoSize = true;
-            this.lbShelfRestockRequestsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbShelfRestockRequestsInfo.Location = new System.Drawing.Point(324, 29);
-            this.lbShelfRestockRequestsInfo.Name = "lbShelfRestockRequestsInfo";
-            this.lbShelfRestockRequestsInfo.Size = new System.Drawing.Size(205, 18);
-            this.lbShelfRestockRequestsInfo.TabIndex = 9;
-            this.lbShelfRestockRequestsInfo.Text = "New shelf restock request";
-            // 
-            // btnSehflRestockRequestsClearSelected
-            // 
-            this.btnSehflRestockRequestsClearSelected.Location = new System.Drawing.Point(906, 395);
-            this.btnSehflRestockRequestsClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSehflRestockRequestsClearSelected.Name = "btnSehflRestockRequestsClearSelected";
-            this.btnSehflRestockRequestsClearSelected.Size = new System.Drawing.Size(163, 44);
-            this.btnSehflRestockRequestsClearSelected.TabIndex = 8;
-            this.btnSehflRestockRequestsClearSelected.Text = "Unmark selected";
-            this.btnSehflRestockRequestsClearSelected.UseVisualStyleBackColor = true;
-            // 
-            // btnShelftRestockRequestsMarkAsDone
-            // 
-            this.btnShelftRestockRequestsMarkAsDone.Location = new System.Drawing.Point(906, 70);
-            this.btnShelftRestockRequestsMarkAsDone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnShelftRestockRequestsMarkAsDone.Name = "btnShelftRestockRequestsMarkAsDone";
-            this.btnShelftRestockRequestsMarkAsDone.Size = new System.Drawing.Size(163, 44);
-            this.btnShelftRestockRequestsMarkAsDone.TabIndex = 7;
-            this.btnShelftRestockRequestsMarkAsDone.Text = "Mark as \'Done\'";
-            this.btnShelftRestockRequestsMarkAsDone.UseVisualStyleBackColor = true;
-            // 
-            // btnShelftRestockRequestsDecline
-            // 
-            this.btnShelftRestockRequestsDecline.Location = new System.Drawing.Point(906, 226);
-            this.btnShelftRestockRequestsDecline.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnShelftRestockRequestsDecline.Name = "btnShelftRestockRequestsDecline";
-            this.btnShelftRestockRequestsDecline.Size = new System.Drawing.Size(163, 44);
-            this.btnShelftRestockRequestsDecline.TabIndex = 6;
-            this.btnShelftRestockRequestsDecline.Text = "Decline";
-            this.btnShelftRestockRequestsDecline.UseVisualStyleBackColor = true;
-            // 
-            // lbxAllShelfRestockRequests
-            // 
-            this.lbxAllShelfRestockRequests.FormattingEnabled = true;
-            this.lbxAllShelfRestockRequests.HorizontalScrollbar = true;
-            this.lbxAllShelfRestockRequests.ItemHeight = 18;
-            this.lbxAllShelfRestockRequests.Location = new System.Drawing.Point(29, 70);
-            this.lbxAllShelfRestockRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxAllShelfRestockRequests.Name = "lbxAllShelfRestockRequests";
-            this.lbxAllShelfRestockRequests.Size = new System.Drawing.Size(850, 364);
-            this.lbxAllShelfRestockRequests.TabIndex = 5;
             // 
             // ManageDepartmentsTab
             // 
@@ -1517,12 +1247,82 @@ namespace MediaBazaarApp
             this.ManageDepartmentsTab.Controls.Add(this.lbxAllDepartments);
             this.ManageDepartmentsTab.Controls.Add(this.gbxCreateDeparmtent);
             this.ManageDepartmentsTab.Location = new System.Drawing.Point(4, 27);
-            this.ManageDepartmentsTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ManageDepartmentsTab.Name = "ManageDepartmentsTab";
-            this.ManageDepartmentsTab.Size = new System.Drawing.Size(1125, 697);
-            this.ManageDepartmentsTab.TabIndex = 8;
+            this.ManageDepartmentsTab.Size = new System.Drawing.Size(1097, 659);
+            this.ManageDepartmentsTab.TabIndex = 6;
             this.ManageDepartmentsTab.Text = "Manage departments";
             this.ManageDepartmentsTab.UseVisualStyleBackColor = true;
+            // 
+            // lbHistoryShelfRestockRequests
+            // 
+            this.lbHistoryShelfRestockRequests.AutoSize = true;
+            this.lbHistoryShelfRestockRequests.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHistoryShelfRestockRequests.Location = new System.Drawing.Point(323, 422);
+            this.lbHistoryShelfRestockRequests.Name = "lbHistoryShelfRestockRequests";
+            this.lbHistoryShelfRestockRequests.Size = new System.Drawing.Size(246, 18);
+            this.lbHistoryShelfRestockRequests.TabIndex = 18;
+            this.lbHistoryShelfRestockRequests.Text = "History of shelf restock request";
+            // 
+            // lbxHistoryShelfRestockRequests
+            // 
+            this.lbxHistoryShelfRestockRequests.FormattingEnabled = true;
+            this.lbxHistoryShelfRestockRequests.ItemHeight = 18;
+            this.lbxHistoryShelfRestockRequests.Location = new System.Drawing.Point(28, 455);
+            this.lbxHistoryShelfRestockRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbxHistoryShelfRestockRequests.Name = "lbxHistoryShelfRestockRequests";
+            this.lbxHistoryShelfRestockRequests.Size = new System.Drawing.Size(850, 166);
+            this.lbxHistoryShelfRestockRequests.TabIndex = 17;
+            // 
+            // lbShelfRestockRequestsInfo
+            // 
+            this.lbShelfRestockRequestsInfo.AutoSize = true;
+            this.lbShelfRestockRequestsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbShelfRestockRequestsInfo.Location = new System.Drawing.Point(323, 33);
+            this.lbShelfRestockRequestsInfo.Name = "lbShelfRestockRequestsInfo";
+            this.lbShelfRestockRequestsInfo.Size = new System.Drawing.Size(205, 18);
+            this.lbShelfRestockRequestsInfo.TabIndex = 16;
+            this.lbShelfRestockRequestsInfo.Text = "New shelf restock request";
+            // 
+            // btnSehflRestockRequestsClearSelected
+            // 
+            this.btnSehflRestockRequestsClearSelected.Location = new System.Drawing.Point(905, 349);
+            this.btnSehflRestockRequestsClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSehflRestockRequestsClearSelected.Name = "btnSehflRestockRequestsClearSelected";
+            this.btnSehflRestockRequestsClearSelected.Size = new System.Drawing.Size(163, 44);
+            this.btnSehflRestockRequestsClearSelected.TabIndex = 15;
+            this.btnSehflRestockRequestsClearSelected.Text = "Unmark selected";
+            this.btnSehflRestockRequestsClearSelected.UseVisualStyleBackColor = true;
+            // 
+            // btnShelftRestockRequestsMarkAsDone
+            // 
+            this.btnShelftRestockRequestsMarkAsDone.Location = new System.Drawing.Point(905, 65);
+            this.btnShelftRestockRequestsMarkAsDone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnShelftRestockRequestsMarkAsDone.Name = "btnShelftRestockRequestsMarkAsDone";
+            this.btnShelftRestockRequestsMarkAsDone.Size = new System.Drawing.Size(163, 44);
+            this.btnShelftRestockRequestsMarkAsDone.TabIndex = 14;
+            this.btnShelftRestockRequestsMarkAsDone.Text = "Mark as \'Done\'";
+            this.btnShelftRestockRequestsMarkAsDone.UseVisualStyleBackColor = true;
+            // 
+            // btnShelftRestockRequestsDecline
+            // 
+            this.btnShelftRestockRequestsDecline.Location = new System.Drawing.Point(905, 204);
+            this.btnShelftRestockRequestsDecline.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnShelftRestockRequestsDecline.Name = "btnShelftRestockRequestsDecline";
+            this.btnShelftRestockRequestsDecline.Size = new System.Drawing.Size(163, 44);
+            this.btnShelftRestockRequestsDecline.TabIndex = 13;
+            this.btnShelftRestockRequestsDecline.Text = "Decline";
+            this.btnShelftRestockRequestsDecline.UseVisualStyleBackColor = true;
+            // 
+            // lbxAllShelfRestockRequests
+            // 
+            this.lbxAllShelfRestockRequests.FormattingEnabled = true;
+            this.lbxAllShelfRestockRequests.HorizontalScrollbar = true;
+            this.lbxAllShelfRestockRequests.ItemHeight = 18;
+            this.lbxAllShelfRestockRequests.Location = new System.Drawing.Point(28, 65);
+            this.lbxAllShelfRestockRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbxAllShelfRestockRequests.Name = "lbxAllShelfRestockRequests";
+            this.lbxAllShelfRestockRequests.Size = new System.Drawing.Size(850, 328);
+            this.lbxAllShelfRestockRequests.TabIndex = 12;
             // 
             // gbxEditDepartment
             // 
@@ -1532,12 +1332,12 @@ namespace MediaBazaarApp
             this.gbxEditDepartment.Controls.Add(this.lbDepartmentManagerEdit);
             this.gbxEditDepartment.Controls.Add(this.tbxDepartmentNameEdit);
             this.gbxEditDepartment.Controls.Add(this.lbDepartmentNameEdit);
-            this.gbxEditDepartment.Location = new System.Drawing.Point(615, 355);
+            this.gbxEditDepartment.Location = new System.Drawing.Point(613, 337);
             this.gbxEditDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxEditDepartment.Name = "gbxEditDepartment";
             this.gbxEditDepartment.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxEditDepartment.Size = new System.Drawing.Size(457, 301);
-            this.gbxEditDepartment.TabIndex = 5;
+            this.gbxEditDepartment.Size = new System.Drawing.Size(457, 280);
+            this.gbxEditDepartment.TabIndex = 11;
             this.gbxEditDepartment.TabStop = false;
             this.gbxEditDepartment.Text = "Edit department";
             // 
@@ -1599,31 +1399,31 @@ namespace MediaBazaarApp
             // 
             // btnRemoveDepartment
             // 
-            this.btnRemoveDepartment.Location = new System.Drawing.Point(417, 613);
+            this.btnRemoveDepartment.Location = new System.Drawing.Point(415, 574);
             this.btnRemoveDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRemoveDepartment.Name = "btnRemoveDepartment";
             this.btnRemoveDepartment.Size = new System.Drawing.Size(147, 43);
-            this.btnRemoveDepartment.TabIndex = 5;
+            this.btnRemoveDepartment.TabIndex = 12;
             this.btnRemoveDepartment.Text = "Remove";
             this.btnRemoveDepartment.UseVisualStyleBackColor = true;
             // 
             // btnEditDepartment
             // 
-            this.btnEditDepartment.Location = new System.Drawing.Point(224, 613);
+            this.btnEditDepartment.Location = new System.Drawing.Point(222, 574);
             this.btnEditDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditDepartment.Name = "btnEditDepartment";
             this.btnEditDepartment.Size = new System.Drawing.Size(147, 43);
-            this.btnEditDepartment.TabIndex = 4;
+            this.btnEditDepartment.TabIndex = 10;
             this.btnEditDepartment.Text = "Edit";
             this.btnEditDepartment.UseVisualStyleBackColor = true;
             // 
             // btnDepartmentsClearSelected
             // 
-            this.btnDepartmentsClearSelected.Location = new System.Drawing.Point(29, 613);
+            this.btnDepartmentsClearSelected.Location = new System.Drawing.Point(27, 574);
             this.btnDepartmentsClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDepartmentsClearSelected.Name = "btnDepartmentsClearSelected";
             this.btnDepartmentsClearSelected.Size = new System.Drawing.Size(147, 43);
-            this.btnDepartmentsClearSelected.TabIndex = 3;
+            this.btnDepartmentsClearSelected.TabIndex = 9;
             this.btnDepartmentsClearSelected.Text = "Unmark selected";
             this.btnDepartmentsClearSelected.UseVisualStyleBackColor = true;
             // 
@@ -1631,10 +1431,10 @@ namespace MediaBazaarApp
             // 
             this.lbDepartmentsInfo.AutoSize = true;
             this.lbDepartmentsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDepartmentsInfo.Location = new System.Drawing.Point(207, 38);
+            this.lbDepartmentsInfo.Location = new System.Drawing.Point(206, 32);
             this.lbDepartmentsInfo.Name = "lbDepartmentsInfo";
             this.lbDepartmentsInfo.Size = new System.Drawing.Size(163, 18);
-            this.lbDepartmentsInfo.TabIndex = 2;
+            this.lbDepartmentsInfo.TabIndex = 8;
             this.lbDepartmentsInfo.Text = "View all departments";
             // 
             // lbxAllDepartments
@@ -1642,11 +1442,11 @@ namespace MediaBazaarApp
             this.lbxAllDepartments.FormattingEnabled = true;
             this.lbxAllDepartments.HorizontalScrollbar = true;
             this.lbxAllDepartments.ItemHeight = 18;
-            this.lbxAllDepartments.Location = new System.Drawing.Point(29, 83);
+            this.lbxAllDepartments.Location = new System.Drawing.Point(27, 65);
             this.lbxAllDepartments.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAllDepartments.Name = "lbxAllDepartments";
-            this.lbxAllDepartments.Size = new System.Drawing.Size(535, 508);
-            this.lbxAllDepartments.TabIndex = 1;
+            this.lbxAllDepartments.Size = new System.Drawing.Size(535, 490);
+            this.lbxAllDepartments.TabIndex = 7;
             // 
             // gbxCreateDeparmtent
             // 
@@ -1655,12 +1455,12 @@ namespace MediaBazaarApp
             this.gbxCreateDeparmtent.Controls.Add(this.lbDepartmentManager);
             this.gbxCreateDeparmtent.Controls.Add(this.tbxDepartmentName);
             this.gbxCreateDeparmtent.Controls.Add(this.lbDepartmentName);
-            this.gbxCreateDeparmtent.Location = new System.Drawing.Point(615, 83);
+            this.gbxCreateDeparmtent.Location = new System.Drawing.Point(613, 65);
             this.gbxCreateDeparmtent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxCreateDeparmtent.Name = "gbxCreateDeparmtent";
             this.gbxCreateDeparmtent.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxCreateDeparmtent.Size = new System.Drawing.Size(457, 245);
-            this.gbxCreateDeparmtent.TabIndex = 0;
+            this.gbxCreateDeparmtent.TabIndex = 6;
             this.gbxCreateDeparmtent.TabStop = false;
             this.gbxCreateDeparmtent.Text = "Create new department";
             // 
@@ -1710,6 +1510,307 @@ namespace MediaBazaarApp
             this.lbDepartmentName.TabIndex = 1;
             this.lbDepartmentName.Text = "Name:";
             // 
+            // gbxAddStock
+            // 
+            this.gbxAddStock.Controls.Add(this.lbStocksMainDetails);
+            this.gbxAddStock.Controls.Add(this.tbxStockDepth);
+            this.gbxAddStock.Controls.Add(this.btnAddStock);
+            this.gbxAddStock.Controls.Add(this.tbxStockPrice);
+            this.gbxAddStock.Controls.Add(this.tbxStockShortDescription);
+            this.gbxAddStock.Controls.Add(this.lbStockPrice);
+            this.gbxAddStock.Controls.Add(this.lbStockDepth);
+            this.gbxAddStock.Controls.Add(this.tbxStockModel);
+            this.gbxAddStock.Controls.Add(this.lbStockModel);
+            this.gbxAddStock.Controls.Add(this.tbxStockHeight);
+            this.gbxAddStock.Controls.Add(this.tbxStockBrand);
+            this.gbxAddStock.Controls.Add(this.lbStockBrand);
+            this.gbxAddStock.Controls.Add(this.lbStockHeight);
+            this.gbxAddStock.Controls.Add(this.lbStockWidth);
+            this.gbxAddStock.Controls.Add(this.lbStockDimensions);
+            this.gbxAddStock.Controls.Add(this.tbxStockQuantity);
+            this.gbxAddStock.Controls.Add(this.tbxStockWidth);
+            this.gbxAddStock.Controls.Add(this.lbStockQuantity);
+            this.gbxAddStock.Controls.Add(this.lbStockShortDescription);
+            this.gbxAddStock.Location = new System.Drawing.Point(191, 27);
+            this.gbxAddStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxAddStock.Name = "gbxAddStock";
+            this.gbxAddStock.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxAddStock.Size = new System.Drawing.Size(650, 528);
+            this.gbxAddStock.TabIndex = 1;
+            this.gbxAddStock.TabStop = false;
+            this.gbxAddStock.Text = "Add stock";
+            // 
+            // tbxStockDepth
+            // 
+            this.tbxStockDepth.Location = new System.Drawing.Point(456, 188);
+            this.tbxStockDepth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxStockDepth.Name = "tbxStockDepth";
+            this.tbxStockDepth.Size = new System.Drawing.Size(154, 24);
+            this.tbxStockDepth.TabIndex = 20;
+            // 
+            // lbStockDepth
+            // 
+            this.lbStockDepth.AutoSize = true;
+            this.lbStockDepth.Location = new System.Drawing.Point(363, 188);
+            this.lbStockDepth.Name = "lbStockDepth";
+            this.lbStockDepth.Size = new System.Drawing.Size(51, 18);
+            this.lbStockDepth.TabIndex = 19;
+            this.lbStockDepth.Text = "Depth:";
+            // 
+            // tbxStockHeight
+            // 
+            this.tbxStockHeight.Location = new System.Drawing.Point(456, 139);
+            this.tbxStockHeight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxStockHeight.Name = "tbxStockHeight";
+            this.tbxStockHeight.Size = new System.Drawing.Size(154, 24);
+            this.tbxStockHeight.TabIndex = 18;
+            // 
+            // lbStockHeight
+            // 
+            this.lbStockHeight.AutoSize = true;
+            this.lbStockHeight.Location = new System.Drawing.Point(365, 142);
+            this.lbStockHeight.Name = "lbStockHeight";
+            this.lbStockHeight.Size = new System.Drawing.Size(54, 18);
+            this.lbStockHeight.TabIndex = 17;
+            this.lbStockHeight.Text = "Height:";
+            // 
+            // tbxStockWidth
+            // 
+            this.tbxStockWidth.Location = new System.Drawing.Point(456, 93);
+            this.tbxStockWidth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxStockWidth.Name = "tbxStockWidth";
+            this.tbxStockWidth.Size = new System.Drawing.Size(154, 24);
+            this.tbxStockWidth.TabIndex = 16;
+            // 
+            // lbStockWidth
+            // 
+            this.lbStockWidth.AutoSize = true;
+            this.lbStockWidth.Location = new System.Drawing.Point(365, 97);
+            this.lbStockWidth.Name = "lbStockWidth";
+            this.lbStockWidth.Size = new System.Drawing.Size(50, 18);
+            this.lbStockWidth.TabIndex = 15;
+            this.lbStockWidth.Text = "Width:";
+            // 
+            // btnAddStock
+            // 
+            this.btnAddStock.Location = new System.Drawing.Point(206, 444);
+            this.btnAddStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAddStock.Name = "btnAddStock";
+            this.btnAddStock.Size = new System.Drawing.Size(259, 49);
+            this.btnAddStock.TabIndex = 14;
+            this.btnAddStock.Text = "Add new stock";
+            this.btnAddStock.UseVisualStyleBackColor = true;
+            // 
+            // tbxStockQuantity
+            // 
+            this.tbxStockQuantity.Location = new System.Drawing.Point(130, 237);
+            this.tbxStockQuantity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxStockQuantity.Name = "tbxStockQuantity";
+            this.tbxStockQuantity.Size = new System.Drawing.Size(154, 24);
+            this.tbxStockQuantity.TabIndex = 13;
+            // 
+            // lbStockQuantity
+            // 
+            this.lbStockQuantity.AutoSize = true;
+            this.lbStockQuantity.Location = new System.Drawing.Point(22, 237);
+            this.lbStockQuantity.Name = "lbStockQuantity";
+            this.lbStockQuantity.Size = new System.Drawing.Size(66, 18);
+            this.lbStockQuantity.TabIndex = 12;
+            this.lbStockQuantity.Text = "Quantity:";
+            // 
+            // tbxStockShortDescription
+            // 
+            this.tbxStockShortDescription.Location = new System.Drawing.Point(206, 322);
+            this.tbxStockShortDescription.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxStockShortDescription.Multiline = true;
+            this.tbxStockShortDescription.Name = "tbxStockShortDescription";
+            this.tbxStockShortDescription.Size = new System.Drawing.Size(258, 94);
+            this.tbxStockShortDescription.TabIndex = 9;
+            // 
+            // lbStockShortDescription
+            // 
+            this.lbStockShortDescription.AutoSize = true;
+            this.lbStockShortDescription.Location = new System.Drawing.Point(270, 288);
+            this.lbStockShortDescription.Name = "lbStockShortDescription";
+            this.lbStockShortDescription.Size = new System.Drawing.Size(124, 18);
+            this.lbStockShortDescription.TabIndex = 8;
+            this.lbStockShortDescription.Text = "Short description:";
+            // 
+            // lbStockDimensions
+            // 
+            this.lbStockDimensions.AutoSize = true;
+            this.lbStockDimensions.Location = new System.Drawing.Point(429, 52);
+            this.lbStockDimensions.Name = "lbStockDimensions";
+            this.lbStockDimensions.Size = new System.Drawing.Size(87, 18);
+            this.lbStockDimensions.TabIndex = 6;
+            this.lbStockDimensions.Text = "Dimensions";
+            // 
+            // tbxStockPrice
+            // 
+            this.tbxStockPrice.Location = new System.Drawing.Point(130, 193);
+            this.tbxStockPrice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxStockPrice.Name = "tbxStockPrice";
+            this.tbxStockPrice.Size = new System.Drawing.Size(154, 24);
+            this.tbxStockPrice.TabIndex = 5;
+            // 
+            // lbStockPrice
+            // 
+            this.lbStockPrice.AutoSize = true;
+            this.lbStockPrice.Location = new System.Drawing.Point(46, 193);
+            this.lbStockPrice.Name = "lbStockPrice";
+            this.lbStockPrice.Size = new System.Drawing.Size(46, 18);
+            this.lbStockPrice.TabIndex = 4;
+            this.lbStockPrice.Text = "Price:";
+            // 
+            // tbxStockModel
+            // 
+            this.tbxStockModel.Location = new System.Drawing.Point(130, 143);
+            this.tbxStockModel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxStockModel.Name = "tbxStockModel";
+            this.tbxStockModel.Size = new System.Drawing.Size(154, 24);
+            this.tbxStockModel.TabIndex = 3;
+            // 
+            // lbStockModel
+            // 
+            this.lbStockModel.AutoSize = true;
+            this.lbStockModel.Location = new System.Drawing.Point(39, 147);
+            this.lbStockModel.Name = "lbStockModel";
+            this.lbStockModel.Size = new System.Drawing.Size(53, 18);
+            this.lbStockModel.TabIndex = 2;
+            this.lbStockModel.Text = "Model:";
+            // 
+            // tbxStockBrand
+            // 
+            this.tbxStockBrand.Location = new System.Drawing.Point(130, 98);
+            this.tbxStockBrand.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxStockBrand.Name = "tbxStockBrand";
+            this.tbxStockBrand.Size = new System.Drawing.Size(154, 24);
+            this.tbxStockBrand.TabIndex = 1;
+            // 
+            // lbStockBrand
+            // 
+            this.lbStockBrand.AutoSize = true;
+            this.lbStockBrand.Location = new System.Drawing.Point(39, 101);
+            this.lbStockBrand.Name = "lbStockBrand";
+            this.lbStockBrand.Size = new System.Drawing.Size(51, 18);
+            this.lbStockBrand.TabIndex = 0;
+            this.lbStockBrand.Text = "Brand:";
+            // 
+            // lbStocksMainDetails
+            // 
+            this.lbStocksMainDetails.AutoSize = true;
+            this.lbStocksMainDetails.Location = new System.Drawing.Point(118, 52);
+            this.lbStocksMainDetails.Name = "lbStocksMainDetails";
+            this.lbStocksMainDetails.Size = new System.Drawing.Size(86, 18);
+            this.lbStocksMainDetails.TabIndex = 21;
+            this.lbStocksMainDetails.Text = "Main details";
+            // 
+            // btnShowAllStocks
+            // 
+            this.btnShowAllStocks.Location = new System.Drawing.Point(163, 53);
+            this.btnShowAllStocks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnShowAllStocks.Name = "btnShowAllStocks";
+            this.btnShowAllStocks.Size = new System.Drawing.Size(219, 41);
+            this.btnShowAllStocks.TabIndex = 23;
+            this.btnShowAllStocks.Text = "Show all stocks";
+            this.btnShowAllStocks.UseVisualStyleBackColor = true;
+            // 
+            // gbxSearchStock
+            // 
+            this.gbxSearchStock.Controls.Add(this.btnSearchStock);
+            this.gbxSearchStock.Controls.Add(this.tbxSearchStock);
+            this.gbxSearchStock.Location = new System.Drawing.Point(403, 17);
+            this.gbxSearchStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxSearchStock.Name = "gbxSearchStock";
+            this.gbxSearchStock.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxSearchStock.Size = new System.Drawing.Size(457, 101);
+            this.gbxSearchStock.TabIndex = 22;
+            this.gbxSearchStock.TabStop = false;
+            this.gbxSearchStock.Text = "Search for specific stock";
+            // 
+            // btnSearchStock
+            // 
+            this.btnSearchStock.Location = new System.Drawing.Point(254, 36);
+            this.btnSearchStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSearchStock.Name = "btnSearchStock";
+            this.btnSearchStock.Size = new System.Drawing.Size(186, 32);
+            this.btnSearchStock.TabIndex = 6;
+            this.btnSearchStock.Text = "Search";
+            this.btnSearchStock.UseVisualStyleBackColor = true;
+            // 
+            // tbxSearchStock
+            // 
+            this.tbxSearchStock.Location = new System.Drawing.Point(11, 40);
+            this.tbxSearchStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxSearchStock.Name = "tbxSearchStock";
+            this.tbxSearchStock.Size = new System.Drawing.Size(209, 24);
+            this.tbxSearchStock.TabIndex = 7;
+            this.tbxSearchStock.Text = "Search...";
+            // 
+            // btnStocksClearSelected
+            // 
+            this.btnStocksClearSelected.Location = new System.Drawing.Point(162, 507);
+            this.btnStocksClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnStocksClearSelected.Name = "btnStocksClearSelected";
+            this.btnStocksClearSelected.Size = new System.Drawing.Size(219, 48);
+            this.btnStocksClearSelected.TabIndex = 21;
+            this.btnStocksClearSelected.Text = "Unmark selected";
+            this.btnStocksClearSelected.UseVisualStyleBackColor = true;
+            // 
+            // btnEditStock
+            // 
+            this.btnEditStock.Location = new System.Drawing.Point(403, 507);
+            this.btnEditStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnEditStock.Name = "btnEditStock";
+            this.btnEditStock.Size = new System.Drawing.Size(219, 48);
+            this.btnEditStock.TabIndex = 20;
+            this.btnEditStock.Text = "Edit stock";
+            this.btnEditStock.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveStock
+            // 
+            this.btnRemoveStock.Location = new System.Drawing.Point(640, 507);
+            this.btnRemoveStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRemoveStock.Name = "btnRemoveStock";
+            this.btnRemoveStock.Size = new System.Drawing.Size(219, 48);
+            this.btnRemoveStock.TabIndex = 19;
+            this.btnRemoveStock.Text = "Remove stock";
+            this.btnRemoveStock.UseVisualStyleBackColor = true;
+            // 
+            // lbAllStocks
+            // 
+            this.lbAllStocks.FormattingEnabled = true;
+            this.lbAllStocks.HorizontalScrollbar = true;
+            this.lbAllStocks.ItemHeight = 18;
+            this.lbAllStocks.Location = new System.Drawing.Point(162, 126);
+            this.lbAllStocks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbAllStocks.Name = "lbAllStocks";
+            this.lbAllStocks.Size = new System.Drawing.Size(697, 364);
+            this.lbAllStocks.TabIndex = 18;
+            // 
+            // tabControlStatistics
+            // 
+            this.tabControlStatistics.Controls.Add(this.ViewStatisticsEmpTab);
+            this.tabControlStatistics.Controls.Add(this.ViewStatisticsStocksTab);
+            this.tabControlStatistics.Location = new System.Drawing.Point(34, 21);
+            this.tabControlStatistics.Name = "tabControlStatistics";
+            this.tabControlStatistics.SelectedIndex = 0;
+            this.tabControlStatistics.Size = new System.Drawing.Size(1029, 617);
+            this.tabControlStatistics.TabIndex = 2;
+            // 
+            // ViewStatisticsStocksTab
+            // 
+            this.ViewStatisticsStocksTab.Controls.Add(this.btnShowStockStatistics);
+            this.ViewStatisticsStocksTab.Controls.Add(this.cbStatisticType);
+            this.ViewStatisticsStocksTab.Controls.Add(this.lbxAllStocksStatistics);
+            this.ViewStatisticsStocksTab.Location = new System.Drawing.Point(4, 27);
+            this.ViewStatisticsStocksTab.Name = "ViewStatisticsStocksTab";
+            this.ViewStatisticsStocksTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ViewStatisticsStocksTab.Size = new System.Drawing.Size(1021, 586);
+            this.ViewStatisticsStocksTab.TabIndex = 0;
+            this.ViewStatisticsStocksTab.Text = "View statistics for stocks";
+            this.ViewStatisticsStocksTab.UseVisualStyleBackColor = true;
+            // 
             // ViewStatisticsEmpTab
             // 
             this.ViewStatisticsEmpTab.Controls.Add(this.lbAvgWageEmpDepartment);
@@ -1721,106 +1822,92 @@ namespace MediaBazaarApp
             this.ViewStatisticsEmpTab.Controls.Add(this.tbxNrEmp);
             this.ViewStatisticsEmpTab.Controls.Add(this.lbNrEmp);
             this.ViewStatisticsEmpTab.Location = new System.Drawing.Point(4, 27);
-            this.ViewStatisticsEmpTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ViewStatisticsEmpTab.Name = "ViewStatisticsEmpTab";
-            this.ViewStatisticsEmpTab.Size = new System.Drawing.Size(1125, 697);
-            this.ViewStatisticsEmpTab.TabIndex = 5;
+            this.ViewStatisticsEmpTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ViewStatisticsEmpTab.Size = new System.Drawing.Size(1021, 586);
+            this.ViewStatisticsEmpTab.TabIndex = 1;
             this.ViewStatisticsEmpTab.Text = "View statistics for employees";
             this.ViewStatisticsEmpTab.UseVisualStyleBackColor = true;
             // 
             // lbAvgWageEmpDepartment
             // 
             this.lbAvgWageEmpDepartment.AutoSize = true;
-            this.lbAvgWageEmpDepartment.Location = new System.Drawing.Point(640, 217);
+            this.lbAvgWageEmpDepartment.Location = new System.Drawing.Point(584, 186);
             this.lbAvgWageEmpDepartment.Name = "lbAvgWageEmpDepartment";
             this.lbAvgWageEmpDepartment.Size = new System.Drawing.Size(296, 18);
-            this.lbAvgWageEmpDepartment.TabIndex = 7;
+            this.lbAvgWageEmpDepartment.TabIndex = 15;
             this.lbAvgWageEmpDepartment.Text = "Average wage of employees per department";
             // 
             // lbxAvgWageEmpDepartment
             // 
             this.lbxAvgWageEmpDepartment.FormattingEnabled = true;
             this.lbxAvgWageEmpDepartment.ItemHeight = 18;
-            this.lbxAvgWageEmpDepartment.Location = new System.Drawing.Point(610, 262);
+            this.lbxAvgWageEmpDepartment.Location = new System.Drawing.Point(554, 231);
             this.lbxAvgWageEmpDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAvgWageEmpDepartment.Name = "lbxAvgWageEmpDepartment";
             this.lbxAvgWageEmpDepartment.Size = new System.Drawing.Size(391, 238);
-            this.lbxAvgWageEmpDepartment.TabIndex = 6;
+            this.lbxAvgWageEmpDepartment.TabIndex = 14;
             // 
             // tbxAvgWageEmp
             // 
-            this.tbxAvgWageEmp.Location = new System.Drawing.Point(837, 149);
+            this.tbxAvgWageEmp.Location = new System.Drawing.Point(781, 118);
             this.tbxAvgWageEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxAvgWageEmp.Name = "tbxAvgWageEmp";
             this.tbxAvgWageEmp.Size = new System.Drawing.Size(164, 24);
-            this.tbxAvgWageEmp.TabIndex = 5;
+            this.tbxAvgWageEmp.TabIndex = 13;
             // 
             // lbAvgWageEmp
             // 
             this.lbAvgWageEmp.AutoSize = true;
-            this.lbAvgWageEmp.Location = new System.Drawing.Point(618, 153);
+            this.lbAvgWageEmp.Location = new System.Drawing.Point(562, 122);
             this.lbAvgWageEmp.Name = "lbAvgWageEmp";
             this.lbAvgWageEmp.Size = new System.Drawing.Size(189, 18);
-            this.lbAvgWageEmp.TabIndex = 4;
+            this.lbAvgWageEmp.TabIndex = 12;
             this.lbAvgWageEmp.Text = "Average wage of employee:";
             // 
             // lbNrEmpPerDepartment
             // 
             this.lbNrEmpPerDepartment.AutoSize = true;
-            this.lbNrEmpPerDepartment.Location = new System.Drawing.Point(164, 217);
+            this.lbNrEmpPerDepartment.Location = new System.Drawing.Point(108, 186);
             this.lbNrEmpPerDepartment.Name = "lbNrEmpPerDepartment";
             this.lbNrEmpPerDepartment.Size = new System.Drawing.Size(257, 18);
-            this.lbNrEmpPerDepartment.TabIndex = 3;
+            this.lbNrEmpPerDepartment.TabIndex = 11;
             this.lbNrEmpPerDepartment.Text = "Number of employees per department";
             // 
             // lbxNrEmpPerDepartment
             // 
             this.lbxNrEmpPerDepartment.FormattingEnabled = true;
             this.lbxNrEmpPerDepartment.ItemHeight = 18;
-            this.lbxNrEmpPerDepartment.Location = new System.Drawing.Point(135, 262);
+            this.lbxNrEmpPerDepartment.Location = new System.Drawing.Point(79, 231);
             this.lbxNrEmpPerDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxNrEmpPerDepartment.Name = "lbxNrEmpPerDepartment";
             this.lbxNrEmpPerDepartment.Size = new System.Drawing.Size(345, 238);
-            this.lbxNrEmpPerDepartment.TabIndex = 2;
+            this.lbxNrEmpPerDepartment.TabIndex = 10;
             // 
             // tbxNrEmp
             // 
-            this.tbxNrEmp.Location = new System.Drawing.Point(316, 149);
+            this.tbxNrEmp.Location = new System.Drawing.Point(260, 118);
             this.tbxNrEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxNrEmp.Name = "tbxNrEmp";
             this.tbxNrEmp.Size = new System.Drawing.Size(164, 24);
-            this.tbxNrEmp.TabIndex = 1;
+            this.tbxNrEmp.TabIndex = 9;
             // 
             // lbNrEmp
             // 
             this.lbNrEmp.AutoSize = true;
-            this.lbNrEmp.Location = new System.Drawing.Point(132, 153);
+            this.lbNrEmp.Location = new System.Drawing.Point(76, 122);
             this.lbNrEmp.Name = "lbNrEmp";
             this.lbNrEmp.Size = new System.Drawing.Size(158, 18);
-            this.lbNrEmp.TabIndex = 0;
+            this.lbNrEmp.TabIndex = 8;
             this.lbNrEmp.Text = "Number of employees:";
-            // 
-            // ViewStatisticsStocksTab
-            // 
-            this.ViewStatisticsStocksTab.Controls.Add(this.btnShowStockStatistics);
-            this.ViewStatisticsStocksTab.Controls.Add(this.cbStatisticType);
-            this.ViewStatisticsStocksTab.Controls.Add(this.lbxAllStocksStatistics);
-            this.ViewStatisticsStocksTab.Location = new System.Drawing.Point(4, 27);
-            this.ViewStatisticsStocksTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ViewStatisticsStocksTab.Name = "ViewStatisticsStocksTab";
-            this.ViewStatisticsStocksTab.Size = new System.Drawing.Size(1125, 697);
-            this.ViewStatisticsStocksTab.TabIndex = 9;
-            this.ViewStatisticsStocksTab.Text = "View statistics for stocks";
-            this.ViewStatisticsStocksTab.UseVisualStyleBackColor = true;
-            this.ViewStatisticsStocksTab.Click += new System.EventHandler(this.ViewStatisticsStocksTab_Click);
             // 
             // btnShowStockStatistics
             // 
-            this.btnShowStockStatistics.Location = new System.Drawing.Point(656, 112);
+            this.btnShowStockStatistics.Location = new System.Drawing.Point(617, 102);
             this.btnShowStockStatistics.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnShowStockStatistics.Name = "btnShowStockStatistics";
             this.btnShowStockStatistics.Size = new System.Drawing.Size(204, 40);
-            this.btnShowStockStatistics.TabIndex = 5;
+            this.btnShowStockStatistics.TabIndex = 8;
             this.btnShowStockStatistics.Text = "Show";
             this.btnShowStockStatistics.UseVisualStyleBackColor = true;
             // 
@@ -1833,11 +1920,11 @@ namespace MediaBazaarApp
             "biggest quantity",
             "smallest quantity",
             ""});
-            this.cbStatisticType.Location = new System.Drawing.Point(238, 118);
+            this.cbStatisticType.Location = new System.Drawing.Point(199, 108);
             this.cbStatisticType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbStatisticType.Name = "cbStatisticType";
             this.cbStatisticType.Size = new System.Drawing.Size(324, 26);
-            this.cbStatisticType.TabIndex = 4;
+            this.cbStatisticType.TabIndex = 7;
             this.cbStatisticType.Text = "Sort based on statistic type";
             // 
             // lbxAllStocksStatistics
@@ -1845,46 +1932,46 @@ namespace MediaBazaarApp
             this.lbxAllStocksStatistics.FormattingEnabled = true;
             this.lbxAllStocksStatistics.HorizontalScrollbar = true;
             this.lbxAllStocksStatistics.ItemHeight = 18;
-            this.lbxAllStocksStatistics.Location = new System.Drawing.Point(238, 166);
+            this.lbxAllStocksStatistics.Location = new System.Drawing.Point(199, 156);
             this.lbxAllStocksStatistics.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAllStocksStatistics.Name = "lbxAllStocksStatistics";
             this.lbxAllStocksStatistics.Size = new System.Drawing.Size(620, 328);
-            this.lbxAllStocksStatistics.TabIndex = 0;
+            this.lbxAllStocksStatistics.TabIndex = 6;
             // 
             // AdministrationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1180, 763);
+            this.ClientSize = new System.Drawing.Size(1114, 697);
             this.Controls.Add(this.tabControlAdministration);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "AdministrationForm";
             this.Text = "AdministrationForm";
             this.tabControlAdministration.ResumeLayout(false);
             this.HomeTab.ResumeLayout(false);
             this.HomeTab.PerformLayout();
+            this.EmployeesTab.ResumeLayout(false);
+            this.StocksTab.ResumeLayout(false);
+            this.StatisticsTab.ResumeLayout(false);
+            this.ScheduleTab.ResumeLayout(false);
+            this.ScheduleTab.PerformLayout();
+            this.tabControlEmployees.ResumeLayout(false);
             this.AddEmpTab.ResumeLayout(false);
+            this.ManageEmpTab.ResumeLayout(false);
             this.gbxAddEmployee.ResumeLayout(false);
             this.gbxAddEmployee.PerformLayout();
-            this.ManageEmpTab.ResumeLayout(false);
             this.gbxSearchEmp.ResumeLayout(false);
             this.gbxSearchEmp.PerformLayout();
             this.gbxShowAllEmp.ResumeLayout(false);
-            this.ManageScheduleTab.ResumeLayout(false);
-            this.ManageScheduleTab.PerformLayout();
+            this.tabControlStocks.ResumeLayout(false);
+            this.AddStocksTab.ResumeLayout(false);
+            this.ManageStocksTab.ResumeLayout(false);
+            this.HolidayRequestsTab.ResumeLayout(false);
+            this.HolidayRequestsTab.PerformLayout();
             this.gbxAutoShiftsAssignPerDay.ResumeLayout(false);
             this.gbxAutoShiftsAssignPerDay.PerformLayout();
             this.gbxAutoShiftsAssignAllDays.ResumeLayout(false);
             this.gbxAutoShiftsAssignAllDays.PerformLayout();
             this.gbxAssignShiftsAuto.ResumeLayout(false);
-            this.HolidayRequestsTab.ResumeLayout(false);
-            this.HolidayRequestsTab.PerformLayout();
-            this.ManageStocksTab.ResumeLayout(false);
-            this.gbxSearchStock.ResumeLayout(false);
-            this.gbxSearchStock.PerformLayout();
-            this.gbxAddStock.ResumeLayout(false);
-            this.gbxAddStock.PerformLayout();
             this.ManageShelfRestockRequestsTab.ResumeLayout(false);
             this.ManageShelfRestockRequestsTab.PerformLayout();
             this.ManageDepartmentsTab.ResumeLayout(false);
@@ -1893,9 +1980,14 @@ namespace MediaBazaarApp
             this.gbxEditDepartment.PerformLayout();
             this.gbxCreateDeparmtent.ResumeLayout(false);
             this.gbxCreateDeparmtent.PerformLayout();
+            this.gbxAddStock.ResumeLayout(false);
+            this.gbxAddStock.PerformLayout();
+            this.gbxSearchStock.ResumeLayout(false);
+            this.gbxSearchStock.PerformLayout();
+            this.tabControlStatistics.ResumeLayout(false);
+            this.ViewStatisticsStocksTab.ResumeLayout(false);
             this.ViewStatisticsEmpTab.ResumeLayout(false);
             this.ViewStatisticsEmpTab.PerformLayout();
-            this.ViewStatisticsStocksTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1904,13 +1996,39 @@ namespace MediaBazaarApp
 
         private System.Windows.Forms.TabControl tabControlAdministration;
         private System.Windows.Forms.TabPage HomeTab;
+        private System.Windows.Forms.TabPage EmployeesTab;
+        private System.Windows.Forms.TabPage StocksTab;
+        private System.Windows.Forms.TabPage ScheduleTab;
+        private System.Windows.Forms.TabPage StatisticsTab;
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Label lbDateDayOfWeek;
         private System.Windows.Forms.Label lbNotificationsShelfRestockRequests;
         private System.Windows.Forms.Label lbNotificationsHolidayRequests;
         private System.Windows.Forms.Label lbGreetingMsg;
+        private System.Windows.Forms.TabControl tabControlEmployees;
         private System.Windows.Forms.TabPage AddEmpTab;
+        private System.Windows.Forms.TabPage ManageEmpTab;
         private System.Windows.Forms.GroupBox gbxAddEmployee;
+        private System.Windows.Forms.ComboBox cbEmpDepartment;
+        private System.Windows.Forms.Label lbEmpDepartment;
+        private System.Windows.Forms.ComboBox cbEmpHourlyWages;
+        private System.Windows.Forms.ComboBox cbEmpPosition;
+        private System.Windows.Forms.ComboBox cbEmpEmploymentType;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbEmpAddressStreet;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbxEmpAddressStreet;
+        private System.Windows.Forms.TextBox tbxEmpAddressCity;
+        private System.Windows.Forms.ComboBox cbEmpGender;
+        private System.Windows.Forms.Label lbEmpAddressCity;
+        private System.Windows.Forms.TextBox tbxEmpEmail;
+        private System.Windows.Forms.TextBox tbxEmpAddressCountry;
+        private System.Windows.Forms.Label lbEmpEmail;
+        private System.Windows.Forms.Label lbEmpAddressPostCode;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbEmpAddressCountry;
+        private System.Windows.Forms.DateTimePicker dtpEmpDateOfBirth;
+        private System.Windows.Forms.TextBox tbxEmpAddressPostCode;
         private System.Windows.Forms.Button btnAddEmpoyee;
         private System.Windows.Forms.Label lbEmpEmployementType;
         private System.Windows.Forms.Label lbEmpPosition;
@@ -1918,27 +2036,12 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbEmpHourlyWages;
         private System.Windows.Forms.TextBox tbxEmpPhone;
         private System.Windows.Forms.Label lbEmpPhone;
-        private System.Windows.Forms.TextBox tbxEmpAddressStreet;
         private System.Windows.Forms.Label lbEmployeeAddress;
         private System.Windows.Forms.TextBox tbxEmpLname;
         private System.Windows.Forms.Label lbEmpLname;
         private System.Windows.Forms.TextBox tbxEmpFname;
         private System.Windows.Forms.Label lbEmpFname;
-        private System.Windows.Forms.TabPage ManageScheduleTab;
-        private System.Windows.Forms.TabPage HolidayRequestsTab;
-        private System.Windows.Forms.TabPage ManageStocksTab;
-        private System.Windows.Forms.TabPage ViewStatisticsEmpTab;
-        private System.Windows.Forms.TabPage ManageShelfRestockRequestsTab;
-        private System.Windows.Forms.DateTimePicker dtpEmpDateOfBirth;
-        private System.Windows.Forms.Label lbEmpAddressPostCode;
-        private System.Windows.Forms.TextBox tbxEmpAddressPostCode;
-        private System.Windows.Forms.Label lbEmpAddressCountry;
-        private System.Windows.Forms.TextBox tbxEmpAddressCountry;
-        private System.Windows.Forms.Label lbEmpAddressCity;
-        private System.Windows.Forms.TextBox tbxEmpAddressCity;
-        private System.Windows.Forms.Label lbEmpAddressStreet;
-        private System.Windows.Forms.TabPage ManageEmpTab;
-        private System.Windows.Forms.ListBox lbxAllEmployees;
+        private System.Windows.Forms.Button btnEmpManageAttendance;
         private System.Windows.Forms.GroupBox gbxSearchEmp;
         private System.Windows.Forms.Button btnSearchEmp;
         private System.Windows.Forms.TextBox tbxSearchEmp;
@@ -1948,17 +2051,16 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnClearSelectedEmp;
         private System.Windows.Forms.Button btnEditEmp;
         private System.Windows.Forms.Button btnRemoveEmp;
-        private System.Windows.Forms.TextBox tbxEmpEmail;
-        private System.Windows.Forms.Label lbEmpEmail;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbEmpGender;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cbEmpHourlyWages;
-        private System.Windows.Forms.ComboBox cbEmpPosition;
-        private System.Windows.Forms.ComboBox cbEmpEmploymentType;
-        private System.Windows.Forms.ListBox lbxScheduleAllEmp;
-        private System.Windows.Forms.Label lbScheduleAllEmp;
+        private System.Windows.Forms.ListBox lbxAllEmployees;
+        private System.Windows.Forms.TabControl tabControlStocks;
+        private System.Windows.Forms.TabPage AddStocksTab;
+        private System.Windows.Forms.TabPage ManageStocksTab;
+        private System.Windows.Forms.TabPage HolidayRequestsTab;
+        private System.Windows.Forms.Label lbHolidayRequestsInfo;
+        private System.Windows.Forms.Button btnHolidayRequestsClearSelected;
+        private System.Windows.Forms.Button btnHolidayRequestsDecline;
+        private System.Windows.Forms.Button btnHolidayRequestsAccept;
+        private System.Windows.Forms.ListBox lbxAllHolidayRequests;
         private System.Windows.Forms.GroupBox gbxAutoShiftsAssignPerDay;
         private System.Windows.Forms.Button btnSubmitAutoShiftsAssignPerDay;
         private System.Windows.Forms.TextBox tbxSun;
@@ -1984,23 +2086,17 @@ namespace MediaBazaarApp
         private System.Windows.Forms.ComboBox cbAssignTypeAuto;
         private System.Windows.Forms.Button btnAssignShiftsManually;
         private System.Windows.Forms.Button btnScheduleClearSelected;
-        private System.Windows.Forms.ListBox lbxAllHolidayRequests;
-        private System.Windows.Forms.Label lbHolidayRequestsInfo;
-        private System.Windows.Forms.Button btnHolidayRequestsClearSelected;
-        private System.Windows.Forms.Button btnHolidayRequestsDecline;
-        private System.Windows.Forms.Button btnHolidayRequestsAccept;
+        private System.Windows.Forms.Label lbScheduleAllEmp;
+        private System.Windows.Forms.ListBox lbxScheduleAllEmp;
+        private System.Windows.Forms.TabPage ManageShelfRestockRequestsTab;
         private System.Windows.Forms.TabPage ManageDepartmentsTab;
-        private System.Windows.Forms.ListBox lbxAllDepartments;
-        private System.Windows.Forms.GroupBox gbxCreateDeparmtent;
-        private System.Windows.Forms.Button btnCreateDepartment;
-        private System.Windows.Forms.ComboBox cbDepartmentManager;
-        private System.Windows.Forms.Label lbDepartmentManager;
-        private System.Windows.Forms.TextBox tbxDepartmentName;
-        private System.Windows.Forms.Label lbDepartmentName;
-        private System.Windows.Forms.Button btnRemoveDepartment;
-        private System.Windows.Forms.Button btnEditDepartment;
-        private System.Windows.Forms.Button btnDepartmentsClearSelected;
-        private System.Windows.Forms.Label lbDepartmentsInfo;
+        private System.Windows.Forms.Label lbHistoryShelfRestockRequests;
+        private System.Windows.Forms.ListBox lbxHistoryShelfRestockRequests;
+        private System.Windows.Forms.Label lbShelfRestockRequestsInfo;
+        private System.Windows.Forms.Button btnSehflRestockRequestsClearSelected;
+        private System.Windows.Forms.Button btnShelftRestockRequestsMarkAsDone;
+        private System.Windows.Forms.Button btnShelftRestockRequestsDecline;
+        private System.Windows.Forms.ListBox lbxAllShelfRestockRequests;
         private System.Windows.Forms.GroupBox gbxEditDepartment;
         private System.Windows.Forms.Label lbDepartmentEditInfo;
         private System.Windows.Forms.Button btnApplyChangesDepartment;
@@ -2008,24 +2104,37 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbDepartmentManagerEdit;
         private System.Windows.Forms.TextBox tbxDepartmentNameEdit;
         private System.Windows.Forms.Label lbDepartmentNameEdit;
-        private System.Windows.Forms.Label lbShelfRestockRequestsInfo;
-        private System.Windows.Forms.Button btnSehflRestockRequestsClearSelected;
-        private System.Windows.Forms.Button btnShelftRestockRequestsMarkAsDone;
-        private System.Windows.Forms.Button btnShelftRestockRequestsDecline;
-        private System.Windows.Forms.ListBox lbxAllShelfRestockRequests;
+        private System.Windows.Forms.Button btnRemoveDepartment;
+        private System.Windows.Forms.Button btnEditDepartment;
+        private System.Windows.Forms.Button btnDepartmentsClearSelected;
+        private System.Windows.Forms.Label lbDepartmentsInfo;
+        private System.Windows.Forms.ListBox lbxAllDepartments;
+        private System.Windows.Forms.GroupBox gbxCreateDeparmtent;
+        private System.Windows.Forms.Button btnCreateDepartment;
+        private System.Windows.Forms.ComboBox cbDepartmentManager;
+        private System.Windows.Forms.Label lbDepartmentManager;
+        private System.Windows.Forms.TextBox tbxDepartmentName;
+        private System.Windows.Forms.Label lbDepartmentName;
         private System.Windows.Forms.GroupBox gbxAddStock;
-        private System.Windows.Forms.Button btnAddStock;
-        private System.Windows.Forms.TextBox tbxStockQuantity;
-        private System.Windows.Forms.Label lbStockQuantity;
-        private System.Windows.Forms.TextBox tbxStockShortDescription;
-        private System.Windows.Forms.Label lbStockShortDescription;
-        private System.Windows.Forms.Label lbStockDimensions;
+        private System.Windows.Forms.TextBox tbxStockDepth;
         private System.Windows.Forms.TextBox tbxStockPrice;
         private System.Windows.Forms.Label lbStockPrice;
+        private System.Windows.Forms.Label lbStockDepth;
         private System.Windows.Forms.TextBox tbxStockModel;
         private System.Windows.Forms.Label lbStockModel;
+        private System.Windows.Forms.TextBox tbxStockHeight;
         private System.Windows.Forms.TextBox tbxStockBrand;
         private System.Windows.Forms.Label lbStockBrand;
+        private System.Windows.Forms.Label lbStockHeight;
+        private System.Windows.Forms.Label lbStockWidth;
+        private System.Windows.Forms.Label lbStockDimensions;
+        private System.Windows.Forms.TextBox tbxStockQuantity;
+        private System.Windows.Forms.TextBox tbxStockWidth;
+        private System.Windows.Forms.Label lbStockQuantity;
+        private System.Windows.Forms.Label lbStockShortDescription;
+        private System.Windows.Forms.Button btnAddStock;
+        private System.Windows.Forms.TextBox tbxStockShortDescription;
+        private System.Windows.Forms.Label lbStocksMainDetails;
         private System.Windows.Forms.Button btnShowAllStocks;
         private System.Windows.Forms.GroupBox gbxSearchStock;
         private System.Windows.Forms.Button btnSearchStock;
@@ -2034,29 +2143,19 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnEditStock;
         private System.Windows.Forms.Button btnRemoveStock;
         private System.Windows.Forms.ListBox lbAllStocks;
+        private System.Windows.Forms.TabControl tabControlStatistics;
         private System.Windows.Forms.TabPage ViewStatisticsStocksTab;
-        private System.Windows.Forms.TextBox tbxStockDepth;
-        private System.Windows.Forms.Label lbStockDepth;
-        private System.Windows.Forms.TextBox tbxStockHeight;
-        private System.Windows.Forms.Label lbStockHeight;
-        private System.Windows.Forms.TextBox tbxStockWidth;
-        private System.Windows.Forms.Label lbStockWidth;
-        private System.Windows.Forms.ComboBox cbEmpDepartment;
-        private System.Windows.Forms.Label lbEmpDepartment;
-        private System.Windows.Forms.Button btnEmpManageAttendance;
-        private System.Windows.Forms.TextBox tbxNrEmp;
-        private System.Windows.Forms.Label lbNrEmp;
-        private System.Windows.Forms.Label lbNrEmpPerDepartment;
-        private System.Windows.Forms.ListBox lbxNrEmpPerDepartment;
+        private System.Windows.Forms.TabPage ViewStatisticsEmpTab;
         private System.Windows.Forms.Label lbAvgWageEmpDepartment;
         private System.Windows.Forms.ListBox lbxAvgWageEmpDepartment;
         private System.Windows.Forms.TextBox tbxAvgWageEmp;
         private System.Windows.Forms.Label lbAvgWageEmp;
+        private System.Windows.Forms.Label lbNrEmpPerDepartment;
+        private System.Windows.Forms.ListBox lbxNrEmpPerDepartment;
+        private System.Windows.Forms.TextBox tbxNrEmp;
+        private System.Windows.Forms.Label lbNrEmp;
         private System.Windows.Forms.Button btnShowStockStatistics;
         private System.Windows.Forms.ComboBox cbStatisticType;
         private System.Windows.Forms.ListBox lbxAllStocksStatistics;
-        private System.Windows.Forms.Label lbHistoryShelfRestockRequests;
-        private System.Windows.Forms.ListBox lbxHistoryShelfRestockRequests;
     }
 }
-

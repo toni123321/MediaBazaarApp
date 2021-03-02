@@ -16,10 +16,5 @@ namespace MediaBazaarApp
         {
             InitializeComponent();
         }
-
-        private void ViewStatisticsStocksTab_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

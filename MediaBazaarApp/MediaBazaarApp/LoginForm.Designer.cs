@@ -85,7 +85,7 @@ namespace MediaBazaarApp
             // 
             // tbxEmpId
             // 
-            this.tbxEmpId.Location = new System.Drawing.Point(158, 117);
+            this.tbxEmpId.Location = new System.Drawing.Point(155, 117);
             this.tbxEmpId.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpId.Name = "tbxEmpId";
             this.tbxEmpId.Size = new System.Drawing.Size(136, 24);
