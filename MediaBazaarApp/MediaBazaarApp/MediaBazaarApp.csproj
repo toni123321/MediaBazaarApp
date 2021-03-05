@@ -58,6 +58,8 @@
     <Compile Include="AssignWorkShiftsManuallyForm.Designer.cs">
       <DependentUpon>AssignWorkShiftsManuallyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Department.cs" />
+    <Compile Include="DepartmentManagement.cs" />
     <Compile Include="DepotWorkersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +78,9 @@
     <Compile Include="EditStockForm.Designer.cs">
       <DependentUpon>EditStockForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmploymentType.cs" />
+    <Compile Include="Gender.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +101,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shift.cs" />
+    <Compile Include="ShiftType.cs" />
     <Compile Include="SuperuserForm.cs">
       <SubType>Form</SubType>
     </Compile>
