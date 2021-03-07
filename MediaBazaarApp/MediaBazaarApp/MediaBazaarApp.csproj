@@ -103,6 +103,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shift.cs" />
     <Compile Include="ShiftType.cs" />
+    <Compile Include="StatisticsEmployee.cs" />
+    <Compile Include="StatisticsStock.cs" />
+    <Compile Include="Stock.cs" />
+    <Compile Include="StockManagement.cs" />
     <Compile Include="SuperuserForm.cs">
       <SubType>Form</SubType>
     </Compile>
