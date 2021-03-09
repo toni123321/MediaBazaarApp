@@ -9,8 +9,8 @@ namespace MediaBazaarApp
     public class Department
     {
         //Fields
-        private static int id;
-        private int deptId;
+        private static int id = 1;
+        private string deptId;
         private string name;
         private Employee manager;
         private List<Employee> employees;
@@ -18,10 +18,10 @@ namespace MediaBazaarApp
         //Properties
         public int Id
         {
-            get { return this.Id; }
+            get { return id; }
         }
 
-        public int DeptId
+        public string DeptId
         {
             get { return this.deptId; }
         }
@@ -38,22 +38,55 @@ namespace MediaBazaarApp
             set { this.manager = value; }
         }
 
-        //Constructor
+        //Constructors
+        public Department(string name)
+        {
+            this.name = name;
+            employees = new List<Employee>();
+
+            string firstLetters = this.name.Substring(0, 2);
+            //dept id
+            deptId = $"{firstLetters}{id}";
+
+            //static id
+            id++;
+        }
         public Department(string name, Employee manager)
         {
             this.name = name;
             this.manager = manager;
             employees = new List<Employee>();
 
-            //static id
-
+            string firstLetters = this.name.Substring(0, 2);
             //dept id
+            deptId = $"{firstLetters}{id}";
 
+            //static id
+            id++;
         }
 
         //Methods
-        public Employee GetEmployee(int id)
+        public Employee GetEmployeeById(int id)
         {
+            foreach (Employee emp in employees)
+            {
+                if (emp.Id == id)
+                {
+                    return emp;
+                }
+            }
+            return null;
+        }
+
+        public Employee GetEmployeeByEmail(string email)
+        {
+            foreach (Employee emp in employees)
+            {
+                if(emp.Email == email)
+                {
+                    return emp;
+                }
+            }
             return null;
         }
 
@@ -61,7 +94,14 @@ namespace MediaBazaarApp
             string phoneNumber, string street, string city, string country, string postcode, EmploymentType employmentType, 
             string position, double hourlyWages, Department department)
         {
-            return true;
+            if (GetEmployeeByEmail(email) == null)
+            {
+                Employee newEmp = new Employee(firstName, lastName, dateOfBirth, gender, email, phoneNumber,
+                    street, city, country, postcode, employmentType, position, hourlyWages, department);
+                employees.Add(newEmp);
+                return true;
+            }
+            return false;
         }
 
         public bool RemoveEmployee(int id)
@@ -77,7 +117,7 @@ namespace MediaBazaarApp
         public override string ToString()
         {
             // TODO
-            return base.ToString();
+            return this.name;
         }
 
 

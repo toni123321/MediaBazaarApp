@@ -9,7 +9,8 @@ namespace MediaBazaarApp
     public class Employee
     {
         //Fields
-        private static int id;
+        private int id;
+        private static int idCounter = 1;
         private string firstName;
         private string lastName;
         private DateTime dateOfBirth;
@@ -33,7 +34,7 @@ namespace MediaBazaarApp
         //Properties
         public int Id
         {
-            get { return this.Id; }
+            get { return this.id; }
         }
         public string FirstName
         {
@@ -135,14 +136,17 @@ namespace MediaBazaarApp
 
             shifts = new List<Shift>();
 
-            //static id
+            // id 
+            id = idCounter;
+            idCounter++;
+
         }
 
         //Methods
         public override string ToString()
         {
             //TODO
-            return base.ToString();
+            return $"Id:{this.Id} - {this.firstName} {this.lastName}";
         }
         public int Attendance(int days)
         {
