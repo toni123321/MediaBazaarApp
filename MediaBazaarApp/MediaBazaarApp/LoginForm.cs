@@ -30,50 +30,103 @@ namespace MediaBazaarApp
         }
 
 
-        private int checkForEmployeeCredentials(string email, int employeeId)
+        private string getDepartmentName(string userType)
+        {
+            string depName;
+
+            switch (userType)
+            {
+                case "employeeAdministration":
+                    depName = "Administration";
+                    break;
+                case "employeeManagement":
+                    depName = "Management";
+                    break;
+                case "depotWorker":
+                    depName = "Depot";
+                    break;
+                default:
+                    depName = null;
+                    break;
+            }
+            return depName;
+        }
+
+        private int checkForEmployeeCredentials(string email, int employeeId, string depName)
         {
             int index = -1;
+            Department empDepartment = departmentManagement.GetDepartment(depName);
 
-            // Fix bug if there is no employees at the moment(only the superuser is in the system)
-            if(departmentManagement == null)
+            if(empDepartment == null)
             {
-                return index;
+                return -1;
             }
 
-            foreach (Department department in departmentManagement.GetAllDepartments())
+            List<Employee> allEmpInDepartment = empDepartment.GetAllEmployees();
+            foreach (Employee emp in allEmpInDepartment)
             {
-                List<Employee> allEmp = department.GetAllEmployees();
-                foreach (Employee emp in allEmp)
+                if (emp.Email == email && emp.Id == employeeId)
                 {
-                    if(emp.Email == email && emp.Id == employeeId)
-                    {
-                        index = allEmp.IndexOf(emp);
-                    }
+                    index = allEmpInDepartment.IndexOf(emp);
                 }
             }
-            return index;        
+            return index;
         }
+
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
-            string email = tbxEmpEmail.Text;
-            int empId = Convert.ToInt32(tbxEmpId.Text);
+            // TODO: Check if all the fields are filled
 
-            if(email == superuserEmail && empId == superuserId)
+            string email;
+            int empId;
+            string userType;
+            string depName;
+
+            if (!String.IsNullOrEmpty(tbxEmpEmail.Text) && !String.IsNullOrEmpty(tbxEmpId.Text) 
+                && !String.IsNullOrEmpty(cbUserType.Text))
             {
-                SuperuserForm superuserForm = new SuperuserForm();
-                superuserForm.Show();
-                this.Hide();
-            }
-            else if(checkForEmployeeCredentials(email, empId) != -1)
-            {
-                AdministrationForm administrationForm = new AdministrationForm(departmentManagement);
-                administrationForm.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("The credentials you provide are incorrect!");
+                email = tbxEmpEmail.Text;
+                empId = Convert.ToInt32(tbxEmpId.Text);
+                userType = cbUserType.Text;
+                depName = getDepartmentName(userType);
+                
+                
+                if (email == superuserEmail && empId == superuserId && userType == "superuser")
+                {
+                    SuperuserForm superuserForm = new SuperuserForm();
+                    superuserForm.Show();
+                    this.Hide();
+                }
+                else if (userType != "superuser" && checkForEmployeeCredentials(email, empId, depName) != -1)
+                {
+                    int index = checkForEmployeeCredentials(email, empId, depName);
+                    Employee currentEmp = departmentManagement.GetDepartment(depName).GetAllEmployees()[index];
+
+                    if (currentEmp.Department.Name == "Administration")
+                    {
+                        AdministrationForm administrationForm = new AdministrationForm(departmentManagement);
+                        administrationForm.Show();
+                        this.Hide();
+                    }
+                    else if (currentEmp.Department.Name == "Management")
+                    {
+                        ManagementForm managementForm = new ManagementForm(departmentManagement);
+                        managementForm.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        DepotWorkersForm depotWorkersForm = new DepotWorkersForm(departmentManagement);
+                        depotWorkersForm.Show();
+                        this.Hide();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("The credentials you provide are incorrect!");
+                }
             }
         }
 

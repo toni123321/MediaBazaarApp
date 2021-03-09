@@ -12,9 +12,17 @@ namespace MediaBazaarApp
 {
     public partial class DepotWorkersForm : Form
     {
-        public DepotWorkersForm()
+        DepartmentManagement departmentManagement;
+        public DepotWorkersForm(DepartmentManagement departmentManagement)
         {
             InitializeComponent();
+            this.departmentManagement = departmentManagement;
+        }
+
+        private void DepotWorkersForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LoginForm loginForm = new LoginForm(departmentManagement);
+            loginForm.Show();
         }
     }
 }

@@ -376,7 +376,7 @@ namespace MediaBazaarApp
             this.gbxAddEmployee.Name = "gbxAddEmployee";
             this.gbxAddEmployee.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAddEmployee.Size = new System.Drawing.Size(829, 626);
-            this.gbxAddEmployee.TabIndex = 1;
+            this.gbxAddEmployee.TabIndex = 0;
             this.gbxAddEmployee.TabStop = false;
             this.gbxAddEmployee.Text = "Add/Hire employee";
             // 
@@ -1972,6 +1972,7 @@ namespace MediaBazaarApp
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "AdministrationForm";
             this.Text = "AdministrationForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdministrationForm_FormClosed);
             this.tabControlAdministration.ResumeLayout(false);
             this.HomeTab.ResumeLayout(false);
             this.HomeTab.PerformLayout();

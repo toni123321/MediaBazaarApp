@@ -82,10 +82,10 @@ namespace MediaBazaarApp
             this.HomeTab.Controls.Add(this.lbTime);
             this.HomeTab.Controls.Add(this.lbDateDayOfWeek);
             this.HomeTab.Controls.Add(this.lbGreetingMsg);
-            this.HomeTab.Location = new System.Drawing.Point(4, 27);
+            this.HomeTab.Location = new System.Drawing.Point(4, 31);
             this.HomeTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HomeTab.Name = "HomeTab";
-            this.HomeTab.Size = new System.Drawing.Size(1021, 570);
+            this.HomeTab.Size = new System.Drawing.Size(1021, 566);
             this.HomeTab.TabIndex = 3;
             this.HomeTab.Text = "Home";
             this.HomeTab.UseVisualStyleBackColor = true;
@@ -95,7 +95,7 @@ namespace MediaBazaarApp
             this.lbTime.AutoSize = true;
             this.lbTime.Location = new System.Drawing.Point(137, 292);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(41, 18);
+            this.lbTime.Size = new System.Drawing.Size(50, 22);
             this.lbTime.TabIndex = 12;
             this.lbTime.Text = "Time";
             // 
@@ -104,7 +104,7 @@ namespace MediaBazaarApp
             this.lbDateDayOfWeek.AutoSize = true;
             this.lbDateDayOfWeek.Location = new System.Drawing.Point(137, 342);
             this.lbDateDayOfWeek.Name = "lbDateDayOfWeek";
-            this.lbDateDayOfWeek.Size = new System.Drawing.Size(125, 18);
+            this.lbDateDayOfWeek.Size = new System.Drawing.Size(152, 22);
             this.lbDateDayOfWeek.TabIndex = 11;
             this.lbDateDayOfWeek.Text = "Date/Day of week";
             // 
@@ -113,7 +113,7 @@ namespace MediaBazaarApp
             this.lbGreetingMsg.AutoSize = true;
             this.lbGreetingMsg.Location = new System.Drawing.Point(132, 142);
             this.lbGreetingMsg.Name = "lbGreetingMsg";
-            this.lbGreetingMsg.Size = new System.Drawing.Size(129, 18);
+            this.lbGreetingMsg.Size = new System.Drawing.Size(156, 22);
             this.lbGreetingMsg.TabIndex = 10;
             this.lbGreetingMsg.Text = "Greeting message";
             // 
@@ -125,11 +125,11 @@ namespace MediaBazaarApp
             this.MakeShelfRestockRequestsTab.Controls.Add(this.gbxSearchStock);
             this.MakeShelfRestockRequestsTab.Controls.Add(this.btnShowAllStocks);
             this.MakeShelfRestockRequestsTab.Controls.Add(this.lbxAllStocks);
-            this.MakeShelfRestockRequestsTab.Location = new System.Drawing.Point(4, 27);
+            this.MakeShelfRestockRequestsTab.Location = new System.Drawing.Point(4, 31);
             this.MakeShelfRestockRequestsTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MakeShelfRestockRequestsTab.Name = "MakeShelfRestockRequestsTab";
             this.MakeShelfRestockRequestsTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MakeShelfRestockRequestsTab.Size = new System.Drawing.Size(1021, 570);
+            this.MakeShelfRestockRequestsTab.Size = new System.Drawing.Size(1021, 566);
             this.MakeShelfRestockRequestsTab.TabIndex = 0;
             this.MakeShelfRestockRequestsTab.Text = "Make shelf restock requests";
             this.MakeShelfRestockRequestsTab.UseVisualStyleBackColor = true;
@@ -174,7 +174,7 @@ namespace MediaBazaarApp
             this.tbxStockQuantity.Location = new System.Drawing.Point(118, 101);
             this.tbxStockQuantity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockQuantity.Name = "tbxStockQuantity";
-            this.tbxStockQuantity.Size = new System.Drawing.Size(144, 24);
+            this.tbxStockQuantity.Size = new System.Drawing.Size(144, 28);
             this.tbxStockQuantity.TabIndex = 2;
             // 
             // lbStockQuantity
@@ -182,7 +182,7 @@ namespace MediaBazaarApp
             this.lbStockQuantity.AutoSize = true;
             this.lbStockQuantity.Location = new System.Drawing.Point(21, 104);
             this.lbStockQuantity.Name = "lbStockQuantity";
-            this.lbStockQuantity.Size = new System.Drawing.Size(66, 18);
+            this.lbStockQuantity.Size = new System.Drawing.Size(82, 22);
             this.lbStockQuantity.TabIndex = 1;
             this.lbStockQuantity.Text = "Quantity:";
             // 
@@ -192,7 +192,7 @@ namespace MediaBazaarApp
             this.lbStockInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStockInfo.Location = new System.Drawing.Point(83, 40);
             this.lbStockInfo.Name = "lbStockInfo";
-            this.lbStockInfo.Size = new System.Drawing.Size(110, 18);
+            this.lbStockInfo.Size = new System.Drawing.Size(130, 22);
             this.lbStockInfo.TabIndex = 0;
             this.lbStockInfo.Text = "Model(Brand)";
             // 
@@ -234,7 +234,7 @@ namespace MediaBazaarApp
             this.tbxSearchStock.Location = new System.Drawing.Point(11, 40);
             this.tbxSearchStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxSearchStock.Name = "tbxSearchStock";
-            this.tbxSearchStock.Size = new System.Drawing.Size(209, 24);
+            this.tbxSearchStock.Size = new System.Drawing.Size(209, 28);
             this.tbxSearchStock.TabIndex = 7;
             this.tbxSearchStock.Text = "Search...";
             // 
@@ -252,11 +252,11 @@ namespace MediaBazaarApp
             // 
             this.lbxAllStocks.FormattingEnabled = true;
             this.lbxAllStocks.HorizontalScrollbar = true;
-            this.lbxAllStocks.ItemHeight = 18;
+            this.lbxAllStocks.ItemHeight = 22;
             this.lbxAllStocks.Location = new System.Drawing.Point(37, 145);
             this.lbxAllStocks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAllStocks.Name = "lbxAllStocks";
-            this.lbxAllStocks.Size = new System.Drawing.Size(625, 328);
+            this.lbxAllStocks.Size = new System.Drawing.Size(625, 312);
             this.lbxAllStocks.TabIndex = 9;
             // 
             // ViewStocksQuantityTab
@@ -264,11 +264,11 @@ namespace MediaBazaarApp
             this.ViewStocksQuantityTab.Controls.Add(this.btnShowStockByQuantity);
             this.ViewStocksQuantityTab.Controls.Add(this.cbQuantityType);
             this.ViewStocksQuantityTab.Controls.Add(this.lbxStocksSortByQuantity);
-            this.ViewStocksQuantityTab.Location = new System.Drawing.Point(4, 27);
+            this.ViewStocksQuantityTab.Location = new System.Drawing.Point(4, 31);
             this.ViewStocksQuantityTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ViewStocksQuantityTab.Name = "ViewStocksQuantityTab";
             this.ViewStocksQuantityTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ViewStocksQuantityTab.Size = new System.Drawing.Size(1021, 570);
+            this.ViewStocksQuantityTab.Size = new System.Drawing.Size(1021, 566);
             this.ViewStocksQuantityTab.TabIndex = 1;
             this.ViewStocksQuantityTab.Text = "View stocks quantity";
             this.ViewStocksQuantityTab.UseVisualStyleBackColor = true;
@@ -292,7 +292,7 @@ namespace MediaBazaarApp
             this.cbQuantityType.Location = new System.Drawing.Point(207, 79);
             this.cbQuantityType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbQuantityType.Name = "cbQuantityType";
-            this.cbQuantityType.Size = new System.Drawing.Size(324, 26);
+            this.cbQuantityType.Size = new System.Drawing.Size(324, 30);
             this.cbQuantityType.TabIndex = 7;
             this.cbQuantityType.Text = "Sort by quantity";
             // 
@@ -300,21 +300,21 @@ namespace MediaBazaarApp
             // 
             this.lbxStocksSortByQuantity.FormattingEnabled = true;
             this.lbxStocksSortByQuantity.HorizontalScrollbar = true;
-            this.lbxStocksSortByQuantity.ItemHeight = 18;
+            this.lbxStocksSortByQuantity.ItemHeight = 22;
             this.lbxStocksSortByQuantity.Location = new System.Drawing.Point(207, 126);
             this.lbxStocksSortByQuantity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxStocksSortByQuantity.Name = "lbxStocksSortByQuantity";
-            this.lbxStocksSortByQuantity.Size = new System.Drawing.Size(620, 328);
+            this.lbxStocksSortByQuantity.Size = new System.Drawing.Size(620, 312);
             this.lbxStocksSortByQuantity.TabIndex = 6;
             // 
             // HistoryShelfRestockTab
             // 
             this.HistoryShelfRestockTab.Controls.Add(this.lbHistoryShelfRestockRequests);
             this.HistoryShelfRestockTab.Controls.Add(this.lbxHistoryShelfRestockRequests);
-            this.HistoryShelfRestockTab.Location = new System.Drawing.Point(4, 27);
+            this.HistoryShelfRestockTab.Location = new System.Drawing.Point(4, 31);
             this.HistoryShelfRestockTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HistoryShelfRestockTab.Name = "HistoryShelfRestockTab";
-            this.HistoryShelfRestockTab.Size = new System.Drawing.Size(1021, 570);
+            this.HistoryShelfRestockTab.Size = new System.Drawing.Size(1021, 566);
             this.HistoryShelfRestockTab.TabIndex = 2;
             this.HistoryShelfRestockTab.Text = "History shelf restock requests";
             this.HistoryShelfRestockTab.UseVisualStyleBackColor = true;
@@ -325,23 +325,23 @@ namespace MediaBazaarApp
             this.lbHistoryShelfRestockRequests.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHistoryShelfRestockRequests.Location = new System.Drawing.Point(382, 62);
             this.lbHistoryShelfRestockRequests.Name = "lbHistoryShelfRestockRequests";
-            this.lbHistoryShelfRestockRequests.Size = new System.Drawing.Size(255, 18);
+            this.lbHistoryShelfRestockRequests.Size = new System.Drawing.Size(299, 22);
             this.lbHistoryShelfRestockRequests.TabIndex = 13;
             this.lbHistoryShelfRestockRequests.Text = "History of shelf restock requests";
             // 
             // lbxHistoryShelfRestockRequests
             // 
             this.lbxHistoryShelfRestockRequests.FormattingEnabled = true;
-            this.lbxHistoryShelfRestockRequests.ItemHeight = 18;
+            this.lbxHistoryShelfRestockRequests.ItemHeight = 22;
             this.lbxHistoryShelfRestockRequests.Location = new System.Drawing.Point(109, 127);
             this.lbxHistoryShelfRestockRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxHistoryShelfRestockRequests.Name = "lbxHistoryShelfRestockRequests";
-            this.lbxHistoryShelfRestockRequests.Size = new System.Drawing.Size(850, 346);
+            this.lbxHistoryShelfRestockRequests.Size = new System.Drawing.Size(850, 334);
             this.lbxHistoryShelfRestockRequests.TabIndex = 12;
             // 
             // DepotWorkersForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1080, 646);
             this.Controls.Add(this.tabControlDepotWorkers);
@@ -349,6 +349,7 @@ namespace MediaBazaarApp
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DepotWorkersForm";
             this.Text = "DepotWorkersForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DepotWorkersForm_FormClosed);
             this.tabControlDepotWorkers.ResumeLayout(false);
             this.HomeTab.ResumeLayout(false);
             this.HomeTab.PerformLayout();
