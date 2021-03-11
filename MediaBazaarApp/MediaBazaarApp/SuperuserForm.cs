@@ -12,28 +12,13 @@ namespace MediaBazaarApp
 {
     public partial class SuperuserForm : Form
     {
-        DepartmentManagement departmentManagement = new DepartmentManagement();
-       
-        public SuperuserForm()
+        private DepartmentManagement departmentManagement;
+        
+        public SuperuserForm(DepartmentManagement departmentManagement)
         {
-            InitializeComponent();
-            departmentManagement.AddDepartment("Administration");
-            departmentManagement.AddDepartment("Management");
-            departmentManagement.AddDepartment("Depot");
+            this.departmentManagement = departmentManagement;
         }
 
-/*        private Gender convertToGender(string gender)
-        {
-            switch(gender)
-            {
-                case "MALE": return Gender.MALE;break;
-                case "FEMALE": return Gender.FEMALE; break;
-                case "NONBINARY": return Gender.NONBINARY; break;
-                case "OTHER": return Gender.OTHER; break;
-                
-            }
-            return Gender.OTHER;
-        }*/
 
         private void btnAddEmpoyee_Click(object sender, EventArgs e)
         {

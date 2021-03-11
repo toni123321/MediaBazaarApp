@@ -36,10 +36,8 @@ namespace MediaBazaarApp
             this.lbGreetingMsg = new System.Windows.Forms.Label();
             this.AddEmpTab = new System.Windows.Forms.TabPage();
             this.gbxAddEmployee = new System.Windows.Forms.GroupBox();
-            this.tbxEmpPosition = new System.Windows.Forms.TextBox();
             this.cbEmpDepartment = new System.Windows.Forms.ComboBox();
             this.lbEmpDepartment = new System.Windows.Forms.Label();
-            this.cbEmpHourlyWages = new System.Windows.Forms.ComboBox();
             this.cbEmpEmploymentType = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lbEmpAddressStreet = new System.Windows.Forms.Label();
@@ -80,6 +78,19 @@ namespace MediaBazaarApp
             this.btnEditEmp = new System.Windows.Forms.Button();
             this.btnRemoveEmp = new System.Windows.Forms.Button();
             this.lbxAllEmployees = new System.Windows.Forms.ListBox();
+            this.nudEmpHourlyWages = new System.Windows.Forms.NumericUpDown();
+            this.cbEmpPosition = new System.Windows.Forms.ComboBox();
+            this.lbEmpBsn = new System.Windows.Forms.Label();
+            this.tbxEmpBsn = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lbEmpEmConDetails = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabControlSuperuser.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.AddEmpTab.SuspendLayout();
@@ -87,6 +98,7 @@ namespace MediaBazaarApp
             this.ManageEmpTab.SuspendLayout();
             this.gbxSearchEmp.SuspendLayout();
             this.gbxShowAllEmp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEmpHourlyWages)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlSuperuser
@@ -99,7 +111,7 @@ namespace MediaBazaarApp
             this.tabControlSuperuser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControlSuperuser.Name = "tabControlSuperuser";
             this.tabControlSuperuser.SelectedIndex = 0;
-            this.tabControlSuperuser.Size = new System.Drawing.Size(1066, 724);
+            this.tabControlSuperuser.Size = new System.Drawing.Size(1078, 724);
             this.tabControlSuperuser.TabIndex = 0;
             // 
             // HomeTab
@@ -110,7 +122,7 @@ namespace MediaBazaarApp
             this.HomeTab.Location = new System.Drawing.Point(4, 31);
             this.HomeTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HomeTab.Name = "HomeTab";
-            this.HomeTab.Size = new System.Drawing.Size(1058, 689);
+            this.HomeTab.Size = new System.Drawing.Size(1070, 689);
             this.HomeTab.TabIndex = 2;
             this.HomeTab.Text = "Home";
             this.HomeTab.UseVisualStyleBackColor = true;
@@ -149,17 +161,28 @@ namespace MediaBazaarApp
             this.AddEmpTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddEmpTab.Name = "AddEmpTab";
             this.AddEmpTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.AddEmpTab.Size = new System.Drawing.Size(1058, 689);
+            this.AddEmpTab.Size = new System.Drawing.Size(1070, 689);
             this.AddEmpTab.TabIndex = 0;
             this.AddEmpTab.Text = "Add employees";
             this.AddEmpTab.UseVisualStyleBackColor = true;
             // 
             // gbxAddEmployee
             // 
-            this.gbxAddEmployee.Controls.Add(this.tbxEmpPosition);
+            this.gbxAddEmployee.Controls.Add(this.comboBox1);
+            this.gbxAddEmployee.Controls.Add(this.label3);
+            this.gbxAddEmployee.Controls.Add(this.textBox1);
+            this.gbxAddEmployee.Controls.Add(this.label2);
+            this.gbxAddEmployee.Controls.Add(this.textBox4);
+            this.gbxAddEmployee.Controls.Add(this.label7);
+            this.gbxAddEmployee.Controls.Add(this.textBox7);
+            this.gbxAddEmployee.Controls.Add(this.label10);
+            this.gbxAddEmployee.Controls.Add(this.lbEmpEmConDetails);
+            this.gbxAddEmployee.Controls.Add(this.lbEmpBsn);
+            this.gbxAddEmployee.Controls.Add(this.tbxEmpBsn);
+            this.gbxAddEmployee.Controls.Add(this.cbEmpPosition);
+            this.gbxAddEmployee.Controls.Add(this.nudEmpHourlyWages);
             this.gbxAddEmployee.Controls.Add(this.cbEmpDepartment);
             this.gbxAddEmployee.Controls.Add(this.lbEmpDepartment);
-            this.gbxAddEmployee.Controls.Add(this.cbEmpHourlyWages);
             this.gbxAddEmployee.Controls.Add(this.cbEmpEmploymentType);
             this.gbxAddEmployee.Controls.Add(this.label5);
             this.gbxAddEmployee.Controls.Add(this.lbEmpAddressStreet);
@@ -188,21 +211,14 @@ namespace MediaBazaarApp
             this.gbxAddEmployee.Controls.Add(this.lbEmpLname);
             this.gbxAddEmployee.Controls.Add(this.tbxEmpFname);
             this.gbxAddEmployee.Controls.Add(this.lbEmpFname);
-            this.gbxAddEmployee.Location = new System.Drawing.Point(152, 38);
+            this.gbxAddEmployee.Location = new System.Drawing.Point(19, 8);
             this.gbxAddEmployee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAddEmployee.Name = "gbxAddEmployee";
             this.gbxAddEmployee.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAddEmployee.Size = new System.Drawing.Size(737, 607);
+            this.gbxAddEmployee.Size = new System.Drawing.Size(1045, 662);
             this.gbxAddEmployee.TabIndex = 0;
             this.gbxAddEmployee.TabStop = false;
             this.gbxAddEmployee.Text = "Add/Hire employee";
-            // 
-            // tbxEmpPosition
-            // 
-            this.tbxEmpPosition.Location = new System.Drawing.Point(160, 358);
-            this.tbxEmpPosition.Name = "tbxEmpPosition";
-            this.tbxEmpPosition.Size = new System.Drawing.Size(181, 28);
-            this.tbxEmpPosition.TabIndex = 6;
             // 
             // cbEmpDepartment
             // 
@@ -225,18 +241,6 @@ namespace MediaBazaarApp
             this.lbEmpDepartment.Size = new System.Drawing.Size(108, 22);
             this.lbEmpDepartment.TabIndex = 8;
             this.lbEmpDepartment.Text = "Department:";
-            // 
-            // cbEmpHourlyWages
-            // 
-            this.cbEmpHourlyWages.FormattingEnabled = true;
-            this.cbEmpHourlyWages.Items.AddRange(new object[] {
-            "20",
-            "50"});
-            this.cbEmpHourlyWages.Location = new System.Drawing.Point(160, 400);
-            this.cbEmpHourlyWages.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbEmpHourlyWages.Name = "cbEmpHourlyWages";
-            this.cbEmpHourlyWages.Size = new System.Drawing.Size(180, 30);
-            this.cbEmpHourlyWages.TabIndex = 7;
             // 
             // cbEmpEmploymentType
             // 
@@ -266,7 +270,7 @@ namespace MediaBazaarApp
             // lbEmpAddressStreet
             // 
             this.lbEmpAddressStreet.AutoSize = true;
-            this.lbEmpAddressStreet.Location = new System.Drawing.Point(430, 176);
+            this.lbEmpAddressStreet.Location = new System.Drawing.Point(407, 176);
             this.lbEmpAddressStreet.Name = "lbEmpAddressStreet";
             this.lbEmpAddressStreet.Size = new System.Drawing.Size(63, 22);
             this.lbEmpAddressStreet.TabIndex = 11;
@@ -284,7 +288,7 @@ namespace MediaBazaarApp
             // 
             // tbxEmpAddressStreet
             // 
-            this.tbxEmpAddressStreet.Location = new System.Drawing.Point(515, 173);
+            this.tbxEmpAddressStreet.Location = new System.Drawing.Point(492, 173);
             this.tbxEmpAddressStreet.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpAddressStreet.Name = "tbxEmpAddressStreet";
             this.tbxEmpAddressStreet.Size = new System.Drawing.Size(188, 28);
@@ -292,7 +296,7 @@ namespace MediaBazaarApp
             // 
             // tbxEmpAddressCity
             // 
-            this.tbxEmpAddressCity.Location = new System.Drawing.Point(515, 216);
+            this.tbxEmpAddressCity.Location = new System.Drawing.Point(492, 216);
             this.tbxEmpAddressCity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpAddressCity.Name = "tbxEmpAddressCity";
             this.tbxEmpAddressCity.Size = new System.Drawing.Size(188, 28);
@@ -316,7 +320,7 @@ namespace MediaBazaarApp
             // lbEmpAddressCity
             // 
             this.lbEmpAddressCity.AutoSize = true;
-            this.lbEmpAddressCity.Location = new System.Drawing.Point(447, 220);
+            this.lbEmpAddressCity.Location = new System.Drawing.Point(424, 220);
             this.lbEmpAddressCity.Name = "lbEmpAddressCity";
             this.lbEmpAddressCity.Size = new System.Drawing.Size(46, 22);
             this.lbEmpAddressCity.TabIndex = 12;
@@ -324,7 +328,7 @@ namespace MediaBazaarApp
             // 
             // tbxEmpEmail
             // 
-            this.tbxEmpEmail.Location = new System.Drawing.Point(515, 80);
+            this.tbxEmpEmail.Location = new System.Drawing.Point(492, 80);
             this.tbxEmpEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpEmail.Name = "tbxEmpEmail";
             this.tbxEmpEmail.Size = new System.Drawing.Size(188, 28);
@@ -332,7 +336,7 @@ namespace MediaBazaarApp
             // 
             // tbxEmpAddressCountry
             // 
-            this.tbxEmpAddressCountry.Location = new System.Drawing.Point(515, 261);
+            this.tbxEmpAddressCountry.Location = new System.Drawing.Point(492, 261);
             this.tbxEmpAddressCountry.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpAddressCountry.Name = "tbxEmpAddressCountry";
             this.tbxEmpAddressCountry.Size = new System.Drawing.Size(188, 28);
@@ -341,7 +345,7 @@ namespace MediaBazaarApp
             // lbEmpEmail
             // 
             this.lbEmpEmail.AutoSize = true;
-            this.lbEmpEmail.Location = new System.Drawing.Point(426, 83);
+            this.lbEmpEmail.Location = new System.Drawing.Point(403, 83);
             this.lbEmpEmail.Name = "lbEmpEmail";
             this.lbEmpEmail.Size = new System.Drawing.Size(59, 22);
             this.lbEmpEmail.TabIndex = 9;
@@ -350,7 +354,7 @@ namespace MediaBazaarApp
             // lbEmpAddressPostCode
             // 
             this.lbEmpAddressPostCode.AutoSize = true;
-            this.lbEmpAddressPostCode.Location = new System.Drawing.Point(404, 305);
+            this.lbEmpAddressPostCode.Location = new System.Drawing.Point(381, 305);
             this.lbEmpAddressPostCode.Name = "lbEmpAddressPostCode";
             this.lbEmpAddressPostCode.Size = new System.Drawing.Size(94, 22);
             this.lbEmpAddressPostCode.TabIndex = 14;
@@ -368,7 +372,7 @@ namespace MediaBazaarApp
             // lbEmpAddressCountry
             // 
             this.lbEmpAddressCountry.AutoSize = true;
-            this.lbEmpAddressCountry.Location = new System.Drawing.Point(417, 265);
+            this.lbEmpAddressCountry.Location = new System.Drawing.Point(394, 265);
             this.lbEmpAddressCountry.Name = "lbEmpAddressCountry";
             this.lbEmpAddressCountry.Size = new System.Drawing.Size(78, 22);
             this.lbEmpAddressCountry.TabIndex = 13;
@@ -384,7 +388,7 @@ namespace MediaBazaarApp
             // 
             // tbxEmpAddressPostCode
             // 
-            this.tbxEmpAddressPostCode.Location = new System.Drawing.Point(515, 301);
+            this.tbxEmpAddressPostCode.Location = new System.Drawing.Point(492, 301);
             this.tbxEmpAddressPostCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpAddressPostCode.Name = "tbxEmpAddressPostCode";
             this.tbxEmpAddressPostCode.Size = new System.Drawing.Size(188, 28);
@@ -392,7 +396,7 @@ namespace MediaBazaarApp
             // 
             // btnAddEmpoyee
             // 
-            this.btnAddEmpoyee.Location = new System.Drawing.Point(266, 540);
+            this.btnAddEmpoyee.Location = new System.Drawing.Point(428, 540);
             this.btnAddEmpoyee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddEmpoyee.Name = "btnAddEmpoyee";
             this.btnAddEmpoyee.Size = new System.Drawing.Size(216, 47);
@@ -439,7 +443,7 @@ namespace MediaBazaarApp
             // 
             // tbxEmpPhone
             // 
-            this.tbxEmpPhone.Location = new System.Drawing.Point(515, 122);
+            this.tbxEmpPhone.Location = new System.Drawing.Point(492, 127);
             this.tbxEmpPhone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpPhone.Name = "tbxEmpPhone";
             this.tbxEmpPhone.Size = new System.Drawing.Size(188, 28);
@@ -448,7 +452,7 @@ namespace MediaBazaarApp
             // lbEmpPhone
             // 
             this.lbEmpPhone.AutoSize = true;
-            this.lbEmpPhone.Location = new System.Drawing.Point(426, 126);
+            this.lbEmpPhone.Location = new System.Drawing.Point(403, 131);
             this.lbEmpPhone.Name = "lbEmpPhone";
             this.lbEmpPhone.Size = new System.Drawing.Size(67, 22);
             this.lbEmpPhone.TabIndex = 10;
@@ -458,7 +462,7 @@ namespace MediaBazaarApp
             // 
             this.lbEmployeeAddress.AutoSize = true;
             this.lbEmployeeAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmployeeAddress.Location = new System.Drawing.Point(486, 34);
+            this.lbEmployeeAddress.Location = new System.Drawing.Point(463, 34);
             this.lbEmployeeAddress.Name = "lbEmployeeAddress";
             this.lbEmployeeAddress.Size = new System.Drawing.Size(150, 22);
             this.lbEmployeeAddress.TabIndex = 9;
@@ -638,6 +642,134 @@ namespace MediaBazaarApp
             this.lbxAllEmployees.Size = new System.Drawing.Size(950, 400);
             this.lbxAllEmployees.TabIndex = 12;
             // 
+            // nudEmpHourlyWages
+            // 
+            this.nudEmpHourlyWages.Location = new System.Drawing.Point(161, 400);
+            this.nudEmpHourlyWages.Name = "nudEmpHourlyWages";
+            this.nudEmpHourlyWages.Size = new System.Drawing.Size(180, 28);
+            this.nudEmpHourlyWages.TabIndex = 16;
+            this.nudEmpHourlyWages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudEmpHourlyWages.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // cbEmpPosition
+            // 
+            this.cbEmpPosition.FormattingEnabled = true;
+            this.cbEmpPosition.Items.AddRange(new object[] {
+            "Administration employee",
+            "Management employee",
+            "Sales employee",
+            "Depot worker"});
+            this.cbEmpPosition.Location = new System.Drawing.Point(160, 358);
+            this.cbEmpPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbEmpPosition.Name = "cbEmpPosition";
+            this.cbEmpPosition.Size = new System.Drawing.Size(180, 30);
+            this.cbEmpPosition.TabIndex = 17;
+            // 
+            // lbEmpBsn
+            // 
+            this.lbEmpBsn.AutoSize = true;
+            this.lbEmpBsn.Location = new System.Drawing.Point(424, 344);
+            this.lbEmpBsn.Name = "lbEmpBsn";
+            this.lbEmpBsn.Size = new System.Drawing.Size(46, 22);
+            this.lbEmpBsn.TabIndex = 18;
+            this.lbEmpBsn.Text = "Bsn:";
+            // 
+            // tbxEmpBsn
+            // 
+            this.tbxEmpBsn.Location = new System.Drawing.Point(492, 341);
+            this.tbxEmpBsn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxEmpBsn.Name = "tbxEmpBsn";
+            this.tbxEmpBsn.Size = new System.Drawing.Size(188, 28);
+            this.tbxEmpBsn.TabIndex = 19;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(808, 150);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(188, 28);
+            this.textBox4.TabIndex = 20;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(722, 153);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 22);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Email:";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(808, 192);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(188, 28);
+            this.textBox7.TabIndex = 23;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(719, 196);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(67, 22);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Phone:";
+            // 
+            // lbEmpEmConDetails
+            // 
+            this.lbEmpEmConDetails.AutoSize = true;
+            this.lbEmpEmConDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpEmConDetails.Location = new System.Drawing.Point(730, 34);
+            this.lbEmpEmConDetails.Name = "lbEmpEmConDetails";
+            this.lbEmpEmConDetails.Size = new System.Drawing.Size(251, 22);
+            this.lbEmpEmConDetails.TabIndex = 22;
+            this.lbEmpEmConDetails.Text = "Emergency contact details:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(808, 70);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(188, 28);
+            this.textBox1.TabIndex = 25;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(727, 76);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 22);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Email:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Administration employee",
+            "Management employee",
+            "Sales employee",
+            "Depot worker"});
+            this.comboBox1.Location = new System.Drawing.Point(809, 110);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(187, 30);
+            this.comboBox1.TabIndex = 28;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(709, 110);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 22);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Position:";
+            // 
             // SuperuserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
@@ -660,6 +792,7 @@ namespace MediaBazaarApp
             this.gbxSearchEmp.ResumeLayout(false);
             this.gbxSearchEmp.PerformLayout();
             this.gbxShowAllEmp.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudEmpHourlyWages)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -672,7 +805,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.GroupBox gbxAddEmployee;
         private System.Windows.Forms.ComboBox cbEmpDepartment;
         private System.Windows.Forms.Label lbEmpDepartment;
-        private System.Windows.Forms.ComboBox cbEmpHourlyWages;
         private System.Windows.Forms.ComboBox cbEmpEmploymentType;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbEmpAddressStreet;
@@ -716,6 +848,18 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Label lbDateDayOfWeek;
         private System.Windows.Forms.Label lbGreetingMsg;
-        private System.Windows.Forms.TextBox tbxEmpPosition;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lbEmpEmConDetails;
+        private System.Windows.Forms.Label lbEmpBsn;
+        private System.Windows.Forms.TextBox tbxEmpBsn;
+        private System.Windows.Forms.ComboBox cbEmpPosition;
+        private System.Windows.Forms.NumericUpDown nudEmpHourlyWages;
     }
 }

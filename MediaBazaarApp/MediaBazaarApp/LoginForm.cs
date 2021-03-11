@@ -17,12 +17,19 @@ namespace MediaBazaarApp
         string superuserEmail = "superuser@gmail.com";
         int superuserId = 0;
 
-        DepartmentManagement departmentManagement;
+        private DepartmentManagement departmentManagement;
 
         public LoginForm()
         {
             InitializeComponent();
+
+            departmentManagement = new DepartmentManagement();
+            departmentManagement.AddDepartment("Administration");
+            departmentManagement.AddDepartment("Management");
+            departmentManagement.AddDepartment("Depot");
+            departmentManagement.AddDepartment("Sales");
         }
+
         public LoginForm(DepartmentManagement departmentManagement)
         {
             InitializeComponent();
@@ -44,6 +51,9 @@ namespace MediaBazaarApp
                     break;
                 case "depotWorker":
                     depName = "Depot";
+                    break;
+                case "employeeSales":
+                    depName = "Sales";
                     break;
                 default:
                     depName = null;
@@ -94,7 +104,7 @@ namespace MediaBazaarApp
                 
                 if (email == superuserEmail && empId == superuserId && userType == "superuser")
                 {
-                    SuperuserForm superuserForm = new SuperuserForm();
+                    SuperuserForm superuserForm = new SuperuserForm(departmentManagement);
                     superuserForm.Show();
                     this.Hide();
                 }
@@ -102,22 +112,29 @@ namespace MediaBazaarApp
                 {
                     int index = checkForEmployeeCredentials(email, empId, depName);
                     Employee currentEmp = departmentManagement.GetDepartment(depName).GetAllEmployees()[index];
-
+                    
+                    // TODO: Add id to form sending
                     if (currentEmp.Department.Name == "Administration")
                     {
-                        AdministrationForm administrationForm = new AdministrationForm(departmentManagement);
+                        AdministrationForm administrationForm = new AdministrationForm(departmentManagement, currentEmp);
                         administrationForm.Show();
                         this.Hide();
                     }
                     else if (currentEmp.Department.Name == "Management")
                     {
-                        ManagementForm managementForm = new ManagementForm(departmentManagement);
+                        ManagementForm managementForm = new ManagementForm(departmentManagement, currentEmp);
                         managementForm.Show();
+                        this.Hide();
+                    }
+                    else if (currentEmp.Department.Name == "Sales")
+                    {
+                        SalesForm salesForm = new SalesForm(departmentManagement, currentEmp);
+                        salesForm.Show();
                         this.Hide();
                     }
                     else
                     {
-                        DepotWorkersForm depotWorkersForm = new DepotWorkersForm(departmentManagement);
+                        DepotWorkersForm depotWorkersForm = new DepotWorkersForm(departmentManagement, currentEmp);
                         depotWorkersForm.Show();
                         this.Hide();
                     }

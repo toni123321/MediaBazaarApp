@@ -30,14 +30,14 @@ namespace MediaBazaarApp
         private void InitializeComponent()
         {
             this.gbxLogIn = new System.Windows.Forms.GroupBox();
+            this.cbUserType = new System.Windows.Forms.ComboBox();
+            this.lbUserType = new System.Windows.Forms.Label();
             this.tbxEmpEmail = new System.Windows.Forms.TextBox();
             this.lbEmpEmail = new System.Windows.Forms.Label();
             this.btnLogIn = new System.Windows.Forms.Button();
             this.tbxEmpId = new System.Windows.Forms.TextBox();
             this.lbEmpId = new System.Windows.Forms.Label();
             this.lbMsg = new System.Windows.Forms.Label();
-            this.lbUserType = new System.Windows.Forms.Label();
-            this.cbUserType = new System.Windows.Forms.ComboBox();
             this.gbxLogIn.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,6 +59,29 @@ namespace MediaBazaarApp
             this.gbxLogIn.TabIndex = 1;
             this.gbxLogIn.TabStop = false;
             this.gbxLogIn.Text = "Log in";
+            // 
+            // cbUserType
+            // 
+            this.cbUserType.FormattingEnabled = true;
+            this.cbUserType.Items.AddRange(new object[] {
+            "superuser",
+            "employeeAdministration",
+            "employeeManagement",
+            "depotWorker",
+            "employeeSales"});
+            this.cbUserType.Location = new System.Drawing.Point(155, 171);
+            this.cbUserType.Name = "cbUserType";
+            this.cbUserType.Size = new System.Drawing.Size(281, 30);
+            this.cbUserType.TabIndex = 3;
+            // 
+            // lbUserType
+            // 
+            this.lbUserType.AutoSize = true;
+            this.lbUserType.Location = new System.Drawing.Point(50, 174);
+            this.lbUserType.Name = "lbUserType";
+            this.lbUserType.Size = new System.Drawing.Size(92, 22);
+            this.lbUserType.TabIndex = 3;
+            this.lbUserType.Text = "User type:";
             // 
             // tbxEmpEmail
             // 
@@ -114,28 +137,6 @@ namespace MediaBazaarApp
             this.lbMsg.Size = new System.Drawing.Size(375, 25);
             this.lbMsg.TabIndex = 0;
             this.lbMsg.Text = "Welcome to Media Bazaar system!";
-            // 
-            // lbUserType
-            // 
-            this.lbUserType.AutoSize = true;
-            this.lbUserType.Location = new System.Drawing.Point(50, 174);
-            this.lbUserType.Name = "lbUserType";
-            this.lbUserType.Size = new System.Drawing.Size(92, 22);
-            this.lbUserType.TabIndex = 3;
-            this.lbUserType.Text = "User type:";
-            // 
-            // cbUserType
-            // 
-            this.cbUserType.FormattingEnabled = true;
-            this.cbUserType.Items.AddRange(new object[] {
-            "superuser",
-            "employeeAdministration",
-            "employeeManagement",
-            "depotWorker"});
-            this.cbUserType.Location = new System.Drawing.Point(155, 171);
-            this.cbUserType.Name = "cbUserType";
-            this.cbUserType.Size = new System.Drawing.Size(281, 30);
-            this.cbUserType.TabIndex = 3;
             // 
             // LoginForm
             // 

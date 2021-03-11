@@ -10,19 +10,18 @@ using System.Windows.Forms;
 
 namespace MediaBazaarApp
 {
-    public partial class ManagementForm : Form
+    public partial class SalesForm : Form
     {
         private DepartmentManagement departmentManagement;
         private Employee currentEmp;
-        
-        public ManagementForm(DepartmentManagement departmentManagement, Employee currentEmp)
+        public SalesForm(DepartmentManagement departmentManagement, Employee currentEmp)
         {
             InitializeComponent();
             this.departmentManagement = departmentManagement;
             this.currentEmp = currentEmp;
         }
 
-        private void ManagementForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void SalesForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             LoginForm loginForm = new LoginForm(departmentManagement);
             loginForm.Show();

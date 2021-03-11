@@ -11,17 +11,30 @@ namespace MediaBazaarApp
         //Fields
         private int id;
         private static int idCounter = 1;
+
+        //Personal Information
         private string firstName;
         private string lastName;
         private DateTime dateOfBirth;
         private Gender gender;
 
+        //Contact details
         private string email;
         private string phoneNumber;
         private string street;
         private string city;
         private string country;
         private string postcode;
+        private string bsn = "999999990";
+        
+        //Emergency contact detials
+        private string emConName;
+        private EmergencyContactRelation emConRelation;
+        private string emConEmail;
+        private string emConPhoneNum;
+
+
+        // Job specifications
         private EmploymentType employmentType;
         private double hourlyWages;
         private string position;
@@ -36,6 +49,8 @@ namespace MediaBazaarApp
         {
             get { return this.id; }
         }
+
+        // Personal information
         public string FirstName
         {
             get { return this.firstName; }
@@ -56,6 +71,8 @@ namespace MediaBazaarApp
             get { return this.gender; }
             set { this.gender = value; }
         }
+
+        //Contact details
         public string Email
         {
             get { return this.email; }
@@ -86,6 +103,39 @@ namespace MediaBazaarApp
             get { return this.postcode; }
             set { this.postcode = value; }
         }
+
+        public string Bsn
+        {
+            get { return this.bsn; }
+            set { this.bsn = value; }
+        }
+
+        //Emergency contact details
+        public string EmConName
+        {
+            get { return this.emConName; }
+            set { this.emConName = value; }
+        }
+
+        public EmergencyContactRelation EmConRelation
+        {
+            get { return this.emConRelation; }
+            set { this.emConRelation = value; }
+        }
+
+        public string EmConEmail
+        {
+            get { return this.emConEmail; }
+            set { this.emConEmail = value; }
+        }
+
+        public string EmConPhoneNum
+        {
+            get { return this.emConPhoneNum; }
+            set { this.emConPhoneNum = value; }
+        }
+
+        //Job specifications
         public EmploymentType EmploymentType
         {
             get { return this.employmentType; }
@@ -114,21 +164,36 @@ namespace MediaBazaarApp
 
         //Constructor
         public Employee(string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email,
-            string phoneNumber, string street, string city, string country, string postcode, EmploymentType employmentType,
+            string phoneNumber, string street, string city, string country, string postcode, string bsn, string emConName, 
+            EmergencyContactRelation emConRelation, string emConEmail, string emConPhoneNum, EmploymentType employmentType,
             string position, double hourlyWages, Department department)
         {
+            //Personal information
             this.firstName = firstName;
             this.lastName = lastName;
             this.dateOfBirth = dateOfBirth;
             this.gender = gender;
 
+            // Contact details
             this.email = email;
             this.phoneNumber = phoneNumber;
             this.street = street;
             this.city = city;
             this.country = country;
             this.postcode = postcode;
+            
+            if (bsn != null)
+            {
+                this.bsn = bsn;
+            }
 
+            //Emergency contact details
+            this.emConName = emConName;
+            this.emConRelation = emConRelation;
+            this.emConEmail = emConEmail;
+            this.emConPhoneNum = emConPhoneNum;
+
+            //Job specification
             this.employmentType = employmentType;
             this.position = position;
             this.hourlyWages = hourlyWages;

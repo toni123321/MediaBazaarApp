@@ -12,11 +12,14 @@ namespace MediaBazaarApp
 {
     public partial class AdministrationForm : Form
     {
-        DepartmentManagement departmentManagement;
-        public AdministrationForm(DepartmentManagement departmentManagement)
+        private DepartmentManagement departmentManagement;
+        private Employee currentEmp;
+
+        public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp)
         {
             InitializeComponent();
             this.departmentManagement = departmentManagement;
+            this.currentEmp = currentEmp;
         }
 
         private void btnAddEmpoyee_Click(object sender, EventArgs e)
