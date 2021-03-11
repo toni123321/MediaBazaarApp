@@ -1469,6 +1469,7 @@ namespace MediaBazaarApp
             this.btnAssignShiftsManually.TabIndex = 11;
             this.btnAssignShiftsManually.Text = "Assign work shift manually";
             this.btnAssignShiftsManually.UseVisualStyleBackColor = true;
+            this.btnAssignShiftsManually.Click += new System.EventHandler(this.btnAssignShiftsManually_Click);
             // 
             // btnScheduleClearSelected
             // 

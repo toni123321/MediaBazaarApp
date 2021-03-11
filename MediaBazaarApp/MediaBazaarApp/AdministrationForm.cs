@@ -12,9 +12,19 @@ namespace MediaBazaarApp
 {
     public partial class AdministrationForm : Form
     {
-        public AdministrationForm()
+        DepartmentManagement departmentManagement;
+        public AdministrationForm(DepartmentManagement departmentManagement)
         {
             InitializeComponent();
+            this.departmentManagement = departmentManagement;
+        }
+
+        private void btnAssignShiftsManually_Click(object sender, EventArgs e)
+        {
+            //find employee obj
+
+            //AssignWorkShiftsManuallyForm manualSchedule = new AssignWorkShiftsManuallyForm(departmentManagement, emp);
+            //this.Close();
         }
     }
 }
