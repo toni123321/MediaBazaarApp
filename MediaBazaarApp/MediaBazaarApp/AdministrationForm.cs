@@ -12,9 +12,84 @@ namespace MediaBazaarApp
 {
     public partial class AdministrationForm : Form
     {
+        StockManagement stockManagement;
         public AdministrationForm()
         {
             InitializeComponent();
+            stockManagement = new StockManagement();
+        }
+
+       
+
+        private void TextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void BtnAddStock_Click_1(object sender, EventArgs e)
+        {
+            if (StockTBXCheck() == false)
+            {
+                MessageBox.Show("Please fill in all text boxes before adding stock.");
+            }
+            else
+            {
+                string model = tbxStockModel.Text;
+                string brand = tbxStockBrand.Text;
+                double price = double.Parse(tbxStockPrice.Text);
+                int quantity = int.Parse(tbxStockQuantity.Text);
+                double height = double.Parse(tbxStockHeight.Text);
+                double width = double.Parse(tbxStockWidth.Text);
+                double depth = double.Parse(tbxStockDepth.Text);
+                double weight = double.Parse(tbxStockWeight.Text);
+                string shortDescription;
+
+                if (tbxStockShortDescription.Text == "")
+                {
+                    shortDescription = "No description was added";
+                }
+                else
+                {
+                    shortDescription = tbxStockShortDescription.Text;
+                }
+
+                stockManagement.AddStock(model, brand, price, quantity, height, weight, depth, weight, shortDescription);
+                ClearStockTbx();
+            }
+        }
+
+        private void BtnShowAllStocks_Click_1(object sender, EventArgs e)
+        {
+            lbAllStocks.Items.Clear();
+            List<Stock> stocks = stockManagement.GetAllStocks();
+            foreach (Stock stock in stocks)
+            {
+                lbAllStocks.Items.Add(stock);
+            }
+        }
+
+        public bool StockTBXCheck()
+        {
+
+            if (tbxStockModel.Text == "" || tbxStockBrand.Text == "" || tbxStockPrice.Text == "" || tbxStockQuantity.Text == "" || tbxStockWeight.Text == "" || tbxStockWidth.Text == "" || tbxStockHeight.Text == "" || tbxStockDepth.Text == "")
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void ClearStockTbx()
+        {
+            tbxStockBrand.Clear();
+            tbxStockModel.Clear();
+            tbxStockPrice.Clear();
+            tbxStockDepth.Clear();
+            tbxStockQuantity.Clear();
+            tbxStockHeight.Clear();
+            tbxStockWeight.Clear();
+            tbxStockWidth.Clear();
+            tbxStockShortDescription.Clear();
         }
     }
 }
