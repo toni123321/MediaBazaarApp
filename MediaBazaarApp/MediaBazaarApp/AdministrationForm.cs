@@ -170,5 +170,36 @@ namespace MediaBazaarApp
                 MessageBox.Show("Please, select an employee from the list to remove it!");
             }
         }
+
+        private void btnSearchEmp_Click(object sender, EventArgs e)
+        {
+            lbxAllEmployees.Items.Clear();
+
+            string fullname;
+            if (!String.IsNullOrEmpty(tbxSearchEmp.Text))
+            {
+                foreach (Employee emp in departmentManagement.GetAllEmployees())
+                {
+                    fullname = $"{emp.FirstName} {emp.LastName}";
+                    // case first name
+                    if (emp.FirstName == tbxSearchEmp.Text || emp.LastName == tbxSearchEmp.Text ||
+                       fullname == tbxSearchEmp.Text)
+                    {
+                        lbxAllEmployees.Items.Add(emp);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, write first name/last name or full name to search for employee!");
+            }
+        }
+
+        private void tbxSearchEmp_Click(object sender, EventArgs e)
+        {
+            // Delete default description info in search bar to let user write
+            // something without needed to delete default text
+            tbxSearchEmp.Text = "";
+        }
     }
 }

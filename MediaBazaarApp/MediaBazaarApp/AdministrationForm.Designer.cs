@@ -872,6 +872,7 @@ namespace MediaBazaarApp
             this.btnSearchEmp.TabIndex = 6;
             this.btnSearchEmp.Text = "Search";
             this.btnSearchEmp.UseVisualStyleBackColor = true;
+            this.btnSearchEmp.Click += new System.EventHandler(this.btnSearchEmp_Click);
             // 
             // tbxSearchEmp
             // 
@@ -881,6 +882,7 @@ namespace MediaBazaarApp
             this.tbxSearchEmp.Size = new System.Drawing.Size(235, 28);
             this.tbxSearchEmp.TabIndex = 7;
             this.tbxSearchEmp.Text = "Search...";
+            this.tbxSearchEmp.Click += new System.EventHandler(this.tbxSearchEmp_Click);
             // 
             // btnClearSelectedEmp
             // 
