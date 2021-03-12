@@ -903,6 +903,7 @@ namespace MediaBazaarApp
             this.btnEditEmp.TabIndex = 14;
             this.btnEditEmp.Text = "Edit employee";
             this.btnEditEmp.UseVisualStyleBackColor = true;
+            this.btnEditEmp.Click += new System.EventHandler(this.btnEditEmp_Click);
             // 
             // btnRemoveEmp
             // 

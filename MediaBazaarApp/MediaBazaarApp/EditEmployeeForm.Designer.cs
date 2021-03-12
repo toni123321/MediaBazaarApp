@@ -85,6 +85,7 @@ namespace MediaBazaarApp
             this.btnEditEmpoyee.TabIndex = 16;
             this.btnEditEmpoyee.Text = "Apply changes";
             this.btnEditEmpoyee.UseVisualStyleBackColor = true;
+            this.btnEditEmpoyee.Click += new System.EventHandler(this.btnEditEmpoyee_Click);
             // 
             // lbEmployeeInfo
             // 
@@ -531,6 +532,7 @@ namespace MediaBazaarApp
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EditEmployeeForm";
             this.Text = "EditEmployeeForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditEmployeeForm_FormClosed);
             this.gbxEditEmployee.ResumeLayout(false);
             this.gbxEditEmployee.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEmpHourlyWages)).EndInit();

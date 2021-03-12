@@ -12,6 +12,7 @@ namespace MediaBazaarApp
 {
     public partial class AdministrationForm : Form
     {
+        private bool openOtherForm = false;
         private DepartmentManagement departmentManagement;
         private Employee currentEmp;
 
@@ -20,6 +21,12 @@ namespace MediaBazaarApp
             InitializeComponent();
             this.departmentManagement = departmentManagement;
             this.currentEmp = currentEmp;
+        }
+
+        public AdministrationForm()
+        {
+            InitializeComponent();
+
         }
 
         public void FillComboBoxDepartments(bool isSuperuser)
@@ -37,8 +44,11 @@ namespace MediaBazaarApp
 
         private void AdministrationForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            LoginForm loginForm = new LoginForm(departmentManagement);
-            loginForm.Show();
+            if (!openOtherForm)
+            {
+                LoginForm loginForm = new LoginForm(departmentManagement);
+                loginForm.Show();
+            }
         }
 
         private void btnAddEmpoyee_Click(object sender, EventArgs e)
@@ -95,7 +105,7 @@ namespace MediaBazaarApp
                 empType = (EmploymentType)(Enum.Parse(typeof(EmploymentType), cbEmpEmploymentType.SelectedItem.ToString()));
                 
                 hourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
-                department = departmentManagement.GetDepartment(cbEmpDepartment.SelectedItem.ToString());
+                department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
 
                 //Department currentDep = departmentManagement.GetDepartment(department.Name);
                 if (department.AddEmployee(fname, lname, dateOfBirth, gender, email, phone, street, city, country,
@@ -200,6 +210,29 @@ namespace MediaBazaarApp
             // Delete default description info in search bar to let user write
             // something without needed to delete default text
             tbxSearchEmp.Text = "";
+        }
+
+        private void btnEditEmp_Click(object sender, EventArgs e)
+        {
+            bool isSuperuser = false;
+            if (lbxAllEmployees.SelectedIndex != -1)
+            {
+                if (currentEmp.Id == 1)
+                {
+                    isSuperuser = true;
+                }
+                Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
+                EditEmployeeForm editEmployeeForm = new EditEmployeeForm(departmentManagement,
+                    departmentManagement.GetDepartment(selectedEmp.Department.Name).GetEmployeeByEmail(selectedEmp.Email));
+                editEmployeeForm.FillComboBoxDepartments(isSuperuser);
+                editEmployeeForm.Show();
+                openOtherForm = true;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please, select an employee from the list to edit their information!");
+            }
         }
     }
 }
