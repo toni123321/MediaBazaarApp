@@ -911,6 +911,7 @@ namespace MediaBazaarApp
             this.btnRemoveEmp.TabIndex = 13;
             this.btnRemoveEmp.Text = "Remove employee";
             this.btnRemoveEmp.UseVisualStyleBackColor = true;
+            this.btnRemoveEmp.Click += new System.EventHandler(this.btnRemoveEmp_Click);
             // 
             // lbxAllEmployees
             // 

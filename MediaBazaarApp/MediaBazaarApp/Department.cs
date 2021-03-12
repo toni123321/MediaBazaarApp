@@ -107,9 +107,15 @@ namespace MediaBazaarApp
             return false;
         }
 
-        public bool RemoveEmployee(int id)
+        public bool RemoveEmployee(string email)
         {
-            return true;
+            Employee currEmp = GetEmployeeByEmail(email);
+            if (currEmp != null)
+            {
+                employees.Remove(currEmp);
+                return true;
+            }
+            return false;
         }
 
         public List<Employee> GetAllEmployees()

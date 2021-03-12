@@ -150,5 +150,25 @@ namespace MediaBazaarApp
                 MessageBox.Show("Please, choose a filter to show list of employees!");
             }
         }
+
+        private void btnRemoveEmp_Click(object sender, EventArgs e)
+        {
+            if (lbxAllEmployees.SelectedIndex != -1)
+            {
+                Employee selectedEmp = (Employee) lbxAllEmployees.SelectedItem;
+                if (departmentManagement.GetDepartment(selectedEmp.Department.Name).RemoveEmployee(selectedEmp.Email))
+                {
+                    MessageBox.Show($"You have successfully removed employee with id:{selectedEmp.Id}");
+                }
+                else
+                {
+                    MessageBox.Show($"There is no employee with this id: {selectedEmp.Id}");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, select an employee from the list to remove it!");
+            }
+        }
     }
 }
