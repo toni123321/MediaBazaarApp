@@ -55,9 +55,9 @@ namespace MediaBazaarApp
             this.cbEmpDepartment = new System.Windows.Forms.ComboBox();
             this.lbEmpDepartment = new System.Windows.Forms.Label();
             this.cbEmpEmploymentType = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lbEmpJobSpec = new System.Windows.Forms.Label();
             this.lbEmpAddressStreet = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbEmpPersonalInfo = new System.Windows.Forms.Label();
             this.tbxEmpAddressStreet = new System.Windows.Forms.TextBox();
             this.tbxEmpAddressCity = new System.Windows.Forms.TextBox();
             this.cbEmpGender = new System.Windows.Forms.ComboBox();
@@ -364,9 +364,9 @@ namespace MediaBazaarApp
             this.gbxAddEmployee.Controls.Add(this.cbEmpDepartment);
             this.gbxAddEmployee.Controls.Add(this.lbEmpDepartment);
             this.gbxAddEmployee.Controls.Add(this.cbEmpEmploymentType);
-            this.gbxAddEmployee.Controls.Add(this.label5);
+            this.gbxAddEmployee.Controls.Add(this.lbEmpJobSpec);
             this.gbxAddEmployee.Controls.Add(this.lbEmpAddressStreet);
-            this.gbxAddEmployee.Controls.Add(this.label4);
+            this.gbxAddEmployee.Controls.Add(this.lbEmpPersonalInfo);
             this.gbxAddEmployee.Controls.Add(this.tbxEmpAddressStreet);
             this.gbxAddEmployee.Controls.Add(this.tbxEmpAddressCity);
             this.gbxAddEmployee.Controls.Add(this.cbEmpGender);
@@ -546,15 +546,15 @@ namespace MediaBazaarApp
             this.cbEmpEmploymentType.Size = new System.Drawing.Size(180, 30);
             this.cbEmpEmploymentType.TabIndex = 5;
             // 
-            // label5
+            // lbEmpJobSpec
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(114, 283);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(176, 22);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Job specifications:";
+            this.lbEmpJobSpec.AutoSize = true;
+            this.lbEmpJobSpec.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpJobSpec.Location = new System.Drawing.Point(114, 283);
+            this.lbEmpJobSpec.Name = "lbEmpJobSpec";
+            this.lbEmpJobSpec.Size = new System.Drawing.Size(176, 22);
+            this.lbEmpJobSpec.TabIndex = 5;
+            this.lbEmpJobSpec.Text = "Job specifications:";
             // 
             // lbEmpAddressStreet
             // 
@@ -565,15 +565,15 @@ namespace MediaBazaarApp
             this.lbEmpAddressStreet.TabIndex = 11;
             this.lbEmpAddressStreet.Text = "Street:";
             // 
-            // label4
+            // lbEmpPersonalInfo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(93, 34);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(200, 22);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Personal information:";
+            this.lbEmpPersonalInfo.AutoSize = true;
+            this.lbEmpPersonalInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpPersonalInfo.Location = new System.Drawing.Point(93, 34);
+            this.lbEmpPersonalInfo.Name = "lbEmpPersonalInfo";
+            this.lbEmpPersonalInfo.Size = new System.Drawing.Size(200, 22);
+            this.lbEmpPersonalInfo.TabIndex = 1;
+            this.lbEmpPersonalInfo.Text = "Personal information:";
             // 
             // tbxEmpAddressStreet
             // 
@@ -2270,9 +2270,9 @@ namespace MediaBazaarApp
         private System.Windows.Forms.ComboBox cbEmpDepartment;
         private System.Windows.Forms.Label lbEmpDepartment;
         private System.Windows.Forms.ComboBox cbEmpEmploymentType;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbEmpJobSpec;
         private System.Windows.Forms.Label lbEmpAddressStreet;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbEmpPersonalInfo;
         private System.Windows.Forms.TextBox tbxEmpAddressStreet;
         private System.Windows.Forms.TextBox tbxEmpAddressCity;
         private System.Windows.Forms.ComboBox cbEmpGender;

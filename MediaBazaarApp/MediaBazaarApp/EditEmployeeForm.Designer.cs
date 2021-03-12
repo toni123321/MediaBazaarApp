@@ -31,7 +31,7 @@ namespace MediaBazaarApp
         {
             this.btnEditEmpoyee = new System.Windows.Forms.Button();
             this.lbEmployeeInfo = new System.Windows.Forms.Label();
-            this.gbxAddEmployee = new System.Windows.Forms.GroupBox();
+            this.gbxEditEmployee = new System.Windows.Forms.GroupBox();
             this.cbEmConRelation = new System.Windows.Forms.ComboBox();
             this.lbEmConRelation = new System.Windows.Forms.Label();
             this.tbxEmConName = new System.Windows.Forms.TextBox();
@@ -43,14 +43,13 @@ namespace MediaBazaarApp
             this.lbEmpEmConDetails = new System.Windows.Forms.Label();
             this.lbEmpBsn = new System.Windows.Forms.Label();
             this.tbxEmpBsn = new System.Windows.Forms.TextBox();
-            this.cbEmpPosition = new System.Windows.Forms.ComboBox();
             this.nudEmpHourlyWages = new System.Windows.Forms.NumericUpDown();
             this.cbEmpDepartment = new System.Windows.Forms.ComboBox();
             this.lbEmpDepartment = new System.Windows.Forms.Label();
             this.cbEmpEmploymentType = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lbEmpJobSpec = new System.Windows.Forms.Label();
             this.lbEmpAddressStreet = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbEmpPersonalInfo = new System.Windows.Forms.Label();
             this.tbxEmpAddressStreet = new System.Windows.Forms.TextBox();
             this.tbxEmpAddressCity = new System.Windows.Forms.TextBox();
             this.cbEmpGender = new System.Windows.Forms.ComboBox();
@@ -64,7 +63,6 @@ namespace MediaBazaarApp
             this.dtpEmpDateOfBirth = new System.Windows.Forms.DateTimePicker();
             this.tbxEmpAddressPostCode = new System.Windows.Forms.TextBox();
             this.lbEmpEmployementType = new System.Windows.Forms.Label();
-            this.lbEmpPosition = new System.Windows.Forms.Label();
             this.lbEmpDateOfBirth = new System.Windows.Forms.Label();
             this.lbEmpHourlyWages = new System.Windows.Forms.Label();
             this.tbxEmpPhone = new System.Windows.Forms.TextBox();
@@ -74,13 +72,13 @@ namespace MediaBazaarApp
             this.lbEmpLname = new System.Windows.Forms.Label();
             this.tbxEmpFname = new System.Windows.Forms.TextBox();
             this.lbEmpFname = new System.Windows.Forms.Label();
-            this.gbxAddEmployee.SuspendLayout();
+            this.gbxEditEmployee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEmpHourlyWages)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEditEmpoyee
             // 
-            this.btnEditEmpoyee.Location = new System.Drawing.Point(442, 500);
+            this.btnEditEmpoyee.Location = new System.Drawing.Point(428, 500);
             this.btnEditEmpoyee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditEmpoyee.Name = "btnEditEmpoyee";
             this.btnEditEmpoyee.Size = new System.Drawing.Size(216, 47);
@@ -98,59 +96,57 @@ namespace MediaBazaarApp
             this.lbEmployeeInfo.TabIndex = 2;
             this.lbEmployeeInfo.Text = "Profile details of employee with ID:(Id)";
             // 
-            // gbxAddEmployee
+            // gbxEditEmployee
             // 
-            this.gbxAddEmployee.Controls.Add(this.cbEmConRelation);
-            this.gbxAddEmployee.Controls.Add(this.lbEmConRelation);
-            this.gbxAddEmployee.Controls.Add(this.btnEditEmpoyee);
-            this.gbxAddEmployee.Controls.Add(this.tbxEmConName);
-            this.gbxAddEmployee.Controls.Add(this.lbEmConName);
-            this.gbxAddEmployee.Controls.Add(this.tbxEmConEmail);
-            this.gbxAddEmployee.Controls.Add(this.lbEmConEmail);
-            this.gbxAddEmployee.Controls.Add(this.tbxEmConPhone);
-            this.gbxAddEmployee.Controls.Add(this.lbEmConPhone);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpEmConDetails);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpBsn);
-            this.gbxAddEmployee.Controls.Add(this.tbxEmpBsn);
-            this.gbxAddEmployee.Controls.Add(this.cbEmpPosition);
-            this.gbxAddEmployee.Controls.Add(this.nudEmpHourlyWages);
-            this.gbxAddEmployee.Controls.Add(this.cbEmpDepartment);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpDepartment);
-            this.gbxAddEmployee.Controls.Add(this.cbEmpEmploymentType);
-            this.gbxAddEmployee.Controls.Add(this.label5);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpAddressStreet);
-            this.gbxAddEmployee.Controls.Add(this.label4);
-            this.gbxAddEmployee.Controls.Add(this.tbxEmpAddressStreet);
-            this.gbxAddEmployee.Controls.Add(this.tbxEmpAddressCity);
-            this.gbxAddEmployee.Controls.Add(this.cbEmpGender);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpAddressCity);
-            this.gbxAddEmployee.Controls.Add(this.tbxEmpEmail);
-            this.gbxAddEmployee.Controls.Add(this.tbxEmpAddressCountry);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpEmail);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpAddressPostCode);
-            this.gbxAddEmployee.Controls.Add(this.label1);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpAddressCountry);
-            this.gbxAddEmployee.Controls.Add(this.dtpEmpDateOfBirth);
-            this.gbxAddEmployee.Controls.Add(this.tbxEmpAddressPostCode);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpEmployementType);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpPosition);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpDateOfBirth);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpHourlyWages);
-            this.gbxAddEmployee.Controls.Add(this.tbxEmpPhone);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpPhone);
-            this.gbxAddEmployee.Controls.Add(this.lbEmployeeAddress);
-            this.gbxAddEmployee.Controls.Add(this.tbxEmpLname);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpLname);
-            this.gbxAddEmployee.Controls.Add(this.tbxEmpFname);
-            this.gbxAddEmployee.Controls.Add(this.lbEmpFname);
-            this.gbxAddEmployee.Location = new System.Drawing.Point(29, 82);
-            this.gbxAddEmployee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAddEmployee.Name = "gbxAddEmployee";
-            this.gbxAddEmployee.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAddEmployee.Size = new System.Drawing.Size(1045, 566);
-            this.gbxAddEmployee.TabIndex = 17;
-            this.gbxAddEmployee.TabStop = false;
-            this.gbxAddEmployee.Text = "Add/Hire employee";
+            this.gbxEditEmployee.Controls.Add(this.cbEmConRelation);
+            this.gbxEditEmployee.Controls.Add(this.lbEmConRelation);
+            this.gbxEditEmployee.Controls.Add(this.btnEditEmpoyee);
+            this.gbxEditEmployee.Controls.Add(this.tbxEmConName);
+            this.gbxEditEmployee.Controls.Add(this.lbEmConName);
+            this.gbxEditEmployee.Controls.Add(this.tbxEmConEmail);
+            this.gbxEditEmployee.Controls.Add(this.lbEmConEmail);
+            this.gbxEditEmployee.Controls.Add(this.tbxEmConPhone);
+            this.gbxEditEmployee.Controls.Add(this.lbEmConPhone);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpEmConDetails);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpBsn);
+            this.gbxEditEmployee.Controls.Add(this.tbxEmpBsn);
+            this.gbxEditEmployee.Controls.Add(this.nudEmpHourlyWages);
+            this.gbxEditEmployee.Controls.Add(this.cbEmpDepartment);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpDepartment);
+            this.gbxEditEmployee.Controls.Add(this.cbEmpEmploymentType);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpJobSpec);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpAddressStreet);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpPersonalInfo);
+            this.gbxEditEmployee.Controls.Add(this.tbxEmpAddressStreet);
+            this.gbxEditEmployee.Controls.Add(this.tbxEmpAddressCity);
+            this.gbxEditEmployee.Controls.Add(this.cbEmpGender);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpAddressCity);
+            this.gbxEditEmployee.Controls.Add(this.tbxEmpEmail);
+            this.gbxEditEmployee.Controls.Add(this.tbxEmpAddressCountry);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpEmail);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpAddressPostCode);
+            this.gbxEditEmployee.Controls.Add(this.label1);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpAddressCountry);
+            this.gbxEditEmployee.Controls.Add(this.dtpEmpDateOfBirth);
+            this.gbxEditEmployee.Controls.Add(this.tbxEmpAddressPostCode);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpEmployementType);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpDateOfBirth);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpHourlyWages);
+            this.gbxEditEmployee.Controls.Add(this.tbxEmpPhone);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpPhone);
+            this.gbxEditEmployee.Controls.Add(this.lbEmployeeAddress);
+            this.gbxEditEmployee.Controls.Add(this.tbxEmpLname);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpLname);
+            this.gbxEditEmployee.Controls.Add(this.tbxEmpFname);
+            this.gbxEditEmployee.Controls.Add(this.lbEmpFname);
+            this.gbxEditEmployee.Location = new System.Drawing.Point(49, 70);
+            this.gbxEditEmployee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxEditEmployee.Name = "gbxEditEmployee";
+            this.gbxEditEmployee.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxEditEmployee.Size = new System.Drawing.Size(1045, 578);
+            this.gbxEditEmployee.TabIndex = 17;
+            this.gbxEditEmployee.TabStop = false;
+            this.gbxEditEmployee.Text = "Edit employee";
             // 
             // cbEmConRelation
             // 
@@ -164,7 +160,7 @@ namespace MediaBazaarApp
             this.cbEmConRelation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEmConRelation.Name = "cbEmConRelation";
             this.cbEmConRelation.Size = new System.Drawing.Size(187, 30);
-            this.cbEmConRelation.TabIndex = 28;
+            this.cbEmConRelation.TabIndex = 18;
             // 
             // lbEmConRelation
             // 
@@ -172,7 +168,7 @@ namespace MediaBazaarApp
             this.lbEmConRelation.Location = new System.Drawing.Point(711, 117);
             this.lbEmConRelation.Name = "lbEmConRelation";
             this.lbEmConRelation.Size = new System.Drawing.Size(81, 22);
-            this.lbEmConRelation.TabIndex = 27;
+            this.lbEmConRelation.TabIndex = 17;
             this.lbEmConRelation.Text = "Relation:";
             // 
             // tbxEmConName
@@ -181,7 +177,7 @@ namespace MediaBazaarApp
             this.tbxEmConName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmConName.Name = "tbxEmConName";
             this.tbxEmConName.Size = new System.Drawing.Size(188, 28);
-            this.tbxEmConName.TabIndex = 25;
+            this.tbxEmConName.TabIndex = 17;
             // 
             // lbEmConName
             // 
@@ -189,7 +185,7 @@ namespace MediaBazaarApp
             this.lbEmConName.Location = new System.Drawing.Point(727, 76);
             this.lbEmConName.Name = "lbEmConName";
             this.lbEmConName.Size = new System.Drawing.Size(62, 22);
-            this.lbEmConName.TabIndex = 26;
+            this.lbEmConName.TabIndex = 16;
             this.lbEmConName.Text = "Name:";
             // 
             // tbxEmConEmail
@@ -198,7 +194,7 @@ namespace MediaBazaarApp
             this.tbxEmConEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmConEmail.Name = "tbxEmConEmail";
             this.tbxEmConEmail.Size = new System.Drawing.Size(188, 28);
-            this.tbxEmConEmail.TabIndex = 20;
+            this.tbxEmConEmail.TabIndex = 19;
             // 
             // lbEmConEmail
             // 
@@ -206,7 +202,7 @@ namespace MediaBazaarApp
             this.lbEmConEmail.Location = new System.Drawing.Point(723, 157);
             this.lbEmConEmail.Name = "lbEmConEmail";
             this.lbEmConEmail.Size = new System.Drawing.Size(59, 22);
-            this.lbEmConEmail.TabIndex = 21;
+            this.lbEmConEmail.TabIndex = 18;
             this.lbEmConEmail.Text = "Email:";
             // 
             // tbxEmConPhone
@@ -215,7 +211,7 @@ namespace MediaBazaarApp
             this.tbxEmConPhone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmConPhone.Name = "tbxEmConPhone";
             this.tbxEmConPhone.Size = new System.Drawing.Size(188, 28);
-            this.tbxEmConPhone.TabIndex = 23;
+            this.tbxEmConPhone.TabIndex = 19;
             // 
             // lbEmConPhone
             // 
@@ -223,7 +219,7 @@ namespace MediaBazaarApp
             this.lbEmConPhone.Location = new System.Drawing.Point(720, 200);
             this.lbEmConPhone.Name = "lbEmConPhone";
             this.lbEmConPhone.Size = new System.Drawing.Size(67, 22);
-            this.lbEmConPhone.TabIndex = 24;
+            this.lbEmConPhone.TabIndex = 19;
             this.lbEmConPhone.Text = "Phone:";
             // 
             // lbEmpEmConDetails
@@ -242,7 +238,7 @@ namespace MediaBazaarApp
             this.lbEmpBsn.Location = new System.Drawing.Point(424, 344);
             this.lbEmpBsn.Name = "lbEmpBsn";
             this.lbEmpBsn.Size = new System.Drawing.Size(46, 22);
-            this.lbEmpBsn.TabIndex = 18;
+            this.lbEmpBsn.TabIndex = 15;
             this.lbEmpBsn.Text = "Bsn:";
             // 
             // tbxEmpBsn
@@ -251,28 +247,14 @@ namespace MediaBazaarApp
             this.tbxEmpBsn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpBsn.Name = "tbxEmpBsn";
             this.tbxEmpBsn.Size = new System.Drawing.Size(188, 28);
-            this.tbxEmpBsn.TabIndex = 19;
-            // 
-            // cbEmpPosition
-            // 
-            this.cbEmpPosition.FormattingEnabled = true;
-            this.cbEmpPosition.Items.AddRange(new object[] {
-            "Administration employee",
-            "Management employee",
-            "Sales employee",
-            "Depot worker"});
-            this.cbEmpPosition.Location = new System.Drawing.Point(160, 358);
-            this.cbEmpPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbEmpPosition.Name = "cbEmpPosition";
-            this.cbEmpPosition.Size = new System.Drawing.Size(180, 30);
-            this.cbEmpPosition.TabIndex = 17;
+            this.tbxEmpBsn.TabIndex = 15;
             // 
             // nudEmpHourlyWages
             // 
-            this.nudEmpHourlyWages.Location = new System.Drawing.Point(161, 400);
+            this.nudEmpHourlyWages.Location = new System.Drawing.Point(160, 367);
             this.nudEmpHourlyWages.Name = "nudEmpHourlyWages";
             this.nudEmpHourlyWages.Size = new System.Drawing.Size(180, 28);
-            this.nudEmpHourlyWages.TabIndex = 16;
+            this.nudEmpHourlyWages.TabIndex = 7;
             this.nudEmpHourlyWages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudEmpHourlyWages.Value = new decimal(new int[] {
             10,
@@ -283,12 +265,7 @@ namespace MediaBazaarApp
             // cbEmpDepartment
             // 
             this.cbEmpDepartment.FormattingEnabled = true;
-            this.cbEmpDepartment.Items.AddRange(new object[] {
-            "Administration",
-            "Management",
-            "Sales",
-            "Depot"});
-            this.cbEmpDepartment.Location = new System.Drawing.Point(161, 450);
+            this.cbEmpDepartment.Location = new System.Drawing.Point(160, 417);
             this.cbEmpDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEmpDepartment.Name = "cbEmpDepartment";
             this.cbEmpDepartment.Size = new System.Drawing.Size(180, 30);
@@ -297,7 +274,7 @@ namespace MediaBazaarApp
             // lbEmpDepartment
             // 
             this.lbEmpDepartment.AutoSize = true;
-            this.lbEmpDepartment.Location = new System.Drawing.Point(29, 454);
+            this.lbEmpDepartment.Location = new System.Drawing.Point(28, 421);
             this.lbEmpDepartment.Name = "lbEmpDepartment";
             this.lbEmpDepartment.Size = new System.Drawing.Size(108, 22);
             this.lbEmpDepartment.TabIndex = 8;
@@ -318,15 +295,15 @@ namespace MediaBazaarApp
             this.cbEmpEmploymentType.Size = new System.Drawing.Size(180, 30);
             this.cbEmpEmploymentType.TabIndex = 5;
             // 
-            // label5
+            // lbEmpJobSpec
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(114, 283);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(176, 22);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Job specifications:";
+            this.lbEmpJobSpec.AutoSize = true;
+            this.lbEmpJobSpec.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpJobSpec.Location = new System.Drawing.Point(114, 283);
+            this.lbEmpJobSpec.Name = "lbEmpJobSpec";
+            this.lbEmpJobSpec.Size = new System.Drawing.Size(176, 22);
+            this.lbEmpJobSpec.TabIndex = 5;
+            this.lbEmpJobSpec.Text = "Job specifications:";
             // 
             // lbEmpAddressStreet
             // 
@@ -337,15 +314,15 @@ namespace MediaBazaarApp
             this.lbEmpAddressStreet.TabIndex = 11;
             this.lbEmpAddressStreet.Text = "Street:";
             // 
-            // label4
+            // lbEmpPersonalInfo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(93, 34);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(200, 22);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Personal information:";
+            this.lbEmpPersonalInfo.AutoSize = true;
+            this.lbEmpPersonalInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpPersonalInfo.Location = new System.Drawing.Point(93, 34);
+            this.lbEmpPersonalInfo.Name = "lbEmpPersonalInfo";
+            this.lbEmpPersonalInfo.Size = new System.Drawing.Size(200, 22);
+            this.lbEmpPersonalInfo.TabIndex = 1;
+            this.lbEmpPersonalInfo.Text = "Personal information:";
             // 
             // tbxEmpAddressStreet
             // 
@@ -464,15 +441,6 @@ namespace MediaBazaarApp
             this.lbEmpEmployementType.TabIndex = 5;
             this.lbEmpEmployementType.Text = "Eployment type:";
             // 
-            // lbEmpPosition
-            // 
-            this.lbEmpPosition.AutoSize = true;
-            this.lbEmpPosition.Location = new System.Drawing.Point(60, 358);
-            this.lbEmpPosition.Name = "lbEmpPosition";
-            this.lbEmpPosition.Size = new System.Drawing.Size(79, 22);
-            this.lbEmpPosition.TabIndex = 6;
-            this.lbEmpPosition.Text = "Position:";
-            // 
             // lbEmpDateOfBirth
             // 
             this.lbEmpDateOfBirth.AutoSize = true;
@@ -485,7 +453,7 @@ namespace MediaBazaarApp
             // lbEmpHourlyWages
             // 
             this.lbEmpHourlyWages.AutoSize = true;
-            this.lbEmpHourlyWages.Location = new System.Drawing.Point(20, 400);
+            this.lbEmpHourlyWages.Location = new System.Drawing.Point(19, 367);
             this.lbEmpHourlyWages.Name = "lbEmpHourlyWages";
             this.lbEmpHourlyWages.Size = new System.Drawing.Size(124, 22);
             this.lbEmpHourlyWages.TabIndex = 7;
@@ -537,7 +505,7 @@ namespace MediaBazaarApp
             // 
             // tbxEmpFname
             // 
-            this.tbxEmpFname.Location = new System.Drawing.Point(161, 76);
+            this.tbxEmpFname.Location = new System.Drawing.Point(161, 80);
             this.tbxEmpFname.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpFname.Name = "tbxEmpFname";
             this.tbxEmpFname.Size = new System.Drawing.Size(180, 28);
@@ -557,14 +525,14 @@ namespace MediaBazaarApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1129, 661);
-            this.Controls.Add(this.gbxAddEmployee);
+            this.Controls.Add(this.gbxEditEmployee);
             this.Controls.Add(this.lbEmployeeInfo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EditEmployeeForm";
             this.Text = "EditEmployeeForm";
-            this.gbxAddEmployee.ResumeLayout(false);
-            this.gbxAddEmployee.PerformLayout();
+            this.gbxEditEmployee.ResumeLayout(false);
+            this.gbxEditEmployee.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEmpHourlyWages)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -574,7 +542,7 @@ namespace MediaBazaarApp
         #endregion
         private System.Windows.Forms.Button btnEditEmpoyee;
         private System.Windows.Forms.Label lbEmployeeInfo;
-        private System.Windows.Forms.GroupBox gbxAddEmployee;
+        private System.Windows.Forms.GroupBox gbxEditEmployee;
         private System.Windows.Forms.ComboBox cbEmConRelation;
         private System.Windows.Forms.Label lbEmConRelation;
         private System.Windows.Forms.TextBox tbxEmConName;
@@ -586,14 +554,13 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbEmpEmConDetails;
         private System.Windows.Forms.Label lbEmpBsn;
         private System.Windows.Forms.TextBox tbxEmpBsn;
-        private System.Windows.Forms.ComboBox cbEmpPosition;
         private System.Windows.Forms.NumericUpDown nudEmpHourlyWages;
         private System.Windows.Forms.ComboBox cbEmpDepartment;
         private System.Windows.Forms.Label lbEmpDepartment;
         private System.Windows.Forms.ComboBox cbEmpEmploymentType;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbEmpJobSpec;
         private System.Windows.Forms.Label lbEmpAddressStreet;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbEmpPersonalInfo;
         private System.Windows.Forms.TextBox tbxEmpAddressStreet;
         private System.Windows.Forms.TextBox tbxEmpAddressCity;
         private System.Windows.Forms.ComboBox cbEmpGender;
@@ -607,7 +574,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.DateTimePicker dtpEmpDateOfBirth;
         private System.Windows.Forms.TextBox tbxEmpAddressPostCode;
         private System.Windows.Forms.Label lbEmpEmployementType;
-        private System.Windows.Forms.Label lbEmpPosition;
         private System.Windows.Forms.Label lbEmpDateOfBirth;
         private System.Windows.Forms.Label lbEmpHourlyWages;
         private System.Windows.Forms.TextBox tbxEmpPhone;
