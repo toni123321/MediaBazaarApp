@@ -35,7 +35,32 @@ namespace MediaBazaarApp
             this.lbDateDayOfWeek = new System.Windows.Forms.Label();
             this.lbGreetingMsg = new System.Windows.Forms.Label();
             this.AddEmpTab = new System.Windows.Forms.TabPage();
+            this.ManageEmpTab = new System.Windows.Forms.TabPage();
+            this.btnEmpManageAttendance = new System.Windows.Forms.Button();
+            this.gbxSearchEmp = new System.Windows.Forms.GroupBox();
+            this.btnSearchEmp = new System.Windows.Forms.Button();
+            this.tbxSearchEmp = new System.Windows.Forms.TextBox();
+            this.gbxShowEmp = new System.Windows.Forms.GroupBox();
+            this.cbSelectEmpDepartment = new System.Windows.Forms.ComboBox();
+            this.btnShowEmp = new System.Windows.Forms.Button();
+            this.btnClearSelectedEmp = new System.Windows.Forms.Button();
+            this.btnEditEmp = new System.Windows.Forms.Button();
+            this.btnRemoveEmp = new System.Windows.Forms.Button();
+            this.lbxAllEmployees = new System.Windows.Forms.ListBox();
             this.gbxAddEmployee = new System.Windows.Forms.GroupBox();
+            this.cbEmConRelation = new System.Windows.Forms.ComboBox();
+            this.lbEmConRelation = new System.Windows.Forms.Label();
+            this.tbxEmConName = new System.Windows.Forms.TextBox();
+            this.lbEmConName = new System.Windows.Forms.Label();
+            this.tbxEmConEmail = new System.Windows.Forms.TextBox();
+            this.lbEmConEmail = new System.Windows.Forms.Label();
+            this.tbxEmConPhone = new System.Windows.Forms.TextBox();
+            this.lbEmConPhone = new System.Windows.Forms.Label();
+            this.lbEmpEmConDetails = new System.Windows.Forms.Label();
+            this.lbEmpBsn = new System.Windows.Forms.Label();
+            this.tbxEmpBsn = new System.Windows.Forms.TextBox();
+            this.cbEmpPosition = new System.Windows.Forms.ComboBox();
+            this.nudEmpHourlyWages = new System.Windows.Forms.NumericUpDown();
             this.cbEmpDepartment = new System.Windows.Forms.ComboBox();
             this.lbEmpDepartment = new System.Windows.Forms.Label();
             this.cbEmpEmploymentType = new System.Windows.Forms.ComboBox();
@@ -66,38 +91,13 @@ namespace MediaBazaarApp
             this.lbEmpLname = new System.Windows.Forms.Label();
             this.tbxEmpFname = new System.Windows.Forms.TextBox();
             this.lbEmpFname = new System.Windows.Forms.Label();
-            this.ManageEmpTab = new System.Windows.Forms.TabPage();
-            this.btnEmpManageAttendance = new System.Windows.Forms.Button();
-            this.gbxSearchEmp = new System.Windows.Forms.GroupBox();
-            this.btnSearchEmp = new System.Windows.Forms.Button();
-            this.tbxSearchEmp = new System.Windows.Forms.TextBox();
-            this.gbxShowAllEmp = new System.Windows.Forms.GroupBox();
-            this.cbSelectEmpType = new System.Windows.Forms.ComboBox();
-            this.btnShowAllEmp = new System.Windows.Forms.Button();
-            this.btnClearSelectedEmp = new System.Windows.Forms.Button();
-            this.btnEditEmp = new System.Windows.Forms.Button();
-            this.btnRemoveEmp = new System.Windows.Forms.Button();
-            this.lbxAllEmployees = new System.Windows.Forms.ListBox();
-            this.nudEmpHourlyWages = new System.Windows.Forms.NumericUpDown();
-            this.cbEmpPosition = new System.Windows.Forms.ComboBox();
-            this.lbEmpBsn = new System.Windows.Forms.Label();
-            this.tbxEmpBsn = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lbEmpEmConDetails = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.tabControlSuperuser.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.AddEmpTab.SuspendLayout();
-            this.gbxAddEmployee.SuspendLayout();
             this.ManageEmpTab.SuspendLayout();
             this.gbxSearchEmp.SuspendLayout();
-            this.gbxShowAllEmp.SuspendLayout();
+            this.gbxShowEmp.SuspendLayout();
+            this.gbxAddEmployee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEmpHourlyWages)).BeginInit();
             this.SuspendLayout();
             // 
@@ -166,16 +166,157 @@ namespace MediaBazaarApp
             this.AddEmpTab.Text = "Add employees";
             this.AddEmpTab.UseVisualStyleBackColor = true;
             // 
+            // ManageEmpTab
+            // 
+            this.ManageEmpTab.Controls.Add(this.btnEmpManageAttendance);
+            this.ManageEmpTab.Controls.Add(this.gbxSearchEmp);
+            this.ManageEmpTab.Controls.Add(this.gbxShowEmp);
+            this.ManageEmpTab.Controls.Add(this.btnClearSelectedEmp);
+            this.ManageEmpTab.Controls.Add(this.btnEditEmp);
+            this.ManageEmpTab.Controls.Add(this.btnRemoveEmp);
+            this.ManageEmpTab.Controls.Add(this.lbxAllEmployees);
+            this.ManageEmpTab.Location = new System.Drawing.Point(4, 31);
+            this.ManageEmpTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ManageEmpTab.Name = "ManageEmpTab";
+            this.ManageEmpTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ManageEmpTab.Size = new System.Drawing.Size(1070, 689);
+            this.ManageEmpTab.TabIndex = 1;
+            this.ManageEmpTab.Text = "Manage employees";
+            this.ManageEmpTab.UseVisualStyleBackColor = true;
+            // 
+            // btnEmpManageAttendance
+            // 
+            this.btnEmpManageAttendance.Location = new System.Drawing.Point(775, 590);
+            this.btnEmpManageAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnEmpManageAttendance.Name = "btnEmpManageAttendance";
+            this.btnEmpManageAttendance.Size = new System.Drawing.Size(219, 55);
+            this.btnEmpManageAttendance.TabIndex = 18;
+            this.btnEmpManageAttendance.Text = "Manage attendance";
+            this.btnEmpManageAttendance.UseVisualStyleBackColor = true;
+            // 
+            // gbxSearchEmp
+            // 
+            this.gbxSearchEmp.Controls.Add(this.btnSearchEmp);
+            this.gbxSearchEmp.Controls.Add(this.tbxSearchEmp);
+            this.gbxSearchEmp.Location = new System.Drawing.Point(538, 28);
+            this.gbxSearchEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxSearchEmp.Name = "gbxSearchEmp";
+            this.gbxSearchEmp.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxSearchEmp.Size = new System.Drawing.Size(457, 101);
+            this.gbxSearchEmp.TabIndex = 17;
+            this.gbxSearchEmp.TabStop = false;
+            this.gbxSearchEmp.Text = "Search for specific employee";
+            // 
+            // btnSearchEmp
+            // 
+            this.btnSearchEmp.Location = new System.Drawing.Point(252, 32);
+            this.btnSearchEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSearchEmp.Name = "btnSearchEmp";
+            this.btnSearchEmp.Size = new System.Drawing.Size(186, 45);
+            this.btnSearchEmp.TabIndex = 6;
+            this.btnSearchEmp.Text = "Search";
+            this.btnSearchEmp.UseVisualStyleBackColor = true;
+            // 
+            // tbxSearchEmp
+            // 
+            this.tbxSearchEmp.Location = new System.Drawing.Point(11, 40);
+            this.tbxSearchEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxSearchEmp.Name = "tbxSearchEmp";
+            this.tbxSearchEmp.Size = new System.Drawing.Size(209, 28);
+            this.tbxSearchEmp.TabIndex = 7;
+            this.tbxSearchEmp.Text = "Search...";
+            // 
+            // gbxShowEmp
+            // 
+            this.gbxShowEmp.Controls.Add(this.cbSelectEmpDepartment);
+            this.gbxShowEmp.Controls.Add(this.btnShowEmp);
+            this.gbxShowEmp.Location = new System.Drawing.Point(44, 28);
+            this.gbxShowEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxShowEmp.Name = "gbxShowEmp";
+            this.gbxShowEmp.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxShowEmp.Size = new System.Drawing.Size(469, 101);
+            this.gbxShowEmp.TabIndex = 16;
+            this.gbxShowEmp.TabStop = false;
+            this.gbxShowEmp.Text = "Show employees by department";
+            // 
+            // cbSelectEmpDepartment
+            // 
+            this.cbSelectEmpDepartment.FormattingEnabled = true;
+            this.cbSelectEmpDepartment.Items.AddRange(new object[] {
+            "All",
+            "Administration",
+            "Management",
+            "Sales",
+            "Depot"});
+            this.cbSelectEmpDepartment.Location = new System.Drawing.Point(24, 42);
+            this.cbSelectEmpDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbSelectEmpDepartment.Name = "cbSelectEmpDepartment";
+            this.cbSelectEmpDepartment.Size = new System.Drawing.Size(195, 30);
+            this.cbSelectEmpDepartment.TabIndex = 8;
+            this.cbSelectEmpDepartment.Text = "All";
+            // 
+            // btnShowEmp
+            // 
+            this.btnShowEmp.Location = new System.Drawing.Point(250, 32);
+            this.btnShowEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnShowEmp.Name = "btnShowEmp";
+            this.btnShowEmp.Size = new System.Drawing.Size(186, 45);
+            this.btnShowEmp.TabIndex = 5;
+            this.btnShowEmp.Text = "Show";
+            this.btnShowEmp.UseVisualStyleBackColor = true;
+            this.btnShowEmp.Click += new System.EventHandler(this.btnShowAllEmp_Click);
+            // 
+            // btnClearSelectedEmp
+            // 
+            this.btnClearSelectedEmp.Location = new System.Drawing.Point(44, 590);
+            this.btnClearSelectedEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnClearSelectedEmp.Name = "btnClearSelectedEmp";
+            this.btnClearSelectedEmp.Size = new System.Drawing.Size(219, 55);
+            this.btnClearSelectedEmp.TabIndex = 15;
+            this.btnClearSelectedEmp.Text = "Unmark selected";
+            this.btnClearSelectedEmp.UseVisualStyleBackColor = true;
+            // 
+            // btnEditEmp
+            // 
+            this.btnEditEmp.Location = new System.Drawing.Point(294, 590);
+            this.btnEditEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnEditEmp.Name = "btnEditEmp";
+            this.btnEditEmp.Size = new System.Drawing.Size(219, 55);
+            this.btnEditEmp.TabIndex = 14;
+            this.btnEditEmp.Text = "Edit employee";
+            this.btnEditEmp.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveEmp
+            // 
+            this.btnRemoveEmp.Location = new System.Drawing.Point(538, 590);
+            this.btnRemoveEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRemoveEmp.Name = "btnRemoveEmp";
+            this.btnRemoveEmp.Size = new System.Drawing.Size(219, 55);
+            this.btnRemoveEmp.TabIndex = 13;
+            this.btnRemoveEmp.Text = "Remove employee";
+            this.btnRemoveEmp.UseVisualStyleBackColor = true;
+            // 
+            // lbxAllEmployees
+            // 
+            this.lbxAllEmployees.FormattingEnabled = true;
+            this.lbxAllEmployees.HorizontalScrollbar = true;
+            this.lbxAllEmployees.ItemHeight = 22;
+            this.lbxAllEmployees.Location = new System.Drawing.Point(44, 154);
+            this.lbxAllEmployees.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbxAllEmployees.Name = "lbxAllEmployees";
+            this.lbxAllEmployees.Size = new System.Drawing.Size(950, 400);
+            this.lbxAllEmployees.TabIndex = 12;
+            // 
             // gbxAddEmployee
             // 
-            this.gbxAddEmployee.Controls.Add(this.comboBox1);
-            this.gbxAddEmployee.Controls.Add(this.label3);
-            this.gbxAddEmployee.Controls.Add(this.textBox1);
-            this.gbxAddEmployee.Controls.Add(this.label2);
-            this.gbxAddEmployee.Controls.Add(this.textBox4);
-            this.gbxAddEmployee.Controls.Add(this.label7);
-            this.gbxAddEmployee.Controls.Add(this.textBox7);
-            this.gbxAddEmployee.Controls.Add(this.label10);
+            this.gbxAddEmployee.Controls.Add(this.cbEmConRelation);
+            this.gbxAddEmployee.Controls.Add(this.lbEmConRelation);
+            this.gbxAddEmployee.Controls.Add(this.tbxEmConName);
+            this.gbxAddEmployee.Controls.Add(this.lbEmConName);
+            this.gbxAddEmployee.Controls.Add(this.tbxEmConEmail);
+            this.gbxAddEmployee.Controls.Add(this.lbEmConEmail);
+            this.gbxAddEmployee.Controls.Add(this.tbxEmConPhone);
+            this.gbxAddEmployee.Controls.Add(this.lbEmConPhone);
             this.gbxAddEmployee.Controls.Add(this.lbEmpEmConDetails);
             this.gbxAddEmployee.Controls.Add(this.lbEmpBsn);
             this.gbxAddEmployee.Controls.Add(this.tbxEmpBsn);
@@ -211,14 +352,142 @@ namespace MediaBazaarApp
             this.gbxAddEmployee.Controls.Add(this.lbEmpLname);
             this.gbxAddEmployee.Controls.Add(this.tbxEmpFname);
             this.gbxAddEmployee.Controls.Add(this.lbEmpFname);
-            this.gbxAddEmployee.Location = new System.Drawing.Point(19, 8);
+            this.gbxAddEmployee.Location = new System.Drawing.Point(19, 23);
             this.gbxAddEmployee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAddEmployee.Name = "gbxAddEmployee";
             this.gbxAddEmployee.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAddEmployee.Size = new System.Drawing.Size(1045, 662);
-            this.gbxAddEmployee.TabIndex = 0;
+            this.gbxAddEmployee.Size = new System.Drawing.Size(1045, 621);
+            this.gbxAddEmployee.TabIndex = 2;
             this.gbxAddEmployee.TabStop = false;
             this.gbxAddEmployee.Text = "Add/Hire employee";
+            // 
+            // cbEmConRelation
+            // 
+            this.cbEmConRelation.FormattingEnabled = true;
+            this.cbEmConRelation.Items.AddRange(new object[] {
+            "Family",
+            "Friend",
+            "Colleague",
+            "Other"});
+            this.cbEmConRelation.Location = new System.Drawing.Point(810, 114);
+            this.cbEmConRelation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbEmConRelation.Name = "cbEmConRelation";
+            this.cbEmConRelation.Size = new System.Drawing.Size(187, 30);
+            this.cbEmConRelation.TabIndex = 18;
+            // 
+            // lbEmConRelation
+            // 
+            this.lbEmConRelation.AutoSize = true;
+            this.lbEmConRelation.Location = new System.Drawing.Point(711, 117);
+            this.lbEmConRelation.Name = "lbEmConRelation";
+            this.lbEmConRelation.Size = new System.Drawing.Size(81, 22);
+            this.lbEmConRelation.TabIndex = 17;
+            this.lbEmConRelation.Text = "Relation:";
+            // 
+            // tbxEmConName
+            // 
+            this.tbxEmConName.Location = new System.Drawing.Point(809, 74);
+            this.tbxEmConName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxEmConName.Name = "tbxEmConName";
+            this.tbxEmConName.Size = new System.Drawing.Size(188, 28);
+            this.tbxEmConName.TabIndex = 17;
+            // 
+            // lbEmConName
+            // 
+            this.lbEmConName.AutoSize = true;
+            this.lbEmConName.Location = new System.Drawing.Point(727, 76);
+            this.lbEmConName.Name = "lbEmConName";
+            this.lbEmConName.Size = new System.Drawing.Size(62, 22);
+            this.lbEmConName.TabIndex = 16;
+            this.lbEmConName.Text = "Name:";
+            // 
+            // tbxEmConEmail
+            // 
+            this.tbxEmConEmail.Location = new System.Drawing.Point(809, 154);
+            this.tbxEmConEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxEmConEmail.Name = "tbxEmConEmail";
+            this.tbxEmConEmail.Size = new System.Drawing.Size(188, 28);
+            this.tbxEmConEmail.TabIndex = 19;
+            // 
+            // lbEmConEmail
+            // 
+            this.lbEmConEmail.AutoSize = true;
+            this.lbEmConEmail.Location = new System.Drawing.Point(723, 157);
+            this.lbEmConEmail.Name = "lbEmConEmail";
+            this.lbEmConEmail.Size = new System.Drawing.Size(59, 22);
+            this.lbEmConEmail.TabIndex = 18;
+            this.lbEmConEmail.Text = "Email:";
+            // 
+            // tbxEmConPhone
+            // 
+            this.tbxEmConPhone.Location = new System.Drawing.Point(809, 196);
+            this.tbxEmConPhone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxEmConPhone.Name = "tbxEmConPhone";
+            this.tbxEmConPhone.Size = new System.Drawing.Size(188, 28);
+            this.tbxEmConPhone.TabIndex = 19;
+            // 
+            // lbEmConPhone
+            // 
+            this.lbEmConPhone.AutoSize = true;
+            this.lbEmConPhone.Location = new System.Drawing.Point(720, 200);
+            this.lbEmConPhone.Name = "lbEmConPhone";
+            this.lbEmConPhone.Size = new System.Drawing.Size(67, 22);
+            this.lbEmConPhone.TabIndex = 19;
+            this.lbEmConPhone.Text = "Phone:";
+            // 
+            // lbEmpEmConDetails
+            // 
+            this.lbEmpEmConDetails.AutoSize = true;
+            this.lbEmpEmConDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpEmConDetails.Location = new System.Drawing.Point(730, 34);
+            this.lbEmpEmConDetails.Name = "lbEmpEmConDetails";
+            this.lbEmpEmConDetails.Size = new System.Drawing.Size(251, 22);
+            this.lbEmpEmConDetails.TabIndex = 22;
+            this.lbEmpEmConDetails.Text = "Emergency contact details:";
+            // 
+            // lbEmpBsn
+            // 
+            this.lbEmpBsn.AutoSize = true;
+            this.lbEmpBsn.Location = new System.Drawing.Point(424, 344);
+            this.lbEmpBsn.Name = "lbEmpBsn";
+            this.lbEmpBsn.Size = new System.Drawing.Size(46, 22);
+            this.lbEmpBsn.TabIndex = 15;
+            this.lbEmpBsn.Text = "Bsn:";
+            // 
+            // tbxEmpBsn
+            // 
+            this.tbxEmpBsn.Location = new System.Drawing.Point(492, 341);
+            this.tbxEmpBsn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxEmpBsn.Name = "tbxEmpBsn";
+            this.tbxEmpBsn.Size = new System.Drawing.Size(188, 28);
+            this.tbxEmpBsn.TabIndex = 15;
+            // 
+            // cbEmpPosition
+            // 
+            this.cbEmpPosition.FormattingEnabled = true;
+            this.cbEmpPosition.Items.AddRange(new object[] {
+            "Administration employee",
+            "Management employee",
+            "Sales employee",
+            "Depot worker"});
+            this.cbEmpPosition.Location = new System.Drawing.Point(161, 358);
+            this.cbEmpPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbEmpPosition.Name = "cbEmpPosition";
+            this.cbEmpPosition.Size = new System.Drawing.Size(180, 30);
+            this.cbEmpPosition.TabIndex = 6;
+            // 
+            // nudEmpHourlyWages
+            // 
+            this.nudEmpHourlyWages.Location = new System.Drawing.Point(161, 400);
+            this.nudEmpHourlyWages.Name = "nudEmpHourlyWages";
+            this.nudEmpHourlyWages.Size = new System.Drawing.Size(180, 28);
+            this.nudEmpHourlyWages.TabIndex = 7;
+            this.nudEmpHourlyWages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudEmpHourlyWages.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // cbEmpDepartment
             // 
@@ -226,6 +495,7 @@ namespace MediaBazaarApp
             this.cbEmpDepartment.Items.AddRange(new object[] {
             "Administration",
             "Management",
+            "Sales",
             "Depot"});
             this.cbEmpDepartment.Location = new System.Drawing.Point(161, 450);
             this.cbEmpDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -396,11 +666,11 @@ namespace MediaBazaarApp
             // 
             // btnAddEmpoyee
             // 
-            this.btnAddEmpoyee.Location = new System.Drawing.Point(428, 540);
+            this.btnAddEmpoyee.Location = new System.Drawing.Point(397, 541);
             this.btnAddEmpoyee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddEmpoyee.Name = "btnAddEmpoyee";
             this.btnAddEmpoyee.Size = new System.Drawing.Size(216, 47);
-            this.btnAddEmpoyee.TabIndex = 15;
+            this.btnAddEmpoyee.TabIndex = 20;
             this.btnAddEmpoyee.Text = "Add employee";
             this.btnAddEmpoyee.UseVisualStyleBackColor = true;
             this.btnAddEmpoyee.Click += new System.EventHandler(this.btnAddEmpoyee_Click);
@@ -487,7 +757,7 @@ namespace MediaBazaarApp
             // 
             // tbxEmpFname
             // 
-            this.tbxEmpFname.Location = new System.Drawing.Point(161, 76);
+            this.tbxEmpFname.Location = new System.Drawing.Point(161, 80);
             this.tbxEmpFname.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpFname.Name = "tbxEmpFname";
             this.tbxEmpFname.Size = new System.Drawing.Size(180, 28);
@@ -501,274 +771,6 @@ namespace MediaBazaarApp
             this.lbEmpFname.Size = new System.Drawing.Size(99, 22);
             this.lbEmpFname.TabIndex = 1;
             this.lbEmpFname.Text = "First name:";
-            // 
-            // ManageEmpTab
-            // 
-            this.ManageEmpTab.Controls.Add(this.btnEmpManageAttendance);
-            this.ManageEmpTab.Controls.Add(this.gbxSearchEmp);
-            this.ManageEmpTab.Controls.Add(this.gbxShowAllEmp);
-            this.ManageEmpTab.Controls.Add(this.btnClearSelectedEmp);
-            this.ManageEmpTab.Controls.Add(this.btnEditEmp);
-            this.ManageEmpTab.Controls.Add(this.btnRemoveEmp);
-            this.ManageEmpTab.Controls.Add(this.lbxAllEmployees);
-            this.ManageEmpTab.Location = new System.Drawing.Point(4, 31);
-            this.ManageEmpTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ManageEmpTab.Name = "ManageEmpTab";
-            this.ManageEmpTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ManageEmpTab.Size = new System.Drawing.Size(1058, 689);
-            this.ManageEmpTab.TabIndex = 1;
-            this.ManageEmpTab.Text = "Manage employees";
-            this.ManageEmpTab.UseVisualStyleBackColor = true;
-            // 
-            // btnEmpManageAttendance
-            // 
-            this.btnEmpManageAttendance.Location = new System.Drawing.Point(775, 590);
-            this.btnEmpManageAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnEmpManageAttendance.Name = "btnEmpManageAttendance";
-            this.btnEmpManageAttendance.Size = new System.Drawing.Size(219, 55);
-            this.btnEmpManageAttendance.TabIndex = 18;
-            this.btnEmpManageAttendance.Text = "Manage attendance";
-            this.btnEmpManageAttendance.UseVisualStyleBackColor = true;
-            // 
-            // gbxSearchEmp
-            // 
-            this.gbxSearchEmp.Controls.Add(this.btnSearchEmp);
-            this.gbxSearchEmp.Controls.Add(this.tbxSearchEmp);
-            this.gbxSearchEmp.Location = new System.Drawing.Point(538, 28);
-            this.gbxSearchEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxSearchEmp.Name = "gbxSearchEmp";
-            this.gbxSearchEmp.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxSearchEmp.Size = new System.Drawing.Size(457, 101);
-            this.gbxSearchEmp.TabIndex = 17;
-            this.gbxSearchEmp.TabStop = false;
-            this.gbxSearchEmp.Text = "Search for specific employee";
-            // 
-            // btnSearchEmp
-            // 
-            this.btnSearchEmp.Location = new System.Drawing.Point(254, 36);
-            this.btnSearchEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSearchEmp.Name = "btnSearchEmp";
-            this.btnSearchEmp.Size = new System.Drawing.Size(186, 32);
-            this.btnSearchEmp.TabIndex = 6;
-            this.btnSearchEmp.Text = "Search";
-            this.btnSearchEmp.UseVisualStyleBackColor = true;
-            // 
-            // tbxSearchEmp
-            // 
-            this.tbxSearchEmp.Location = new System.Drawing.Point(11, 40);
-            this.tbxSearchEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxSearchEmp.Name = "tbxSearchEmp";
-            this.tbxSearchEmp.Size = new System.Drawing.Size(209, 28);
-            this.tbxSearchEmp.TabIndex = 7;
-            this.tbxSearchEmp.Text = "Search...";
-            // 
-            // gbxShowAllEmp
-            // 
-            this.gbxShowAllEmp.Controls.Add(this.cbSelectEmpType);
-            this.gbxShowAllEmp.Controls.Add(this.btnShowAllEmp);
-            this.gbxShowAllEmp.Location = new System.Drawing.Point(44, 28);
-            this.gbxShowAllEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxShowAllEmp.Name = "gbxShowAllEmp";
-            this.gbxShowAllEmp.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxShowAllEmp.Size = new System.Drawing.Size(384, 101);
-            this.gbxShowAllEmp.TabIndex = 16;
-            this.gbxShowAllEmp.TabStop = false;
-            this.gbxShowAllEmp.Text = "Select type of employee to show ";
-            // 
-            // cbSelectEmpType
-            // 
-            this.cbSelectEmpType.FormattingEnabled = true;
-            this.cbSelectEmpType.Items.AddRange(new object[] {
-            "All",
-            "Administration",
-            "Management",
-            "Depot workers",
-            "Shop employees"});
-            this.cbSelectEmpType.Location = new System.Drawing.Point(22, 40);
-            this.cbSelectEmpType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbSelectEmpType.Name = "cbSelectEmpType";
-            this.cbSelectEmpType.Size = new System.Drawing.Size(136, 30);
-            this.cbSelectEmpType.TabIndex = 8;
-            this.cbSelectEmpType.Text = "Select type";
-            // 
-            // btnShowAllEmp
-            // 
-            this.btnShowAllEmp.Location = new System.Drawing.Point(191, 40);
-            this.btnShowAllEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnShowAllEmp.Name = "btnShowAllEmp";
-            this.btnShowAllEmp.Size = new System.Drawing.Size(186, 29);
-            this.btnShowAllEmp.TabIndex = 5;
-            this.btnShowAllEmp.Text = "Show";
-            this.btnShowAllEmp.UseVisualStyleBackColor = true;
-            // 
-            // btnClearSelectedEmp
-            // 
-            this.btnClearSelectedEmp.Location = new System.Drawing.Point(44, 590);
-            this.btnClearSelectedEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnClearSelectedEmp.Name = "btnClearSelectedEmp";
-            this.btnClearSelectedEmp.Size = new System.Drawing.Size(219, 55);
-            this.btnClearSelectedEmp.TabIndex = 15;
-            this.btnClearSelectedEmp.Text = "Unmark selected";
-            this.btnClearSelectedEmp.UseVisualStyleBackColor = true;
-            // 
-            // btnEditEmp
-            // 
-            this.btnEditEmp.Location = new System.Drawing.Point(294, 590);
-            this.btnEditEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnEditEmp.Name = "btnEditEmp";
-            this.btnEditEmp.Size = new System.Drawing.Size(219, 55);
-            this.btnEditEmp.TabIndex = 14;
-            this.btnEditEmp.Text = "Edit employee";
-            this.btnEditEmp.UseVisualStyleBackColor = true;
-            // 
-            // btnRemoveEmp
-            // 
-            this.btnRemoveEmp.Location = new System.Drawing.Point(538, 590);
-            this.btnRemoveEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnRemoveEmp.Name = "btnRemoveEmp";
-            this.btnRemoveEmp.Size = new System.Drawing.Size(219, 55);
-            this.btnRemoveEmp.TabIndex = 13;
-            this.btnRemoveEmp.Text = "Remove employee";
-            this.btnRemoveEmp.UseVisualStyleBackColor = true;
-            // 
-            // lbxAllEmployees
-            // 
-            this.lbxAllEmployees.FormattingEnabled = true;
-            this.lbxAllEmployees.HorizontalScrollbar = true;
-            this.lbxAllEmployees.ItemHeight = 22;
-            this.lbxAllEmployees.Location = new System.Drawing.Point(44, 154);
-            this.lbxAllEmployees.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxAllEmployees.Name = "lbxAllEmployees";
-            this.lbxAllEmployees.Size = new System.Drawing.Size(950, 400);
-            this.lbxAllEmployees.TabIndex = 12;
-            // 
-            // nudEmpHourlyWages
-            // 
-            this.nudEmpHourlyWages.Location = new System.Drawing.Point(161, 400);
-            this.nudEmpHourlyWages.Name = "nudEmpHourlyWages";
-            this.nudEmpHourlyWages.Size = new System.Drawing.Size(180, 28);
-            this.nudEmpHourlyWages.TabIndex = 16;
-            this.nudEmpHourlyWages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudEmpHourlyWages.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
-            // cbEmpPosition
-            // 
-            this.cbEmpPosition.FormattingEnabled = true;
-            this.cbEmpPosition.Items.AddRange(new object[] {
-            "Administration employee",
-            "Management employee",
-            "Sales employee",
-            "Depot worker"});
-            this.cbEmpPosition.Location = new System.Drawing.Point(160, 358);
-            this.cbEmpPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbEmpPosition.Name = "cbEmpPosition";
-            this.cbEmpPosition.Size = new System.Drawing.Size(180, 30);
-            this.cbEmpPosition.TabIndex = 17;
-            // 
-            // lbEmpBsn
-            // 
-            this.lbEmpBsn.AutoSize = true;
-            this.lbEmpBsn.Location = new System.Drawing.Point(424, 344);
-            this.lbEmpBsn.Name = "lbEmpBsn";
-            this.lbEmpBsn.Size = new System.Drawing.Size(46, 22);
-            this.lbEmpBsn.TabIndex = 18;
-            this.lbEmpBsn.Text = "Bsn:";
-            // 
-            // tbxEmpBsn
-            // 
-            this.tbxEmpBsn.Location = new System.Drawing.Point(492, 341);
-            this.tbxEmpBsn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxEmpBsn.Name = "tbxEmpBsn";
-            this.tbxEmpBsn.Size = new System.Drawing.Size(188, 28);
-            this.tbxEmpBsn.TabIndex = 19;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(808, 150);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(188, 28);
-            this.textBox4.TabIndex = 20;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(722, 153);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 22);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "Email:";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(808, 192);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(188, 28);
-            this.textBox7.TabIndex = 23;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(719, 196);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(67, 22);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "Phone:";
-            // 
-            // lbEmpEmConDetails
-            // 
-            this.lbEmpEmConDetails.AutoSize = true;
-            this.lbEmpEmConDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmpEmConDetails.Location = new System.Drawing.Point(730, 34);
-            this.lbEmpEmConDetails.Name = "lbEmpEmConDetails";
-            this.lbEmpEmConDetails.Size = new System.Drawing.Size(251, 22);
-            this.lbEmpEmConDetails.TabIndex = 22;
-            this.lbEmpEmConDetails.Text = "Emergency contact details:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(808, 70);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(188, 28);
-            this.textBox1.TabIndex = 25;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(727, 76);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 22);
-            this.label2.TabIndex = 26;
-            this.label2.Text = "Email:";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Administration employee",
-            "Management employee",
-            "Sales employee",
-            "Depot worker"});
-            this.comboBox1.Location = new System.Drawing.Point(809, 110);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(187, 30);
-            this.comboBox1.TabIndex = 28;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(709, 110);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 22);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Position:";
             // 
             // SuperuserForm
             // 
@@ -786,12 +788,12 @@ namespace MediaBazaarApp
             this.HomeTab.ResumeLayout(false);
             this.HomeTab.PerformLayout();
             this.AddEmpTab.ResumeLayout(false);
-            this.gbxAddEmployee.ResumeLayout(false);
-            this.gbxAddEmployee.PerformLayout();
             this.ManageEmpTab.ResumeLayout(false);
             this.gbxSearchEmp.ResumeLayout(false);
             this.gbxSearchEmp.PerformLayout();
-            this.gbxShowAllEmp.ResumeLayout(false);
+            this.gbxShowEmp.ResumeLayout(false);
+            this.gbxAddEmployee.ResumeLayout(false);
+            this.gbxAddEmployee.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEmpHourlyWages)).EndInit();
             this.ResumeLayout(false);
 
@@ -802,7 +804,35 @@ namespace MediaBazaarApp
         private System.Windows.Forms.TabControl tabControlSuperuser;
         private System.Windows.Forms.TabPage AddEmpTab;
         private System.Windows.Forms.TabPage ManageEmpTab;
+        private System.Windows.Forms.Button btnEmpManageAttendance;
+        private System.Windows.Forms.GroupBox gbxSearchEmp;
+        private System.Windows.Forms.Button btnSearchEmp;
+        private System.Windows.Forms.TextBox tbxSearchEmp;
+        private System.Windows.Forms.GroupBox gbxShowEmp;
+        private System.Windows.Forms.ComboBox cbSelectEmpDepartment;
+        private System.Windows.Forms.Button btnShowEmp;
+        private System.Windows.Forms.Button btnClearSelectedEmp;
+        private System.Windows.Forms.Button btnEditEmp;
+        private System.Windows.Forms.Button btnRemoveEmp;
+        private System.Windows.Forms.ListBox lbxAllEmployees;
+        private System.Windows.Forms.TabPage HomeTab;
+        private System.Windows.Forms.Label lbTime;
+        private System.Windows.Forms.Label lbDateDayOfWeek;
+        private System.Windows.Forms.Label lbGreetingMsg;
         private System.Windows.Forms.GroupBox gbxAddEmployee;
+        private System.Windows.Forms.ComboBox cbEmConRelation;
+        private System.Windows.Forms.Label lbEmConRelation;
+        private System.Windows.Forms.TextBox tbxEmConName;
+        private System.Windows.Forms.Label lbEmConName;
+        private System.Windows.Forms.TextBox tbxEmConEmail;
+        private System.Windows.Forms.Label lbEmConEmail;
+        private System.Windows.Forms.TextBox tbxEmConPhone;
+        private System.Windows.Forms.Label lbEmConPhone;
+        private System.Windows.Forms.Label lbEmpEmConDetails;
+        private System.Windows.Forms.Label lbEmpBsn;
+        private System.Windows.Forms.TextBox tbxEmpBsn;
+        private System.Windows.Forms.ComboBox cbEmpPosition;
+        private System.Windows.Forms.NumericUpDown nudEmpHourlyWages;
         private System.Windows.Forms.ComboBox cbEmpDepartment;
         private System.Windows.Forms.Label lbEmpDepartment;
         private System.Windows.Forms.ComboBox cbEmpEmploymentType;
@@ -833,33 +863,5 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbEmpLname;
         private System.Windows.Forms.TextBox tbxEmpFname;
         private System.Windows.Forms.Label lbEmpFname;
-        private System.Windows.Forms.Button btnEmpManageAttendance;
-        private System.Windows.Forms.GroupBox gbxSearchEmp;
-        private System.Windows.Forms.Button btnSearchEmp;
-        private System.Windows.Forms.TextBox tbxSearchEmp;
-        private System.Windows.Forms.GroupBox gbxShowAllEmp;
-        private System.Windows.Forms.ComboBox cbSelectEmpType;
-        private System.Windows.Forms.Button btnShowAllEmp;
-        private System.Windows.Forms.Button btnClearSelectedEmp;
-        private System.Windows.Forms.Button btnEditEmp;
-        private System.Windows.Forms.Button btnRemoveEmp;
-        private System.Windows.Forms.ListBox lbxAllEmployees;
-        private System.Windows.Forms.TabPage HomeTab;
-        private System.Windows.Forms.Label lbTime;
-        private System.Windows.Forms.Label lbDateDayOfWeek;
-        private System.Windows.Forms.Label lbGreetingMsg;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label lbEmpEmConDetails;
-        private System.Windows.Forms.Label lbEmpBsn;
-        private System.Windows.Forms.TextBox tbxEmpBsn;
-        private System.Windows.Forms.ComboBox cbEmpPosition;
-        private System.Windows.Forms.NumericUpDown nudEmpHourlyWages;
     }
 }

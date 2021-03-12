@@ -65,5 +65,20 @@ namespace MediaBazaarApp
         {
             return departments;
         }
+
+        public List<Employee> GetAllEmployees()
+        {
+            List<Employee> allEmployees = new List<Employee>();
+            foreach (Department department in departments)
+            {
+                allEmployees.AddRange(department.GetAllEmployees());
+            }
+            return allEmployees;
+        }
+
+        public List<Employee> GetEmployeesByDepartment(string depName)
+        {
+            return GetDepartment(depName).GetAllEmployees();
+        }
     }
 }

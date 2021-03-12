@@ -16,6 +16,7 @@ namespace MediaBazaarApp
         
         public SuperuserForm(DepartmentManagement departmentManagement)
         {
+            InitializeComponent();
             this.departmentManagement = departmentManagement;
         }
 
@@ -26,43 +27,61 @@ namespace MediaBazaarApp
             string lname;
             DateTime dateOfBirth;
             Gender gender;
+
             string email;
             string phone;
             string street;
             string city;
             string country;
             string postcode;
+            string bsn;
+
+            string emConName;
+            EmergencyContactRelation emConRelation;
+            string emConEmail;
+            string emConPhone;
+
             EmploymentType empType;
             string position;
             int hourlyWages;
             Department department;
 
             if (!String.IsNullOrEmpty(tbxEmpFname.Text) && !String.IsNullOrEmpty(tbxEmpLname.Text) &&
-                !String.IsNullOrEmpty(dtpEmpDateOfBirth.Text) && cbEmpGender.SelectedIndex != -1 &&
+                !String.IsNullOrEmpty(dtpEmpDateOfBirth.Text) && cbEmpGender.Items.Contains(cbEmpGender.Text) &&
                 !String.IsNullOrEmpty(tbxEmpEmail.Text) && !String.IsNullOrEmpty(tbxEmpPhone.Text) &&
                 !String.IsNullOrEmpty(tbxEmpAddressStreet.Text) && !String.IsNullOrEmpty(tbxEmpAddressCity.Text) &&
                 !String.IsNullOrEmpty(tbxEmpAddressCountry.Text) && !String.IsNullOrEmpty(tbxEmpAddressPostCode.Text) &&
-                cbEmpEmploymentType.SelectedIndex != -1 && !String.IsNullOrEmpty(tbxEmpPosition.Text) &&
-                cbEmpHourlyWages.SelectedIndex != -1 && cbEmpDepartment.SelectedIndex != -1)
+                !String.IsNullOrEmpty(tbxEmConName.Text) && cbEmConRelation.Items.Contains(cbEmConRelation.Text) &&
+                !String.IsNullOrEmpty(tbxEmConEmail.Text) && !String.IsNullOrEmpty(tbxEmConPhone.Text) &&
+                cbEmpEmploymentType.Items.Contains(cbEmpEmploymentType.Text) && cbEmpPosition.Items.Contains(cbEmpPosition.Text) &&
+                cbEmpDepartment.Items.Contains(cbEmpDepartment.Text))
             {
                 fname = tbxEmpFname.Text;
                 lname = tbxEmpLname.Text;
                 dateOfBirth = dtpEmpDateOfBirth.Value;
                 gender = (Gender)(Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
+                
                 email = tbxEmpEmail.Text;
                 phone = tbxEmpPhone.Text;
                 street = tbxEmpAddressStreet.Text;
                 city = tbxEmpAddressCity.Text;
                 country = tbxEmpAddressCountry.Text;
                 postcode = tbxEmpAddressPostCode.Text;
+                bsn = tbxEmpBsn.Text;
+
+                emConName = tbxEmConName.Text;
+                emConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation), cbEmConRelation.Text.ToString());
+                emConEmail = tbxEmConEmail.Text;
+                emConPhone = tbxEmConPhone.Text;
+
                 empType = (EmploymentType)(Enum.Parse(typeof(EmploymentType), cbEmpEmploymentType.SelectedItem.ToString()));
-                position = tbxEmpPosition.Text;
-                hourlyWages = Convert.ToInt32(cbEmpHourlyWages.SelectedItem);
+                position = cbEmpPosition.Text;
+                hourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
                 department = departmentManagement.GetDepartment(cbEmpDepartment.SelectedItem.ToString());
 
                 //Department currentDep = departmentManagement.GetDepartment(department.Name);
                 if (department.AddEmployee(fname, lname, dateOfBirth, gender, email, phone, street, city, country,
-                        postcode, empType, position, hourlyWages, department))
+                  postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, position, hourlyWages, department))
                 {
                     MessageBox.Show("You have successfully hired a new employee!");
                 }
@@ -70,7 +89,6 @@ namespace MediaBazaarApp
                 {
                     MessageBox.Show("There is already an employee with the same email!");
                 }
-
             }
             else
             {
@@ -82,6 +100,44 @@ namespace MediaBazaarApp
         {
             LoginForm loginForm = new LoginForm(departmentManagement);
             loginForm.Show();
+        }
+
+
+        public void ShowEmployeesList(List<Employee> employees)
+        {
+            lbxAllEmployees.Items.Clear();
+            foreach (Employee emp in employees)
+            {
+                lbxAllEmployees.Items.Add(emp);
+            }
+        }
+
+        private void btnShowAllEmp_Click(object sender, EventArgs e)
+        {
+            // Show emp by department
+            // All
+            // Administration
+            // Management
+            // Sales 
+            // Depot
+
+            string departmentName;
+            if (cbSelectEmpDepartment.Items.Contains(cbSelectEmpDepartment.Text))
+            {
+                if (cbSelectEmpDepartment.Text == "All")
+                {
+                    ShowEmployeesList(departmentManagement.GetAllEmployees());
+                }
+                else
+                {
+                    departmentName = cbSelectEmpDepartment.SelectedItem.ToString();
+                    ShowEmployeesList(departmentManagement.GetEmployeesByDepartment(departmentName));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, choose a filter to show list of employees!");
+            }
         }
     }
 }
