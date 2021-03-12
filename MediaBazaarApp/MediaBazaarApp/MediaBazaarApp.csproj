@@ -114,12 +114,6 @@
     <Compile Include="StatisticsStock.cs" />
     <Compile Include="Stock.cs" />
     <Compile Include="StockManagement.cs" />
-    <Compile Include="SuperuserForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SuperuserForm.Designer.cs">
-      <DependentUpon>SuperuserForm.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="AdministrationForm.resx">
       <DependentUpon>AdministrationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,9 +149,6 @@
     </Compile>
     <EmbeddedResource Include="SalesForm.resx">
       <DependentUpon>SalesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SuperuserForm.resx">
-      <DependentUpon>SuperuserForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

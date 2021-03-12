@@ -37,7 +37,6 @@ namespace MediaBazaarApp
         // Job specifications
         private EmploymentType employmentType;
         private double hourlyWages;
-        private string position;
         private Department department;
 
         private int remainingHolidayDays;
@@ -146,11 +145,6 @@ namespace MediaBazaarApp
             get { return this.hourlyWages; }
             set { this.hourlyWages = value; }
         }
-        public string Position
-        {
-            get { return this.position; }
-            set { this.position = value; }
-        }
         public Department Department
         {
             get { return this.department; }
@@ -166,7 +160,7 @@ namespace MediaBazaarApp
         public Employee(string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email,
             string phoneNumber, string street, string city, string country, string postcode, string bsn, string emConName, 
             EmergencyContactRelation emConRelation, string emConEmail, string emConPhoneNum, EmploymentType employmentType,
-            string position, double hourlyWages, Department department)
+            double hourlyWages, Department department)
         {
             //Personal information
             this.firstName = firstName;
@@ -195,7 +189,6 @@ namespace MediaBazaarApp
 
             //Job specification
             this.employmentType = employmentType;
-            this.position = position;
             this.hourlyWages = hourlyWages;
             this.department = department;
 

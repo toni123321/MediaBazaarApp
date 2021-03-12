@@ -12,22 +12,51 @@ namespace MediaBazaarApp
 {
     public partial class LoginForm : Form
     {
-        
-        //Superuser
-        string superuserEmail = "superuser@gmail.com";
-        int superuserId = 0;
-
         private DepartmentManagement departmentManagement;
+
+        private void CreateAdministrationManager()
+        {
+            string fname = "John";
+            string lname = "Brandon";
+            DateTime dateOfBirth = new DateTime(1981, 3, 25);
+            Gender gender = Gender.MALE;
+
+            string email = "john@gmail.com";
+            string phone = "+31 456 732 555";
+            string street = "Robbenstraat 5";
+            string city = "Eindhoven";
+            string country = "Netherlands";
+            string postcode = "4567FG";
+            string bsn = "888756345";
+
+            string emConName = "Elizabet";
+            EmergencyContactRelation emConRelation = EmergencyContactRelation.Family;
+            string emConEmail = "elizabet@gmail.com";
+            string emConPhone = "+31 373 512 239";
+
+            EmploymentType empType = EmploymentType.FULLTIME;
+            int hourlyWages = 20;
+            Department department = departmentManagement.GetDepartment("Administration");
+
+            departmentManagement.GetDepartment("Administration").AddEmployee(fname, lname,
+                dateOfBirth, gender, email, phone, street, city, country, postcode, bsn, emConName, emConRelation,
+                emConEmail, emConPhone, empType, hourlyWages, department);
+        }
 
         public LoginForm()
         {
             InitializeComponent();
 
+            
             departmentManagement = new DepartmentManagement();
+            
             departmentManagement.AddDepartment("Administration");
             departmentManagement.AddDepartment("Management");
             departmentManagement.AddDepartment("Depot");
             departmentManagement.AddDepartment("Sales");
+            CreateAdministrationManager();
+            Employee manager = departmentManagement.GetDepartment("Administration").GetEmployeeById(1);
+            departmentManagement.GetDepartment("Administration").Manager = manager;
         }
 
         public LoginForm(DepartmentManagement departmentManagement)
@@ -86,39 +115,36 @@ namespace MediaBazaarApp
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
-            // TODO: Check if all the fields are filled
-
             string email;
             int empId;
-            string userType;
-            string depName;
+            string departmentName;
 
             if (!String.IsNullOrEmpty(tbxEmpEmail.Text) && !String.IsNullOrEmpty(tbxEmpId.Text) 
-                && !String.IsNullOrEmpty(cbUserType.Text))
+                && cbDepartment.Items.Contains(cbDepartment.Text))
             {
                 email = tbxEmpEmail.Text;
                 empId = Convert.ToInt32(tbxEmpId.Text);
-                userType = cbUserType.Text;
-                depName = getDepartmentName(userType);
+                departmentName = cbDepartment.Text;
                 
-                
-                if (email == superuserEmail && empId == superuserId && userType == "superuser")
+                if (checkForEmployeeCredentials(email, empId, departmentName) != -1)
                 {
-                    SuperuserForm superuserForm = new SuperuserForm(departmentManagement);
-                    superuserForm.Show();
-                    this.Hide();
-                }
-                else if (userType != "superuser" && checkForEmployeeCredentials(email, empId, depName) != -1)
-                {
-                    int index = checkForEmployeeCredentials(email, empId, depName);
-                    Employee currentEmp = departmentManagement.GetDepartment(depName).GetAllEmployees()[index];
+                    int index = checkForEmployeeCredentials(email, empId, departmentName);
+                    Employee currentEmp = departmentManagement.GetDepartment(departmentName).GetAllEmployees()[index];
                     
-                    // TODO: Add id to form sending
                     if (currentEmp.Department.Name == "Administration")
                     {
+                        bool isSuperuser = false;
                         AdministrationForm administrationForm = new AdministrationForm(departmentManagement, currentEmp);
+                        
+                        if (currentEmp.Email == "john@gmail.com" && currentEmp.Id == 1)
+                        {
+                            isSuperuser = true;
+                        }
+                        administrationForm.FillComboBoxDepartments(isSuperuser);
                         administrationForm.Show();
                         this.Hide();
+
+
                     }
                     else if (currentEmp.Department.Name == "Management")
                     {

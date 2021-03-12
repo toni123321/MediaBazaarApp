@@ -22,7 +22,18 @@ namespace MediaBazaarApp
             this.currentEmp = currentEmp;
         }
 
-
+        public void FillComboBoxDepartments(bool isSuperuser)
+        {
+            foreach (Department dep in departmentManagement.GetAllDepartments())
+            {
+                if (!isSuperuser && dep.Name == "Administration")
+                {
+                    continue;
+                }
+                cbEmpDepartment.Items.Add(dep.Name);
+            }
+            
+        }
 
         private void AdministrationForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -51,7 +62,6 @@ namespace MediaBazaarApp
             string emConPhone;
 
             EmploymentType empType;
-            string position;
             int hourlyWages;
             Department department;
 
@@ -62,8 +72,7 @@ namespace MediaBazaarApp
                 !String.IsNullOrEmpty(tbxEmpAddressCountry.Text) && !String.IsNullOrEmpty(tbxEmpAddressPostCode.Text) &&
                 !String.IsNullOrEmpty(tbxEmConName.Text) && cbEmConRelation.Items.Contains(cbEmConRelation.Text) &&
                 !String.IsNullOrEmpty(tbxEmConEmail.Text) && !String.IsNullOrEmpty(tbxEmConPhone.Text) &&
-                cbEmpEmploymentType.Items.Contains(cbEmpEmploymentType.Text) && cbEmpPosition.Items.Contains(cbEmpPosition.Text) &&
-                cbEmpDepartment.Items.Contains(cbEmpDepartment.Text))
+                cbEmpEmploymentType.Items.Contains(cbEmpEmploymentType.Text) && cbEmpDepartment.Items.Contains(cbEmpDepartment.Text))
             {
                 fname = tbxEmpFname.Text;
                 lname = tbxEmpLname.Text;
@@ -84,13 +93,13 @@ namespace MediaBazaarApp
                 emConPhone = tbxEmConPhone.Text;
 
                 empType = (EmploymentType)(Enum.Parse(typeof(EmploymentType), cbEmpEmploymentType.SelectedItem.ToString()));
-                position = cbEmpPosition.Text;
+                
                 hourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
                 department = departmentManagement.GetDepartment(cbEmpDepartment.SelectedItem.ToString());
 
                 //Department currentDep = departmentManagement.GetDepartment(department.Name);
                 if (department.AddEmployee(fname, lname, dateOfBirth, gender, email, phone, street, city, country,
-                  postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, position, hourlyWages, department))
+                  postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages, department))
                 {
                     MessageBox.Show("You have successfully hired a new employee!");
                 }
