@@ -51,6 +51,35 @@ namespace MediaBazaarApp
             }
         }
 
+        private void ClearFields()
+        {
+            //Personal information
+            tbxEmpFname.Clear();
+            tbxEmpLname.Clear();
+            dtpEmpDateOfBirth.Value = DateTime.Today.Date;
+            cbEmpGender.Text = "Choose gender";
+
+            //Contact details
+            tbxEmpEmail.Clear();
+            tbxEmpPhone.Clear();
+            tbxEmpAddressStreet.Clear();
+            tbxEmpAddressCity.Clear();
+            tbxEmpAddressCountry.Clear();
+            tbxEmpAddressPostCode.Clear();
+            tbxEmpBsn.Clear();
+
+            //Emergency contact details
+            tbxEmConName.Clear();
+            cbEmConRelation.Text = "";
+            tbxEmConEmail.Clear();
+            tbxEmConPhone.Clear();
+
+            //Job specifications
+            cbEmpEmploymentType.Text = "";
+            nudEmpHourlyWages.Value = 10;
+            cbEmpDepartment.Text = "";
+        }
+
         private void btnAddEmpoyee_Click(object sender, EventArgs e)
         {
             string fname;
@@ -112,6 +141,7 @@ namespace MediaBazaarApp
                   postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages, department))
                 {
                     MessageBox.Show("You have successfully hired a new employee!");
+                    ClearFields();
                 }
                 else
                 {
@@ -226,8 +256,8 @@ namespace MediaBazaarApp
                     departmentManagement.GetDepartment(selectedEmp.Department.Name).GetEmployeeByEmail(selectedEmp.Email));
                 editEmployeeForm.FillComboBoxDepartments(isSuperuser);
                 editEmployeeForm.Show();
-                openOtherForm = true;
-                this.Close();
+                /*openOtherForm = true;
+                this.Close();*/
             }
             else
             {

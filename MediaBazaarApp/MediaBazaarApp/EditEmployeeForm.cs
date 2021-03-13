@@ -68,8 +68,8 @@ namespace MediaBazaarApp
 
         private void EditEmployeeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            AdministrationForm administrationForm = new AdministrationForm(departmentManagement, currEmp);
-            administrationForm.Show();
+            // AdministrationForm administrationForm = new AdministrationForm(departmentManagement, currEmp);
+            // administrationForm.Show();
         }
 
         private void btnEditEmpoyee_Click(object sender, EventArgs e)
@@ -108,7 +108,8 @@ namespace MediaBazaarApp
                 currEmp.EmploymentType = (EmploymentType)(Enum.Parse(typeof(EmploymentType), cbEmpEmploymentType.SelectedItem.ToString()));
                 currEmp.HourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
                 currEmp.Department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
-                
+
+                MessageBox.Show("You have successfully apply the new changes for this profile!");
             }
             else
             {

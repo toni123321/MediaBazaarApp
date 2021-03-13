@@ -176,7 +176,7 @@ namespace MediaBazaarApp
             this.country = country;
             this.postcode = postcode;
             
-            if (bsn != null)
+            if (bsn != "")
             {
                 this.bsn = bsn;
             }
