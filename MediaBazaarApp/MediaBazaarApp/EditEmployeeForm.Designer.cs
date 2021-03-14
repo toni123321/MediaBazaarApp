@@ -289,7 +289,8 @@ namespace MediaBazaarApp
             this.cbEmpEmploymentType.FormattingEnabled = true;
             this.cbEmpEmploymentType.Items.AddRange(new object[] {
             "FULLTIME",
-            "PARTTIME"});
+            "PARTTIME1",
+            "PARTTIME2"});
             this.cbEmpEmploymentType.Location = new System.Drawing.Point(161, 314);
             this.cbEmpEmploymentType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEmpEmploymentType.Name = "cbEmpEmploymentType";
