@@ -14,6 +14,7 @@ namespace MediaBazaarApp
     {
         private DepartmentManagement departmentManagement;
         private Employee currentEmp;
+
         public SalesForm(DepartmentManagement departmentManagement, Employee currentEmp)
         {
             InitializeComponent();
@@ -21,7 +22,7 @@ namespace MediaBazaarApp
             this.currentEmp = currentEmp;
         }
 
-        private void SalesForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void DepotWorkersForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             LoginForm loginForm = new LoginForm(departmentManagement);
             loginForm.Show();

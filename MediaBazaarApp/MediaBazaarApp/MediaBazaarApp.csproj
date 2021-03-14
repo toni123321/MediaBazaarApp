@@ -60,11 +60,11 @@
     </Compile>
     <Compile Include="Department.cs" />
     <Compile Include="DepartmentManagement.cs" />
-    <Compile Include="DepotWorkersForm.cs">
+    <Compile Include="SalesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DepotWorkersForm.Designer.cs">
-      <DependentUpon>DepotWorkersForm.cs</DependentUpon>
+    <Compile Include="SalesForm.Designer.cs">
+      <DependentUpon>SalesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EditEmployeeForm.cs">
       <SubType>Form</SubType>
@@ -102,11 +102,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SalesForm.cs">
+    <Compile Include="DepotForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SalesForm.Designer.cs">
-      <DependentUpon>SalesForm.cs</DependentUpon>
+    <Compile Include="DepotForm.Designer.cs">
+      <DependentUpon>DepotForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Shift.cs" />
     <Compile Include="ShiftType.cs" />
@@ -120,8 +120,8 @@
     <EmbeddedResource Include="AssignWorkShiftsManuallyForm.resx">
       <DependentUpon>AssignWorkShiftsManuallyForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DepotWorkersForm.resx">
-      <DependentUpon>DepotWorkersForm.cs</DependentUpon>
+    <EmbeddedResource Include="SalesForm.resx">
+      <DependentUpon>SalesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditEmployeeForm.resx">
       <DependentUpon>EditEmployeeForm.cs</DependentUpon>
@@ -147,8 +147,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SalesForm.resx">
-      <DependentUpon>SalesForm.cs</DependentUpon>
+    <EmbeddedResource Include="DepotForm.resx">
+      <DependentUpon>DepotForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

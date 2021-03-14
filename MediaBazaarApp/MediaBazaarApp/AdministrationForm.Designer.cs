@@ -33,7 +33,6 @@ namespace MediaBazaarApp
             this.HomeTab = new System.Windows.Forms.TabPage();
             this.lbTime = new System.Windows.Forms.Label();
             this.lbDateDayOfWeek = new System.Windows.Forms.Label();
-            this.lbNotificationsShelfRestockRequests = new System.Windows.Forms.Label();
             this.lbNotificationsHolidayRequests = new System.Windows.Forms.Label();
             this.lbGreetingMsg = new System.Windows.Forms.Label();
             this.EmployeesTab = new System.Windows.Forms.TabPage();
@@ -159,14 +158,6 @@ namespace MediaBazaarApp
             this.btnScheduleClearSelected = new System.Windows.Forms.Button();
             this.lbScheduleAllEmp = new System.Windows.Forms.Label();
             this.lbxScheduleAllEmp = new System.Windows.Forms.ListBox();
-            this.ManageShelfRestockRequestsTab = new System.Windows.Forms.TabPage();
-            this.lbHistoryShelfRestockRequests = new System.Windows.Forms.Label();
-            this.lbxHistoryShelfRestockRequests = new System.Windows.Forms.ListBox();
-            this.lbShelfRestockRequestsInfo = new System.Windows.Forms.Label();
-            this.btnSehflRestockRequestsClearSelected = new System.Windows.Forms.Button();
-            this.btnShelftRestockRequestsMarkAsDone = new System.Windows.Forms.Button();
-            this.btnShelftRestockRequestsDecline = new System.Windows.Forms.Button();
-            this.lbxAllShelfRestockRequests = new System.Windows.Forms.ListBox();
             this.StatisticsTab = new System.Windows.Forms.TabPage();
             this.tabControlStatistics = new System.Windows.Forms.TabControl();
             this.ViewStatisticsEmpTab = new System.Windows.Forms.TabPage();
@@ -222,7 +213,6 @@ namespace MediaBazaarApp
             this.gbxAutoShiftsAssignPerDay.SuspendLayout();
             this.gbxAutoShiftsAssignAllDays.SuspendLayout();
             this.gbxAssignShiftsAuto.SuspendLayout();
-            this.ManageShelfRestockRequestsTab.SuspendLayout();
             this.StatisticsTab.SuspendLayout();
             this.tabControlStatistics.SuspendLayout();
             this.ViewStatisticsEmpTab.SuspendLayout();
@@ -238,7 +228,6 @@ namespace MediaBazaarApp
             this.tabControlAdministration.Controls.Add(this.EmployeesTab);
             this.tabControlAdministration.Controls.Add(this.StocksTab);
             this.tabControlAdministration.Controls.Add(this.ScheduleTab);
-            this.tabControlAdministration.Controls.Add(this.ManageShelfRestockRequestsTab);
             this.tabControlAdministration.Controls.Add(this.StatisticsTab);
             this.tabControlAdministration.Controls.Add(this.ManageDepartmentsTab);
             this.tabControlAdministration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -254,7 +243,6 @@ namespace MediaBazaarApp
             // 
             this.HomeTab.Controls.Add(this.lbTime);
             this.HomeTab.Controls.Add(this.lbDateDayOfWeek);
-            this.HomeTab.Controls.Add(this.lbNotificationsShelfRestockRequests);
             this.HomeTab.Controls.Add(this.lbNotificationsHolidayRequests);
             this.HomeTab.Controls.Add(this.lbGreetingMsg);
             this.HomeTab.Location = new System.Drawing.Point(4, 27);
@@ -283,15 +271,6 @@ namespace MediaBazaarApp
             this.lbDateDayOfWeek.Size = new System.Drawing.Size(125, 18);
             this.lbDateDayOfWeek.TabIndex = 8;
             this.lbDateDayOfWeek.Text = "Date/Day of week";
-            // 
-            // lbNotificationsShelfRestockRequests
-            // 
-            this.lbNotificationsShelfRestockRequests.AutoSize = true;
-            this.lbNotificationsShelfRestockRequests.Location = new System.Drawing.Point(884, 52);
-            this.lbNotificationsShelfRestockRequests.Name = "lbNotificationsShelfRestockRequests";
-            this.lbNotificationsShelfRestockRequests.Size = new System.Drawing.Size(239, 18);
-            this.lbNotificationsShelfRestockRequests.TabIndex = 7;
-            this.lbNotificationsShelfRestockRequests.Text = "Shelf restock requests notifications";
             // 
             // lbNotificationsHolidayRequests
             // 
@@ -1613,94 +1592,6 @@ namespace MediaBazaarApp
             this.lbxScheduleAllEmp.Size = new System.Drawing.Size(654, 364);
             this.lbxScheduleAllEmp.TabIndex = 8;
             // 
-            // ManageShelfRestockRequestsTab
-            // 
-            this.ManageShelfRestockRequestsTab.Controls.Add(this.lbHistoryShelfRestockRequests);
-            this.ManageShelfRestockRequestsTab.Controls.Add(this.lbxHistoryShelfRestockRequests);
-            this.ManageShelfRestockRequestsTab.Controls.Add(this.lbShelfRestockRequestsInfo);
-            this.ManageShelfRestockRequestsTab.Controls.Add(this.btnSehflRestockRequestsClearSelected);
-            this.ManageShelfRestockRequestsTab.Controls.Add(this.btnShelftRestockRequestsMarkAsDone);
-            this.ManageShelfRestockRequestsTab.Controls.Add(this.btnShelftRestockRequestsDecline);
-            this.ManageShelfRestockRequestsTab.Controls.Add(this.lbxAllShelfRestockRequests);
-            this.ManageShelfRestockRequestsTab.Location = new System.Drawing.Point(4, 27);
-            this.ManageShelfRestockRequestsTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ManageShelfRestockRequestsTab.Name = "ManageShelfRestockRequestsTab";
-            this.ManageShelfRestockRequestsTab.Size = new System.Drawing.Size(1235, 745);
-            this.ManageShelfRestockRequestsTab.TabIndex = 5;
-            this.ManageShelfRestockRequestsTab.Text = "Manage shelf restock requests";
-            this.ManageShelfRestockRequestsTab.UseVisualStyleBackColor = true;
-            // 
-            // lbHistoryShelfRestockRequests
-            // 
-            this.lbHistoryShelfRestockRequests.AutoSize = true;
-            this.lbHistoryShelfRestockRequests.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHistoryShelfRestockRequests.Location = new System.Drawing.Point(363, 475);
-            this.lbHistoryShelfRestockRequests.Name = "lbHistoryShelfRestockRequests";
-            this.lbHistoryShelfRestockRequests.Size = new System.Drawing.Size(246, 18);
-            this.lbHistoryShelfRestockRequests.TabIndex = 18;
-            this.lbHistoryShelfRestockRequests.Text = "History of shelf restock request";
-            // 
-            // lbxHistoryShelfRestockRequests
-            // 
-            this.lbxHistoryShelfRestockRequests.FormattingEnabled = true;
-            this.lbxHistoryShelfRestockRequests.ItemHeight = 18;
-            this.lbxHistoryShelfRestockRequests.Location = new System.Drawing.Point(32, 512);
-            this.lbxHistoryShelfRestockRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxHistoryShelfRestockRequests.Name = "lbxHistoryShelfRestockRequests";
-            this.lbxHistoryShelfRestockRequests.Size = new System.Drawing.Size(956, 166);
-            this.lbxHistoryShelfRestockRequests.TabIndex = 17;
-            // 
-            // lbShelfRestockRequestsInfo
-            // 
-            this.lbShelfRestockRequestsInfo.AutoSize = true;
-            this.lbShelfRestockRequestsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbShelfRestockRequestsInfo.Location = new System.Drawing.Point(363, 37);
-            this.lbShelfRestockRequestsInfo.Name = "lbShelfRestockRequestsInfo";
-            this.lbShelfRestockRequestsInfo.Size = new System.Drawing.Size(205, 18);
-            this.lbShelfRestockRequestsInfo.TabIndex = 16;
-            this.lbShelfRestockRequestsInfo.Text = "New shelf restock request";
-            // 
-            // btnSehflRestockRequestsClearSelected
-            // 
-            this.btnSehflRestockRequestsClearSelected.Location = new System.Drawing.Point(1018, 392);
-            this.btnSehflRestockRequestsClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSehflRestockRequestsClearSelected.Name = "btnSehflRestockRequestsClearSelected";
-            this.btnSehflRestockRequestsClearSelected.Size = new System.Drawing.Size(183, 49);
-            this.btnSehflRestockRequestsClearSelected.TabIndex = 15;
-            this.btnSehflRestockRequestsClearSelected.Text = "Unmark selected";
-            this.btnSehflRestockRequestsClearSelected.UseVisualStyleBackColor = true;
-            // 
-            // btnShelftRestockRequestsMarkAsDone
-            // 
-            this.btnShelftRestockRequestsMarkAsDone.Location = new System.Drawing.Point(1018, 73);
-            this.btnShelftRestockRequestsMarkAsDone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnShelftRestockRequestsMarkAsDone.Name = "btnShelftRestockRequestsMarkAsDone";
-            this.btnShelftRestockRequestsMarkAsDone.Size = new System.Drawing.Size(183, 49);
-            this.btnShelftRestockRequestsMarkAsDone.TabIndex = 14;
-            this.btnShelftRestockRequestsMarkAsDone.Text = "Mark as \'Done\'";
-            this.btnShelftRestockRequestsMarkAsDone.UseVisualStyleBackColor = true;
-            // 
-            // btnShelftRestockRequestsDecline
-            // 
-            this.btnShelftRestockRequestsDecline.Location = new System.Drawing.Point(1018, 229);
-            this.btnShelftRestockRequestsDecline.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnShelftRestockRequestsDecline.Name = "btnShelftRestockRequestsDecline";
-            this.btnShelftRestockRequestsDecline.Size = new System.Drawing.Size(183, 49);
-            this.btnShelftRestockRequestsDecline.TabIndex = 13;
-            this.btnShelftRestockRequestsDecline.Text = "Decline";
-            this.btnShelftRestockRequestsDecline.UseVisualStyleBackColor = true;
-            // 
-            // lbxAllShelfRestockRequests
-            // 
-            this.lbxAllShelfRestockRequests.FormattingEnabled = true;
-            this.lbxAllShelfRestockRequests.HorizontalScrollbar = true;
-            this.lbxAllShelfRestockRequests.ItemHeight = 18;
-            this.lbxAllShelfRestockRequests.Location = new System.Drawing.Point(32, 73);
-            this.lbxAllShelfRestockRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxAllShelfRestockRequests.Name = "lbxAllShelfRestockRequests";
-            this.lbxAllShelfRestockRequests.Size = new System.Drawing.Size(956, 346);
-            this.lbxAllShelfRestockRequests.TabIndex = 12;
-            // 
             // StatisticsTab
             // 
             this.StatisticsTab.Controls.Add(this.tabControlStatistics);
@@ -2110,8 +2001,6 @@ namespace MediaBazaarApp
             this.gbxAutoShiftsAssignAllDays.ResumeLayout(false);
             this.gbxAutoShiftsAssignAllDays.PerformLayout();
             this.gbxAssignShiftsAuto.ResumeLayout(false);
-            this.ManageShelfRestockRequestsTab.ResumeLayout(false);
-            this.ManageShelfRestockRequestsTab.PerformLayout();
             this.StatisticsTab.ResumeLayout(false);
             this.tabControlStatistics.ResumeLayout(false);
             this.ViewStatisticsEmpTab.ResumeLayout(false);
@@ -2137,7 +2026,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.TabPage StatisticsTab;
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Label lbDateDayOfWeek;
-        private System.Windows.Forms.Label lbNotificationsShelfRestockRequests;
         private System.Windows.Forms.Label lbNotificationsHolidayRequests;
         private System.Windows.Forms.Label lbGreetingMsg;
         private System.Windows.Forms.TabControl tabControlEmployees;
@@ -2187,15 +2075,7 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnScheduleClearSelected;
         private System.Windows.Forms.Label lbScheduleAllEmp;
         private System.Windows.Forms.ListBox lbxScheduleAllEmp;
-        private System.Windows.Forms.TabPage ManageShelfRestockRequestsTab;
         private System.Windows.Forms.TabPage ManageDepartmentsTab;
-        private System.Windows.Forms.Label lbHistoryShelfRestockRequests;
-        private System.Windows.Forms.ListBox lbxHistoryShelfRestockRequests;
-        private System.Windows.Forms.Label lbShelfRestockRequestsInfo;
-        private System.Windows.Forms.Button btnSehflRestockRequestsClearSelected;
-        private System.Windows.Forms.Button btnShelftRestockRequestsMarkAsDone;
-        private System.Windows.Forms.Button btnShelftRestockRequestsDecline;
-        private System.Windows.Forms.ListBox lbxAllShelfRestockRequests;
         private System.Windows.Forms.GroupBox gbxEditDepartment;
         private System.Windows.Forms.Label lbDepartmentEditInfo;
         private System.Windows.Forms.Button btnApplyChangesDepartment;

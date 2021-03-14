@@ -158,9 +158,9 @@ namespace MediaBazaarApp
                         salesForm.Show();
                         this.Hide();
                     }
-                    else
+                    else if (currentEmp.Department.Name == "Depot")
                     {
-                        DepotWorkersForm depotWorkersForm = new DepotWorkersForm(departmentManagement, currentEmp);
+                        DepotForm depotWorkersForm = new DepotForm(departmentManagement, currentEmp);
                         depotWorkersForm.Show();
                         this.Hide();
                     }
