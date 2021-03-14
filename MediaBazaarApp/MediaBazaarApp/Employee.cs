@@ -210,7 +210,11 @@ namespace MediaBazaarApp
         {
             return 0;
         }
+<<<<<<< Updated upstream
         public bool AddShift(ShiftType type , DateTime date, Employee assignedBy)
+=======
+        public bool AddShift(ShiftType type, DateTime date, Employee assignedBy, bool wfh)
+>>>>>>> Stashed changes
         {
             return true;
         }
