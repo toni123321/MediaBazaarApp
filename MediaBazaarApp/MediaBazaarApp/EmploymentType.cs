@@ -8,7 +8,9 @@ namespace MediaBazaarApp
 {
     public enum EmploymentType
     {
-        FULLTIME,
-        PARTTIME
+        FULLTIME = 8,
+        PARTTIME1 = 6,
+        PARTTIME2 = 8
+
     }
 }

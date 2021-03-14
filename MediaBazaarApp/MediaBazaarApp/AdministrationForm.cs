@@ -264,5 +264,11 @@ namespace MediaBazaarApp
                 MessageBox.Show("Please, select an employee from the list to edit their information!");
             }
         }
+
+        private void btnAssignShiftsManually_Click(object sender, EventArgs e)
+        {
+            AssignWorkShiftsManuallyForm manualSchedule = new AssignWorkShiftsManuallyForm(departmentManagement, currentEmp);
+            this.Close();
+        }
     }
 }

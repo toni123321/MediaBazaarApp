@@ -12,16 +12,21 @@ namespace MediaBazaarApp
 {
     public partial class AssignWorkShiftsManuallyForm : Form
     {
-        public AssignWorkShiftsManuallyForm()
+        DepartmentManagement departmentManagement;
+        Employee emp;
+        public AssignWorkShiftsManuallyForm(DepartmentManagement departmentManagement, Employee emp)
         {
             InitializeComponent();
+            this.departmentManagement = departmentManagement;
+            this.emp = emp;
+
         }
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
             int empID;
             bool wfh;
-            ShiftType type;
+            ShiftType type = new ShiftType();
             DateTime date = dtpShiftDate.Value;
 
             if (cbWFH.Checked)
@@ -46,7 +51,14 @@ namespace MediaBazaarApp
                 type = ShiftType.EVENING;
             }
 
-            //emp.AddShift(type, date, Employee assignedBy, wfh);
+            emp.AddShift(type, date, emp, wfh);
         }
+
+        private void AssignWorkShiftsManuallyForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            AdministrationForm adminForm = new AdministrationForm(departmentManagement, emp);
+            adminForm.Show();
+        }
+
     }
 }
