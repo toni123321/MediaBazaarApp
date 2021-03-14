@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace MediaBazaarApp
 {
@@ -210,28 +211,87 @@ namespace MediaBazaarApp
         {
             return 0;
         }
-<<<<<<< Updated upstream
-        public bool AddShift(ShiftType type , DateTime date, Employee assignedBy)
-=======
+
         public bool AddShift(ShiftType type, DateTime date, Employee assignedBy, bool wfh)
->>>>>>> Stashed changes
         {
-            return true;
+            int totalShiftsPerWeek = 0;
+
+            foreach (Shift s in shifts)
+            {
+                if (GetIso8601WeekOfYear(s.Date) == GetIso8601WeekOfYear(date))
+                {
+                    totalShiftsPerWeek++;
+                }
+            }
+
+            if (totalShiftsPerWeek <= (int)this.employmentType)
+            {
+                shifts.Add(new Shift(type, date, assignedBy, wfh));
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public bool RemoveShift(int id)
         {
-            return true;
+            foreach (Shift s in shifts)
+            {
+                if (s.ID == id)
+                {
+                    shifts.Remove(s);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool ManageAttendance(int id, char a, string reason)
+        {
+            Shift shift = GetShift(id);
+
+            if (a == 'y' || a == 'n')
+            {
+                shift.ChangeAttendance(a, reason);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         public Shift GetShift(int id)
         {
+            foreach (Shift s in shifts)
+            {
+                if (s.ID == id)
+                {
+                    return s;
+                }
+            }
+
             return null;
         }
 
         public List<Shift> GetAllShifts()
         {
             return shifts;
-        } 
+        }
+
+        public static int GetIso8601WeekOfYear(DateTime time)
+        {
+            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
+            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
+            {
+                time = time.AddDays(3);
+            }
+
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+        }
 
 
     }
