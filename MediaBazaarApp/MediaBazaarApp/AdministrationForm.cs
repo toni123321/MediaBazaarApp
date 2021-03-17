@@ -152,5 +152,25 @@ namespace MediaBazaarApp
                 MessageBox.Show("Please select the stock you wish to remove.");
             }
         }
+
+        private void BtnEditStock_Click(object sender, EventArgs e)
+        {
+            selectedStock = (Stock)lbAllStocks.SelectedItem;
+            if (selectedStock!=null)
+            {
+                EditStockForm editStockForm = new EditStockForm(this);
+                editStockForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select the stock you wish to edit");
+            }
+           
+        }
+
+        private void BtnStocksClearSelected_Click(object sender, EventArgs e)
+        {
+            lbAllStocks.ClearSelected();
+        }
     }
 }

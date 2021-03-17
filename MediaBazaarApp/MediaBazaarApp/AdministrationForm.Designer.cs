@@ -1258,6 +1258,7 @@ namespace MediaBazaarApp
             this.btnStocksClearSelected.TabIndex = 21;
             this.btnStocksClearSelected.Text = "Unmark selected";
             this.btnStocksClearSelected.UseVisualStyleBackColor = true;
+            this.btnStocksClearSelected.Click += new System.EventHandler(this.BtnStocksClearSelected_Click);
             // 
             // btnEditStock
             // 
@@ -1268,6 +1269,7 @@ namespace MediaBazaarApp
             this.btnEditStock.TabIndex = 20;
             this.btnEditStock.Text = "Edit stock";
             this.btnEditStock.UseVisualStyleBackColor = true;
+            this.btnEditStock.Click += new System.EventHandler(this.BtnEditStock_Click);
             // 
             // btnRemoveStock
             // 
