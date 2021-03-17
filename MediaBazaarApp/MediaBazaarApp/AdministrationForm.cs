@@ -35,8 +35,8 @@ namespace MediaBazaarApp
             }
             else
             {
-                string model = tbxStockModel.Text;
-                string brand = tbxStockBrand.Text;
+                string model = tbxStockModel.Text.ToUpper();
+                string brand = tbxStockBrand.Text.ToUpper();
                 double price = double.Parse(tbxStockPrice.Text);
                 int quantity = int.Parse(tbxStockQuantity.Text);
                 double height = double.Parse(tbxStockHeight.Text);
@@ -54,7 +54,7 @@ namespace MediaBazaarApp
                     shortDescription = tbxStockShortDescription.Text;
                 }
 
-                stockManagement.AddStock(model, brand, price, quantity, height, weight, depth, weight, shortDescription);
+                stockManagement.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
                 ClearStockTbx();
             }
         }
@@ -90,6 +90,34 @@ namespace MediaBazaarApp
             tbxStockWeight.Clear();
             tbxStockWidth.Clear();
             tbxStockShortDescription.Clear();
+        }
+
+        private void BtnSearchStock_Click(object sender, EventArgs e)
+        {
+            lbAllStocks.Items.Clear();
+            List<Stock> stocks = stockManagement.GetAllStocks();
+            string word = tbxSearchStock.Text;
+            foreach (Stock stock in stocks)
+            {
+                if (stock.Brand.Contains(word.ToUpper()) || stock.Model.Contains(word.ToUpper()))
+                {
+                    lbAllStocks.Items.Add(stock);
+                }
+            }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            lbAllStocks.Items.Clear();
+            List<Stock> stocks = stockManagement.GetAllStocks();
+            string word = tbxSearchStock.Text;
+            foreach (Stock stock in stocks)
+            {
+                if (word==stock.Id.ToString())
+                {
+                    lbAllStocks.Items.Add(stock);
+                }
+            }
         }
     }
 }

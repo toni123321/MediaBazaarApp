@@ -89,7 +89,7 @@ namespace MediaBazaarApp
 
         public override string ToString()
         {
-            return $" Model: {model} - Brand: {brand} - Price: {price} - Quantity: {quantity} - Height: {height} cm. - Width: {width} cm. - Depth: {depth} cm. - Weight: {weight} kg. - Description: {shortDescription}";
+            return $"ID: {id} - Model: {model} - Brand: {brand} - Price: {price} - Quantity: {quantity} - Height: {height} cm. - Width: {width} cm. - Depth: {depth} cm. - Weight: {weight} kg. - Description: {shortDescription}";
         }
         
         //change

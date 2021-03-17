@@ -61,7 +61,5 @@ namespace MediaBazaarApp
         {
             return this.stocks;
         }
-
-
     }
 }

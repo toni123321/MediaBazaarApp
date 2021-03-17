@@ -94,6 +94,12 @@ namespace MediaBazaarApp
             this.tabControlStocks = new System.Windows.Forms.TabControl();
             this.AddStocksTab = new System.Windows.Forms.TabPage();
             this.gbxAddStock = new System.Windows.Forms.GroupBox();
+            this.weightKgLabel = new System.Windows.Forms.Label();
+            this.depthCmLabel = new System.Windows.Forms.Label();
+            this.heightCmLabel = new System.Windows.Forms.Label();
+            this.widthCmLabel = new System.Windows.Forms.Label();
+            this.weightLabel = new System.Windows.Forms.Label();
+            this.tbxStockWeight = new System.Windows.Forms.TextBox();
             this.lbStocksMainDetails = new System.Windows.Forms.Label();
             this.tbxStockDepth = new System.Windows.Forms.TextBox();
             this.btnAddStock = new System.Windows.Forms.Button();
@@ -192,12 +198,7 @@ namespace MediaBazaarApp
             this.lbDepartmentManager = new System.Windows.Forms.Label();
             this.tbxDepartmentName = new System.Windows.Forms.TextBox();
             this.lbDepartmentName = new System.Windows.Forms.Label();
-            this.tbxStockWeight = new System.Windows.Forms.TextBox();
-            this.weightLabel = new System.Windows.Forms.Label();
-            this.widthCmLabel = new System.Windows.Forms.Label();
-            this.heightCmLabel = new System.Windows.Forms.Label();
-            this.depthCmLabel = new System.Windows.Forms.Label();
-            this.weightKgLabel = new System.Windows.Forms.Label();
+            this.searchByIdBTN = new System.Windows.Forms.Button();
             this.tabControlAdministration.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.EmployeesTab.SuspendLayout();
@@ -958,6 +959,58 @@ namespace MediaBazaarApp
             this.gbxAddStock.TabStop = false;
             this.gbxAddStock.Text = "Add stock";
             // 
+            // weightKgLabel
+            // 
+            this.weightKgLabel.AutoSize = true;
+            this.weightKgLabel.Location = new System.Drawing.Point(692, 272);
+            this.weightKgLabel.Name = "weightKgLabel";
+            this.weightKgLabel.Size = new System.Drawing.Size(23, 15);
+            this.weightKgLabel.TabIndex = 26;
+            this.weightKgLabel.Text = "kg.";
+            // 
+            // depthCmLabel
+            // 
+            this.depthCmLabel.AutoSize = true;
+            this.depthCmLabel.Location = new System.Drawing.Point(692, 214);
+            this.depthCmLabel.Name = "depthCmLabel";
+            this.depthCmLabel.Size = new System.Drawing.Size(27, 15);
+            this.depthCmLabel.TabIndex = 25;
+            this.depthCmLabel.Text = "cm.";
+            // 
+            // heightCmLabel
+            // 
+            this.heightCmLabel.AutoSize = true;
+            this.heightCmLabel.Location = new System.Drawing.Point(692, 161);
+            this.heightCmLabel.Name = "heightCmLabel";
+            this.heightCmLabel.Size = new System.Drawing.Size(27, 15);
+            this.heightCmLabel.TabIndex = 24;
+            this.heightCmLabel.Text = "cm.";
+            // 
+            // widthCmLabel
+            // 
+            this.widthCmLabel.AutoSize = true;
+            this.widthCmLabel.Location = new System.Drawing.Point(692, 107);
+            this.widthCmLabel.Name = "widthCmLabel";
+            this.widthCmLabel.Size = new System.Drawing.Size(27, 15);
+            this.widthCmLabel.TabIndex = 23;
+            this.widthCmLabel.Text = "cm.";
+            // 
+            // weightLabel
+            // 
+            this.weightLabel.AutoSize = true;
+            this.weightLabel.Location = new System.Drawing.Point(408, 272);
+            this.weightLabel.Name = "weightLabel";
+            this.weightLabel.Size = new System.Drawing.Size(48, 15);
+            this.weightLabel.TabIndex = 22;
+            this.weightLabel.Text = "Weight:";
+            // 
+            // tbxStockWeight
+            // 
+            this.tbxStockWeight.Location = new System.Drawing.Point(513, 266);
+            this.tbxStockWeight.Name = "tbxStockWeight";
+            this.tbxStockWeight.Size = new System.Drawing.Size(173, 21);
+            this.tbxStockWeight.TabIndex = 2;
+            // 
             // lbStocksMainDetails
             // 
             this.lbStocksMainDetails.AutoSize = true;
@@ -1154,6 +1207,7 @@ namespace MediaBazaarApp
             // 
             // gbxSearchStock
             // 
+            this.gbxSearchStock.Controls.Add(this.searchByIdBTN);
             this.gbxSearchStock.Controls.Add(this.btnSearchStock);
             this.gbxSearchStock.Controls.Add(this.tbxSearchStock);
             this.gbxSearchStock.Location = new System.Drawing.Point(453, 19);
@@ -1167,13 +1221,14 @@ namespace MediaBazaarApp
             // 
             // btnSearchStock
             // 
-            this.btnSearchStock.Location = new System.Drawing.Point(286, 40);
+            this.btnSearchStock.Location = new System.Drawing.Point(267, 12);
             this.btnSearchStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearchStock.Name = "btnSearchStock";
             this.btnSearchStock.Size = new System.Drawing.Size(209, 36);
             this.btnSearchStock.TabIndex = 6;
-            this.btnSearchStock.Text = "Search";
+            this.btnSearchStock.Text = "Search by Model or Brand";
             this.btnSearchStock.UseVisualStyleBackColor = true;
+            this.btnSearchStock.Click += new System.EventHandler(this.BtnSearchStock_Click);
             // 
             // tbxSearchStock
             // 
@@ -1970,57 +2025,15 @@ namespace MediaBazaarApp
             this.lbDepartmentName.TabIndex = 1;
             this.lbDepartmentName.Text = "Name:";
             // 
-            // tbxStockWeight
+            // searchByIdBTN
             // 
-            this.tbxStockWeight.Location = new System.Drawing.Point(513, 266);
-            this.tbxStockWeight.Name = "tbxStockWeight";
-            this.tbxStockWeight.Size = new System.Drawing.Size(173, 21);
-            this.tbxStockWeight.TabIndex = 2;
-            // 
-            // weightLabel
-            // 
-            this.weightLabel.AutoSize = true;
-            this.weightLabel.Location = new System.Drawing.Point(408, 272);
-            this.weightLabel.Name = "weightLabel";
-            this.weightLabel.Size = new System.Drawing.Size(48, 15);
-            this.weightLabel.TabIndex = 22;
-            this.weightLabel.Text = "Weight:";
-            // 
-            // widthCmLabel
-            // 
-            this.widthCmLabel.AutoSize = true;
-            this.widthCmLabel.Location = new System.Drawing.Point(692, 107);
-            this.widthCmLabel.Name = "widthCmLabel";
-            this.widthCmLabel.Size = new System.Drawing.Size(27, 15);
-            this.widthCmLabel.TabIndex = 23;
-            this.widthCmLabel.Text = "cm.";
-            // 
-            // heightCmLabel
-            // 
-            this.heightCmLabel.AutoSize = true;
-            this.heightCmLabel.Location = new System.Drawing.Point(692, 161);
-            this.heightCmLabel.Name = "heightCmLabel";
-            this.heightCmLabel.Size = new System.Drawing.Size(27, 15);
-            this.heightCmLabel.TabIndex = 24;
-            this.heightCmLabel.Text = "cm.";
-            // 
-            // depthCmLabel
-            // 
-            this.depthCmLabel.AutoSize = true;
-            this.depthCmLabel.Location = new System.Drawing.Point(692, 214);
-            this.depthCmLabel.Name = "depthCmLabel";
-            this.depthCmLabel.Size = new System.Drawing.Size(27, 15);
-            this.depthCmLabel.TabIndex = 25;
-            this.depthCmLabel.Text = "cm.";
-            // 
-            // weightKgLabel
-            // 
-            this.weightKgLabel.AutoSize = true;
-            this.weightKgLabel.Location = new System.Drawing.Point(692, 272);
-            this.weightKgLabel.Name = "weightKgLabel";
-            this.weightKgLabel.Size = new System.Drawing.Size(23, 15);
-            this.weightKgLabel.TabIndex = 26;
-            this.weightKgLabel.Text = "kg.";
+            this.searchByIdBTN.Location = new System.Drawing.Point(267, 52);
+            this.searchByIdBTN.Name = "searchByIdBTN";
+            this.searchByIdBTN.Size = new System.Drawing.Size(209, 45);
+            this.searchByIdBTN.TabIndex = 8;
+            this.searchByIdBTN.Text = "Search by ID";
+            this.searchByIdBTN.UseVisualStyleBackColor = true;
+            this.searchByIdBTN.Click += new System.EventHandler(this.Button1_Click);
             // 
             // AdministrationForm
             // 
@@ -2249,5 +2262,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label weightKgLabel;
         private System.Windows.Forms.Label depthCmLabel;
         private System.Windows.Forms.Label heightCmLabel;
+        private System.Windows.Forms.Button searchByIdBTN;
     }
 }
