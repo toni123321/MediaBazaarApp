@@ -122,6 +122,7 @@ namespace MediaBazaarApp
             this.ManageStocksTab = new System.Windows.Forms.TabPage();
             this.btnShowAllStocks = new System.Windows.Forms.Button();
             this.gbxSearchStock = new System.Windows.Forms.GroupBox();
+            this.searchByIdBTN = new System.Windows.Forms.Button();
             this.btnSearchStock = new System.Windows.Forms.Button();
             this.tbxSearchStock = new System.Windows.Forms.TextBox();
             this.btnStocksClearSelected = new System.Windows.Forms.Button();
@@ -198,7 +199,6 @@ namespace MediaBazaarApp
             this.lbDepartmentManager = new System.Windows.Forms.Label();
             this.tbxDepartmentName = new System.Windows.Forms.TextBox();
             this.lbDepartmentName = new System.Windows.Forms.Label();
-            this.searchByIdBTN = new System.Windows.Forms.Button();
             this.tabControlAdministration.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.EmployeesTab.SuspendLayout();
@@ -1219,6 +1219,16 @@ namespace MediaBazaarApp
             this.gbxSearchStock.TabStop = false;
             this.gbxSearchStock.Text = "Search for specific stock";
             // 
+            // searchByIdBTN
+            // 
+            this.searchByIdBTN.Location = new System.Drawing.Point(267, 52);
+            this.searchByIdBTN.Name = "searchByIdBTN";
+            this.searchByIdBTN.Size = new System.Drawing.Size(209, 45);
+            this.searchByIdBTN.TabIndex = 8;
+            this.searchByIdBTN.Text = "Search by ID";
+            this.searchByIdBTN.UseVisualStyleBackColor = true;
+            this.searchByIdBTN.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // btnSearchStock
             // 
             this.btnSearchStock.Location = new System.Drawing.Point(267, 12);
@@ -1268,6 +1278,7 @@ namespace MediaBazaarApp
             this.btnRemoveStock.TabIndex = 19;
             this.btnRemoveStock.Text = "Remove stock";
             this.btnRemoveStock.UseVisualStyleBackColor = true;
+            this.btnRemoveStock.Click += new System.EventHandler(this.BtnRemoveStock_Click);
             // 
             // lbAllStocks
             // 
@@ -2024,16 +2035,6 @@ namespace MediaBazaarApp
             this.lbDepartmentName.Size = new System.Drawing.Size(44, 15);
             this.lbDepartmentName.TabIndex = 1;
             this.lbDepartmentName.Text = "Name:";
-            // 
-            // searchByIdBTN
-            // 
-            this.searchByIdBTN.Location = new System.Drawing.Point(267, 52);
-            this.searchByIdBTN.Name = "searchByIdBTN";
-            this.searchByIdBTN.Size = new System.Drawing.Size(209, 45);
-            this.searchByIdBTN.TabIndex = 8;
-            this.searchByIdBTN.Text = "Search by ID";
-            this.searchByIdBTN.UseVisualStyleBackColor = true;
-            this.searchByIdBTN.Click += new System.EventHandler(this.Button1_Click);
             // 
             // AdministrationForm
             // 

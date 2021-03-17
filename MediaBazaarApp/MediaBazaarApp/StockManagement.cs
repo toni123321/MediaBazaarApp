@@ -41,9 +41,9 @@ namespace MediaBazaarApp
             return null;
         }
 
-        public bool RemoveStock(int id)
+        public void RemoveStock(Stock stock)
         {
-            return true;
+            stocks.Remove(stock);
         }
 
         public Stock GetStock(int id)

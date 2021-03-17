@@ -13,6 +13,7 @@ namespace MediaBazaarApp
     public partial class AdministrationForm : Form
     {
         StockManagement stockManagement;
+        Stock selectedStock;
         public AdministrationForm()
         {
             InitializeComponent();
@@ -91,6 +92,23 @@ namespace MediaBazaarApp
             tbxStockWidth.Clear();
             tbxStockShortDescription.Clear();
         }
+        public Stock GetSelectedStock()
+        {
+            return selectedStock;
+        }
+        public StockManagement GetStockManagement()
+        {
+            return stockManagement;
+        }
+        public void StockListBoxRefresh()
+        {
+            lbAllStocks.Items.Clear();
+            List<Stock> stocks = stockManagement.GetAllStocks();
+            foreach (Stock stock in stocks)
+            {
+                lbAllStocks.Items.Add(stock);
+            }
+        }
 
         private void BtnSearchStock_Click(object sender, EventArgs e)
         {
@@ -108,7 +126,7 @@ namespace MediaBazaarApp
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            lbAllStocks.Items.Clear(); //change
+            lbAllStocks.Items.Clear(); 
             List<Stock> stocks = stockManagement.GetAllStocks();
             string word = tbxSearchStock.Text;
             foreach (Stock stock in stocks)
@@ -117,6 +135,21 @@ namespace MediaBazaarApp
                 {
                     lbAllStocks.Items.Add(stock);
                 }
+            }
+        }
+
+        private void BtnRemoveStock_Click(object sender, EventArgs e)
+        {
+            selectedStock = (Stock)lbAllStocks.SelectedItem;
+
+            if (selectedStock!=null)
+            {
+                RemoveStockForm removeStockForm = new RemoveStockForm(this);
+                removeStockForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select the stock you wish to remove.");
             }
         }
     }
