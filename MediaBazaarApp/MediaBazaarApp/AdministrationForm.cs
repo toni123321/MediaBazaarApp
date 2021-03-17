@@ -108,7 +108,7 @@ namespace MediaBazaarApp
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            lbAllStocks.Items.Clear();
+            lbAllStocks.Items.Clear(); //change
             List<Stock> stocks = stockManagement.GetAllStocks();
             string word = tbxSearchStock.Text;
             foreach (Stock stock in stocks)
