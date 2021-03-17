@@ -16,7 +16,7 @@ namespace MediaBazaarApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdministrationForm());
+            Application.Run(new LoginForm());
         }
     }
 }
