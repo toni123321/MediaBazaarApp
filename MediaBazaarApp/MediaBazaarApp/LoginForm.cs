@@ -16,5 +16,15 @@ namespace MediaBazaarApp
         {
             InitializeComponent();
         }
+
+        private void tbxEmpEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogIn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

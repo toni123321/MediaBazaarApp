@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediaBazaarApp
 {
-    public class Stock
+    public class Stock 
     {
         private static int id;
         private string model;
@@ -17,7 +17,7 @@ namespace MediaBazaarApp
         private double width;
         private double depth;
         private string shortDescription;
-
+        StockManagement s;
         public int Id
         {
             get { return this.Id; }
@@ -65,6 +65,10 @@ namespace MediaBazaarApp
             set { this.shortDescription = value; }
         }
 
+     
+
+    
+
         public Stock(string model, string brand, double price, int quantity, double height, double width, double depth, string shortDescription)
         {
             this.model = model;
@@ -75,8 +79,12 @@ namespace MediaBazaarApp
             this.width = width;
             this.depth = depth;
             this.shortDescription = shortDescription;
-
+            
             //id++
         }
+
+       
+
+       
     }
 }

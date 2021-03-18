@@ -63,6 +63,7 @@ namespace MediaBazaarApp
             this.tbxEmpEmail.Name = "tbxEmpEmail";
             this.tbxEmpEmail.Size = new System.Drawing.Size(136, 24);
             this.tbxEmpEmail.TabIndex = 0;
+            this.tbxEmpEmail.TextChanged += new System.EventHandler(this.tbxEmpEmail_TextChanged);
             // 
             // lbEmpEmail
             // 
@@ -82,6 +83,7 @@ namespace MediaBazaarApp
             this.btnLogIn.TabIndex = 2;
             this.btnLogIn.Text = "Log in";
             this.btnLogIn.UseVisualStyleBackColor = true;
+            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
             // tbxEmpId
             // 

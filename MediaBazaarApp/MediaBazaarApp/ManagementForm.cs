@@ -15,6 +15,7 @@ namespace MediaBazaarApp
         public ManagementForm()
         {
             InitializeComponent();
+   
         }
     }
 }

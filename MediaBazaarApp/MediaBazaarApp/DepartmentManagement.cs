@@ -10,7 +10,8 @@ namespace MediaBazaarApp
     {
         //Fields
         List<Department> departments = new List<Department>();
-
+        Department d;
+        List<string> EmployeesPerDepartment = new List<string>();
         //Methods
         public bool AddDepartment(string name, Employee manager)
         {

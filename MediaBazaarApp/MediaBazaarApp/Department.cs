@@ -48,7 +48,7 @@ namespace MediaBazaarApp
             //static id
 
             //dept id
-
+       
         }
 
         //Methods
@@ -80,6 +80,6 @@ namespace MediaBazaarApp
             return base.ToString();
         }
 
-
+       
     }
 }

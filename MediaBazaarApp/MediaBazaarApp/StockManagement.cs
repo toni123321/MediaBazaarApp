@@ -8,8 +8,8 @@ namespace MediaBazaarApp
 {
     public class StockManagement
     {
-        private List<Stock> stock;
-
+        public List<Stock> stock;
+        private double price;
         public StockManagement()
         {
             this.stock = new List<Stock>();
@@ -34,6 +34,10 @@ namespace MediaBazaarApp
             return this.stock;
         }
 
-
+        public double Price
+        {
+            get { return this.price; }
+            set { this.price = value; }
+        }
     }
 }
