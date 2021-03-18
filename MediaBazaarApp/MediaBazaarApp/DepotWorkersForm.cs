@@ -13,6 +13,7 @@ namespace MediaBazaarApp
     public partial class DepotWorkersForm : Form
     {
         private DepartmentManagement departmentManagement;
+        private StockManagement stockManagement;
         private Employee currentEmp;
 
         public DepotWorkersForm(DepartmentManagement departmentManagement, Employee currentEmp)
@@ -24,7 +25,7 @@ namespace MediaBazaarApp
 
         private void DepotWorkersForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            LoginForm loginForm = new LoginForm(departmentManagement);
+            LoginForm loginForm = new LoginForm(departmentManagement, stockManagement);
             loginForm.Show();
         }
     }
