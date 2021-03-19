@@ -15,12 +15,15 @@ namespace MediaBazaarApp
         private bool openOtherForm = false;
         private DepartmentManagement departmentManagement;
         private Employee currentEmp;
+        private StockManagement stockManagement;
+        private Stock selectedStock;
 
-        public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp)
+        public AdministrationForm(DepartmentManagement departmentManagement, StockManagement stockManagement, Employee currentEmp)
         {
             InitializeComponent();
             this.departmentManagement = departmentManagement;
             this.currentEmp = currentEmp;
+            this.stockManagement = stockManagement;
         }
 
         public AdministrationForm()
@@ -46,7 +49,7 @@ namespace MediaBazaarApp
         {
             if (!openOtherForm)
             {
-                LoginForm loginForm = new LoginForm(departmentManagement);
+                LoginForm loginForm = new LoginForm(departmentManagement, stockManagement);
                 loginForm.Show();
             }
         }
@@ -269,6 +272,149 @@ namespace MediaBazaarApp
         {
             AssignWorkShiftsManuallyForm manualSchedule = new AssignWorkShiftsManuallyForm(departmentManagement, currentEmp);
             this.Close();
+        }
+
+        private void BtnAddStock_Click(object sender, EventArgs e)
+        {
+            if (StockTBXCheck() == false)
+            {
+                MessageBox.Show("Please fill in all text boxes before adding stock.");
+            }
+            else
+            {
+                string model = tbxStockModel.Text.ToUpper();
+                string brand = tbxStockBrand.Text.ToUpper();
+                double price = double.Parse(tbxStockPrice.Text);
+                int quantity = int.Parse(tbxStockQuantity.Text);
+                double height = double.Parse(tbxStockHeight.Text);
+                double width = double.Parse(tbxStockWidth.Text);
+                double depth = double.Parse(tbxStockDepth.Text);
+                double weight = double.Parse(tbxStockWeight.Text);
+                string shortDescription;
+
+                if (tbxStockShortDescription.Text == "")
+                {
+                    shortDescription = "No description was added";
+                }
+                else
+                {
+                    shortDescription = tbxStockShortDescription.Text;
+                }
+
+                stockManagement.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
+                ClearStockTbx();
+            }
+        }
+
+        private void BtnShowAllStocks_Click(object sender, EventArgs e)
+        {
+            lbAllStocks.Items.Clear();
+            List<Stock> stocks = stockManagement.GetAllStocks();
+            foreach (Stock stock in stocks)
+            {
+                lbAllStocks.Items.Add(stock);
+            }
+        }
+
+        private void BtnSearchStock_Click(object sender, EventArgs e)
+        {
+            lbAllStocks.Items.Clear();
+            List<Stock> stocks = stockManagement.GetAllStocks();
+            string word = tbxSearchStock.Text;
+            foreach (Stock stock in stocks)
+            {
+                if (stock.Brand.Contains(word.ToUpper()) || stock.Model.Contains(word.ToUpper()))
+                {
+                    lbAllStocks.Items.Add(stock);
+                }
+            }
+        }
+
+        private void SearchByIdBTN_Click(object sender, EventArgs e)
+        {
+
+            lbAllStocks.Items.Clear();
+            List<Stock> stocks = stockManagement.GetAllStocks();
+            string word = tbxSearchStock.Text;
+            foreach (Stock stock in stocks)
+            {
+                if (word == stock.Id.ToString())
+                {
+                    lbAllStocks.Items.Add(stock);
+                }
+            }
+        }
+
+        private void BtnRemoveStock_Click(object sender, EventArgs e)
+        {
+            selectedStock = (Stock)lbAllStocks.SelectedItem;
+
+            if (selectedStock != null)
+            {
+                RemoveStockForm removeStockForm = new RemoveStockForm(this);
+                removeStockForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select the stock you wish to remove.");
+            }
+        }
+
+        private void BtnEditStock_Click(object sender, EventArgs e)
+        {
+            selectedStock = (Stock)lbAllStocks.SelectedItem;
+            if (selectedStock != null)
+            {
+                EditStockForm editStockForm = new EditStockForm(this);
+                editStockForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select the stock you wish to edit");
+            }
+        }
+
+        private void BtnStocksClearSelected_Click(object sender, EventArgs e)
+        {
+            lbAllStocks.ClearSelected();
+        }
+        private void ClearStockTbx()
+        {
+            tbxStockBrand.Clear();
+            tbxStockModel.Clear();
+            tbxStockPrice.Clear();
+            tbxStockDepth.Clear();
+            tbxStockQuantity.Clear();
+            tbxStockHeight.Clear();
+            tbxStockWeight.Clear();
+            tbxStockWidth.Clear();
+            tbxStockShortDescription.Clear();
+        }
+        private bool StockTBXCheck()
+        {
+
+            if (tbxStockModel.Text == "" || tbxStockBrand.Text == "" || tbxStockPrice.Text == "" || tbxStockQuantity.Text == "" || tbxStockWeight.Text == "" || tbxStockWidth.Text == "" || tbxStockHeight.Text == "" || tbxStockDepth.Text == "")
+            {
+                return false;
+            }
+            return true;
+        }
+        public Stock GetSelectedStock()
+        {
+            return selectedStock;
+        }
+        public StockManagement GetStockManagement()
+        {
+            return stockManagement;
+        }
+        public void StockListBoxRefresh()
+        {
+            lbAllStocks.Items.Clear();
+            List<Stock> stocks = stockManagement.GetAllStocks();
+            foreach (Stock stock in stocks)
+            {
+                lbAllStocks.Items.Add(stock);
+            }
         }
     }
 }

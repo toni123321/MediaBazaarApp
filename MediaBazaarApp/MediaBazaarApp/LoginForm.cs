@@ -13,6 +13,7 @@ namespace MediaBazaarApp
     public partial class LoginForm : Form
     {
         private DepartmentManagement departmentManagement;
+        private StockManagement stockManagement;
 
         private void CreateAdministrationManager()
         {
@@ -37,6 +38,7 @@ namespace MediaBazaarApp
             EmploymentType empType = EmploymentType.FULLTIME;
             int hourlyWages = 20;
             Department department = departmentManagement.GetDepartment("Administration");
+            
 
             departmentManagement.GetDepartment("Administration").AddEmployee(fname, lname,
                 dateOfBirth, gender, email, phone, street, city, country, postcode, bsn, emConName, emConRelation,
@@ -49,6 +51,7 @@ namespace MediaBazaarApp
 
             
             departmentManagement = new DepartmentManagement();
+            stockManagement = new StockManagement();
             
             departmentManagement.AddDepartment("Administration");
             departmentManagement.AddDepartment("Management");
@@ -59,11 +62,14 @@ namespace MediaBazaarApp
             departmentManagement.GetDepartment("Administration").Manager = manager;
         }
 
-        public LoginForm(DepartmentManagement departmentManagement)
+        public LoginForm(DepartmentManagement departmentManagement, StockManagement stockManagement)
         {
             InitializeComponent();
             this.departmentManagement = departmentManagement;
+            this.stockManagement = stockManagement;
         }
+
+     
 
 
         private string getDepartmentName(string userType)
@@ -134,7 +140,7 @@ namespace MediaBazaarApp
                     if (currentEmp.Department.Name == "Administration")
                     {
                         bool isSuperuser = false;
-                        AdministrationForm administrationForm = new AdministrationForm(departmentManagement, currentEmp);
+                        AdministrationForm administrationForm = new AdministrationForm(departmentManagement, stockManagement, currentEmp);
                         
                         if (currentEmp.Email == "john@gmail.com" && currentEmp.Id == 1)
                         {

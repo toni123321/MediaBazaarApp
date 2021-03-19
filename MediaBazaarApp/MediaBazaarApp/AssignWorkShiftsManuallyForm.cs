@@ -13,6 +13,7 @@ namespace MediaBazaarApp
     public partial class AssignWorkShiftsManuallyForm : Form
     {
         DepartmentManagement departmentManagement;
+        StockManagement stockManagement;
         Employee emp;
         public AssignWorkShiftsManuallyForm(DepartmentManagement departmentManagement, Employee emp)
         {
@@ -56,7 +57,7 @@ namespace MediaBazaarApp
 
         private void AssignWorkShiftsManuallyForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            AdministrationForm adminForm = new AdministrationForm(departmentManagement, emp);
+            AdministrationForm adminForm = new AdministrationForm(departmentManagement ,stockManagement, emp);
             adminForm.Show();
         }
 

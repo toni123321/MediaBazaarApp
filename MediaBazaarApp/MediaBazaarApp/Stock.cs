@@ -8,7 +8,8 @@ namespace MediaBazaarApp
 {
     public class Stock 
     {
-        private static int id;
+        private int id;
+        private static int idCounter = 1;
         private string model;
         private string brand;
         private double price;
@@ -16,12 +17,12 @@ namespace MediaBazaarApp
         private double height;
         private double width;
         private double depth;
+        private double weight;
         private string shortDescription;
         StockManagement s;
         public int Id
         {
-            get { return this.Id; }
-            //tofix: can't access id
+            get { return this.id; }
         }
 
         public string Model
@@ -59,17 +60,19 @@ namespace MediaBazaarApp
             get { return this.depth; }
             set { this.depth = value; }
         }
+
+        public double Weight
+        {
+            get { return this.weight; }
+            set { this.weight = value; }
+        }
         public string ShortDescription
         {
             get { return this.shortDescription; }
             set { this.shortDescription = value; }
         }
 
-     
-
-    
-
-        public Stock(string model, string brand, double price, int quantity, double height, double width, double depth, string shortDescription)
+        public Stock(string model, string brand, double price, int quantity, double height, double width, double depth, double weight, string shortDescription)
         {
             this.model = model;
             this.brand = brand;
@@ -78,9 +81,15 @@ namespace MediaBazaarApp
             this.height = height;
             this.width = width;
             this.depth = depth;
+            this.weight = weight;
             this.shortDescription = shortDescription;
-            
-            //id++
+            id = idCounter;
+            idCounter++;
+        }
+
+        public override string ToString()
+        {
+            return $"ID: {id} - Model: {model} - Brand: {brand} - Price: {price} - Quantity: {quantity} - Height: {height} cm. - Width: {width} cm. - Depth: {depth} cm. - Weight: {weight} kg. - Description: {shortDescription}";
         }
 
        

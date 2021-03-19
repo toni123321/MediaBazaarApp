@@ -8,30 +8,58 @@ namespace MediaBazaarApp
 {
     public class StockManagement
     {
-        public List<Stock> stock;
-        private double price;
+        private List<Stock> stocks;
+
         public StockManagement()
         {
-            this.stock = new List<Stock>();
+            this.stocks = new List<Stock>();
         }
 
-        public bool AddStock(string model, string brand, double price, int quantity, double height, double width, double depth, string shortDescription)
+        public void AddStock(string model, string brand, double price, int quantity, double height, double width, double depth, double weight, string shortDescription)
         {
-            return true;
+            if (SearchForStock(model, brand) != null)
+            {
+                SearchForStock(model, brand).Quantity += quantity;
+            }
+            else
+            {
+                Stock stock = new Stock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
+                stocks.Add(stock);
+            }
+
         }
 
-        public bool RemoveStock(int id)
+        public Stock SearchForStock(string model, string brand)
         {
-            return true;
+            foreach (Stock stock in stocks)
+            {
+                if (stock.Model == model && stock.Brand == brand)
+                {
+                    return stock;
+                }
+            }
+            return null;
+        }
+
+        public void RemoveStock(Stock stock)
+        {
+            stocks.Remove(stock);
         }
 
         public Stock GetStock(int id)
         {
+            foreach (Stock stock in stocks)
+            {
+                if (id == stock.Id)
+                {
+                    return stock;
+                }
+            }
             return null;
         }
         public List<Stock> GetAllStocks()
         {
-            return this.stock;
+            return this.stocks;
         }
 
         public double Price
