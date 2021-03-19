@@ -129,6 +129,6 @@ namespace MediaBazaarApp
             return this.name;
         }
 
-
+       
     }
 }

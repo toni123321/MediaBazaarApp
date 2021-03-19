@@ -178,5 +178,15 @@ namespace MediaBazaarApp
             // Close the whole application
             System.Windows.Forms.Application.Exit();
         }
+
+        private void tbxEmpEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogIn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

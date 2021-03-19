@@ -293,6 +293,7 @@ namespace MediaBazaarApp
             return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
         }
 
+        
 
     }
 }
