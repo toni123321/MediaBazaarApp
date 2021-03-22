@@ -60,11 +60,11 @@
     </Compile>
     <Compile Include="Department.cs" />
     <Compile Include="DepartmentManagement.cs" />
-    <Compile Include="DepotWorkersForm.cs">
+    <Compile Include="SalesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DepotWorkersForm.Designer.cs">
-      <DependentUpon>DepotWorkersForm.cs</DependentUpon>
+    <Compile Include="SalesForm.Designer.cs">
+      <DependentUpon>SalesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EditEmployeeForm.cs">
       <SubType>Form</SubType>
@@ -108,14 +108,17 @@
     <Compile Include="RemoveStockForm.Designer.cs">
       <DependentUpon>RemoveStockForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SalesForm.cs">
+    <Compile Include="DepotWorkersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SalesForm.Designer.cs">
-      <DependentUpon>SalesForm.cs</DependentUpon>
+    <Compile Include="DepotWorkersForm.Designer.cs">
+      <DependentUpon>DepotWorkersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SalesManagement.cs" />
+    <Compile Include="ShelfRestockRequest.cs" />
     <Compile Include="Shift.cs" />
     <Compile Include="ShiftType.cs" />
+    <Compile Include="SRRstatus.cs" />
     <Compile Include="StatisticsEmployee.cs" />
     <Compile Include="StatisticsStock.cs" />
     <Compile Include="Stock.cs" />
@@ -126,8 +129,8 @@
     <EmbeddedResource Include="AssignWorkShiftsManuallyForm.resx">
       <DependentUpon>AssignWorkShiftsManuallyForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DepotWorkersForm.resx">
-      <DependentUpon>DepotWorkersForm.cs</DependentUpon>
+    <EmbeddedResource Include="SalesForm.resx">
+      <DependentUpon>SalesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditEmployeeForm.resx">
       <DependentUpon>EditEmployeeForm.cs</DependentUpon>
@@ -156,8 +159,8 @@
     <EmbeddedResource Include="RemoveStockForm.resx">
       <DependentUpon>RemoveStockForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SalesForm.resx">
-      <DependentUpon>SalesForm.cs</DependentUpon>
+    <EmbeddedResource Include="DepotWorkersForm.resx">
+      <DependentUpon>DepotWorkersForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -14,6 +14,7 @@ namespace MediaBazaarApp
     {
         private DepartmentManagement departmentManagement;
         private StockManagement stockManagement;
+        private SalesManagement salesManagement;
 
         private void CreateAdministrationManager()
         {
@@ -52,6 +53,7 @@ namespace MediaBazaarApp
             
             departmentManagement = new DepartmentManagement();
             stockManagement = new StockManagement();
+            salesManagement = new SalesManagement();
             
             departmentManagement.AddDepartment("Administration");
             departmentManagement.AddDepartment("Management");
@@ -160,13 +162,13 @@ namespace MediaBazaarApp
                     }
                     else if (currentEmp.Department.Name == "Sales")
                     {
-                        SalesForm salesForm = new SalesForm(departmentManagement, currentEmp);
+                        SalesForm salesForm = new SalesForm(departmentManagement, currentEmp, salesManagement, stockManagement);
                         salesForm.Show();
                         this.Hide();
                     }
                     else
                     {
-                        DepotWorkersForm depotWorkersForm = new DepotWorkersForm(departmentManagement, currentEmp);
+                        DepotWorkersForm depotWorkersForm = new DepotWorkersForm(departmentManagement, currentEmp, salesManagement, stockManagement);
                         depotWorkersForm.Show();
                         this.Hide();
                     }
