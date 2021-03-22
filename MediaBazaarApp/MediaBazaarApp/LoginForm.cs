@@ -55,13 +55,20 @@ namespace MediaBazaarApp
             stockManagement = new StockManagement();
             salesManagement = new SalesManagement();
             
-            departmentManagement.AddDepartment("Administration");
-            departmentManagement.AddDepartment("Management");
-            departmentManagement.AddDepartment("Depot");
-            departmentManagement.AddDepartment("Sales");
-            CreateAdministrationManager();
-            Employee manager = departmentManagement.GetDepartment("Administration").GetEmployeeById(1);
-            departmentManagement.GetDepartment("Administration").Manager = manager;
+            // Succeed: Get deparments from DB 
+            DBControl dbControl = new DBControl();
+            dbControl.GetDepartments(this.departmentManagement);
+            dbControl.GetEmployees(this.departmentManagement);
+            dbControl.SetDepartmentManagers(this.departmentManagement);
+
+            // departmentManagement.AddDepartment("Administration");
+            // departmentManagement.AddDepartment("Management");
+            // departmentManagement.AddDepartment("Depot");
+            // departmentManagement.AddDepartment("Sales");
+            //
+            // CreateAdministrationManager();
+            // Employee manager = departmentManagement.GetDepartment("Administration").GetEmployeeById(1);
+            // departmentManagement.GetDepartment("Administration").Manager = manager;
         }
 
         public LoginForm(DepartmentManagement departmentManagement, StockManagement stockManagement)
@@ -70,9 +77,6 @@ namespace MediaBazaarApp
             this.departmentManagement = departmentManagement;
             this.stockManagement = stockManagement;
         }
-
-     
-
 
         private string getDepartmentName(string userType)
         {

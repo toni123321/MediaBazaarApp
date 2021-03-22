@@ -9,7 +9,7 @@ namespace MediaBazaarApp
     public class Department
     {
         //Fields
-        private static int id = 1;
+        private int id;
         private string deptId;
         private string name;
         private Employee manager;
@@ -18,6 +18,12 @@ namespace MediaBazaarApp
         //Properties
         public int Id
         {
+            set
+            {
+                this.id = value;
+                string firstLetters = this.name.Substring(0, 2);
+                this.deptId = $"{firstLetters}{id}";
+            }
             get { return id; }
         }
 
@@ -44,12 +50,12 @@ namespace MediaBazaarApp
             this.name = name;
             employees = new List<Employee>();
 
-            string firstLetters = this.name.Substring(0, 2);
+            //string firstLetters = this.name.Substring(0, 2);
             //dept id
-            deptId = $"{firstLetters}{id}";
+            //deptId = $"{firstLetters}{id}";
 
             //static id
-            id++;
+            //id++;
         }
         public Department(string name, Employee manager)
         {
@@ -59,10 +65,10 @@ namespace MediaBazaarApp
 
             string firstLetters = this.name.Substring(0, 2);
             //dept id
-            deptId = $"{firstLetters}{id}";
+            //deptId = $"{firstLetters}{id}";
 
             //static id
-            id++;
+            //id++;
         }
 
         //Methods

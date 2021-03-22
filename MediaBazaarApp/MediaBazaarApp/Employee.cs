@@ -11,7 +11,7 @@ namespace MediaBazaarApp
     {
         //Fields
         private int id;
-        private static int idCounter = 1;
+        //private static int idCounter = 1;
 
         //Personal Information
         private string firstName;
@@ -47,6 +47,7 @@ namespace MediaBazaarApp
         //Properties
         public int Id
         {
+            set { this.id = value;}
             get { return this.id; }
         }
 
@@ -196,8 +197,8 @@ namespace MediaBazaarApp
             shifts = new List<Shift>();
 
             // id 
-            id = idCounter;
-            idCounter++;
+            // id = idCounter;
+            // idCounter++;
 
         }
 
