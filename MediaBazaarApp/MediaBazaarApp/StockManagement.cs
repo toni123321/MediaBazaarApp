@@ -61,11 +61,6 @@ namespace MediaBazaarApp
         {
             return this.stocks;
         }
-
-        public double Price
-        {
-            get { return this.price; }
-            set { this.price = value; }
-        }
+        
     }
 }
