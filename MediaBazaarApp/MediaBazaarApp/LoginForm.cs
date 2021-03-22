@@ -186,7 +186,47 @@ namespace MediaBazaarApp
             // Close the whole application
             System.Windows.Forms.Application.Exit();
         }
+
+        private void btnAddEmpDB_Click(object sender, EventArgs e)
+        {
+            // Add emp
+            DBControl dbControl = new DBControl();
+            Employee emp = new Employee("Test", "Test", DateTime.Today, Gender.MALE, 
+                "test@", "555", "test", "test", "test", "test",
+                "test", "test", EmergencyContactRelation.Family, "test", "test",
+                EmploymentType.FULLTIME, 12, departmentManagement.GetDepartment("Administration"));
+            
+            dbControl.AddEmployee(emp);
+        }
+
+        private void btnRemoveEmpDB_Click(object sender, EventArgs e)
+        {
+            DBControl dbControl = new DBControl();
+            dbControl.RemoveEmployee(3);
+        }
+
+
+
+        private void btnAddDepDB_Click(object sender, EventArgs e)
+        {
+            // Add dep
+            DBControl dbControl = new DBControl();
+            Department dep = new Department("TestDep");
+            dbControl.AddDepartment(dep);
+        }
+
+        private void btnUpdateDepDB_Click(object sender, EventArgs e)
+        {
+            // Update dep
+            DBControl dbControl = new DBControl();
+            dbControl.UpdateDepartment(3);
+        }
+
+        private void btnRemoveDepDB_Click(object sender, EventArgs e)
+        {
+
+        }
         
-        
+
     }
 }

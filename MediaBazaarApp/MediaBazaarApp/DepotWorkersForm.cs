@@ -48,18 +48,22 @@ namespace MediaBazaarApp
 
         private void UpdateRequestListboxes()
         {
-            foreach (ShelfRestockRequest srr in salesManagement.GetAllSRRRequests())
+            if (salesManagement != null)
             {
-                if (srr.Status == SRRstatus.PENDING)
+                foreach (ShelfRestockRequest srr in salesManagement.GetAllSRRRequests())
                 {
-                    lbxAllShelfRestockRequests.Items.Add(srr);
+                    if (srr.Status == SRRstatus.PENDING)
+                    {
+                        lbxAllShelfRestockRequests.Items.Add(srr);
+                    }
+                    else
+                    {
+                        lbxHistoryShelfRestockRequests.Items.Add(srr);
+                    }
                 }
-                else
-                {
-                    lbxHistoryShelfRestockRequests.Items.Add(srr);
-                }
+
+                UpdateRequestListboxes();
             }
-            UpdateRequestListboxes();
         }
 
         private void btnShelftRestockRequestsMarkAsDone_Click(object sender, EventArgs e)
