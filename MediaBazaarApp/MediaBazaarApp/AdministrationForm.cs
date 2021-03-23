@@ -282,7 +282,7 @@ namespace MediaBazaarApp
         {
             Employee selectedEmp = (Employee)lbxScheduleAllEmp.SelectedItem;
 
-            AssignWorkShiftsManuallyForm manualSchedule = new AssignWorkShiftsManuallyForm(departmentManagement, currentEmp, selectedEmp);
+            AssignWorkShiftsManuallyForm manualSchedule = new AssignWorkShiftsManuallyForm(departmentManagement, currentEmp, selectedEmp, salesManagement);
             manualSchedule.Show();
         }
 

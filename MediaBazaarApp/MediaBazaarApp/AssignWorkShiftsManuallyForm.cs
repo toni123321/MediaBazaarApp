@@ -16,12 +16,14 @@ namespace MediaBazaarApp
         StockManagement stockManagement;
         Employee currentEmp;
         Employee selectedEmp;
-        public AssignWorkShiftsManuallyForm(DepartmentManagement departmentManagement, Employee currentEmp, Employee selectedEmp)
+        SalesManagement salesManagement;
+        public AssignWorkShiftsManuallyForm(DepartmentManagement departmentManagement, Employee currentEmp, Employee selectedEmp, SalesManagement salesManagement)
         {
             InitializeComponent();
             this.departmentManagement = departmentManagement;
             this.currentEmp = currentEmp;
             this.selectedEmp = selectedEmp;
+            this.salesManagement = salesManagement;
 
         }
 
@@ -60,7 +62,7 @@ namespace MediaBazaarApp
 
         private void AssignWorkShiftsManuallyForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            AdministrationForm adminForm = new AdministrationForm(departmentManagement ,stockManagement, currentEmp);
+            AdministrationForm adminForm = new AdministrationForm(departmentManagement , currentEmp, salesManagement, stockManagement);
             adminForm.Show();
         }
 
