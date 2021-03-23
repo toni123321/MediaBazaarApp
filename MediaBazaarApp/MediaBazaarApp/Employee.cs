@@ -159,11 +159,12 @@ namespace MediaBazaarApp
         }
 
         //Constructor
-        public Employee(string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email,
+        public Employee(int id, string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email,
             string phoneNumber, string street, string city, string country, string postcode, string bsn, string emConName, 
             EmergencyContactRelation emConRelation, string emConEmail, string emConPhoneNum, EmploymentType employmentType,
             double hourlyWages, Department department)
         {
+            this.id = id;
             //Personal information
             this.firstName = firstName;
             this.lastName = lastName;

@@ -142,8 +142,8 @@ namespace MediaBazaarApp
 
                 if(department.GetEmployeeByEmail(email) == null)
                 {
-                    dbControl.AddEmployee(new Employee(fname, lname, dateOfBirth, gender, email, phone, street, city, country, 
-                        postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages, department));
+                    dbControl.AddEmployee(fname, lname, dateOfBirth, gender, email, phone, street, city, country, 
+                        postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages, department);
                     dbControl.GetEmployees(this.departmentManagement);
                     MessageBox.Show("You have successfully hired a new employee!");
                     ClearFields();
@@ -311,7 +311,21 @@ namespace MediaBazaarApp
                     shortDescription = tbxStockShortDescription.Text;
                 }
 
-                stockManagement.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
+                //stockManagement.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
+                DBControl dbControl = new DBControl();
+                if (stockManagement.SearchForStock(model, brand) == null)
+                {
+                    dbControl.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
+                }
+                else
+                {
+                    Stock stock = stockManagement.SearchForStock(model, brand);
+                    stock.Quantity += quantity;
+                    dbControl.UpdateStockQuantity(stock);
+                }
+
+                dbControl.GetStocks(this.stockManagement);
+
                 ClearStockTbx();
             }
         }

@@ -15,7 +15,7 @@ namespace MediaBazaarApp
             this.stocks = new List<Stock>();
         }
 
-        public void AddStock(string model, string brand, double price, int quantity, double height, double width, double depth, double weight, string shortDescription)
+        public void AddStock(int id, string model, string brand, double price, int quantity, double height, double width, double depth, double weight, string shortDescription)
         {
             if (SearchForStock(model, brand) != null)
             {
@@ -23,10 +23,9 @@ namespace MediaBazaarApp
             }
             else
             {
-                Stock stock = new Stock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
+                Stock stock = new Stock(id, model, brand, price, quantity, height, width, depth, weight, shortDescription);
                 stocks.Add(stock);
             }
-
         }
 
         public Stock SearchForStock(string model, string brand)

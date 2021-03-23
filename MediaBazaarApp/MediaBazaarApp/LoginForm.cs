@@ -41,9 +41,9 @@ namespace MediaBazaarApp
             Department department = departmentManagement.GetDepartment("Administration");
             
 
-            departmentManagement.GetDepartment("Administration").AddEmployee(fname, lname,
-                dateOfBirth, gender, email, phone, street, city, country, postcode, bsn, emConName, emConRelation,
-                emConEmail, emConPhone, empType, hourlyWages, department);
+            // departmentManagement.GetDepartment("Administration").AddEmployee(fname, lname,
+            //     dateOfBirth, gender, email, phone, street, city, country, postcode, bsn, emConName, emConRelation,
+            //     emConEmail, emConPhone, empType, hourlyWages, department);
         }
 
         public LoginForm()
@@ -61,6 +61,7 @@ namespace MediaBazaarApp
             dbControl.GetEmployees(this.departmentManagement);
             dbControl.SetDepartmentManagers(this.departmentManagement);
             dbControl.GetShifts(this.departmentManagement);
+            dbControl.GetStocks(this.stockManagement);
 
             // departmentManagement.AddDepartment("Administration");
             // departmentManagement.AddDepartment("Management");
@@ -196,12 +197,12 @@ namespace MediaBazaarApp
         {
             // Add emp
             DBControl dbControl = new DBControl();
-            Employee emp = new Employee("Test", "Test", DateTime.Today, Gender.MALE, 
-                "test@", "555", "test", "test", "test", "test",
-                "test", "test", EmergencyContactRelation.Family, "test", "test",
-                EmploymentType.FULLTIME, 12, departmentManagement.GetDepartment("Administration"));
-            
-            dbControl.AddEmployee(emp);
+            // Employee emp = new Employee("Test", "Test", DateTime.Today, Gender.MALE, 
+            //     "test@", "555", "test", "test", "test", "test",
+            //     "test", "test", EmergencyContactRelation.Family, "test", "test",
+            //     EmploymentType.FULLTIME, 12, departmentManagement.GetDepartment("Administration"));
+            //
+            //dbControl.AddEmployee(emp);
         }
 
         private void btnRemoveEmpDB_Click(object sender, EventArgs e)

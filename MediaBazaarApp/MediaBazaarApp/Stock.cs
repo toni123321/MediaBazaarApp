@@ -9,7 +9,7 @@ namespace MediaBazaarApp
     public class Stock 
     {
         private int id;
-        private static int idCounter = 1;
+        //private static int idCounter = 1;
         private string model;
         private string brand;
         private double price;
@@ -22,6 +22,7 @@ namespace MediaBazaarApp
         StockManagement s;
         public int Id
         {
+            set { this.id = value;}
             get { return this.id; }
         }
 
@@ -72,8 +73,9 @@ namespace MediaBazaarApp
             set { this.shortDescription = value; }
         }
 
-        public Stock(string model, string brand, double price, int quantity, double height, double width, double depth, double weight, string shortDescription)
+        public Stock(int id, string model, string brand, double price, int quantity, double height, double width, double depth, double weight, string shortDescription)
         {
+            this.id = id;
             this.model = model;
             this.brand = brand;
             this.price = price;
@@ -83,8 +85,9 @@ namespace MediaBazaarApp
             this.depth = depth;
             this.weight = weight;
             this.shortDescription = shortDescription;
-            id = idCounter;
-            idCounter++;
+            
+            //id = idCounter;
+            //idCounter++;
         }
 
         public override string ToString()
