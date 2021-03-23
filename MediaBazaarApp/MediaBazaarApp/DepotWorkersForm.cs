@@ -16,6 +16,8 @@ namespace MediaBazaarApp
         private SalesManagement salesManagement;
         private Employee currentEmp;
         private StockManagement stockManagement;
+        private DBControl dbc;
+
 
         public DepotWorkersForm(DepartmentManagement departmentManagement, Employee currentEmp, SalesManagement salesManagement, StockManagement stockManagement)
         {
@@ -24,6 +26,7 @@ namespace MediaBazaarApp
             this.currentEmp = currentEmp;
             this.salesManagement = salesManagement;
             this.stockManagement = stockManagement;
+            this.dbc = new DBControl();
 
             lbGreetingMsg.Text = $"Hello, {currentEmp.FirstName}";
 
@@ -69,8 +72,8 @@ namespace MediaBazaarApp
         private void btnShelftRestockRequestsMarkAsDone_Click(object sender, EventArgs e)
         {
             ShelfRestockRequest request = (ShelfRestockRequest)lbxAllShelfRestockRequests.SelectedItem;
-
-            request.Status = SRRstatus.DONE;
+            dbc.UpdateShelfRestockStatus(request, SRRstatus.DONE);
+            dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
 
             lbxAllShelfRestockRequests.SelectedIndex = -1;
 
@@ -80,8 +83,8 @@ namespace MediaBazaarApp
         private void btnShelftRestockRequestsDecline_Click(object sender, EventArgs e)
         {
             ShelfRestockRequest request = (ShelfRestockRequest)lbxAllShelfRestockRequests.SelectedItem;
-
-            request.Status = SRRstatus.DECLINED;
+            dbc.UpdateShelfRestockStatus(request, SRRstatus.DECLINED);
+            dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
 
             lbxAllShelfRestockRequests.SelectedIndex = -1;
 

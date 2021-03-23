@@ -62,6 +62,7 @@ namespace MediaBazaarApp
             dbControl.SetDepartmentManagers(this.departmentManagement);
             dbControl.GetShifts(this.departmentManagement);
             dbControl.GetStocks(this.stockManagement);
+            dbControl.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
 
             // departmentManagement.AddDepartment("Administration");
             // departmentManagement.AddDepartment("Management");
@@ -148,7 +149,7 @@ namespace MediaBazaarApp
                     if (currentEmp.Department.Name == "Administration")
                     {
                         bool isSuperuser = false;
-                        AdministrationForm administrationForm = new AdministrationForm(departmentManagement, stockManagement, currentEmp);
+                        AdministrationForm administrationForm = new AdministrationForm(departmentManagement, currentEmp, salesManagement, stockManagement);
                         
                         if (currentEmp.Email == "john@gmail.com" && currentEmp.Id == 1)
                         {
@@ -162,7 +163,7 @@ namespace MediaBazaarApp
                     }
                     else if (currentEmp.Department.Name == "Management")
                     {
-                        ManagementForm managementForm = new ManagementForm(departmentManagement, currentEmp);
+                        ManagementForm managementForm = new ManagementForm(departmentManagement, currentEmp, salesManagement, stockManagement);
                         managementForm.Show();
                         this.Hide();
                     }

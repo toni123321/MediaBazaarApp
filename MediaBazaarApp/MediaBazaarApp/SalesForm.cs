@@ -16,6 +16,7 @@ namespace MediaBazaarApp
         private StockManagement stockManagement;
         private Employee currentEmp;
         private SalesManagement salesManagement;
+        private DBControl dbc;
 
         public SalesForm(DepartmentManagement departmentManagement, Employee currentEmp, SalesManagement salesManagement, StockManagement stockManagement)
         {
@@ -24,6 +25,7 @@ namespace MediaBazaarApp
             this.currentEmp = currentEmp;
             this.salesManagement = salesManagement;
             this.stockManagement = stockManagement;
+            this.dbc = new DBControl();
 
             UpdateHistoryListBox();
 
@@ -69,7 +71,10 @@ namespace MediaBazaarApp
             Stock stock = (Stock)lbxAllStocks.SelectedItem;
             int quantity = Convert.ToInt32(tbxStockQuantity.Text);
 
-            salesManagement.AddRequest(stock, quantity, this.currentEmp.Id);
+            dbc.AddShelfRestockRequest(new ShelfRestockRequest(stock, quantity, this.currentEmp.Id));
+            dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
+
+            //salesManagement.AddRequest(stock, quantity, this.currentEmp.Id);
 
             gbxStockChooseQuantity.Visible = false;
             lbStockQuantity.Text = "";

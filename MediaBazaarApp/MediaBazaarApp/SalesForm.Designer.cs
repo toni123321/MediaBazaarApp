@@ -162,6 +162,7 @@ namespace MediaBazaarApp
             this.btnConfirmRequest.TabIndex = 3;
             this.btnConfirmRequest.Text = "Confirm request";
             this.btnConfirmRequest.UseVisualStyleBackColor = true;
+            this.btnConfirmRequest.Click += new System.EventHandler(this.btnConfirmRequest_Click);
             // 
             // tbxStockQuantity
             // 

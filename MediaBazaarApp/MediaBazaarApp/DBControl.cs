@@ -691,6 +691,128 @@ namespace MediaBazaarApp
             }
         }
 
+        // Shelf restock requests
+
+        public void AddShelfRestockRequest(ShelfRestockRequest srr)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+                    string sql = "INSERT INTO shelfrestockrequest (StockID, RequestedQuantity, SenderID, Status) " +
+                                 "VALUES(@stockID, @requestedQuantity, @senderID, @status)";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@stockID", srr.Stock.Id);
+                    cmd.Parameters.AddWithValue("@requestedQuantity", srr.RequestedQuantity);
+                    cmd.Parameters.AddWithValue("@senderID", srr.SenderID);
+                    cmd.Parameters.AddWithValue("@status", Convert.ToInt32(srr.Status) + 1);
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                    MessageBox.Show("Successfully added a shelf restock request!");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        public void RemoveShelfRestockRequest(ShelfRestockRequest ssr)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "DELETE from shelfrestockrequest WHERE id=@id";
+
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@id", ssr.ID);
+
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                    MessageBox.Show($"Successfully removed a shelf restock request!");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void UpdateShelfRestockStatus(ShelfRestockRequest srr, SRRstatus status)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+                    string sql = "UPDATE shelfrestockrequest " +
+                                 "set status = @status " +
+                                 "where id = @requestID";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@requestID", srr.ID);
+                    cmd.Parameters.AddWithValue("@status", Convert.ToInt32(srr.Status) + 1);
+
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void GetShelfRestockRequests(SalesManagement salesManagement, StockManagement stockManagement)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "SELECT * FROM shelfrestockrequest ";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        int id = Convert.ToInt32(dr[0]);
+                        int stockID = Convert.ToInt32(dr[1]);
+                        int requestedQuantity = Convert.ToInt32(dr[2]);
+                        int senderID = Convert.ToInt32(dr[3]);
+                        SRRstatus status = (SRRstatus)Enum.Parse(typeof(SRRstatus), dr[4].ToString());
+
+                        salesManagement.AddRequest(stockManagement.GetStock(stockID), requestedQuantity, senderID);
+                    }
+                    MessageBox.Show("Successfully got shelf stock requests!");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
 
     }
 }
