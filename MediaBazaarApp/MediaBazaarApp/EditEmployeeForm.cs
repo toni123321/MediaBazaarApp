@@ -109,6 +109,8 @@ namespace MediaBazaarApp
                 currEmp.HourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
                 currEmp.Department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
 
+                DBControl dbControl = new DBControl();
+                dbControl.EditEmployee(currEmp);
                 MessageBox.Show("You have successfully apply the new changes for this profile!");
             }
             else
