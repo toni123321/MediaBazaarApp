@@ -40,12 +40,12 @@ namespace MediaBazaarApp
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
-                    string sql = "INSERT INTO employee (FirstName, LastName, DateOfBirth, Gender, Email, PhoneNumber, Street, City," +
+                    string sql = "INSERT INTO employee (FirstName, LastName, DateOfBirth, Gender, Email, PhoneNumber, Street, City, " +
                                  "Country, PostCode, BSN, EmergencyContactName, EmergencyContactRelation, " +
-                                 "EmergencyContactEmail, EmergencyContactPhone, EmploymentType, HourlyWages, " +
+                                 "EmergencyContactEmail, EmergencyContactPhone, EmploymentType, HourlyWages, DepartmentID, " +
                                  "RemainingHolidayDays) " +
-                                 "VALUES(@fname, @lname, @dob, @gender, @email, @phone, @street, @city, @country, @postcode," +
-                                 "@bsn, @emConName, @emConRelation, @emConEmail, @emConPhone, @employmentType, @hourlyWages," +
+                                 "VALUES(@fname, @lname, @dob, @gender, @email, @phone, @street, @city, @country, @postcode, " +
+                                 "@bsn, @emConName, @emConRelation, @emConEmail, @emConPhone, @employmentType, @hourlyWages, @depId, " +
                                  "@remainingHolidayDays)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -54,7 +54,7 @@ namespace MediaBazaarApp
                     cmd.Parameters.AddWithValue("@lname", emp.LastName);
                     cmd.Parameters.AddWithValue("@dob", emp.DateOfBirth);
 
-                    cmd.Parameters.AddWithValue("@gender", 1);
+                    cmd.Parameters.AddWithValue("@gender", Convert.ToInt32(emp.Gender) + 1);
                     cmd.Parameters.AddWithValue("@email", emp.Email);
                     cmd.Parameters.AddWithValue("@phone", emp.PhoneNumber);
 
@@ -65,22 +65,35 @@ namespace MediaBazaarApp
                     cmd.Parameters.AddWithValue("@postcode", emp.Postcode);
                     cmd.Parameters.AddWithValue("@bsn", emp.Bsn);
                     cmd.Parameters.AddWithValue("@emConName", emp.EmConName);
-                    cmd.Parameters.AddWithValue("@emConRelation", 1);
+                    cmd.Parameters.AddWithValue("@emConRelation", Convert.ToInt32(emp.EmConRelation) + 1);
                     cmd.Parameters.AddWithValue("@emConEmail", emp.EmConEmail);
                     cmd.Parameters.AddWithValue("@emConPhone", emp.EmConPhoneNum);
 
-                    cmd.Parameters.AddWithValue("@employmentType", 1);
+                    int employmentTypeInt = 0;
+                    if (emp.EmploymentType == EmploymentType.FULLTIME)
+                    {
+                        employmentTypeInt = 1;
+                    }
+                    else if (emp.EmploymentType == EmploymentType.PARTTIME1)
+                    {
+                        employmentTypeInt = 2;
+                    }
+                    else
+                    {
+                        employmentTypeInt = 3;
+                    }
+
+                    cmd.Parameters.AddWithValue("@employmentType", employmentTypeInt);
                     cmd.Parameters.AddWithValue("@hourlyWages", emp.HourlyWages);
-                    //cmd.Parameters.AddWithValue("@depID", emp.Department.Id);
+                    cmd.Parameters.AddWithValue("@depId", emp.Department.Id);
 
 
                     cmd.Parameters.AddWithValue("@remainingHolidayDays", emp.RemainingHolidayDays);
 
-
                     conn.Open();
 
                     int effectedRows = cmd.ExecuteNonQuery();
-                    MessageBox.Show("Successfully added an employee!");
+                    //MessageBox.Show("Successfully added an employee!");
                 }
             }
             catch (Exception ex)
@@ -109,12 +122,93 @@ namespace MediaBazaarApp
                     conn.Open();
 
                     int effectedRows = cmd.ExecuteNonQuery();
-                    MessageBox.Show($"Successfully removed employee with id:{id}!");
+                    //MessageBox.Show($"Successfully removed employee with id:{id}!");
                 }
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
+        public void EditEmployee(Employee emp)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+                    string sql = "UPDATE employee " +
+                                 "set FirstName = @fname, " +
+                                 "LastName = @lname, " +
+                                 "DateOfBirth = @dob, " +
+                                 "Gender = @gender, " +
+                                 "Email = @email, " +
+                                 "PhoneNumber = @phone, " +
+                                 "Street = @street, " +
+                                 "City = @city, " +
+                                 "Country = @country, " +
+                                 "PostCode = @postcode, " +
+                                 "BSN = @bsn, " +
+                                 "EmergencyContactName = @emConName, " +
+                                 "EmergencyContactRelation = @emConRelation, " +
+                                 "EmergencyContactEmail = @emConEmail, " +
+                                 "EmergencyContactPhone = @emConPhone, " +
+                                 "EmploymentType = @employmentType, " +
+                                 "HourlyWages = @hourlyWages, " +
+                                 "DepartmentID = @depId, " +
+                                 "RemainingHolidayDays = @remainingHolidayDays " +
+                                 "where id = @id";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@fname", emp.FirstName);
+                    cmd.Parameters.AddWithValue("@lname", emp.LastName);
+                    cmd.Parameters.AddWithValue("@dob", emp.DateOfBirth);
+
+                    cmd.Parameters.AddWithValue("@gender", Convert.ToInt32(emp.Gender) + 1);
+                    cmd.Parameters.AddWithValue("@email", emp.Email);
+                    cmd.Parameters.AddWithValue("@phone", emp.PhoneNumber);
+
+                    cmd.Parameters.AddWithValue("@street", emp.Street);
+                    cmd.Parameters.AddWithValue("@city", emp.City);
+                    cmd.Parameters.AddWithValue("@country", emp.Country);
+
+                    cmd.Parameters.AddWithValue("@postcode", emp.Postcode);
+                    cmd.Parameters.AddWithValue("@bsn", emp.Bsn);
+                    cmd.Parameters.AddWithValue("@emConName", emp.EmConName);
+                    cmd.Parameters.AddWithValue("@emConRelation", Convert.ToInt32(emp.EmConRelation) + 1);
+                    cmd.Parameters.AddWithValue("@emConEmail", emp.EmConEmail);
+                    cmd.Parameters.AddWithValue("@emConPhone", emp.EmConPhoneNum);
+
+                    int employmentTypeInt = 0;
+                    if (emp.EmploymentType == EmploymentType.FULLTIME)
+                    {
+                        employmentTypeInt = 1;
+                    }
+                    else if (emp.EmploymentType == EmploymentType.PARTTIME1)
+                    {
+                        employmentTypeInt = 2;
+                    }
+                    else
+                    {
+                        employmentTypeInt = 3;
+                    }
+
+                    cmd.Parameters.AddWithValue("@employmentType", employmentTypeInt);
+                    cmd.Parameters.AddWithValue("@hourlyWages", emp.HourlyWages);
+                    cmd.Parameters.AddWithValue("@depId", emp.Department.Id);
+                    cmd.Parameters.AddWithValue("@remainingHolidayDays", emp.RemainingHolidayDays);
+
+                    cmd.Parameters.AddWithValue("@id", emp.Id);
+
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }

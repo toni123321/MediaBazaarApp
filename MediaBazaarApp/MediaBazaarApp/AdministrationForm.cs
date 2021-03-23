@@ -136,9 +136,15 @@ namespace MediaBazaarApp
                 department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
 
                 //Department currentDep = departmentManagement.GetDepartment(department.Name);
-                if (department.AddEmployee(fname, lname, dateOfBirth, gender, email, phone, street, city, country,
-                  postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages, department))
+                // if (department.AddEmployee(fname, lname, dateOfBirth, gender, email, phone, street, city, country,
+                //   postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages, department))
+                DBControl dbControl = new DBControl();
+
+                if(department.GetEmployeeByEmail(email) == null)
                 {
+                    dbControl.AddEmployee(new Employee(fname, lname, dateOfBirth, gender, email, phone, street, city, country, 
+                        postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages, department));
+                    dbControl.GetEmployees(this.departmentManagement);
                     MessageBox.Show("You have successfully hired a new employee!");
                     ClearFields();
                 }
@@ -195,8 +201,14 @@ namespace MediaBazaarApp
             if (lbxAllEmployees.SelectedIndex != -1)
             {
                 Employee selectedEmp = (Employee) lbxAllEmployees.SelectedItem;
+
+                
+                //Remove selected emp locally
                 if (departmentManagement.GetDepartment(selectedEmp.Department.Name).RemoveEmployee(selectedEmp.Email))
                 {
+                    //Remove selected employee from db
+                    DBControl dbControl = new DBControl();
+                    dbControl.RemoveEmployee(selectedEmp.Id);
                     MessageBox.Show($"You have successfully removed employee with id:{selectedEmp.Id}");
                 }
                 else
