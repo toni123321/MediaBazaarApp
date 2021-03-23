@@ -17,13 +17,15 @@ namespace MediaBazaarApp
         private Employee currentEmp;
         private StockManagement stockManagement;
         private Stock selectedStock;
+        SalesManagement salesManagement;
 
-        public AdministrationForm(DepartmentManagement departmentManagement, StockManagement stockManagement, Employee currentEmp)
+        public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp, SalesManagement salesManagement, StockManagement stockManagement)
         {
             InitializeComponent();
             this.departmentManagement = departmentManagement;
             this.currentEmp = currentEmp;
             this.stockManagement = stockManagement;
+            this.salesManagement = salesManagement;
 
             UpdateScheduleLBX();
         }
