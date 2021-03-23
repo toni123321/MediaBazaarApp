@@ -75,7 +75,7 @@ namespace MediaBazaarApp
             "Depot"});
             this.cbDepartment.Location = new System.Drawing.Point(155, 171);
             this.cbDepartment.Name = "cbDepartment";
-            this.cbDepartment.Size = new System.Drawing.Size(281, 30);
+            this.cbDepartment.Size = new System.Drawing.Size(281, 26);
             this.cbDepartment.TabIndex = 3;
             // 
             // lbDepartment
@@ -83,7 +83,7 @@ namespace MediaBazaarApp
             this.lbDepartment.AutoSize = true;
             this.lbDepartment.Location = new System.Drawing.Point(34, 174);
             this.lbDepartment.Name = "lbDepartment";
-            this.lbDepartment.Size = new System.Drawing.Size(108, 22);
+            this.lbDepartment.Size = new System.Drawing.Size(89, 18);
             this.lbDepartment.TabIndex = 3;
             this.lbDepartment.Text = "Department:";
             // 
@@ -92,7 +92,7 @@ namespace MediaBazaarApp
             this.tbxEmpEmail.Location = new System.Drawing.Point(155, 67);
             this.tbxEmpEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpEmail.Name = "tbxEmpEmail";
-            this.tbxEmpEmail.Size = new System.Drawing.Size(281, 28);
+            this.tbxEmpEmail.Size = new System.Drawing.Size(281, 24);
             this.tbxEmpEmail.TabIndex = 1;
             // 
             // lbEmpEmail
@@ -100,7 +100,7 @@ namespace MediaBazaarApp
             this.lbEmpEmail.AutoSize = true;
             this.lbEmpEmail.Location = new System.Drawing.Point(83, 70);
             this.lbEmpEmail.Name = "lbEmpEmail";
-            this.lbEmpEmail.Size = new System.Drawing.Size(59, 22);
+            this.lbEmpEmail.Size = new System.Drawing.Size(49, 18);
             this.lbEmpEmail.TabIndex = 1;
             this.lbEmpEmail.Text = "Email:";
             // 
@@ -120,7 +120,7 @@ namespace MediaBazaarApp
             this.tbxEmpId.Location = new System.Drawing.Point(155, 117);
             this.tbxEmpId.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpId.Name = "tbxEmpId";
-            this.tbxEmpId.Size = new System.Drawing.Size(281, 28);
+            this.tbxEmpId.Size = new System.Drawing.Size(281, 24);
             this.tbxEmpId.TabIndex = 2;
             // 
             // lbEmpId
@@ -128,7 +128,7 @@ namespace MediaBazaarApp
             this.lbEmpId.AutoSize = true;
             this.lbEmpId.Location = new System.Drawing.Point(29, 117);
             this.lbEmpId.Name = "lbEmpId";
-            this.lbEmpId.Size = new System.Drawing.Size(113, 22);
+            this.lbEmpId.Size = new System.Drawing.Size(93, 18);
             this.lbEmpId.TabIndex = 2;
             this.lbEmpId.Text = "Employee Id:";
             // 
@@ -138,7 +138,7 @@ namespace MediaBazaarApp
             this.lbMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMsg.Location = new System.Drawing.Point(143, 83);
             this.lbMsg.Name = "lbMsg";
-            this.lbMsg.Size = new System.Drawing.Size(375, 25);
+            this.lbMsg.Size = new System.Drawing.Size(302, 20);
             this.lbMsg.TabIndex = 0;
             this.lbMsg.Text = "Welcome to Media Bazaar system!";
             // 
@@ -194,7 +194,7 @@ namespace MediaBazaarApp
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 657);
             this.Controls.Add(this.btnUpdateDepDB);

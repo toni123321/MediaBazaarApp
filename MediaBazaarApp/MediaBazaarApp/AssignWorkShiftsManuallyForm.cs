@@ -14,18 +14,19 @@ namespace MediaBazaarApp
     {
         DepartmentManagement departmentManagement;
         StockManagement stockManagement;
-        Employee emp;
-        public AssignWorkShiftsManuallyForm(DepartmentManagement departmentManagement, Employee emp)
+        Employee currentEmp;
+        Employee selectedEmp;
+        public AssignWorkShiftsManuallyForm(DepartmentManagement departmentManagement, Employee currentEmp, Employee selectedEmp)
         {
             InitializeComponent();
             this.departmentManagement = departmentManagement;
-            this.emp = emp;
+            this.currentEmp = currentEmp;
+            this.selectedEmp = selectedEmp;
 
         }
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
-            int empID;
             bool wfh;
             ShiftType type = new ShiftType();
             DateTime date = dtpShiftDate.Value;
@@ -41,25 +42,28 @@ namespace MediaBazaarApp
 
             if (cbShiftType.SelectedIndex == 0)
             {
-                type = ShiftType.MORNING;
+                type = ShiftType.Morning;
             }
             else if(cbShiftType.SelectedIndex == 1)
             {
-                type = ShiftType.AFTERNOON;
+                type = ShiftType.Afternoon;
             }
             else if (cbShiftType.SelectedIndex == 2)
             {
-                type = ShiftType.EVENING;
+                type = ShiftType.Evening;
             }
 
-            emp.AddShift(type, date, emp, wfh);
+            DBControl dbc = new DBControl();
+            dbc.AddShift(new Shift(type, date, currentEmp.Id, wfh), selectedEmp);
+            dbc.GetShifts(departmentManagement);
         }
 
         private void AssignWorkShiftsManuallyForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            AdministrationForm adminForm = new AdministrationForm(departmentManagement ,stockManagement, emp);
+            AdministrationForm adminForm = new AdministrationForm(departmentManagement ,stockManagement, currentEmp);
             adminForm.Show();
         }
 
+       
     }
 }

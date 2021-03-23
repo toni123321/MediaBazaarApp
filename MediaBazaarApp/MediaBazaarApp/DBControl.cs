@@ -49,7 +49,7 @@ namespace MediaBazaarApp
                                  "@remainingHolidayDays)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    
+
                     cmd.Parameters.AddWithValue("@fname", emp.FirstName);
                     cmd.Parameters.AddWithValue("@lname", emp.LastName);
                     cmd.Parameters.AddWithValue("@dob", emp.DateOfBirth);
@@ -85,7 +85,7 @@ namespace MediaBazaarApp
             }
             catch (Exception ex)
             {
-                
+
                 MessageBox.Show(ex.Message);
             }
 
@@ -130,7 +130,7 @@ namespace MediaBazaarApp
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
                     cmd.Parameters.AddWithValue("@name", dep.Name);
-                    
+
 
                     conn.Open();
 
@@ -151,7 +151,7 @@ namespace MediaBazaarApp
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
-                    
+
                     string sql = "UPDATE department set IDManager=@idManager";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -181,20 +181,20 @@ namespace MediaBazaarApp
                     string sql = "SELECT ID, Name FROM department";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    
+
                     conn.Open();
 
                     MySqlDataReader dr = cmd.ExecuteReader();
-                    
+
                     while (dr.Read())
                     {
                         int id = Convert.ToInt32(dr[0]);
-                        
+
                         string depName = dr[1].ToString();
                         departmentManagement.AddDepartment(depName);
                         Department currDep = departmentManagement.GetDepartment(depName);
                         currDep.Id = id;
-                        
+
                     }
                     MessageBox.Show("Successfully get deparmtents!");
                 }
@@ -222,7 +222,7 @@ namespace MediaBazaarApp
                     conn.Open();
 
                     MySqlDataReader dr = cmd.ExecuteReader();
-                    
+
                     while (dr.Read())
                     {
                         int id = Convert.ToInt32(dr[0]);
@@ -292,7 +292,7 @@ namespace MediaBazaarApp
                             Employee manager = dep.GetEmployeeById(idManager);
                             dep.Manager = manager;
                         }
-                        
+
                     }
                     MessageBox.Show("Successfully set managers!");
                 }
@@ -303,6 +303,114 @@ namespace MediaBazaarApp
                 MessageBox.Show(ex.Message);
             }
         }
+
+        // Shifts
+
+        public void AddShift(Shift shift, Employee emp)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+                    string sql = "INSERT INTO shift (EmployeeID, Date, AssignedByID, HasAttended, NoShowReason, Type, wfh) " +
+                                 "VALUES(@empID, @date, @assignedBy, @hasAttended, @noShowReason, @type, @wfh)";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@empID", emp.Id);
+                    cmd.Parameters.AddWithValue("@date", shift.Date);
+                    cmd.Parameters.AddWithValue("@assignedBy", shift.AssignedBy);
+                    cmd.Parameters.AddWithValue("@hasAttended", shift.HasAttended);
+                    cmd.Parameters.AddWithValue("@noShowReason", shift.NoShowReason);
+                    cmd.Parameters.AddWithValue("@type", Convert.ToInt32(shift.Type) + 1);
+                    cmd.Parameters.AddWithValue("@wfh", shift.WFH);
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                    MessageBox.Show("Successfully added a shift!");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        public void RemoveShift(Shift shift)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "DELETE from shift WHERE id=@id";
+
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@id", shift.ID);
+
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                    MessageBox.Show($"Successfully removed a shift!");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void GetShifts(DepartmentManagement departmentManagement)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                   string sql = "SELECT s.*, d.Name FROM shift as s " +
+                        "inner join employee as e " +
+                        "on s.EmployeeID = e.ID " +
+                        "inner join department as d " +
+                        "on e.DepartmentID = d.ID";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        int id = Convert.ToInt32(dr[0]);
+                        int employeeID = Convert.ToInt32(dr[1]);
+                        DateTime date = (DateTime)dr[2];
+                        int assignedBy = Convert.ToInt32(dr[3]);
+                        ShiftType type = (ShiftType)Enum.Parse(typeof(ShiftType), dr[6].ToString());
+                        bool wfh = Convert.ToBoolean(dr[7]);
+                        string depName = dr[8].ToString();
+
+                        departmentManagement.GetDepartment(depName).GetEmployeeById(employeeID).AddShift(type, date, assignedBy, wfh);
+
+                        
+
+                    }
+                    MessageBox.Show("Successfully got shifts!");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
 
     }
 }

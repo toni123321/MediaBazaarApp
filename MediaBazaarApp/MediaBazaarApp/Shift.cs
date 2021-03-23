@@ -14,12 +14,12 @@ namespace MediaBazaarApp
         public DateTime Date { get; }
         public ShiftType Type { get; }
         public bool WFH { get; }
-        public Employee AssignedBy { get; }
+        public int AssignedBy { get; }
         public bool HasAttended { get; set; }
         public string NoShowReason { get; set; }
 
         //Constructor
-        public Shift(ShiftType type, DateTime date, Employee assignedBy, bool wfh)
+        public Shift(ShiftType type, DateTime date, int assignedBy, bool wfh)
         {
             idCounter++;
             this.ID = idCounter;

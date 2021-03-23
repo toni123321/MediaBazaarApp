@@ -60,6 +60,7 @@ namespace MediaBazaarApp
             dbControl.GetDepartments(this.departmentManagement);
             dbControl.GetEmployees(this.departmentManagement);
             dbControl.SetDepartmentManagers(this.departmentManagement);
+            dbControl.GetShifts(this.departmentManagement);
 
             // departmentManagement.AddDepartment("Administration");
             // departmentManagement.AddDepartment("Management");

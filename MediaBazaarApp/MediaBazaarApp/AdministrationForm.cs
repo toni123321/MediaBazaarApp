@@ -24,12 +24,8 @@ namespace MediaBazaarApp
             this.departmentManagement = departmentManagement;
             this.currentEmp = currentEmp;
             this.stockManagement = stockManagement;
-        }
 
-        public AdministrationForm()
-        {
-            InitializeComponent();
-
+            UpdateScheduleLBX();
         }
 
         public void FillComboBoxDepartments(bool isSuperuser)
@@ -270,8 +266,10 @@ namespace MediaBazaarApp
 
         private void btnAssignShiftsManually_Click(object sender, EventArgs e)
         {
-            AssignWorkShiftsManuallyForm manualSchedule = new AssignWorkShiftsManuallyForm(departmentManagement, currentEmp);
-            this.Close();
+            Employee selectedEmp = (Employee)lbxScheduleAllEmp.SelectedItem;
+
+            AssignWorkShiftsManuallyForm manualSchedule = new AssignWorkShiftsManuallyForm(departmentManagement, currentEmp, selectedEmp);
+            manualSchedule.Show();
         }
 
         private void BtnAddStock_Click(object sender, EventArgs e)
@@ -416,5 +414,16 @@ namespace MediaBazaarApp
                 lbAllStocks.Items.Add(stock);
             }
         }
+
+        public void UpdateScheduleLBX()
+        {
+            lbxScheduleAllEmp.Items.Clear();
+
+            foreach (Employee e in departmentManagement.GetAllEmployees())
+            {
+                lbxScheduleAllEmp.Items.Add(e);
+            }
+        }
+
     }
 }

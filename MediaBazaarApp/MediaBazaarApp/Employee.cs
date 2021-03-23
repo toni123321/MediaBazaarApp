@@ -213,7 +213,7 @@ namespace MediaBazaarApp
             return 0;
         }
 
-        public bool AddShift(ShiftType type, DateTime date, Employee assignedBy, bool wfh)
+        public bool AddShift(ShiftType type, DateTime date, int assignedBy, bool wfh)
         {
             int totalShiftsPerWeek = 0;
 
