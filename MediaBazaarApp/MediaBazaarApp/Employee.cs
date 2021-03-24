@@ -214,7 +214,7 @@ namespace MediaBazaarApp
             return 0;
         }
 
-        public bool AddShift(ShiftType type, DateTime date, int assignedBy, bool wfh)
+        public bool AddShift(int id, ShiftType type, DateTime date, int assignedBy, bool wfh)
         {
             int totalShiftsPerWeek = 0;
 
@@ -228,7 +228,7 @@ namespace MediaBazaarApp
 
             if (totalShiftsPerWeek <= (int)this.employmentType)
             {
-                shifts.Add(new Shift(type, date, assignedBy, wfh));
+                shifts.Add(new Shift(id, type, date, assignedBy, wfh));
                 return true;
             }
             else

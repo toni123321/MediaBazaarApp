@@ -17,6 +17,8 @@ namespace MediaBazaarApp
         Employee currentEmp;
         Employee selectedEmp;
         SalesManagement salesManagement;
+        DBControl dbc;
+
         public AssignWorkShiftsManuallyForm(DepartmentManagement departmentManagement, Employee currentEmp, Employee selectedEmp, SalesManagement salesManagement)
         {
             InitializeComponent();
@@ -24,6 +26,7 @@ namespace MediaBazaarApp
             this.currentEmp = currentEmp;
             this.selectedEmp = selectedEmp;
             this.salesManagement = salesManagement;
+            dbc = new DBControl();
 
         }
 
@@ -54,10 +57,7 @@ namespace MediaBazaarApp
             {
                 type = ShiftType.Evening;
             }
-
-            DBControl dbc = new DBControl();
-            dbc.AddShift(new Shift(type, date, currentEmp.Id, wfh), selectedEmp);
-            dbc.GetShifts(departmentManagement);
+            dbc.AddShift(type, date, currentEmp.Id, wfh, selectedEmp);
         }
 
         private void AssignWorkShiftsManuallyForm_FormClosed(object sender, FormClosedEventArgs e)

@@ -474,7 +474,10 @@ namespace MediaBazaarApp
         private void lbxScheduleAllEmp_SelectedIndexChanged(object sender, EventArgs e)
         {
             Employee emp = null;
+            DBControl dbc = new DBControl();
+
             emp = (Employee)lbxScheduleAllEmp.SelectedItem;
+            dbc.GetShifts(departmentManagement);
 
             lbxSelectedEmpShifts.Items.Clear();
 
@@ -482,9 +485,22 @@ namespace MediaBazaarApp
             {
                 foreach (Shift s in emp.GetAllShifts())
                 {
-                    lbxSelectedEmpShifts.Items.Add(s.ToString());
+                    lbxSelectedEmpShifts.Items.Add(s);
                 }
             }
+        }
+
+        private void btnShift_Click(object sender, EventArgs e)
+        {
+            Shift shift = (Shift)lbxSelectedEmpShifts.SelectedItem;
+            Employee emp = (Employee)lbxScheduleAllEmp.SelectedItem;
+
+            DBControl dbc = new DBControl();
+
+            dbc.RemoveShift(shift);
+            dbc.GetShifts(departmentManagement);
+
+            emp.RemoveShift(shift.ID); // to improve
         }
     }
 }

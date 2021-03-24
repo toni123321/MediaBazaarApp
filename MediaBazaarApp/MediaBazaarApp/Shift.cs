@@ -19,11 +19,10 @@ namespace MediaBazaarApp
         public string NoShowReason { get; set; }
 
         //Constructor
-        public Shift(ShiftType type, DateTime date, int assignedBy, bool wfh)
+        public Shift(int id, ShiftType type, DateTime date, int assignedBy, bool wfh)
         {
-            idCounter++;
-            this.ID = idCounter;
-
+            //idCounter++;
+            this.ID = id;
             this.Type = type;
             this.Date = date;
             this.WFH = wfh;

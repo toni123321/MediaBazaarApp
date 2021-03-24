@@ -63,7 +63,7 @@ namespace MediaBazaarApp
             //Job specifications
             cbEmpEmploymentType.Text = currEmp.EmploymentType.ToString();
             nudEmpHourlyWages.Text = currEmp.HourlyWages.ToString();
-            cbEmpDepartment.Text = currEmp.Department.ToString();
+            cbEmpDepartment.Text = currEmp.Department.Name;
         }
 
         private void EditEmployeeForm_FormClosed(object sender, FormClosedEventArgs e)

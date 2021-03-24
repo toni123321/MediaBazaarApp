@@ -578,7 +578,7 @@ namespace MediaBazaarApp
 
         // Shifts
 
-        public void AddShift(Shift shift, Employee emp)
+        public void AddShift(ShiftType type, DateTime date, int assignedBy, bool wfh, Employee emp)
         {
             try
             {
@@ -590,12 +590,12 @@ namespace MediaBazaarApp
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
                     cmd.Parameters.AddWithValue("@empID", emp.Id);
-                    cmd.Parameters.AddWithValue("@date", shift.Date);
-                    cmd.Parameters.AddWithValue("@assignedBy", shift.AssignedBy);
-                    cmd.Parameters.AddWithValue("@hasAttended", shift.HasAttended);
-                    cmd.Parameters.AddWithValue("@noShowReason", shift.NoShowReason);
-                    cmd.Parameters.AddWithValue("@type", Convert.ToInt32(shift.Type) + 1);
-                    cmd.Parameters.AddWithValue("@wfh", shift.WFH);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    cmd.Parameters.AddWithValue("@assignedBy", assignedBy);
+                    cmd.Parameters.AddWithValue("@hasAttended", true);
+                    cmd.Parameters.AddWithValue("@noShowReason", null);
+                    cmd.Parameters.AddWithValue("@type", Convert.ToInt32(type) + 1);
+                    cmd.Parameters.AddWithValue("@wfh", wfh);
 
                     conn.Open();
 
@@ -668,10 +668,12 @@ namespace MediaBazaarApp
                         bool wfh = Convert.ToBoolean(dr[7]);
                         string depName = dr[8].ToString();
 
-                        departmentManagement.GetDepartment(depName).GetEmployeeById(employeeID).AddShift(type, date, assignedBy, wfh);
+                        Shift s = departmentManagement.GetDepartment(depName).GetEmployeeById(employeeID).GetShift(id);
 
-                        
-
+                        if ( s == null)
+                        {
+                            departmentManagement.GetDepartment(depName).GetEmployeeById(employeeID).AddShift(id, type, date, assignedBy, wfh);
+                        }
                     }
                 }
             }

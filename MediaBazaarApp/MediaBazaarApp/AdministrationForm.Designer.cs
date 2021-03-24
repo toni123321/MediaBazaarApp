@@ -187,6 +187,7 @@ namespace MediaBazaarApp
             this.lbDepartmentManager = new System.Windows.Forms.Label();
             this.tbxDepartmentName = new System.Windows.Forms.TextBox();
             this.lbDepartmentName = new System.Windows.Forms.Label();
+            this.btnShift = new System.Windows.Forms.Button();
             this.tabControlAdministration.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.EmployeesTab.SuspendLayout();
@@ -1379,6 +1380,7 @@ namespace MediaBazaarApp
             // 
             // ScheduleTab
             // 
+            this.ScheduleTab.Controls.Add(this.btnShift);
             this.ScheduleTab.Controls.Add(this.lbxSelectedEmpShifts);
             this.ScheduleTab.Controls.Add(this.gbxAutoShiftsAssignPerDay);
             this.ScheduleTab.Controls.Add(this.gbxAutoShiftsAssignAllDays);
@@ -1640,7 +1642,7 @@ namespace MediaBazaarApp
             // 
             // btnAssignShiftsManually
             // 
-            this.btnAssignShiftsManually.Location = new System.Drawing.Point(21, 466);
+            this.btnAssignShiftsManually.Location = new System.Drawing.Point(21, 453);
             this.btnAssignShiftsManually.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAssignShiftsManually.Name = "btnAssignShiftsManually";
             this.btnAssignShiftsManually.Size = new System.Drawing.Size(322, 49);
@@ -1651,7 +1653,7 @@ namespace MediaBazaarApp
             // 
             // btnScheduleClearSelected
             // 
-            this.btnScheduleClearSelected.Location = new System.Drawing.Point(354, 466);
+            this.btnScheduleClearSelected.Location = new System.Drawing.Point(354, 510);
             this.btnScheduleClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnScheduleClearSelected.Name = "btnScheduleClearSelected";
             this.btnScheduleClearSelected.Size = new System.Drawing.Size(322, 49);
@@ -1885,6 +1887,17 @@ namespace MediaBazaarApp
             this.lbDepartmentName.TabIndex = 1;
             this.lbDepartmentName.Text = "Name:";
             // 
+            // btnShift
+            // 
+            this.btnShift.Location = new System.Drawing.Point(354, 453);
+            this.btnShift.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnShift.Name = "btnShift";
+            this.btnShift.Size = new System.Drawing.Size(322, 49);
+            this.btnShift.TabIndex = 16;
+            this.btnShift.Text = "Remove selected shift";
+            this.btnShift.UseVisualStyleBackColor = true;
+            this.btnShift.Click += new System.EventHandler(this.btnShift_Click);
+            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -2097,5 +2110,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label stockWeightLb;
         private System.Windows.Forms.Button searchByIdBTN;
         private System.Windows.Forms.ListBox lbxSelectedEmpShifts;
+        private System.Windows.Forms.Button btnShift;
     }
 }
