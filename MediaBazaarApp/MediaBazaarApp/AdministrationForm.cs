@@ -28,6 +28,17 @@ namespace MediaBazaarApp
             this.salesManagement = salesManagement;
 
             UpdateScheduleLBX();
+            UpdateDepartments();
+        }
+
+
+        private void UpdateDepartments()
+        {
+            lbxAllDepartments.Items.Clear();
+            foreach (Department dep in this.departmentManagement.GetAllDepartments())
+            {
+                lbxAllDepartments.Items.Add(dep);
+            }
         }
 
         public void FillComboBoxDepartments(bool isSuperuser)
