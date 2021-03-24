@@ -44,7 +44,6 @@ namespace MediaBazaarApp
             this.tbxNrEmp = new System.Windows.Forms.TextBox();
             this.lbNrEmp = new System.Windows.Forms.Label();
             this.ViewStatisticsStocksTab = new System.Windows.Forms.TabPage();
-            this.btnShowStockStatistics = new System.Windows.Forms.Button();
             this.cbStatisticType = new System.Windows.Forms.ComboBox();
             this.lbxAllStocksStatistics = new System.Windows.Forms.ListBox();
             this.tabControlManagement.SuspendLayout();
@@ -59,7 +58,7 @@ namespace MediaBazaarApp
             this.tabControlManagement.Controls.Add(this.ViewStatisticsEmpTab);
             this.tabControlManagement.Controls.Add(this.ViewStatisticsStocksTab);
             this.tabControlManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControlManagement.Location = new System.Drawing.Point(14, 13);
+            this.tabControlManagement.Location = new System.Drawing.Point(12, 13);
             this.tabControlManagement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControlManagement.Name = "tabControlManagement";
             this.tabControlManagement.SelectedIndex = 0;
@@ -149,6 +148,7 @@ namespace MediaBazaarApp
             this.tbxAvgWageEmp.Location = new System.Drawing.Point(760, 40);
             this.tbxAvgWageEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxAvgWageEmp.Name = "tbxAvgWageEmp";
+            this.tbxAvgWageEmp.ReadOnly = true;
             this.tbxAvgWageEmp.Size = new System.Drawing.Size(164, 24);
             this.tbxAvgWageEmp.TabIndex = 13;
             // 
@@ -185,6 +185,7 @@ namespace MediaBazaarApp
             this.tbxNrEmp.Location = new System.Drawing.Point(240, 40);
             this.tbxNrEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxNrEmp.Name = "tbxNrEmp";
+            this.tbxNrEmp.ReadOnly = true;
             this.tbxNrEmp.Size = new System.Drawing.Size(164, 24);
             this.tbxNrEmp.TabIndex = 9;
             // 
@@ -199,7 +200,6 @@ namespace MediaBazaarApp
             // 
             // ViewStatisticsStocksTab
             // 
-            this.ViewStatisticsStocksTab.Controls.Add(this.btnShowStockStatistics);
             this.ViewStatisticsStocksTab.Controls.Add(this.cbStatisticType);
             this.ViewStatisticsStocksTab.Controls.Add(this.lbxAllStocksStatistics);
             this.ViewStatisticsStocksTab.Location = new System.Drawing.Point(4, 27);
@@ -210,16 +210,6 @@ namespace MediaBazaarApp
             this.ViewStatisticsStocksTab.TabIndex = 1;
             this.ViewStatisticsStocksTab.Text = "View statistics for stocks";
             this.ViewStatisticsStocksTab.UseVisualStyleBackColor = true;
-            // 
-            // btnShowStockStatistics
-            // 
-            this.btnShowStockStatistics.Location = new System.Drawing.Point(594, 31);
-            this.btnShowStockStatistics.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnShowStockStatistics.Name = "btnShowStockStatistics";
-            this.btnShowStockStatistics.Size = new System.Drawing.Size(204, 40);
-            this.btnShowStockStatistics.TabIndex = 8;
-            this.btnShowStockStatistics.Text = "Show";
-            this.btnShowStockStatistics.UseVisualStyleBackColor = true;
             // 
             // cbStatisticType
             // 
@@ -283,7 +273,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.ListBox lbxNrEmpPerDepartment;
         private System.Windows.Forms.TextBox tbxNrEmp;
         private System.Windows.Forms.Label lbNrEmp;
-        private System.Windows.Forms.Button btnShowStockStatistics;
         private System.Windows.Forms.ComboBox cbStatisticType;
         private System.Windows.Forms.ListBox lbxAllStocksStatistics;
         private System.Windows.Forms.TabPage HomeTab;

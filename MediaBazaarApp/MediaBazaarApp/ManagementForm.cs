@@ -28,12 +28,11 @@ namespace MediaBazaarApp
             this.salesManagement = salesManagement;
 
 
-
             tbxNrEmp.Text = $"{se.GetAllEmployees(departmentManagement.GetAllEmployees()).Count()}";
             tbxAvgWageEmp.Text = $"{se.AveregeWageOfEmployee(departmentManagement.GetAllEmployees())}";
-            lbxNrEmpPerDepartment.Items.Add(se.EmpPerDepToString(departmentManagement.GetAllDepartments()));
+            lbxAvgWageEmpDepartment.Items.AddRange(se.AveregeWagePerDepartmenr(departmentManagement.GetAllDepartments(), departmentManagement.GetAllEmployees()).ToArray());
+            lbxNrEmpPerDepartment.Items.AddRange(se.EmpPerDepToString(departmentManagement.GetAllDepartments()).ToArray());
 
-            lbxAvgWageEmpDepartment.Items.AddRange(se.GetAveregeWageOfEmpPerDepToStrin().ToArray());
 
             
             
@@ -47,11 +46,13 @@ namespace MediaBazaarApp
 
         private void cbStatisticType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lbxAllStocksStatistics.Items.Clear();
             int index = cbStatisticType.SelectedIndex;
             if(index != -1)
             {
                 if (index == 0)
                 {
+                    
                     lbxAllStocksStatistics.Items.AddRange(ss.GetLowestPrice(stockManagement.GetAllStocks()).ToArray());
                 }
 

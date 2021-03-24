@@ -29,6 +29,7 @@ namespace MediaBazaarApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministrationForm));
             this.tabControlAdministration = new System.Windows.Forms.TabControl();
             this.HomeTab = new System.Windows.Forms.TabPage();
             this.lbTime = new System.Windows.Forms.Label();
@@ -1892,6 +1893,7 @@ namespace MediaBazaarApp
             this.ClientSize = new System.Drawing.Size(1253, 784);
             this.Controls.Add(this.tabControlAdministration);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "AdministrationForm";
             this.Text = "AdministrationForm";

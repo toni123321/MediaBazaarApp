@@ -14,13 +14,16 @@ namespace MediaBazaarApp
             return employees;
         }
         
-        public string EmpPerDepToString(List<Department> departments)
+        public List<string> EmpPerDepToString(List<Department> departments)
         {
+
+            List<string> results = new List<string>();
+
             foreach (Department d in departments)
             {
-                return ($"{d.Name} has {d.GetAllEmployees().Count} employees");
+                results.Add($"{d.Name} has {d.GetAllEmployees().Count} employees");
             }
-            return null;
+            return results;
         }
         public int CalculateNrOfEmployees(List<Employee> employees)
         {
@@ -38,20 +41,17 @@ namespace MediaBazaarApp
             return wagesum / nrOfEmployees;
         }
 
-        public List<string> GetAveregeWageOfEmpPerDepToStrin()
-        {
-            return AveregeWageOfEmpPerDepToString;
-        }
-        public List<string> AveregeWageOfEmpPerDepToString = new List<string>();
 
-
-        public void AveregeWagePerDepartmenr(List<Department> departments, List<Employee> employees)
+        public List<string> AveregeWagePerDepartmenr(List<Department> departments, List<Employee> employees)
         {
+            List<string> results = new List<string>();
 
             foreach (Department d in departments)
             {
-                AveregeWageOfEmpPerDepToString.Add($"Department: {d.Name} / Averege wage = {AveregeWageOfEmployee(d.GetAllEmployees())}");
+                results.Add($"Department: {d.Name} / Averege wage = €{AveregeWageOfEmployee(d.GetAllEmployees())}");
             }
+
+            return results;
         }
 
 
