@@ -467,8 +467,8 @@ namespace MediaBazaarApp
 
         private void ClearSelectionSchedule()
         {
-            lbxSelectedEmpShifts.SelectedIndex = -1;
-            lbxScheduleAllEmp.SelectedIndex = -1;
+            lbxSelectedEmpShifts.Items.Clear();
+            lbxAllEmployees.SelectedIndex = -1;
         }
 
         private void lbxScheduleAllEmp_SelectedIndexChanged(object sender, EventArgs e)
@@ -502,5 +502,6 @@ namespace MediaBazaarApp
 
             emp.RemoveShift(shift.ID); // to improve
         }
+
     }
 }

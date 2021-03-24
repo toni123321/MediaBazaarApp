@@ -28,6 +28,8 @@ namespace MediaBazaarApp
             this.salesManagement = salesManagement;
             dbc = new DBControl();
 
+            lbEmpInfo.Text = $"Adding shifts for {selectedEmp.FirstName} {selectedEmp.LastName} (ID: {selectedEmp.Id})";
+
         }
 
         private void btnAssign_Click(object sender, EventArgs e)

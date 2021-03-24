@@ -140,6 +140,7 @@ namespace MediaBazaarApp
             this.btnRemoveStock = new System.Windows.Forms.Button();
             this.lbAllStocks = new System.Windows.Forms.ListBox();
             this.ScheduleTab = new System.Windows.Forms.TabPage();
+            this.btnShift = new System.Windows.Forms.Button();
             this.lbxSelectedEmpShifts = new System.Windows.Forms.ListBox();
             this.gbxAutoShiftsAssignPerDay = new System.Windows.Forms.GroupBox();
             this.btnSubmitAutoShiftsAssignPerDay = new System.Windows.Forms.Button();
@@ -187,7 +188,6 @@ namespace MediaBazaarApp
             this.lbDepartmentManager = new System.Windows.Forms.Label();
             this.tbxDepartmentName = new System.Windows.Forms.TextBox();
             this.lbDepartmentName = new System.Windows.Forms.Label();
-            this.btnShift = new System.Windows.Forms.Button();
             this.tabControlAdministration.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.EmployeesTab.SuspendLayout();
@@ -237,6 +237,7 @@ namespace MediaBazaarApp
             this.HomeTab.Controls.Add(this.lbNotificationsShelfRestockRequests);
             this.HomeTab.Controls.Add(this.lbNotificationsHolidayRequests);
             this.HomeTab.Controls.Add(this.lbGreetingMsg);
+            this.HomeTab.ForeColor = System.Drawing.SystemColors.ControlText;
             this.HomeTab.Location = new System.Drawing.Point(4, 27);
             this.HomeTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HomeTab.Name = "HomeTab";
@@ -249,6 +250,8 @@ namespace MediaBazaarApp
             // lbTime
             // 
             this.lbTime.AutoSize = true;
+            this.lbTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.lbTime.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lbTime.Location = new System.Drawing.Point(136, 373);
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(41, 18);
@@ -258,6 +261,8 @@ namespace MediaBazaarApp
             // lbDateDayOfWeek
             // 
             this.lbDateDayOfWeek.AutoSize = true;
+            this.lbDateDayOfWeek.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.lbDateDayOfWeek.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lbDateDayOfWeek.Location = new System.Drawing.Point(136, 428);
             this.lbDateDayOfWeek.Name = "lbDateDayOfWeek";
             this.lbDateDayOfWeek.Size = new System.Drawing.Size(125, 18);
@@ -267,6 +272,8 @@ namespace MediaBazaarApp
             // lbNotificationsShelfRestockRequests
             // 
             this.lbNotificationsShelfRestockRequests.AutoSize = true;
+            this.lbNotificationsShelfRestockRequests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.lbNotificationsShelfRestockRequests.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lbNotificationsShelfRestockRequests.Location = new System.Drawing.Point(884, 52);
             this.lbNotificationsShelfRestockRequests.Name = "lbNotificationsShelfRestockRequests";
             this.lbNotificationsShelfRestockRequests.Size = new System.Drawing.Size(239, 18);
@@ -276,6 +283,8 @@ namespace MediaBazaarApp
             // lbNotificationsHolidayRequests
             // 
             this.lbNotificationsHolidayRequests.AutoSize = true;
+            this.lbNotificationsHolidayRequests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.lbNotificationsHolidayRequests.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lbNotificationsHolidayRequests.Location = new System.Drawing.Point(574, 52);
             this.lbNotificationsHolidayRequests.Name = "lbNotificationsHolidayRequests";
             this.lbNotificationsHolidayRequests.Size = new System.Drawing.Size(201, 18);
@@ -823,16 +832,18 @@ namespace MediaBazaarApp
             // 
             // btnEmpManageAttendance
             // 
+            this.btnEmpManageAttendance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnEmpManageAttendance.Location = new System.Drawing.Point(862, 589);
             this.btnEmpManageAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEmpManageAttendance.Name = "btnEmpManageAttendance";
             this.btnEmpManageAttendance.Size = new System.Drawing.Size(246, 49);
             this.btnEmpManageAttendance.TabIndex = 18;
             this.btnEmpManageAttendance.Text = "Manage attendance";
-            this.btnEmpManageAttendance.UseVisualStyleBackColor = true;
+            this.btnEmpManageAttendance.UseVisualStyleBackColor = false;
             // 
             // gbxSearchEmp
             // 
+            this.gbxSearchEmp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.gbxSearchEmp.Controls.Add(this.btnSearchEmp);
             this.gbxSearchEmp.Controls.Add(this.tbxSearchEmp);
             this.gbxSearchEmp.Location = new System.Drawing.Point(594, 22);
@@ -910,6 +921,7 @@ namespace MediaBazaarApp
             // 
             // HolidayRequestsTab
             // 
+            this.HolidayRequestsTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.HolidayRequestsTab.Controls.Add(this.lbHolidayRequestsInfo);
             this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsClearSelected);
             this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsDecline);
@@ -921,7 +933,6 @@ namespace MediaBazaarApp
             this.HolidayRequestsTab.Size = new System.Drawing.Size(1150, 663);
             this.HolidayRequestsTab.TabIndex = 2;
             this.HolidayRequestsTab.Text = "Holiday requests";
-            this.HolidayRequestsTab.UseVisualStyleBackColor = true;
             // 
             // lbHolidayRequestsInfo
             // 
@@ -1397,6 +1408,17 @@ namespace MediaBazaarApp
             this.ScheduleTab.Text = "Schedule";
             this.ScheduleTab.UseVisualStyleBackColor = true;
             // 
+            // btnShift
+            // 
+            this.btnShift.Location = new System.Drawing.Point(354, 453);
+            this.btnShift.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnShift.Name = "btnShift";
+            this.btnShift.Size = new System.Drawing.Size(322, 49);
+            this.btnShift.TabIndex = 16;
+            this.btnShift.Text = "Remove selected shift";
+            this.btnShift.UseVisualStyleBackColor = true;
+            this.btnShift.Click += new System.EventHandler(this.btnShift_Click);
+            // 
             // lbxSelectedEmpShifts
             // 
             this.lbxSelectedEmpShifts.FormattingEnabled = true;
@@ -1410,6 +1432,7 @@ namespace MediaBazaarApp
             // 
             // gbxAutoShiftsAssignPerDay
             // 
+            this.gbxAutoShiftsAssignPerDay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.gbxAutoShiftsAssignPerDay.Controls.Add(this.btnSubmitAutoShiftsAssignPerDay);
             this.gbxAutoShiftsAssignPerDay.Controls.Add(this.tbxSun);
             this.gbxAutoShiftsAssignPerDay.Controls.Add(this.lbSun);
@@ -1565,6 +1588,7 @@ namespace MediaBazaarApp
             // 
             // gbxAutoShiftsAssignAllDays
             // 
+            this.gbxAutoShiftsAssignAllDays.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.gbxAutoShiftsAssignAllDays.Controls.Add(this.btnSubmitAutoShiftsAssignAllDays);
             this.gbxAutoShiftsAssignAllDays.Controls.Add(this.lbNrWorkers);
             this.gbxAutoShiftsAssignAllDays.Controls.Add(this.tbxNrWorkers);
@@ -1606,6 +1630,7 @@ namespace MediaBazaarApp
             // 
             // gbxAssignShiftsAuto
             // 
+            this.gbxAssignShiftsAuto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.gbxAssignShiftsAuto.Controls.Add(this.btnChooseAssignTypeAuto);
             this.gbxAssignShiftsAuto.Controls.Add(this.cbAssignTypeAuto);
             this.gbxAssignShiftsAuto.Location = new System.Drawing.Point(704, 62);
@@ -1653,13 +1678,14 @@ namespace MediaBazaarApp
             // 
             // btnScheduleClearSelected
             // 
+            this.btnScheduleClearSelected.BackColor = System.Drawing.Color.Transparent;
             this.btnScheduleClearSelected.Location = new System.Drawing.Point(354, 510);
             this.btnScheduleClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnScheduleClearSelected.Name = "btnScheduleClearSelected";
             this.btnScheduleClearSelected.Size = new System.Drawing.Size(322, 49);
             this.btnScheduleClearSelected.TabIndex = 10;
             this.btnScheduleClearSelected.Text = "Unmark selections";
-            this.btnScheduleClearSelected.UseVisualStyleBackColor = true;
+            this.btnScheduleClearSelected.UseVisualStyleBackColor = false;
             this.btnScheduleClearSelected.Click += new System.EventHandler(this.btnScheduleClearSelected_Click);
             // 
             // lbScheduleAllEmp
@@ -1703,6 +1729,7 @@ namespace MediaBazaarApp
             // 
             // gbxEditDepartment
             // 
+            this.gbxEditDepartment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.gbxEditDepartment.Controls.Add(this.lbDepartmentEditInfo);
             this.gbxEditDepartment.Controls.Add(this.btnApplyChangesDepartment);
             this.gbxEditDepartment.Controls.Add(this.cbDepartmentManagerEdit);
@@ -1776,23 +1803,25 @@ namespace MediaBazaarApp
             // 
             // btnRemoveDepartment
             // 
+            this.btnRemoveDepartment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnRemoveDepartment.Location = new System.Drawing.Point(467, 646);
             this.btnRemoveDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRemoveDepartment.Name = "btnRemoveDepartment";
             this.btnRemoveDepartment.Size = new System.Drawing.Size(165, 49);
             this.btnRemoveDepartment.TabIndex = 12;
             this.btnRemoveDepartment.Text = "Remove";
-            this.btnRemoveDepartment.UseVisualStyleBackColor = true;
+            this.btnRemoveDepartment.UseVisualStyleBackColor = false;
             // 
             // btnEditDepartment
             // 
+            this.btnEditDepartment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnEditDepartment.Location = new System.Drawing.Point(250, 646);
             this.btnEditDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditDepartment.Name = "btnEditDepartment";
             this.btnEditDepartment.Size = new System.Drawing.Size(165, 49);
             this.btnEditDepartment.TabIndex = 10;
             this.btnEditDepartment.Text = "Edit";
-            this.btnEditDepartment.UseVisualStyleBackColor = true;
+            this.btnEditDepartment.UseVisualStyleBackColor = false;
             // 
             // btnDepartmentsClearSelected
             // 
@@ -1819,7 +1848,7 @@ namespace MediaBazaarApp
             this.lbxAllDepartments.FormattingEnabled = true;
             this.lbxAllDepartments.HorizontalScrollbar = true;
             this.lbxAllDepartments.ItemHeight = 18;
-            this.lbxAllDepartments.Location = new System.Drawing.Point(30, 73);
+            this.lbxAllDepartments.Location = new System.Drawing.Point(30, 105);
             this.lbxAllDepartments.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAllDepartments.Name = "lbxAllDepartments";
             this.lbxAllDepartments.Size = new System.Drawing.Size(601, 472);
@@ -1827,6 +1856,7 @@ namespace MediaBazaarApp
             // 
             // gbxCreateDeparmtent
             // 
+            this.gbxCreateDeparmtent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.gbxCreateDeparmtent.Controls.Add(this.btnCreateDepartment);
             this.gbxCreateDeparmtent.Controls.Add(this.cbDepartmentManager);
             this.gbxCreateDeparmtent.Controls.Add(this.lbDepartmentManager);
@@ -1886,17 +1916,6 @@ namespace MediaBazaarApp
             this.lbDepartmentName.Size = new System.Drawing.Size(52, 18);
             this.lbDepartmentName.TabIndex = 1;
             this.lbDepartmentName.Text = "Name:";
-            // 
-            // btnShift
-            // 
-            this.btnShift.Location = new System.Drawing.Point(354, 453);
-            this.btnShift.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnShift.Name = "btnShift";
-            this.btnShift.Size = new System.Drawing.Size(322, 49);
-            this.btnShift.TabIndex = 16;
-            this.btnShift.Text = "Remove selected shift";
-            this.btnShift.UseVisualStyleBackColor = true;
-            this.btnShift.Click += new System.EventHandler(this.btnShift_Click);
             // 
             // AdministrationForm
             // 

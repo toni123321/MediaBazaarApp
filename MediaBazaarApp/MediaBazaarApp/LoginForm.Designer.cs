@@ -52,7 +52,7 @@ namespace MediaBazaarApp
             this.gbxLogIn.Controls.Add(this.tbxEmpId);
             this.gbxLogIn.Controls.Add(this.lbEmpId);
             this.gbxLogIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxLogIn.Location = new System.Drawing.Point(82, 163);
+            this.gbxLogIn.Location = new System.Drawing.Point(12, 87);
             this.gbxLogIn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxLogIn.Name = "gbxLogIn";
             this.gbxLogIn.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -132,7 +132,7 @@ namespace MediaBazaarApp
             // 
             this.lbMsg.AutoSize = true;
             this.lbMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMsg.Location = new System.Drawing.Point(143, 83);
+            this.lbMsg.Location = new System.Drawing.Point(97, 35);
             this.lbMsg.Name = "lbMsg";
             this.lbMsg.Size = new System.Drawing.Size(302, 20);
             this.lbMsg.TabIndex = 0;
@@ -142,7 +142,7 @@ namespace MediaBazaarApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 554);
+            this.ClientSize = new System.Drawing.Size(541, 424);
             this.Controls.Add(this.lbMsg);
             this.Controls.Add(this.gbxLogIn);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

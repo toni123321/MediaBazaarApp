@@ -77,6 +77,7 @@ namespace MediaBazaarApp
             // lbTime
             // 
             this.lbTime.AutoSize = true;
+            this.lbTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.lbTime.Location = new System.Drawing.Point(137, 292);
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(41, 18);
@@ -86,6 +87,7 @@ namespace MediaBazaarApp
             // lbDateDayOfWeek
             // 
             this.lbDateDayOfWeek.AutoSize = true;
+            this.lbDateDayOfWeek.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.lbDateDayOfWeek.Location = new System.Drawing.Point(137, 342);
             this.lbDateDayOfWeek.Name = "lbDateDayOfWeek";
             this.lbDateDayOfWeek.Size = new System.Drawing.Size(125, 18);
@@ -185,6 +187,7 @@ namespace MediaBazaarApp
             // lbxHistoryShelfRestockRequests
             // 
             this.lbxHistoryShelfRestockRequests.FormattingEnabled = true;
+            this.lbxHistoryShelfRestockRequests.HorizontalScrollbar = true;
             this.lbxHistoryShelfRestockRequests.ItemHeight = 18;
             this.lbxHistoryShelfRestockRequests.Location = new System.Drawing.Point(109, 127);
             this.lbxHistoryShelfRestockRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
