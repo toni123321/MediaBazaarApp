@@ -9,8 +9,8 @@ namespace MediaBazaarApp
     public class Department
     {
         //Fields
-        private static int id;
-        private int deptId;
+        private int id;
+        private string deptId;
         private string name;
         private Employee manager;
         private List<Employee> employees;
@@ -18,10 +18,16 @@ namespace MediaBazaarApp
         //Properties
         public int Id
         {
-            get { return this.Id; }
+            set
+            {
+                this.id = value;
+                string firstLetters = this.Name.Substring(0, 2);
+                this.deptId = $"{firstLetters}{id}";
+            }
+            get { return id; }
         }
 
-        public int DeptId
+        public string DeptId
         {
             get { return this.deptId; }
         }
@@ -38,35 +44,88 @@ namespace MediaBazaarApp
             set { this.manager = value; }
         }
 
-        //Constructor
-        public Department(string name, Employee manager)
+        //Constructors
+        public Department(int id, string name)
         {
+            
+            this.name = name;
+            employees = new List<Employee>();
+            this.Id = id;
+
+            //string firstLetters = this.name.Substring(0, 2);
+            //dept id
+            //deptId = $"{firstLetters}{id}";
+
+            //static id
+            //id++;
+        }
+        public Department(int id, string name, Employee manager)
+        {
+            
             this.name = name;
             this.manager = manager;
             employees = new List<Employee>();
+            this.Id = id;
+
+            string firstLetters = this.name.Substring(0, 2);
+            //dept id
+            //deptId = $"{firstLetters}{id}";
 
             //static id
-
-            //dept id
-
+            //id++;
         }
 
         //Methods
-        public Employee GetEmployee(int id)
+        public Employee GetEmployeeById(int id)
         {
+            foreach (Employee emp in employees)
+            {
+                if (emp.Id == id)
+                {
+                    return emp;
+                }
+            }
             return null;
         }
 
-        public bool AddEmployee(string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email, 
-            string phoneNumber, string street, string city, string country, string postcode, EmploymentType employmentType, 
-            string position, double hourlyWages, Department department)
+        public Employee GetEmployeeByEmail(string email)
         {
-            return true;
+            foreach (Employee emp in employees)
+            {
+                if(emp.Email == email)
+                {
+                    return emp;
+                }
+            }
+            return null;
+        }
+        
+
+        public bool AddEmployee(int id, string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email, 
+            string phoneNumber, string street, string city, string country, string postcode, string bsn,
+            string emConName, EmergencyContactRelation emConRelation, string emConEmail, string emConPhoneNum,
+            EmploymentType employmentType, double hourlyWages, Department department)
+        {
+            if (GetEmployeeByEmail(email) == null)
+            {
+                Employee newEmp = new Employee(id, firstName, lastName, dateOfBirth, gender, email, phoneNumber,
+                    street, city, country, postcode, bsn, emConName, emConRelation, emConEmail, emConPhoneNum, 
+                    employmentType, hourlyWages, department);
+                employees.Add(newEmp);
+                return true;
+            }
+            return false;
         }
 
-        public bool RemoveEmployee(int id)
+        public bool RemoveEmployee(string email)
         {
-            return true;
+            Employee currEmp = GetEmployeeByEmail(email);
+            if (currEmp != null)
+            {
+                employees.Remove(currEmp);
+                return true;
+            }
+            return false;
         }
 
         public List<Employee> GetAllEmployees()
@@ -77,9 +136,9 @@ namespace MediaBazaarApp
         public override string ToString()
         {
             // TODO
-            return base.ToString();
+            return $"DepId:{this.DeptId}; Name:{this.name}";
         }
 
-
+       
     }
 }
