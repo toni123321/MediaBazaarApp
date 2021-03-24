@@ -29,6 +29,7 @@ namespace MediaBazaarApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AssignWorkShiftsManuallyForm));
             this.lbEmpInfo = new System.Windows.Forms.Label();
             this.lbShiftType = new System.Windows.Forms.Label();
             this.lbShiftDate = new System.Windows.Forms.Label();
@@ -36,8 +37,8 @@ namespace MediaBazaarApp
             this.dtpShiftDate = new System.Windows.Forms.DateTimePicker();
             this.btnAssign = new System.Windows.Forms.Button();
             this.gbxAssignShiftManually = new System.Windows.Forms.GroupBox();
-            this.lbWFH = new System.Windows.Forms.Label();
             this.cbWFH = new System.Windows.Forms.CheckBox();
+            this.lbWFH = new System.Windows.Forms.Label();
             this.gbxAssignShiftManually.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,14 +122,6 @@ namespace MediaBazaarApp
             this.gbxAssignShiftManually.TabStop = false;
             this.gbxAssignShiftManually.Text = "Assign work shift";
             // 
-            // lbWFH
-            // 
-            this.lbWFH.AutoSize = true;
-            this.lbWFH.Location = new System.Drawing.Point(6, 158);
-            this.lbWFH.Name = "lbWFH";
-            this.lbWFH.Size = new System.Drawing.Size(0, 18);
-            this.lbWFH.TabIndex = 8;
-            // 
             // cbWFH
             // 
             this.cbWFH.AutoSize = true;
@@ -139,6 +132,14 @@ namespace MediaBazaarApp
             this.cbWFH.Text = "Working from home";
             this.cbWFH.UseVisualStyleBackColor = true;
             // 
+            // lbWFH
+            // 
+            this.lbWFH.AutoSize = true;
+            this.lbWFH.Location = new System.Drawing.Point(6, 158);
+            this.lbWFH.Name = "lbWFH";
+            this.lbWFH.Size = new System.Drawing.Size(0, 18);
+            this.lbWFH.TabIndex = 8;
+            // 
             // AssignWorkShiftsManuallyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -147,6 +148,7 @@ namespace MediaBazaarApp
             this.Controls.Add(this.gbxAssignShiftManually);
             this.Controls.Add(this.lbEmpInfo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "AssignWorkShiftsManuallyForm";
             this.Text = "AssignWorkShiftsManuallyForm";

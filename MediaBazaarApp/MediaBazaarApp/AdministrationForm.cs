@@ -183,13 +183,6 @@ namespace MediaBazaarApp
 
         private void btnShowEmp_Click(object sender, EventArgs e)
         {
-            // Show emp by department
-            // All
-            // Administration
-            // Management
-            // Sales 
-            // Depot
-
             string departmentName;
             if (cbSelectEmpDepartment.Items.Contains(cbSelectEmpDepartment.Text))
             {
@@ -207,6 +200,9 @@ namespace MediaBazaarApp
             {
                 MessageBox.Show("Please, choose a filter to show list of employees!");
             }
+
+            DBControl dbc = new DBControl();
+            dbc.GetEmployees(this.departmentManagement);
         }
 
         private void btnRemoveEmp_Click(object sender, EventArgs e)
@@ -464,5 +460,31 @@ namespace MediaBazaarApp
             }
         }
 
+        private void btnScheduleClearSelected_Click(object sender, EventArgs e)
+        {
+            ClearSelectionSchedule();
+        }
+
+        private void ClearSelectionSchedule()
+        {
+            lbxSelectedEmpShifts.SelectedIndex = -1;
+            lbxScheduleAllEmp.SelectedIndex = -1;
+        }
+
+        private void lbxScheduleAllEmp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Employee emp = null;
+            emp = (Employee)lbxScheduleAllEmp.SelectedItem;
+
+            lbxSelectedEmpShifts.Items.Clear();
+
+            if (emp.GetAllShifts() != null)
+            {
+                foreach (Shift s in emp.GetAllShifts())
+                {
+                    lbxSelectedEmpShifts.Items.Add(s.ToString());
+                }
+            }
+        }
     }
 }

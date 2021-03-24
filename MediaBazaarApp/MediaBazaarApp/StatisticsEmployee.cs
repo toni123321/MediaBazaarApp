@@ -14,28 +14,46 @@ namespace MediaBazaarApp
             return employees;
         }
         
-        public string EmpPerDepToString(List<Department> departments)
+        public List<string> EmpPerDepToString(List<Department> departments)
         {
+
+            List<string> results = new List<string>();
+
             foreach (Department d in departments)
             {
-                return ($"{d.Name} has {d.GetAllEmployees().Count} employees");
+                results.Add($"{d.Name} has {d.GetAllEmployees().Count} employees");
             }
-            return null;
+            return results;
         }
         public int CalculateNrOfEmployees(List<Employee> employees)
         {
             return employees.Count;
         }
-        public double AveregeWagePerDepartmenr(Department department, List<Employee> employees)
+        public double AveregeWageOfEmployee(List<Employee> employees)
         {
             int nrOfEmployees = employees.Count;
-            double wagesSum = employees.Sum(wgs => wgs.HourlyWages);
-            return wagesSum / nrOfEmployees;
+            //   double wagesSum = employees.Sum(wgs => wgs.HourlyWages);
+            double wagesum = 0;
+            for (int q = 0; q < employees.Count; q++)
+            {
+                wagesum += employees[q].HourlyWages;
+            }
+            return wagesum / nrOfEmployees;
         }
-     
-        
 
-        
 
-}
+        public List<string> AveregeWagePerDepartmenr(List<Department> departments, List<Employee> employees)
+        {
+            List<string> results = new List<string>();
+
+            foreach (Department d in departments)
+            {
+                results.Add($"Department: {d.Name} / Averege wage = €{AveregeWageOfEmployee(d.GetAllEmployees())}");
+            }
+
+            return results;
+        }
+
+
+    }
 }
