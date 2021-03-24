@@ -27,14 +27,18 @@ namespace MediaBazaarApp
 
         public DBControl()
         {
-            this.ConnString = "Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345;";
-
+            //this.ConnString = "Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345";
+            this.ConnString = "Server=localhost;Uid=root;Database=dbi453373;Pwd=123";
             // Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=yourPassword;
             //conn = new MySqlConnection("Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345;");
 
         }
 
-        public void AddEmployee(Employee emp)
+        // Employees
+        public void AddEmployee(string fname, string lname, DateTime dateOfBirth, Gender gender, string email,
+            string phone, string street, string city, string country, string postcode, string bsn, 
+            string emConName, EmergencyContactRelation emConRelation, string emConEmail, string emConPhone, 
+            EmploymentType empType, double hourlyWages, Department department)
         {
             try
             {
@@ -50,31 +54,31 @@ namespace MediaBazaarApp
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    cmd.Parameters.AddWithValue("@fname", emp.FirstName);
-                    cmd.Parameters.AddWithValue("@lname", emp.LastName);
-                    cmd.Parameters.AddWithValue("@dob", emp.DateOfBirth);
+                    cmd.Parameters.AddWithValue("@fname", fname);
+                    cmd.Parameters.AddWithValue("@lname", lname);
+                    cmd.Parameters.AddWithValue("@dob", dateOfBirth);
 
-                    cmd.Parameters.AddWithValue("@gender", Convert.ToInt32(emp.Gender) + 1);
-                    cmd.Parameters.AddWithValue("@email", emp.Email);
-                    cmd.Parameters.AddWithValue("@phone", emp.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@gender", Convert.ToInt32(gender) + 1);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@phone", phone);
 
-                    cmd.Parameters.AddWithValue("@street", emp.Street);
-                    cmd.Parameters.AddWithValue("@city", emp.City);
-                    cmd.Parameters.AddWithValue("@country", emp.Country);
+                    cmd.Parameters.AddWithValue("@street", street);
+                    cmd.Parameters.AddWithValue("@city", city);
+                    cmd.Parameters.AddWithValue("@country", country);
 
-                    cmd.Parameters.AddWithValue("@postcode", emp.Postcode);
-                    cmd.Parameters.AddWithValue("@bsn", emp.Bsn);
-                    cmd.Parameters.AddWithValue("@emConName", emp.EmConName);
-                    cmd.Parameters.AddWithValue("@emConRelation", Convert.ToInt32(emp.EmConRelation) + 1);
-                    cmd.Parameters.AddWithValue("@emConEmail", emp.EmConEmail);
-                    cmd.Parameters.AddWithValue("@emConPhone", emp.EmConPhoneNum);
+                    cmd.Parameters.AddWithValue("@postcode", postcode);
+                    cmd.Parameters.AddWithValue("@bsn", bsn);
+                    cmd.Parameters.AddWithValue("@emConName", emConName);
+                    cmd.Parameters.AddWithValue("@emConRelation", Convert.ToInt32(emConRelation) + 1);
+                    cmd.Parameters.AddWithValue("@emConEmail", emConEmail);
+                    cmd.Parameters.AddWithValue("@emConPhone", emConPhone);
 
                     int employmentTypeInt = 0;
-                    if (emp.EmploymentType == EmploymentType.FULLTIME)
+                    if (empType == EmploymentType.FULLTIME)
                     {
                         employmentTypeInt = 1;
                     }
-                    else if (emp.EmploymentType == EmploymentType.PARTTIME1)
+                    else if (empType == EmploymentType.PARTTIME1)
                     {
                         employmentTypeInt = 2;
                     }
@@ -84,11 +88,11 @@ namespace MediaBazaarApp
                     }
 
                     cmd.Parameters.AddWithValue("@employmentType", employmentTypeInt);
-                    cmd.Parameters.AddWithValue("@hourlyWages", emp.HourlyWages);
-                    cmd.Parameters.AddWithValue("@depId", emp.Department.Id);
+                    cmd.Parameters.AddWithValue("@hourlyWages", hourlyWages);
+                    cmd.Parameters.AddWithValue("@depId", department.Id);
 
 
-                    cmd.Parameters.AddWithValue("@remainingHolidayDays", emp.RemainingHolidayDays);
+                    cmd.Parameters.AddWithValue("@remainingHolidayDays", 50);
 
                     conn.Open();
 
@@ -212,7 +216,246 @@ namespace MediaBazaarApp
                 MessageBox.Show(ex.Message);
             }
         }
+        public void GetEmployees(DepartmentManagement departmentManagement)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
 
+                    string sql = "SELECT e.*, d.Name FROM employee as e " +
+                                 "inner join department as d " +
+                                 "on e.DepartmentID = d.ID";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        int id = Convert.ToInt32(dr[0]);
+                        string fname = dr[1].ToString();
+                        string lname = dr[2].ToString();
+                        DateTime dob = (DateTime)dr[3];
+                        Gender gender = (Gender)Enum.Parse(typeof(Gender), dr[4].ToString());
+                        string email = dr[5].ToString();
+                        string phone = dr[6].ToString();
+                        string street = dr[7].ToString();
+                        string city = dr[8].ToString();
+                        string country = dr[9].ToString();
+                        string postcode = dr[10].ToString();
+                        string bsn = dr[11].ToString();
+                        string emConName = dr[12].ToString();
+                        EmergencyContactRelation emConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation), dr[13].ToString());
+                        string emConEmail = dr[14].ToString();
+                        string emConPhone = dr[15].ToString();
+                        EmploymentType employmentType = (EmploymentType)Enum.Parse(typeof(EmploymentType), dr[16].ToString());
+                        double hourlyWages = Convert.ToDouble(dr[17]);
+                        int depId = Convert.ToInt32(dr[18]);
+                        int remainingHolidayDays = Convert.ToInt32(dr[19]);
+                        string depName = dr[20].ToString();
+
+                        Department dep = departmentManagement.GetDepartment(depName);
+                        dep.AddEmployee(id, fname, lname, dob, gender, email, phone,
+                            street, city, country, postcode, bsn, emConName, emConRelation, emConEmail,
+                            emConPhone, employmentType, hourlyWages, dep);
+                        //dep.GetEmployeeByEmail(email).Id = id;
+                        dep.GetEmployeeByEmail(email).RemainingHolidayDays = remainingHolidayDays;
+
+                    }
+                    MessageBox.Show("Successfully get employees!");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //Stocks
+        public void AddStock(string model, string brand, double price, int quantity, double height, 
+            double width, double depth, double weight, string shortDescription)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+                    string sql = "INSERT INTO stock (Brand, Model, Quantity, Price, " +
+                                 "Width, Height, Depth, Weight, ShortDescription) " +
+                                 "VALUES(@brand, @model, @quantity, @price, @width, @height, @depth, " +
+                                 "@weight, @description)";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@brand", brand);
+                    cmd.Parameters.AddWithValue("@model", model);
+                    cmd.Parameters.AddWithValue("@quantity", quantity);
+                    cmd.Parameters.AddWithValue("@price", price);
+                    cmd.Parameters.AddWithValue("@width", width);
+                    cmd.Parameters.AddWithValue("@height", height);
+                    cmd.Parameters.AddWithValue("@depth", depth);
+                    cmd.Parameters.AddWithValue("@weight", weight);
+                    cmd.Parameters.AddWithValue("@description", shortDescription);
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void RemoveStock(int id)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "DELETE from stock WHERE id=@id";
+
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void UpdateStockQuantity(Stock stock)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "UPDATE stock set Quantity=@quantity " +
+                                 "WHERE id=@id";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@quantity", stock.Quantity);
+                    cmd.Parameters.AddWithValue("@id", stock.Id);
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //:TODO: Made edit stock
+        public void EditStock(Stock stock)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "UPDATE stock " +
+                                 "set Brand = @brand, " +
+                                 "Model = @model, " +
+                                 "Quantity = @quantity, " +
+                                 "Price = @price, " +
+                                 "Width = @width, " +
+                                 "Height = @height, " +
+                                 "Depth = @depth, " +
+                                 "Weight = @weight, " +
+                                 "ShortDescription = @description " +
+                                 "WHERE id=@id";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@brand", stock.Brand);
+                    cmd.Parameters.AddWithValue("@model", stock.Model);
+                    cmd.Parameters.AddWithValue("@quantity", stock.Quantity);
+                    cmd.Parameters.AddWithValue("@price", stock.Price);
+                    cmd.Parameters.AddWithValue("@width", stock.Width);
+                    cmd.Parameters.AddWithValue("@height", stock.Height);
+                    cmd.Parameters.AddWithValue("@depth", stock.Depth);
+                    cmd.Parameters.AddWithValue("@weight", stock.Weight);
+                    cmd.Parameters.AddWithValue("@description", stock.ShortDescription);
+                    cmd.Parameters.AddWithValue("@id", stock.Id);
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void GetStocks(StockManagement stockManagement)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "SELECT * FROM stock";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        int id = Convert.ToInt32(dr[0]);
+                        string brand = dr[1].ToString();
+                        string model = dr[2].ToString();
+                        int quantity = Convert.ToInt32(dr[3]);
+                        double price = Convert.ToDouble(dr[4]);
+                        double width = Convert.ToDouble(dr[5]);
+                        double height = Convert.ToDouble(dr[6]);
+                        double depth = Convert.ToDouble(dr[7]);
+                        double weight = Convert.ToDouble(dr[8]);
+                        string description = dr[9].ToString();
+
+                        stockManagement.AddStock(id, model, brand, price, quantity, height, width, depth, 
+                            weight, description);
+                        
+
+                    }
+                    MessageBox.Show("Successfully got stocks!");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        // Departments
         public void AddDepartment(Department dep)
         {
             try
@@ -300,64 +543,7 @@ namespace MediaBazaarApp
             }
         }
 
-        public void GetEmployees(DepartmentManagement departmentManagement)
-        {
-            try
-            {
-                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
-                {
-
-                    string sql = "SELECT e.*, d.Name FROM employee as e " +
-                                 "inner join department as d " +
-                                 "on e.DepartmentID = d.ID";
-
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                    conn.Open();
-
-                    MySqlDataReader dr = cmd.ExecuteReader();
-
-                    while (dr.Read())
-                    {
-                        int id = Convert.ToInt32(dr[0]);
-                        string fname = dr[1].ToString();
-                        string lname = dr[2].ToString();
-                        DateTime dob = (DateTime)dr[3];
-                        Gender gender = (Gender)Enum.Parse(typeof(Gender), dr[4].ToString());
-                        string email = dr[5].ToString();
-                        string phone = dr[6].ToString();
-                        string street = dr[7].ToString();
-                        string city = dr[8].ToString();
-                        string country = dr[9].ToString();
-                        string postcode = dr[10].ToString();
-                        string bsn = dr[11].ToString();
-                        string emConName = dr[12].ToString();
-                        EmergencyContactRelation emConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation), dr[13].ToString());
-                        string emConEmail = dr[14].ToString();
-                        string emConPhone = dr[15].ToString();
-                        EmploymentType employmentType = (EmploymentType)Enum.Parse(typeof(EmploymentType), dr[16].ToString());
-                        double hourlyWages = Convert.ToDouble(dr[17]);
-                        int depId = Convert.ToInt32(dr[18]);
-                        int remainingHolidayDays = Convert.ToInt32(dr[19]);
-                        string depName = dr[20].ToString();
-
-                        Department dep = departmentManagement.GetDepartment(depName);
-                        dep.AddEmployee(fname, lname, dob, gender, email, phone,
-                            street, city, country, postcode, bsn, emConName, emConRelation, emConEmail,
-                            emConPhone, employmentType, hourlyWages, dep);
-                        dep.GetEmployeeByEmail(email).Id = id;
-                        dep.GetEmployeeByEmail(email).RemainingHolidayDays = remainingHolidayDays;
-
-                    }
-                    MessageBox.Show("Successfully get employees!");
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
 
         public void SetDepartmentManagers(DepartmentManagement departmentManagement)
         {

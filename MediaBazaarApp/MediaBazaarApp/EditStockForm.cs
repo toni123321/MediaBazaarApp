@@ -23,7 +23,7 @@ namespace MediaBazaarApp
             tbxStockBrand.Text = stock.Brand;
             tbxStockModel.Text = stock.Model;
             tbxStockPrice.Text = stock.Price.ToString();
-            tbxStockQuantity.Text = stock.Price.ToString();
+            tbxStockQuantity.Text = stock.Quantity.ToString();
             tbxStockHeight.Text = stock.Height.ToString();
             tbxStockDepth.Text = stock.Depth.ToString();
             tbxStockWidth.Text = stock.Width.ToString();
@@ -53,6 +53,8 @@ namespace MediaBazaarApp
                 }
                 MessageBox.Show("Changes applied.");
                 parent.StockListBoxRefresh();
+                DBControl dbControl = new DBControl();
+                dbControl.EditStock(stock);
                 this.Close();
             }
             else
