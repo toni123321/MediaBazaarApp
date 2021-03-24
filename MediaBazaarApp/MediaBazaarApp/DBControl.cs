@@ -97,7 +97,6 @@ namespace MediaBazaarApp
                     conn.Open();
 
                     int effectedRows = cmd.ExecuteNonQuery();
-                    //MessageBox.Show("Successfully added an employee!");
                 }
             }
             catch (Exception ex)
@@ -126,7 +125,6 @@ namespace MediaBazaarApp
                     conn.Open();
 
                     int effectedRows = cmd.ExecuteNonQuery();
-                    //MessageBox.Show($"Successfully removed employee with id:{id}!");
                 }
             }
             catch (Exception ex)
@@ -265,7 +263,6 @@ namespace MediaBazaarApp
                         dep.GetEmployeeByEmail(email).RemainingHolidayDays = remainingHolidayDays;
 
                     }
-                    MessageBox.Show("Successfully get employees!");
                 }
             }
             catch (Exception ex)
@@ -444,7 +441,6 @@ namespace MediaBazaarApp
                         
 
                     }
-                    MessageBox.Show("Successfully got stocks!");
                 }
             }
             catch (Exception ex)
@@ -472,7 +468,6 @@ namespace MediaBazaarApp
                     conn.Open();
 
                     int effectedRows = cmd.ExecuteNonQuery();
-                    MessageBox.Show("Successfully added a deparmtent!");
                 }
             }
             catch (Exception ex)
@@ -499,7 +494,6 @@ namespace MediaBazaarApp
                     conn.Open();
 
                     int effectedRows = cmd.ExecuteNonQuery();
-                    MessageBox.Show("Successfully updated this deparmtent!");
                 }
             }
             catch (Exception ex)
@@ -533,7 +527,6 @@ namespace MediaBazaarApp
                         
 
                     }
-                    MessageBox.Show("Successfully get deparmtents!");
                 }
             }
             catch (Exception ex)
@@ -574,7 +567,6 @@ namespace MediaBazaarApp
                         }
 
                     }
-                    MessageBox.Show("Successfully set managers!");
                 }
             }
             catch (Exception ex)
@@ -681,7 +673,6 @@ namespace MediaBazaarApp
                         
 
                     }
-                    MessageBox.Show("Successfully got shifts!");
                 }
             }
             catch (Exception ex)
@@ -803,7 +794,6 @@ namespace MediaBazaarApp
 
                         salesManagement.AddRequest(stockManagement.GetStock(stockID), requestedQuantity, senderID, status);
                     }
-                    MessageBox.Show("Successfully got shelf stock requests!");
                 }
             }
             catch (Exception ex)
