@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace MediaBazaarApp
 {
-    public enum EmploymentType
+    public enum SRRstatus
     {
-        FULLTIME = 10,
-        PARTTIME1 = 8,
-        PARTTIME2 = 6
-
+        Done, Declined, Pending
     }
 }

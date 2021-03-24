@@ -8,21 +8,29 @@ namespace MediaBazaarApp
 {
     public class StatisticsStock
     {
-        public List<Stock> GetLowestPrice()
+       
+        public List<Stock> GetLowestPrice(List<Stock> stocks)
         {
-            return null;
+            List<Stock> LowestPriceList = stocks.OrderBy(o => o.Price).ToList();
+            return LowestPriceList;
         }
-        public List<Stock> GetHighestPrice()
+
+        public List<Stock> GetHighestPrice(List<Stock> stocks)
         {
-            return null;
+            List<Stock> HighestPriceList = stocks.OrderBy(o => o.Price).ToList();
+            HighestPriceList.Reverse();
+            return HighestPriceList;
         }
-        public List<Stock> GetSmallestQuantity()
+        public List<Stock> GetSmallestQuantity(List<Stock> stocks)
         {
-            return null;
+            List<Stock> SmallestQuantityFirst = stocks.OrderBy(o => o.Quantity).ToList();
+            return SmallestQuantityFirst;
         }
-        public List<Stock> GetBiggestQuantity()
+        public List<Stock> GetBiggestQuantity(List<Stock> stocks)
         {
-            return null;
+            List<Stock> BiggestQuantityFirst = stocks.OrderBy(o => o.Quantity).ToList();
+            BiggestQuantityFirst.Reverse();
+            return BiggestQuantityFirst;
         }
     }
 }

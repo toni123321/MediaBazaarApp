@@ -8,22 +8,52 @@ namespace MediaBazaarApp
 {
     public class StatisticsEmployee
     {
-        public List<Employee> GetAllEmployees()
+        
+        public List<Employee> GetAllEmployees(List<Employee> employees)
         {
-            return null;
+            return employees;
         }
-        public List<Employee> EmployeesPerDepartment(Department department)
+        
+        public List<string> EmpPerDepToString(List<Department> departments)
         {
-            return null;
+
+            List<string> results = new List<string>();
+
+            foreach (Department d in departments)
+            {
+                results.Add($"{d.Name} has {d.GetAllEmployees().Count} employees");
+            }
+            return results;
         }
-        public double CalculateAveregeWagePerEmployee()
+        public int CalculateNrOfEmployees(List<Employee> employees)
         {
-            return 0;
+            return employees.Count;
         }
-        public double AveregeWagePerDepartmenr(Department department)
+        public double AveregeWageOfEmployee(List<Employee> employees)
         {
-            return 0;
+            int nrOfEmployees = employees.Count;
+            //   double wagesSum = employees.Sum(wgs => wgs.HourlyWages);
+            double wagesum = 0;
+            for (int q = 0; q < employees.Count; q++)
+            {
+                wagesum += employees[q].HourlyWages;
+            }
+            return wagesum / nrOfEmployees;
         }
+
+
+        public List<string> AveregeWagePerDepartmenr(List<Department> departments, List<Employee> employees)
+        {
+            List<string> results = new List<string>();
+
+            foreach (Department d in departments)
+            {
+                results.Add($"Department: {d.Name} / Averege wage = €{AveregeWageOfEmployee(d.GetAllEmployees())}");
+            }
+
+            return results;
+        }
+
 
     }
 }

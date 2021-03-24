@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MediaBazaarApp
 {
-    public enum EmploymentType
+    public enum EmergencyContactRelation
     {
-        FULLTIME = 10,
-        PARTTIME1 = 8,
-        PARTTIME2 = 6
-
+        Family,
+        Friend,
+        Colleague,
+        Other
     }
 }

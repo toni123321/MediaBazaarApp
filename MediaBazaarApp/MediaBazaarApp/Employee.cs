@@ -3,27 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace MediaBazaarApp
 {
     public class Employee
     {
         //Fields
-        private static int id;
+        private int id;
+        //private static int idCounter = 1;
+
+        //Personal Information
         private string firstName;
         private string lastName;
         private DateTime dateOfBirth;
         private Gender gender;
 
+        //Contact details
         private string email;
         private string phoneNumber;
         private string street;
         private string city;
         private string country;
         private string postcode;
+        private string bsn = "999999990";
+        
+        //Emergency contact detials
+        private string emConName;
+        private EmergencyContactRelation emConRelation;
+        private string emConEmail;
+        private string emConPhoneNum;
+
+
+        // Job specifications
         private EmploymentType employmentType;
         private double hourlyWages;
-        private string position;
         private Department department;
 
         private int remainingHolidayDays;
@@ -33,8 +47,11 @@ namespace MediaBazaarApp
         //Properties
         public int Id
         {
-            get { return this.Id; }
+            set { this.id = value;}
+            get { return this.id; }
         }
+
+        // Personal information
         public string FirstName
         {
             get { return this.firstName; }
@@ -55,6 +72,8 @@ namespace MediaBazaarApp
             get { return this.gender; }
             set { this.gender = value; }
         }
+
+        //Contact details
         public string Email
         {
             get { return this.email; }
@@ -85,6 +104,39 @@ namespace MediaBazaarApp
             get { return this.postcode; }
             set { this.postcode = value; }
         }
+
+        public string Bsn
+        {
+            get { return this.bsn; }
+            set { this.bsn = value; }
+        }
+
+        //Emergency contact details
+        public string EmConName
+        {
+            get { return this.emConName; }
+            set { this.emConName = value; }
+        }
+
+        public EmergencyContactRelation EmConRelation
+        {
+            get { return this.emConRelation; }
+            set { this.emConRelation = value; }
+        }
+
+        public string EmConEmail
+        {
+            get { return this.emConEmail; }
+            set { this.emConEmail = value; }
+        }
+
+        public string EmConPhoneNum
+        {
+            get { return this.emConPhoneNum; }
+            set { this.emConPhoneNum = value; }
+        }
+
+        //Job specifications
         public EmploymentType EmploymentType
         {
             get { return this.employmentType; }
@@ -94,11 +146,6 @@ namespace MediaBazaarApp
         {
             get { return this.hourlyWages; }
             set { this.hourlyWages = value; }
-        }
-        public string Position
-        {
-            get { return this.position; }
-            set { this.position = value; }
         }
         public Department Department
         {
@@ -112,61 +159,143 @@ namespace MediaBazaarApp
         }
 
         //Constructor
-        public Employee(string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email,
-            string phoneNumber, string street, string city, string country, string postcode, EmploymentType employmentType,
-            string position, double hourlyWages, Department department)
+        public Employee(int id, string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email,
+            string phoneNumber, string street, string city, string country, string postcode, string bsn, string emConName, 
+            EmergencyContactRelation emConRelation, string emConEmail, string emConPhoneNum, EmploymentType employmentType,
+            double hourlyWages, Department department)
         {
+            this.id = id;
+            //Personal information
             this.firstName = firstName;
             this.lastName = lastName;
             this.dateOfBirth = dateOfBirth;
             this.gender = gender;
 
+            // Contact details
             this.email = email;
             this.phoneNumber = phoneNumber;
             this.street = street;
             this.city = city;
             this.country = country;
             this.postcode = postcode;
+            
+            if (bsn != "")
+            {
+                this.bsn = bsn;
+            }
 
+            //Emergency contact details
+            this.emConName = emConName;
+            this.emConRelation = emConRelation;
+            this.emConEmail = emConEmail;
+            this.emConPhoneNum = emConPhoneNum;
+
+            //Job specification
             this.employmentType = employmentType;
-            this.position = position;
             this.hourlyWages = hourlyWages;
             this.department = department;
 
             shifts = new List<Shift>();
 
-            //static id
+            // id 
+            // id = idCounter;
+            // idCounter++;
+
         }
 
         //Methods
         public override string ToString()
         {
             //TODO
-            return base.ToString();
+            return $"Id:{this.Id} - {this.firstName} {this.lastName}";
         }
         public int Attendance(int days)
         {
             return 0;
         }
-        public bool AddShift(ShiftType type , DateTime date, Employee assignedBy)
+
+        public bool AddShift(int id, ShiftType type, DateTime date, int assignedBy, bool wfh)
         {
-            return true;
+            int totalShiftsPerWeek = 0;
+
+            foreach (Shift s in shifts)
+            {
+                if (GetIso8601WeekOfYear(s.Date) == GetIso8601WeekOfYear(date))
+                {
+                    totalShiftsPerWeek++;
+                }
+            }
+
+            if (totalShiftsPerWeek <= (int)this.employmentType)
+            {
+                shifts.Add(new Shift(id, type, date, assignedBy, wfh));
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public bool RemoveShift(int id)
         {
-            return true;
+            foreach (Shift s in shifts)
+            {
+                if (s.ID == id)
+                {
+                    shifts.Remove(s);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool ManageAttendance(int id, char a, string reason)
+        {
+            Shift shift = GetShift(id);
+
+            if (a == 'y' || a == 'n')
+            {
+                shift.ChangeAttendance(a, reason);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         public Shift GetShift(int id)
         {
+            foreach (Shift s in shifts)
+            {
+                if (s.ID == id)
+                {
+                    return s;
+                }
+            }
+
             return null;
         }
 
         public List<Shift> GetAllShifts()
         {
             return shifts;
-        } 
+        }
 
+        public static int GetIso8601WeekOfYear(DateTime time)
+        {
+            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
+            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
+            {
+                time = time.AddDays(3);
+            }
+
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+        }
+
+        
 
     }
 }
