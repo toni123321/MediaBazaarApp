@@ -8,6 +8,6 @@ namespace MediaBazaarApp
 {
     public enum SRRstatus
     {
-        DONE, PENDING, DECLINED
+        Done, Declined, Pending
     }
 }

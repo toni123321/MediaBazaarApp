@@ -30,6 +30,7 @@ namespace MediaBazaarApp
 
             lbGreetingMsg.Text = $"Hello, {currentEmp.FirstName}";
 
+           // dbc.GetShelfRestockRequests(salesManagement, stockManagement);
             UpdateRequestListboxes();
         }
 
@@ -51,11 +52,14 @@ namespace MediaBazaarApp
 
         private void UpdateRequestListboxes()
         {
+            lbxAllShelfRestockRequests.Items.Clear();
+            lbxHistoryShelfRestockRequests.Items.Clear();
+
             if (salesManagement != null)
             {
                 foreach (ShelfRestockRequest srr in salesManagement.GetAllSRRRequests())
                 {
-                    if (srr.Status == SRRstatus.PENDING)
+                    if (srr.Status == SRRstatus.Pending)
                     {
                         lbxAllShelfRestockRequests.Items.Add(srr);
                     }
@@ -64,16 +68,14 @@ namespace MediaBazaarApp
                         lbxHistoryShelfRestockRequests.Items.Add(srr);
                     }
                 }
-
-                UpdateRequestListboxes();
             }
         }
 
         private void btnShelftRestockRequestsMarkAsDone_Click(object sender, EventArgs e)
         {
             ShelfRestockRequest request = (ShelfRestockRequest)lbxAllShelfRestockRequests.SelectedItem;
-            dbc.UpdateShelfRestockStatus(request, SRRstatus.DONE);
-            dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
+            dbc.UpdateShelfRestockStatus(request, SRRstatus.Done);
+            //dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
 
             lbxAllShelfRestockRequests.SelectedIndex = -1;
 
@@ -83,8 +85,8 @@ namespace MediaBazaarApp
         private void btnShelftRestockRequestsDecline_Click(object sender, EventArgs e)
         {
             ShelfRestockRequest request = (ShelfRestockRequest)lbxAllShelfRestockRequests.SelectedItem;
-            dbc.UpdateShelfRestockStatus(request, SRRstatus.DECLINED);
-            dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
+            dbc.UpdateShelfRestockStatus(request, SRRstatus.Declined);
+            //dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
 
             lbxAllShelfRestockRequests.SelectedIndex = -1;
 
