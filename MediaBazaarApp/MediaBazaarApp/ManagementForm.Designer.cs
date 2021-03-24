@@ -215,11 +215,10 @@ namespace MediaBazaarApp
             // 
             this.cbStatisticType.FormattingEnabled = true;
             this.cbStatisticType.Items.AddRange(new object[] {
-            "highest price",
             "lowest price",
-            "biggest quantity",
+            "highest price",
             "smallest quantity",
-            ""});
+            "biggest quantity"});
             this.cbStatisticType.Location = new System.Drawing.Point(177, 37);
             this.cbStatisticType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbStatisticType.Name = "cbStatisticType";
