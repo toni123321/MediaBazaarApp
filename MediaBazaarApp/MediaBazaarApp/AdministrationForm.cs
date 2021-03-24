@@ -183,6 +183,8 @@ namespace MediaBazaarApp
 
         private void btnShowEmp_Click(object sender, EventArgs e)
         {
+            DBControl dbc = new DBControl();
+            dbc.GetEmployees(this.departmentManagement);
             string departmentName;
             if (cbSelectEmpDepartment.Items.Contains(cbSelectEmpDepartment.Text))
             {
@@ -201,8 +203,7 @@ namespace MediaBazaarApp
                 MessageBox.Show("Please, choose a filter to show list of employees!");
             }
 
-            DBControl dbc = new DBControl();
-            dbc.GetEmployees(this.departmentManagement);
+            
         }
 
         private void btnRemoveEmp_Click(object sender, EventArgs e)

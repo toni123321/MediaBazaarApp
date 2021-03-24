@@ -14,6 +14,7 @@ namespace MediaBazaarApp
     {
         private DepartmentManagement departmentManagement;
         private Employee currEmp;
+        private Department previousDepartment;
 
         public EditEmployeeForm(DepartmentManagement departmentManagement, Employee currEmp)
         {
@@ -64,6 +65,8 @@ namespace MediaBazaarApp
             cbEmpEmploymentType.Text = currEmp.EmploymentType.ToString();
             nudEmpHourlyWages.Text = currEmp.HourlyWages.ToString();
             cbEmpDepartment.Text = currEmp.Department.Name;
+            previousDepartment = currEmp.Department;
+
         }
 
         private void EditEmployeeForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -111,6 +114,7 @@ namespace MediaBazaarApp
 
                 DBControl dbControl = new DBControl();
                 dbControl.EditEmployee(currEmp);
+                this.departmentManagement.GetDepartment(previousDepartment.Name).RemoveEmployee(currEmp.Email);
                 MessageBox.Show("You have successfully apply the new changes for this profile!");
             }
             else
