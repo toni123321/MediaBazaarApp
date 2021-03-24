@@ -27,8 +27,8 @@ namespace MediaBazaarApp
 
         public DBControl()
         {
-            //this.ConnString = "Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345";
-            this.ConnString = "Server=localhost;Uid=root;Database=dbi453373;Pwd=123";
+            this.ConnString = "Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345";
+            //this.ConnString = "Server=localhost;Uid=root;Database=dbi453373;Pwd=123";
             // Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=yourPassword;
             //conn = new MySqlConnection("Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345;");
 
@@ -456,7 +456,7 @@ namespace MediaBazaarApp
         }
 
         // Departments
-        public void AddDepartment(Department dep)
+        public void AddDepartment(string name)
         {
             try
             {
@@ -466,7 +466,7 @@ namespace MediaBazaarApp
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    cmd.Parameters.AddWithValue("@name", dep.Name);
+                    cmd.Parameters.AddWithValue("@name", name);
 
 
                     conn.Open();
@@ -528,9 +528,9 @@ namespace MediaBazaarApp
                         int id = Convert.ToInt32(dr[0]);
 
                         string depName = dr[1].ToString();
-                        departmentManagement.AddDepartment(depName);
-                        Department currDep = departmentManagement.GetDepartment(depName);
-                        currDep.Id = id;
+                        departmentManagement.AddDepartment(id, depName);
+                        //Department currDep = departmentManagement.GetDepartment(depName);
+                        
 
                     }
                     MessageBox.Show("Successfully get deparmtents!");

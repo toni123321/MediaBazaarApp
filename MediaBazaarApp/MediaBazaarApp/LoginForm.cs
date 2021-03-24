@@ -218,8 +218,8 @@ namespace MediaBazaarApp
         {
             // Add dep
             DBControl dbControl = new DBControl();
-            Department dep = new Department("TestDep");
-            dbControl.AddDepartment(dep);
+            //Department dep = new Department("TestDep");
+            //dbControl.AddDepartment(dep);
         }
 
         private void btnUpdateDepDB_Click(object sender, EventArgs e)

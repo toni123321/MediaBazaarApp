@@ -21,7 +21,7 @@ namespace MediaBazaarApp
             set
             {
                 this.id = value;
-                string firstLetters = this.name.Substring(0, 2);
+                string firstLetters = this.Name.Substring(0, 2);
                 this.deptId = $"{firstLetters}{id}";
             }
             get { return id; }
@@ -45,10 +45,12 @@ namespace MediaBazaarApp
         }
 
         //Constructors
-        public Department(string name)
+        public Department(int id, string name)
         {
+            
             this.name = name;
             employees = new List<Employee>();
+            this.Id = id;
 
             //string firstLetters = this.name.Substring(0, 2);
             //dept id
@@ -57,11 +59,13 @@ namespace MediaBazaarApp
             //static id
             //id++;
         }
-        public Department(string name, Employee manager)
+        public Department(int id, string name, Employee manager)
         {
+            
             this.name = name;
             this.manager = manager;
             employees = new List<Employee>();
+            this.Id = id;
 
             string firstLetters = this.name.Substring(0, 2);
             //dept id
@@ -132,7 +136,7 @@ namespace MediaBazaarApp
         public override string ToString()
         {
             // TODO
-            return this.name;
+            return $"DepId:{this.DeptId}; Name:{this.name}";
         }
 
        
