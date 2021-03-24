@@ -15,7 +15,7 @@ namespace MediaBazaarApp
         public int SenderID { get; }
         public SRRstatus Status { get; set; }
 
-        public ShelfRestockRequest(Stock stock, int quantity, int senderID)
+        public ShelfRestockRequest(Stock stock, int quantity, int senderID, SRRstatus status)
         {
             counterId++;
 
@@ -23,7 +23,7 @@ namespace MediaBazaarApp
             this.Stock = stock;
             this.RequestedQuantity = quantity;
             this.SenderID = senderID;
-            this.Status = SRRstatus.PENDING;
+            this.Status = status;
         }
 
         public override string ToString()

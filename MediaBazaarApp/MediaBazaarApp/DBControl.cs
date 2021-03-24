@@ -759,12 +759,12 @@ namespace MediaBazaarApp
                 {
                     string sql = "UPDATE shelfrestockrequest " +
                                  "set status = @status " +
-                                 "where id = @requestID";
+                                 "where ID = @requestID";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
                     cmd.Parameters.AddWithValue("@requestID", srr.ID);
-                    cmd.Parameters.AddWithValue("@status", Convert.ToInt32(srr.Status) + 1);
+                    cmd.Parameters.AddWithValue("@status", Convert.ToInt32(status) + 1);
 
 
                     conn.Open();
@@ -801,7 +801,7 @@ namespace MediaBazaarApp
                         int senderID = Convert.ToInt32(dr[3]);
                         SRRstatus status = (SRRstatus)Enum.Parse(typeof(SRRstatus), dr[4].ToString());
 
-                        salesManagement.AddRequest(stockManagement.GetStock(stockID), requestedQuantity, senderID);
+                        salesManagement.AddRequest(stockManagement.GetStock(stockID), requestedQuantity, senderID, status);
                     }
                     MessageBox.Show("Successfully got shelf stock requests!");
                 }

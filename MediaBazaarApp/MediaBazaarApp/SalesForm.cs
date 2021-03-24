@@ -71,7 +71,7 @@ namespace MediaBazaarApp
             Stock stock = (Stock)lbxAllStocks.SelectedItem;
             int quantity = Convert.ToInt32(tbxStockQuantity.Text);
 
-            dbc.AddShelfRestockRequest(new ShelfRestockRequest(stock, quantity, this.currentEmp.Id));
+            dbc.AddShelfRestockRequest(new ShelfRestockRequest(stock, quantity, this.currentEmp.Id, SRRstatus.Pending));
             dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
 
             //salesManagement.AddRequest(stock, quantity, this.currentEmp.Id);
