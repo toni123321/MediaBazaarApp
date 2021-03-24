@@ -55,7 +55,7 @@ namespace MediaBazaarApp
         {
             foreach (ShelfRestockRequest srr in salesManagement.GetAllSRRRequests())
             {
-                lbxHistoryShelfRestockRequests.Items.Add(srr);
+                lbxHistoryShelfRestockRequests.Items.Add(srr.ToString());
             }
         }
 
@@ -63,7 +63,7 @@ namespace MediaBazaarApp
         {
             Stock stock = (Stock)lbxAllStocks.SelectedItem;
             gbxStockChooseQuantity.Visible = true;
-            lbStockQuantity.Text = $"{stock.Brand} {stock.Model}";
+            lbStockInfo.Text = $"{stock.Brand} {stock.Model}";
         }
 
         private void btnConfirmRequest_Click(object sender, EventArgs e)
@@ -78,6 +78,8 @@ namespace MediaBazaarApp
 
             gbxStockChooseQuantity.Visible = false;
             lbStockQuantity.Text = "";
+
+            UpdateHistoryListBox();
         }
 
         private void btnSearchStock_Click(object sender, EventArgs e)
@@ -88,6 +90,21 @@ namespace MediaBazaarApp
                 {
                     lbxAllStocks.Items.Add(s);
                 }
+            }
+        }
+
+        private void SalesForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnShowAllStocks_Click_1(object sender, EventArgs e)
+        {
+            lbxAllStocks.Items.Clear();
+
+            foreach (Stock s in stockManagement.GetAllStocks())
+            {
+                lbxAllStocks.Items.Add(s);
             }
         }
     }

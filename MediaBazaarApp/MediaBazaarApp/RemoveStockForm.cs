@@ -27,12 +27,12 @@ namespace MediaBazaarApp
 
         private void RemoveStockBTN_Click(object sender, EventArgs e)
         {
-            stockManagement.RemoveStock(stock);
-            DBControl dbControl = new DBControl();
-            dbControl.RemoveStock(stock.Id);
-            MessageBox.Show($"Stock ID: {stock.Id} - Brand: {stock.Brand} - Model: {stock.Model} was removed.");
-            parent.StockListBoxRefresh();
-            this.Close();
+                stockManagement.RemoveStock(stock);
+                DBControl dbControl = new DBControl();
+                dbControl.RemoveStock(stock.Id);
+                MessageBox.Show($"Stock ID: {stock.Id} - Brand: {stock.Brand} - Model: {stock.Model} was removed.");
+                parent.StockListBoxRefresh();
+                this.Close();
         }
 
         private void RemoveAmountBTN_Click(object sender, EventArgs e)

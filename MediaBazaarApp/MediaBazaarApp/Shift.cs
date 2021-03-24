@@ -46,6 +46,19 @@ namespace MediaBazaarApp
             }
         }
 
+        public override string ToString()
+        {
+            if (this.WFH == true)
+            {
+                return $"[WFH][{this.Type}] {this.Date.ToString("dd/MM/yyyy")}";
+            }
+            else
+            {
+                return $"[{this.Type}] {this.Date.ToString("dd/MM/yyyy")}";
+            }
+            
+        }
+
     }
 }
 

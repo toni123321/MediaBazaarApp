@@ -137,6 +137,7 @@ namespace MediaBazaarApp
             this.btnClearSelected.TabIndex = 20;
             this.btnClearSelected.Text = "Unmark selected";
             this.btnClearSelected.UseVisualStyleBackColor = true;
+            this.btnClearSelected.Click += new System.EventHandler(this.btnClearSelected_Click);
             // 
             // gbxStockChooseQuantity
             // 
@@ -200,6 +201,7 @@ namespace MediaBazaarApp
             this.btnMakeShelfRestockRequest.TabIndex = 18;
             this.btnMakeShelfRestockRequest.Text = "Make a shelf restock request";
             this.btnMakeShelfRestockRequest.UseVisualStyleBackColor = true;
+            this.btnMakeShelfRestockRequest.Click += new System.EventHandler(this.btnMakeShelfRestockRequest_Click);
             // 
             // gbxSearchStock
             // 
@@ -223,6 +225,7 @@ namespace MediaBazaarApp
             this.btnSearchStock.TabIndex = 6;
             this.btnSearchStock.Text = "Search";
             this.btnSearchStock.UseVisualStyleBackColor = true;
+            this.btnSearchStock.Click += new System.EventHandler(this.btnSearchStock_Click);
             // 
             // tbxSearchStock
             // 
@@ -242,6 +245,7 @@ namespace MediaBazaarApp
             this.btnShowAllStocks.TabIndex = 11;
             this.btnShowAllStocks.Text = "Show all stocks";
             this.btnShowAllStocks.UseVisualStyleBackColor = true;
+            this.btnShowAllStocks.Click += new System.EventHandler(this.btnShowAllStocks_Click_1);
             // 
             // lbxAllStocks
             // 
@@ -297,6 +301,7 @@ namespace MediaBazaarApp
             this.Name = "SalesForm";
             this.Text = "DepotWorkersForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SalesForm_FormClosed);
+            this.Load += new System.EventHandler(this.SalesForm_Load);
             this.tabControlDepotWorkers.ResumeLayout(false);
             this.HomeTab.ResumeLayout(false);
             this.HomeTab.PerformLayout();

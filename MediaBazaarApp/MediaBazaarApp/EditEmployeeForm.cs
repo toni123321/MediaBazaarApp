@@ -117,6 +117,7 @@ namespace MediaBazaarApp
             {
                 MessageBox.Show("Please, fill all the fields in order to apply changes!");
             }
+
         }
     }
 }

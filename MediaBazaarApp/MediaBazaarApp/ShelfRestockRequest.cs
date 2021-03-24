@@ -28,7 +28,7 @@ namespace MediaBazaarApp
 
         public override string ToString()
         {
-            return $"Stock: {this.Stock} Quantity: {this.RequestedQuantity} Status: {this.Status}";
+            return $"Stock: {this.Stock.Brand} {this.Stock.Model} Quantity: {this.RequestedQuantity} Status: {this.Status}";
         }
     }
 }

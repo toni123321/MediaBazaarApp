@@ -27,8 +27,8 @@ namespace MediaBazaarApp
 
         public DBControl()
         {
-            //this.ConnString = "Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345";
-            this.ConnString = "Server=localhost;Uid=root;Database=dbi453373;Pwd=123";
+            this.ConnString = "Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345";
+            //this.ConnString = "Server=localhost;Uid=root;Database=dbi453373;Pwd=123";
             // Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=yourPassword;
             //conn = new MySqlConnection("Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345;");
 
