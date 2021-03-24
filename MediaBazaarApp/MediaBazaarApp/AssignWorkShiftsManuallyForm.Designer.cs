@@ -46,7 +46,7 @@ namespace MediaBazaarApp
             // 
             this.lbEmpInfo.AutoSize = true;
             this.lbEmpInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmpInfo.Location = new System.Drawing.Point(380, 85);
+            this.lbEmpInfo.Location = new System.Drawing.Point(165, 18);
             this.lbEmpInfo.Name = "lbEmpInfo";
             this.lbEmpInfo.Size = new System.Drawing.Size(165, 18);
             this.lbEmpInfo.TabIndex = 0;
@@ -113,7 +113,7 @@ namespace MediaBazaarApp
             this.gbxAssignShiftManually.Controls.Add(this.lbShiftDate);
             this.gbxAssignShiftManually.Controls.Add(this.cbShiftType);
             this.gbxAssignShiftManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxAssignShiftManually.Location = new System.Drawing.Point(234, 130);
+            this.gbxAssignShiftManually.Location = new System.Drawing.Point(19, 63);
             this.gbxAssignShiftManually.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAssignShiftManually.Name = "gbxAssignShiftManually";
             this.gbxAssignShiftManually.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -144,7 +144,7 @@ namespace MediaBazaarApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 506);
+            this.ClientSize = new System.Drawing.Size(473, 333);
             this.Controls.Add(this.gbxAssignShiftManually);
             this.Controls.Add(this.lbEmpInfo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

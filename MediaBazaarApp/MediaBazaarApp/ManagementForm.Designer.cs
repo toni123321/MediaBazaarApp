@@ -81,6 +81,7 @@ namespace MediaBazaarApp
             // lbTime
             // 
             this.lbTime.AutoSize = true;
+            this.lbTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.lbTime.Location = new System.Drawing.Point(117, 247);
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(41, 18);
@@ -90,6 +91,7 @@ namespace MediaBazaarApp
             // lbDateDayOfWeek
             // 
             this.lbDateDayOfWeek.AutoSize = true;
+            this.lbDateDayOfWeek.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.lbDateDayOfWeek.Location = new System.Drawing.Point(117, 297);
             this.lbDateDayOfWeek.Name = "lbDateDayOfWeek";
             this.lbDateDayOfWeek.Size = new System.Drawing.Size(125, 18);
@@ -136,6 +138,7 @@ namespace MediaBazaarApp
             // lbxAvgWageEmpDepartment
             // 
             this.lbxAvgWageEmpDepartment.FormattingEnabled = true;
+            this.lbxAvgWageEmpDepartment.HorizontalScrollbar = true;
             this.lbxAvgWageEmpDepartment.ItemHeight = 18;
             this.lbxAvgWageEmpDepartment.Location = new System.Drawing.Point(533, 153);
             this.lbxAvgWageEmpDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -173,6 +176,7 @@ namespace MediaBazaarApp
             // lbxNrEmpPerDepartment
             // 
             this.lbxNrEmpPerDepartment.FormattingEnabled = true;
+            this.lbxNrEmpPerDepartment.HorizontalScrollbar = true;
             this.lbxNrEmpPerDepartment.ItemHeight = 18;
             this.lbxNrEmpPerDepartment.Location = new System.Drawing.Point(58, 153);
             this.lbxNrEmpPerDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
