@@ -71,10 +71,10 @@ namespace MediaBazaarApp
             this.HomeTab.Controls.Add(this.lbTime);
             this.HomeTab.Controls.Add(this.lbDateDayOfWeek);
             this.HomeTab.Controls.Add(this.lbGreetingMsg);
-            this.HomeTab.Location = new System.Drawing.Point(4, 31);
+            this.HomeTab.Location = new System.Drawing.Point(4, 27);
             this.HomeTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HomeTab.Name = "HomeTab";
-            this.HomeTab.Size = new System.Drawing.Size(975, 444);
+            this.HomeTab.Size = new System.Drawing.Size(975, 448);
             this.HomeTab.TabIndex = 2;
             this.HomeTab.Text = "Home";
             this.HomeTab.UseVisualStyleBackColor = true;
@@ -84,7 +84,7 @@ namespace MediaBazaarApp
             this.lbTime.AutoSize = true;
             this.lbTime.Location = new System.Drawing.Point(117, 247);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(50, 22);
+            this.lbTime.Size = new System.Drawing.Size(41, 18);
             this.lbTime.TabIndex = 9;
             this.lbTime.Text = "Time";
             // 
@@ -93,7 +93,7 @@ namespace MediaBazaarApp
             this.lbDateDayOfWeek.AutoSize = true;
             this.lbDateDayOfWeek.Location = new System.Drawing.Point(117, 297);
             this.lbDateDayOfWeek.Name = "lbDateDayOfWeek";
-            this.lbDateDayOfWeek.Size = new System.Drawing.Size(152, 22);
+            this.lbDateDayOfWeek.Size = new System.Drawing.Size(125, 18);
             this.lbDateDayOfWeek.TabIndex = 8;
             this.lbDateDayOfWeek.Text = "Date/Day of week";
             // 
@@ -102,7 +102,7 @@ namespace MediaBazaarApp
             this.lbGreetingMsg.AutoSize = true;
             this.lbGreetingMsg.Location = new System.Drawing.Point(111, 97);
             this.lbGreetingMsg.Name = "lbGreetingMsg";
-            this.lbGreetingMsg.Size = new System.Drawing.Size(156, 22);
+            this.lbGreetingMsg.Size = new System.Drawing.Size(129, 18);
             this.lbGreetingMsg.TabIndex = 5;
             this.lbGreetingMsg.Text = "Greeting message";
             // 
@@ -116,11 +116,11 @@ namespace MediaBazaarApp
             this.ViewStatisticsEmpTab.Controls.Add(this.lbxNrEmpPerDepartment);
             this.ViewStatisticsEmpTab.Controls.Add(this.tbxNrEmp);
             this.ViewStatisticsEmpTab.Controls.Add(this.lbNrEmp);
-            this.ViewStatisticsEmpTab.Location = new System.Drawing.Point(4, 31);
+            this.ViewStatisticsEmpTab.Location = new System.Drawing.Point(4, 27);
             this.ViewStatisticsEmpTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ViewStatisticsEmpTab.Name = "ViewStatisticsEmpTab";
             this.ViewStatisticsEmpTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ViewStatisticsEmpTab.Size = new System.Drawing.Size(975, 444);
+            this.ViewStatisticsEmpTab.Size = new System.Drawing.Size(975, 448);
             this.ViewStatisticsEmpTab.TabIndex = 0;
             this.ViewStatisticsEmpTab.Text = "View statistics for employees";
             this.ViewStatisticsEmpTab.UseVisualStyleBackColor = true;
@@ -130,18 +130,18 @@ namespace MediaBazaarApp
             this.lbAvgWageEmpDepartment.AutoSize = true;
             this.lbAvgWageEmpDepartment.Location = new System.Drawing.Point(564, 108);
             this.lbAvgWageEmpDepartment.Name = "lbAvgWageEmpDepartment";
-            this.lbAvgWageEmpDepartment.Size = new System.Drawing.Size(362, 22);
+            this.lbAvgWageEmpDepartment.Size = new System.Drawing.Size(296, 18);
             this.lbAvgWageEmpDepartment.TabIndex = 15;
             this.lbAvgWageEmpDepartment.Text = "Average wage of employees per department";
             // 
             // lbxAvgWageEmpDepartment
             // 
             this.lbxAvgWageEmpDepartment.FormattingEnabled = true;
-            this.lbxAvgWageEmpDepartment.ItemHeight = 22;
+            this.lbxAvgWageEmpDepartment.ItemHeight = 18;
             this.lbxAvgWageEmpDepartment.Location = new System.Drawing.Point(533, 153);
             this.lbxAvgWageEmpDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAvgWageEmpDepartment.Name = "lbxAvgWageEmpDepartment";
-            this.lbxAvgWageEmpDepartment.Size = new System.Drawing.Size(391, 224);
+            this.lbxAvgWageEmpDepartment.Size = new System.Drawing.Size(391, 220);
             this.lbxAvgWageEmpDepartment.TabIndex = 14;
             // 
             // tbxAvgWageEmp
@@ -149,7 +149,7 @@ namespace MediaBazaarApp
             this.tbxAvgWageEmp.Location = new System.Drawing.Point(760, 40);
             this.tbxAvgWageEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxAvgWageEmp.Name = "tbxAvgWageEmp";
-            this.tbxAvgWageEmp.Size = new System.Drawing.Size(164, 28);
+            this.tbxAvgWageEmp.Size = new System.Drawing.Size(164, 24);
             this.tbxAvgWageEmp.TabIndex = 13;
             // 
             // lbAvgWageEmp
@@ -157,7 +157,7 @@ namespace MediaBazaarApp
             this.lbAvgWageEmp.AutoSize = true;
             this.lbAvgWageEmp.Location = new System.Drawing.Point(498, 43);
             this.lbAvgWageEmp.Name = "lbAvgWageEmp";
-            this.lbAvgWageEmp.Size = new System.Drawing.Size(232, 22);
+            this.lbAvgWageEmp.Size = new System.Drawing.Size(189, 18);
             this.lbAvgWageEmp.TabIndex = 12;
             this.lbAvgWageEmp.Text = "Average wage of employee:";
             // 
@@ -166,18 +166,18 @@ namespace MediaBazaarApp
             this.lbNrEmpPerDepartment.AutoSize = true;
             this.lbNrEmpPerDepartment.Location = new System.Drawing.Point(88, 108);
             this.lbNrEmpPerDepartment.Name = "lbNrEmpPerDepartment";
-            this.lbNrEmpPerDepartment.Size = new System.Drawing.Size(310, 22);
+            this.lbNrEmpPerDepartment.Size = new System.Drawing.Size(257, 18);
             this.lbNrEmpPerDepartment.TabIndex = 11;
             this.lbNrEmpPerDepartment.Text = "Number of employees per department";
             // 
             // lbxNrEmpPerDepartment
             // 
             this.lbxNrEmpPerDepartment.FormattingEnabled = true;
-            this.lbxNrEmpPerDepartment.ItemHeight = 22;
+            this.lbxNrEmpPerDepartment.ItemHeight = 18;
             this.lbxNrEmpPerDepartment.Location = new System.Drawing.Point(58, 153);
             this.lbxNrEmpPerDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxNrEmpPerDepartment.Name = "lbxNrEmpPerDepartment";
-            this.lbxNrEmpPerDepartment.Size = new System.Drawing.Size(345, 224);
+            this.lbxNrEmpPerDepartment.Size = new System.Drawing.Size(345, 220);
             this.lbxNrEmpPerDepartment.TabIndex = 10;
             // 
             // tbxNrEmp
@@ -185,7 +185,7 @@ namespace MediaBazaarApp
             this.tbxNrEmp.Location = new System.Drawing.Point(240, 40);
             this.tbxNrEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxNrEmp.Name = "tbxNrEmp";
-            this.tbxNrEmp.Size = new System.Drawing.Size(164, 28);
+            this.tbxNrEmp.Size = new System.Drawing.Size(164, 24);
             this.tbxNrEmp.TabIndex = 9;
             // 
             // lbNrEmp
@@ -193,7 +193,7 @@ namespace MediaBazaarApp
             this.lbNrEmp.AutoSize = true;
             this.lbNrEmp.Location = new System.Drawing.Point(29, 43);
             this.lbNrEmp.Name = "lbNrEmp";
-            this.lbNrEmp.Size = new System.Drawing.Size(189, 22);
+            this.lbNrEmp.Size = new System.Drawing.Size(158, 18);
             this.lbNrEmp.TabIndex = 8;
             this.lbNrEmp.Text = "Number of employees:";
             // 
@@ -202,11 +202,11 @@ namespace MediaBazaarApp
             this.ViewStatisticsStocksTab.Controls.Add(this.btnShowStockStatistics);
             this.ViewStatisticsStocksTab.Controls.Add(this.cbStatisticType);
             this.ViewStatisticsStocksTab.Controls.Add(this.lbxAllStocksStatistics);
-            this.ViewStatisticsStocksTab.Location = new System.Drawing.Point(4, 31);
+            this.ViewStatisticsStocksTab.Location = new System.Drawing.Point(4, 27);
             this.ViewStatisticsStocksTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ViewStatisticsStocksTab.Name = "ViewStatisticsStocksTab";
             this.ViewStatisticsStocksTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ViewStatisticsStocksTab.Size = new System.Drawing.Size(975, 444);
+            this.ViewStatisticsStocksTab.Size = new System.Drawing.Size(975, 448);
             this.ViewStatisticsStocksTab.TabIndex = 1;
             this.ViewStatisticsStocksTab.Text = "View statistics for stocks";
             this.ViewStatisticsStocksTab.UseVisualStyleBackColor = true;
@@ -233,24 +233,25 @@ namespace MediaBazaarApp
             this.cbStatisticType.Location = new System.Drawing.Point(177, 37);
             this.cbStatisticType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbStatisticType.Name = "cbStatisticType";
-            this.cbStatisticType.Size = new System.Drawing.Size(324, 30);
+            this.cbStatisticType.Size = new System.Drawing.Size(324, 26);
             this.cbStatisticType.TabIndex = 7;
             this.cbStatisticType.Text = "Sort based on statistic type";
+            this.cbStatisticType.SelectedIndexChanged += new System.EventHandler(this.cbStatisticType_SelectedIndexChanged);
             // 
             // lbxAllStocksStatistics
             // 
             this.lbxAllStocksStatistics.FormattingEnabled = true;
             this.lbxAllStocksStatistics.HorizontalScrollbar = true;
-            this.lbxAllStocksStatistics.ItemHeight = 22;
+            this.lbxAllStocksStatistics.ItemHeight = 18;
             this.lbxAllStocksStatistics.Location = new System.Drawing.Point(177, 85);
             this.lbxAllStocksStatistics.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAllStocksStatistics.Name = "lbxAllStocksStatistics";
-            this.lbxAllStocksStatistics.Size = new System.Drawing.Size(620, 312);
+            this.lbxAllStocksStatistics.Size = new System.Drawing.Size(620, 310);
             this.lbxAllStocksStatistics.TabIndex = 6;
             // 
             // ManagementForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 506);
             this.Controls.Add(this.tabControlManagement);
