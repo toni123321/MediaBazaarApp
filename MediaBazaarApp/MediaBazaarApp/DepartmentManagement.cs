@@ -61,6 +61,18 @@ namespace MediaBazaarApp
             return null;
         }
 
+        public Department GetDepartment(int id)
+        {
+            foreach (Department dep in departments)
+            {
+                if (dep.Id == id)
+                {
+                    return dep;
+                }
+            }
+            return null;
+        }
+
         public List<Department> GetAllDepartments()
         {
             return departments;

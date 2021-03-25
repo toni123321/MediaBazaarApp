@@ -503,19 +503,78 @@ namespace MediaBazaarApp
             }
         }
 
-        public void UpdateDepartment(int idManager)
+        public void RemoveDepartment(string name)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+                    string sql = "DELETE from department WHERE name=@name";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@name", name);
+
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void UpdateDepartment(int id, string name, int idManager)
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
 
-                    string sql = "UPDATE department set IDManager=@idManager";
+                    string sql = "UPDATE department " +
+                                 "set Name=@name, " +
+                                 "IDManager=@idManager " +
+                                 "where ID=@id";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@IDManager", idManager);
 
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void UpdateDepartment(int id, string name)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "UPDATE department " +
+                                 "set Name=@name " +
+                                 "where ID=@id";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@name", name);
 
                     conn.Open();
 

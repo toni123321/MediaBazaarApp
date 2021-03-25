@@ -188,6 +188,7 @@ namespace MediaBazaarApp
             this.lbDepartmentManager = new System.Windows.Forms.Label();
             this.tbxDepartmentName = new System.Windows.Forms.TextBox();
             this.lbDepartmentName = new System.Windows.Forms.Label();
+            this.lbDepartmentCurrManagerEdit = new System.Windows.Forms.Label();
             this.tabControlAdministration.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.EmployeesTab.SuspendLayout();
@@ -1730,6 +1731,7 @@ namespace MediaBazaarApp
             // gbxEditDepartment
             // 
             this.gbxEditDepartment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.gbxEditDepartment.Controls.Add(this.lbDepartmentCurrManagerEdit);
             this.gbxEditDepartment.Controls.Add(this.lbDepartmentEditInfo);
             this.gbxEditDepartment.Controls.Add(this.btnApplyChangesDepartment);
             this.gbxEditDepartment.Controls.Add(this.cbDepartmentManagerEdit);
@@ -1749,7 +1751,7 @@ namespace MediaBazaarApp
             // 
             this.lbDepartmentEditInfo.AutoSize = true;
             this.lbDepartmentEditInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDepartmentEditInfo.Location = new System.Drawing.Point(148, 49);
+            this.lbDepartmentEditInfo.Location = new System.Drawing.Point(171, 25);
             this.lbDepartmentEditInfo.Name = "lbDepartmentEditInfo";
             this.lbDepartmentEditInfo.Size = new System.Drawing.Size(213, 22);
             this.lbDepartmentEditInfo.TabIndex = 5;
@@ -1764,6 +1766,7 @@ namespace MediaBazaarApp
             this.btnApplyChangesDepartment.TabIndex = 4;
             this.btnApplyChangesDepartment.Text = "Apply changes";
             this.btnApplyChangesDepartment.UseVisualStyleBackColor = true;
+            this.btnApplyChangesDepartment.Click += new System.EventHandler(this.btnApplyChangesDepartment_Click);
             // 
             // cbDepartmentManagerEdit
             // 
@@ -1811,6 +1814,7 @@ namespace MediaBazaarApp
             this.btnRemoveDepartment.TabIndex = 12;
             this.btnRemoveDepartment.Text = "Remove";
             this.btnRemoveDepartment.UseVisualStyleBackColor = false;
+            this.btnRemoveDepartment.Click += new System.EventHandler(this.btnRemoveDepartment_Click);
             // 
             // btnEditDepartment
             // 
@@ -1822,6 +1826,7 @@ namespace MediaBazaarApp
             this.btnEditDepartment.TabIndex = 10;
             this.btnEditDepartment.Text = "Edit";
             this.btnEditDepartment.UseVisualStyleBackColor = false;
+            this.btnEditDepartment.Click += new System.EventHandler(this.btnEditDepartment_Click);
             // 
             // btnDepartmentsClearSelected
             // 
@@ -1832,6 +1837,7 @@ namespace MediaBazaarApp
             this.btnDepartmentsClearSelected.TabIndex = 9;
             this.btnDepartmentsClearSelected.Text = "Unmark selected";
             this.btnDepartmentsClearSelected.UseVisualStyleBackColor = true;
+            this.btnDepartmentsClearSelected.Click += new System.EventHandler(this.btnDepartmentsClearSelected_Click);
             // 
             // lbDepartmentsInfo
             // 
@@ -1917,6 +1923,15 @@ namespace MediaBazaarApp
             this.lbDepartmentName.Size = new System.Drawing.Size(62, 22);
             this.lbDepartmentName.TabIndex = 1;
             this.lbDepartmentName.Text = "Name:";
+            // 
+            // lbDepartmentCurrManagerEdit
+            // 
+            this.lbDepartmentCurrManagerEdit.AutoSize = true;
+            this.lbDepartmentCurrManagerEdit.Location = new System.Drawing.Point(148, 56);
+            this.lbDepartmentCurrManagerEdit.Name = "lbDepartmentCurrManagerEdit";
+            this.lbDepartmentCurrManagerEdit.Size = new System.Drawing.Size(150, 22);
+            this.lbDepartmentCurrManagerEdit.TabIndex = 6;
+            this.lbDepartmentCurrManagerEdit.Text = "Current manager:";
             // 
             // AdministrationForm
             // 
@@ -2131,5 +2146,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button searchByIdBTN;
         private System.Windows.Forms.ListBox lbxSelectedEmpShifts;
         private System.Windows.Forms.Button btnShift;
+        private System.Windows.Forms.Label lbDepartmentCurrManagerEdit;
     }
 }

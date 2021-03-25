@@ -29,7 +29,10 @@ namespace MediaBazaarApp
 
             UpdateScheduleLBX();
             UpdateDepartments();
-            UpdateCBXDepManager();
+            UpdateCBXDepManager(cbDepartmentManager);
+
+            //Made groupBox for editDepartment invisible
+            gbxEditDepartment.Visible = false;
         }
 
 
@@ -530,12 +533,12 @@ namespace MediaBazaarApp
             return notManagers;
         }
 
-        private void UpdateCBXDepManager()
+        private void UpdateCBXDepManager(ComboBox cbx)
         {
-            cbDepartmentManager.Items.Clear();
+            cbx.Items.Clear();
             foreach (Employee emp in GetNotManagers())
             {
-                cbDepartmentManager.Items.Add(emp);
+                cbx.Items.Add(emp);
             }
         }
 
@@ -565,7 +568,7 @@ namespace MediaBazaarApp
                 }
                 UpdateDepartments();
                 tbxDepartmentName.Clear();
-                UpdateCBXDepManager();
+                UpdateCBXDepManager(cbDepartmentManager);
                 cbDepartmentManager.Text = "Choose a manager";
                 MessageBox.Show("You have successfully created new department!");
             }
@@ -574,6 +577,93 @@ namespace MediaBazaarApp
                 MessageBox.Show("Fill at least the name to create new department!");
             }
 
+        }
+
+        private void btnRemoveDepartment_Click(object sender, EventArgs e)
+        {
+            if (lbxAllDepartments.SelectedIndex != -1)
+            {
+                Department dep = (Department)lbxAllDepartments.SelectedItem;
+                DBControl dbControl = new DBControl();
+                dbControl.RemoveDepartment(dep.Name);
+                departmentManagement.RemoveDepartment(dep.Name);
+                //dbControl.GetDepartments(this.departmentManagement);
+                MessageBox.Show($"You have successfully removed branch with name:{dep.Name}");
+            }
+            else
+            {
+                MessageBox.Show("Please, select an department to remove it!");
+            }
+        }
+
+        private void btnEditDepartment_Click(object sender, EventArgs e)
+        {
+            if (lbxAllDepartments.SelectedIndex != -1)
+            {
+                Department dep = (Department)lbxAllDepartments.SelectedItem;
+                tbxDepartmentNameEdit.Text = dep.Name;
+                UpdateCBXDepManager(cbDepartmentManagerEdit);
+                if (dep.Manager != null)
+                {
+                    lbDepartmentCurrManagerEdit.Text = $"Current manager:{dep.Manager}";
+                    cbDepartmentManagerEdit.Items.Add(dep.Manager);
+                }
+
+                lbDepartmentEditInfo.Text = $"Department with Id:{dep.Id}";
+                gbxEditDepartment.Visible = true;
+                
+            }
+            else
+            {
+                MessageBox.Show("Please, select an department to edit it!");
+            }
+        }
+
+        private void btnApplyChangesDepartment_Click(object sender, EventArgs e)
+        {
+            int depId = Convert.ToInt32(lbDepartmentEditInfo.Text.Split(':')[1]);
+            Department dep = departmentManagement.GetDepartment(depId);
+            string newName;
+            Employee manager;
+
+            DBControl dbControl = new DBControl();
+
+            if (!String.IsNullOrEmpty(tbxDepartmentNameEdit.Text))
+            {
+                newName = tbxDepartmentNameEdit.Text;
+                if (cbDepartmentManagerEdit.SelectedIndex != -1)
+                {
+                    manager = (Employee)cbDepartmentManagerEdit.SelectedItem;
+                    dbControl.UpdateDepartment(depId, newName, manager.Id);
+                }
+                else
+                {
+                    dbControl.UpdateDepartment(depId, newName);
+                }
+
+                departmentManagement.RemoveDepartment(dep.Name);
+                dbControl.GetDepartments(departmentManagement);
+                dbControl.SetDepartmentManagers(departmentManagement);
+                UpdateDepartments();
+                MessageBox.Show("The new changes are successfully applied!");
+                gbxEditDepartment.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("Please, fill the text box to apply changes!");
+            }
+        }
+
+        private void btnDepartmentsClearSelected_Click(object sender, EventArgs e)
+        {
+            if(lbxAllDepartments.SelectedIndex != -1)
+            {
+                lbxAllDepartments.SelectedIndex = -1;
+            }
+            else
+            {
+                MessageBox.Show("To unmark a line, you should have selected one beforehand!");
+            }
         }
     }
 }
