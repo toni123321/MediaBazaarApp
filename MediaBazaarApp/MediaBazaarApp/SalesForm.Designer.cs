@@ -155,6 +155,7 @@ namespace MediaBazaarApp
             this.gbxStockChooseQuantity.TabIndex = 19;
             this.gbxStockChooseQuantity.TabStop = false;
             this.gbxStockChooseQuantity.Text = "Choose quantity";
+            this.gbxStockChooseQuantity.Visible = false;
             // 
             // btnConfirmRequest
             // 

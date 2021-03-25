@@ -32,15 +32,15 @@ namespace MediaBazaarApp
             tbxAvgWageEmp.Text = $"{se.AveregeWageOfEmployee(departmentManagement.GetAllEmployees())}";
             lbxAvgWageEmpDepartment.Items.AddRange(se.AveregeWagePerDepartmenr(departmentManagement.GetAllDepartments(), departmentManagement.GetAllEmployees()).ToArray());
             lbxNrEmpPerDepartment.Items.AddRange(se.EmpPerDepToString(departmentManagement.GetAllDepartments()).ToArray());
+            lbGreetingMsg.Text = $"Hello, {currentEmp.FirstName}";
 
 
-            
-            
+
         }
 
         private void ManagementForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            LoginForm loginForm = new LoginForm(departmentManagement, stockManagement);
+            LoginForm loginForm = new LoginForm(departmentManagement, stockManagement, salesManagement);
             loginForm.Show();
         }
 

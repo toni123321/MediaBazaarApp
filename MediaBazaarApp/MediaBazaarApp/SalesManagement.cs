@@ -15,9 +15,9 @@ namespace MediaBazaarApp
             requests = new List<ShelfRestockRequest>();
         }
 
-        public void AddRequest(Stock stock, int quantity, int senderID, SRRstatus status)
+        public void AddRequest(int id, Stock stock, int quantity, int senderID, SRRstatus status)
         {
-            ShelfRestockRequest srr = new ShelfRestockRequest(stock, quantity, senderID, status);
+            ShelfRestockRequest srr = new ShelfRestockRequest(id, stock, quantity, senderID, status);
             requests.Add(srr);
         }
 
