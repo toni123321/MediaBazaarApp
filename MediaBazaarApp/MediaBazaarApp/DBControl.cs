@@ -477,6 +477,32 @@ namespace MediaBazaarApp
             }
         }
 
+        public void AddDepartment(string name, Employee manager)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+                    string sql = "INSERT INTO department (IDManager, Name) " +
+                                 "VALUES(@idManager, @name)";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@idManager", manager.Id);
+                    cmd.Parameters.AddWithValue("@name", name);
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public void UpdateDepartment(int idManager)
         {
             try
@@ -534,6 +560,7 @@ namespace MediaBazaarApp
 
                 MessageBox.Show(ex.Message);
             }
+
         }
 
 
@@ -545,8 +572,13 @@ namespace MediaBazaarApp
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
 
-                    string sql = "SELECT IDManager, Name " +
-                                 "from department";
+                    string sql = "SELECT d.IDManager, d.Name as 'DepName', emDep.Name as 'EmpDepName' " +
+                                 "from department as d " +
+                                 "inner join employee as e " +
+                                 "on e.ID = d.IDManager " +
+                                 "inner join department as emDep " +
+                                 "on emDep.ID = e.DepartmentID " +
+                                 "where d.IDManager is not NULL";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -556,16 +588,16 @@ namespace MediaBazaarApp
 
                     while (dr.Read())
                     {
-                        if (!String.IsNullOrEmpty(dr[0].ToString()))
-                        {
-                            int idManager = Convert.ToInt32(dr[0]);
-                            string depName = dr[1].ToString();
+                        
+                        int idManager = Convert.ToInt32(dr[0]);
+                        string depName = dr[1].ToString();
+                        string empDepName = dr[2].ToString();
 
-                            Department dep = departmentManagement.GetDepartment(depName);
-                            Employee manager = dep.GetEmployeeById(idManager);
-                            dep.Manager = manager;
-                        }
-
+                        Department emDep = departmentManagement.GetDepartment(empDepName);
+                        Department dep = departmentManagement.GetDepartment(depName);
+                        Employee manager = emDep.GetEmployeeById(idManager);
+                        dep.Manager = manager;
+                        
                     }
                 }
             }

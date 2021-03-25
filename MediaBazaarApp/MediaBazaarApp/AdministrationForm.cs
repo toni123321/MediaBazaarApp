@@ -29,6 +29,7 @@ namespace MediaBazaarApp
 
             UpdateScheduleLBX();
             UpdateDepartments();
+            UpdateCBXDepManager();
         }
 
 
@@ -504,5 +505,75 @@ namespace MediaBazaarApp
             emp.RemoveShift(shift.ID); // to improve
         }
 
+        private List<Employee> GetDepManagers()
+        {
+            List<Employee> managers = new List<Employee>();
+            foreach (Department dep in departmentManagement.GetAllDepartments())
+            {
+                managers.Add(dep.Manager);
+            }
+
+            return managers;
+        }
+
+        private List<Employee> GetNotManagers()
+        {
+            List<Employee> notManagers = new List<Employee>();
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
+            {
+                if (!GetDepManagers().Contains(emp))
+                {
+                    notManagers.Add(emp);
+                }
+            }
+
+            return notManagers;
+        }
+
+        private void UpdateCBXDepManager()
+        {
+            cbDepartmentManager.Items.Clear();
+            foreach (Employee emp in GetNotManagers())
+            {
+                cbDepartmentManager.Items.Add(emp);
+            }
+        }
+
+        private void btnCreateDepartment_Click(object sender, EventArgs e)
+        {
+            string depName;
+            Employee manager;
+            DBControl dbControl = new DBControl();
+
+            if (!String.IsNullOrEmpty(tbxDepartmentName.Text))
+            {
+                depName = tbxDepartmentName.Text;
+                if (cbDepartmentManager.SelectedIndex != -1)
+                {
+                    //dep with manager
+                    manager = (Employee)cbDepartmentManager.SelectedItem;
+                    dbControl.AddDepartment(depName, manager);
+                    dbControl.GetDepartments(this.departmentManagement);
+                    dbControl.SetDepartmentManagers(this.departmentManagement);
+                }
+                else
+                {
+                    // dep without manager for now
+                    dbControl.AddDepartment(depName);
+                    dbControl.GetDepartments(this.departmentManagement);
+                    
+                }
+                UpdateDepartments();
+                tbxDepartmentName.Clear();
+                UpdateCBXDepManager();
+                cbDepartmentManager.Text = "Choose a manager";
+                MessageBox.Show("You have successfully created new department!");
+            }
+            else
+            {
+                MessageBox.Show("Fill at least the name to create new department!");
+            }
+
+        }
     }
 }
