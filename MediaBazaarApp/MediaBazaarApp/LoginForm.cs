@@ -74,11 +74,12 @@ namespace MediaBazaarApp
             // departmentManagement.GetDepartment("Administration").Manager = manager;
         }
 
-        public LoginForm(DepartmentManagement departmentManagement, StockManagement stockManagement)
+        public LoginForm(DepartmentManagement departmentManagement, StockManagement stockManagement, SalesManagement salesManagement)
         {
             InitializeComponent();
             this.departmentManagement = departmentManagement;
             this.stockManagement = stockManagement;
+            this.salesManagement = salesManagement;
         }
 
         private string getDepartmentName(string userType)

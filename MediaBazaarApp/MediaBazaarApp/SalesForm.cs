@@ -34,7 +34,7 @@ namespace MediaBazaarApp
 
         private void SalesForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            LoginForm loginForm = new LoginForm(departmentManagement, stockManagement);
+            LoginForm loginForm = new LoginForm(departmentManagement, stockManagement, salesManagement);
             loginForm.Show();
         }
 
@@ -71,7 +71,7 @@ namespace MediaBazaarApp
             Stock stock = (Stock)lbxAllStocks.SelectedItem;
             int quantity = Convert.ToInt32(tbxStockQuantity.Text);
 
-            dbc.AddShelfRestockRequest(new ShelfRestockRequest(stock, quantity, this.currentEmp.Id, SRRstatus.Pending));
+            dbc.AddShelfRestockRequest(stock, quantity, this.currentEmp.Id, SRRstatus.Pending);
             dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
 
             //salesManagement.AddRequest(stock, quantity, this.currentEmp.Id);

@@ -120,7 +120,7 @@ namespace MediaBazaarApp
             // 
             // btnSehflRestockRequestsClearSelected
             // 
-            this.btnSehflRestockRequestsClearSelected.Location = new System.Drawing.Point(734, 450);
+            this.btnSehflRestockRequestsClearSelected.Location = new System.Drawing.Point(732, 485);
             this.btnSehflRestockRequestsClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSehflRestockRequestsClearSelected.Name = "btnSehflRestockRequestsClearSelected";
             this.btnSehflRestockRequestsClearSelected.Size = new System.Drawing.Size(183, 49);
@@ -131,18 +131,18 @@ namespace MediaBazaarApp
             // 
             // btnShelftRestockRequestsMarkAsDone
             // 
-            this.btnShelftRestockRequestsMarkAsDone.Location = new System.Drawing.Point(157, 450);
+            this.btnShelftRestockRequestsMarkAsDone.Location = new System.Drawing.Point(112, 485);
             this.btnShelftRestockRequestsMarkAsDone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnShelftRestockRequestsMarkAsDone.Name = "btnShelftRestockRequestsMarkAsDone";
             this.btnShelftRestockRequestsMarkAsDone.Size = new System.Drawing.Size(183, 49);
             this.btnShelftRestockRequestsMarkAsDone.TabIndex = 18;
-            this.btnShelftRestockRequestsMarkAsDone.Text = "Mark as \'Done\'";
+            this.btnShelftRestockRequestsMarkAsDone.Text = "Done";
             this.btnShelftRestockRequestsMarkAsDone.UseVisualStyleBackColor = true;
             this.btnShelftRestockRequestsMarkAsDone.Click += new System.EventHandler(this.btnShelftRestockRequestsMarkAsDone_Click);
             // 
             // btnShelftRestockRequestsDecline
             // 
-            this.btnShelftRestockRequestsDecline.Location = new System.Drawing.Point(446, 450);
+            this.btnShelftRestockRequestsDecline.Location = new System.Drawing.Point(322, 485);
             this.btnShelftRestockRequestsDecline.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnShelftRestockRequestsDecline.Name = "btnShelftRestockRequestsDecline";
             this.btnShelftRestockRequestsDecline.Size = new System.Drawing.Size(183, 49);
@@ -159,7 +159,7 @@ namespace MediaBazaarApp
             this.lbxAllShelfRestockRequests.Location = new System.Drawing.Point(30, 51);
             this.lbxAllShelfRestockRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAllShelfRestockRequests.Name = "lbxAllShelfRestockRequests";
-            this.lbxAllShelfRestockRequests.Size = new System.Drawing.Size(956, 328);
+            this.lbxAllShelfRestockRequests.Size = new System.Drawing.Size(956, 400);
             this.lbxAllShelfRestockRequests.TabIndex = 16;
             // 
             // HistoryShelfRestockTab

@@ -36,8 +36,8 @@ namespace MediaBazaarApp
 
         // Employees
         public void AddEmployee(string fname, string lname, DateTime dateOfBirth, Gender gender, string email,
-            string phone, string street, string city, string country, string postcode, string bsn, 
-            string emConName, EmergencyContactRelation emConRelation, string emConEmail, string emConPhone, 
+            string phone, string street, string city, string country, string postcode, string bsn,
+            string emConName, EmergencyContactRelation emConRelation, string emConEmail, string emConPhone,
             EmploymentType empType, double hourlyWages, Department department)
         {
             try
@@ -273,7 +273,7 @@ namespace MediaBazaarApp
         }
 
         //Stocks
-        public void AddStock(string model, string brand, double price, int quantity, double height, 
+        public void AddStock(string model, string brand, double price, int quantity, double height,
             double width, double depth, double weight, string shortDescription)
         {
             try
@@ -436,9 +436,9 @@ namespace MediaBazaarApp
                         double weight = Convert.ToDouble(dr[8]);
                         string description = dr[9].ToString();
 
-                        stockManagement.AddStock(id, model, brand, price, quantity, height, width, depth, 
+                        stockManagement.AddStock(id, model, brand, price, quantity, height, width, depth,
                             weight, description);
-                        
+
 
                     }
                 }
@@ -524,7 +524,7 @@ namespace MediaBazaarApp
                         string depName = dr[1].ToString();
                         departmentManagement.AddDepartment(id, depName);
                         //Department currDep = departmentManagement.GetDepartment(depName);
-                        
+
 
                     }
                 }
@@ -536,7 +536,7 @@ namespace MediaBazaarApp
             }
         }
 
-        
+
 
         public void SetDepartmentManagers(DepartmentManagement departmentManagement)
         {
@@ -646,11 +646,11 @@ namespace MediaBazaarApp
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
 
-                   string sql = "SELECT s.*, d.Name FROM shift as s " +
-                        "inner join employee as e " +
-                        "on s.EmployeeID = e.ID " +
-                        "inner join department as d " +
-                        "on e.DepartmentID = d.ID";
+                    string sql = "SELECT s.*, d.Name FROM shift as s " +
+                         "inner join employee as e " +
+                         "on s.EmployeeID = e.ID " +
+                         "inner join department as d " +
+                         "on e.DepartmentID = d.ID";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -670,7 +670,7 @@ namespace MediaBazaarApp
 
                         Shift s = departmentManagement.GetDepartment(depName).GetEmployeeById(employeeID).GetShift(id);
 
-                        if ( s == null)
+                        if (s == null)
                         {
                             departmentManagement.GetDepartment(depName).GetEmployeeById(employeeID).AddShift(id, type, date, assignedBy, wfh);
                         }
@@ -686,7 +686,7 @@ namespace MediaBazaarApp
 
         // Shelf restock requests
 
-        public void AddShelfRestockRequest(ShelfRestockRequest srr)
+        public void AddShelfRestockRequest(Stock stock, int quantity, int senderID, SRRstatus status)
         {
             try
             {
@@ -697,10 +697,10 @@ namespace MediaBazaarApp
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    cmd.Parameters.AddWithValue("@stockID", srr.Stock.Id);
-                    cmd.Parameters.AddWithValue("@requestedQuantity", srr.RequestedQuantity);
-                    cmd.Parameters.AddWithValue("@senderID", srr.SenderID);
-                    cmd.Parameters.AddWithValue("@status", Convert.ToInt32(srr.Status) + 1);
+                    cmd.Parameters.AddWithValue("@stockID", stock.Id);
+                    cmd.Parameters.AddWithValue("@requestedQuantity", quantity);
+                    cmd.Parameters.AddWithValue("@senderID", senderID);
+                    cmd.Parameters.AddWithValue("@status", Convert.ToInt32(status) + 1);
 
                     conn.Open();
 
@@ -744,7 +744,7 @@ namespace MediaBazaarApp
             }
         }
 
-        public void UpdateShelfRestockStatus(ShelfRestockRequest srr, SRRstatus status)
+        public void UpdateShelfRestockStatus(ShelfRestockRequest srr, SRRstatus status, SalesManagement salesManagement)
         {
             try
             {
@@ -759,6 +759,7 @@ namespace MediaBazaarApp
                     cmd.Parameters.AddWithValue("@requestID", srr.ID);
                     cmd.Parameters.AddWithValue("@status", Convert.ToInt32(status) + 1);
 
+                    srr.Status = status;
 
                     conn.Open();
 
@@ -794,7 +795,13 @@ namespace MediaBazaarApp
                         int senderID = Convert.ToInt32(dr[3]);
                         SRRstatus status = (SRRstatus)Enum.Parse(typeof(SRRstatus), dr[4].ToString());
 
-                        salesManagement.AddRequest(stockManagement.GetStock(stockID), requestedQuantity, senderID, status);
+                        ShelfRestockRequest srr = salesManagement.GetSRR(id);
+
+                        if (srr == null)
+                        {
+                            salesManagement.AddRequest(id, stockManagement.GetStock(stockID), requestedQuantity, senderID, status);
+
+                        }
                     }
                 }
             }

@@ -58,7 +58,7 @@ namespace MediaBazaarApp
         {
             if (!openOtherForm)
             {
-                LoginForm loginForm = new LoginForm(departmentManagement, stockManagement);
+                LoginForm loginForm = new LoginForm(departmentManagement, stockManagement, salesManagement);
                 loginForm.Show();
             }
         }
