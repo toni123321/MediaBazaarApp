@@ -15,10 +15,12 @@ namespace MediaBazaarApp
         private DepartmentManagement departmentManagement;
         private Employee currEmp;
         private Department previousDepartment;
+        private AdministrationForm administrationForm;
 
-        public EditEmployeeForm(DepartmentManagement departmentManagement, Employee currEmp)
+        public EditEmployeeForm(AdministrationForm administrationForm, DepartmentManagement departmentManagement, Employee currEmp)
         {
             InitializeComponent();
+            this.administrationForm = administrationForm;
             this.departmentManagement = departmentManagement;
             this.currEmp = currEmp;
             ShowDetailsFilled();
@@ -71,8 +73,9 @@ namespace MediaBazaarApp
 
         private void EditEmployeeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // AdministrationForm administrationForm = new AdministrationForm(departmentManagement, currEmp);
-            // administrationForm.Show();
+            //Refresh the employee list after edit
+
+            this.administrationForm.RefreshEmployeesList();
         }
 
         private void btnEditEmpoyee_Click(object sender, EventArgs e)

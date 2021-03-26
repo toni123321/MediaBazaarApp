@@ -181,7 +181,10 @@ namespace MediaBazaarApp
             lbxAllEmployees.Items.Clear();
             foreach (Employee emp in employees)
             {
-                lbxAllEmployees.Items.Add(emp);
+                if (emp.Email != currentEmp.Email) // Check if the emp is the currently logged user
+                {
+                    lbxAllEmployees.Items.Add(emp);
+                }
             }
         }
 
@@ -190,6 +193,7 @@ namespace MediaBazaarApp
             DBControl dbc = new DBControl();
             dbc.GetEmployees(this.departmentManagement);
             string departmentName;
+
             if (cbSelectEmpDepartment.Items.Contains(cbSelectEmpDepartment.Text))
             {
                 if (cbSelectEmpDepartment.Text == "All")
@@ -210,6 +214,15 @@ namespace MediaBazaarApp
             
         }
 
+        public void RefreshEmployeesList()
+        {
+            //Refresh automatically the list(show all employees)
+            DBControl dbControl = new DBControl();
+            dbControl.GetEmployees(this.departmentManagement);
+            ShowEmployeesList(this.departmentManagement.GetAllEmployees());
+            cbSelectEmpDepartment.SelectedIndex = 0;
+        }
+
         private void btnRemoveEmp_Click(object sender, EventArgs e)
         {
             if (lbxAllEmployees.SelectedIndex != -1)
@@ -224,6 +237,8 @@ namespace MediaBazaarApp
                     DBControl dbControl = new DBControl();
                     dbControl.RemoveEmployee(selectedEmp.Id);
                     MessageBox.Show($"You have successfully removed employee with id:{selectedEmp.Id}");
+
+                    RefreshEmployeesList();
                 }
                 else
                 {
@@ -277,7 +292,7 @@ namespace MediaBazaarApp
                     isSuperuser = true;
                 }
                 Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
-                EditEmployeeForm editEmployeeForm = new EditEmployeeForm(departmentManagement,
+                EditEmployeeForm editEmployeeForm = new EditEmployeeForm(this, departmentManagement,
                     departmentManagement.GetDepartment(selectedEmp.Department.Name).GetEmployeeByEmail(selectedEmp.Email));
                 editEmployeeForm.FillComboBoxDepartments(isSuperuser);
                 editEmployeeForm.Show();
@@ -663,6 +678,18 @@ namespace MediaBazaarApp
             else
             {
                 MessageBox.Show("To unmark a line, you should have selected one beforehand!");
+            }
+        }
+
+        private void btnClearSelectedEmp_Click(object sender, EventArgs e)
+        {
+            if (lbxAllEmployees.SelectedIndex != -1)
+            {
+                lbxAllEmployees.SelectedIndex = -1;
+            }
+            else
+            {
+                MessageBox.Show("To unmark a selected employee, choose one beforehand!");
             }
         }
     }

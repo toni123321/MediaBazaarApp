@@ -171,6 +171,7 @@ namespace MediaBazaarApp
             this.lbxScheduleAllEmp = new System.Windows.Forms.ListBox();
             this.ManageDepartmentsTab = new System.Windows.Forms.TabPage();
             this.gbxEditDepartment = new System.Windows.Forms.GroupBox();
+            this.lbDepartmentCurrManagerEdit = new System.Windows.Forms.Label();
             this.lbDepartmentEditInfo = new System.Windows.Forms.Label();
             this.btnApplyChangesDepartment = new System.Windows.Forms.Button();
             this.cbDepartmentManagerEdit = new System.Windows.Forms.ComboBox();
@@ -188,7 +189,6 @@ namespace MediaBazaarApp
             this.lbDepartmentManager = new System.Windows.Forms.Label();
             this.tbxDepartmentName = new System.Windows.Forms.TextBox();
             this.lbDepartmentName = new System.Windows.Forms.Label();
-            this.lbDepartmentCurrManagerEdit = new System.Windows.Forms.Label();
             this.tabControlAdministration.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.EmployeesTab.SuspendLayout();
@@ -886,6 +886,7 @@ namespace MediaBazaarApp
             this.btnClearSelectedEmp.TabIndex = 15;
             this.btnClearSelectedEmp.Text = "Unmark selected";
             this.btnClearSelectedEmp.UseVisualStyleBackColor = true;
+            this.btnClearSelectedEmp.Click += new System.EventHandler(this.btnClearSelectedEmp_Click);
             // 
             // btnEditEmp
             // 
@@ -1747,6 +1748,15 @@ namespace MediaBazaarApp
             this.gbxEditDepartment.TabStop = false;
             this.gbxEditDepartment.Text = "Edit department";
             // 
+            // lbDepartmentCurrManagerEdit
+            // 
+            this.lbDepartmentCurrManagerEdit.AutoSize = true;
+            this.lbDepartmentCurrManagerEdit.Location = new System.Drawing.Point(148, 56);
+            this.lbDepartmentCurrManagerEdit.Name = "lbDepartmentCurrManagerEdit";
+            this.lbDepartmentCurrManagerEdit.Size = new System.Drawing.Size(150, 22);
+            this.lbDepartmentCurrManagerEdit.TabIndex = 6;
+            this.lbDepartmentCurrManagerEdit.Text = "Current manager:";
+            // 
             // lbDepartmentEditInfo
             // 
             this.lbDepartmentEditInfo.AutoSize = true;
@@ -1923,15 +1933,6 @@ namespace MediaBazaarApp
             this.lbDepartmentName.Size = new System.Drawing.Size(62, 22);
             this.lbDepartmentName.TabIndex = 1;
             this.lbDepartmentName.Text = "Name:";
-            // 
-            // lbDepartmentCurrManagerEdit
-            // 
-            this.lbDepartmentCurrManagerEdit.AutoSize = true;
-            this.lbDepartmentCurrManagerEdit.Location = new System.Drawing.Point(148, 56);
-            this.lbDepartmentCurrManagerEdit.Name = "lbDepartmentCurrManagerEdit";
-            this.lbDepartmentCurrManagerEdit.Size = new System.Drawing.Size(150, 22);
-            this.lbDepartmentCurrManagerEdit.TabIndex = 6;
-            this.lbDepartmentCurrManagerEdit.Text = "Current manager:";
             // 
             // AdministrationForm
             // 
