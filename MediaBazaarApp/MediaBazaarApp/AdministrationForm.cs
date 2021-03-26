@@ -33,6 +33,21 @@ namespace MediaBazaarApp
 
             //Made groupBox for editDepartment invisible
             gbxEditDepartment.Visible = false;
+
+            // Greeting msg
+
+            lbGreetingMsg.Text = $"Welcome, {currentEmp.FirstName}";
+            RefreshCbSelectEmpDepartment();
+        }
+
+        private void RefreshCbSelectEmpDepartment()
+        {
+            cbSelectEmpDepartment.Items.Clear();
+            cbSelectEmpDepartment.Items.Add("All");
+            foreach (Department dep in departmentManagement.GetAllDepartments())
+            {
+                cbSelectEmpDepartment.Items.Add(dep.Name);
+            }
         }
 
 
@@ -586,6 +601,7 @@ namespace MediaBazaarApp
                 UpdateCBXDepManager(cbDepartmentManager);
                 cbDepartmentManager.Text = "Choose a manager";
                 MessageBox.Show("You have successfully created new department!");
+                RefreshCbSelectEmpDepartment();
             }
             else
             {
@@ -604,6 +620,7 @@ namespace MediaBazaarApp
                 departmentManagement.RemoveDepartment(dep.Name);
                 //dbControl.GetDepartments(this.departmentManagement);
                 MessageBox.Show($"You have successfully removed branch with name:{dep.Name}");
+                RefreshCbSelectEmpDepartment();
             }
             else
             {
@@ -662,6 +679,7 @@ namespace MediaBazaarApp
                 UpdateDepartments();
                 MessageBox.Show("The new changes are successfully applied!");
                 gbxEditDepartment.Visible = false;
+                RefreshCbSelectEmpDepartment();
             }
             else
             {
