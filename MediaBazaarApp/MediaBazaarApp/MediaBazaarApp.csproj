@@ -107,6 +107,16 @@
     <Compile Include="AssignWorkShiftsManuallyForm.Designer.cs">
       <DependentUpon>AssignWorkShiftsManuallyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom exceptions\EmpAgeException.cs" />
+    <Compile Include="Custom exceptions\EmpBsnException.cs" />
+    <Compile Include="Custom exceptions\EmpCityException.cs" />
+    <Compile Include="Custom exceptions\EmpCountryException.cs" />
+    <Compile Include="Custom exceptions\EmpEmailException.cs" />
+    <Compile Include="Custom exceptions\EmpHourlyWagesException.cs" />
+    <Compile Include="Custom exceptions\EmpNameException.cs" />
+    <Compile Include="Custom exceptions\EmpPhoneException.cs" />
+    <Compile Include="Custom exceptions\EmpPostcodeException.cs" />
+    <Compile Include="Custom exceptions\EmpStreetException.cs" />
     <Compile Include="DBControl.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="DepartmentManagement.cs" />
@@ -229,5 +239,6 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

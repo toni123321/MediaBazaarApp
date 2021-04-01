@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MediaBazaarApp.Custom_exceptions;
 
 namespace MediaBazaarApp
 {
@@ -38,6 +39,8 @@ namespace MediaBazaarApp
 
             lbGreetingMsg.Text = $"Welcome, {currentEmp.FirstName}";
             RefreshCbSelectEmpDepartment();
+
+            EmpFillDefaultValues();
         }
 
         private void RefreshCbSelectEmpDepartment()
@@ -82,6 +85,34 @@ namespace MediaBazaarApp
             }
         }
 
+        private void EmpFillDefaultValues()
+        {
+            tbxEmpFname.Text = "Test";
+            tbxEmpLname.Text = "Test";
+            dtpEmpDateOfBirth.Value = new DateTime(1985, 5, 12);
+            cbEmpGender.Text = Gender.MALE.ToString();
+
+            //Contact details
+            tbxEmpEmail.Text = "test@gmail.com";
+            tbxEmpPhone.Text = "+31 456 789 899";
+            tbxEmpAddressStreet.Text = "Henderson";
+            tbxEmpAddressCity.Text = "Eindhoven";
+            tbxEmpAddressCountry.Text = "Netherlands";
+            tbxEmpAddressPostCode.Text = "2345HK";
+            tbxEmpBsn.Text = "888999777";
+
+            //Emergency contact details
+            tbxEmConName.Text = "Testing Testing";
+            cbEmConRelation.Text = EmergencyContactRelation.Colleague.ToString();
+            tbxEmConEmail.Text = "test456@gmail.com";
+            tbxEmConPhone.Text = "0031 876 456 112";
+
+            //Job specifications
+            cbEmpEmploymentType.Text = EmploymentType.PARTTIME1.ToString();
+            nudEmpHourlyWages.Text = (19).ToString();
+            cbEmpDepartment.Text = "Management";
+        }
+
         private void ClearFields()
         {
             //Personal information
@@ -111,30 +142,8 @@ namespace MediaBazaarApp
             cbEmpDepartment.Text = "";
         }
 
-        private void btnAddEmpoyee_Click(object sender, EventArgs e)
+        private bool CheckEmployeeFields()
         {
-            string fname;
-            string lname;
-            DateTime dateOfBirth;
-            Gender gender;
-
-            string email;
-            string phone;
-            string street;
-            string city;
-            string country;
-            string postcode;
-            string bsn;
-
-            string emConName;
-            EmergencyContactRelation emConRelation;
-            string emConEmail;
-            string emConPhone;
-
-            EmploymentType empType;
-            int hourlyWages;
-            Department department;
-
             if (!String.IsNullOrEmpty(tbxEmpFname.Text) && !String.IsNullOrEmpty(tbxEmpLname.Text) &&
                 !String.IsNullOrEmpty(dtpEmpDateOfBirth.Text) && cbEmpGender.Items.Contains(cbEmpGender.Text) &&
                 !String.IsNullOrEmpty(tbxEmpEmail.Text) && !String.IsNullOrEmpty(tbxEmpPhone.Text) &&
@@ -142,7 +151,29 @@ namespace MediaBazaarApp
                 !String.IsNullOrEmpty(tbxEmpAddressCountry.Text) && !String.IsNullOrEmpty(tbxEmpAddressPostCode.Text) &&
                 !String.IsNullOrEmpty(tbxEmConName.Text) && cbEmConRelation.Items.Contains(cbEmConRelation.Text) &&
                 !String.IsNullOrEmpty(tbxEmConEmail.Text) && !String.IsNullOrEmpty(tbxEmConPhone.Text) &&
-                cbEmpEmploymentType.Items.Contains(cbEmpEmploymentType.Text) && cbEmpDepartment.Items.Contains(cbEmpDepartment.Text))
+                cbEmpEmploymentType.Items.Contains(cbEmpEmploymentType.Text) &&
+                cbEmpDepartment.Items.Contains(cbEmpDepartment.Text))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void btnAddEmpoyee_Click(object sender, EventArgs e)
+        {
+            string fname, lname;
+            DateTime dateOfBirth;
+            Gender gender;
+
+            string email, phone, street, city, country, postcode, bsn, emConName;
+            EmergencyContactRelation emConRelation;
+            string emConEmail, emConPhone;
+
+            EmploymentType empType;
+            int hourlyWages;
+            Department department;
+
+            if (CheckEmployeeFields())
             {
                 fname = tbxEmpFname.Text;
                 lname = tbxEmpLname.Text;
@@ -167,22 +198,71 @@ namespace MediaBazaarApp
                 hourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
                 department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
 
-                //Department currentDep = departmentManagement.GetDepartment(department.Name);
-                // if (department.AddEmployee(fname, lname, dateOfBirth, gender, email, phone, street, city, country,
-                //   postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages, department))
                 DBControl dbControl = new DBControl();
 
-                if(department.GetEmployeeByEmail(email) == null)
+                // TODO: Here catch exceptions
+                try
                 {
-                    dbControl.AddEmployee(fname, lname, dateOfBirth, gender, email, phone, street, city, country, 
-                        postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages, department);
-                    dbControl.GetEmployees(this.departmentManagement);
-                    MessageBox.Show("You have successfully hired a new employee!");
-                    ClearFields();
+                    if (department.AddEmployee(fname, lname, dateOfBirth, gender, email, phone, street, city, country,
+                        postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages,
+                        department))
+                    {
+                        if (String.IsNullOrEmpty(bsn))
+                        {
+                            bsn = "999999990";
+                        }
+
+                        dbControl.AddEmployee(fname, lname, dateOfBirth, gender, email, phone, street, city, country,
+                            postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages,
+                            department);
+                        dbControl.GetEmployees(this.departmentManagement);
+                        MessageBox.Show("You have successfully hired a new employee!");
+                        ClearFields();
+                    }
+                    else
+                    {
+                        MessageBox.Show("There is already an employee with the same email!");
+                    }
                 }
-                else
+                catch (EmpNameException ex)
                 {
-                    MessageBox.Show("There is already an employee with the same email!");
+                    MessageBox.Show(ex.Message);
+                }
+                catch(EmpAgeException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpEmailException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpPhoneException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpStreetException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpCityException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpCountryException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpPostcodeException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpBsnException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
             else

@@ -89,31 +89,40 @@ namespace MediaBazaarApp
                 !String.IsNullOrEmpty(tbxEmConEmail.Text) && !String.IsNullOrEmpty(tbxEmConPhone.Text) &&
                 cbEmpEmploymentType.Items.Contains(cbEmpEmploymentType.Text) && cbEmpDepartment.Items.Contains(cbEmpDepartment.Text))
             {
-                //Personal information
-                currEmp.FirstName = tbxEmpFname.Text;
-                currEmp.LastName = tbxEmpLname.Text;
-                currEmp.DateOfBirth = dtpEmpDateOfBirth.Value;
-                currEmp.Gender = (Gender)(Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
+                try
+                {
+                    //Personal information
+                    currEmp.FirstName = tbxEmpFname.Text;
+                    currEmp.LastName = tbxEmpLname.Text;
+                    currEmp.DateOfBirth = dtpEmpDateOfBirth.Value;
+                    currEmp.Gender = (Gender) (Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
 
-                //Contact details
-                currEmp.Email = tbxEmpEmail.Text;
-                currEmp.PhoneNumber = tbxEmpPhone.Text;
-                currEmp.Street = tbxEmpAddressStreet.Text;
-                currEmp.City = tbxEmpAddressCity.Text;
-                currEmp.Country = tbxEmpAddressCountry.Text;
-                currEmp.Postcode = tbxEmpAddressPostCode.Text;
-                currEmp.Bsn = tbxEmpBsn.Text;
+                    //Contact details
+                    currEmp.Email = tbxEmpEmail.Text;
+                    currEmp.PhoneNumber = tbxEmpPhone.Text;
+                    currEmp.Street = tbxEmpAddressStreet.Text;
+                    currEmp.City = tbxEmpAddressCity.Text;
+                    currEmp.Country = tbxEmpAddressCountry.Text;
+                    currEmp.Postcode = tbxEmpAddressPostCode.Text;
+                    currEmp.Bsn = tbxEmpBsn.Text;
 
-                //Emergency contact details
-                currEmp.EmConName = tbxEmConName.Text;
-                currEmp.EmConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation), cbEmConRelation.Text.ToString());
-                currEmp.EmConEmail = tbxEmConEmail.Text;
-                currEmp.EmConPhoneNum = tbxEmConPhone.Text;
+                    //Emergency contact details
+                    currEmp.EmConName = tbxEmConName.Text;
+                    currEmp.EmConRelation = (EmergencyContactRelation) Enum.Parse(typeof(EmergencyContactRelation),
+                        cbEmConRelation.Text.ToString());
+                    currEmp.EmConEmail = tbxEmConEmail.Text;
+                    currEmp.EmConPhoneNum = tbxEmConPhone.Text;
 
-                //Job specifications
-                currEmp.EmploymentType = (EmploymentType)(Enum.Parse(typeof(EmploymentType), cbEmpEmploymentType.SelectedItem.ToString()));
-                currEmp.HourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
-                currEmp.Department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
+                    //Job specifications
+                    currEmp.EmploymentType = (EmploymentType) (Enum.Parse(typeof(EmploymentType),
+                        cbEmpEmploymentType.SelectedItem.ToString()));
+                    currEmp.HourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
+                    currEmp.Department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
                 DBControl dbControl = new DBControl();
                 dbControl.EditEmployee(currEmp);

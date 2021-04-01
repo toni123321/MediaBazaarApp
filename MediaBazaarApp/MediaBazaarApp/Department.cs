@@ -101,14 +101,14 @@ namespace MediaBazaarApp
         }
         
 
-        public bool AddEmployee(int id, string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email, 
+        public bool AddEmployee(string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email, 
             string phoneNumber, string street, string city, string country, string postcode, string bsn,
             string emConName, EmergencyContactRelation emConRelation, string emConEmail, string emConPhoneNum,
             EmploymentType employmentType, double hourlyWages, Department department)
         {
             if (GetEmployeeByEmail(email) == null)
             {
-                Employee newEmp = new Employee(id, firstName, lastName, dateOfBirth, gender, email, phoneNumber,
+                Employee newEmp = new Employee(firstName, lastName, dateOfBirth, gender, email, phoneNumber,
                     street, city, country, postcode, bsn, emConName, emConRelation, emConEmail, emConPhoneNum, 
                     employmentType, hourlyWages, department);
                 employees.Add(newEmp);
