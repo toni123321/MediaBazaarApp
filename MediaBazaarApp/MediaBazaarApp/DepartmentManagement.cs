@@ -16,22 +16,22 @@ namespace MediaBazaarApp
 
         }
         //Methods
-        public bool AddDepartment(int id, string name)
+        public bool AddDepartment(string name)
         {
             if (GetDepartment(name) == null)
             {
-                Department newDepartment = new Department(id, name);
+                Department newDepartment = new Department(name);
                 departments.Add(newDepartment);
                 return true;
             }
             return false;
         }
 
-        public bool AddDepartment(int id, string name, Employee manager)
+        public bool AddDepartment(string name, Employee manager)
         {
             if (GetDepartment(name) == null)
             {
-                Department newDepartment = new Department(id, name, manager);
+                Department newDepartment = new Department(name, manager);
                 departments.Add(newDepartment);
                 return true;
             }

@@ -107,6 +107,7 @@
     <Compile Include="AssignWorkShiftsManuallyForm.Designer.cs">
       <DependentUpon>AssignWorkShiftsManuallyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom exceptions\DepNameException.cs" />
     <Compile Include="Custom exceptions\EmpAgeException.cs" />
     <Compile Include="Custom exceptions\EmpBsnException.cs" />
     <Compile Include="Custom exceptions\EmpCityException.cs" />

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using MediaBazaarApp.Custom_exceptions;
 
 namespace MediaBazaarApp
 {
@@ -35,7 +37,19 @@ namespace MediaBazaarApp
         public string Name
         {
             get { return this.name; }
-            set { this.name = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^[A-Za-z]{2,}$");
+                if (isValid)
+                {
+                    this.name = value;
+                }
+                else
+                {
+                    // throw exceptions here
+                    throw new DepNameException(value);
+                }
+            }
         }
 
         public Employee Manager
@@ -45,12 +59,12 @@ namespace MediaBazaarApp
         }
 
         //Constructors
-        public Department(int id, string name)
+        public Department(string name)
         {
             
-            this.name = name;
+            this.Name = name;
             employees = new List<Employee>();
-            this.Id = id;
+            //this.Id = id;
 
             //string firstLetters = this.name.Substring(0, 2);
             //dept id
@@ -59,15 +73,15 @@ namespace MediaBazaarApp
             //static id
             //id++;
         }
-        public Department(int id, string name, Employee manager)
+        public Department(string name, Employee manager)
         {
             
-            this.name = name;
-            this.manager = manager;
+            this.Name = name;
+            this.Manager = manager;
             employees = new List<Employee>();
-            this.Id = id;
+            //this.Id = id;
 
-            string firstLetters = this.name.Substring(0, 2);
+            //string firstLetters = this.name.Substring(0, 2);
             //dept id
             //deptId = $"{firstLetters}{id}";
 

@@ -607,10 +607,9 @@ namespace MediaBazaarApp
                         int id = Convert.ToInt32(dr[0]);
 
                         string depName = dr[1].ToString();
-                        departmentManagement.AddDepartment(id, depName);
-                        //Department currDep = departmentManagement.GetDepartment(depName);
-
-
+                        departmentManagement.AddDepartment(depName);
+                        Department currDep = departmentManagement.GetDepartment(depName);
+                        currDep.Id = id;
                     }
                 }
             }
