@@ -63,11 +63,23 @@ namespace MediaBazaarApp
             }
         }
 
-        public void FillComboBoxDepartments(bool isSuperuser)
+        public bool CheckIsSuperuser()
         {
+            bool isSuperuser = false;
+            if (currentEmp.Email == "john@gmail.com" && currentEmp.Id == 1)
+            {
+                isSuperuser = true;
+            }
+
+            return isSuperuser;
+        }
+
+        public void FillComboBoxDepartments()
+        {
+            cbEmpDepartment.Items.Clear();
             foreach (Department dep in departmentManagement.GetAllDepartments())
             {
-                if (!isSuperuser && dep.Name == "Administration")
+                if (CheckIsSuperuser() && dep.Name == "Administration")
                 {
                     continue;
                 }
@@ -691,6 +703,7 @@ namespace MediaBazaarApp
                     cbDepartmentManager.Text = "Choose a manager";
                     MessageBox.Show("You have successfully created new department!");
                     RefreshCbSelectEmpDepartment();
+                    FillComboBoxDepartments();
                 }
                 catch (DepNameException ex)
                 {
@@ -714,7 +727,30 @@ namespace MediaBazaarApp
                 departmentManagement.RemoveDepartment(dep.Name);
                 //dbControl.GetDepartments(this.departmentManagement);
                 MessageBox.Show($"You have successfully removed branch with name:{dep.Name}");
+                
+                UpdateDepartments();
+                UpdateCBXDepManager(cbDepartmentManager);
                 RefreshCbSelectEmpDepartment();
+                FillComboBoxDepartments();
+
+                //refresh employee list
+                RefreshEmployeesList();
+
+                /*if (dep.GetAllEmployees().Count > 0)
+                {
+                    RemoveDepartmentForm removeDepartmentForm = new RemoveDepartmentForm(this, dep);
+                    removeDepartmentForm.Show();
+                }
+                else
+                {
+                    DBControl dbControl = new DBControl();
+                    dbControl.RemoveDepartment(dep.Name);
+                    departmentManagement.RemoveDepartment(dep.Name);
+                    //dbControl.GetDepartments(this.departmentManagement);
+                    MessageBox.Show($"You have successfully removed branch with name:{dep.Name}");
+                    RefreshCbSelectEmpDepartment();
+                    FillComboBoxDepartments();
+                }*/
             }
             else
             {
@@ -776,10 +812,19 @@ namespace MediaBazaarApp
                     departmentManagement.RemoveDepartment(dep.Name);
                     dbControl.GetDepartments(departmentManagement);
                     dbControl.SetDepartmentManagers(departmentManagement);
-                    UpdateDepartments();
+                    //UpdateDepartments();
                     MessageBox.Show("The new changes are successfully applied!");
                     gbxEditDepartment.Visible = false;
+                    //RefreshCbSelectEmpDepartment();
+                    //FillComboBoxDepartments();
+
+                    UpdateDepartments();
+                    UpdateCBXDepManager(cbDepartmentManager);
                     RefreshCbSelectEmpDepartment();
+                    FillComboBoxDepartments();
+
+                    //refresh employee list
+                    RefreshEmployeesList();
                 }
                 catch (DepNameException ex)
                 {

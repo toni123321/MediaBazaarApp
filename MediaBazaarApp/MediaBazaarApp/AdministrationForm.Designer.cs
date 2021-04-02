@@ -189,6 +189,7 @@ namespace MediaBazaarApp
             this.lbDepartmentManager = new System.Windows.Forms.Label();
             this.tbxDepartmentName = new System.Windows.Forms.TextBox();
             this.lbDepartmentName = new System.Windows.Forms.Label();
+            this.lbNotificationEmpNotAssignedToDep = new System.Windows.Forms.Label();
             this.tabControlAdministration.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.EmployeesTab.SuspendLayout();
@@ -233,6 +234,7 @@ namespace MediaBazaarApp
             // 
             // HomeTab
             // 
+            this.HomeTab.Controls.Add(this.lbNotificationEmpNotAssignedToDep);
             this.HomeTab.Controls.Add(this.lbTime);
             this.HomeTab.Controls.Add(this.lbDateDayOfWeek);
             this.HomeTab.Controls.Add(this.lbNotificationsShelfRestockRequests);
@@ -1864,10 +1866,10 @@ namespace MediaBazaarApp
             this.lbxAllDepartments.FormattingEnabled = true;
             this.lbxAllDepartments.HorizontalScrollbar = true;
             this.lbxAllDepartments.ItemHeight = 22;
-            this.lbxAllDepartments.Location = new System.Drawing.Point(30, 105);
+            this.lbxAllDepartments.Location = new System.Drawing.Point(31, 209);
             this.lbxAllDepartments.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAllDepartments.Name = "lbxAllDepartments";
-            this.lbxAllDepartments.Size = new System.Drawing.Size(601, 466);
+            this.lbxAllDepartments.Size = new System.Drawing.Size(601, 400);
             this.lbxAllDepartments.TabIndex = 7;
             // 
             // gbxCreateDeparmtent
@@ -1915,7 +1917,7 @@ namespace MediaBazaarApp
             this.lbDepartmentManager.Name = "lbDepartmentManager";
             this.lbDepartmentManager.Size = new System.Drawing.Size(183, 22);
             this.lbDepartmentManager.TabIndex = 3;
-            this.lbDepartmentManager.Text = "Department maanger:";
+            this.lbDepartmentManager.Text = "Department manager:";
             // 
             // tbxDepartmentName
             // 
@@ -1933,6 +1935,15 @@ namespace MediaBazaarApp
             this.lbDepartmentName.Size = new System.Drawing.Size(62, 22);
             this.lbDepartmentName.TabIndex = 1;
             this.lbDepartmentName.Text = "Name:";
+            // 
+            // lbNotificationEmpNotAssignedToDep
+            // 
+            this.lbNotificationEmpNotAssignedToDep.AutoSize = true;
+            this.lbNotificationEmpNotAssignedToDep.Location = new System.Drawing.Point(723, 130);
+            this.lbNotificationEmpNotAssignedToDep.Name = "lbNotificationEmpNotAssignedToDep";
+            this.lbNotificationEmpNotAssignedToDep.Size = new System.Drawing.Size(353, 22);
+            this.lbNotificationEmpNotAssignedToDep.TabIndex = 10;
+            this.lbNotificationEmpNotAssignedToDep.Text = "Employees not assigned to department(nr:)";
             // 
             // AdministrationForm
             // 
@@ -2148,5 +2159,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.ListBox lbxSelectedEmpShifts;
         private System.Windows.Forms.Button btnShift;
         private System.Windows.Forms.Label lbDepartmentCurrManagerEdit;
+        private System.Windows.Forms.Label lbNotificationEmpNotAssignedToDep;
     }
 }

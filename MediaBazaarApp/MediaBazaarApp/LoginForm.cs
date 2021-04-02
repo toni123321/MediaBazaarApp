@@ -86,14 +86,9 @@ namespace MediaBazaarApp
                     
                     if (currentEmp.Department.Name == "Administration")
                     {
-                        bool isSuperuser = false;
                         AdministrationForm administrationForm = new AdministrationForm(departmentManagement, currentEmp, salesManagement, stockManagement);
                         
-                        if (currentEmp.Email == "john@gmail.com" && currentEmp.Id == 1)
-                        {
-                            isSuperuser = true;
-                        }
-                        administrationForm.FillComboBoxDepartments(isSuperuser);
+                        administrationForm.FillComboBoxDepartments();
                         administrationForm.Show();
                         this.Hide();
 
