@@ -303,41 +303,49 @@ namespace MediaBazaarApp
             }
             else
             {
-                string model = tbxStockModel.Text.ToUpper();
-                string brand = tbxStockBrand.Text.ToUpper();
-                double price = double.Parse(tbxStockPrice.Text);
-                int quantity = int.Parse(tbxStockQuantity.Text);
-                double height = double.Parse(tbxStockHeight.Text);
-                double width = double.Parse(tbxStockWidth.Text);
-                double depth = double.Parse(tbxStockDepth.Text);
-                double weight = double.Parse(tbxStockWeight.Text);
-                string shortDescription;
-
-                if (tbxStockShortDescription.Text == "")
+                try
                 {
-                    shortDescription = "No description was added";
-                }
-                else
-                {
-                    shortDescription = tbxStockShortDescription.Text;
-                }
+                    string model = tbxStockModel.Text.ToUpper();
+                    string brand = tbxStockBrand.Text.ToUpper();
+                    double price = double.Parse(tbxStockPrice.Text);
+                    int quantity = int.Parse(tbxStockQuantity.Text);
+                    double height = double.Parse(tbxStockHeight.Text);
+                    double width = double.Parse(tbxStockWidth.Text);
+                    double depth = double.Parse(tbxStockDepth.Text);
+                    double weight = double.Parse(tbxStockWeight.Text);
+                    string shortDescription;
 
-                //stockManagement.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
-                DBControl dbControl = new DBControl();
-                if (stockManagement.SearchForStock(model, brand) == null)
-                {
-                    dbControl.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
-                }
-                else
-                {
-                    Stock stock = stockManagement.SearchForStock(model, brand);
-                    stock.Quantity += quantity;
-                    dbControl.UpdateStockQuantity(stock);
-                }
+                    if (tbxStockShortDescription.Text == "")
+                    {
+                        shortDescription = "No description was added";
+                    }
+                    else
+                    {
+                        shortDescription = tbxStockShortDescription.Text;
+                    }
 
-                dbControl.GetStocks(this.stockManagement);
+                    //stockManagement.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
+                    DBControl dbControl = new DBControl();
+                    if (stockManagement.SearchForStock(model, brand) == null)
+                    {
+                        dbControl.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
+                    }
+                    else
+                    {
+                        Stock stock = stockManagement.SearchForStock(model, brand);
+                        stock.Quantity += quantity;
+                        dbControl.UpdateStockQuantity(stock);
+                    }
 
-                ClearStockTbx();
+                    dbControl.GetStocks(this.stockManagement);
+
+                    ClearStockTbx();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Please make sure that the values in the fields Price, Quantity, Width, Height, Depth and Weight are numeric. ");
+                }
+               
             }
         }
 
@@ -574,6 +582,14 @@ namespace MediaBazaarApp
                 MessageBox.Show("Fill at least the name to create new department!");
             }
 
+        }
+
+        private void TbxSearchStock_Enter(object sender, EventArgs e)
+        {
+            if (tbxSearchStock.Text=="Search...")
+            {
+                tbxSearchStock.Text = "";
+            }
         }
     }
 }

@@ -39,12 +39,28 @@ namespace MediaBazaarApp
         {
             if (removeAmountTBX.Text != "")
             {
-                stock.Quantity -= int.Parse(removeAmountTBX.Text);
-                DBControl dbControl = new DBControl();
-                dbControl.UpdateStockQuantity(stock);
-                MessageBox.Show($"Stock ID: {stock.Id} - Brand: {stock.Brand} - Model: {stock.Model} quantity was reduced to {stock.Quantity}.");
-                parent.StockListBoxRefresh();
-                this.Close();
+                try
+                {
+                    if (stock.Quantity>0)
+                    {
+                        stock.Quantity -= int.Parse(removeAmountTBX.Text);
+                        DBControl dbControl = new DBControl();
+                        dbControl.UpdateStockQuantity(stock);
+                        MessageBox.Show($"Stock ID: {stock.Id} - Brand: {stock.Brand} - Model: {stock.Model} quantity was reduced to {stock.Quantity}.");
+                        parent.StockListBoxRefresh();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Stock amount is already 0.");
+                    }
+                   
+                }
+                catch
+                {
+                    MessageBox.Show("Please enter a valid value (A whole number.)");
+                }
+            
             }
             else
             {
