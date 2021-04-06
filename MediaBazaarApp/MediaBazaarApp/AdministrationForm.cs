@@ -889,7 +889,12 @@ namespace MediaBazaarApp
                 foreach (Department dep in departmentManagement.GetAllDepartments())
                 {
                     // case first name
-                    if (dep.Name == tbxSearchDep.Text)
+                    if (dep.Name == tbxSearchDep.Text ||
+                        dep.DeptId == tbxSearchDep.Text)
+                    {
+                        lbxAllDepartments.Items.Add(dep);
+                    }
+                    else if ((dep.Manager != null && dep.Manager.FirstName == tbxSearchDep.Text))
                     {
                         lbxAllDepartments.Items.Add(dep);
                     }
