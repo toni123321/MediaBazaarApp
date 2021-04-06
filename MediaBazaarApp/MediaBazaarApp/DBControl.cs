@@ -271,6 +271,7 @@ namespace MediaBazaarApp
                 MessageBox.Show(ex.Message);
             }
         }
+        
 
         //Stocks
         public void AddStock(string model, string brand, double price, int quantity, double height,

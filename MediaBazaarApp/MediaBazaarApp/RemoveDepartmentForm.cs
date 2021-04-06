@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MediaBazaarApp
 {
-    public partial class AssignToDepartmentForm : Form
+    public partial class RemoveDepartmentForm : Form
     {
-        public AssignToDepartmentForm()
+        public RemoveDepartmentForm()
         {
             InitializeComponent();
         }

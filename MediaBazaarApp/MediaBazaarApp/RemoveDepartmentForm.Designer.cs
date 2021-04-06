@@ -1,7 +1,7 @@
 ﻿
 namespace MediaBazaarApp
 {
-    partial class AssignToDepartmentForm
+    partial class RemoveDepartmentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -43,18 +43,18 @@ namespace MediaBazaarApp
             // lbAdditionalInfo
             // 
             this.lbAdditionalInfo.AutoSize = true;
-            this.lbAdditionalInfo.Location = new System.Drawing.Point(344, 85);
+            this.lbAdditionalInfo.Location = new System.Drawing.Point(323, 110);
             this.lbAdditionalInfo.Name = "lbAdditionalInfo";
             this.lbAdditionalInfo.Size = new System.Drawing.Size(577, 20);
-            this.lbAdditionalInfo.TabIndex = 14;
+            this.lbAdditionalInfo.TabIndex = 19;
             this.lbAdditionalInfo.Text = "(If you successfully change the employee\'s department, the line becomes green) ";
             // 
             // btnChangeDepartment
             // 
-            this.btnChangeDepartment.Location = new System.Drawing.Point(711, 160);
+            this.btnChangeDepartment.Location = new System.Drawing.Point(690, 185);
             this.btnChangeDepartment.Name = "btnChangeDepartment";
             this.btnChangeDepartment.Size = new System.Drawing.Size(182, 52);
-            this.btnChangeDepartment.TabIndex = 13;
+            this.btnChangeDepartment.TabIndex = 18;
             this.btnChangeDepartment.Text = "Change department";
             this.btnChangeDepartment.UseVisualStyleBackColor = true;
             // 
@@ -63,10 +63,10 @@ namespace MediaBazaarApp
             this.gbxChangeDepartment.Controls.Add(this.lbChooseNewDep);
             this.gbxChangeDepartment.Controls.Add(this.btnApplyChanges);
             this.gbxChangeDepartment.Controls.Add(this.cbNewDep);
-            this.gbxChangeDepartment.Location = new System.Drawing.Point(711, 264);
+            this.gbxChangeDepartment.Location = new System.Drawing.Point(690, 289);
             this.gbxChangeDepartment.Name = "gbxChangeDepartment";
             this.gbxChangeDepartment.Size = new System.Drawing.Size(455, 269);
-            this.gbxChangeDepartment.TabIndex = 12;
+            this.gbxChangeDepartment.TabIndex = 17;
             this.gbxChangeDepartment.TabStop = false;
             this.gbxChangeDepartment.Text = "Change department";
             // 
@@ -100,33 +100,33 @@ namespace MediaBazaarApp
             // 
             this.lbxDepEmp.FormattingEnabled = true;
             this.lbxDepEmp.ItemHeight = 20;
-            this.lbxDepEmp.Location = new System.Drawing.Point(35, 149);
+            this.lbxDepEmp.Location = new System.Drawing.Point(14, 174);
             this.lbxDepEmp.Name = "lbxDepEmp";
             this.lbxDepEmp.Size = new System.Drawing.Size(641, 384);
-            this.lbxDepEmp.TabIndex = 11;
+            this.lbxDepEmp.TabIndex = 16;
             // 
             // lbInfo
             // 
             this.lbInfo.AutoSize = true;
             this.lbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbInfo.Location = new System.Drawing.Point(285, 48);
+            this.lbInfo.Location = new System.Drawing.Point(264, 73);
             this.lbInfo.Name = "lbInfo";
             this.lbInfo.Size = new System.Drawing.Size(675, 25);
-            this.lbInfo.TabIndex = 10;
+            this.lbInfo.TabIndex = 15;
             this.lbInfo.Text = "This department has employees, you should change their department";
             // 
-            // AssignToDepartmentForm
+            // RemoveDepartmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1241, 624);
+            this.ClientSize = new System.Drawing.Size(1158, 631);
             this.Controls.Add(this.lbAdditionalInfo);
             this.Controls.Add(this.btnChangeDepartment);
             this.Controls.Add(this.gbxChangeDepartment);
             this.Controls.Add(this.lbxDepEmp);
             this.Controls.Add(this.lbInfo);
-            this.Name = "AssignToDepartmentForm";
-            this.Text = "AssignToDepartmentForm";
+            this.Name = "RemoveDepartmentForm";
+            this.Text = "RemoveDepartmentForm";
             this.gbxChangeDepartment.ResumeLayout(false);
             this.gbxChangeDepartment.PerformLayout();
             this.ResumeLayout(false);

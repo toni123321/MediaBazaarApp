@@ -9,7 +9,7 @@ namespace MediaBazaarApp
     public class DepartmentManagement
     {
         //Fields
-        List<Department> departments = new List<Department>();
+        private List<Department> departments = new List<Department>();
 
         public DepartmentManagement()
         {
@@ -92,5 +92,6 @@ namespace MediaBazaarApp
         {
             return GetDepartment(depName).GetAllEmployees();
         }
+        
     }
 }

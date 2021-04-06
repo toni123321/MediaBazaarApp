@@ -32,6 +32,7 @@ namespace MediaBazaarApp
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministrationForm));
             this.tabControlAdministration = new System.Windows.Forms.TabControl();
             this.HomeTab = new System.Windows.Forms.TabPage();
+            this.lbNotificationEmpNotAssignedToDep = new System.Windows.Forms.Label();
             this.lbTime = new System.Windows.Forms.Label();
             this.lbDateDayOfWeek = new System.Windows.Forms.Label();
             this.lbNotificationsShelfRestockRequests = new System.Windows.Forms.Label();
@@ -170,6 +171,9 @@ namespace MediaBazaarApp
             this.lbScheduleAllEmp = new System.Windows.Forms.Label();
             this.lbxScheduleAllEmp = new System.Windows.Forms.ListBox();
             this.ManageDepartmentsTab = new System.Windows.Forms.TabPage();
+            this.gbxSearchDep = new System.Windows.Forms.GroupBox();
+            this.btnSearchDep = new System.Windows.Forms.Button();
+            this.tbxSearchDep = new System.Windows.Forms.TextBox();
             this.gbxEditDepartment = new System.Windows.Forms.GroupBox();
             this.lbDepartmentCurrManagerEdit = new System.Windows.Forms.Label();
             this.lbDepartmentEditInfo = new System.Windows.Forms.Label();
@@ -181,7 +185,6 @@ namespace MediaBazaarApp
             this.btnRemoveDepartment = new System.Windows.Forms.Button();
             this.btnEditDepartment = new System.Windows.Forms.Button();
             this.btnDepartmentsClearSelected = new System.Windows.Forms.Button();
-            this.lbDepartmentsInfo = new System.Windows.Forms.Label();
             this.lbxAllDepartments = new System.Windows.Forms.ListBox();
             this.gbxCreateDeparmtent = new System.Windows.Forms.GroupBox();
             this.btnCreateDepartment = new System.Windows.Forms.Button();
@@ -189,7 +192,7 @@ namespace MediaBazaarApp
             this.lbDepartmentManager = new System.Windows.Forms.Label();
             this.tbxDepartmentName = new System.Windows.Forms.TextBox();
             this.lbDepartmentName = new System.Windows.Forms.Label();
-            this.lbNotificationEmpNotAssignedToDep = new System.Windows.Forms.Label();
+            this.btnShowAllDep = new System.Windows.Forms.Button();
             this.tabControlAdministration.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.EmployeesTab.SuspendLayout();
@@ -212,6 +215,7 @@ namespace MediaBazaarApp
             this.gbxAutoShiftsAssignAllDays.SuspendLayout();
             this.gbxAssignShiftsAuto.SuspendLayout();
             this.ManageDepartmentsTab.SuspendLayout();
+            this.gbxSearchDep.SuspendLayout();
             this.gbxEditDepartment.SuspendLayout();
             this.gbxCreateDeparmtent.SuspendLayout();
             this.SuspendLayout();
@@ -249,6 +253,15 @@ namespace MediaBazaarApp
             this.HomeTab.TabIndex = 0;
             this.HomeTab.Text = "Home";
             this.HomeTab.UseVisualStyleBackColor = true;
+            // 
+            // lbNotificationEmpNotAssignedToDep
+            // 
+            this.lbNotificationEmpNotAssignedToDep.AutoSize = true;
+            this.lbNotificationEmpNotAssignedToDep.Location = new System.Drawing.Point(723, 130);
+            this.lbNotificationEmpNotAssignedToDep.Name = "lbNotificationEmpNotAssignedToDep";
+            this.lbNotificationEmpNotAssignedToDep.Size = new System.Drawing.Size(353, 22);
+            this.lbNotificationEmpNotAssignedToDep.TabIndex = 10;
+            this.lbNotificationEmpNotAssignedToDep.Text = "Employees not assigned to department(nr:)";
             // 
             // lbTime
             // 
@@ -846,7 +859,7 @@ namespace MediaBazaarApp
             // 
             // gbxSearchEmp
             // 
-            this.gbxSearchEmp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.gbxSearchEmp.BackColor = System.Drawing.Color.Transparent;
             this.gbxSearchEmp.Controls.Add(this.btnSearchEmp);
             this.gbxSearchEmp.Controls.Add(this.tbxSearchEmp);
             this.gbxSearchEmp.Location = new System.Drawing.Point(594, 22);
@@ -1716,11 +1729,12 @@ namespace MediaBazaarApp
             // 
             // ManageDepartmentsTab
             // 
+            this.ManageDepartmentsTab.Controls.Add(this.btnShowAllDep);
+            this.ManageDepartmentsTab.Controls.Add(this.gbxSearchDep);
             this.ManageDepartmentsTab.Controls.Add(this.gbxEditDepartment);
             this.ManageDepartmentsTab.Controls.Add(this.btnRemoveDepartment);
             this.ManageDepartmentsTab.Controls.Add(this.btnEditDepartment);
             this.ManageDepartmentsTab.Controls.Add(this.btnDepartmentsClearSelected);
-            this.ManageDepartmentsTab.Controls.Add(this.lbDepartmentsInfo);
             this.ManageDepartmentsTab.Controls.Add(this.lbxAllDepartments);
             this.ManageDepartmentsTab.Controls.Add(this.gbxCreateDeparmtent);
             this.ManageDepartmentsTab.Location = new System.Drawing.Point(4, 31);
@@ -1730,6 +1744,41 @@ namespace MediaBazaarApp
             this.ManageDepartmentsTab.TabIndex = 6;
             this.ManageDepartmentsTab.Text = "Manage departments";
             this.ManageDepartmentsTab.UseVisualStyleBackColor = true;
+            // 
+            // gbxSearchDep
+            // 
+            this.gbxSearchDep.BackColor = System.Drawing.Color.Transparent;
+            this.gbxSearchDep.Controls.Add(this.btnSearchDep);
+            this.gbxSearchDep.Controls.Add(this.tbxSearchDep);
+            this.gbxSearchDep.Location = new System.Drawing.Point(31, 89);
+            this.gbxSearchDep.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxSearchDep.Name = "gbxSearchDep";
+            this.gbxSearchDep.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxSearchDep.Size = new System.Drawing.Size(601, 102);
+            this.gbxSearchDep.TabIndex = 18;
+            this.gbxSearchDep.TabStop = false;
+            this.gbxSearchDep.Text = "Search for specific employee";
+            // 
+            // btnSearchDep
+            // 
+            this.btnSearchDep.Location = new System.Drawing.Point(325, 37);
+            this.btnSearchDep.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSearchDep.Name = "btnSearchDep";
+            this.btnSearchDep.Size = new System.Drawing.Size(209, 45);
+            this.btnSearchDep.TabIndex = 6;
+            this.btnSearchDep.Text = "Search";
+            this.btnSearchDep.UseVisualStyleBackColor = true;
+            this.btnSearchDep.Click += new System.EventHandler(this.btnSearchDep_Click);
+            // 
+            // tbxSearchDep
+            // 
+            this.tbxSearchDep.Location = new System.Drawing.Point(55, 45);
+            this.tbxSearchDep.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxSearchDep.Name = "tbxSearchDep";
+            this.tbxSearchDep.Size = new System.Drawing.Size(235, 28);
+            this.tbxSearchDep.TabIndex = 7;
+            this.tbxSearchDep.Text = "Search...";
+            this.tbxSearchDep.Click += new System.EventHandler(this.tbxSearchDep_Click);
             // 
             // gbxEditDepartment
             // 
@@ -1851,16 +1900,6 @@ namespace MediaBazaarApp
             this.btnDepartmentsClearSelected.UseVisualStyleBackColor = true;
             this.btnDepartmentsClearSelected.Click += new System.EventHandler(this.btnDepartmentsClearSelected_Click);
             // 
-            // lbDepartmentsInfo
-            // 
-            this.lbDepartmentsInfo.AutoSize = true;
-            this.lbDepartmentsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDepartmentsInfo.Location = new System.Drawing.Point(232, 36);
-            this.lbDepartmentsInfo.Name = "lbDepartmentsInfo";
-            this.lbDepartmentsInfo.Size = new System.Drawing.Size(196, 22);
-            this.lbDepartmentsInfo.TabIndex = 8;
-            this.lbDepartmentsInfo.Text = "View all departments";
-            // 
             // lbxAllDepartments
             // 
             this.lbxAllDepartments.FormattingEnabled = true;
@@ -1936,14 +1975,15 @@ namespace MediaBazaarApp
             this.lbDepartmentName.TabIndex = 1;
             this.lbDepartmentName.Text = "Name:";
             // 
-            // lbNotificationEmpNotAssignedToDep
+            // btnShowAllDep
             // 
-            this.lbNotificationEmpNotAssignedToDep.AutoSize = true;
-            this.lbNotificationEmpNotAssignedToDep.Location = new System.Drawing.Point(723, 130);
-            this.lbNotificationEmpNotAssignedToDep.Name = "lbNotificationEmpNotAssignedToDep";
-            this.lbNotificationEmpNotAssignedToDep.Size = new System.Drawing.Size(353, 22);
-            this.lbNotificationEmpNotAssignedToDep.TabIndex = 10;
-            this.lbNotificationEmpNotAssignedToDep.Text = "Employees not assigned to department(nr:)";
+            this.btnShowAllDep.Location = new System.Drawing.Point(477, 39);
+            this.btnShowAllDep.Name = "btnShowAllDep";
+            this.btnShowAllDep.Size = new System.Drawing.Size(155, 43);
+            this.btnShowAllDep.TabIndex = 8;
+            this.btnShowAllDep.Text = "Show all";
+            this.btnShowAllDep.UseVisualStyleBackColor = true;
+            this.btnShowAllDep.Click += new System.EventHandler(this.btnShowAllDep_Click);
             // 
             // AdministrationForm
             // 
@@ -1989,7 +2029,8 @@ namespace MediaBazaarApp
             this.gbxAutoShiftsAssignAllDays.PerformLayout();
             this.gbxAssignShiftsAuto.ResumeLayout(false);
             this.ManageDepartmentsTab.ResumeLayout(false);
-            this.ManageDepartmentsTab.PerformLayout();
+            this.gbxSearchDep.ResumeLayout(false);
+            this.gbxSearchDep.PerformLayout();
             this.gbxEditDepartment.ResumeLayout(false);
             this.gbxEditDepartment.PerformLayout();
             this.gbxCreateDeparmtent.ResumeLayout(false);
@@ -2068,7 +2109,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnRemoveDepartment;
         private System.Windows.Forms.Button btnEditDepartment;
         private System.Windows.Forms.Button btnDepartmentsClearSelected;
-        private System.Windows.Forms.Label lbDepartmentsInfo;
         private System.Windows.Forms.ListBox lbxAllDepartments;
         private System.Windows.Forms.GroupBox gbxCreateDeparmtent;
         private System.Windows.Forms.Button btnCreateDepartment;
@@ -2160,5 +2200,9 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnShift;
         private System.Windows.Forms.Label lbDepartmentCurrManagerEdit;
         private System.Windows.Forms.Label lbNotificationEmpNotAssignedToDep;
+        private System.Windows.Forms.GroupBox gbxSearchDep;
+        private System.Windows.Forms.Button btnSearchDep;
+        private System.Windows.Forms.TextBox tbxSearchDep;
+        private System.Windows.Forms.Button btnShowAllDep;
     }
 }

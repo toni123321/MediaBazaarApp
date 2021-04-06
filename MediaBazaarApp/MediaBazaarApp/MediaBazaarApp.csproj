@@ -101,12 +101,6 @@
     <Compile Include="AdministrationForm.Designer.cs">
       <DependentUpon>AdministrationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AssignToDepartmentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AssignToDepartmentForm.Designer.cs">
-      <DependentUpon>AssignToDepartmentForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="AssignWorkShiftsManuallyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +121,12 @@
     <Compile Include="DBControl.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="DepartmentManagement.cs" />
+    <Compile Include="RemoveDepartmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RemoveDepartmentForm.Designer.cs">
+      <DependentUpon>RemoveDepartmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SalesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,11 +193,11 @@
     <EmbeddedResource Include="AdministrationForm.resx">
       <DependentUpon>AdministrationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AssignToDepartmentForm.resx">
-      <DependentUpon>AssignToDepartmentForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AssignWorkShiftsManuallyForm.resx">
       <DependentUpon>AssignWorkShiftsManuallyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RemoveDepartmentForm.resx">
+      <DependentUpon>RemoveDepartmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalesForm.resx">
       <DependentUpon>SalesForm.cs</DependentUpon>
