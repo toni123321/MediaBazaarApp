@@ -237,7 +237,8 @@ namespace MediaBazaarApp
                         ClearFields();
                         UpdateCBXDepManager(cbDepartmentManager);
                         RefreshEmployeesList();
-
+                        // Update schedule
+                        UpdateScheduleLBX();
                     }
                     else
                     {
@@ -373,6 +374,9 @@ namespace MediaBazaarApp
                     UpdateDepartments();
                     RefreshCbSelectEmpDepartment();
                     FillComboBoxDepartments();
+
+                    // Update schedule
+                    UpdateScheduleLBX();
                 }
                 else
                 {
@@ -770,18 +774,25 @@ namespace MediaBazaarApp
                 Department dep = (Department) lbxAllDepartments.SelectedItem;
                 DBControl dbControl = new DBControl();
 
-                dbControl.RemoveDepartment(dep.Name);
-                departmentManagement.RemoveDepartment(dep.Name);
-                //dbControl.GetDepartments(this.departmentManagement);
-                MessageBox.Show($"You have successfully removed department with name:{dep.Name}");
+                if (dep.GetAllEmployees().Count == 0)
+                {
+                    dbControl.RemoveDepartment(dep.Name);
+                    departmentManagement.RemoveDepartment(dep.Name);
+                    //dbControl.GetDepartments(this.departmentManagement);
+                    MessageBox.Show($"You have successfully removed department with name:{dep.Name}");
 
-                UpdateDepartments();
-                UpdateCBXDepManager(cbDepartmentManager);
-                RefreshCbSelectEmpDepartment();
-                FillComboBoxDepartments();
+                    UpdateDepartments();
+                    UpdateCBXDepManager(cbDepartmentManager);
+                    RefreshCbSelectEmpDepartment();
+                    FillComboBoxDepartments();
 
-                //refresh employee list
-                RefreshEmployeesList();
+                    //refresh employee list
+                    RefreshEmployeesList();
+                }
+                else
+                {
+                    MessageBox.Show("This department can't be deleted, because has employees!");
+                }
 
                 /*if (dep.GetAllEmployees().Count > 0)
                 {
