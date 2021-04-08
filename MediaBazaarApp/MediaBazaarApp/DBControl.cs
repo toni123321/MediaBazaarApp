@@ -546,7 +546,14 @@ namespace MediaBazaarApp
 
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@name", name);
-                    cmd.Parameters.AddWithValue("@IDManager", idManager);
+                    if (idManager != -1)
+                    {
+                        cmd.Parameters.AddWithValue("@IDManager", idManager);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@IDManager", null);
+                    }
 
                     conn.Open();
 
@@ -603,6 +610,7 @@ namespace MediaBazaarApp
 
                     MySqlDataReader dr = cmd.ExecuteReader();
 
+                    //departmentManagement.RemoveAllDepartments();
                     while (dr.Read())
                     {
                         int id = Convert.ToInt32(dr[0]);

@@ -49,6 +49,11 @@ namespace MediaBazaarApp
             return false;
         }
 
+        public void RemoveAllDepartments()
+        {
+            departments.Clear();
+        }
+
         public Department GetDepartment(string name)
         {
             foreach (Department dep in departments)

@@ -123,6 +123,7 @@ namespace MediaBazaarApp
                     DBControl dbControl = new DBControl();
                     dbControl.EditEmployee(currEmp);
                     this.departmentManagement.GetDepartment(previousDepartment.Name).RemoveEmployee(currEmp.Email);
+                    
                     MessageBox.Show("You have successfully apply the new changes for this profile!");
                 }
                 catch (EmpNameException ex)
