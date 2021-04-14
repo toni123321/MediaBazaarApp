@@ -234,6 +234,7 @@ namespace MediaBazaarApp
             this.tabControlAdministration.SelectedIndex = 0;
             this.tabControlAdministration.Size = new System.Drawing.Size(1243, 776);
             this.tabControlAdministration.TabIndex = 0;
+            this.tabControlAdministration.SelectedIndexChanged += new System.EventHandler(this.tabControlAdministration_SelectedIndexChanged);
             // 
             // HomeTab
             // 

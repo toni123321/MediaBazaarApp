@@ -756,7 +756,7 @@ namespace MediaBazaarApp
             return notManagers;
         }
 
-        private void UpdateCBXDepManager(ComboBox cbx)
+        public void UpdateCBXDepManager(ComboBox cbx)
         {
             cbx.Items.Clear();
             foreach (Employee emp in GetNotManagers())
@@ -1044,6 +1044,13 @@ namespace MediaBazaarApp
             }
         }
 
+        private void tabControlAdministration_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlAdministration.SelectedTab == ManageDepartmentsTab)
+            {
+                UpdateCBXDepManager(cbDepartmentManager);
+            }
+        }
     }
 }
 
