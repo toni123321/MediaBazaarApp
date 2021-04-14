@@ -220,7 +220,7 @@ namespace MediaBazaarApp
                 // TODO: Here catch exceptions
                 try
                 {
-                    if (department.AddEmployee(fname, lname, dateOfBirth, gender, email, phone, street, city, country,
+                    if (department.AddEmployee(departmentManagement, fname, lname, dateOfBirth, gender, email, phone, street, city, country,
                         postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages,
                         department))
                     {
@@ -862,35 +862,36 @@ namespace MediaBazaarApp
                     {
                         manager = (Employee) cbDepartmentManagerEdit.SelectedItem;
                         //Update department locally and catch exceptions
-                        departmentManagement.GetDepartment(depId).Name = newName;
+                        dep.Name = newName;
                         //Update department into DB
                         dbControl.UpdateDepartment(depId, newName, manager.Id);
                     }
                     else
                     {
-                        departmentManagement.GetDepartment(depId).Name = newName;
-                        if (departmentManagement.GetDepartment(depId).Manager != null)
+                        dep.Name = newName;
+                        if (dep.Manager != null)
                         {
                             int newIdManager = -1; // means the manager is removed
+                            dep.Name = newName; // update dep name locally
+                            dep.Manager = null; // update dep manager locally
                             dbControl.UpdateDepartment(depId, newName, newIdManager);
                         }
                         else
                         {
+                            dep.Name = newName; // update dep name locally
                             dbControl.UpdateDepartment(depId, newName);
                         }
                     }
 
-                    departmentManagement.RemoveDepartment(dep.Name);
+                    //departmentManagement.RemoveDepartment(dep.Name);
+
                     dbControl.GetDepartments(departmentManagement);
                     dbControl.SetDepartmentManagers(departmentManagement);
-
-                    //UpdateDepartments();
+                    
                     MessageBox.Show("The new changes are successfully applied!");
                     tbxDepartmentNameEdit.Clear();
                     cbDepartmentManagerEdit.Text = "Choose a manager";
                     gbxEditDepartment.Visible = false;
-                    //RefreshCbSelectEmpDepartment();
-                    //FillComboBoxDepartments();
 
                     UpdateDepartments();
                     UpdateCBXDepManager(cbDepartmentManager);

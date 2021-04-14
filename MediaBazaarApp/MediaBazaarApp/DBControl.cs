@@ -256,7 +256,7 @@ namespace MediaBazaarApp
                         string depName = dr[20].ToString();
 
                         Department dep = departmentManagement.GetDepartment(depName);
-                        dep.AddEmployee(fname, lname, dob, gender, email, phone,
+                        dep.AddEmployee(departmentManagement, fname, lname, dob, gender, email, phone,
                             street, city, country, postcode, bsn, emConName, emConRelation, emConEmail,
                             emConPhone, employmentType, hourlyWages, dep);
                         dep.GetEmployeeByEmail(email).Id = id;

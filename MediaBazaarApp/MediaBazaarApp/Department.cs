@@ -113,14 +113,27 @@ namespace MediaBazaarApp
             }
             return null;
         }
+
+        public bool isEmpExist(string email, DepartmentManagement departmentManagement)
+        {
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
+            {
+                if(emp.Email  == email)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         
 
-        public bool AddEmployee(string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email, 
+        public bool AddEmployee(DepartmentManagement departmentManagement, string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email, 
             string phoneNumber, string street, string city, string country, string postcode, string bsn,
             string emConName, EmergencyContactRelation emConRelation, string emConEmail, string emConPhoneNum,
             EmploymentType employmentType, double hourlyWages, Department department)
         {
-            if (GetEmployeeByEmail(email) == null)
+            
+            if (!isEmpExist(email, departmentManagement))
             {
                 Employee newEmp = new Employee(firstName, lastName, dateOfBirth, gender, email, phoneNumber,
                     street, city, country, postcode, bsn, emConName, emConRelation, emConEmail, emConPhoneNum, 
