@@ -79,5 +79,39 @@ namespace MediaBazaarApp
             }
             
         }
+
+        private void ManagementForm_Load(object sender, EventArgs e)
+        {
+
+            foreach (Department d in departmentManagement.GetAllDepartments())
+            {
+                EmpPerDepChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{d.GetAllEmployees().Count}");
+            }
+
+
+
+            StatisticsEmployee se = new StatisticsEmployee();
+
+            foreach (Department d in departmentManagement.GetAllDepartments())
+            {
+                AvgWageChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{se.AveregeWageOfEmployee(d.GetAllEmployees())}");
+            }
+
+            foreach (Stock s in stockManagement.GetAllStocks())
+            {
+                StocksChart.Series["Price"].Points.AddXY($"{s.Brand} {s.Model}", $"{s.Price}");
+            }
+
+
+
+            foreach (Stock s in stockManagement.GetAllStocks())
+            {
+                StocksChart.Series["Quantity"].Points.AddXY($"{s.Brand} {s.Model}", $"{s.Quantity}");
+            }
+
+
+        }
+
+       
     }
 }
