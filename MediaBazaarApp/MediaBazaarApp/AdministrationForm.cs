@@ -19,6 +19,14 @@ namespace MediaBazaarApp
         private Stock selectedStock;
         SalesManagement salesManagement;
 
+
+        private double price = 0;
+        private int quantity = 0;
+        private double height = 0;
+        private double width = 0;
+        private double depth = 0;
+        private double weight = 0;
+
         public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp, SalesManagement salesManagement, StockManagement stockManagement)
         {
             InitializeComponent();
@@ -305,14 +313,56 @@ namespace MediaBazaarApp
             {
                 try
                 {
-                    string model = tbxStockModel.Text.ToUpper();
-                    string brand = tbxStockBrand.Text.ToUpper();
-                    double price = double.Parse(tbxStockPrice.Text);
-                    int quantity = int.Parse(tbxStockQuantity.Text);
-                    double height = double.Parse(tbxStockHeight.Text);
-                    double width = double.Parse(tbxStockWidth.Text);
-                    double depth = double.Parse(tbxStockDepth.Text);
-                    double weight = double.Parse(tbxStockWeight.Text);
+                    price = double.Parse(tbxStockPrice.Text);
+                }
+                catch 
+                {
+                    MessageBox.Show("The value you entered for the field price is not numeric.");
+                }
+                try
+                {
+                    quantity = int.Parse(tbxStockQuantity.Text);
+                }
+                catch 
+                {
+                    MessageBox.Show("The value you entered for the field quantity is not a whole number.");
+                }
+                try
+                {
+                    height = double.Parse(tbxStockHeight.Text);
+                }
+                catch 
+                {
+                    MessageBox.Show("The value you entered for the field height is not numeric.");
+                }
+                try
+                {
+                    width = double.Parse(tbxStockWidth.Text);
+                }
+                catch 
+                {
+                    MessageBox.Show("The value you entered for the field width is not numeric.");
+                }
+                try
+                {
+                    depth = double.Parse(tbxStockDepth.Text);
+                }
+                catch 
+                {
+                    MessageBox.Show("The value you entered for the field depth is not numeric.");
+                }
+                try
+                {
+                    weight = double.Parse(tbxStockWeight.Text);
+                }
+                catch 
+                {
+                    MessageBox.Show("The value you entered for the field weight is not numeric.");
+                }
+
+                string model = tbxStockModel.Text.ToUpper();
+                string brand = tbxStockBrand.Text.ToUpper();                               
+
                     string shortDescription;
 
                     if (tbxStockShortDescription.Text == "")
@@ -324,7 +374,14 @@ namespace MediaBazaarApp
                         shortDescription = tbxStockShortDescription.Text;
                     }
 
-                    //stockManagement.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
+                //stockManagement.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
+
+                if(price==0 || quantity==0 || height==0 || width==0 || depth==0 ||weight==0)
+                {
+                    MessageBox.Show($"Some of the fields contain invalid values. (Non-numeric or 0)");
+                }
+                else
+                {
                     DBControl dbControl = new DBControl();
                     if (stockManagement.SearchForStock(model, brand) == null)
                     {
@@ -341,10 +398,7 @@ namespace MediaBazaarApp
 
                     ClearStockTbx();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Please make sure that the values in the fields Price, Quantity, Width, Height, Depth and Weight are numeric. ");
-                }
+                    
                
             }
         }
