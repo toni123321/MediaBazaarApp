@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MediaBazaarApp.Custom_exceptions;
 
 namespace MediaBazaarApp
 {
@@ -15,10 +16,12 @@ namespace MediaBazaarApp
         private DepartmentManagement departmentManagement;
         private Employee currEmp;
         private Department previousDepartment;
+        private AdministrationForm administrationForm;
 
-        public EditEmployeeForm(DepartmentManagement departmentManagement, Employee currEmp)
+        public EditEmployeeForm(AdministrationForm administrationForm, DepartmentManagement departmentManagement, Employee currEmp)
         {
             InitializeComponent();
+            this.administrationForm = administrationForm;
             this.departmentManagement = departmentManagement;
             this.currEmp = currEmp;
             ShowDetailsFilled();
@@ -71,8 +74,9 @@ namespace MediaBazaarApp
 
         private void EditEmployeeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // AdministrationForm administrationForm = new AdministrationForm(departmentManagement, currEmp);
-            // administrationForm.Show();
+            //Refresh the employee list after edit
+
+            this.administrationForm.RefreshEmployeesList();
         }
 
         private void btnEditEmpoyee_Click(object sender, EventArgs e)
@@ -86,36 +90,83 @@ namespace MediaBazaarApp
                 !String.IsNullOrEmpty(tbxEmConEmail.Text) && !String.IsNullOrEmpty(tbxEmConPhone.Text) &&
                 cbEmpEmploymentType.Items.Contains(cbEmpEmploymentType.Text) && cbEmpDepartment.Items.Contains(cbEmpDepartment.Text))
             {
-                //Personal information
-                currEmp.FirstName = tbxEmpFname.Text;
-                currEmp.LastName = tbxEmpLname.Text;
-                currEmp.DateOfBirth = dtpEmpDateOfBirth.Value;
-                currEmp.Gender = (Gender)(Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
+                try
+                {
+                    //Personal information
+                    currEmp.FirstName = tbxEmpFname.Text;
+                    currEmp.LastName = tbxEmpLname.Text;
+                    currEmp.DateOfBirth = dtpEmpDateOfBirth.Value;
+                    currEmp.Gender = (Gender) (Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
 
-                //Contact details
-                currEmp.Email = tbxEmpEmail.Text;
-                currEmp.PhoneNumber = tbxEmpPhone.Text;
-                currEmp.Street = tbxEmpAddressStreet.Text;
-                currEmp.City = tbxEmpAddressCity.Text;
-                currEmp.Country = tbxEmpAddressCountry.Text;
-                currEmp.Postcode = tbxEmpAddressPostCode.Text;
-                currEmp.Bsn = tbxEmpBsn.Text;
+                    //Contact details
+                    currEmp.Email = tbxEmpEmail.Text;
+                    currEmp.PhoneNumber = tbxEmpPhone.Text;
+                    currEmp.Street = tbxEmpAddressStreet.Text;
+                    currEmp.City = tbxEmpAddressCity.Text;
+                    currEmp.Country = tbxEmpAddressCountry.Text;
+                    currEmp.Postcode = tbxEmpAddressPostCode.Text;
+                    currEmp.Bsn = tbxEmpBsn.Text;
 
-                //Emergency contact details
-                currEmp.EmConName = tbxEmConName.Text;
-                currEmp.EmConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation), cbEmConRelation.Text.ToString());
-                currEmp.EmConEmail = tbxEmConEmail.Text;
-                currEmp.EmConPhoneNum = tbxEmConPhone.Text;
+                    //Emergency contact details
+                    currEmp.EmConName = tbxEmConName.Text;
+                    currEmp.EmConRelation = (EmergencyContactRelation) Enum.Parse(typeof(EmergencyContactRelation),
+                        cbEmConRelation.Text.ToString());
+                    currEmp.EmConEmail = tbxEmConEmail.Text;
+                    currEmp.EmConPhoneNum = tbxEmConPhone.Text;
 
-                //Job specifications
-                currEmp.EmploymentType = (EmploymentType)(Enum.Parse(typeof(EmploymentType), cbEmpEmploymentType.SelectedItem.ToString()));
-                currEmp.HourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
-                currEmp.Department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
+                    //Job specifications
+                    currEmp.EmploymentType = (EmploymentType) (Enum.Parse(typeof(EmploymentType),
+                        cbEmpEmploymentType.SelectedItem.ToString()));
+                    currEmp.HourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
+                    currEmp.Department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
 
-                DBControl dbControl = new DBControl();
-                dbControl.EditEmployee(currEmp);
-                this.departmentManagement.GetDepartment(previousDepartment.Name).RemoveEmployee(currEmp.Email);
-                MessageBox.Show("You have successfully apply the new changes for this profile!");
+                    DBControl dbControl = new DBControl();
+                    dbControl.EditEmployee(currEmp);
+                    this.departmentManagement.GetDepartment(previousDepartment.Name).RemoveEmployee(currEmp.Email);
+                    // Update schedule
+                    administrationForm.UpdateScheduleLBX();
+                    MessageBox.Show("You have successfully apply the new changes for this profile!");
+                }
+                catch (EmpNameException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpAgeException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpEmailException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpPhoneException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpStreetException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpCityException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpCountryException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpPostcodeException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (EmpBsnException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {

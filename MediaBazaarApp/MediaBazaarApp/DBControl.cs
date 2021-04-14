@@ -256,10 +256,10 @@ namespace MediaBazaarApp
                         string depName = dr[20].ToString();
 
                         Department dep = departmentManagement.GetDepartment(depName);
-                        dep.AddEmployee(id, fname, lname, dob, gender, email, phone,
+                        dep.AddEmployee(departmentManagement, fname, lname, dob, gender, email, phone,
                             street, city, country, postcode, bsn, emConName, emConRelation, emConEmail,
                             emConPhone, employmentType, hourlyWages, dep);
-                        //dep.GetEmployeeByEmail(email).Id = id;
+                        dep.GetEmployeeByEmail(email).Id = id;
                         dep.GetEmployeeByEmail(email).RemainingHolidayDays = remainingHolidayDays;
 
                     }
@@ -271,6 +271,7 @@ namespace MediaBazaarApp
                 MessageBox.Show(ex.Message);
             }
         }
+        
 
         //Stocks
         public void AddStock(string model, string brand, double price, int quantity, double height,
@@ -503,19 +504,85 @@ namespace MediaBazaarApp
             }
         }
 
-        public void UpdateDepartment(int idManager)
+        public void RemoveDepartment(string name)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+                    string sql = "DELETE from department WHERE name=@name";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@name", name);
+
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void UpdateDepartment(int id, string name, int idManager)
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
 
-                    string sql = "UPDATE department set IDManager=@idManager";
+                    string sql = "UPDATE department " +
+                                 "set Name=@name, " +
+                                 "IDManager=@idManager " +
+                                 "where ID=@id";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    cmd.Parameters.AddWithValue("@IDManager", idManager);
 
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    if (idManager != -1)
+                    {
+                        cmd.Parameters.AddWithValue("@IDManager", idManager);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@IDManager", null);
+                    }
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void UpdateDepartment(int id, string name)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "UPDATE department " +
+                                 "set Name=@name " +
+                                 "where ID=@id";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@name", name);
 
                     conn.Open();
 
@@ -543,15 +610,15 @@ namespace MediaBazaarApp
 
                     MySqlDataReader dr = cmd.ExecuteReader();
 
+                    //departmentManagement.RemoveAllDepartments();
                     while (dr.Read())
                     {
                         int id = Convert.ToInt32(dr[0]);
 
                         string depName = dr[1].ToString();
-                        departmentManagement.AddDepartment(id, depName);
-                        //Department currDep = departmentManagement.GetDepartment(depName);
-
-
+                        departmentManagement.AddDepartment(depName);
+                        Department currDep = departmentManagement.GetDepartment(depName);
+                        currDep.Id = id;
                     }
                 }
             }
