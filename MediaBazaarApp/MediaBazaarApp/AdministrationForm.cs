@@ -20,9 +20,6 @@ namespace MediaBazaarApp
         private Stock selectedStock;
         SalesManagement salesManagement;
 
-        public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp,
-            SalesManagement salesManagement, StockManagement stockManagement)
-
         private double price = 0;
         private int quantity = 0;
         private double height = 0;
@@ -30,7 +27,8 @@ namespace MediaBazaarApp
         private double depth = 0;
         private double weight = 0;
 
-        public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp, SalesManagement salesManagement, StockManagement stockManagement)
+        public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp,
+            SalesManagement salesManagement, StockManagement stockManagement)
         {
             InitializeComponent();
             this.departmentManagement = departmentManagement;
@@ -202,7 +200,7 @@ namespace MediaBazaarApp
                 fname = tbxEmpFname.Text;
                 lname = tbxEmpLname.Text;
                 dateOfBirth = dtpEmpDateOfBirth.Value;
-                gender = (Gender) (Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
+                gender = (Gender)(Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
 
                 email = tbxEmpEmail.Text;
                 phone = tbxEmpPhone.Text;
@@ -213,12 +211,12 @@ namespace MediaBazaarApp
                 bsn = tbxEmpBsn.Text;
 
                 emConName = tbxEmConName.Text;
-                emConRelation = (EmergencyContactRelation) Enum.Parse(typeof(EmergencyContactRelation),
+                emConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation),
                     cbEmConRelation.Text.ToString());
                 emConEmail = tbxEmConEmail.Text;
                 emConPhone = tbxEmConPhone.Text;
 
-                empType = (EmploymentType) (Enum.Parse(typeof(EmploymentType),
+                empType = (EmploymentType)(Enum.Parse(typeof(EmploymentType),
                     cbEmpEmploymentType.SelectedItem.ToString()));
 
                 hourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
@@ -363,13 +361,13 @@ namespace MediaBazaarApp
         {
             if (lbxAllEmployees.SelectedIndex != -1)
             {
-                Employee selectedEmp = (Employee) lbxAllEmployees.SelectedItem;
+                Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
 
 
                 //Remove selected emp locally
                 if (departmentManagement.GetDepartment(selectedEmp.Department.Name).RemoveEmployee(selectedEmp.Email))
                 {
-                    
+
                     //Remove selected employee from db
                     DBControl dbControl = new DBControl();
                     dbControl.RemoveEmployee(selectedEmp.Id);
@@ -441,7 +439,7 @@ namespace MediaBazaarApp
                     isSuperuser = true;
                 }
 
-                Employee selectedEmp = (Employee) lbxAllEmployees.SelectedItem;
+                Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
                 EditEmployeeForm editEmployeeForm = new EditEmployeeForm(this, departmentManagement,
                     departmentManagement.GetDepartment(selectedEmp.Department.Name)
                         .GetEmployeeByEmail(selectedEmp.Email));
@@ -456,7 +454,7 @@ namespace MediaBazaarApp
 
         private void btnAssignShiftsManually_Click(object sender, EventArgs e)
         {
-            Employee selectedEmp = (Employee) lbxScheduleAllEmp.SelectedItem;
+            Employee selectedEmp = (Employee)lbxScheduleAllEmp.SelectedItem;
 
             AssignWorkShiftsManuallyForm manualSchedule =
                 new AssignWorkShiftsManuallyForm(departmentManagement, currentEmp, selectedEmp, salesManagement);
@@ -475,7 +473,7 @@ namespace MediaBazaarApp
                 {
                     price = double.Parse(tbxStockPrice.Text);
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("The value you entered for the field price is not numeric.");
                 }
@@ -483,7 +481,7 @@ namespace MediaBazaarApp
                 {
                     quantity = int.Parse(tbxStockQuantity.Text);
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("The value you entered for the field quantity is not a whole number.");
                 }
@@ -491,7 +489,7 @@ namespace MediaBazaarApp
                 {
                     height = double.Parse(tbxStockHeight.Text);
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("The value you entered for the field height is not numeric.");
                 }
@@ -499,7 +497,7 @@ namespace MediaBazaarApp
                 {
                     width = double.Parse(tbxStockWidth.Text);
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("The value you entered for the field width is not numeric.");
                 }
@@ -507,7 +505,7 @@ namespace MediaBazaarApp
                 {
                     depth = double.Parse(tbxStockDepth.Text);
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("The value you entered for the field depth is not numeric.");
                 }
@@ -515,28 +513,28 @@ namespace MediaBazaarApp
                 {
                     weight = double.Parse(tbxStockWeight.Text);
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("The value you entered for the field weight is not numeric.");
                 }
 
                 string model = tbxStockModel.Text.ToUpper();
-                string brand = tbxStockBrand.Text.ToUpper();                               
+                string brand = tbxStockBrand.Text.ToUpper();
 
-                    string shortDescription;
+                string shortDescription;
 
-                    if (tbxStockShortDescription.Text == "")
-                    {
-                        shortDescription = "No description was added";
-                    }
-                    else
-                    {
-                        shortDescription = tbxStockShortDescription.Text;
-                    }
+                if (tbxStockShortDescription.Text == "")
+                {
+                    shortDescription = "No description was added";
+                }
+                else
+                {
+                    shortDescription = tbxStockShortDescription.Text;
+                }
 
                 //stockManagement.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
 
-                if(price==0 || quantity==0 || height==0 || width==0 || depth==0 ||weight==0)
+                if (price == 0 || quantity == 0 || height == 0 || width == 0 || depth == 0 || weight == 0)
                 {
                     MessageBox.Show($"Some of the fields contain invalid values. (Non-numeric or 0)");
                 }
@@ -558,9 +556,10 @@ namespace MediaBazaarApp
 
                     ClearStockTbx();
                 }
-                    
-               
+
+
             }
+
         }
 
         private void BtnShowAllStocks_Click(object sender, EventArgs e)
@@ -651,13 +650,12 @@ namespace MediaBazaarApp
 
         private bool StockTBXCheck()
         {
-
             if (tbxStockModel.Text == "" || tbxStockBrand.Text == "" || tbxStockPrice.Text == "" || tbxStockQuantity.Text == "" || tbxStockWeight.Text == "" || tbxStockWidth.Text == "" || tbxStockHeight.Text == "" || tbxStockDepth.Text == "")
             {
                 return false;
             }
-
             return true;
+
         }
 
         public Stock GetSelectedStock()
@@ -780,11 +778,11 @@ namespace MediaBazaarApp
                     depName = tbxDepartmentName.Text;
                     if (departmentManagement.AddDepartment(depName))
                     {
-                        
+
                         if (cbDepartmentManager.SelectedIndex != -1)
                         {
                             //dep with manager
-                            manager = (Employee) cbDepartmentManager.SelectedItem;
+                            manager = (Employee)cbDepartmentManager.SelectedItem;
                             //add locally and catch exceptions
 
                             //add to DB
@@ -832,7 +830,7 @@ namespace MediaBazaarApp
         {
             if (lbxAllDepartments.SelectedIndex != -1)
             {
-                Department dep = (Department) lbxAllDepartments.SelectedItem;
+                Department dep = (Department)lbxAllDepartments.SelectedItem;
                 DBControl dbControl = new DBControl();
 
                 if (dep.GetAllEmployees().Count == 0)
@@ -881,7 +879,7 @@ namespace MediaBazaarApp
         {
             if (lbxAllDepartments.SelectedIndex != -1)
             {
-                Department dep = (Department) lbxAllDepartments.SelectedItem;
+                Department dep = (Department)lbxAllDepartments.SelectedItem;
                 tbxDepartmentNameEdit.Text = dep.Name;
                 UpdateCBXDepManager(cbDepartmentManagerEdit);
                 if (dep.Manager != null)
@@ -921,7 +919,7 @@ namespace MediaBazaarApp
                     newName = tbxDepartmentNameEdit.Text;
                     if (cbDepartmentManagerEdit.SelectedIndex != -1)
                     {
-                        manager = (Employee) cbDepartmentManagerEdit.SelectedItem;
+                        manager = (Employee)cbDepartmentManagerEdit.SelectedItem;
                         //Update department locally and catch exceptions
                         dep.Name = newName;
                         //Update department into DB
@@ -948,7 +946,7 @@ namespace MediaBazaarApp
 
                     dbControl.GetDepartments(departmentManagement);
                     dbControl.SetDepartmentManagers(departmentManagement);
-                    
+
                     MessageBox.Show("The new changes are successfully applied!");
                     tbxDepartmentNameEdit.Clear();
                     cbDepartmentManagerEdit.Text = "Choose a manager";
@@ -1023,7 +1021,7 @@ namespace MediaBazaarApp
                 MessageBox.Show("Please, write down department Name to search!");
             }
         }
-        
+
 
         private void tbxSearchDep_Click(object sender, EventArgs e)
         {
@@ -1040,11 +1038,12 @@ namespace MediaBazaarApp
 
         private void TbxSearchStock_Enter(object sender, EventArgs e)
         {
-            if (tbxSearchStock.Text=="Search...")
+            if (tbxSearchStock.Text == "Search...")
             {
                 tbxSearchStock.Text = "";
             }
         }
+
     }
 }
 
