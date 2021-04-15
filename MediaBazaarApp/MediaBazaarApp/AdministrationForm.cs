@@ -28,6 +28,8 @@ namespace MediaBazaarApp
         private double width = 0;
         private double depth = 0;
         private double weight = 0;
+        Point last;
+        int afk;
 
         public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp,
             SalesManagement salesManagement, StockManagement stockManagement)
@@ -1363,8 +1365,26 @@ namespace MediaBazaarApp
         private void timer1_Tick(object sender, EventArgs e)
         {
             WelcomeMessage();
+
+            Point current = Cursor.Position;
+            if (current == last)
+            {
+                afk++;
+                if(afk == 15)
+                {
+                    MessageBox.Show("You have been logged out due to being idle. Please, log in again.");
+                    afk = 0;
+                    this.Close();
+                }
+            }
+            last = Cursor.Position;
         }
+        
     }
- }
+ } 
+
+            
+  
+ 
 
 
