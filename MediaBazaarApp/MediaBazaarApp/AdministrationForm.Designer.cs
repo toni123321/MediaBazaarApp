@@ -131,14 +131,6 @@ namespace MediaBazaarApp
             this.btnChooseAssignTypeAuto = new System.Windows.Forms.Button();
             this.cbAssignTypeAuto = new System.Windows.Forms.ComboBox();
             this.tpManualSched = new System.Windows.Forms.TabPage();
-            this.gbChooseEmp = new System.Windows.Forms.GroupBox();
-            this.lbEmp = new System.Windows.Forms.Label();
-            this.lbDep = new System.Windows.Forms.Label();
-            this.btnAddShift = new System.Windows.Forms.Button();
-            this.btnViewRemoveShifts = new System.Windows.Forms.Button();
-            this.cbEmps = new System.Windows.Forms.ComboBox();
-            this.cbDeps = new System.Windows.Forms.ComboBox();
-            this.gbViewRemoveShifts = new System.Windows.Forms.GroupBox();
             this.gbAssignShiftManually = new System.Windows.Forms.GroupBox();
             this.btnReturnAssign = new System.Windows.Forms.Button();
             this.cbWFH = new System.Windows.Forms.CheckBox();
@@ -149,9 +141,16 @@ namespace MediaBazaarApp
             this.dtpShiftDate = new System.Windows.Forms.DateTimePicker();
             this.lbShiftDate = new System.Windows.Forms.Label();
             this.cbShiftType = new System.Windows.Forms.ComboBox();
+            this.gbChooseEmp = new System.Windows.Forms.GroupBox();
+            this.lbEmp = new System.Windows.Forms.Label();
+            this.lbDep = new System.Windows.Forms.Label();
+            this.btnAddShift = new System.Windows.Forms.Button();
+            this.btnViewRemoveShifts = new System.Windows.Forms.Button();
+            this.cbEmps = new System.Windows.Forms.ComboBox();
+            this.cbDeps = new System.Windows.Forms.ComboBox();
+            this.gbViewRemoveShifts = new System.Windows.Forms.GroupBox();
             this.btnReturnViewRemove = new System.Windows.Forms.Button();
             this.lbxSelectedEmpShifts = new System.Windows.Forms.ListBox();
-            this.btnShift = new System.Windows.Forms.Button();
             this.btnScheduleClearSelected = new System.Windows.Forms.Button();
             this.tpManageAttendance = new System.Windows.Forms.TabPage();
             this.btnApplyAttendanceChanges = new System.Windows.Forms.Button();
@@ -246,9 +245,9 @@ namespace MediaBazaarApp
             this.gbxAutoShiftsAssignAllDays.SuspendLayout();
             this.gbxAssignShiftsAuto.SuspendLayout();
             this.tpManualSched.SuspendLayout();
+            this.gbAssignShiftManually.SuspendLayout();
             this.gbChooseEmp.SuspendLayout();
             this.gbViewRemoveShifts.SuspendLayout();
-            this.gbAssignShiftManually.SuspendLayout();
             this.tpManageAttendance.SuspendLayout();
             this.StocksTab.SuspendLayout();
             this.tabControlStocks.SuspendLayout();
@@ -288,12 +287,10 @@ namespace MediaBazaarApp
             this.HomeTab.Controls.Add(this.lbGreetingMsg);
             this.HomeTab.ForeColor = System.Drawing.SystemColors.ControlText;
             this.HomeTab.Location = new System.Drawing.Point(4, 27);
-            this.HomeTab.Location = new System.Drawing.Point(4, 31);
             this.HomeTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HomeTab.Name = "HomeTab";
             this.HomeTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HomeTab.Size = new System.Drawing.Size(1235, 745);
-            this.HomeTab.Size = new System.Drawing.Size(1235, 741);
             this.HomeTab.TabIndex = 0;
             this.HomeTab.Text = "Home";
             this.HomeTab.UseVisualStyleBackColor = true;
@@ -306,7 +303,6 @@ namespace MediaBazaarApp
             this.lbTime.Location = new System.Drawing.Point(136, 373);
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(41, 18);
-            this.lbTime.Size = new System.Drawing.Size(50, 22);
             this.lbTime.TabIndex = 9;
             this.lbTime.Text = "Time";
             // 
@@ -318,7 +314,6 @@ namespace MediaBazaarApp
             this.lbDateDayOfWeek.Location = new System.Drawing.Point(136, 428);
             this.lbDateDayOfWeek.Name = "lbDateDayOfWeek";
             this.lbDateDayOfWeek.Size = new System.Drawing.Size(125, 18);
-            this.lbDateDayOfWeek.Size = new System.Drawing.Size(152, 22);
             this.lbDateDayOfWeek.TabIndex = 8;
             this.lbDateDayOfWeek.Text = "Date/Day of week";
             // 
@@ -330,7 +325,6 @@ namespace MediaBazaarApp
             this.lbNotificationsShelfRestockRequests.Location = new System.Drawing.Point(884, 52);
             this.lbNotificationsShelfRestockRequests.Name = "lbNotificationsShelfRestockRequests";
             this.lbNotificationsShelfRestockRequests.Size = new System.Drawing.Size(239, 18);
-            this.lbNotificationsShelfRestockRequests.Size = new System.Drawing.Size(288, 22);
             this.lbNotificationsShelfRestockRequests.TabIndex = 7;
             this.lbNotificationsShelfRestockRequests.Text = "Shelf restock requests notifications";
             // 
@@ -342,7 +336,6 @@ namespace MediaBazaarApp
             this.lbNotificationsHolidayRequests.Location = new System.Drawing.Point(574, 52);
             this.lbNotificationsHolidayRequests.Name = "lbNotificationsHolidayRequests";
             this.lbNotificationsHolidayRequests.Size = new System.Drawing.Size(201, 18);
-            this.lbNotificationsHolidayRequests.Size = new System.Drawing.Size(244, 22);
             this.lbNotificationsHolidayRequests.TabIndex = 6;
             this.lbNotificationsHolidayRequests.Text = "Holiday requests notifications";
             // 
@@ -352,7 +345,6 @@ namespace MediaBazaarApp
             this.lbGreetingMsg.Location = new System.Drawing.Point(129, 203);
             this.lbGreetingMsg.Name = "lbGreetingMsg";
             this.lbGreetingMsg.Size = new System.Drawing.Size(129, 18);
-            this.lbGreetingMsg.Size = new System.Drawing.Size(156, 22);
             this.lbGreetingMsg.TabIndex = 5;
             this.lbGreetingMsg.Text = "Greeting message";
             // 
@@ -360,12 +352,10 @@ namespace MediaBazaarApp
             // 
             this.EmployeesTab.Controls.Add(this.tabControlEmployees);
             this.EmployeesTab.Location = new System.Drawing.Point(4, 27);
-            this.EmployeesTab.Location = new System.Drawing.Point(4, 31);
             this.EmployeesTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.EmployeesTab.Name = "EmployeesTab";
             this.EmployeesTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.EmployeesTab.Size = new System.Drawing.Size(1235, 745);
-            this.EmployeesTab.Size = new System.Drawing.Size(1235, 741);
             this.EmployeesTab.TabIndex = 1;
             this.EmployeesTab.Text = "Employees";
             this.EmployeesTab.UseVisualStyleBackColor = true;
@@ -386,12 +376,10 @@ namespace MediaBazaarApp
             // 
             this.AddEmpTab.Controls.Add(this.gbxAddEmployee);
             this.AddEmpTab.Location = new System.Drawing.Point(4, 27);
-            this.AddEmpTab.Location = new System.Drawing.Point(4, 31);
             this.AddEmpTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddEmpTab.Name = "AddEmpTab";
             this.AddEmpTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddEmpTab.Size = new System.Drawing.Size(1150, 663);
-            this.AddEmpTab.Size = new System.Drawing.Size(1150, 659);
             this.AddEmpTab.TabIndex = 0;
             this.AddEmpTab.Text = "AddEmployees";
             this.AddEmpTab.UseVisualStyleBackColor = true;
@@ -460,7 +448,6 @@ namespace MediaBazaarApp
             this.cbEmConRelation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEmConRelation.Name = "cbEmConRelation";
             this.cbEmConRelation.Size = new System.Drawing.Size(187, 26);
-            this.cbEmConRelation.Size = new System.Drawing.Size(187, 30);
             this.cbEmConRelation.TabIndex = 18;
             // 
             // lbEmConRelation
@@ -469,7 +456,6 @@ namespace MediaBazaarApp
             this.lbEmConRelation.Location = new System.Drawing.Point(711, 117);
             this.lbEmConRelation.Name = "lbEmConRelation";
             this.lbEmConRelation.Size = new System.Drawing.Size(66, 18);
-            this.lbEmConRelation.Size = new System.Drawing.Size(81, 22);
             this.lbEmConRelation.TabIndex = 17;
             this.lbEmConRelation.Text = "Relation:";
             // 
@@ -479,7 +465,6 @@ namespace MediaBazaarApp
             this.tbxEmConName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmConName.Name = "tbxEmConName";
             this.tbxEmConName.Size = new System.Drawing.Size(188, 24);
-            this.tbxEmConName.Size = new System.Drawing.Size(188, 28);
             this.tbxEmConName.TabIndex = 17;
             // 
             // lbEmConName
@@ -488,7 +473,6 @@ namespace MediaBazaarApp
             this.lbEmConName.Location = new System.Drawing.Point(727, 76);
             this.lbEmConName.Name = "lbEmConName";
             this.lbEmConName.Size = new System.Drawing.Size(52, 18);
-            this.lbEmConName.Size = new System.Drawing.Size(62, 22);
             this.lbEmConName.TabIndex = 16;
             this.lbEmConName.Text = "Name:";
             // 
@@ -498,7 +482,6 @@ namespace MediaBazaarApp
             this.tbxEmConEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmConEmail.Name = "tbxEmConEmail";
             this.tbxEmConEmail.Size = new System.Drawing.Size(188, 24);
-            this.tbxEmConEmail.Size = new System.Drawing.Size(188, 28);
             this.tbxEmConEmail.TabIndex = 19;
             // 
             // lbEmConEmail
@@ -507,7 +490,6 @@ namespace MediaBazaarApp
             this.lbEmConEmail.Location = new System.Drawing.Point(723, 157);
             this.lbEmConEmail.Name = "lbEmConEmail";
             this.lbEmConEmail.Size = new System.Drawing.Size(49, 18);
-            this.lbEmConEmail.Size = new System.Drawing.Size(59, 22);
             this.lbEmConEmail.TabIndex = 18;
             this.lbEmConEmail.Text = "Email:";
             // 
@@ -517,7 +499,6 @@ namespace MediaBazaarApp
             this.tbxEmConPhone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmConPhone.Name = "tbxEmConPhone";
             this.tbxEmConPhone.Size = new System.Drawing.Size(188, 24);
-            this.tbxEmConPhone.Size = new System.Drawing.Size(188, 28);
             this.tbxEmConPhone.TabIndex = 19;
             // 
             // lbEmConPhone
@@ -526,7 +507,6 @@ namespace MediaBazaarApp
             this.lbEmConPhone.Location = new System.Drawing.Point(720, 200);
             this.lbEmConPhone.Name = "lbEmConPhone";
             this.lbEmConPhone.Size = new System.Drawing.Size(55, 18);
-            this.lbEmConPhone.Size = new System.Drawing.Size(67, 22);
             this.lbEmConPhone.TabIndex = 19;
             this.lbEmConPhone.Text = "Phone:";
             // 
@@ -537,7 +517,6 @@ namespace MediaBazaarApp
             this.lbEmpEmConDetails.Location = new System.Drawing.Point(730, 34);
             this.lbEmpEmConDetails.Name = "lbEmpEmConDetails";
             this.lbEmpEmConDetails.Size = new System.Drawing.Size(212, 18);
-            this.lbEmpEmConDetails.Size = new System.Drawing.Size(251, 22);
             this.lbEmpEmConDetails.TabIndex = 22;
             this.lbEmpEmConDetails.Text = "Emergency contact details:";
             // 
@@ -547,7 +526,6 @@ namespace MediaBazaarApp
             this.lbEmpBsn.Location = new System.Drawing.Point(424, 344);
             this.lbEmpBsn.Name = "lbEmpBsn";
             this.lbEmpBsn.Size = new System.Drawing.Size(38, 18);
-            this.lbEmpBsn.Size = new System.Drawing.Size(46, 22);
             this.lbEmpBsn.TabIndex = 15;
             this.lbEmpBsn.Text = "Bsn:";
             // 
@@ -557,7 +535,6 @@ namespace MediaBazaarApp
             this.tbxEmpBsn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpBsn.Name = "tbxEmpBsn";
             this.tbxEmpBsn.Size = new System.Drawing.Size(188, 24);
-            this.tbxEmpBsn.Size = new System.Drawing.Size(188, 28);
             this.tbxEmpBsn.TabIndex = 15;
             // 
             // nudEmpHourlyWages
@@ -565,7 +542,6 @@ namespace MediaBazaarApp
             this.nudEmpHourlyWages.Location = new System.Drawing.Point(160, 367);
             this.nudEmpHourlyWages.Name = "nudEmpHourlyWages";
             this.nudEmpHourlyWages.Size = new System.Drawing.Size(180, 24);
-            this.nudEmpHourlyWages.Size = new System.Drawing.Size(180, 28);
             this.nudEmpHourlyWages.TabIndex = 7;
             this.nudEmpHourlyWages.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudEmpHourlyWages.Value = new decimal(new int[] {
@@ -581,7 +557,6 @@ namespace MediaBazaarApp
             this.cbEmpDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEmpDepartment.Name = "cbEmpDepartment";
             this.cbEmpDepartment.Size = new System.Drawing.Size(180, 26);
-            this.cbEmpDepartment.Size = new System.Drawing.Size(180, 30);
             this.cbEmpDepartment.TabIndex = 8;
             // 
             // lbEmpDepartment
@@ -590,7 +565,6 @@ namespace MediaBazaarApp
             this.lbEmpDepartment.Location = new System.Drawing.Point(28, 421);
             this.lbEmpDepartment.Name = "lbEmpDepartment";
             this.lbEmpDepartment.Size = new System.Drawing.Size(89, 18);
-            this.lbEmpDepartment.Size = new System.Drawing.Size(108, 22);
             this.lbEmpDepartment.TabIndex = 8;
             this.lbEmpDepartment.Text = "Department:";
             // 
@@ -608,7 +582,6 @@ namespace MediaBazaarApp
             this.cbEmpEmploymentType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEmpEmploymentType.Name = "cbEmpEmploymentType";
             this.cbEmpEmploymentType.Size = new System.Drawing.Size(180, 26);
-            this.cbEmpEmploymentType.Size = new System.Drawing.Size(180, 30);
             this.cbEmpEmploymentType.TabIndex = 5;
             // 
             // lbEmpJobSpec
@@ -618,7 +591,6 @@ namespace MediaBazaarApp
             this.lbEmpJobSpec.Location = new System.Drawing.Point(114, 283);
             this.lbEmpJobSpec.Name = "lbEmpJobSpec";
             this.lbEmpJobSpec.Size = new System.Drawing.Size(150, 18);
-            this.lbEmpJobSpec.Size = new System.Drawing.Size(176, 22);
             this.lbEmpJobSpec.TabIndex = 5;
             this.lbEmpJobSpec.Text = "Job specifications:";
             // 
@@ -628,7 +600,6 @@ namespace MediaBazaarApp
             this.lbEmpAddressStreet.Location = new System.Drawing.Point(407, 176);
             this.lbEmpAddressStreet.Name = "lbEmpAddressStreet";
             this.lbEmpAddressStreet.Size = new System.Drawing.Size(51, 18);
-            this.lbEmpAddressStreet.Size = new System.Drawing.Size(63, 22);
             this.lbEmpAddressStreet.TabIndex = 11;
             this.lbEmpAddressStreet.Text = "Street:";
             // 
@@ -639,7 +610,6 @@ namespace MediaBazaarApp
             this.lbEmpPersonalInfo.Location = new System.Drawing.Point(93, 34);
             this.lbEmpPersonalInfo.Name = "lbEmpPersonalInfo";
             this.lbEmpPersonalInfo.Size = new System.Drawing.Size(170, 18);
-            this.lbEmpPersonalInfo.Size = new System.Drawing.Size(200, 22);
             this.lbEmpPersonalInfo.TabIndex = 1;
             this.lbEmpPersonalInfo.Text = "Personal information:";
             // 
@@ -649,7 +619,6 @@ namespace MediaBazaarApp
             this.tbxEmpAddressStreet.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpAddressStreet.Name = "tbxEmpAddressStreet";
             this.tbxEmpAddressStreet.Size = new System.Drawing.Size(188, 24);
-            this.tbxEmpAddressStreet.Size = new System.Drawing.Size(188, 28);
             this.tbxEmpAddressStreet.TabIndex = 11;
             // 
             // tbxEmpAddressCity
@@ -658,7 +627,6 @@ namespace MediaBazaarApp
             this.tbxEmpAddressCity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpAddressCity.Name = "tbxEmpAddressCity";
             this.tbxEmpAddressCity.Size = new System.Drawing.Size(188, 24);
-            this.tbxEmpAddressCity.Size = new System.Drawing.Size(188, 28);
             this.tbxEmpAddressCity.TabIndex = 12;
             // 
             // cbEmpGender
@@ -673,7 +641,6 @@ namespace MediaBazaarApp
             this.cbEmpGender.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEmpGender.Name = "cbEmpGender";
             this.cbEmpGender.Size = new System.Drawing.Size(181, 26);
-            this.cbEmpGender.Size = new System.Drawing.Size(181, 30);
             this.cbEmpGender.TabIndex = 4;
             this.cbEmpGender.Text = "Choose gender";
             // 
@@ -683,7 +650,6 @@ namespace MediaBazaarApp
             this.lbEmpAddressCity.Location = new System.Drawing.Point(424, 220);
             this.lbEmpAddressCity.Name = "lbEmpAddressCity";
             this.lbEmpAddressCity.Size = new System.Drawing.Size(37, 18);
-            this.lbEmpAddressCity.Size = new System.Drawing.Size(46, 22);
             this.lbEmpAddressCity.TabIndex = 12;
             this.lbEmpAddressCity.Text = "City:";
             // 
@@ -693,7 +659,6 @@ namespace MediaBazaarApp
             this.tbxEmpEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpEmail.Name = "tbxEmpEmail";
             this.tbxEmpEmail.Size = new System.Drawing.Size(188, 24);
-            this.tbxEmpEmail.Size = new System.Drawing.Size(188, 28);
             this.tbxEmpEmail.TabIndex = 9;
             // 
             // tbxEmpAddressCountry
@@ -702,7 +667,6 @@ namespace MediaBazaarApp
             this.tbxEmpAddressCountry.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpAddressCountry.Name = "tbxEmpAddressCountry";
             this.tbxEmpAddressCountry.Size = new System.Drawing.Size(188, 24);
-            this.tbxEmpAddressCountry.Size = new System.Drawing.Size(188, 28);
             this.tbxEmpAddressCountry.TabIndex = 13;
             // 
             // lbEmpEmail
@@ -711,7 +675,6 @@ namespace MediaBazaarApp
             this.lbEmpEmail.Location = new System.Drawing.Point(403, 83);
             this.lbEmpEmail.Name = "lbEmpEmail";
             this.lbEmpEmail.Size = new System.Drawing.Size(49, 18);
-            this.lbEmpEmail.Size = new System.Drawing.Size(59, 22);
             this.lbEmpEmail.TabIndex = 9;
             this.lbEmpEmail.Text = "Email:";
             // 
@@ -721,7 +684,6 @@ namespace MediaBazaarApp
             this.lbEmpAddressPostCode.Location = new System.Drawing.Point(381, 305);
             this.lbEmpAddressPostCode.Name = "lbEmpAddressPostCode";
             this.lbEmpAddressPostCode.Size = new System.Drawing.Size(79, 18);
-            this.lbEmpAddressPostCode.Size = new System.Drawing.Size(94, 22);
             this.lbEmpAddressPostCode.TabIndex = 14;
             this.lbEmpAddressPostCode.Text = "PostCode:";
             // 
@@ -731,7 +693,6 @@ namespace MediaBazaarApp
             this.label1.Location = new System.Drawing.Point(64, 220);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 18);
-            this.label1.Size = new System.Drawing.Size(75, 22);
             this.label1.TabIndex = 4;
             this.label1.Text = "Gender:";
             // 
@@ -741,7 +702,6 @@ namespace MediaBazaarApp
             this.lbEmpAddressCountry.Location = new System.Drawing.Point(394, 265);
             this.lbEmpAddressCountry.Name = "lbEmpAddressCountry";
             this.lbEmpAddressCountry.Size = new System.Drawing.Size(64, 18);
-            this.lbEmpAddressCountry.Size = new System.Drawing.Size(78, 22);
             this.lbEmpAddressCountry.TabIndex = 13;
             this.lbEmpAddressCountry.Text = "Country:";
             // 
@@ -751,7 +711,6 @@ namespace MediaBazaarApp
             this.dtpEmpDateOfBirth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpEmpDateOfBirth.Name = "dtpEmpDateOfBirth";
             this.dtpEmpDateOfBirth.Size = new System.Drawing.Size(181, 24);
-            this.dtpEmpDateOfBirth.Size = new System.Drawing.Size(181, 28);
             this.dtpEmpDateOfBirth.TabIndex = 3;
             // 
             // tbxEmpAddressPostCode
@@ -760,7 +719,6 @@ namespace MediaBazaarApp
             this.tbxEmpAddressPostCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpAddressPostCode.Name = "tbxEmpAddressPostCode";
             this.tbxEmpAddressPostCode.Size = new System.Drawing.Size(188, 24);
-            this.tbxEmpAddressPostCode.Size = new System.Drawing.Size(188, 28);
             this.tbxEmpAddressPostCode.TabIndex = 14;
             // 
             // btnAddEmpoyee
@@ -780,7 +738,6 @@ namespace MediaBazaarApp
             this.lbEmpEmployementType.Location = new System.Drawing.Point(9, 317);
             this.lbEmpEmployementType.Name = "lbEmpEmployementType";
             this.lbEmpEmployementType.Size = new System.Drawing.Size(113, 18);
-            this.lbEmpEmployementType.Size = new System.Drawing.Size(138, 22);
             this.lbEmpEmployementType.TabIndex = 5;
             this.lbEmpEmployementType.Text = "Eployment type:";
             // 
@@ -790,7 +747,6 @@ namespace MediaBazaarApp
             this.lbEmpDateOfBirth.Location = new System.Drawing.Point(29, 171);
             this.lbEmpDateOfBirth.Name = "lbEmpDateOfBirth";
             this.lbEmpDateOfBirth.Size = new System.Drawing.Size(92, 18);
-            this.lbEmpDateOfBirth.Size = new System.Drawing.Size(113, 22);
             this.lbEmpDateOfBirth.TabIndex = 3;
             this.lbEmpDateOfBirth.Text = "Date of birth:";
             // 
@@ -800,7 +756,6 @@ namespace MediaBazaarApp
             this.lbEmpHourlyWages.Location = new System.Drawing.Point(19, 367);
             this.lbEmpHourlyWages.Name = "lbEmpHourlyWages";
             this.lbEmpHourlyWages.Size = new System.Drawing.Size(102, 18);
-            this.lbEmpHourlyWages.Size = new System.Drawing.Size(124, 22);
             this.lbEmpHourlyWages.TabIndex = 7;
             this.lbEmpHourlyWages.Text = "Hourly wages:";
             // 
@@ -810,7 +765,6 @@ namespace MediaBazaarApp
             this.tbxEmpPhone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpPhone.Name = "tbxEmpPhone";
             this.tbxEmpPhone.Size = new System.Drawing.Size(188, 24);
-            this.tbxEmpPhone.Size = new System.Drawing.Size(188, 28);
             this.tbxEmpPhone.TabIndex = 10;
             // 
             // lbEmpPhone
@@ -819,7 +773,6 @@ namespace MediaBazaarApp
             this.lbEmpPhone.Location = new System.Drawing.Point(403, 131);
             this.lbEmpPhone.Name = "lbEmpPhone";
             this.lbEmpPhone.Size = new System.Drawing.Size(55, 18);
-            this.lbEmpPhone.Size = new System.Drawing.Size(67, 22);
             this.lbEmpPhone.TabIndex = 10;
             this.lbEmpPhone.Text = "Phone:";
             // 
@@ -830,7 +783,6 @@ namespace MediaBazaarApp
             this.lbEmployeeAddress.Location = new System.Drawing.Point(463, 34);
             this.lbEmployeeAddress.Name = "lbEmployeeAddress";
             this.lbEmployeeAddress.Size = new System.Drawing.Size(126, 18);
-            this.lbEmployeeAddress.Size = new System.Drawing.Size(150, 22);
             this.lbEmployeeAddress.TabIndex = 9;
             this.lbEmployeeAddress.Text = "Contact details:";
             // 
@@ -840,7 +792,6 @@ namespace MediaBazaarApp
             this.tbxEmpLname.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpLname.Name = "tbxEmpLname";
             this.tbxEmpLname.Size = new System.Drawing.Size(180, 24);
-            this.tbxEmpLname.Size = new System.Drawing.Size(180, 28);
             this.tbxEmpLname.TabIndex = 2;
             // 
             // lbEmpLname
@@ -849,7 +800,6 @@ namespace MediaBazaarApp
             this.lbEmpLname.Location = new System.Drawing.Point(44, 130);
             this.lbEmpLname.Name = "lbEmpLname";
             this.lbEmpLname.Size = new System.Drawing.Size(81, 18);
-            this.lbEmpLname.Size = new System.Drawing.Size(98, 22);
             this.lbEmpLname.TabIndex = 2;
             this.lbEmpLname.Text = "Last name:";
             // 
@@ -859,7 +809,6 @@ namespace MediaBazaarApp
             this.tbxEmpFname.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpFname.Name = "tbxEmpFname";
             this.tbxEmpFname.Size = new System.Drawing.Size(180, 24);
-            this.tbxEmpFname.Size = new System.Drawing.Size(180, 28);
             this.tbxEmpFname.TabIndex = 1;
             // 
             // lbEmpFname
@@ -868,7 +817,6 @@ namespace MediaBazaarApp
             this.lbEmpFname.Location = new System.Drawing.Point(44, 80);
             this.lbEmpFname.Name = "lbEmpFname";
             this.lbEmpFname.Size = new System.Drawing.Size(82, 18);
-            this.lbEmpFname.Size = new System.Drawing.Size(99, 22);
             this.lbEmpFname.TabIndex = 1;
             this.lbEmpFname.Text = "First name:";
             // 
@@ -882,12 +830,10 @@ namespace MediaBazaarApp
             this.ManageEmpTab.Controls.Add(this.btnRemoveEmp);
             this.ManageEmpTab.Controls.Add(this.lbxAllEmployees);
             this.ManageEmpTab.Location = new System.Drawing.Point(4, 27);
-            this.ManageEmpTab.Location = new System.Drawing.Point(4, 31);
             this.ManageEmpTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ManageEmpTab.Name = "ManageEmpTab";
             this.ManageEmpTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ManageEmpTab.Size = new System.Drawing.Size(1150, 663);
-            this.ManageEmpTab.Size = new System.Drawing.Size(1150, 659);
             this.ManageEmpTab.TabIndex = 1;
             this.ManageEmpTab.Text = "Manage employees";
             this.ManageEmpTab.UseVisualStyleBackColor = true;
@@ -918,7 +864,6 @@ namespace MediaBazaarApp
             this.cbSelectEmpDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbSelectEmpDepartment.Name = "cbSelectEmpDepartment";
             this.cbSelectEmpDepartment.Size = new System.Drawing.Size(195, 26);
-            this.cbSelectEmpDepartment.Size = new System.Drawing.Size(195, 30);
             this.cbSelectEmpDepartment.TabIndex = 8;
             this.cbSelectEmpDepartment.Text = "All";
             // 
@@ -975,7 +920,6 @@ namespace MediaBazaarApp
             this.tbxSearchEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxSearchEmp.Name = "tbxSearchEmp";
             this.tbxSearchEmp.Size = new System.Drawing.Size(235, 24);
-            this.tbxSearchEmp.Size = new System.Drawing.Size(235, 28);
             this.tbxSearchEmp.TabIndex = 7;
             this.tbxSearchEmp.Text = "Search...";
             this.tbxSearchEmp.Click += new System.EventHandler(this.tbxSearchEmp_Click);
@@ -1018,12 +962,10 @@ namespace MediaBazaarApp
             this.lbxAllEmployees.FormattingEnabled = true;
             this.lbxAllEmployees.HorizontalScrollbar = true;
             this.lbxAllEmployees.ItemHeight = 18;
-            this.lbxAllEmployees.ItemHeight = 22;
             this.lbxAllEmployees.Location = new System.Drawing.Point(39, 152);
             this.lbxAllEmployees.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAllEmployees.Name = "lbxAllEmployees";
-            this.lbxAllEmployees.Size = new System.Drawing.Size(1068, 346);
-            this.lbxAllEmployees.Size = new System.Drawing.Size(1068, 334);
+            this.lbxAllEmployees.Size = new System.Drawing.Size(1068, 328);
             this.lbxAllEmployees.TabIndex = 12;
             // 
             // HolidayRequestsTab
@@ -1035,11 +977,9 @@ namespace MediaBazaarApp
             this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsAccept);
             this.HolidayRequestsTab.Controls.Add(this.lbxAllHolidayRequests);
             this.HolidayRequestsTab.Location = new System.Drawing.Point(4, 27);
-            this.HolidayRequestsTab.Location = new System.Drawing.Point(4, 31);
             this.HolidayRequestsTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HolidayRequestsTab.Name = "HolidayRequestsTab";
             this.HolidayRequestsTab.Size = new System.Drawing.Size(1150, 663);
-            this.HolidayRequestsTab.Size = new System.Drawing.Size(1150, 659);
             this.HolidayRequestsTab.TabIndex = 2;
             this.HolidayRequestsTab.Text = "Holiday requests";
             // 
@@ -1050,7 +990,6 @@ namespace MediaBazaarApp
             this.lbHolidayRequestsInfo.Location = new System.Drawing.Point(483, 52);
             this.lbHolidayRequestsInfo.Name = "lbHolidayRequestsInfo";
             this.lbHolidayRequestsInfo.Size = new System.Drawing.Size(160, 18);
-            this.lbHolidayRequestsInfo.Size = new System.Drawing.Size(192, 22);
             this.lbHolidayRequestsInfo.TabIndex = 9;
             this.lbHolidayRequestsInfo.Text = "New holiday request";
             // 
@@ -1089,12 +1028,10 @@ namespace MediaBazaarApp
             this.lbxAllHolidayRequests.FormattingEnabled = true;
             this.lbxAllHolidayRequests.HorizontalScrollbar = true;
             this.lbxAllHolidayRequests.ItemHeight = 18;
-            this.lbxAllHolidayRequests.ItemHeight = 22;
             this.lbxAllHolidayRequests.Location = new System.Drawing.Point(258, 106);
             this.lbxAllHolidayRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAllHolidayRequests.Name = "lbxAllHolidayRequests";
-            this.lbxAllHolidayRequests.Size = new System.Drawing.Size(632, 346);
-            this.lbxAllHolidayRequests.Size = new System.Drawing.Size(632, 334);
+            this.lbxAllHolidayRequests.Size = new System.Drawing.Size(632, 328);
             this.lbxAllHolidayRequests.TabIndex = 5;
             // 
             // SchedulingTab
@@ -1147,7 +1084,6 @@ namespace MediaBazaarApp
             this.cbWeekNumber.Name = "cbWeekNumber";
             this.cbWeekNumber.Size = new System.Drawing.Size(121, 26);
             this.cbWeekNumber.TabIndex = 4;
-            this.cbWeekNumber.SelectedIndexChanged += new System.EventHandler(this.cbWeekNumber_SelectedIndexChanged);
             // 
             // lbxWeeklySchedule
             // 
@@ -1188,12 +1124,12 @@ namespace MediaBazaarApp
             this.gbxAutoShiftsAssignPerDay.Controls.Add(this.lbTues);
             this.gbxAutoShiftsAssignPerDay.Controls.Add(this.tbxMon);
             this.gbxAutoShiftsAssignPerDay.Controls.Add(this.lbMon);
-            this.gbxAutoShiftsAssignPerDay.Location = new System.Drawing.Point(660, 157);
+            this.gbxAutoShiftsAssignPerDay.Location = new System.Drawing.Point(704, 197);
             this.gbxAutoShiftsAssignPerDay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAutoShiftsAssignPerDay.Name = "gbxAutoShiftsAssignPerDay";
             this.gbxAutoShiftsAssignPerDay.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAutoShiftsAssignPerDay.Size = new System.Drawing.Size(508, 461);
-            this.gbxAutoShiftsAssignPerDay.TabIndex = 17;
+            this.gbxAutoShiftsAssignPerDay.TabIndex = 14;
             this.gbxAutoShiftsAssignPerDay.TabStop = false;
             this.gbxAutoShiftsAssignPerDay.Text = "Choose number of workers per day";
             // 
@@ -1332,12 +1268,12 @@ namespace MediaBazaarApp
             this.gbxAutoShiftsAssignAllDays.Controls.Add(this.btnSubmitAutoShiftsAssignAllDays);
             this.gbxAutoShiftsAssignAllDays.Controls.Add(this.lbNrWorkers);
             this.gbxAutoShiftsAssignAllDays.Controls.Add(this.tbxNrWorkers);
-            this.gbxAutoShiftsAssignAllDays.Location = new System.Drawing.Point(52, 527);
+            this.gbxAutoShiftsAssignAllDays.Location = new System.Drawing.Point(96, 567);
             this.gbxAutoShiftsAssignAllDays.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAutoShiftsAssignAllDays.Name = "gbxAutoShiftsAssignAllDays";
             this.gbxAutoShiftsAssignAllDays.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAutoShiftsAssignAllDays.Size = new System.Drawing.Size(508, 157);
-            this.gbxAutoShiftsAssignAllDays.TabIndex = 16;
+            this.gbxAutoShiftsAssignAllDays.TabIndex = 13;
             this.gbxAutoShiftsAssignAllDays.TabStop = false;
             this.gbxAutoShiftsAssignAllDays.Text = "Choose number of workers for the whole week";
             // 
@@ -1362,7 +1298,7 @@ namespace MediaBazaarApp
             // 
             // tbxNrWorkers
             // 
-            this.tbxNrWorkers.Location = new System.Drawing.Point(258, 43);
+            this.tbxNrWorkers.Location = new System.Drawing.Point(253, 43);
             this.tbxNrWorkers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxNrWorkers.Name = "tbxNrWorkers";
             this.tbxNrWorkers.Size = new System.Drawing.Size(150, 24);
@@ -1373,12 +1309,12 @@ namespace MediaBazaarApp
             this.gbxAssignShiftsAuto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.gbxAssignShiftsAuto.Controls.Add(this.btnChooseAssignTypeAuto);
             this.gbxAssignShiftsAuto.Controls.Add(this.cbAssignTypeAuto);
-            this.gbxAssignShiftsAuto.Location = new System.Drawing.Point(660, 22);
+            this.gbxAssignShiftsAuto.Location = new System.Drawing.Point(704, 62);
             this.gbxAssignShiftsAuto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAssignShiftsAuto.Name = "gbxAssignShiftsAuto";
             this.gbxAssignShiftsAuto.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxAssignShiftsAuto.Size = new System.Drawing.Size(508, 110);
-            this.gbxAssignShiftsAuto.TabIndex = 15;
+            this.gbxAssignShiftsAuto.TabIndex = 12;
             this.gbxAssignShiftsAuto.TabStop = false;
             this.gbxAssignShiftsAuto.Text = "Assign work shifts automatically";
             // 
@@ -1396,6 +1332,8 @@ namespace MediaBazaarApp
             // 
             this.cbAssignTypeAuto.FormattingEnabled = true;
             this.cbAssignTypeAuto.Items.AddRange(new object[] {
+            "Per day",
+            "For all days",
             "Per day",
             "For all days"});
             this.cbAssignTypeAuto.Location = new System.Drawing.Point(60, 45);
@@ -1416,6 +1354,114 @@ namespace MediaBazaarApp
             this.tpManualSched.TabIndex = 1;
             this.tpManualSched.Text = "Manual scheduling";
             this.tpManualSched.UseVisualStyleBackColor = true;
+            // 
+            // gbAssignShiftManually
+            // 
+            this.gbAssignShiftManually.Controls.Add(this.btnReturnAssign);
+            this.gbAssignShiftManually.Controls.Add(this.cbWFH);
+            this.gbAssignShiftManually.Controls.Add(this.lbEmpInfo);
+            this.gbAssignShiftManually.Controls.Add(this.lbWFH);
+            this.gbAssignShiftManually.Controls.Add(this.btnAssign);
+            this.gbAssignShiftManually.Controls.Add(this.lbShiftType);
+            this.gbAssignShiftManually.Controls.Add(this.dtpShiftDate);
+            this.gbAssignShiftManually.Controls.Add(this.lbShiftDate);
+            this.gbAssignShiftManually.Controls.Add(this.cbShiftType);
+            this.gbAssignShiftManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbAssignShiftManually.Location = new System.Drawing.Point(3, 259);
+            this.gbAssignShiftManually.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbAssignShiftManually.Name = "gbAssignShiftManually";
+            this.gbAssignShiftManually.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbAssignShiftManually.Size = new System.Drawing.Size(432, 367);
+            this.gbAssignShiftManually.TabIndex = 25;
+            this.gbAssignShiftManually.TabStop = false;
+            this.gbAssignShiftManually.Text = "Assign work shift";
+            // 
+            // btnReturnAssign
+            // 
+            this.btnReturnAssign.Location = new System.Drawing.Point(19, 314);
+            this.btnReturnAssign.Name = "btnReturnAssign";
+            this.btnReturnAssign.Size = new System.Drawing.Size(193, 35);
+            this.btnReturnAssign.TabIndex = 25;
+            this.btnReturnAssign.Text = "Return to previous menu";
+            this.btnReturnAssign.UseVisualStyleBackColor = true;
+            // 
+            // cbWFH
+            // 
+            this.cbWFH.AutoSize = true;
+            this.cbWFH.Location = new System.Drawing.Point(171, 158);
+            this.cbWFH.Name = "cbWFH";
+            this.cbWFH.Size = new System.Drawing.Size(163, 22);
+            this.cbWFH.TabIndex = 9;
+            this.cbWFH.Text = "Working from home";
+            this.cbWFH.UseVisualStyleBackColor = true;
+            // 
+            // lbEmpInfo
+            // 
+            this.lbEmpInfo.AutoSize = true;
+            this.lbEmpInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpInfo.Location = new System.Drawing.Point(181, 21);
+            this.lbEmpInfo.Name = "lbEmpInfo";
+            this.lbEmpInfo.Size = new System.Drawing.Size(165, 18);
+            this.lbEmpInfo.TabIndex = 24;
+            this.lbEmpInfo.Text = "Employee with Id:(id)";
+            // 
+            // lbWFH
+            // 
+            this.lbWFH.AutoSize = true;
+            this.lbWFH.Location = new System.Drawing.Point(6, 158);
+            this.lbWFH.Name = "lbWFH";
+            this.lbWFH.Size = new System.Drawing.Size(0, 18);
+            this.lbWFH.TabIndex = 8;
+            // 
+            // btnAssign
+            // 
+            this.btnAssign.Location = new System.Drawing.Point(168, 201);
+            this.btnAssign.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAssign.Name = "btnAssign";
+            this.btnAssign.Size = new System.Drawing.Size(227, 65);
+            this.btnAssign.TabIndex = 7;
+            this.btnAssign.Text = "Assign shift to employee";
+            this.btnAssign.UseVisualStyleBackColor = true;
+            // 
+            // lbShiftType
+            // 
+            this.lbShiftType.AutoSize = true;
+            this.lbShiftType.Location = new System.Drawing.Point(79, 67);
+            this.lbShiftType.Name = "lbShiftType";
+            this.lbShiftType.Size = new System.Drawing.Size(72, 18);
+            this.lbShiftType.TabIndex = 1;
+            this.lbShiftType.Text = "Shift type:";
+            // 
+            // dtpShiftDate
+            // 
+            this.dtpShiftDate.Location = new System.Drawing.Point(171, 121);
+            this.dtpShiftDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtpShiftDate.Name = "dtpShiftDate";
+            this.dtpShiftDate.Size = new System.Drawing.Size(224, 24);
+            this.dtpShiftDate.TabIndex = 6;
+            // 
+            // lbShiftDate
+            // 
+            this.lbShiftDate.AutoSize = true;
+            this.lbShiftDate.Location = new System.Drawing.Point(31, 121);
+            this.lbShiftDate.Name = "lbShiftDate";
+            this.lbShiftDate.Size = new System.Drawing.Size(120, 18);
+            this.lbShiftDate.TabIndex = 3;
+            this.lbShiftDate.Text = "Date for the shift:";
+            // 
+            // cbShiftType
+            // 
+            this.cbShiftType.FormattingEnabled = true;
+            this.cbShiftType.Items.AddRange(new object[] {
+            "Morning",
+            "Afternoon",
+            "Evening"});
+            this.cbShiftType.Location = new System.Drawing.Point(171, 64);
+            this.cbShiftType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbShiftType.Name = "cbShiftType";
+            this.cbShiftType.Size = new System.Drawing.Size(224, 26);
+            this.cbShiftType.TabIndex = 5;
+            this.cbShiftType.Text = "Choose shift type";
             // 
             // gbChooseEmp
             // 
@@ -1458,7 +1504,6 @@ namespace MediaBazaarApp
             this.btnAddShift.TabIndex = 3;
             this.btnAddShift.Text = "Add shift";
             this.btnAddShift.UseVisualStyleBackColor = true;
-            this.btnAddShift.Click += new System.EventHandler(this.btnAddShift_Click);
             // 
             // btnViewRemoveShifts
             // 
@@ -1468,7 +1513,6 @@ namespace MediaBazaarApp
             this.btnViewRemoveShifts.TabIndex = 2;
             this.btnViewRemoveShifts.Text = "View/remove shifts";
             this.btnViewRemoveShifts.UseVisualStyleBackColor = true;
-            this.btnViewRemoveShifts.Click += new System.EventHandler(this.btnViewRemoveShifts_Click);
             // 
             // cbEmps
             // 
@@ -1485,130 +1529,18 @@ namespace MediaBazaarApp
             this.cbDeps.Name = "cbDeps";
             this.cbDeps.Size = new System.Drawing.Size(121, 26);
             this.cbDeps.TabIndex = 0;
-            this.cbDeps.SelectedIndexChanged += new System.EventHandler(this.cbDeps_SelectedIndexChanged);
             // 
             // gbViewRemoveShifts
             // 
             this.gbViewRemoveShifts.Controls.Add(this.btnReturnViewRemove);
             this.gbViewRemoveShifts.Controls.Add(this.lbxSelectedEmpShifts);
-            this.gbViewRemoveShifts.Controls.Add(this.btnShift);
             this.gbViewRemoveShifts.Controls.Add(this.btnScheduleClearSelected);
             this.gbViewRemoveShifts.Location = new System.Drawing.Point(454, 32);
             this.gbViewRemoveShifts.Name = "gbViewRemoveShifts";
-            this.gbViewRemoveShifts.Size = new System.Drawing.Size(630, 513);
+            this.gbViewRemoveShifts.Size = new System.Drawing.Size(722, 599);
             this.gbViewRemoveShifts.TabIndex = 26;
             this.gbViewRemoveShifts.TabStop = false;
             this.gbViewRemoveShifts.Text = "View/Remove shifts";
-            // 
-            // gbAssignShiftManually
-            // 
-            this.gbAssignShiftManually.Controls.Add(this.btnReturnAssign);
-            this.gbAssignShiftManually.Controls.Add(this.cbWFH);
-            this.gbAssignShiftManually.Controls.Add(this.lbEmpInfo);
-            this.gbAssignShiftManually.Controls.Add(this.lbWFH);
-            this.gbAssignShiftManually.Controls.Add(this.btnAssign);
-            this.gbAssignShiftManually.Controls.Add(this.lbShiftType);
-            this.gbAssignShiftManually.Controls.Add(this.dtpShiftDate);
-            this.gbAssignShiftManually.Controls.Add(this.lbShiftDate);
-            this.gbAssignShiftManually.Controls.Add(this.cbShiftType);
-            this.gbAssignShiftManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbAssignShiftManually.Location = new System.Drawing.Point(3, 259);
-            this.gbAssignShiftManually.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbAssignShiftManually.Name = "gbAssignShiftManually";
-            this.gbAssignShiftManually.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbAssignShiftManually.Size = new System.Drawing.Size(432, 367);
-            this.gbAssignShiftManually.TabIndex = 25;
-            this.gbAssignShiftManually.TabStop = false;
-            this.gbAssignShiftManually.Text = "Assign work shift";
-            // 
-            // btnReturnAssign
-            // 
-            this.btnReturnAssign.Location = new System.Drawing.Point(19, 314);
-            this.btnReturnAssign.Name = "btnReturnAssign";
-            this.btnReturnAssign.Size = new System.Drawing.Size(193, 35);
-            this.btnReturnAssign.TabIndex = 25;
-            this.btnReturnAssign.Text = "Return to previous menu";
-            this.btnReturnAssign.UseVisualStyleBackColor = true;
-            this.btnReturnAssign.Click += new System.EventHandler(this.btnReturnAssign_Click);
-            // 
-            // cbWFH
-            // 
-            this.cbWFH.AutoSize = true;
-            this.cbWFH.Location = new System.Drawing.Point(171, 158);
-            this.cbWFH.Name = "cbWFH";
-            this.cbWFH.Size = new System.Drawing.Size(163, 22);
-            this.cbWFH.TabIndex = 9;
-            this.cbWFH.Text = "Working from home";
-            this.cbWFH.UseVisualStyleBackColor = true;
-            // 
-            // lbEmpInfo
-            // 
-            this.lbEmpInfo.AutoSize = true;
-            this.lbEmpInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmpInfo.Location = new System.Drawing.Point(181, 21);
-            this.lbEmpInfo.Name = "lbEmpInfo";
-            this.lbEmpInfo.Size = new System.Drawing.Size(165, 18);
-            this.lbEmpInfo.TabIndex = 24;
-            this.lbEmpInfo.Text = "Employee with Id:(id)";
-            // 
-            // lbWFH
-            // 
-            this.lbWFH.AutoSize = true;
-            this.lbWFH.Location = new System.Drawing.Point(6, 158);
-            this.lbWFH.Name = "lbWFH";
-            this.lbWFH.Size = new System.Drawing.Size(0, 18);
-            this.lbWFH.TabIndex = 8;
-            // 
-            // btnAssign
-            // 
-            this.btnAssign.Location = new System.Drawing.Point(168, 201);
-            this.btnAssign.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAssign.Name = "btnAssign";
-            this.btnAssign.Size = new System.Drawing.Size(227, 65);
-            this.btnAssign.TabIndex = 7;
-            this.btnAssign.Text = "Assign shift to employee";
-            this.btnAssign.UseVisualStyleBackColor = true;
-            this.btnAssign.Click += new System.EventHandler(this.btnAssign_Click);
-            // 
-            // lbShiftType
-            // 
-            this.lbShiftType.AutoSize = true;
-            this.lbShiftType.Location = new System.Drawing.Point(79, 67);
-            this.lbShiftType.Name = "lbShiftType";
-            this.lbShiftType.Size = new System.Drawing.Size(72, 18);
-            this.lbShiftType.TabIndex = 1;
-            this.lbShiftType.Text = "Shift type:";
-            // 
-            // dtpShiftDate
-            // 
-            this.dtpShiftDate.Location = new System.Drawing.Point(171, 121);
-            this.dtpShiftDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtpShiftDate.Name = "dtpShiftDate";
-            this.dtpShiftDate.Size = new System.Drawing.Size(224, 24);
-            this.dtpShiftDate.TabIndex = 6;
-            // 
-            // lbShiftDate
-            // 
-            this.lbShiftDate.AutoSize = true;
-            this.lbShiftDate.Location = new System.Drawing.Point(31, 121);
-            this.lbShiftDate.Name = "lbShiftDate";
-            this.lbShiftDate.Size = new System.Drawing.Size(120, 18);
-            this.lbShiftDate.TabIndex = 3;
-            this.lbShiftDate.Text = "Date for the shift:";
-            // 
-            // cbShiftType
-            // 
-            this.cbShiftType.FormattingEnabled = true;
-            this.cbShiftType.Items.AddRange(new object[] {
-            "Morning",
-            "Afternoon",
-            "Evening"});
-            this.cbShiftType.Location = new System.Drawing.Point(171, 64);
-            this.cbShiftType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbShiftType.Name = "cbShiftType";
-            this.cbShiftType.Size = new System.Drawing.Size(224, 26);
-            this.cbShiftType.TabIndex = 5;
-            this.cbShiftType.Text = "Choose shift type";
             // 
             // btnReturnViewRemove
             // 
@@ -1618,41 +1550,29 @@ namespace MediaBazaarApp
             this.btnReturnViewRemove.TabIndex = 26;
             this.btnReturnViewRemove.Text = "Return to previous menu";
             this.btnReturnViewRemove.UseVisualStyleBackColor = true;
-            this.btnReturnViewRemove.Click += new System.EventHandler(this.btnReturnViewRemove_Click);
             // 
             // lbxSelectedEmpShifts
             // 
             this.lbxSelectedEmpShifts.FormattingEnabled = true;
             this.lbxSelectedEmpShifts.HorizontalScrollbar = true;
             this.lbxSelectedEmpShifts.ItemHeight = 18;
-            this.lbxSelectedEmpShifts.Location = new System.Drawing.Point(28, 58);
+            this.lbxSelectedEmpShifts.Location = new System.Drawing.Point(354, 77);
             this.lbxSelectedEmpShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxSelectedEmpShifts.Name = "lbxSelectedEmpShifts";
-            this.lbxSelectedEmpShifts.Size = new System.Drawing.Size(596, 346);
-            this.lbxSelectedEmpShifts.TabIndex = 21;
-            // 
-            // btnShift
-            // 
-            this.btnShift.Location = new System.Drawing.Point(334, 435);
-            this.btnShift.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnShift.Name = "btnShift";
-            this.btnShift.Size = new System.Drawing.Size(262, 49);
-            this.btnShift.TabIndex = 22;
-            this.btnShift.Text = "Remove selected shift";
-            this.btnShift.UseVisualStyleBackColor = true;
-            this.btnShift.Click += new System.EventHandler(this.btnShift_Click);
+            this.lbxSelectedEmpShifts.Size = new System.Drawing.Size(322, 328);
+            this.lbxSelectedEmpShifts.TabIndex = 15;
             // 
             // btnScheduleClearSelected
             // 
             this.btnScheduleClearSelected.BackColor = System.Drawing.Color.Transparent;
-            this.btnScheduleClearSelected.Location = new System.Drawing.Point(28, 427);
+            this.btnScheduleClearSelected.Location = new System.Drawing.Point(354, 510);
             this.btnScheduleClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnScheduleClearSelected.Name = "btnScheduleClearSelected";
-            this.btnScheduleClearSelected.Size = new System.Drawing.Size(193, 35);
-            this.btnScheduleClearSelected.TabIndex = 19;
+            this.btnScheduleClearSelected.Size = new System.Drawing.Size(322, 49);
+            this.btnScheduleClearSelected.TabIndex = 10;
             this.btnScheduleClearSelected.Text = "Unmark selections";
             this.btnScheduleClearSelected.UseVisualStyleBackColor = false;
-            this.btnScheduleClearSelected.Click += new System.EventHandler(this.btnScheduleClearSelected_Click_1);
+            this.btnScheduleClearSelected.Click += new System.EventHandler(this.btnScheduleClearSelected_Click);
             // 
             // tpManageAttendance
             // 
@@ -1682,7 +1602,6 @@ namespace MediaBazaarApp
             this.btnApplyAttendanceChanges.TabIndex = 17;
             this.btnApplyAttendanceChanges.Text = "Apply changes";
             this.btnApplyAttendanceChanges.UseVisualStyleBackColor = true;
-            this.btnApplyAttendanceChanges.Click += new System.EventHandler(this.btnApplyAttendanceChanges_Click);
             // 
             // tbReasonForAbsence
             // 
@@ -1739,7 +1658,6 @@ namespace MediaBazaarApp
             this.cbEmployeesShifts.Name = "cbEmployeesShifts";
             this.cbEmployeesShifts.Size = new System.Drawing.Size(121, 26);
             this.cbEmployeesShifts.TabIndex = 10;
-            this.cbEmployeesShifts.SelectedIndexChanged += new System.EventHandler(this.cbEmployeesShifts_SelectedIndexChanged);
             // 
             // lbSelectedEmp
             // 
@@ -1766,7 +1684,6 @@ namespace MediaBazaarApp
             this.cbSelectedEmp.Name = "cbSelectedEmp";
             this.cbSelectedEmp.Size = new System.Drawing.Size(121, 26);
             this.cbSelectedEmp.TabIndex = 7;
-            this.cbSelectedEmp.SelectedIndexChanged += new System.EventHandler(this.cbSelectedEmp_SelectedIndexChanged);
             // 
             // cbAllDeps
             // 
@@ -1775,17 +1692,14 @@ namespace MediaBazaarApp
             this.cbAllDeps.Name = "cbAllDeps";
             this.cbAllDeps.Size = new System.Drawing.Size(121, 26);
             this.cbAllDeps.TabIndex = 6;
-            this.cbAllDeps.SelectedIndexChanged += new System.EventHandler(this.cbAllDeps_SelectedIndexChanged);
             // 
             // StocksTab
             // 
             this.StocksTab.Controls.Add(this.tabControlStocks);
             this.StocksTab.Location = new System.Drawing.Point(4, 27);
-            this.StocksTab.Location = new System.Drawing.Point(4, 31);
             this.StocksTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.StocksTab.Name = "StocksTab";
             this.StocksTab.Size = new System.Drawing.Size(1235, 745);
-            this.StocksTab.Size = new System.Drawing.Size(1235, 741);
             this.StocksTab.TabIndex = 2;
             this.StocksTab.Text = "Stocks";
             this.StocksTab.UseVisualStyleBackColor = true;
@@ -1805,12 +1719,10 @@ namespace MediaBazaarApp
             // 
             this.AddStocksTab.Controls.Add(this.gbxAddStock);
             this.AddStocksTab.Location = new System.Drawing.Point(4, 27);
-            this.AddStocksTab.Location = new System.Drawing.Point(4, 31);
             this.AddStocksTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddStocksTab.Name = "AddStocksTab";
             this.AddStocksTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddStocksTab.Size = new System.Drawing.Size(1150, 663);
-            this.AddStocksTab.Size = new System.Drawing.Size(1150, 659);
             this.AddStocksTab.TabIndex = 0;
             this.AddStocksTab.Text = "Add stocks";
             this.AddStocksTab.UseVisualStyleBackColor = true;
@@ -1857,7 +1769,6 @@ namespace MediaBazaarApp
             this.kgLb.Location = new System.Drawing.Point(692, 275);
             this.kgLb.Name = "kgLb";
             this.kgLb.Size = new System.Drawing.Size(28, 18);
-            this.kgLb.Size = new System.Drawing.Size(34, 22);
             this.kgLb.TabIndex = 26;
             this.kgLb.Text = "kg.";
             // 
@@ -1867,7 +1778,6 @@ namespace MediaBazaarApp
             this.cmLb3.Location = new System.Drawing.Point(692, 214);
             this.cmLb3.Name = "cmLb3";
             this.cmLb3.Size = new System.Drawing.Size(33, 18);
-            this.cmLb3.Size = new System.Drawing.Size(38, 22);
             this.cmLb3.TabIndex = 25;
             this.cmLb3.Text = "cm.";
             // 
@@ -1877,7 +1787,6 @@ namespace MediaBazaarApp
             this.cmLb2.Location = new System.Drawing.Point(692, 160);
             this.cmLb2.Name = "cmLb2";
             this.cmLb2.Size = new System.Drawing.Size(33, 18);
-            this.cmLb2.Size = new System.Drawing.Size(38, 22);
             this.cmLb2.TabIndex = 24;
             this.cmLb2.Text = "cm.";
             // 
@@ -1887,7 +1796,6 @@ namespace MediaBazaarApp
             this.cmLb1.Location = new System.Drawing.Point(692, 107);
             this.cmLb1.Name = "cmLb1";
             this.cmLb1.Size = new System.Drawing.Size(33, 18);
-            this.cmLb1.Size = new System.Drawing.Size(38, 22);
             this.cmLb1.TabIndex = 23;
             this.cmLb1.Text = "cm.";
             // 
@@ -1896,7 +1804,6 @@ namespace MediaBazaarApp
             this.tbxStockWeight.Location = new System.Drawing.Point(513, 269);
             this.tbxStockWeight.Name = "tbxStockWeight";
             this.tbxStockWeight.Size = new System.Drawing.Size(173, 24);
-            this.tbxStockWeight.Size = new System.Drawing.Size(173, 28);
             this.tbxStockWeight.TabIndex = 22;
             // 
             // stockWeightLb
@@ -1905,7 +1812,6 @@ namespace MediaBazaarApp
             this.stockWeightLb.Location = new System.Drawing.Point(411, 269);
             this.stockWeightLb.Name = "stockWeightLb";
             this.stockWeightLb.Size = new System.Drawing.Size(58, 18);
-            this.stockWeightLb.Size = new System.Drawing.Size(71, 22);
             this.stockWeightLb.TabIndex = 2;
             this.stockWeightLb.Text = "Weight:";
             // 
@@ -1915,7 +1821,6 @@ namespace MediaBazaarApp
             this.lbStocksMainDetails.Location = new System.Drawing.Point(133, 58);
             this.lbStocksMainDetails.Name = "lbStocksMainDetails";
             this.lbStocksMainDetails.Size = new System.Drawing.Size(86, 18);
-            this.lbStocksMainDetails.Size = new System.Drawing.Size(105, 22);
             this.lbStocksMainDetails.TabIndex = 21;
             this.lbStocksMainDetails.Text = "Main details";
             // 
@@ -1925,7 +1830,6 @@ namespace MediaBazaarApp
             this.tbxStockDepth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockDepth.Name = "tbxStockDepth";
             this.tbxStockDepth.Size = new System.Drawing.Size(173, 24);
-            this.tbxStockDepth.Size = new System.Drawing.Size(173, 28);
             this.tbxStockDepth.TabIndex = 20;
             // 
             // btnAddStock
@@ -1945,7 +1849,6 @@ namespace MediaBazaarApp
             this.tbxStockPrice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockPrice.Name = "tbxStockPrice";
             this.tbxStockPrice.Size = new System.Drawing.Size(173, 24);
-            this.tbxStockPrice.Size = new System.Drawing.Size(173, 28);
             this.tbxStockPrice.TabIndex = 5;
             // 
             // tbxStockShortDescription
@@ -1963,7 +1866,6 @@ namespace MediaBazaarApp
             this.lbStockPrice.Location = new System.Drawing.Point(44, 217);
             this.lbStockPrice.Name = "lbStockPrice";
             this.lbStockPrice.Size = new System.Drawing.Size(46, 18);
-            this.lbStockPrice.Size = new System.Drawing.Size(56, 22);
             this.lbStockPrice.TabIndex = 4;
             this.lbStockPrice.Text = "Price:";
             // 
@@ -1973,7 +1875,6 @@ namespace MediaBazaarApp
             this.lbStockDepth.Location = new System.Drawing.Point(411, 214);
             this.lbStockDepth.Name = "lbStockDepth";
             this.lbStockDepth.Size = new System.Drawing.Size(51, 18);
-            this.lbStockDepth.Size = new System.Drawing.Size(63, 22);
             this.lbStockDepth.TabIndex = 19;
             this.lbStockDepth.Text = "Depth:";
             // 
@@ -1983,7 +1884,6 @@ namespace MediaBazaarApp
             this.tbxStockModel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockModel.Name = "tbxStockModel";
             this.tbxStockModel.Size = new System.Drawing.Size(173, 24);
-            this.tbxStockModel.Size = new System.Drawing.Size(173, 28);
             this.tbxStockModel.TabIndex = 3;
             // 
             // lbStockModel
@@ -1992,7 +1892,6 @@ namespace MediaBazaarApp
             this.lbStockModel.Location = new System.Drawing.Point(44, 166);
             this.lbStockModel.Name = "lbStockModel";
             this.lbStockModel.Size = new System.Drawing.Size(53, 18);
-            this.lbStockModel.Size = new System.Drawing.Size(63, 22);
             this.lbStockModel.TabIndex = 2;
             this.lbStockModel.Text = "Model:";
             // 
@@ -2002,7 +1901,6 @@ namespace MediaBazaarApp
             this.tbxStockHeight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockHeight.Name = "tbxStockHeight";
             this.tbxStockHeight.Size = new System.Drawing.Size(173, 24);
-            this.tbxStockHeight.Size = new System.Drawing.Size(173, 28);
             this.tbxStockHeight.TabIndex = 18;
             // 
             // tbxStockBrand
@@ -2011,7 +1909,6 @@ namespace MediaBazaarApp
             this.tbxStockBrand.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockBrand.Name = "tbxStockBrand";
             this.tbxStockBrand.Size = new System.Drawing.Size(173, 24);
-            this.tbxStockBrand.Size = new System.Drawing.Size(173, 28);
             this.tbxStockBrand.TabIndex = 1;
             // 
             // lbStockBrand
@@ -2020,7 +1917,6 @@ namespace MediaBazaarApp
             this.lbStockBrand.Location = new System.Drawing.Point(44, 113);
             this.lbStockBrand.Name = "lbStockBrand";
             this.lbStockBrand.Size = new System.Drawing.Size(51, 18);
-            this.lbStockBrand.Size = new System.Drawing.Size(63, 22);
             this.lbStockBrand.TabIndex = 0;
             this.lbStockBrand.Text = "Brand:";
             // 
@@ -2030,7 +1926,6 @@ namespace MediaBazaarApp
             this.lbStockHeight.Location = new System.Drawing.Point(411, 160);
             this.lbStockHeight.Name = "lbStockHeight";
             this.lbStockHeight.Size = new System.Drawing.Size(54, 18);
-            this.lbStockHeight.Size = new System.Drawing.Size(67, 22);
             this.lbStockHeight.TabIndex = 17;
             this.lbStockHeight.Text = "Height:";
             // 
@@ -2040,7 +1935,6 @@ namespace MediaBazaarApp
             this.lbStockWidth.Location = new System.Drawing.Point(411, 109);
             this.lbStockWidth.Name = "lbStockWidth";
             this.lbStockWidth.Size = new System.Drawing.Size(50, 18);
-            this.lbStockWidth.Size = new System.Drawing.Size(61, 22);
             this.lbStockWidth.TabIndex = 15;
             this.lbStockWidth.Text = "Width:";
             // 
@@ -2050,7 +1944,6 @@ namespace MediaBazaarApp
             this.lbStockDimensions.Location = new System.Drawing.Point(483, 58);
             this.lbStockDimensions.Name = "lbStockDimensions";
             this.lbStockDimensions.Size = new System.Drawing.Size(87, 18);
-            this.lbStockDimensions.Size = new System.Drawing.Size(103, 22);
             this.lbStockDimensions.TabIndex = 6;
             this.lbStockDimensions.Text = "Dimensions";
             // 
@@ -2060,7 +1953,6 @@ namespace MediaBazaarApp
             this.tbxStockQuantity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockQuantity.Name = "tbxStockQuantity";
             this.tbxStockQuantity.Size = new System.Drawing.Size(173, 24);
-            this.tbxStockQuantity.Size = new System.Drawing.Size(173, 28);
             this.tbxStockQuantity.TabIndex = 13;
             // 
             // tbxStockWidth
@@ -2069,7 +1961,6 @@ namespace MediaBazaarApp
             this.tbxStockWidth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxStockWidth.Name = "tbxStockWidth";
             this.tbxStockWidth.Size = new System.Drawing.Size(173, 24);
-            this.tbxStockWidth.Size = new System.Drawing.Size(173, 28);
             this.tbxStockWidth.TabIndex = 16;
             // 
             // lbStockQuantity
@@ -2078,7 +1969,6 @@ namespace MediaBazaarApp
             this.lbStockQuantity.Location = new System.Drawing.Point(44, 266);
             this.lbStockQuantity.Name = "lbStockQuantity";
             this.lbStockQuantity.Size = new System.Drawing.Size(66, 18);
-            this.lbStockQuantity.Size = new System.Drawing.Size(82, 22);
             this.lbStockQuantity.TabIndex = 12;
             this.lbStockQuantity.Text = "Quantity:";
             // 
@@ -2088,7 +1978,6 @@ namespace MediaBazaarApp
             this.lbStockShortDescription.Location = new System.Drawing.Point(304, 324);
             this.lbStockShortDescription.Name = "lbStockShortDescription";
             this.lbStockShortDescription.Size = new System.Drawing.Size(124, 18);
-            this.lbStockShortDescription.Size = new System.Drawing.Size(150, 22);
             this.lbStockShortDescription.TabIndex = 8;
             this.lbStockShortDescription.Text = "Short description:";
             // 
@@ -2101,12 +1990,10 @@ namespace MediaBazaarApp
             this.ManageStocksTab.Controls.Add(this.btnRemoveStock);
             this.ManageStocksTab.Controls.Add(this.lbAllStocks);
             this.ManageStocksTab.Location = new System.Drawing.Point(4, 27);
-            this.ManageStocksTab.Location = new System.Drawing.Point(4, 31);
             this.ManageStocksTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ManageStocksTab.Name = "ManageStocksTab";
             this.ManageStocksTab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ManageStocksTab.Size = new System.Drawing.Size(1150, 663);
-            this.ManageStocksTab.Size = new System.Drawing.Size(1150, 659);
             this.ManageStocksTab.TabIndex = 1;
             this.ManageStocksTab.Text = "Manage stocks";
             this.ManageStocksTab.UseVisualStyleBackColor = true;
@@ -2163,7 +2050,6 @@ namespace MediaBazaarApp
             this.tbxSearchStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxSearchStock.Name = "tbxSearchStock";
             this.tbxSearchStock.Size = new System.Drawing.Size(235, 24);
-            this.tbxSearchStock.Size = new System.Drawing.Size(235, 28);
             this.tbxSearchStock.TabIndex = 7;
             this.tbxSearchStock.Text = "Search...";
             this.tbxSearchStock.Enter += new System.EventHandler(this.TbxSearchStock_Enter);
@@ -2206,334 +2092,11 @@ namespace MediaBazaarApp
             this.lbAllStocks.FormattingEnabled = true;
             this.lbAllStocks.HorizontalScrollbar = true;
             this.lbAllStocks.ItemHeight = 18;
-            this.lbAllStocks.ItemHeight = 22;
             this.lbAllStocks.Location = new System.Drawing.Point(182, 142);
             this.lbAllStocks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbAllStocks.Name = "lbAllStocks";
-            this.lbAllStocks.Size = new System.Drawing.Size(784, 346);
-            this.lbAllStocks.Size = new System.Drawing.Size(784, 334);
+            this.lbAllStocks.Size = new System.Drawing.Size(784, 328);
             this.lbAllStocks.TabIndex = 18;
-            // 
-            // ScheduleTab
-            // 
-            this.ScheduleTab.Controls.Add(this.btnShift);
-            this.ScheduleTab.Controls.Add(this.lbxSelectedEmpShifts);
-            this.ScheduleTab.Controls.Add(this.gbxAutoShiftsAssignPerDay);
-            this.ScheduleTab.Controls.Add(this.gbxAutoShiftsAssignAllDays);
-            this.ScheduleTab.Controls.Add(this.gbxAssignShiftsAuto);
-            this.ScheduleTab.Controls.Add(this.btnAssignShiftsManually);
-            this.ScheduleTab.Controls.Add(this.btnScheduleClearSelected);
-            this.ScheduleTab.Controls.Add(this.lbScheduleAllEmp);
-            this.ScheduleTab.Controls.Add(this.lbxScheduleAllEmp);
-            this.ScheduleTab.Location = new System.Drawing.Point(4, 31);
-            this.ScheduleTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ScheduleTab.Name = "ScheduleTab";
-            this.ScheduleTab.Size = new System.Drawing.Size(1235, 741);
-            this.ScheduleTab.TabIndex = 4;
-            this.ScheduleTab.Text = "Schedule";
-            this.ScheduleTab.UseVisualStyleBackColor = true;
-            // 
-            // btnShift
-            // 
-            this.btnShift.Location = new System.Drawing.Point(354, 453);
-            this.btnShift.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnShift.Name = "btnShift";
-            this.btnShift.Size = new System.Drawing.Size(322, 49);
-            this.btnShift.TabIndex = 16;
-            this.btnShift.Text = "Remove selected shift";
-            this.btnShift.UseVisualStyleBackColor = true;
-            this.btnShift.Click += new System.EventHandler(this.btnShift_Click);
-            // 
-            // lbxSelectedEmpShifts
-            // 
-            this.lbxSelectedEmpShifts.FormattingEnabled = true;
-            this.lbxSelectedEmpShifts.HorizontalScrollbar = true;
-            this.lbxSelectedEmpShifts.ItemHeight = 22;
-            this.lbxSelectedEmpShifts.Location = new System.Drawing.Point(354, 77);
-            this.lbxSelectedEmpShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxSelectedEmpShifts.Name = "lbxSelectedEmpShifts";
-            this.lbxSelectedEmpShifts.Size = new System.Drawing.Size(322, 334);
-            this.lbxSelectedEmpShifts.TabIndex = 15;
-            // 
-            // gbxAutoShiftsAssignPerDay
-            // 
-            this.gbxAutoShiftsAssignPerDay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.btnSubmitAutoShiftsAssignPerDay);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.tbxSun);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.lbSun);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.tbxSat);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.lbSat);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.tbxFri);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.lbFri);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.tbxThurs);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.lbThurs);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.tbxWed);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.lbWed);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.tbxTues);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.lbTues);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.tbxMon);
-            this.gbxAutoShiftsAssignPerDay.Controls.Add(this.lbMon);
-            this.gbxAutoShiftsAssignPerDay.Location = new System.Drawing.Point(704, 197);
-            this.gbxAutoShiftsAssignPerDay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAutoShiftsAssignPerDay.Name = "gbxAutoShiftsAssignPerDay";
-            this.gbxAutoShiftsAssignPerDay.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAutoShiftsAssignPerDay.Size = new System.Drawing.Size(508, 461);
-            this.gbxAutoShiftsAssignPerDay.TabIndex = 14;
-            this.gbxAutoShiftsAssignPerDay.TabStop = false;
-            this.gbxAutoShiftsAssignPerDay.Text = "Choose number of workers per day";
-            // 
-            // btnSubmitAutoShiftsAssignPerDay
-            // 
-            this.btnSubmitAutoShiftsAssignPerDay.Location = new System.Drawing.Point(220, 379);
-            this.btnSubmitAutoShiftsAssignPerDay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSubmitAutoShiftsAssignPerDay.Name = "btnSubmitAutoShiftsAssignPerDay";
-            this.btnSubmitAutoShiftsAssignPerDay.Size = new System.Drawing.Size(173, 45);
-            this.btnSubmitAutoShiftsAssignPerDay.TabIndex = 5;
-            this.btnSubmitAutoShiftsAssignPerDay.Text = "Submit";
-            this.btnSubmitAutoShiftsAssignPerDay.UseVisualStyleBackColor = true;
-            // 
-            // tbxSun
-            // 
-            this.tbxSun.Location = new System.Drawing.Point(220, 323);
-            this.tbxSun.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxSun.Name = "tbxSun";
-            this.tbxSun.Size = new System.Drawing.Size(173, 28);
-            this.tbxSun.TabIndex = 13;
-            // 
-            // lbSun
-            // 
-            this.lbSun.AutoSize = true;
-            this.lbSun.Location = new System.Drawing.Point(123, 326);
-            this.lbSun.Name = "lbSun";
-            this.lbSun.Size = new System.Drawing.Size(76, 22);
-            this.lbSun.TabIndex = 12;
-            this.lbSun.Text = "Sunday:";
-            // 
-            // tbxSat
-            // 
-            this.tbxSat.Location = new System.Drawing.Point(220, 281);
-            this.tbxSat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxSat.Name = "tbxSat";
-            this.tbxSat.Size = new System.Drawing.Size(173, 28);
-            this.tbxSat.TabIndex = 11;
-            // 
-            // lbSat
-            // 
-            this.lbSat.AutoSize = true;
-            this.lbSat.Location = new System.Drawing.Point(114, 284);
-            this.lbSat.Name = "lbSat";
-            this.lbSat.Size = new System.Drawing.Size(87, 22);
-            this.lbSat.TabIndex = 10;
-            this.lbSat.Text = "Saturday:";
-            // 
-            // tbxFri
-            // 
-            this.tbxFri.Location = new System.Drawing.Point(220, 233);
-            this.tbxFri.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxFri.Name = "tbxFri";
-            this.tbxFri.Size = new System.Drawing.Size(173, 28);
-            this.tbxFri.TabIndex = 9;
-            // 
-            // lbFri
-            // 
-            this.lbFri.AutoSize = true;
-            this.lbFri.Location = new System.Drawing.Point(137, 238);
-            this.lbFri.Name = "lbFri";
-            this.lbFri.Size = new System.Drawing.Size(65, 22);
-            this.lbFri.TabIndex = 8;
-            this.lbFri.Text = "Friday:";
-            // 
-            // tbxThurs
-            // 
-            this.tbxThurs.Location = new System.Drawing.Point(220, 184);
-            this.tbxThurs.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxThurs.Name = "tbxThurs";
-            this.tbxThurs.Size = new System.Drawing.Size(173, 28);
-            this.tbxThurs.TabIndex = 7;
-            // 
-            // lbThurs
-            // 
-            this.lbThurs.AutoSize = true;
-            this.lbThurs.Location = new System.Drawing.Point(110, 184);
-            this.lbThurs.Name = "lbThurs";
-            this.lbThurs.Size = new System.Drawing.Size(91, 22);
-            this.lbThurs.TabIndex = 6;
-            this.lbThurs.Text = "Thursday:";
-            // 
-            // tbxWed
-            // 
-            this.tbxWed.Location = new System.Drawing.Point(220, 137);
-            this.tbxWed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxWed.Name = "tbxWed";
-            this.tbxWed.Size = new System.Drawing.Size(173, 28);
-            this.tbxWed.TabIndex = 5;
-            // 
-            // lbWed
-            // 
-            this.lbWed.AutoSize = true;
-            this.lbWed.Location = new System.Drawing.Point(91, 144);
-            this.lbWed.Name = "lbWed";
-            this.lbWed.Size = new System.Drawing.Size(110, 22);
-            this.lbWed.TabIndex = 4;
-            this.lbWed.Text = "Wednesday:";
-            // 
-            // tbxTues
-            // 
-            this.tbxTues.Location = new System.Drawing.Point(220, 89);
-            this.tbxTues.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxTues.Name = "tbxTues";
-            this.tbxTues.Size = new System.Drawing.Size(173, 28);
-            this.tbxTues.TabIndex = 3;
-            // 
-            // lbTues
-            // 
-            this.lbTues.AutoSize = true;
-            this.lbTues.Location = new System.Drawing.Point(117, 92);
-            this.lbTues.Name = "lbTues";
-            this.lbTues.Size = new System.Drawing.Size(85, 22);
-            this.lbTues.TabIndex = 2;
-            this.lbTues.Text = "Tuesday:";
-            // 
-            // tbxMon
-            // 
-            this.tbxMon.Location = new System.Drawing.Point(220, 40);
-            this.tbxMon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxMon.Name = "tbxMon";
-            this.tbxMon.Size = new System.Drawing.Size(173, 28);
-            this.tbxMon.TabIndex = 1;
-            // 
-            // lbMon
-            // 
-            this.lbMon.AutoSize = true;
-            this.lbMon.Location = new System.Drawing.Point(123, 46);
-            this.lbMon.Name = "lbMon";
-            this.lbMon.Size = new System.Drawing.Size(78, 22);
-            this.lbMon.TabIndex = 0;
-            this.lbMon.Text = "Monday:";
-            // 
-            // gbxAutoShiftsAssignAllDays
-            // 
-            this.gbxAutoShiftsAssignAllDays.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.gbxAutoShiftsAssignAllDays.Controls.Add(this.btnSubmitAutoShiftsAssignAllDays);
-            this.gbxAutoShiftsAssignAllDays.Controls.Add(this.lbNrWorkers);
-            this.gbxAutoShiftsAssignAllDays.Controls.Add(this.tbxNrWorkers);
-            this.gbxAutoShiftsAssignAllDays.Location = new System.Drawing.Point(96, 567);
-            this.gbxAutoShiftsAssignAllDays.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAutoShiftsAssignAllDays.Name = "gbxAutoShiftsAssignAllDays";
-            this.gbxAutoShiftsAssignAllDays.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAutoShiftsAssignAllDays.Size = new System.Drawing.Size(508, 157);
-            this.gbxAutoShiftsAssignAllDays.TabIndex = 13;
-            this.gbxAutoShiftsAssignAllDays.TabStop = false;
-            this.gbxAutoShiftsAssignAllDays.Text = "Choose number of workers for the whole week";
-            // 
-            // btnSubmitAutoShiftsAssignAllDays
-            // 
-            this.btnSubmitAutoShiftsAssignAllDays.Location = new System.Drawing.Point(253, 97);
-            this.btnSubmitAutoShiftsAssignAllDays.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSubmitAutoShiftsAssignAllDays.Name = "btnSubmitAutoShiftsAssignAllDays";
-            this.btnSubmitAutoShiftsAssignAllDays.Size = new System.Drawing.Size(152, 37);
-            this.btnSubmitAutoShiftsAssignAllDays.TabIndex = 4;
-            this.btnSubmitAutoShiftsAssignAllDays.Text = "Submit";
-            this.btnSubmitAutoShiftsAssignAllDays.UseVisualStyleBackColor = true;
-            // 
-            // lbNrWorkers
-            // 
-            this.lbNrWorkers.AutoSize = true;
-            this.lbNrWorkers.Location = new System.Drawing.Point(66, 43);
-            this.lbNrWorkers.Name = "lbNrWorkers";
-            this.lbNrWorkers.Size = new System.Drawing.Size(163, 22);
-            this.lbNrWorkers.TabIndex = 2;
-            this.lbNrWorkers.Text = "number of workers:";
-            // 
-            // tbxNrWorkers
-            // 
-            this.tbxNrWorkers.Location = new System.Drawing.Point(253, 43);
-            this.tbxNrWorkers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxNrWorkers.Name = "tbxNrWorkers";
-            this.tbxNrWorkers.Size = new System.Drawing.Size(150, 28);
-            this.tbxNrWorkers.TabIndex = 3;
-            // 
-            // gbxAssignShiftsAuto
-            // 
-            this.gbxAssignShiftsAuto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.gbxAssignShiftsAuto.Controls.Add(this.btnChooseAssignTypeAuto);
-            this.gbxAssignShiftsAuto.Controls.Add(this.cbAssignTypeAuto);
-            this.gbxAssignShiftsAuto.Location = new System.Drawing.Point(704, 62);
-            this.gbxAssignShiftsAuto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAssignShiftsAuto.Name = "gbxAssignShiftsAuto";
-            this.gbxAssignShiftsAuto.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxAssignShiftsAuto.Size = new System.Drawing.Size(508, 110);
-            this.gbxAssignShiftsAuto.TabIndex = 12;
-            this.gbxAssignShiftsAuto.TabStop = false;
-            this.gbxAssignShiftsAuto.Text = "Assign work shifts automatically";
-            // 
-            // btnChooseAssignTypeAuto
-            // 
-            this.btnChooseAssignTypeAuto.Location = new System.Drawing.Point(328, 40);
-            this.btnChooseAssignTypeAuto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnChooseAssignTypeAuto.Name = "btnChooseAssignTypeAuto";
-            this.btnChooseAssignTypeAuto.Size = new System.Drawing.Size(140, 38);
-            this.btnChooseAssignTypeAuto.TabIndex = 1;
-            this.btnChooseAssignTypeAuto.Text = "Choose";
-            this.btnChooseAssignTypeAuto.UseVisualStyleBackColor = true;
-            // 
-            // cbAssignTypeAuto
-            // 
-            this.cbAssignTypeAuto.FormattingEnabled = true;
-            this.cbAssignTypeAuto.Items.AddRange(new object[] {
-            "Per day",
-            "For all days"});
-            this.cbAssignTypeAuto.Location = new System.Drawing.Point(60, 45);
-            this.cbAssignTypeAuto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbAssignTypeAuto.Name = "cbAssignTypeAuto";
-            this.cbAssignTypeAuto.Size = new System.Drawing.Size(229, 30);
-            this.cbAssignTypeAuto.TabIndex = 0;
-            this.cbAssignTypeAuto.Text = "Choose how to assign";
-            // 
-            // btnAssignShiftsManually
-            // 
-            this.btnAssignShiftsManually.Location = new System.Drawing.Point(21, 453);
-            this.btnAssignShiftsManually.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAssignShiftsManually.Name = "btnAssignShiftsManually";
-            this.btnAssignShiftsManually.Size = new System.Drawing.Size(322, 49);
-            this.btnAssignShiftsManually.TabIndex = 11;
-            this.btnAssignShiftsManually.Text = "Assign work shift manually";
-            this.btnAssignShiftsManually.UseVisualStyleBackColor = true;
-            this.btnAssignShiftsManually.Click += new System.EventHandler(this.btnAssignShiftsManually_Click);
-            // 
-            // btnScheduleClearSelected
-            // 
-            this.btnScheduleClearSelected.BackColor = System.Drawing.Color.Transparent;
-            this.btnScheduleClearSelected.Location = new System.Drawing.Point(354, 510);
-            this.btnScheduleClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnScheduleClearSelected.Name = "btnScheduleClearSelected";
-            this.btnScheduleClearSelected.Size = new System.Drawing.Size(322, 49);
-            this.btnScheduleClearSelected.TabIndex = 10;
-            this.btnScheduleClearSelected.Text = "Unmark selections";
-            this.btnScheduleClearSelected.UseVisualStyleBackColor = false;
-            this.btnScheduleClearSelected.Click += new System.EventHandler(this.btnScheduleClearSelected_Click);
-            // 
-            // lbScheduleAllEmp
-            // 
-            this.lbScheduleAllEmp.AutoSize = true;
-            this.lbScheduleAllEmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbScheduleAllEmp.Location = new System.Drawing.Point(177, 40);
-            this.lbScheduleAllEmp.Name = "lbScheduleAllEmp";
-            this.lbScheduleAllEmp.Size = new System.Drawing.Size(346, 22);
-            this.lbScheduleAllEmp.TabIndex = 9;
-            this.lbScheduleAllEmp.Text = "Select employee to assign work shifts";
-            // 
-            // lbxScheduleAllEmp
-            // 
-            this.lbxScheduleAllEmp.FormattingEnabled = true;
-            this.lbxScheduleAllEmp.HorizontalScrollbar = true;
-            this.lbxScheduleAllEmp.ItemHeight = 22;
-            this.lbxScheduleAllEmp.Location = new System.Drawing.Point(21, 79);
-            this.lbxScheduleAllEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxScheduleAllEmp.Name = "lbxScheduleAllEmp";
-            this.lbxScheduleAllEmp.Size = new System.Drawing.Size(322, 334);
-            this.lbxScheduleAllEmp.TabIndex = 8;
-            this.lbxScheduleAllEmp.SelectedIndexChanged += new System.EventHandler(this.lbxScheduleAllEmp_SelectedIndexChanged);
             // 
             // ManageDepartmentsTab
             // 
@@ -2546,11 +2109,9 @@ namespace MediaBazaarApp
             this.ManageDepartmentsTab.Controls.Add(this.lbxAllDepartments);
             this.ManageDepartmentsTab.Controls.Add(this.gbxCreateDeparmtent);
             this.ManageDepartmentsTab.Location = new System.Drawing.Point(4, 27);
-            this.ManageDepartmentsTab.Location = new System.Drawing.Point(4, 31);
             this.ManageDepartmentsTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ManageDepartmentsTab.Name = "ManageDepartmentsTab";
             this.ManageDepartmentsTab.Size = new System.Drawing.Size(1235, 745);
-            this.ManageDepartmentsTab.Size = new System.Drawing.Size(1235, 741);
             this.ManageDepartmentsTab.TabIndex = 6;
             this.ManageDepartmentsTab.Text = "Manage departments";
             this.ManageDepartmentsTab.UseVisualStyleBackColor = true;
@@ -2595,7 +2156,7 @@ namespace MediaBazaarApp
             this.tbxSearchDep.Location = new System.Drawing.Point(55, 45);
             this.tbxSearchDep.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxSearchDep.Name = "tbxSearchDep";
-            this.tbxSearchDep.Size = new System.Drawing.Size(235, 28);
+            this.tbxSearchDep.Size = new System.Drawing.Size(235, 24);
             this.tbxSearchDep.TabIndex = 7;
             this.tbxSearchDep.Text = "Search...";
             this.tbxSearchDep.Click += new System.EventHandler(this.tbxSearchDep_Click);
@@ -2624,7 +2185,7 @@ namespace MediaBazaarApp
             this.lbDepartmentCurrManagerEdit.AutoSize = true;
             this.lbDepartmentCurrManagerEdit.Location = new System.Drawing.Point(148, 56);
             this.lbDepartmentCurrManagerEdit.Name = "lbDepartmentCurrManagerEdit";
-            this.lbDepartmentCurrManagerEdit.Size = new System.Drawing.Size(150, 22);
+            this.lbDepartmentCurrManagerEdit.Size = new System.Drawing.Size(123, 18);
             this.lbDepartmentCurrManagerEdit.TabIndex = 6;
             this.lbDepartmentCurrManagerEdit.Text = "Current manager:";
             // 
@@ -2635,7 +2196,6 @@ namespace MediaBazaarApp
             this.lbDepartmentEditInfo.Location = new System.Drawing.Point(171, 25);
             this.lbDepartmentEditInfo.Name = "lbDepartmentEditInfo";
             this.lbDepartmentEditInfo.Size = new System.Drawing.Size(178, 18);
-            this.lbDepartmentEditInfo.Size = new System.Drawing.Size(213, 22);
             this.lbDepartmentEditInfo.TabIndex = 5;
             this.lbDepartmentEditInfo.Text = "Department with Id:(id)";
             // 
@@ -2657,7 +2217,6 @@ namespace MediaBazaarApp
             this.cbDepartmentManagerEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbDepartmentManagerEdit.Name = "cbDepartmentManagerEdit";
             this.cbDepartmentManagerEdit.Size = new System.Drawing.Size(229, 26);
-            this.cbDepartmentManagerEdit.Size = new System.Drawing.Size(229, 30);
             this.cbDepartmentManagerEdit.TabIndex = 1;
             this.cbDepartmentManagerEdit.Text = "Choose a manager";
             // 
@@ -2667,7 +2226,6 @@ namespace MediaBazaarApp
             this.lbDepartmentManagerEdit.Location = new System.Drawing.Point(22, 176);
             this.lbDepartmentManagerEdit.Name = "lbDepartmentManagerEdit";
             this.lbDepartmentManagerEdit.Size = new System.Drawing.Size(151, 18);
-            this.lbDepartmentManagerEdit.Size = new System.Drawing.Size(183, 22);
             this.lbDepartmentManagerEdit.TabIndex = 3;
             this.lbDepartmentManagerEdit.Text = "Department manager:";
             // 
@@ -2677,7 +2235,6 @@ namespace MediaBazaarApp
             this.tbxDepartmentNameEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxDepartmentNameEdit.Name = "tbxDepartmentNameEdit";
             this.tbxDepartmentNameEdit.Size = new System.Drawing.Size(229, 24);
-            this.tbxDepartmentNameEdit.Size = new System.Drawing.Size(229, 28);
             this.tbxDepartmentNameEdit.TabIndex = 1;
             // 
             // lbDepartmentNameEdit
@@ -2686,7 +2243,6 @@ namespace MediaBazaarApp
             this.lbDepartmentNameEdit.Location = new System.Drawing.Point(148, 116);
             this.lbDepartmentNameEdit.Name = "lbDepartmentNameEdit";
             this.lbDepartmentNameEdit.Size = new System.Drawing.Size(52, 18);
-            this.lbDepartmentNameEdit.Size = new System.Drawing.Size(62, 22);
             this.lbDepartmentNameEdit.TabIndex = 1;
             this.lbDepartmentNameEdit.Text = "Name:";
             // 
@@ -2723,16 +2279,6 @@ namespace MediaBazaarApp
             this.btnDepartmentsClearSelected.TabIndex = 9;
             this.btnDepartmentsClearSelected.Text = "Unmark selected";
             this.btnDepartmentsClearSelected.UseVisualStyleBackColor = true;
-            // 
-            // lbDepartmentsInfo
-            // 
-            this.lbDepartmentsInfo.AutoSize = true;
-            this.lbDepartmentsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDepartmentsInfo.Location = new System.Drawing.Point(232, 36);
-            this.lbDepartmentsInfo.Name = "lbDepartmentsInfo";
-            this.lbDepartmentsInfo.Size = new System.Drawing.Size(163, 18);
-            this.lbDepartmentsInfo.TabIndex = 8;
-            this.lbDepartmentsInfo.Text = "View all departments";
             this.btnDepartmentsClearSelected.Click += new System.EventHandler(this.btnDepartmentsClearSelected_Click);
             // 
             // lbxAllDepartments
@@ -2740,8 +2286,6 @@ namespace MediaBazaarApp
             this.lbxAllDepartments.FormattingEnabled = true;
             this.lbxAllDepartments.HorizontalScrollbar = true;
             this.lbxAllDepartments.ItemHeight = 18;
-            this.lbxAllDepartments.Location = new System.Drawing.Point(30, 105);
-            this.lbxAllDepartments.ItemHeight = 22;
             this.lbxAllDepartments.Location = new System.Drawing.Point(31, 209);
             this.lbxAllDepartments.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxAllDepartments.Name = "lbxAllDepartments";
@@ -2783,7 +2327,6 @@ namespace MediaBazaarApp
             this.cbDepartmentManager.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbDepartmentManager.Name = "cbDepartmentManager";
             this.cbDepartmentManager.Size = new System.Drawing.Size(229, 26);
-            this.cbDepartmentManager.Size = new System.Drawing.Size(229, 30);
             this.cbDepartmentManager.TabIndex = 1;
             this.cbDepartmentManager.Text = "Choose a manager";
             // 
@@ -2793,7 +2336,6 @@ namespace MediaBazaarApp
             this.lbDepartmentManager.Location = new System.Drawing.Point(22, 130);
             this.lbDepartmentManager.Name = "lbDepartmentManager";
             this.lbDepartmentManager.Size = new System.Drawing.Size(151, 18);
-            this.lbDepartmentManager.Size = new System.Drawing.Size(183, 22);
             this.lbDepartmentManager.TabIndex = 3;
             this.lbDepartmentManager.Text = "Department manager:";
             // 
@@ -2803,7 +2345,6 @@ namespace MediaBazaarApp
             this.tbxDepartmentName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxDepartmentName.Name = "tbxDepartmentName";
             this.tbxDepartmentName.Size = new System.Drawing.Size(229, 24);
-            this.tbxDepartmentName.Size = new System.Drawing.Size(229, 28);
             this.tbxDepartmentName.TabIndex = 1;
             // 
             // lbDepartmentName
@@ -2812,14 +2353,12 @@ namespace MediaBazaarApp
             this.lbDepartmentName.Location = new System.Drawing.Point(148, 70);
             this.lbDepartmentName.Name = "lbDepartmentName";
             this.lbDepartmentName.Size = new System.Drawing.Size(52, 18);
-            this.lbDepartmentName.Size = new System.Drawing.Size(62, 22);
             this.lbDepartmentName.TabIndex = 1;
             this.lbDepartmentName.Text = "Name:";
             // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1253, 784);
@@ -2856,11 +2395,11 @@ namespace MediaBazaarApp
             this.gbxAutoShiftsAssignAllDays.PerformLayout();
             this.gbxAssignShiftsAuto.ResumeLayout(false);
             this.tpManualSched.ResumeLayout(false);
+            this.gbAssignShiftManually.ResumeLayout(false);
+            this.gbAssignShiftManually.PerformLayout();
             this.gbChooseEmp.ResumeLayout(false);
             this.gbChooseEmp.PerformLayout();
             this.gbViewRemoveShifts.ResumeLayout(false);
-            this.gbAssignShiftManually.ResumeLayout(false);
-            this.gbAssignShiftManually.PerformLayout();
             this.tpManageAttendance.ResumeLayout(false);
             this.tpManageAttendance.PerformLayout();
             this.StocksTab.ResumeLayout(false);
@@ -3076,7 +2615,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.ComboBox cbWeekNumber;
         private System.Windows.Forms.ListBox lbxWeeklySchedule;
         private System.Windows.Forms.Label lbWeekNumber;
-        private System.Windows.Forms.Button btnShift;
         private System.Windows.Forms.Label lbDepartmentCurrManagerEdit;
         private System.Windows.Forms.GroupBox gbxSearchDep;
         private System.Windows.Forms.Button btnSearchDep;
