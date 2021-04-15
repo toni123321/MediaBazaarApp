@@ -671,6 +671,35 @@ namespace MediaBazaarApp
             }
         }
 
+        public void EditShiftAttendance(bool hasAttended, string noShowReason, int id)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "UPDATE shift " +
+                                 "set HasAttended = @hasAttended, " +
+                                 "NoShowReason = @noShowReason " +
+                                 "WHERE id=@id";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@hasAttended", hasAttended);
+                    cmd.Parameters.AddWithValue("@noShowReason", noShowReason);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
         public void GetShifts(DepartmentManagement departmentManagement)
         {
             try
@@ -696,6 +725,8 @@ namespace MediaBazaarApp
                         int employeeID = Convert.ToInt32(dr[1]);
                         DateTime date = (DateTime)dr[2];
                         int assignedBy = Convert.ToInt32(dr[3]);
+                        bool hasAttended = Convert.ToBoolean(dr[4]);
+                        string noShowReason = dr[5].ToString();
                         ShiftType type = (ShiftType)Enum.Parse(typeof(ShiftType), dr[6].ToString());
                         bool wfh = Convert.ToBoolean(dr[7]);
                         string depName = dr[8].ToString();
@@ -704,7 +735,7 @@ namespace MediaBazaarApp
 
                         if (s == null)
                         {
-                            departmentManagement.GetDepartment(depName).GetEmployeeById(employeeID).AddShift(id, type, date, assignedBy, wfh);
+                            departmentManagement.GetDepartment(depName).GetEmployeeById(employeeID).AddShift(id, type, date, assignedBy, wfh, hasAttended, noShowReason);
                         }
                     }
                 }

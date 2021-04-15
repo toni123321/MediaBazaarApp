@@ -19,7 +19,7 @@ namespace MediaBazaarApp
         public string NoShowReason { get; set; }
 
         //Constructor
-        public Shift(int id, ShiftType type, DateTime date, int assignedBy, bool wfh)
+        public Shift(int id, ShiftType type, DateTime date, int assignedBy, bool wfh, bool hasAttended, string noShowReason)
         {
             //idCounter++;
             this.ID = id;
@@ -27,7 +27,8 @@ namespace MediaBazaarApp
             this.Date = date;
             this.WFH = wfh;
             this.AssignedBy = assignedBy;
-            this.HasAttended = true;
+            this.HasAttended = hasAttended;
+            this.NoShowReason = noShowReason;
         }
 
         //Methods
@@ -47,15 +48,24 @@ namespace MediaBazaarApp
 
         public override string ToString()
         {
-            if (this.WFH == true)
+            if (this.WFH == true && this.HasAttended == true)
             {
-                return $"[WFH][{this.Type}] {this.Date.ToString("dd/MM/yyyy")}";
+                return $"[WFH][{this.Type}] {this.Date.ToString("dd/MM/yyyy")} (Assigned by: {this.AssignedBy})";
             }
-            else
+            else if(this.WFH == false && this.HasAttended == true)
             {
-                return $"[{this.Type}] {this.Date.ToString("dd/MM/yyyy")}";
+                return $"[{this.Type}] {this.Date.ToString("dd/MM/yyyy")} (Assigned by: {this.AssignedBy})";
             }
-            
+            else if (this.WFH == true && this.HasAttended == false)
+            {
+                return $"ABSENT: {this.NoShowReason} [WFH][{this.Type}] {this.Date.ToString("dd/MM/yyyy")} (Assigned by: {this.AssignedBy})";
+            }
+            else if (this.WFH == false && this.HasAttended == false)
+            {
+                return $"ABSENT: {this.NoShowReason} [{this.Type}] {this.Date.ToString("dd/MM/yyyy")} (Assigned by: {this.AssignedBy})";
+            }
+
+            return null;
         }
 
     }
