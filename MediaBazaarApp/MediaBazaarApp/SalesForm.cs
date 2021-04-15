@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace MediaBazaarApp
 {
@@ -68,18 +69,27 @@ namespace MediaBazaarApp
 
         private void btnConfirmRequest_Click(object sender, EventArgs e)
         {
-            Stock stock = (Stock)lbxAllStocks.SelectedItem;
-            int quantity = Convert.ToInt32(tbxStockQuantity.Text);
+            bool isValid = Regex.IsMatch(tbxStockQuantity.Text, @"^[A-Za-z]{2,}$");
 
-            dbc.AddShelfRestockRequest(stock, quantity, this.currentEmp.Id, SRRstatus.Pending);
-            dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
+            if (isValid)
+            {
+                Stock stock = (Stock)lbxAllStocks.SelectedItem;
+                int quantity = Convert.ToInt32(tbxStockQuantity.Text);
 
-            //salesManagement.AddRequest(stock, quantity, this.currentEmp.Id);
+                dbc.AddShelfRestockRequest(stock, quantity, this.currentEmp.Id, SRRstatus.Pending);
+                dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
 
-            gbxStockChooseQuantity.Visible = false;
-            lbStockQuantity.Text = "";
+                //salesManagement.AddRequest(stock, quantity, this.currentEmp.Id);
 
-            UpdateHistoryListBox();
+                gbxStockChooseQuantity.Visible = false;
+                lbStockQuantity.Text = "";
+
+                UpdateHistoryListBox();
+            }
+            else
+            {
+                throw new IntegerValueExpected(tbxStockQuantity.Text);
+            }
         }
 
         private void btnSearchStock_Click(object sender, EventArgs e)
