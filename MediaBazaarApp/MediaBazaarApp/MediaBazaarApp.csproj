@@ -107,9 +107,11 @@
     <Compile Include="AssignWorkShiftsManuallyForm.Designer.cs">
       <DependentUpon>AssignWorkShiftsManuallyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComboBoxEnteredValueException.cs" />
     <Compile Include="DBControl.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="DepartmentManagement.cs" />
+    <Compile Include="NotAllFieldFilled.cs" />
     <Compile Include="SalesForm.cs">
       <SubType>Form</SubType>
     </Compile>

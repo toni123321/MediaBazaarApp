@@ -503,13 +503,16 @@ namespace MediaBazaarApp
 
             DBControl dbc = new DBControl();
 
-            dbc.RemoveShift(shift);
-            dbc.GetShifts(departmentManagement);
+            if (shift != null)
+            {
+                dbc.RemoveShift(shift);
+                dbc.GetShifts(departmentManagement);
 
-            emp.RemoveShift(shift.ID); // to improve
+                emp.RemoveShift(shift.ID); // to improve
 
-            dbc.GetShifts(departmentManagement);
-            UpdateShiftsPerEmployee();
+                dbc.GetShifts(departmentManagement);
+                UpdateShiftsPerEmployee();
+            }
         }
 
         private List<Employee> GetDepManagers()
@@ -606,13 +609,21 @@ namespace MediaBazaarApp
 
         private void btnAddShift_Click(object sender, EventArgs e)
         {
-            gbChooseEmp.Visible = false;
-            gbAssignShiftManually.Visible = true;
-            gbViewRemoveShifts.Visible = false;
-            
-            Employee selectedEmp = (Employee)cbEmps.SelectedItem;
+            if (cbDeps.SelectedIndex < 0 || cbEmps.SelectedIndex < 0)
+            {
+                throw new NotAllFieldFilled();
+            }
+            else
+            {
+                gbChooseEmp.Visible = false;
+                gbAssignShiftManually.Visible = true;
+                gbViewRemoveShifts.Visible = false;
 
-            lbEmpInfo.Text = $"Currently selected employee: {selectedEmp.FirstName} {selectedEmp.LastName} ({selectedEmp.Id})";
+                Employee selectedEmp = (Employee)cbEmps.SelectedItem;
+
+                lbEmpInfo.Text = $"Currently selected employee: {selectedEmp.FirstName} {selectedEmp.LastName} ({selectedEmp.Id})";
+            }
+            
         }
 
         private void btnReturnAssign_Click(object sender, EventArgs e)
@@ -624,46 +635,62 @@ namespace MediaBazaarApp
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
-            Employee selectedEmp = (Employee)cbEmps.SelectedItem;
-            bool wfh;
-            ShiftType type = new ShiftType();
-            DateTime date = dtpShiftDate.Value;
+            if (cbShiftType.SelectedIndex < 0)
+            {
+                throw new NotAllFieldFilled();
+            }
+            else {
+                Employee selectedEmp = (Employee)cbEmps.SelectedItem;
+                bool wfh;
+                ShiftType type = new ShiftType();
+                DateTime date = dtpShiftDate.Value;
 
-            if (cbWFH.Checked)
-            {
-                wfh = true;
-            }
-            else
-            {
-                wfh = false;
-            }
+                if (cbWFH.Checked)
+                {
+                    wfh = true;
+                }
+                else
+                {
+                    wfh = false;
+                }
 
-            if (cbShiftType.SelectedIndex == 0)
-            {
-                type = ShiftType.Morning;
-            }
-            else if (cbShiftType.SelectedIndex == 1)
-            {
-                type = ShiftType.Afternoon;
-            }
-            else if (cbShiftType.SelectedIndex == 2)
-            {
-                type = ShiftType.Evening;
-            }
-            dbc.AddShift(type, date, currentEmp.Id, wfh, selectedEmp);
+                if (cbShiftType.SelectedIndex == 0)
+                {
+                    type = ShiftType.Morning;
+                }
+                else if (cbShiftType.SelectedIndex == 1)
+                {
+                    type = ShiftType.Afternoon;
+                }
+                else if (cbShiftType.SelectedIndex == 2)
+                {
+                    type = ShiftType.Evening;
+                }
+                dbc.AddShift(type, date, currentEmp.Id, wfh, selectedEmp);
 
-            dbc.GetShifts(departmentManagement);
+                dbc.GetShifts(departmentManagement); 
+            }
+            
+
         }
 
         private void btnViewRemoveShifts_Click(object sender, EventArgs e)
         {
-            lbxSelectedEmpShifts.Items.Clear();
+            if (cbDeps.SelectedIndex < 0 || cbEmps.SelectedIndex < 0)
+            {
+                throw new NotAllFieldFilled();
+            }
+            else
+            {
 
-            gbChooseEmp.Visible = false;
-            gbAssignShiftManually.Visible = false;
-            gbViewRemoveShifts.Visible = true;
+                lbxSelectedEmpShifts.Items.Clear();
 
-            UpdateShiftsPerEmployee();
+                gbChooseEmp.Visible = false;
+                gbAssignShiftManually.Visible = false;
+                gbViewRemoveShifts.Visible = true;
+
+                UpdateShiftsPerEmployee();
+            }
         }
 
         private void UpdateShiftsPerEmployee()
