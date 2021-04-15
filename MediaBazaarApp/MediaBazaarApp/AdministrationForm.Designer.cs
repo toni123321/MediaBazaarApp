@@ -29,12 +29,12 @@ namespace MediaBazaarApp
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministrationForm));
             this.tabControlAdministration = new System.Windows.Forms.TabControl();
             this.HomeTab = new System.Windows.Forms.TabPage();
             this.lbTime = new System.Windows.Forms.Label();
             this.lbDateDayOfWeek = new System.Windows.Forms.Label();
-            this.lbNotificationsShelfRestockRequests = new System.Windows.Forms.Label();
             this.lbNotificationsHolidayRequests = new System.Windows.Forms.Label();
             this.lbGreetingMsg = new System.Windows.Forms.Label();
             this.EmployeesTab = new System.Windows.Forms.TabPage();
@@ -131,6 +131,7 @@ namespace MediaBazaarApp
             this.cbAssignTypeAuto = new System.Windows.Forms.ComboBox();
             this.tpManualSched = new System.Windows.Forms.TabPage();
             this.gbViewRemoveShifts = new System.Windows.Forms.GroupBox();
+            this.btnRemoveShift = new System.Windows.Forms.Button();
             this.btnReturnViewRemove = new System.Windows.Forms.Button();
             this.lbxSelectedEmpShifts = new System.Windows.Forms.ListBox();
             this.btnScheduleClearSelected = new System.Windows.Forms.Button();
@@ -225,7 +226,7 @@ namespace MediaBazaarApp
             this.lbDepartmentManager = new System.Windows.Forms.Label();
             this.tbxDepartmentName = new System.Windows.Forms.TextBox();
             this.lbDepartmentName = new System.Windows.Forms.Label();
-            this.btnRemoveShift = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControlAdministration.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.EmployeesTab.SuspendLayout();
@@ -282,7 +283,6 @@ namespace MediaBazaarApp
             // 
             this.HomeTab.Controls.Add(this.lbTime);
             this.HomeTab.Controls.Add(this.lbDateDayOfWeek);
-            this.HomeTab.Controls.Add(this.lbNotificationsShelfRestockRequests);
             this.HomeTab.Controls.Add(this.lbNotificationsHolidayRequests);
             this.HomeTab.Controls.Add(this.lbGreetingMsg);
             this.HomeTab.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -317,17 +317,6 @@ namespace MediaBazaarApp
             this.lbDateDayOfWeek.TabIndex = 8;
             this.lbDateDayOfWeek.Text = "Date/Day of week";
             // 
-            // lbNotificationsShelfRestockRequests
-            // 
-            this.lbNotificationsShelfRestockRequests.AutoSize = true;
-            this.lbNotificationsShelfRestockRequests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lbNotificationsShelfRestockRequests.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbNotificationsShelfRestockRequests.Location = new System.Drawing.Point(884, 52);
-            this.lbNotificationsShelfRestockRequests.Name = "lbNotificationsShelfRestockRequests";
-            this.lbNotificationsShelfRestockRequests.Size = new System.Drawing.Size(239, 18);
-            this.lbNotificationsShelfRestockRequests.TabIndex = 7;
-            this.lbNotificationsShelfRestockRequests.Text = "Shelf restock requests notifications";
-            // 
             // lbNotificationsHolidayRequests
             // 
             this.lbNotificationsHolidayRequests.AutoSize = true;
@@ -342,7 +331,7 @@ namespace MediaBazaarApp
             // lbGreetingMsg
             // 
             this.lbGreetingMsg.AutoSize = true;
-            this.lbGreetingMsg.Location = new System.Drawing.Point(129, 203);
+            this.lbGreetingMsg.Location = new System.Drawing.Point(132, 165);
             this.lbGreetingMsg.Name = "lbGreetingMsg";
             this.lbGreetingMsg.Size = new System.Drawing.Size(129, 18);
             this.lbGreetingMsg.TabIndex = 5;
@@ -1355,7 +1344,19 @@ namespace MediaBazaarApp
             this.gbViewRemoveShifts.Size = new System.Drawing.Size(722, 599);
             this.gbViewRemoveShifts.TabIndex = 26;
             this.gbViewRemoveShifts.TabStop = false;
-            this.gbViewRemoveShifts.Text = "View/Remove shifts";
+            this.gbViewRemoveShifts.Text = "View shifts";
+            // 
+            // btnRemoveShift
+            // 
+            this.btnRemoveShift.BackColor = System.Drawing.Color.Transparent;
+            this.btnRemoveShift.Location = new System.Drawing.Point(354, 428);
+            this.btnRemoveShift.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRemoveShift.Name = "btnRemoveShift";
+            this.btnRemoveShift.Size = new System.Drawing.Size(322, 49);
+            this.btnRemoveShift.TabIndex = 27;
+            this.btnRemoveShift.Text = "Remove selected";
+            this.btnRemoveShift.UseVisualStyleBackColor = false;
+            this.btnRemoveShift.Click += new System.EventHandler(this.btnShift_Click);
             // 
             // btnReturnViewRemove
             // 
@@ -1435,7 +1436,7 @@ namespace MediaBazaarApp
             // 
             this.lbEmpInfo.AutoSize = true;
             this.lbEmpInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmpInfo.Location = new System.Drawing.Point(181, 21);
+            this.lbEmpInfo.Location = new System.Drawing.Point(108, 21);
             this.lbEmpInfo.Name = "lbEmpInfo";
             this.lbEmpInfo.Size = new System.Drawing.Size(165, 18);
             this.lbEmpInfo.TabIndex = 24;
@@ -1549,7 +1550,7 @@ namespace MediaBazaarApp
             this.btnViewRemoveShifts.Name = "btnViewRemoveShifts";
             this.btnViewRemoveShifts.Size = new System.Drawing.Size(207, 37);
             this.btnViewRemoveShifts.TabIndex = 2;
-            this.btnViewRemoveShifts.Text = "View/remove shifts";
+            this.btnViewRemoveShifts.Text = "View shifts";
             this.btnViewRemoveShifts.UseVisualStyleBackColor = true;
             this.btnViewRemoveShifts.Click += new System.EventHandler(this.btnViewRemoveShifts_Click);
             // 
@@ -2356,17 +2357,11 @@ namespace MediaBazaarApp
             this.lbDepartmentName.TabIndex = 1;
             this.lbDepartmentName.Text = "Name:";
             // 
-            // btnRemoveShift
+            // timer1
             // 
-            this.btnRemoveShift.BackColor = System.Drawing.Color.Transparent;
-            this.btnRemoveShift.Location = new System.Drawing.Point(354, 428);
-            this.btnRemoveShift.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnRemoveShift.Name = "btnRemoveShift";
-            this.btnRemoveShift.Size = new System.Drawing.Size(322, 49);
-            this.btnRemoveShift.TabIndex = 27;
-            this.btnRemoveShift.Text = "Remove selected";
-            this.btnRemoveShift.UseVisualStyleBackColor = false;
-            this.btnRemoveShift.Click += new System.EventHandler(this.btnShift_Click);
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // AdministrationForm
             // 
@@ -2441,7 +2436,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.TabPage StocksTab;
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Label lbDateDayOfWeek;
-        private System.Windows.Forms.Label lbNotificationsShelfRestockRequests;
         private System.Windows.Forms.Label lbNotificationsHolidayRequests;
         private System.Windows.Forms.Label lbGreetingMsg;
         private System.Windows.Forms.TabControl tabControlEmployees;
@@ -2632,5 +2626,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.TextBox tbxSearchDep;
         private System.Windows.Forms.Button btnShowAllDep;
         private System.Windows.Forms.Button btnRemoveShift;
+        private System.Windows.Forms.Timer timer1;
     }
 }

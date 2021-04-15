@@ -56,10 +56,48 @@ namespace MediaBazaarApp
 
             // Greeting msg
 
-            lbGreetingMsg.Text = $"Welcome, {currentEmp.FirstName}";
+            //lbGreetingMsg.Text = $"Welcome, {currentEmp.FirstName}";
             RefreshCbSelectEmpDepartment();
 
             EmpFillDefaultValues();
+
+            WelcomeMessage();
+
+        }
+
+        public void WelcomeMessage()
+        {
+
+            string time = DateTime.Now.ToString("HH");
+
+            if (time.StartsWith("0"))
+            {
+                time.Remove(0, 1);
+            }
+
+            int currentTime = Convert.ToInt32(time);
+
+
+            if (currentTime >= 5 && currentTime < 12)
+            {
+                lbGreetingMsg.Text = $"Good morning, {currentEmp.FirstName}!";
+            }
+            else if (currentTime >= 12 && currentTime < 17)
+            {
+                lbGreetingMsg.Text = $"Have a good afternoon, {currentEmp.FirstName}";
+            }
+            else if (currentTime >= 17 && currentTime < 21)
+            {
+                lbGreetingMsg.Text = $"Have a nice evening, {currentEmp.FirstName}!";
+            }
+            else
+            {
+                lbGreetingMsg.Text = $"Good night, {currentEmp.FirstName}";
+            }
+
+            lbTime.Text = DateTime.Now.ToString("HH:mm");
+            lbDateDayOfWeek.Text = DateTime.Now.ToString("dddd, MMMM dd");
+
         }
 
         private void RefreshCbSelectEmpDepartment()
@@ -1320,6 +1358,11 @@ namespace MediaBazaarApp
                     cbEmps.Items.Add(emp);
                 }
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            WelcomeMessage();
         }
     }
  }

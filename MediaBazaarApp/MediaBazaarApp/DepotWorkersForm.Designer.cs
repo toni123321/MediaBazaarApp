@@ -29,6 +29,7 @@ namespace MediaBazaarApp
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControlDepotWorkers = new System.Windows.Forms.TabControl();
             this.HomeTab = new System.Windows.Forms.TabPage();
             this.lbTime = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@ namespace MediaBazaarApp
             this.HistoryShelfRestockTab = new System.Windows.Forms.TabPage();
             this.lbHistoryShelfRestockRequests = new System.Windows.Forms.Label();
             this.lbxHistoryShelfRestockRequests = new System.Windows.Forms.ListBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControlDepotWorkers.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.MakeShelfRestockRequestsTab.SuspendLayout();
@@ -195,6 +197,12 @@ namespace MediaBazaarApp
             this.lbxHistoryShelfRestockRequests.Size = new System.Drawing.Size(850, 328);
             this.lbxHistoryShelfRestockRequests.TabIndex = 12;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // DepotWorkersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -231,5 +239,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnShelftRestockRequestsMarkAsDone;
         private System.Windows.Forms.Button btnShelftRestockRequestsDecline;
         private System.Windows.Forms.ListBox lbxAllShelfRestockRequests;
+        private System.Windows.Forms.Timer timer1;
     }
 }

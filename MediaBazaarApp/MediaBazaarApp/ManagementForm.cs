@@ -32,9 +32,44 @@ namespace MediaBazaarApp
             tbxAvgWageEmp.Text = $"{se.AveregeWageOfEmployee(departmentManagement.GetAllEmployees())}";
             lbxAvgWageEmpDepartment.Items.AddRange(se.AveregeWagePerDepartmenr(departmentManagement.GetAllDepartments(), departmentManagement.GetAllEmployees()).ToArray());
             lbxNrEmpPerDepartment.Items.AddRange(se.EmpPerDepToString(departmentManagement.GetAllDepartments()).ToArray());
-            lbGreetingMsg.Text = $"Hello, {currentEmp.FirstName}";
+
+            WelcomeMessage();
 
 
+        }
+
+        public void WelcomeMessage()
+        {
+
+            string time = DateTime.Now.ToString("HH");
+
+            if (time.StartsWith("0"))
+            {
+                time.Remove(0, 1);
+            }
+
+            int currentTime = Convert.ToInt32(time);
+
+
+            if (currentTime >= 5 && currentTime < 12)
+            {
+                lbGreetingMsg.Text = $"Good morning, {currentEmp.FirstName}!";
+            }
+            else if (currentTime >= 12 && currentTime < 17)
+            {
+                lbGreetingMsg.Text = $"Have a good afternoon, {currentEmp.FirstName}";
+            }
+            else if (currentTime >= 17 && currentTime < 21)
+            {
+                lbGreetingMsg.Text = $"Have a nice evening, {currentEmp.FirstName}!";
+            }
+            else
+            {
+                lbGreetingMsg.Text = $"Good night, {currentEmp.FirstName}";
+            }
+
+            lbTime.Text = DateTime.Now.ToString("HH:mm");
+            lbDateDayOfWeek.Text = DateTime.Now.ToString("dddd, MMMM dd");
 
         }
 
@@ -85,7 +120,11 @@ namespace MediaBazaarApp
 
             foreach (Department d in departmentManagement.GetAllDepartments())
             {
-                EmpPerDepChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{d.GetAllEmployees().Count}");
+                if (d.GetAllEmployees().Count > 0)
+                {
+
+                    EmpPerDepChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{d.GetAllEmployees().Count}");
+                }
             }
 
 
@@ -94,7 +133,10 @@ namespace MediaBazaarApp
 
             foreach (Department d in departmentManagement.GetAllDepartments())
             {
-                AvgWageChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{se.AveregeWageOfEmployee(d.GetAllEmployees())}");
+                if (d.GetAllEmployees().Count > 0)
+                {
+                    AvgWageChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{se.AveregeWageOfEmployee(d.GetAllEmployees())}");
+                }
             }
 
             foreach (Stock s in stockManagement.GetAllStocks())
@@ -112,6 +154,10 @@ namespace MediaBazaarApp
 
         }
 
-       
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            
+            WelcomeMessage();
+        }
     }
 }
