@@ -1324,7 +1324,7 @@ namespace MediaBazaarApp
 
         private void UpdateWeekNumberCB()
         {
-            for (int i = 0; i < 52; i++)
+            for (int i = 1; i <= 52; i++)
             {
                 cbWeekNumber.Items.Add(i);
             }
