@@ -49,6 +49,7 @@ namespace MediaBazaarApp
             RefreshWeeklySchedule();
             UpdateDepartments();
             UpdateCBXDepManager(cbDepartmentManager);
+            UpdateDepsManualShiftPlanning();
 
             //Made groupBox for editDepartment invisible
             gbxEditDepartment.Visible = false;
@@ -255,8 +256,6 @@ namespace MediaBazaarApp
                         ClearFields();
                         UpdateCBXDepManager(cbDepartmentManager);
                         RefreshEmployeesList();
-                        // Update schedule
-                        UpdateScheduleLBX();
                     }
                     else
                     {
@@ -393,8 +392,6 @@ namespace MediaBazaarApp
                     RefreshCbSelectEmpDepartment();
                     FillComboBoxDepartments();
 
-                    // Update schedule
-                    UpdateScheduleLBX();
                 }
                 else
                 {
@@ -1051,11 +1048,7 @@ namespace MediaBazaarApp
                 UpdateCBXDepManager(cbDepartmentManager);
             }
         }
-    }
-}
 
-
-        }
 
         private void UpdateDepsManualShiftPlanning()
         {
@@ -1086,7 +1079,7 @@ namespace MediaBazaarApp
 
                 lbEmpInfo.Text = $"Currently selected employee: {selectedEmp.FirstName} {selectedEmp.LastName} ({selectedEmp.Id})";
             }
-            
+
         }
 
         private void btnReturnAssign_Click(object sender, EventArgs e)
@@ -1102,7 +1095,8 @@ namespace MediaBazaarApp
             {
                 throw new NotAllFieldFilled();
             }
-            else {
+            else
+            {
                 Employee selectedEmp = (Employee)cbEmps.SelectedItem;
                 bool wfh;
                 ShiftType type = new ShiftType();
@@ -1131,9 +1125,9 @@ namespace MediaBazaarApp
                 }
                 dbc.AddShift(type, date, currentEmp.Id, wfh, selectedEmp);
 
-                dbc.GetShifts(departmentManagement); 
+                dbc.GetShifts(departmentManagement);
             }
-            
+
 
         }
 
@@ -1190,6 +1184,8 @@ namespace MediaBazaarApp
             {
                 cbEmployeesShifts.Items.Add(s);
             }
+
+            dbc.GetShifts(departmentManagement);
         }
 
         private void cbAllDeps_SelectedIndexChanged(object sender, EventArgs e)
@@ -1203,6 +1199,8 @@ namespace MediaBazaarApp
                     cbSelectedEmp.Items.Add(emp);
                 }
             }
+
+            dbc.GetShifts(departmentManagement);
         }
 
 
@@ -1229,6 +1227,8 @@ namespace MediaBazaarApp
                 }
 
             }
+
+            dbc.GetShifts(departmentManagement);
         }
 
         private void btnApplyAttendanceChanges_Click(object sender, EventArgs e)
@@ -1236,16 +1236,20 @@ namespace MediaBazaarApp
             Shift selectedShift = (Shift)cbEmployeesShifts.SelectedItem;
             bool attended;
 
-            if(selectedShift != null)
+            if (selectedShift != null)
             {
 
                 if (cbHasAttended.Checked)
                 {
                     attended = true;
+                    selectedShift.HasAttended = true;
+                    selectedShift.NoShowReason = "";
                 }
                 else
                 {
                     attended = false;
+                    selectedShift.HasAttended = false;
+                    selectedShift.NoShowReason = tbReasonForAbsence.Text;
                 }
 
                 lbHasAttended.Visible = false;
@@ -1253,9 +1257,14 @@ namespace MediaBazaarApp
                 cbHasAttended.Visible = false;
                 tbReasonForAbsence.Visible = false;
 
+                cbAllDeps.SelectedIndex = -1;
+                cbSelectedEmp.SelectedIndex = -1;
+
                 dbc.EditShiftAttendance(attended, tbReasonForAbsence.Text, selectedShift.ID);
                 dbc.GetShifts(departmentManagement);
                 RefreshWeeklySchedule();
+                UpdateDepsManualShiftPlanning();
+
             }
         }
 
@@ -1267,7 +1276,7 @@ namespace MediaBazaarApp
             {
                 foreach (Shift s in e.GetAllShifts())
                 {
-                    if(GetIso8601WeekOfYear(s.Date) == (int)cbWeekNumber.SelectedItem)
+                    if (GetIso8601WeekOfYear(s.Date) == (int)cbWeekNumber.SelectedItem)
                     {
                         lbxWeeklySchedule.Items.Add($"{e.FirstName} {e.LastName} - {s.ToString()}");
                     }
@@ -1296,6 +1305,7 @@ namespace MediaBazaarApp
 
         private void cbWeekNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dbc.GetShifts(departmentManagement);
             RefreshWeeklySchedule();
         }
 
@@ -1312,6 +1322,6 @@ namespace MediaBazaarApp
             }
         }
     }
+ }
 
-}
 

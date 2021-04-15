@@ -86,7 +86,6 @@ namespace MediaBazaarApp
             this.gbxShowEmp = new System.Windows.Forms.GroupBox();
             this.cbSelectEmpDepartment = new System.Windows.Forms.ComboBox();
             this.btnShowEmp = new System.Windows.Forms.Button();
-            this.btnEmpManageAttendance = new System.Windows.Forms.Button();
             this.gbxSearchEmp = new System.Windows.Forms.GroupBox();
             this.btnSearchEmp = new System.Windows.Forms.Button();
             this.tbxSearchEmp = new System.Windows.Forms.TextBox();
@@ -131,6 +130,10 @@ namespace MediaBazaarApp
             this.btnChooseAssignTypeAuto = new System.Windows.Forms.Button();
             this.cbAssignTypeAuto = new System.Windows.Forms.ComboBox();
             this.tpManualSched = new System.Windows.Forms.TabPage();
+            this.gbViewRemoveShifts = new System.Windows.Forms.GroupBox();
+            this.btnReturnViewRemove = new System.Windows.Forms.Button();
+            this.lbxSelectedEmpShifts = new System.Windows.Forms.ListBox();
+            this.btnScheduleClearSelected = new System.Windows.Forms.Button();
             this.gbAssignShiftManually = new System.Windows.Forms.GroupBox();
             this.btnReturnAssign = new System.Windows.Forms.Button();
             this.cbWFH = new System.Windows.Forms.CheckBox();
@@ -148,10 +151,6 @@ namespace MediaBazaarApp
             this.btnViewRemoveShifts = new System.Windows.Forms.Button();
             this.cbEmps = new System.Windows.Forms.ComboBox();
             this.cbDeps = new System.Windows.Forms.ComboBox();
-            this.gbViewRemoveShifts = new System.Windows.Forms.GroupBox();
-            this.btnReturnViewRemove = new System.Windows.Forms.Button();
-            this.lbxSelectedEmpShifts = new System.Windows.Forms.ListBox();
-            this.btnScheduleClearSelected = new System.Windows.Forms.Button();
             this.tpManageAttendance = new System.Windows.Forms.TabPage();
             this.btnApplyAttendanceChanges = new System.Windows.Forms.Button();
             this.tbReasonForAbsence = new System.Windows.Forms.TextBox();
@@ -226,6 +225,7 @@ namespace MediaBazaarApp
             this.lbDepartmentManager = new System.Windows.Forms.Label();
             this.tbxDepartmentName = new System.Windows.Forms.TextBox();
             this.lbDepartmentName = new System.Windows.Forms.Label();
+            this.btnRemoveShift = new System.Windows.Forms.Button();
             this.tabControlAdministration.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.EmployeesTab.SuspendLayout();
@@ -245,9 +245,9 @@ namespace MediaBazaarApp
             this.gbxAutoShiftsAssignAllDays.SuspendLayout();
             this.gbxAssignShiftsAuto.SuspendLayout();
             this.tpManualSched.SuspendLayout();
+            this.gbViewRemoveShifts.SuspendLayout();
             this.gbAssignShiftManually.SuspendLayout();
             this.gbChooseEmp.SuspendLayout();
-            this.gbViewRemoveShifts.SuspendLayout();
             this.tpManageAttendance.SuspendLayout();
             this.StocksTab.SuspendLayout();
             this.tabControlStocks.SuspendLayout();
@@ -823,7 +823,6 @@ namespace MediaBazaarApp
             // ManageEmpTab
             // 
             this.ManageEmpTab.Controls.Add(this.gbxShowEmp);
-            this.ManageEmpTab.Controls.Add(this.btnEmpManageAttendance);
             this.ManageEmpTab.Controls.Add(this.gbxSearchEmp);
             this.ManageEmpTab.Controls.Add(this.btnClearSelectedEmp);
             this.ManageEmpTab.Controls.Add(this.btnEditEmp);
@@ -877,17 +876,6 @@ namespace MediaBazaarApp
             this.btnShowEmp.Text = "Show";
             this.btnShowEmp.UseVisualStyleBackColor = true;
             this.btnShowEmp.Click += new System.EventHandler(this.btnShowEmp_Click);
-            // 
-            // btnEmpManageAttendance
-            // 
-            this.btnEmpManageAttendance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnEmpManageAttendance.Location = new System.Drawing.Point(862, 589);
-            this.btnEmpManageAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnEmpManageAttendance.Name = "btnEmpManageAttendance";
-            this.btnEmpManageAttendance.Size = new System.Drawing.Size(246, 49);
-            this.btnEmpManageAttendance.TabIndex = 18;
-            this.btnEmpManageAttendance.Text = "Manage attendance";
-            this.btnEmpManageAttendance.UseVisualStyleBackColor = false;
             // 
             // gbxSearchEmp
             // 
@@ -1084,6 +1072,7 @@ namespace MediaBazaarApp
             this.cbWeekNumber.Name = "cbWeekNumber";
             this.cbWeekNumber.Size = new System.Drawing.Size(121, 26);
             this.cbWeekNumber.TabIndex = 4;
+            this.cbWeekNumber.SelectedIndexChanged += new System.EventHandler(this.cbWeekNumber_SelectedIndexChanged);
             // 
             // lbxWeeklySchedule
             // 
@@ -1345,15 +1334,61 @@ namespace MediaBazaarApp
             // 
             // tpManualSched
             // 
+            this.tpManualSched.Controls.Add(this.gbViewRemoveShifts);
             this.tpManualSched.Controls.Add(this.gbAssignShiftManually);
             this.tpManualSched.Controls.Add(this.gbChooseEmp);
-            this.tpManualSched.Controls.Add(this.gbViewRemoveShifts);
             this.tpManualSched.Location = new System.Drawing.Point(4, 27);
             this.tpManualSched.Name = "tpManualSched";
             this.tpManualSched.Size = new System.Drawing.Size(1221, 707);
             this.tpManualSched.TabIndex = 1;
             this.tpManualSched.Text = "Manual scheduling";
             this.tpManualSched.UseVisualStyleBackColor = true;
+            // 
+            // gbViewRemoveShifts
+            // 
+            this.gbViewRemoveShifts.Controls.Add(this.btnRemoveShift);
+            this.gbViewRemoveShifts.Controls.Add(this.btnReturnViewRemove);
+            this.gbViewRemoveShifts.Controls.Add(this.lbxSelectedEmpShifts);
+            this.gbViewRemoveShifts.Controls.Add(this.btnScheduleClearSelected);
+            this.gbViewRemoveShifts.Location = new System.Drawing.Point(454, 32);
+            this.gbViewRemoveShifts.Name = "gbViewRemoveShifts";
+            this.gbViewRemoveShifts.Size = new System.Drawing.Size(722, 599);
+            this.gbViewRemoveShifts.TabIndex = 26;
+            this.gbViewRemoveShifts.TabStop = false;
+            this.gbViewRemoveShifts.Text = "View/Remove shifts";
+            // 
+            // btnReturnViewRemove
+            // 
+            this.btnReturnViewRemove.Location = new System.Drawing.Point(16, 524);
+            this.btnReturnViewRemove.Name = "btnReturnViewRemove";
+            this.btnReturnViewRemove.Size = new System.Drawing.Size(193, 35);
+            this.btnReturnViewRemove.TabIndex = 26;
+            this.btnReturnViewRemove.Text = "Return to previous menu";
+            this.btnReturnViewRemove.UseVisualStyleBackColor = true;
+            this.btnReturnViewRemove.Click += new System.EventHandler(this.btnReturnViewRemove_Click);
+            // 
+            // lbxSelectedEmpShifts
+            // 
+            this.lbxSelectedEmpShifts.FormattingEnabled = true;
+            this.lbxSelectedEmpShifts.HorizontalScrollbar = true;
+            this.lbxSelectedEmpShifts.ItemHeight = 18;
+            this.lbxSelectedEmpShifts.Location = new System.Drawing.Point(28, 77);
+            this.lbxSelectedEmpShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbxSelectedEmpShifts.Name = "lbxSelectedEmpShifts";
+            this.lbxSelectedEmpShifts.Size = new System.Drawing.Size(648, 328);
+            this.lbxSelectedEmpShifts.TabIndex = 15;
+            // 
+            // btnScheduleClearSelected
+            // 
+            this.btnScheduleClearSelected.BackColor = System.Drawing.Color.Transparent;
+            this.btnScheduleClearSelected.Location = new System.Drawing.Point(354, 485);
+            this.btnScheduleClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnScheduleClearSelected.Name = "btnScheduleClearSelected";
+            this.btnScheduleClearSelected.Size = new System.Drawing.Size(322, 49);
+            this.btnScheduleClearSelected.TabIndex = 10;
+            this.btnScheduleClearSelected.Text = "Unmark selections";
+            this.btnScheduleClearSelected.UseVisualStyleBackColor = false;
+            this.btnScheduleClearSelected.Click += new System.EventHandler(this.btnScheduleClearSelected_Click_1);
             // 
             // gbAssignShiftManually
             // 
@@ -1384,6 +1419,7 @@ namespace MediaBazaarApp
             this.btnReturnAssign.TabIndex = 25;
             this.btnReturnAssign.Text = "Return to previous menu";
             this.btnReturnAssign.UseVisualStyleBackColor = true;
+            this.btnReturnAssign.Click += new System.EventHandler(this.btnReturnAssign_Click);
             // 
             // cbWFH
             // 
@@ -1422,6 +1458,7 @@ namespace MediaBazaarApp
             this.btnAssign.TabIndex = 7;
             this.btnAssign.Text = "Assign shift to employee";
             this.btnAssign.UseVisualStyleBackColor = true;
+            this.btnAssign.Click += new System.EventHandler(this.btnAssign_Click);
             // 
             // lbShiftType
             // 
@@ -1504,6 +1541,7 @@ namespace MediaBazaarApp
             this.btnAddShift.TabIndex = 3;
             this.btnAddShift.Text = "Add shift";
             this.btnAddShift.UseVisualStyleBackColor = true;
+            this.btnAddShift.Click += new System.EventHandler(this.btnAddShift_Click);
             // 
             // btnViewRemoveShifts
             // 
@@ -1513,13 +1551,14 @@ namespace MediaBazaarApp
             this.btnViewRemoveShifts.TabIndex = 2;
             this.btnViewRemoveShifts.Text = "View/remove shifts";
             this.btnViewRemoveShifts.UseVisualStyleBackColor = true;
+            this.btnViewRemoveShifts.Click += new System.EventHandler(this.btnViewRemoveShifts_Click);
             // 
             // cbEmps
             // 
             this.cbEmps.FormattingEnabled = true;
             this.cbEmps.Location = new System.Drawing.Point(168, 96);
             this.cbEmps.Name = "cbEmps";
-            this.cbEmps.Size = new System.Drawing.Size(121, 26);
+            this.cbEmps.Size = new System.Drawing.Size(227, 26);
             this.cbEmps.TabIndex = 1;
             // 
             // cbDeps
@@ -1527,52 +1566,9 @@ namespace MediaBazaarApp
             this.cbDeps.FormattingEnabled = true;
             this.cbDeps.Location = new System.Drawing.Point(168, 46);
             this.cbDeps.Name = "cbDeps";
-            this.cbDeps.Size = new System.Drawing.Size(121, 26);
+            this.cbDeps.Size = new System.Drawing.Size(227, 26);
             this.cbDeps.TabIndex = 0;
-            // 
-            // gbViewRemoveShifts
-            // 
-            this.gbViewRemoveShifts.Controls.Add(this.btnReturnViewRemove);
-            this.gbViewRemoveShifts.Controls.Add(this.lbxSelectedEmpShifts);
-            this.gbViewRemoveShifts.Controls.Add(this.btnScheduleClearSelected);
-            this.gbViewRemoveShifts.Location = new System.Drawing.Point(454, 32);
-            this.gbViewRemoveShifts.Name = "gbViewRemoveShifts";
-            this.gbViewRemoveShifts.Size = new System.Drawing.Size(722, 599);
-            this.gbViewRemoveShifts.TabIndex = 26;
-            this.gbViewRemoveShifts.TabStop = false;
-            this.gbViewRemoveShifts.Text = "View/Remove shifts";
-            // 
-            // btnReturnViewRemove
-            // 
-            this.btnReturnViewRemove.Location = new System.Drawing.Point(28, 469);
-            this.btnReturnViewRemove.Name = "btnReturnViewRemove";
-            this.btnReturnViewRemove.Size = new System.Drawing.Size(193, 35);
-            this.btnReturnViewRemove.TabIndex = 26;
-            this.btnReturnViewRemove.Text = "Return to previous menu";
-            this.btnReturnViewRemove.UseVisualStyleBackColor = true;
-            // 
-            // lbxSelectedEmpShifts
-            // 
-            this.lbxSelectedEmpShifts.FormattingEnabled = true;
-            this.lbxSelectedEmpShifts.HorizontalScrollbar = true;
-            this.lbxSelectedEmpShifts.ItemHeight = 18;
-            this.lbxSelectedEmpShifts.Location = new System.Drawing.Point(354, 77);
-            this.lbxSelectedEmpShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxSelectedEmpShifts.Name = "lbxSelectedEmpShifts";
-            this.lbxSelectedEmpShifts.Size = new System.Drawing.Size(322, 328);
-            this.lbxSelectedEmpShifts.TabIndex = 15;
-            // 
-            // btnScheduleClearSelected
-            // 
-            this.btnScheduleClearSelected.BackColor = System.Drawing.Color.Transparent;
-            this.btnScheduleClearSelected.Location = new System.Drawing.Point(354, 510);
-            this.btnScheduleClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnScheduleClearSelected.Name = "btnScheduleClearSelected";
-            this.btnScheduleClearSelected.Size = new System.Drawing.Size(322, 49);
-            this.btnScheduleClearSelected.TabIndex = 10;
-            this.btnScheduleClearSelected.Text = "Unmark selections";
-            this.btnScheduleClearSelected.UseVisualStyleBackColor = false;
-            this.btnScheduleClearSelected.Click += new System.EventHandler(this.btnScheduleClearSelected_Click);
+            this.cbDeps.SelectedIndexChanged += new System.EventHandler(this.cbDeps_SelectedIndexChanged);
             // 
             // tpManageAttendance
             // 
@@ -1596,18 +1592,19 @@ namespace MediaBazaarApp
             // 
             // btnApplyAttendanceChanges
             // 
-            this.btnApplyAttendanceChanges.Location = new System.Drawing.Point(425, 306);
+            this.btnApplyAttendanceChanges.Location = new System.Drawing.Point(500, 304);
             this.btnApplyAttendanceChanges.Name = "btnApplyAttendanceChanges";
             this.btnApplyAttendanceChanges.Size = new System.Drawing.Size(184, 47);
             this.btnApplyAttendanceChanges.TabIndex = 17;
             this.btnApplyAttendanceChanges.Text = "Apply changes";
             this.btnApplyAttendanceChanges.UseVisualStyleBackColor = true;
+            this.btnApplyAttendanceChanges.Click += new System.EventHandler(this.btnApplyAttendanceChanges_Click);
             // 
             // tbReasonForAbsence
             // 
             this.tbReasonForAbsence.Location = new System.Drawing.Point(473, 252);
             this.tbReasonForAbsence.Name = "tbReasonForAbsence";
-            this.tbReasonForAbsence.Size = new System.Drawing.Size(100, 24);
+            this.tbReasonForAbsence.Size = new System.Drawing.Size(285, 24);
             this.tbReasonForAbsence.TabIndex = 16;
             this.tbReasonForAbsence.Visible = false;
             // 
@@ -1656,8 +1653,9 @@ namespace MediaBazaarApp
             this.cbEmployeesShifts.FormattingEnabled = true;
             this.cbEmployeesShifts.Location = new System.Drawing.Point(473, 166);
             this.cbEmployeesShifts.Name = "cbEmployeesShifts";
-            this.cbEmployeesShifts.Size = new System.Drawing.Size(121, 26);
+            this.cbEmployeesShifts.Size = new System.Drawing.Size(285, 26);
             this.cbEmployeesShifts.TabIndex = 10;
+            this.cbEmployeesShifts.SelectedIndexChanged += new System.EventHandler(this.cbEmployeesShifts_SelectedIndexChanged);
             // 
             // lbSelectedEmp
             // 
@@ -1682,16 +1680,18 @@ namespace MediaBazaarApp
             this.cbSelectedEmp.FormattingEnabled = true;
             this.cbSelectedEmp.Location = new System.Drawing.Point(473, 117);
             this.cbSelectedEmp.Name = "cbSelectedEmp";
-            this.cbSelectedEmp.Size = new System.Drawing.Size(121, 26);
+            this.cbSelectedEmp.Size = new System.Drawing.Size(285, 26);
             this.cbSelectedEmp.TabIndex = 7;
+            this.cbSelectedEmp.SelectedIndexChanged += new System.EventHandler(this.cbSelectedEmp_SelectedIndexChanged);
             // 
             // cbAllDeps
             // 
             this.cbAllDeps.FormattingEnabled = true;
             this.cbAllDeps.Location = new System.Drawing.Point(473, 64);
             this.cbAllDeps.Name = "cbAllDeps";
-            this.cbAllDeps.Size = new System.Drawing.Size(121, 26);
+            this.cbAllDeps.Size = new System.Drawing.Size(285, 26);
             this.cbAllDeps.TabIndex = 6;
+            this.cbAllDeps.SelectedIndexChanged += new System.EventHandler(this.cbAllDeps_SelectedIndexChanged);
             // 
             // StocksTab
             // 
@@ -2356,6 +2356,18 @@ namespace MediaBazaarApp
             this.lbDepartmentName.TabIndex = 1;
             this.lbDepartmentName.Text = "Name:";
             // 
+            // btnRemoveShift
+            // 
+            this.btnRemoveShift.BackColor = System.Drawing.Color.Transparent;
+            this.btnRemoveShift.Location = new System.Drawing.Point(354, 428);
+            this.btnRemoveShift.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRemoveShift.Name = "btnRemoveShift";
+            this.btnRemoveShift.Size = new System.Drawing.Size(322, 49);
+            this.btnRemoveShift.TabIndex = 27;
+            this.btnRemoveShift.Text = "Remove selected";
+            this.btnRemoveShift.UseVisualStyleBackColor = false;
+            this.btnRemoveShift.Click += new System.EventHandler(this.btnShift_Click);
+            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -2395,11 +2407,11 @@ namespace MediaBazaarApp
             this.gbxAutoShiftsAssignAllDays.PerformLayout();
             this.gbxAssignShiftsAuto.ResumeLayout(false);
             this.tpManualSched.ResumeLayout(false);
+            this.gbViewRemoveShifts.ResumeLayout(false);
             this.gbAssignShiftManually.ResumeLayout(false);
             this.gbAssignShiftManually.PerformLayout();
             this.gbChooseEmp.ResumeLayout(false);
             this.gbChooseEmp.PerformLayout();
-            this.gbViewRemoveShifts.ResumeLayout(false);
             this.tpManageAttendance.ResumeLayout(false);
             this.tpManageAttendance.PerformLayout();
             this.StocksTab.ResumeLayout(false);
@@ -2435,7 +2447,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.TabControl tabControlEmployees;
         private System.Windows.Forms.TabPage AddEmpTab;
         private System.Windows.Forms.TabPage ManageEmpTab;
-        private System.Windows.Forms.Button btnEmpManageAttendance;
         private System.Windows.Forms.GroupBox gbxSearchEmp;
         private System.Windows.Forms.Button btnSearchEmp;
         private System.Windows.Forms.TextBox tbxSearchEmp;
@@ -2620,5 +2631,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnSearchDep;
         private System.Windows.Forms.TextBox tbxSearchDep;
         private System.Windows.Forms.Button btnShowAllDep;
+        private System.Windows.Forms.Button btnRemoveShift;
     }
 }
