@@ -119,9 +119,12 @@
     <Compile Include="Custom exceptions\EmpPhoneException.cs" />
     <Compile Include="Custom exceptions\EmpPostcodeException.cs" />
     <Compile Include="Custom exceptions\EmpStreetException.cs" />
+    <Compile Include="ComboBoxEnteredValueException.cs" />
     <Compile Include="DBControl.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="DepartmentManagement.cs" />
+    <Compile Include="IntegerValueExpected.cs" />
+    <Compile Include="NotAllFieldFilled.cs" />
     <Compile Include="SalesForm.cs">
       <SubType>Form</SubType>
     </Compile>

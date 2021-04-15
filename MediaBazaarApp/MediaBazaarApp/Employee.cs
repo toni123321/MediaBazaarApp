@@ -407,13 +407,13 @@ namespace MediaBazaarApp
             return 0;
         }
 
-        public bool AddShift(int id, ShiftType type, DateTime date, int assignedBy, bool wfh)
+        public bool AddShift(int id, ShiftType type, DateTime date, int assignedBy, bool wfh, bool hasAttended, string noShowReason)
         {
             int totalShiftsPerWeek = 0;
 
             foreach (Shift s in shifts)
             {
-                if (GetIso8601WeekOfYear(s.Date) == GetIso8601WeekOfYear(date))
+                if (GetIso8601WeekOfYear(s.Date) == GetIso8601WeekOfYear(date) && s.HasAttended == true)
                 {
                     totalShiftsPerWeek++;
                 }
@@ -421,7 +421,7 @@ namespace MediaBazaarApp
 
             if (totalShiftsPerWeek <= (int)this.employmentType)
             {
-                shifts.Add(new Shift(id, type, date, assignedBy, wfh));
+                shifts.Add(new Shift(id, type, date, assignedBy, wfh, hasAttended, noShowReason));
                 return true;
             }
             else
