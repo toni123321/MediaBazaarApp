@@ -271,36 +271,60 @@ namespace MediaBazaarApp
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
 
         //Stocks
         public void AddStock(string model, string brand, double price, int quantity, double height,
-            double width, double depth, double weight, string shortDescription)
+             double width, double depth, double weight, string shortDescription, StockManagement stockManagement)
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
+                    Dictionary<string, bool> stockStorage = stockManagement.GetStorage();
+                    string location = "";
+
                     string sql = "INSERT INTO stock (Brand, Model, Quantity, Price, " +
-                                 "Width, Height, Depth, Weight, ShortDescription) " +
+                                 "Width, Height, Depth, Weight, ShortDescription, Location) " +
                                  "VALUES(@brand, @model, @quantity, @price, @width, @height, @depth, " +
-                                 "@weight, @description)";
+                                 "@weight, @description, @location)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    cmd.Parameters.AddWithValue("@brand", brand);
-                    cmd.Parameters.AddWithValue("@model", model);
-                    cmd.Parameters.AddWithValue("@quantity", quantity);
-                    cmd.Parameters.AddWithValue("@price", price);
-                    cmd.Parameters.AddWithValue("@width", width);
-                    cmd.Parameters.AddWithValue("@height", height);
-                    cmd.Parameters.AddWithValue("@depth", depth);
-                    cmd.Parameters.AddWithValue("@weight", weight);
-                    cmd.Parameters.AddWithValue("@description", shortDescription);
 
-                    conn.Open();
+                    foreach (KeyValuePair<string, bool> l in stockStorage)
+                    {
+                        if (stockStorage.All(loc => loc.Value == false))
+                        {
+                            MessageBox.Show("Your storage is full");
+                        }
 
-                    int effectedRows = cmd.ExecuteNonQuery();
+                        if (l.Value == true)
+                        {
+                            location = l.Key;
+
+
+                            cmd.Parameters.AddWithValue("@brand", brand);
+                            cmd.Parameters.AddWithValue("@model", model);
+                            cmd.Parameters.AddWithValue("@quantity", quantity);
+                            cmd.Parameters.AddWithValue("@price", price);
+                            cmd.Parameters.AddWithValue("@width", width);
+                            cmd.Parameters.AddWithValue("@height", height);
+                            cmd.Parameters.AddWithValue("@depth", depth);
+                            cmd.Parameters.AddWithValue("@weight", weight);
+                            cmd.Parameters.AddWithValue("@description", shortDescription);
+                            cmd.Parameters.AddWithValue("@location", location);
+
+
+                            conn.Open();
+
+                            int effectedRows = cmd.ExecuteNonQuery();
+                            break;
+                        }
+
+                    }
+
+
 
                 }
             }
@@ -310,6 +334,7 @@ namespace MediaBazaarApp
                 MessageBox.Show(ex.Message);
             }
         }
+
 
         public void RemoveStock(int id)
         {
@@ -436,9 +461,10 @@ namespace MediaBazaarApp
                         double depth = Convert.ToDouble(dr[7]);
                         double weight = Convert.ToDouble(dr[8]);
                         string description = dr[9].ToString();
+                        string location = dr[10].ToString();
 
                         stockManagement.AddStock(id, model, brand, price, quantity, height, width, depth,
-                            weight, description);
+                                 weight, description, location);
 
 
                     }

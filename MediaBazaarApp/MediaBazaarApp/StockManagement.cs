@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MediaBazaarApp
 {
@@ -18,7 +19,7 @@ namespace MediaBazaarApp
             this.stockStorage = new Dictionary<string, bool>();
         }
 
-        public void AddStock(int id, string model, string brand, double price, int quantity, double height, double width, double depth, double weight, string shortDescription)
+        public void AddStock(int id, string model, string brand, double price, int quantity, double height, double width, double depth, double weight, string shortDescription, string location)
         {
             if (SearchForStock(model, brand) != null)
             {
@@ -27,6 +28,8 @@ namespace MediaBazaarApp
             else
             {
                 Stock stock = new Stock(id, model, brand, price, quantity, height, width, depth, weight, shortDescription);
+                stock.Location = location;
+                stockStorage[location] = false;
                 stocks.Add(stock);
             }
         }
@@ -45,6 +48,8 @@ namespace MediaBazaarApp
 
         public void RemoveStock(Stock stock)
         {
+            string stockLocation = stock.Location;
+            stockStorage[stockLocation] = true;
             stocks.Remove(stock);
         }
 
@@ -64,7 +69,7 @@ namespace MediaBazaarApp
             return this.stocks;
         }
 
-        /*public void startStorage()
+        public void startStorage()
         {
             stockStorage.Add("A1", true);
             stockStorage.Add("A2", true);
@@ -326,7 +331,12 @@ namespace MediaBazaarApp
             stockStorage.Add("Z8", true);
             stockStorage.Add("Z9", true);
             stockStorage.Add("Z10", true);
-        }*/                    
+        }
+
+        public Dictionary<string, bool> GetStorage()
+        {
+            return stockStorage;
+        }
 
     }
 }

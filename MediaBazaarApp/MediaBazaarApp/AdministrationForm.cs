@@ -18,6 +18,7 @@ namespace MediaBazaarApp
         private DepartmentManagement departmentManagement;
         private Employee currentEmp;
         private StockManagement stockManagement;
+        private Dictionary<string, bool> stockSotrage;
         private Stock selectedStock;
         private SalesManagement salesManagement;
         private DBControl dbc;
@@ -38,6 +39,7 @@ namespace MediaBazaarApp
             this.departmentManagement = departmentManagement;
             this.currentEmp = currentEmp;
             this.stockManagement = stockManagement;
+            this.stockSotrage = this.stockManagement.GetStorage();
             this.salesManagement = salesManagement;
             dbc = new DBControl();
 
@@ -583,7 +585,7 @@ namespace MediaBazaarApp
                     DBControl dbControl = new DBControl();
                     if (stockManagement.SearchForStock(model, brand) == null)
                     {
-                        dbControl.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription);
+                        dbControl.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription, stockManagement);
                     }
                     else
                     {

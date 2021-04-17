@@ -14,6 +14,7 @@ namespace MediaBazaarApp
     {
         private DepartmentManagement departmentManagement;
         private StockManagement stockManagement;
+        private Dictionary<string, bool> stockStorage;
         private SalesManagement salesManagement;
         private DBControl dbControl = new DBControl();
 
@@ -24,6 +25,9 @@ namespace MediaBazaarApp
             departmentManagement = new DepartmentManagement();
             stockManagement = new StockManagement();
             salesManagement = new SalesManagement();
+
+            this.stockManagement.startStorage();
+            this.stockStorage = this.stockManagement.GetStorage();
 
             dbControl.GetDepartments(this.departmentManagement);
             dbControl.GetEmployees(this.departmentManagement);
@@ -40,6 +44,7 @@ namespace MediaBazaarApp
             this.departmentManagement = departmentManagement;
             this.stockManagement = stockManagement;
             this.salesManagement = salesManagement;
+            stockStorage = this.stockManagement.GetStorage();
         }
 
         
