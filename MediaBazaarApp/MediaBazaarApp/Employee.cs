@@ -120,6 +120,9 @@ namespace MediaBazaarApp
             set { this.gender = value; }
         }
 
+
+      
+
         //Contact details
         public string Email
         {
@@ -488,7 +491,6 @@ namespace MediaBazaarApp
             return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
         }
 
-        
 
     }
 }

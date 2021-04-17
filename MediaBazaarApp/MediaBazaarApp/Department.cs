@@ -166,6 +166,6 @@ namespace MediaBazaarApp
             return $"DepId:{this.DeptId}; Name:{this.name}";
         }
 
-       
+    
     }
 }

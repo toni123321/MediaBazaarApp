@@ -117,6 +117,11 @@ namespace MediaBazaarApp
 
         private void ManagementForm_Load(object sender, EventArgs e)
         {
+            foreach (Department department in departmentManagement.GetAllDepartments())
+            {
+                cbxGenderChart.Items.Add(department.Name);
+            }
+
 
             foreach (Department d in departmentManagement.GetAllDepartments())
             {
@@ -124,6 +129,8 @@ namespace MediaBazaarApp
                 {
 
                     EmpPerDepChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{d.GetAllEmployees().Count}");
+                    EmpPerDepChart.Series["Series1"].Label = "#PERCENT{P2}";
+                    EmpPerDepChart.Series["Series1"].LegendText = "#VALX";
                 }
             }
 
@@ -136,6 +143,8 @@ namespace MediaBazaarApp
                 if (d.GetAllEmployees().Count > 0)
                 {
                     AvgWageChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{se.AveregeWageOfEmployee(d.GetAllEmployees())}");
+                    AvgWageChart.Series["Series1"].Label = "#PERCENT{P2}";
+                    AvgWageChart.Series["Series1"].LegendText = "#VALX";
                 }
             }
 
@@ -158,6 +167,47 @@ namespace MediaBazaarApp
         {
             
             WelcomeMessage();
+        }
+
+
+
+     
+        private void cbxGenderChart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GenderPieChart.Series["Gender"].Points.Clear();
+            string department = cbxGenderChart.SelectedItem.ToString();
+            foreach (Department dep in departmentManagement.GetAllDepartments())
+            {
+                
+                if (department == dep.Name)
+                {
+                    foreach (Employee emp in dep.GetAllEmployees())
+                    {
+                        if (emp.Gender.ToString() == "MALE")
+                        {
+                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
+                        }
+
+                        if (emp.Gender.ToString() == "FEMALE")
+                        {
+                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
+                        }
+
+                        if (emp.Gender.ToString() == "NONBINARY")
+                        {
+                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
+                        }
+
+                        if (emp.Gender.ToString() == "OTHER")
+                        {
+                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
+                        }
+                    }
+                    
+                }
+                
+                
+            }
         }
     }
 }
