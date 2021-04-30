@@ -220,6 +220,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="RemoveStockForm.resx">
       <DependentUpon>RemoveStockForm.cs</DependentUpon>
@@ -243,6 +244,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\MediaBazaarLogo1.png" />
+    <None Include="Resources\round_circle_notifications_black_48dp.png" />
+    <None Include="Resources\MediaBazaarLogo.png" />
+    <None Include="Resources\round_supervisor_account_black_48dp.png" />
+    <None Include="Resources\round_shopping_cart_black_48dp.png" />
+    <None Include="Resources\round_event_available_black_48dp.png" />
+    <None Include="Resources\round_calendar_today_black_48dp.png" />
+    <None Include="Resources\round_flight_takeoff_black_48dp.png" />
+    <None Include="Resources\round_person_add_black_48dp.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
