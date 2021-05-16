@@ -1,8 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using MediaBazaarApp;
+﻿using MediaBazaarApp;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTesting
 {
@@ -17,7 +14,7 @@ namespace UnitTesting
         {
             departmentManagement = new DepartmentManagement();
         }
-        
+
 
         [TestMethod]
         public void TestAddDepartment()

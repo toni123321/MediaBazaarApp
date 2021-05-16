@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MediaBazaarApp
@@ -51,7 +44,7 @@ namespace MediaBazaarApp
             {
                 type = ShiftType.Morning;
             }
-            else if(cbShiftType.SelectedIndex == 1)
+            else if (cbShiftType.SelectedIndex == 1)
             {
                 type = ShiftType.Afternoon;
             }
@@ -64,10 +57,10 @@ namespace MediaBazaarApp
 
         private void AssignWorkShiftsManuallyForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            AdministrationForm adminForm = new AdministrationForm(departmentManagement , currentEmp, salesManagement, stockManagement);
+            AdministrationForm adminForm = new AdministrationForm(departmentManagement, currentEmp, salesManagement, stockManagement);
             adminForm.Show();
         }
 
-       
+
     }
 }

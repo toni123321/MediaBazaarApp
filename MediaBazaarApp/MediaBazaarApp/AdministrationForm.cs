@@ -1,14 +1,9 @@
-﻿using System;
+﻿using MediaBazaarApp.Custom_exceptions;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MediaBazaarApp.Custom_exceptions;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace MediaBazaarApp
 {
@@ -1372,7 +1367,7 @@ namespace MediaBazaarApp
             if (current == last)
             {
                 afk++;
-                if(afk == 15)
+                if (afk == 15)
                 {
                     MessageBox.Show("You have been logged out due to being idle. Please, log in again.");
                     afk = 0;
@@ -1381,12 +1376,12 @@ namespace MediaBazaarApp
             }
             last = Cursor.Position;
         }
-        
-    }
- } 
 
-            
-  
- 
+    }
+}
+
+
+
+
 
 

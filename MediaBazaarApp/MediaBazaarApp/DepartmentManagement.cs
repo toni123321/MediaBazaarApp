@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 
 namespace MediaBazaarApp
@@ -38,11 +34,11 @@ namespace MediaBazaarApp
             }
             return false;
         }
-        
+
 
         public bool RemoveDepartment(string name)
         {
-            if(GetDepartment(name) != null)
+            if (GetDepartment(name) != null)
             {
                 departments.Remove(GetDepartment(name));
                 return true;
@@ -59,7 +55,7 @@ namespace MediaBazaarApp
         {
             foreach (Department dep in departments)
             {
-                if(dep.Name == name)
+                if (dep.Name == name)
                 {
                     return dep;
                 }
@@ -98,6 +94,6 @@ namespace MediaBazaarApp
         {
             return GetDepartment(depName).GetAllEmployees();
         }
-        
+
     }
 }

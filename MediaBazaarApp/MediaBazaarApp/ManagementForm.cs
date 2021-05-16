@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MediaBazaarApp
@@ -18,7 +13,11 @@ namespace MediaBazaarApp
         SalesManagement salesManagement;
         StatisticsEmployee se = new StatisticsEmployee();
         StatisticsStock ss = new StatisticsStock();
-
+        public string ConnString
+        {
+            get;
+            set;
+        }
         public ManagementForm(DepartmentManagement departmentManagement, Employee currentEmp, SalesManagement salesManagement, StockManagement stockManagement)
         {
             InitializeComponent();
@@ -83,11 +82,11 @@ namespace MediaBazaarApp
         {
             lbxAllStocksStatistics.Items.Clear();
             int index = cbStatisticType.SelectedIndex;
-            if(index != -1)
+            if (index != -1)
             {
                 if (index == 0)
                 {
-                    
+
                     lbxAllStocksStatistics.Items.AddRange(ss.GetLowestPrice(stockManagement.GetAllStocks()).ToArray());
                 }
 
@@ -112,22 +111,25 @@ namespace MediaBazaarApp
                     lbxAllStocksStatistics.Items.AddRange(ss.GetBiggestQuantity(stockManagement.GetAllStocks()).ToArray());
                 }
             }
-            
+
         }
 
         private void ManagementForm_Load(object sender, EventArgs e)
         {
+            DBControl db = new DBControl();
             foreach (Department department in departmentManagement.GetAllDepartments())
             {
                 cbxGenderChart.Items.Add(department.Name);
+                cbxAge.Items.Add(department.Name);
+                cbxCity.Items.Add(department.Name);
             }
+
 
 
             foreach (Department d in departmentManagement.GetAllDepartments())
             {
                 if (d.GetAllEmployees().Count > 0)
                 {
-
                     EmpPerDepChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{d.GetAllEmployees().Count}");
                     EmpPerDepChart.Series["Series1"].Label = "#PERCENT{P2}";
                     EmpPerDepChart.Series["Series1"].LegendText = "#VALX";
@@ -165,20 +167,20 @@ namespace MediaBazaarApp
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
+
             WelcomeMessage();
         }
 
 
 
-     
+
         private void cbxGenderChart_SelectedIndexChanged(object sender, EventArgs e)
         {
             GenderPieChart.Series["Gender"].Points.Clear();
             string department = cbxGenderChart.SelectedItem.ToString();
             foreach (Department dep in departmentManagement.GetAllDepartments())
             {
-                
+
                 if (department == dep.Name)
                 {
                     foreach (Employee emp in dep.GetAllEmployees())
@@ -203,11 +205,133 @@ namespace MediaBazaarApp
                             GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
                         }
                     }
-                    
+
                 }
-                
-                
+
+
             }
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AgeChart.Series["Age"].Points.Clear();
+            int index = cbxAge.SelectedIndex;
+            string department = cbxAge.SelectedItem.ToString();
+            if (index != -1)
+            {
+
+                if (index == 0)
+                {
+                    foreach (Employee employee in departmentManagement.GetAllEmployees())
+                    {
+                        AgeChart.Series["Age"].Points.AddXY($"{DateTime.Now.Year - employee.DateOfBirth.Year}", +1);
+                    }
+                }
+
+
+                foreach (Department d in departmentManagement.GetAllDepartments())
+                {
+
+                    if (department == d.Name)
+                    {
+                        foreach (Employee employee in d.GetAllEmployees())
+                        {
+                            AgeChart.Series["Age"].Points.AddXY($"{DateTime.Now.Year - employee.DateOfBirth.Year}", +1);
+                        }
+
+                    }
+
+
+
+
+                }
+
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            ResidenceChart1.Series["Series1"].Points.Clear();
+            int index = cbxCity.SelectedIndex;
+            string department = cbxCity.SelectedItem.ToString();
+            List<string> cities = new List<string>();
+
+            if (index != -1)
+            {
+
+                if (index == 0)
+                {
+                    foreach (Employee emp in departmentManagement.GetAllEmployees())
+                    {
+                        cities.Add(emp.City);
+                    }
+
+                    var uniquecities = cities.Distinct();
+                    foreach (string city in uniquecities)
+                    {
+                        int count = 0;
+                        foreach (Employee emp in departmentManagement.GetAllEmployees())
+                        {
+
+                            if (emp.City == city)
+                            {
+                                count += 1;
+                            }
+
+                        }
+                        ResidenceChart1.Series["Series1"].Points.AddXY($"{city}", count);
+                    }
+
+                }
+            }
+
+
+            foreach (Department d in departmentManagement.GetAllDepartments())
+            {
+
+                if (department == d.Name)
+                {
+                    cities.Clear();
+
+
+
+
+                    foreach (Employee emp in departmentManagement.GetAllEmployees())
+                    {
+                        cities.Add(emp.City);
+                    }
+
+
+
+
+                    var uniquecities = cities.Distinct();
+                    foreach (string city in uniquecities)
+                    {
+                        int count = 0;
+                        foreach (Employee employee in d.GetAllEmployees())
+                        {
+                            if (employee.City == city)
+                            {
+                                count += 1;
+                            }
+
+                        }
+                        ResidenceChart1.Series["Series1"].Points.AddXY($"{city}", count);
+                    }
+
+
+
+
+                }
+
+            }
+        }
+
+
+
+
+
     }
 }
+
+
