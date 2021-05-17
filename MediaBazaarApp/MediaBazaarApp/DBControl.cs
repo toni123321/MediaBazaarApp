@@ -723,7 +723,6 @@ namespace MediaBazaarApp
                     conn.Open();
 
                     int effectedRows = cmd.ExecuteNonQuery();
-                    MessageBox.Show("Successfully added a shift!");
                 }
             }
             catch (Exception ex)
@@ -752,7 +751,6 @@ namespace MediaBazaarApp
                     conn.Open();
 
                     int effectedRows = cmd.ExecuteNonQuery();
-                    MessageBox.Show($"Successfully removed a shift!");
                 }
             }
             catch (Exception ex)

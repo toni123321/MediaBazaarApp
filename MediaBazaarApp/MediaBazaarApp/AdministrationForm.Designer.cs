@@ -99,7 +99,6 @@ namespace MediaBazaarApp
             this.lbWeekNumber = new System.Windows.Forms.Label();
             this.cbWeekNumber = new System.Windows.Forms.ComboBox();
             this.lbxWeeklySchedule = new System.Windows.Forms.ListBox();
-            this.tpAutoSched = new System.Windows.Forms.TabPage();
             this.tpManualSched = new System.Windows.Forms.TabPage();
             this.gbViewRemoveShifts = new System.Windows.Forms.GroupBox();
             this.btnRemoveShift = new System.Windows.Forms.Button();
@@ -223,12 +222,9 @@ namespace MediaBazaarApp
             this.lbDateDayOfWeek = new System.Windows.Forms.Label();
             this.lbGreetingMsg = new System.Windows.Forms.Label();
             this.tabControlAdministration = new System.Windows.Forms.TabControl();
-            this.lbWeekNrAS = new System.Windows.Forms.Label();
-            this.cbYearAS = new System.Windows.Forms.ComboBox();
             this.btnGenAS = new System.Windows.Forms.Button();
-            this.btnSaveAS = new System.Windows.Forms.Button();
-            this.btnDeleteAS = new System.Windows.Forms.Button();
-            this.lbxAS = new System.Windows.Forms.ListBox();
+            this.lbWeekNrAS = new System.Windows.Forms.Label();
+            this.cbWeekAS = new System.Windows.Forms.ComboBox();
             this.ManageDepartmentsTab.SuspendLayout();
             this.gbxSearchDep.SuspendLayout();
             this.gbxEditDepartment.SuspendLayout();
@@ -241,7 +237,6 @@ namespace MediaBazaarApp
             this.SchedulingTab.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tbWeeklySchedule.SuspendLayout();
-            this.tpAutoSched.SuspendLayout();
             this.tpManualSched.SuspendLayout();
             this.gbViewRemoveShifts.SuspendLayout();
             this.gbAssignShiftManually.SuspendLayout();
@@ -975,7 +970,6 @@ namespace MediaBazaarApp
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tbWeeklySchedule);
-            this.tabControl1.Controls.Add(this.tpAutoSched);
             this.tabControl1.Controls.Add(this.tpManualSched);
             this.tabControl1.Controls.Add(this.tpManageAttendance);
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
@@ -987,6 +981,9 @@ namespace MediaBazaarApp
             // tbWeeklySchedule
             // 
             this.tbWeeklySchedule.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.tbWeeklySchedule.Controls.Add(this.btnGenAS);
+            this.tbWeeklySchedule.Controls.Add(this.lbWeekNrAS);
+            this.tbWeeklySchedule.Controls.Add(this.cbWeekAS);
             this.tbWeeklySchedule.Controls.Add(this.lbWeekNumber);
             this.tbWeeklySchedule.Controls.Add(this.cbWeekNumber);
             this.tbWeeklySchedule.Controls.Add(this.lbxWeeklySchedule);
@@ -1024,21 +1021,6 @@ namespace MediaBazaarApp
             this.lbxWeeklySchedule.Name = "lbxWeeklySchedule";
             this.lbxWeeklySchedule.Size = new System.Drawing.Size(995, 484);
             this.lbxWeeklySchedule.TabIndex = 3;
-            // 
-            // tpAutoSched
-            // 
-            this.tpAutoSched.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.tpAutoSched.Controls.Add(this.lbxAS);
-            this.tpAutoSched.Controls.Add(this.btnDeleteAS);
-            this.tpAutoSched.Controls.Add(this.btnSaveAS);
-            this.tpAutoSched.Controls.Add(this.btnGenAS);
-            this.tpAutoSched.Controls.Add(this.lbWeekNrAS);
-            this.tpAutoSched.Controls.Add(this.cbYearAS);
-            this.tpAutoSched.Location = new System.Drawing.Point(4, 29);
-            this.tpAutoSched.Name = "tpAutoSched";
-            this.tpAutoSched.Size = new System.Drawing.Size(1084, 787);
-            this.tpAutoSched.TabIndex = 0;
-            this.tpAutoSched.Text = "Automatic scheduling";
             // 
             // tpManualSched
             // 
@@ -2459,63 +2441,87 @@ namespace MediaBazaarApp
             this.tabControlAdministration.TabIndex = 0;
             this.tabControlAdministration.SelectedIndexChanged += new System.EventHandler(this.tabControlAdministration_SelectedIndexChanged);
             // 
-            // lbWeekNrAS
-            // 
-            this.lbWeekNrAS.AutoSize = true;
-            this.lbWeekNrAS.Location = new System.Drawing.Point(29, 46);
-            this.lbWeekNrAS.Name = "lbWeekNrAS";
-            this.lbWeekNrAS.Size = new System.Drawing.Size(48, 20);
-            this.lbWeekNrAS.TabIndex = 7;
-            this.lbWeekNrAS.Text = "Week:";
-            // 
-            // cbYearAS
-            // 
-            this.cbYearAS.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbYearAS.FormattingEnabled = true;
-            this.cbYearAS.Location = new System.Drawing.Point(33, 69);
-            this.cbYearAS.Name = "cbYearAS";
-            this.cbYearAS.Size = new System.Drawing.Size(108, 28);
-            this.cbYearAS.TabIndex = 6;
-            // 
             // btnGenAS
             // 
             this.btnGenAS.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnGenAS.Location = new System.Drawing.Point(33, 103);
+            this.btnGenAS.Location = new System.Drawing.Point(858, 35);
             this.btnGenAS.Name = "btnGenAS";
             this.btnGenAS.Size = new System.Drawing.Size(170, 66);
-            this.btnGenAS.TabIndex = 8;
+            this.btnGenAS.TabIndex = 11;
             this.btnGenAS.Text = "Generate schedule";
             this.btnGenAS.UseVisualStyleBackColor = false;
+            this.btnGenAS.Click += new System.EventHandler(this.btnGenAS_Click_1);
             // 
-            // btnSaveAS
+            // lbWeekNrAS
             // 
-            this.btnSaveAS.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnSaveAS.Location = new System.Drawing.Point(33, 335);
-            this.btnSaveAS.Name = "btnSaveAS";
-            this.btnSaveAS.Size = new System.Drawing.Size(170, 66);
-            this.btnSaveAS.TabIndex = 9;
-            this.btnSaveAS.Text = "Save";
-            this.btnSaveAS.UseVisualStyleBackColor = false;
+            this.lbWeekNrAS.AutoSize = true;
+            this.lbWeekNrAS.Location = new System.Drawing.Point(731, 35);
+            this.lbWeekNrAS.Name = "lbWeekNrAS";
+            this.lbWeekNrAS.Size = new System.Drawing.Size(48, 20);
+            this.lbWeekNrAS.TabIndex = 10;
+            this.lbWeekNrAS.Text = "Week:";
             // 
-            // btnDeleteAS
+            // cbWeekAS
             // 
-            this.btnDeleteAS.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnDeleteAS.Location = new System.Drawing.Point(33, 419);
-            this.btnDeleteAS.Name = "btnDeleteAS";
-            this.btnDeleteAS.Size = new System.Drawing.Size(170, 66);
-            this.btnDeleteAS.TabIndex = 10;
-            this.btnDeleteAS.Text = "Delete";
-            this.btnDeleteAS.UseVisualStyleBackColor = false;
-            this.btnDeleteAS.Click += new System.EventHandler(this.btnDeleteAS_Click);
-            // 
-            // lbxAS
-            // 
-            this.lbxAS.FormattingEnabled = true;
-            this.lbxAS.ItemHeight = 20;
-            this.lbxAS.Location = new System.Drawing.Point(284, 50);
-            this.lbxAS.Name = "lbxAS";
-            this.lbxAS.Size = new System.Drawing.Size(742, 564);
-            this.lbxAS.TabIndex = 11;
+            this.cbWeekAS.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbWeekAS.FormattingEnabled = true;
+            this.cbWeekAS.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52"});
+            this.cbWeekAS.Location = new System.Drawing.Point(735, 58);
+            this.cbWeekAS.Name = "cbWeekAS";
+            this.cbWeekAS.Size = new System.Drawing.Size(108, 28);
+            this.cbWeekAS.TabIndex = 9;
             // 
             // AdministrationForm
             // 
@@ -2549,8 +2555,6 @@ namespace MediaBazaarApp
             this.tabControl1.ResumeLayout(false);
             this.tbWeeklySchedule.ResumeLayout(false);
             this.tbWeeklySchedule.PerformLayout();
-            this.tpAutoSched.ResumeLayout(false);
-            this.tpAutoSched.PerformLayout();
             this.tpManualSched.ResumeLayout(false);
             this.gbViewRemoveShifts.ResumeLayout(false);
             this.gbAssignShiftManually.ResumeLayout(false);
@@ -2669,7 +2673,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbWeekNumber;
         private System.Windows.Forms.ComboBox cbWeekNumber;
         private System.Windows.Forms.ListBox lbxWeeklySchedule;
-        private System.Windows.Forms.TabPage tpAutoSched;
         private System.Windows.Forms.TabPage tpManualSched;
         private System.Windows.Forms.GroupBox gbViewRemoveShifts;
         private System.Windows.Forms.Button btnRemoveShift;
@@ -2793,11 +2796,8 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbDateDayOfWeek;
         private System.Windows.Forms.Label lbGreetingMsg;
         private System.Windows.Forms.TabControl tabControlAdministration;
-        private System.Windows.Forms.ListBox lbxAS;
-        private System.Windows.Forms.Button btnDeleteAS;
-        private System.Windows.Forms.Button btnSaveAS;
         private System.Windows.Forms.Button btnGenAS;
         private System.Windows.Forms.Label lbWeekNrAS;
-        private System.Windows.Forms.ComboBox cbYearAS;
+        private System.Windows.Forms.ComboBox cbWeekAS;
     }
 }

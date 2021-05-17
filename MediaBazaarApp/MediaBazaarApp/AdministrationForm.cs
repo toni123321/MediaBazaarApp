@@ -1,5 +1,6 @@
 ﻿using MediaBazaarApp.Custom_exceptions;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -17,6 +18,7 @@ namespace MediaBazaarApp
         private Stock selectedStock;
         private SalesManagement salesManagement;
         private DBControl dbc;
+        private AutomatedScheduleHandler ash;
 
         private double price = 0;
         private int quantity = 0;
@@ -39,6 +41,7 @@ namespace MediaBazaarApp
             this.stockManagement = stockManagement;
             this.stockSotrage = this.stockManagement.GetStorage();
             this.salesManagement = salesManagement;
+            ash = new AutomatedScheduleHandler(departmentManagement);
             dbc = new DBControl();
 
             gbChooseEmp.Visible = true;
@@ -98,7 +101,7 @@ namespace MediaBazaarApp
             }
 
             lbTime.Text = DateTime.Now.ToString("HH:mm");
-            lbDateDayOfWeek.Text = DateTime.Now.ToString("dddd, MMMM dd, YYYY");
+            lbDateDayOfWeek.Text = DateTime.Now.ToString("dddd, MMMM dd yyyy");
 
         }
 
@@ -1318,7 +1321,10 @@ namespace MediaBazaarApp
                 {
                     if (GetIso8601WeekOfYear(s.Date) == (int)cbWeekNumber.SelectedItem)
                     {
-                        lbxWeeklySchedule.Items.Add($"{e.FirstName} {e.LastName} - {s.ToString()}");
+                        if (s.ID != -1)
+                        {
+                            lbxWeeklySchedule.Items.Add($"{e.FirstName} {e.LastName} - {s.ToString()}");
+                        }
                     }
                 }
             }
@@ -1500,9 +1506,24 @@ namespace MediaBazaarApp
             GoToManageDepartments();
         }
 
-        private void btnDeleteAS_Click(object sender, EventArgs e)
+        private void btnGenAS_Click_1(object sender, EventArgs e)
         {
-            lbxAS.Items.Clear();
+            int week = Convert.ToInt32(cbWeekAS.SelectedItem);
+
+            if (week > 0 && week < 53)
+            {
+                ash.AssignShifts(week, 2021);
+            }
+
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
+            {
+                foreach (Shift s in emp.GetAllShifts())
+                {
+                    dbc.AddShift(s.Type, s.Date, currentEmp.Id, s.WFH, emp);
+                }
+            }
+
+            List<Shift> toRemove = new List<Shift>();
 
             foreach (Employee emp in departmentManagement.GetAllEmployees())
             {
@@ -1510,18 +1531,25 @@ namespace MediaBazaarApp
                 {
                     if (s.ID == -1)
                     {
-                        emp.RemoveSpecificShift(s);
+                        toRemove.Add(s);
+                    }
+                }
+
+                for (int i = 0; i < emp.GetAllShifts().Count; i++)
+                {
+                    Shift shift = emp.GetAllShifts()[i];
+
+                    if (emp.GetAllShifts()[i].ID == -1)
+                    {
+                        emp.Shifts.Remove(shift);
                     }
                 }
             }
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AutomatedScheduleHandler ash = new AutomatedScheduleHandler(departmentManagement);
+            
 
-            ash.AssignShifts(20, 2021);
-            RefreshWeeklySchedule();
+            dbc.GetShifts(departmentManagement);
+            //RefreshWeeklySchedule();
         }
     }
 }

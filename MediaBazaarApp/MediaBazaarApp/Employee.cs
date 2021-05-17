@@ -396,6 +396,12 @@ namespace MediaBazaarApp
             this.shifts = new List<Shift>();
         }
 
+        public List<Shift> Shifts
+        {
+            get { return this.shifts; }
+            set { this.shifts = value; }
+        }
+
         //Methods
         public override string ToString()
         {
