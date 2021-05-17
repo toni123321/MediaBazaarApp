@@ -102,6 +102,7 @@ namespace MediaBazaarApp
             this.SchedulingTab = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbWeeklySchedule = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.lbWeekNumber = new System.Windows.Forms.Label();
             this.cbWeekNumber = new System.Windows.Forms.ComboBox();
             this.lbxWeeklySchedule = new System.Windows.Forms.ListBox();
@@ -1035,6 +1036,7 @@ namespace MediaBazaarApp
             // 
             // tbWeeklySchedule
             // 
+            this.tbWeeklySchedule.Controls.Add(this.button1);
             this.tbWeeklySchedule.Controls.Add(this.lbWeekNumber);
             this.tbWeeklySchedule.Controls.Add(this.cbWeekNumber);
             this.tbWeeklySchedule.Controls.Add(this.lbxWeeklySchedule);
@@ -1044,6 +1046,16 @@ namespace MediaBazaarApp
             this.tbWeeklySchedule.TabIndex = 3;
             this.tbWeeklySchedule.Text = "Weekly schedule";
             this.tbWeeklySchedule.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(906, 176);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(220, 237);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // lbWeekNumber
             // 
@@ -2359,7 +2371,6 @@ namespace MediaBazaarApp
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
@@ -2627,5 +2638,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnShowAllDep;
         private System.Windows.Forms.Button btnRemoveShift;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button1;
     }
 }

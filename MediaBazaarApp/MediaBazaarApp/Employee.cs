@@ -432,6 +432,12 @@ namespace MediaBazaarApp
                 return false;
             }
         }
+
+        public void AddExistingShift(Shift s)
+        {
+            this.shifts.Add(s);
+        }
+
         public bool RemoveShift(int id)
         {
             foreach (Shift s in shifts)

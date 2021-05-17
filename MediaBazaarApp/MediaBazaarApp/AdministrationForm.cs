@@ -1381,7 +1381,14 @@ namespace MediaBazaarApp
             }
             last = Cursor.Position;
         }
-        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AutomatedScheduleHandler ash = new AutomatedScheduleHandler(departmentManagement);
+
+            ash.AssignShifts(20, 2021);
+            RefreshWeeklySchedule();
+        }
     }
  } 
 
