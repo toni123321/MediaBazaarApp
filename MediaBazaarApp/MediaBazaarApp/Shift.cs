@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MediaBazaarApp
 {
@@ -52,7 +48,7 @@ namespace MediaBazaarApp
             {
                 return $"[WFH][{this.Type}] {this.Date.ToString("dd/MM/yyyy")} (Assigned by: {this.AssignedBy})";
             }
-            else if(this.WFH == false && this.HasAttended == true)
+            else if (this.WFH == false && this.HasAttended == true)
             {
                 return $"[{this.Type}] {this.Date.ToString("dd/MM/yyyy")} (Assigned by: {this.AssignedBy})";
             }

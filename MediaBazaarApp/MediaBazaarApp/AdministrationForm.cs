@@ -1,14 +1,10 @@
-﻿using System;
+﻿using MediaBazaarApp.Custom_exceptions;
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MediaBazaarApp.Custom_exceptions;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace MediaBazaarApp
 {
@@ -22,6 +18,7 @@ namespace MediaBazaarApp
         private Stock selectedStock;
         private SalesManagement salesManagement;
         private DBControl dbc;
+        private AutomatedScheduleHandler ash;
 
         private double price = 0;
         private int quantity = 0;
@@ -31,16 +28,20 @@ namespace MediaBazaarApp
         private double weight = 0;
         Point last;
         int afk;
+       
+       
 
         public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp,
             SalesManagement salesManagement, StockManagement stockManagement)
         {
-            InitializeComponent();
+            InitializeComponent();           
+
             this.departmentManagement = departmentManagement;
             this.currentEmp = currentEmp;
             this.stockManagement = stockManagement;
             this.stockSotrage = this.stockManagement.GetStorage();
             this.salesManagement = salesManagement;
+            ash = new AutomatedScheduleHandler(departmentManagement);
             dbc = new DBControl();
 
             gbChooseEmp.Visible = true;
@@ -100,7 +101,7 @@ namespace MediaBazaarApp
             }
 
             lbTime.Text = DateTime.Now.ToString("HH:mm");
-            lbDateDayOfWeek.Text = DateTime.Now.ToString("dddd, MMMM dd, yyyy");
+            lbDateDayOfWeek.Text = DateTime.Now.ToString("dddd, MMMM dd yyyy");
 
         }
 
@@ -1320,7 +1321,10 @@ namespace MediaBazaarApp
                 {
                     if (GetIso8601WeekOfYear(s.Date) == (int)cbWeekNumber.SelectedItem)
                     {
-                        lbxWeeklySchedule.Items.Add($"{e.FirstName} {e.LastName} - {s.ToString()}");
+                        if (s.ID != -1)
+                        {
+                            lbxWeeklySchedule.Items.Add($"{e.FirstName} {e.LastName} - {s.ToString()}");
+                        }
                     }
                 }
             }
@@ -1372,7 +1376,7 @@ namespace MediaBazaarApp
             if (current == last)
             {
                 afk++;
-                if(afk == 900) // 15 min
+                if (afk == 900)
                 {
                     MessageBox.Show("You have been logged out due to being idle. Please, log in again.");
                     afk = 0;
@@ -1381,12 +1385,177 @@ namespace MediaBazaarApp
             }
             last = Cursor.Position;
         }
-        
-    }
- } 
+
+        private void GoToManageEmp()
+        {
+            tabControlAdministration.SelectedTab = EmployeesTab;
+            tabControlEmployees.SelectedTab = ManageEmpTab;
+        }
+        private void GoToHolidayLeaveRequests()
+        {
+            tabControlAdministration.SelectedTab = EmployeesTab;
+            tabControlEmployees.SelectedTab = HolidayRequestsTab;
+        }
+        private void GoToWeeklySchedule()
+        {
+            tabControlAdministration.SelectedTab = SchedulingTab;
+            tabControl1.SelectedTab = tbWeeklySchedule;
+        }
+        private void GoToManageAttendance()
+        {
+            tabControlAdministration.SelectedTab = SchedulingTab;
+            tabControl1.SelectedTab = tpManageAttendance;
+        }
+        private void GoToManageStock()
+        {
+            tabControlAdministration.SelectedTab = StocksTab;
+            tabControlStocks.SelectedTab = ManageStocksTab;
+        }
+        private void GoToManageDepartments()
+        {
+            tabControlAdministration.SelectedTab = ManageDepartmentsTab;
+        }
+
+        private void ManageEmpShortcut_Click(object sender, EventArgs e)
+        {
+            GoToManageEmp();
+        }
+
+        private void ManageEmpPic_Click(object sender, EventArgs e)
+        {
+            GoToManageEmp();
+        }
+
+        private void ManageEmpLBL_Click(object sender, EventArgs e)
+        {
+            GoToManageEmp();
+        }
+
+        private void HolidayLeaveRequestsShortcut_Click(object sender, EventArgs e)
+        {
+            GoToHolidayLeaveRequests();
+        }
+
+        private void HolidayLeavePic_Click(object sender, EventArgs e)
+        {
+            GoToHolidayLeaveRequests();
+        }
+
+        private void HolidayLeaveLBL_Click(object sender, EventArgs e)
+        {
+            GoToHolidayLeaveRequests();
+        }
+
+        private void WeeklySchedukeShortcut_Click(object sender, EventArgs e)
+        {
+            GoToWeeklySchedule();
+        }
+
+        private void WeekSchedulePic_Click(object sender, EventArgs e)
+        {
+            GoToWeeklySchedule();
+        }
+
+        private void WeeklyScheduleLBL_Click(object sender, EventArgs e)
+        {
+            GoToWeeklySchedule();
+        }
+
+        private void ManageAttendanceShortcut_Click(object sender, EventArgs e)
+        {
+            GoToManageAttendance();
+        }
+
+        private void ManageAttendancePic_Click(object sender, EventArgs e)
+        {
+            GoToManageAttendance();
+        }
+
+        private void ManageAttendanceLBL_Click(object sender, EventArgs e)
+        {
+            GoToManageAttendance();
+        }
+
+        private void ManageStockShortcut_Click(object sender, EventArgs e)
+        {
+            GoToManageStock();
+        }
+
+        private void ManageStockPic_Click(object sender, EventArgs e)
+        {
+            GoToManageStock();
+        }
+
+        private void ManageStockLBL_Click(object sender, EventArgs e)
+        {
+            GoToManageStock();
+        }
+
+        private void ManageDepartmentsShortcut_Click(object sender, EventArgs e)
+        {
+            GoToManageDepartments();
+        }
+
+        private void ManageDepPic_Click(object sender, EventArgs e)
+        {
+            GoToManageDepartments();
+        }
+
+        private void ManageDepLBL_Click(object sender, EventArgs e)
+        {
+            GoToManageDepartments();
+        }
+
+        private void btnGenAS_Click_1(object sender, EventArgs e)
+        {
+            int week = Convert.ToInt32(cbWeekAS.SelectedItem);
+
+            if (week > 0 && week < 53)
+            {
+                ash.AssignShifts(week, 2021);
+            }
+
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
+            {
+                foreach (Shift s in emp.GetAllShifts())
+                {
+                    dbc.AddShift(s.Type, s.Date, currentEmp.Id, s.WFH, emp);
+                }
+            }
+
+            List<Shift> toRemove = new List<Shift>();
+
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
+            {
+                foreach (Shift s in emp.GetAllShifts())
+                {
+                    if (s.ID == -1)
+                    {
+                        toRemove.Add(s);
+                    }
+                }
+
+                for (int i = 0; i < emp.GetAllShifts().Count; i++)
+                {
+                    Shift shift = emp.GetAllShifts()[i];
+
+                    if (emp.GetAllShifts()[i].ID == -1)
+                    {
+                        emp.Shifts.Remove(shift);
+                    }
+                }
+            }
 
             
-  
- 
+
+            dbc.GetShifts(departmentManagement);
+            //RefreshWeeklySchedule();
+        }
+    }
+}
+
+
+
+
 
 

@@ -1,11 +1,8 @@
-﻿using System;
+﻿using MediaBazaarApp.Custom_exceptions;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using MediaBazaarApp.Custom_exceptions;
 
 namespace MediaBazaarApp
 {
@@ -29,7 +26,7 @@ namespace MediaBazaarApp
         private string country;
         private string postcode;
         private string bsn;
-        
+
         //Emergency contact detials
         private string emConName;
         private EmergencyContactRelation emConRelation;
@@ -49,7 +46,7 @@ namespace MediaBazaarApp
         //Properties
         public int Id
         {
-            set { this.id = value;}
+            set { this.id = value; }
             get { return this.id; }
         }
 
@@ -121,7 +118,7 @@ namespace MediaBazaarApp
         }
 
 
-      
+
 
         //Contact details
         public string Email
@@ -139,7 +136,7 @@ namespace MediaBazaarApp
                     //Throw exception
                     throw new EmpEmailException(value);
                 }
-                
+
             }
         }
         public string PhoneNumber
@@ -157,7 +154,7 @@ namespace MediaBazaarApp
                     //Throw exception
                     throw new EmpPhoneException(value);
                 }
-                
+
             }
         }
         public string Street
@@ -175,7 +172,7 @@ namespace MediaBazaarApp
                     //Throw exception
                     throw new EmpStreetException(value);
                 }
-                
+
             }
         }
         public string City
@@ -227,7 +224,7 @@ namespace MediaBazaarApp
                     //Throw exception
                     throw new EmpPostcodeException(value);
                 }
-                
+
             }
         }
 
@@ -273,7 +270,7 @@ namespace MediaBazaarApp
                     //Throw exception
                     throw new EmpNameException(value);
                 }
-                
+
             }
         }
 
@@ -306,7 +303,7 @@ namespace MediaBazaarApp
                     //Throw exception
                     throw new EmpEmailException(value);
                 }
-                
+
             }
         }
 
@@ -325,7 +322,7 @@ namespace MediaBazaarApp
                     //Throw exception
                     throw new EmpPhoneException(value);
                 }
-                
+
             }
         }
 
@@ -346,7 +343,7 @@ namespace MediaBazaarApp
                 }
                 else
                 {
-                    throw new EmpHourlyWagesException((int) value);
+                    throw new EmpHourlyWagesException((int)value);
                 }
             }
         }
@@ -363,7 +360,7 @@ namespace MediaBazaarApp
 
         //Constructor
         public Employee(string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email,
-            string phoneNumber, string street, string city, string country, string postcode, string bsn, string emConName, 
+            string phoneNumber, string street, string city, string country, string postcode, string bsn, string emConName,
             EmergencyContactRelation emConRelation, string emConEmail, string emConPhoneNum, EmploymentType employmentType,
             double hourlyWages, Department department)
         {
@@ -381,9 +378,9 @@ namespace MediaBazaarApp
             this.City = city;
             this.Country = country;
             this.Postcode = postcode;
-            
+
             this.Bsn = bsn;
-            
+
 
             //Emergency contact details
             this.EmConName = emConName;
@@ -397,6 +394,12 @@ namespace MediaBazaarApp
             this.Department = department;
 
             this.shifts = new List<Shift>();
+        }
+
+        public List<Shift> Shifts
+        {
+            get { return this.shifts; }
+            set { this.shifts = value; }
         }
 
         //Methods
@@ -432,6 +435,12 @@ namespace MediaBazaarApp
                 return false;
             }
         }
+
+        public void AddExistingShift(Shift s)
+        {
+            this.shifts.Add(s);
+        }
+
         public bool RemoveShift(int id)
         {
             foreach (Shift s in shifts)
@@ -444,6 +453,14 @@ namespace MediaBazaarApp
             }
 
             return false;
+        }
+
+        public void RemoveSpecificShift(Shift s)
+        {
+            if (this.shifts.Contains(s))
+            {
+                this.shifts.Remove(s);
+            }
         }
 
         public bool ManageAttendance(int id, char a, string reason)

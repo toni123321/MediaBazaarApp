@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediaBazaarApp.Custom_exceptions;
+using System;
 using System.Windows.Forms;
-using MediaBazaarApp.Custom_exceptions;
 
 namespace MediaBazaarApp
 {
@@ -48,7 +41,7 @@ namespace MediaBazaarApp
             tbxEmpLname.Text = currEmp.LastName;
             dtpEmpDateOfBirth.Value = currEmp.DateOfBirth;
             cbEmpGender.Text = currEmp.Gender.ToString();
-            
+
             //Contact details
             tbxEmpEmail.Text = currEmp.Email;
             tbxEmpPhone.Text = currEmp.PhoneNumber;
@@ -57,7 +50,7 @@ namespace MediaBazaarApp
             tbxEmpAddressCountry.Text = currEmp.Country;
             tbxEmpAddressPostCode.Text = currEmp.Postcode;
             tbxEmpBsn.Text = currEmp.Bsn;
-            
+
             //Emergency contact details
             tbxEmConName.Text = currEmp.EmConName;
             cbEmConRelation.Text = currEmp.EmConRelation.ToString();
@@ -96,7 +89,7 @@ namespace MediaBazaarApp
                     currEmp.FirstName = tbxEmpFname.Text;
                     currEmp.LastName = tbxEmpLname.Text;
                     currEmp.DateOfBirth = dtpEmpDateOfBirth.Value;
-                    currEmp.Gender = (Gender) (Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
+                    currEmp.Gender = (Gender)(Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
 
                     //Contact details
                     currEmp.Email = tbxEmpEmail.Text;
@@ -109,13 +102,13 @@ namespace MediaBazaarApp
 
                     //Emergency contact details
                     currEmp.EmConName = tbxEmConName.Text;
-                    currEmp.EmConRelation = (EmergencyContactRelation) Enum.Parse(typeof(EmergencyContactRelation),
+                    currEmp.EmConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation),
                         cbEmConRelation.Text.ToString());
                     currEmp.EmConEmail = tbxEmConEmail.Text;
                     currEmp.EmConPhoneNum = tbxEmConPhone.Text;
 
                     //Job specifications
-                    currEmp.EmploymentType = (EmploymentType) (Enum.Parse(typeof(EmploymentType),
+                    currEmp.EmploymentType = (EmploymentType)(Enum.Parse(typeof(EmploymentType),
                         cbEmpEmploymentType.SelectedItem.ToString()));
                     currEmp.HourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
                     currEmp.Department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
@@ -123,7 +116,7 @@ namespace MediaBazaarApp
                     DBControl dbControl = new DBControl();
                     dbControl.EditEmployee(currEmp);
                     this.departmentManagement.GetDepartment(previousDepartment.Name).RemoveEmployee(currEmp.Email);
-                    
+
                     MessageBox.Show("You have successfully apply the new changes for this profile!");
                 }
                 catch (EmpNameException ex)
