@@ -185,24 +185,29 @@ namespace MediaBazaarApp
                 {
                     foreach (Employee emp in dep.GetAllEmployees())
                     {
+                        int count = 0;
                         if (emp.Gender.ToString() == "MALE")
                         {
-                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
+                            count += 1;
+                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", count);
                         }
 
                         if (emp.Gender.ToString() == "FEMALE")
                         {
-                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
+                            count += 1;
+                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", count);
                         }
 
                         if (emp.Gender.ToString() == "NONBINARY")
                         {
-                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
+                            count += 1;
+                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", count);
                         }
 
                         if (emp.Gender.ToString() == "OTHER")
                         {
-                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
+                            count += 1;
+                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", count);
                         }
                     }
 
@@ -217,28 +222,69 @@ namespace MediaBazaarApp
             AgeChart.Series["Age"].Points.Clear();
             int index = cbxAge.SelectedIndex;
             string department = cbxAge.SelectedItem.ToString();
+            List<string> age = new List<string>();
+
             if (index != -1)
             {
 
                 if (index == 0)
                 {
-                    foreach (Employee employee in departmentManagement.GetAllEmployees())
+                    foreach (Employee emp in departmentManagement.GetAllEmployees())
                     {
-                        AgeChart.Series["Age"].Points.AddXY($"{DateTime.Now.Year - employee.DateOfBirth.Year}", +1);
+                        age.Add($"{ DateTime.Now.Year - emp.DateOfBirth.Year}");
                     }
-                }
 
-
-                foreach (Department d in departmentManagement.GetAllDepartments())
-                {
-
-                    if (department == d.Name)
+                    var uniqueage = age.Distinct();
+                    foreach (string a in uniqueage)
                     {
+                        int count = 0;
+                        foreach (Employee emp in departmentManagement.GetAllEmployees())
+                        {
+
+                            if ($"{ DateTime.Now.Year - emp.DateOfBirth.Year}" == a)
+                            {
+                                count += 1;
+                            }
+
+                        }
+                        AgeChart.Series["Age"].Points.AddXY($"{a}", count);
+                    }
+
+                }
+            }
+
+
+            foreach (Department d in departmentManagement.GetAllDepartments())
+            {
+
+                if (department == d.Name)
+                {
+                    age.Clear();
+
+
+
+
+                    foreach (Employee emp in departmentManagement.GetAllEmployees())
+                    {
+                        age.Add($"{ DateTime.Now.Year - emp.DateOfBirth.Year}");
+                    }
+
+
+
+
+                    var uniqueage = age.Distinct();
+                    foreach (string a in uniqueage)
+                    {
+                        int count = 0;
                         foreach (Employee employee in d.GetAllEmployees())
                         {
-                            AgeChart.Series["Age"].Points.AddXY($"{DateTime.Now.Year - employee.DateOfBirth.Year}", +1);
-                        }
+                            if ($"{ DateTime.Now.Year - employee.DateOfBirth.Year}" == a)
+                            {
+                                count += 1;
+                            }
 
+                        }
+                        AgeChart.Series["Age"].Points.AddXY($"{a}", count);
                     }
 
 
@@ -247,6 +293,8 @@ namespace MediaBazaarApp
                 }
 
             }
+
+
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
