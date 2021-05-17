@@ -1,10 +1,7 @@
-﻿using System;
+﻿using MediaBazaarApp.Custom_exceptions;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using MediaBazaarApp.Custom_exceptions;
 
 namespace MediaBazaarApp
 {
@@ -61,7 +58,7 @@ namespace MediaBazaarApp
         //Constructors
         public Department(string name)
         {
-            
+
             this.Name = name;
             employees = new List<Employee>();
             //this.Id = id;
@@ -75,7 +72,7 @@ namespace MediaBazaarApp
         }
         public Department(string name, Employee manager)
         {
-            
+
             this.Name = name;
             this.Manager = manager;
             employees = new List<Employee>();
@@ -106,7 +103,7 @@ namespace MediaBazaarApp
         {
             foreach (Employee emp in employees)
             {
-                if(emp.Email == email)
+                if (emp.Email == email)
                 {
                     return emp;
                 }
@@ -118,25 +115,25 @@ namespace MediaBazaarApp
         {
             foreach (Employee emp in departmentManagement.GetAllEmployees())
             {
-                if(emp.Email  == email)
+                if (emp.Email == email)
                 {
                     return true;
                 }
             }
             return false;
         }
-        
 
-        public bool AddEmployee(DepartmentManagement departmentManagement, string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email, 
+
+        public bool AddEmployee(DepartmentManagement departmentManagement, string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email,
             string phoneNumber, string street, string city, string country, string postcode, string bsn,
             string emConName, EmergencyContactRelation emConRelation, string emConEmail, string emConPhoneNum,
             EmploymentType employmentType, double hourlyWages, Department department)
         {
-            
+
             if (!isEmpExist(email, departmentManagement))
             {
                 Employee newEmp = new Employee(firstName, lastName, dateOfBirth, gender, email, phoneNumber,
-                    street, city, country, postcode, bsn, emConName, emConRelation, emConEmail, emConPhoneNum, 
+                    street, city, country, postcode, bsn, emConName, emConRelation, emConEmail, emConPhoneNum,
                     employmentType, hourlyWages, department);
                 employees.Add(newEmp);
                 return true;
@@ -166,6 +163,6 @@ namespace MediaBazaarApp
             return $"DepId:{this.DeptId}; Name:{this.name}";
         }
 
-    
+
     }
 }

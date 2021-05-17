@@ -1,10 +1,8 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace MediaBazaarApp
 {
@@ -681,7 +679,7 @@ namespace MediaBazaarApp
 
                     while (dr.Read())
                     {
-                        
+
                         int idManager = Convert.ToInt32(dr[0]);
                         string depName = dr[1].ToString();
                         string empDepName = dr[2].ToString();
@@ -690,7 +688,7 @@ namespace MediaBazaarApp
                         Department dep = departmentManagement.GetDepartment(depName);
                         Employee manager = emDep.GetEmployeeById(idManager);
                         dep.Manager = manager;
-                        
+
                     }
                 }
             }

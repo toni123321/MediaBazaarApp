@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MediaBazaarApp
 {
     public class StatisticsStock
     {
-       
+
         public List<Stock> GetLowestPrice(List<Stock> stocks)
         {
             List<Stock> LowestPriceList = stocks.OrderBy(o => o.Price).ToList();

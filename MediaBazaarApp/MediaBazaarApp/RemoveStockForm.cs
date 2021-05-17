@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MediaBazaarApp
@@ -27,12 +20,12 @@ namespace MediaBazaarApp
 
         private void RemoveStockBTN_Click(object sender, EventArgs e)
         {
-                stockManagement.RemoveStock(stock);
-                DBControl dbControl = new DBControl();
-                dbControl.RemoveStock(stock.Id);
-                MessageBox.Show($"Stock ID: {stock.Id} - Brand: {stock.Brand} - Model: {stock.Model} was removed.");
-                parent.StockListBoxRefresh();
-                this.Close();
+            stockManagement.RemoveStock(stock);
+            DBControl dbControl = new DBControl();
+            dbControl.RemoveStock(stock.Id);
+            MessageBox.Show($"Stock ID: {stock.Id} - Brand: {stock.Brand} - Model: {stock.Model} was removed.");
+            parent.StockListBoxRefresh();
+            this.Close();
         }
 
         private void RemoveAmountBTN_Click(object sender, EventArgs e)
@@ -41,7 +34,7 @@ namespace MediaBazaarApp
             {
                 try
                 {
-                    if (stock.Quantity>0)
+                    if (stock.Quantity > 0)
                     {
                         stock.Quantity -= int.Parse(removeAmountTBX.Text);
                         DBControl dbControl = new DBControl();
@@ -54,13 +47,13 @@ namespace MediaBazaarApp
                     {
                         MessageBox.Show("Stock amount is already 0.");
                     }
-                   
+
                 }
                 catch
                 {
                     MessageBox.Show("Please enter a valid value (A whole number.)");
                 }
-            
+
             }
             else
             {

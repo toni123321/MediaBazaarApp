@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MediaBazaarApp
@@ -35,7 +29,7 @@ namespace MediaBazaarApp
             dbControl.GetShifts(this.departmentManagement);
             dbControl.GetStocks(this.stockManagement);
             dbControl.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
-            
+
         }
 
         public LoginForm(DepartmentManagement departmentManagement, StockManagement stockManagement, SalesManagement salesManagement)
@@ -47,14 +41,14 @@ namespace MediaBazaarApp
             stockStorage = this.stockManagement.GetStorage();
         }
 
-        
+
 
         private int checkForEmployeeCredentials(string email, int employeeId, string depName)
         {
             int index = -1;
             Department empDepartment = departmentManagement.GetDepartment(depName);
 
-            if(empDepartment == null)
+            if (empDepartment == null)
             {
                 return -1;
             }
@@ -77,22 +71,22 @@ namespace MediaBazaarApp
             int empId;
             string departmentName;
 
-            if (!String.IsNullOrEmpty(tbxEmpEmail.Text) && !String.IsNullOrEmpty(tbxEmpId.Text) 
+            if (!String.IsNullOrEmpty(tbxEmpEmail.Text) && !String.IsNullOrEmpty(tbxEmpId.Text)
                 && cbDepartment.Items.Contains(cbDepartment.Text))
             {
                 email = tbxEmpEmail.Text;
                 empId = Convert.ToInt32(tbxEmpId.Text);
                 departmentName = cbDepartment.Text;
-                
+
                 if (checkForEmployeeCredentials(email, empId, departmentName) != -1)
                 {
                     int index = checkForEmployeeCredentials(email, empId, departmentName);
                     Employee currentEmp = departmentManagement.GetDepartment(departmentName).GetAllEmployees()[index];
-                    
+
                     if (currentEmp.Department.Name == "Administration")
                     {
                         AdministrationForm administrationForm = new AdministrationForm(departmentManagement, currentEmp, salesManagement, stockManagement);
-                        
+
                         administrationForm.FillComboBoxDepartments();
                         administrationForm.Show();
                         this.Hide();
@@ -131,6 +125,6 @@ namespace MediaBazaarApp
             // Close the whole application
             System.Windows.Forms.Application.Exit();
         }
-        
+
     }
 }
