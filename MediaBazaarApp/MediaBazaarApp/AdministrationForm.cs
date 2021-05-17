@@ -98,7 +98,7 @@ namespace MediaBazaarApp
             }
 
             lbTime.Text = DateTime.Now.ToString("HH:mm");
-            lbDateDayOfWeek.Text = DateTime.Now.ToString("dddd, MMMM dd");
+            lbDateDayOfWeek.Text = DateTime.Now.ToString("dddd, MMMM dd, YYYY");
 
         }
 
@@ -1498,6 +1498,22 @@ namespace MediaBazaarApp
         private void ManageDepLBL_Click(object sender, EventArgs e)
         {
             GoToManageDepartments();
+        }
+
+        private void btnDeleteAS_Click(object sender, EventArgs e)
+        {
+            lbxAS.Items.Clear();
+
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
+            {
+                foreach (Shift s in emp.GetAllShifts())
+                {
+                    if (s.ID == -1)
+                    {
+                        emp.RemoveSpecificShift(s);
+                    }
+                }
+            }
         }
     }
 }

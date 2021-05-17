@@ -443,6 +443,14 @@ namespace MediaBazaarApp
             return false;
         }
 
+        public void RemoveSpecificShift(Shift s)
+        {
+            if (this.shifts.Contains(s))
+            {
+                this.shifts.Remove(s);
+            }
+        }
+
         public bool ManageAttendance(int id, char a, string reason)
         {
             Shift shift = GetShift(id);

@@ -32,9 +32,6 @@ namespace MediaBazaarApp
             this.components = new System.ComponentModel.Container();
             this.tabControlDepotWorkers = new System.Windows.Forms.TabControl();
             this.HomeTab = new System.Windows.Forms.TabPage();
-            this.lbTime = new System.Windows.Forms.Label();
-            this.lbDateDayOfWeek = new System.Windows.Forms.Label();
-            this.lbGreetingMsg = new System.Windows.Forms.Label();
             this.MakeShelfRestockRequestsTab = new System.Windows.Forms.TabPage();
             this.btnClearSelected = new System.Windows.Forms.Button();
             this.gbxStockChooseQuantity = new System.Windows.Forms.GroupBox();
@@ -52,12 +49,17 @@ namespace MediaBazaarApp
             this.lbHistoryShelfRestockRequests = new System.Windows.Forms.Label();
             this.lbxHistoryShelfRestockRequests = new System.Windows.Forms.ListBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.lbTime = new System.Windows.Forms.Label();
+            this.lbDateDayOfWeek = new System.Windows.Forms.Label();
+            this.lbGreetingMsg = new System.Windows.Forms.Label();
             this.tabControlDepotWorkers.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.MakeShelfRestockRequestsTab.SuspendLayout();
             this.gbxStockChooseQuantity.SuspendLayout();
             this.gbxSearchStock.SuspendLayout();
             this.HistoryShelfRestockTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlDepotWorkers
@@ -76,6 +78,7 @@ namespace MediaBazaarApp
             // HomeTab
             // 
             this.HomeTab.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.HomeTab.Controls.Add(this.pictureBox7);
             this.HomeTab.Controls.Add(this.lbTime);
             this.HomeTab.Controls.Add(this.lbDateDayOfWeek);
             this.HomeTab.Controls.Add(this.lbGreetingMsg);
@@ -86,35 +89,6 @@ namespace MediaBazaarApp
             this.HomeTab.Size = new System.Drawing.Size(1056, 598);
             this.HomeTab.TabIndex = 3;
             this.HomeTab.Text = "Home";
-            // 
-            // lbTime
-            // 
-            this.lbTime.AutoSize = true;
-            this.lbTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lbTime.Location = new System.Drawing.Point(137, 292);
-            this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(42, 20);
-            this.lbTime.TabIndex = 12;
-            this.lbTime.Text = "Time";
-            // 
-            // lbDateDayOfWeek
-            // 
-            this.lbDateDayOfWeek.AutoSize = true;
-            this.lbDateDayOfWeek.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lbDateDayOfWeek.Location = new System.Drawing.Point(137, 342);
-            this.lbDateDayOfWeek.Name = "lbDateDayOfWeek";
-            this.lbDateDayOfWeek.Size = new System.Drawing.Size(129, 20);
-            this.lbDateDayOfWeek.TabIndex = 11;
-            this.lbDateDayOfWeek.Text = "Date/Day of week";
-            // 
-            // lbGreetingMsg
-            // 
-            this.lbGreetingMsg.AutoSize = true;
-            this.lbGreetingMsg.Location = new System.Drawing.Point(132, 142);
-            this.lbGreetingMsg.Name = "lbGreetingMsg";
-            this.lbGreetingMsg.Size = new System.Drawing.Size(128, 20);
-            this.lbGreetingMsg.TabIndex = 10;
-            this.lbGreetingMsg.Text = "Greeting message";
             // 
             // MakeShelfRestockRequestsTab
             // 
@@ -312,6 +286,47 @@ namespace MediaBazaarApp
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::MediaBazaarApp.Properties.Resources.MediaBazaarLogo;
+            this.pictureBox7.Location = new System.Drawing.Point(15, 390);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(223, 191);
+            this.pictureBox7.TabIndex = 15;
+            this.pictureBox7.TabStop = false;
+            // 
+            // lbTime
+            // 
+            this.lbTime.AutoSize = true;
+            this.lbTime.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTime.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbTime.Location = new System.Drawing.Point(47, 212);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(120, 54);
+            this.lbTime.TabIndex = 14;
+            this.lbTime.Text = "12:30";
+            // 
+            // lbDateDayOfWeek
+            // 
+            this.lbDateDayOfWeek.AutoSize = true;
+            this.lbDateDayOfWeek.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDateDayOfWeek.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbDateDayOfWeek.Location = new System.Drawing.Point(47, 272);
+            this.lbDateDayOfWeek.Name = "lbDateDayOfWeek";
+            this.lbDateDayOfWeek.Size = new System.Drawing.Size(278, 54);
+            this.lbDateDayOfWeek.TabIndex = 13;
+            this.lbDateDayOfWeek.Text = "Monday, 1 Jan";
+            // 
+            // lbGreetingMsg
+            // 
+            this.lbGreetingMsg.AutoSize = true;
+            this.lbGreetingMsg.Font = new System.Drawing.Font("Segoe UI", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbGreetingMsg.Location = new System.Drawing.Point(45, 137);
+            this.lbGreetingMsg.Name = "lbGreetingMsg";
+            this.lbGreetingMsg.Size = new System.Drawing.Size(533, 65);
+            this.lbGreetingMsg.TabIndex = 12;
+            this.lbGreetingMsg.Text = "Good morning, Name!";
+            // 
             // SalesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -334,6 +349,7 @@ namespace MediaBazaarApp
             this.gbxSearchStock.PerformLayout();
             this.HistoryShelfRestockTab.ResumeLayout(false);
             this.HistoryShelfRestockTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -358,9 +374,10 @@ namespace MediaBazaarApp
         private System.Windows.Forms.ListBox lbxHistoryShelfRestockRequests;
         private System.Windows.Forms.Button btnClearSelected;
         private System.Windows.Forms.TabPage HomeTab;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Label lbDateDayOfWeek;
         private System.Windows.Forms.Label lbGreetingMsg;
-        private System.Windows.Forms.Timer timer1;
     }
 }
