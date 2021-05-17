@@ -31,7 +31,42 @@ namespace MediaBazaarApp
             lbGreetingMsg.Text = $"Hello, {currentEmp.FirstName}";
 
             UpdateRequestListboxes();
+
+            WelcomeMessage();
         }
+
+        public void WelcomeMessage()
+        {
+
+            string time = DateTime.Now.ToString("HH");
+
+            if (time.StartsWith("0"))
+            {
+                time.Remove(0, 1);
+            }
+
+            int currentTime = Convert.ToInt32(time);
+
+
+            if (currentTime >= 5 && currentTime < 12)
+            {
+                lbGreetingMsg.Text = $"Good morning, {currentEmp.FirstName}!";
+            }
+            else if (currentTime >= 12 && currentTime < 17)
+            {
+                lbGreetingMsg.Text = $"Have a good afternoon, {currentEmp.FirstName}";
+            }
+            else if (currentTime >= 17 && currentTime < 21)
+            {
+                lbGreetingMsg.Text = $"Have a nice evening, {currentEmp.FirstName}!";
+            }
+            else
+            {
+                lbGreetingMsg.Text = $"Good night, {currentEmp.FirstName}";
+            }
+
+        }
+
 
         private void SalesForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -94,6 +129,11 @@ namespace MediaBazaarApp
             lbxAllShelfRestockRequests.SelectedIndex = -1;
 
             UpdateRequestListboxes();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            WelcomeMessage();
         }
     }
 }

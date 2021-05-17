@@ -78,6 +78,7 @@
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -107,9 +108,23 @@
     <Compile Include="AssignWorkShiftsManuallyForm.Designer.cs">
       <DependentUpon>AssignWorkShiftsManuallyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom exceptions\DepNameException.cs" />
+    <Compile Include="Custom exceptions\EmpAgeException.cs" />
+    <Compile Include="Custom exceptions\EmpBsnException.cs" />
+    <Compile Include="Custom exceptions\EmpCityException.cs" />
+    <Compile Include="Custom exceptions\EmpCountryException.cs" />
+    <Compile Include="Custom exceptions\EmpEmailException.cs" />
+    <Compile Include="Custom exceptions\EmpHourlyWagesException.cs" />
+    <Compile Include="Custom exceptions\EmpNameException.cs" />
+    <Compile Include="Custom exceptions\EmpPhoneException.cs" />
+    <Compile Include="Custom exceptions\EmpPostcodeException.cs" />
+    <Compile Include="Custom exceptions\EmpStreetException.cs" />
+    <Compile Include="ComboBoxEnteredValueException.cs" />
     <Compile Include="DBControl.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="DepartmentManagement.cs" />
+    <Compile Include="IntegerValueExpected.cs" />
+    <Compile Include="NotAllFieldFilled.cs" />
     <Compile Include="SalesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +220,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="RemoveStockForm.resx">
       <DependentUpon>RemoveStockForm.cs</DependentUpon>
@@ -228,6 +244,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\MediaBazaarLogo1.png" />
+    <None Include="Resources\round_circle_notifications_black_48dp.png" />
+    <None Include="Resources\MediaBazaarLogo.png" />
+    <None Include="Resources\round_supervisor_account_black_48dp.png" />
+    <None Include="Resources\round_shopping_cart_black_48dp.png" />
+    <None Include="Resources\round_event_available_black_48dp.png" />
+    <None Include="Resources\round_calendar_today_black_48dp.png" />
+    <None Include="Resources\round_flight_takeoff_black_48dp.png" />
+    <None Include="Resources\round_person_add_black_48dp.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

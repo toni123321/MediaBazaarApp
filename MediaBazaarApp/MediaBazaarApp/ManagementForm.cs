@@ -32,9 +32,44 @@ namespace MediaBazaarApp
             tbxAvgWageEmp.Text = $"{se.AveregeWageOfEmployee(departmentManagement.GetAllEmployees())}";
             lbxAvgWageEmpDepartment.Items.AddRange(se.AveregeWagePerDepartmenr(departmentManagement.GetAllDepartments(), departmentManagement.GetAllEmployees()).ToArray());
             lbxNrEmpPerDepartment.Items.AddRange(se.EmpPerDepToString(departmentManagement.GetAllDepartments()).ToArray());
-            lbGreetingMsg.Text = $"Hello, {currentEmp.FirstName}";
+
+            WelcomeMessage();
 
 
+        }
+
+        public void WelcomeMessage()
+        {
+
+            string time = DateTime.Now.ToString("HH");
+
+            if (time.StartsWith("0"))
+            {
+                time.Remove(0, 1);
+            }
+
+            int currentTime = Convert.ToInt32(time);
+
+
+            if (currentTime >= 5 && currentTime < 12)
+            {
+                lbGreetingMsg.Text = $"Good morning, {currentEmp.FirstName}!";
+            }
+            else if (currentTime >= 12 && currentTime < 17)
+            {
+                lbGreetingMsg.Text = $"Have a good afternoon, {currentEmp.FirstName}";
+            }
+            else if (currentTime >= 17 && currentTime < 21)
+            {
+                lbGreetingMsg.Text = $"Have a nice evening, {currentEmp.FirstName}!";
+            }
+            else
+            {
+                lbGreetingMsg.Text = $"Good night, {currentEmp.FirstName}";
+            }
+
+            lbTime.Text = DateTime.Now.ToString("HH:mm");
+            lbDateDayOfWeek.Text = DateTime.Now.ToString("dddd, MMMM dd");
 
         }
 
@@ -78,6 +113,101 @@ namespace MediaBazaarApp
                 }
             }
             
+        }
+
+        private void ManagementForm_Load(object sender, EventArgs e)
+        {
+            foreach (Department department in departmentManagement.GetAllDepartments())
+            {
+                cbxGenderChart.Items.Add(department.Name);
+            }
+
+
+            foreach (Department d in departmentManagement.GetAllDepartments())
+            {
+                if (d.GetAllEmployees().Count > 0)
+                {
+
+                    EmpPerDepChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{d.GetAllEmployees().Count}");
+                    EmpPerDepChart.Series["Series1"].Label = "#PERCENT{P2}";
+                    EmpPerDepChart.Series["Series1"].LegendText = "#VALX";
+                }
+            }
+
+
+
+            StatisticsEmployee se = new StatisticsEmployee();
+
+            foreach (Department d in departmentManagement.GetAllDepartments())
+            {
+                if (d.GetAllEmployees().Count > 0)
+                {
+                    AvgWageChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{se.AveregeWageOfEmployee(d.GetAllEmployees())}");
+                    AvgWageChart.Series["Series1"].Label = "#PERCENT{P2}";
+                    AvgWageChart.Series["Series1"].LegendText = "#VALX";
+                }
+            }
+
+            foreach (Stock s in stockManagement.GetAllStocks())
+            {
+                StocksChart.Series["Price"].Points.AddXY($"{s.Brand} {s.Model}", $"{s.Price}");
+            }
+
+
+
+            foreach (Stock s in stockManagement.GetAllStocks())
+            {
+                StocksChart.Series["Quantity"].Points.AddXY($"{s.Brand} {s.Model}", $"{s.Quantity}");
+            }
+
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            
+            WelcomeMessage();
+        }
+
+
+
+     
+        private void cbxGenderChart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GenderPieChart.Series["Gender"].Points.Clear();
+            string department = cbxGenderChart.SelectedItem.ToString();
+            foreach (Department dep in departmentManagement.GetAllDepartments())
+            {
+                
+                if (department == dep.Name)
+                {
+                    foreach (Employee emp in dep.GetAllEmployees())
+                    {
+                        if (emp.Gender.ToString() == "MALE")
+                        {
+                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
+                        }
+
+                        if (emp.Gender.ToString() == "FEMALE")
+                        {
+                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
+                        }
+
+                        if (emp.Gender.ToString() == "NONBINARY")
+                        {
+                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
+                        }
+
+                        if (emp.Gender.ToString() == "OTHER")
+                        {
+                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", +1);
+                        }
+                    }
+                    
+                }
+                
+                
+            }
         }
     }
 }

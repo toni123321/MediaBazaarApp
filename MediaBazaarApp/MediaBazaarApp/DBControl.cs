@@ -256,10 +256,10 @@ namespace MediaBazaarApp
                         string depName = dr[20].ToString();
 
                         Department dep = departmentManagement.GetDepartment(depName);
-                        dep.AddEmployee(id, fname, lname, dob, gender, email, phone,
+                        dep.AddEmployee(departmentManagement, fname, lname, dob, gender, email, phone,
                             street, city, country, postcode, bsn, emConName, emConRelation, emConEmail,
                             emConPhone, employmentType, hourlyWages, dep);
-                        //dep.GetEmployeeByEmail(email).Id = id;
+                        dep.GetEmployeeByEmail(email).Id = id;
                         dep.GetEmployeeByEmail(email).RemainingHolidayDays = remainingHolidayDays;
 
                     }
@@ -272,34 +272,59 @@ namespace MediaBazaarApp
             }
         }
 
+
         //Stocks
         public void AddStock(string model, string brand, double price, int quantity, double height,
-            double width, double depth, double weight, string shortDescription)
+             double width, double depth, double weight, string shortDescription, StockManagement stockManagement)
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
+                    Dictionary<string, bool> stockStorage = stockManagement.GetStorage();
+                    string location = "";
+
                     string sql = "INSERT INTO stock (Brand, Model, Quantity, Price, " +
-                                 "Width, Height, Depth, Weight, ShortDescription) " +
+                                 "Width, Height, Depth, Weight, ShortDescription, Location) " +
                                  "VALUES(@brand, @model, @quantity, @price, @width, @height, @depth, " +
-                                 "@weight, @description)";
+                                 "@weight, @description, @location)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    cmd.Parameters.AddWithValue("@brand", brand);
-                    cmd.Parameters.AddWithValue("@model", model);
-                    cmd.Parameters.AddWithValue("@quantity", quantity);
-                    cmd.Parameters.AddWithValue("@price", price);
-                    cmd.Parameters.AddWithValue("@width", width);
-                    cmd.Parameters.AddWithValue("@height", height);
-                    cmd.Parameters.AddWithValue("@depth", depth);
-                    cmd.Parameters.AddWithValue("@weight", weight);
-                    cmd.Parameters.AddWithValue("@description", shortDescription);
 
-                    conn.Open();
+                    foreach (KeyValuePair<string, bool> l in stockStorage)
+                    {
+                        if (stockStorage.All(loc => loc.Value == false))
+                        {
+                            MessageBox.Show("Your storage is full");
+                        }
 
-                    int effectedRows = cmd.ExecuteNonQuery();
+                        if (l.Value == true)
+                        {
+                            location = l.Key;
+
+
+                            cmd.Parameters.AddWithValue("@brand", brand);
+                            cmd.Parameters.AddWithValue("@model", model);
+                            cmd.Parameters.AddWithValue("@quantity", quantity);
+                            cmd.Parameters.AddWithValue("@price", price);
+                            cmd.Parameters.AddWithValue("@width", width);
+                            cmd.Parameters.AddWithValue("@height", height);
+                            cmd.Parameters.AddWithValue("@depth", depth);
+                            cmd.Parameters.AddWithValue("@weight", weight);
+                            cmd.Parameters.AddWithValue("@description", shortDescription);
+                            cmd.Parameters.AddWithValue("@location", location);
+
+
+                            conn.Open();
+
+                            int effectedRows = cmd.ExecuteNonQuery();
+                            break;
+                        }
+
+                    }
+
+
 
                 }
             }
@@ -309,6 +334,7 @@ namespace MediaBazaarApp
                 MessageBox.Show(ex.Message);
             }
         }
+
 
         public void RemoveStock(int id)
         {
@@ -435,9 +461,10 @@ namespace MediaBazaarApp
                         double depth = Convert.ToDouble(dr[7]);
                         double weight = Convert.ToDouble(dr[8]);
                         string description = dr[9].ToString();
+                        string location = dr[10].ToString();
 
                         stockManagement.AddStock(id, model, brand, price, quantity, height, width, depth,
-                            weight, description);
+                                 weight, description, location);
 
 
                     }
@@ -477,19 +504,111 @@ namespace MediaBazaarApp
             }
         }
 
-        public void UpdateDepartment(int idManager)
+        public void AddDepartment(string name, Employee manager)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+                    string sql = "INSERT INTO department (IDManager, Name) " +
+                                 "VALUES(@idManager, @name)";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@idManager", manager.Id);
+                    cmd.Parameters.AddWithValue("@name", name);
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void RemoveDepartment(string name)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+                    string sql = "DELETE from department WHERE name=@name";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@name", name);
+
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void UpdateDepartment(int id, string name, int idManager)
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
 
-                    string sql = "UPDATE department set IDManager=@idManager";
+                    string sql = "UPDATE department " +
+                                 "set Name=@name, " +
+                                 "IDManager=@idManager " +
+                                 "where ID=@id";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    cmd.Parameters.AddWithValue("@IDManager", idManager);
 
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    if (idManager != -1)
+                    {
+                        cmd.Parameters.AddWithValue("@IDManager", idManager);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@IDManager", null);
+                    }
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void UpdateDepartment(int id, string name)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "UPDATE department " +
+                                 "set Name=@name " +
+                                 "where ID=@id";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@name", name);
 
                     conn.Open();
 
@@ -517,15 +636,15 @@ namespace MediaBazaarApp
 
                     MySqlDataReader dr = cmd.ExecuteReader();
 
+                    //departmentManagement.RemoveAllDepartments();
                     while (dr.Read())
                     {
                         int id = Convert.ToInt32(dr[0]);
 
                         string depName = dr[1].ToString();
-                        departmentManagement.AddDepartment(id, depName);
-                        //Department currDep = departmentManagement.GetDepartment(depName);
-
-
+                        departmentManagement.AddDepartment(depName);
+                        Department currDep = departmentManagement.GetDepartment(depName);
+                        currDep.Id = id;
                     }
                 }
             }
@@ -534,6 +653,7 @@ namespace MediaBazaarApp
 
                 MessageBox.Show(ex.Message);
             }
+
         }
 
 
@@ -545,8 +665,13 @@ namespace MediaBazaarApp
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
 
-                    string sql = "SELECT IDManager, Name " +
-                                 "from department";
+                    string sql = "SELECT d.IDManager, d.Name as 'DepName', emDep.Name as 'EmpDepName' " +
+                                 "from department as d " +
+                                 "inner join employee as e " +
+                                 "on e.ID = d.IDManager " +
+                                 "inner join department as emDep " +
+                                 "on emDep.ID = e.DepartmentID " +
+                                 "where d.IDManager is not NULL";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -556,16 +681,16 @@ namespace MediaBazaarApp
 
                     while (dr.Read())
                     {
-                        if (!String.IsNullOrEmpty(dr[0].ToString()))
-                        {
-                            int idManager = Convert.ToInt32(dr[0]);
-                            string depName = dr[1].ToString();
+                        
+                        int idManager = Convert.ToInt32(dr[0]);
+                        string depName = dr[1].ToString();
+                        string empDepName = dr[2].ToString();
 
-                            Department dep = departmentManagement.GetDepartment(depName);
-                            Employee manager = dep.GetEmployeeById(idManager);
-                            dep.Manager = manager;
-                        }
-
+                        Department emDep = departmentManagement.GetDepartment(empDepName);
+                        Department dep = departmentManagement.GetDepartment(depName);
+                        Employee manager = emDep.GetEmployeeById(idManager);
+                        dep.Manager = manager;
+                        
                     }
                 }
             }
@@ -639,6 +764,35 @@ namespace MediaBazaarApp
             }
         }
 
+        public void EditShiftAttendance(bool hasAttended, string noShowReason, int id)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "UPDATE shift " +
+                                 "set HasAttended = @hasAttended, " +
+                                 "NoShowReason = @noShowReason " +
+                                 "WHERE id=@id";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@hasAttended", hasAttended);
+                    cmd.Parameters.AddWithValue("@noShowReason", noShowReason);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
         public void GetShifts(DepartmentManagement departmentManagement)
         {
             try
@@ -664,6 +818,8 @@ namespace MediaBazaarApp
                         int employeeID = Convert.ToInt32(dr[1]);
                         DateTime date = (DateTime)dr[2];
                         int assignedBy = Convert.ToInt32(dr[3]);
+                        bool hasAttended = Convert.ToBoolean(dr[4]);
+                        string noShowReason = dr[5].ToString();
                         ShiftType type = (ShiftType)Enum.Parse(typeof(ShiftType), dr[6].ToString());
                         bool wfh = Convert.ToBoolean(dr[7]);
                         string depName = dr[8].ToString();
@@ -672,7 +828,7 @@ namespace MediaBazaarApp
 
                         if (s == null)
                         {
-                            departmentManagement.GetDepartment(depName).GetEmployeeById(employeeID).AddShift(id, type, date, assignedBy, wfh);
+                            departmentManagement.GetDepartment(depName).GetEmployeeById(employeeID).AddShift(id, type, date, assignedBy, wfh, hasAttended, noShowReason);
                         }
                     }
                 }

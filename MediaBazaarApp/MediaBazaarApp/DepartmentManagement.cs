@@ -4,34 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace MediaBazaarApp
 {
     public class DepartmentManagement
     {
         //Fields
-        List<Department> departments = new List<Department>();
+        private List<Department> departments = new List<Department>();
 
         public DepartmentManagement()
         {
 
         }
         //Methods
-        public bool AddDepartment(int id, string name)
+        public bool AddDepartment(string name)
         {
             if (GetDepartment(name) == null)
             {
-                Department newDepartment = new Department(id, name);
+                Department newDepartment = new Department(name);
                 departments.Add(newDepartment);
                 return true;
             }
             return false;
         }
 
-        public bool AddDepartment(int id, string name, Employee manager)
+        public bool AddDepartment(string name, Employee manager)
         {
             if (GetDepartment(name) == null)
             {
-                Department newDepartment = new Department(id, name, manager);
+                Department newDepartment = new Department(name, manager);
                 departments.Add(newDepartment);
                 return true;
             }
@@ -49,11 +50,28 @@ namespace MediaBazaarApp
             return false;
         }
 
+        public void RemoveAllDepartments()
+        {
+            departments.Clear();
+        }
+
         public Department GetDepartment(string name)
         {
             foreach (Department dep in departments)
             {
                 if(dep.Name == name)
+                {
+                    return dep;
+                }
+            }
+            return null;
+        }
+
+        public Department GetDepartment(int id)
+        {
+            foreach (Department dep in departments)
+            {
+                if (dep.Id == id)
                 {
                     return dep;
                 }
@@ -80,5 +98,6 @@ namespace MediaBazaarApp
         {
             return GetDepartment(depName).GetAllEmployees();
         }
+        
     }
 }

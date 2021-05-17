@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediaBazaarApp
 {
-    public class Stock 
+    public class Stock
     {
         private int id;
         //private static int idCounter = 1;
@@ -19,10 +19,11 @@ namespace MediaBazaarApp
         private double depth;
         private double weight;
         private string shortDescription;
+        private string location;
         StockManagement s;
         public int Id
         {
-            set { this.id = value;}
+            set { this.id = value; }
             get { return this.id; }
         }
 
@@ -72,6 +73,11 @@ namespace MediaBazaarApp
             get { return this.shortDescription; }
             set { this.shortDescription = value; }
         }
+        public string Location
+        {
+            get { return this.location; }
+            set { this.location = value; }
+        }
 
         public Stock(int id, string model, string brand, double price, int quantity, double height, double width, double depth, double weight, string shortDescription)
         {
@@ -85,18 +91,18 @@ namespace MediaBazaarApp
             this.depth = depth;
             this.weight = weight;
             this.shortDescription = shortDescription;
-            
+
             //id = idCounter;
             //idCounter++;
         }
 
         public override string ToString()
         {
-            return $"ID: {id} - Model: {model} - Brand: {brand} - Price: {price} - Quantity: {quantity} - Height: {height} cm. - Width: {width} cm. - Depth: {depth} cm. - Weight: {weight} kg. - Description: {shortDescription}";
+            return $"ID: {id} - Model: {model} - Brand: {brand} - Price: {price} - Quantity: {quantity} - Height: {height} cm. - Width: {width} cm. - Depth: {depth} cm. - Weight: {weight} kg. - Storage Location: {location} -  Description: {shortDescription}";
         }
 
-       
 
-       
+
+
     }
 }

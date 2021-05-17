@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Text.RegularExpressions;
+using MediaBazaarApp.Custom_exceptions;
 
 namespace MediaBazaarApp
 {
@@ -26,7 +28,7 @@ namespace MediaBazaarApp
         private string city;
         private string country;
         private string postcode;
-        private string bsn = "999999990";
+        private string bsn;
         
         //Emergency contact detials
         private string emConName;
@@ -55,17 +57,62 @@ namespace MediaBazaarApp
         public string FirstName
         {
             get { return this.firstName; }
-            set { this.firstName = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^[A-Z]{1}[a-z]+(?:[ ][A-Z]{1}[a-z]+){0,}$");
+                if (isValid)
+                {
+                    this.firstName = value;
+                }
+                else
+                {
+                    //Throw exception
+                    throw new EmpNameException(value);
+                }
+            }
         }
         public string LastName
         {
             get { return this.lastName; }
-            set { this.lastName = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^[A-Z]{1}[a-z]+(?:[ |-][A-Z]{1}[a-z]+){0,}$");
+                if (isValid)
+                {
+                    this.lastName = value;
+                }
+                else
+                {
+                    //Throw exception
+                    throw new EmpNameException(value);
+                }
+            }
         }
         public DateTime DateOfBirth
         {
             get { return this.dateOfBirth; }
-            set { this.dateOfBirth = value; }
+            set
+            {
+                DateTime currDate = DateTime.Today;
+                DateTime birthday = value;
+
+                int age = currDate.Year - birthday.Year;
+
+                if (currDate.Month < birthday.Month || (currDate.Month == birthday.Month && currDate.Day < birthday.Day)) //not had bday this year yet
+                {
+                    age--;
+                }
+
+                if (age >= 18)
+                {
+                    this.dateOfBirth = value;
+                }
+                else
+                {
+                    // throw age exception
+                    throw new EmpAgeException(value);
+                }
+            }
         }
         public Gender Gender
         {
@@ -73,49 +120,161 @@ namespace MediaBazaarApp
             set { this.gender = value; }
         }
 
+
+      
+
         //Contact details
         public string Email
         {
             get { return this.email; }
-            set { this.email = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^[A-Za-z0-9]+[^A-Za-z0-9]?[A-Za-z0-9]*@[A-z-]+.[a-z]+$");
+                if (isValid)
+                {
+                    this.email = value;
+                }
+                else
+                {
+                    //Throw exception
+                    throw new EmpEmailException(value);
+                }
+                
+            }
         }
         public string PhoneNumber
         {
             get { return this.phoneNumber; }
-            set { this.phoneNumber = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^(\+|00){1}[0-9]{2,3}([ |-|/]{1}[0-9]{3}){3}$");
+                if (isValid)
+                {
+                    this.phoneNumber = value;
+                }
+                else
+                {
+                    //Throw exception
+                    throw new EmpPhoneException(value);
+                }
+                
+            }
         }
         public string Street
         {
             get { return this.street; }
-            set { this.street = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^[A-Z]{1}[a-z]+(?:[ |-]([A-Za-z]+|[0-9]{1,4})){0,}$");
+                if (isValid)
+                {
+                    this.street = value;
+                }
+                else
+                {
+                    //Throw exception
+                    throw new EmpStreetException(value);
+                }
+                
+            }
         }
         public string City
         {
             get { return this.city; }
-            set { this.city = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^[A-Z]{1}[a-z]+(?:[ |-][A-Za-z]+){0,}$");
+                if (isValid)
+                {
+                    this.city = value;
+                }
+                else
+                {
+                    //Throw exception
+                    throw new EmpCityException(value);
+                }
+            }
         }
         public string Country
         {
             get { return this.country; }
-            set { this.country = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^[A-Z]{1}[a-z]+(?:[ ][A-Za-z]+){0,}$");
+                if (isValid)
+                {
+                    this.country = value;
+                }
+                else
+                {
+                    //Throw exception
+                    throw new EmpCountryException(value);
+                }
+            }
         }
         public string Postcode
         {
             get { return this.postcode; }
-            set { this.postcode = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^[0-9]{4}[A-Z]{2}$");
+                if (isValid)
+                {
+                    this.postcode = value;
+                }
+                else
+                {
+                    //Throw exception
+                    throw new EmpPostcodeException(value);
+                }
+                
+            }
         }
 
         public string Bsn
         {
             get { return this.bsn; }
-            set { this.bsn = value; }
+            set
+            {
+                if (value != "")
+                {
+                    bool isValid = Regex.IsMatch(value, @"^[0-9]{9}$");
+                    if (isValid)
+                    {
+                        this.bsn = value;
+                    }
+                    else
+                    {
+                        //Throw exception
+                        throw new EmpBsnException(value);
+                    }
+                }
+                else
+                {
+                    this.bsn = "999999990";
+                }
+
+            }
         }
 
         //Emergency contact details
         public string EmConName
         {
             get { return this.emConName; }
-            set { this.emConName = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^[A-Z]{1}[a-z]+(?:[ |-][A-Z]{1}[a-z]+){0,}$");
+                if (isValid)
+                {
+                    this.emConName = value;
+                }
+                else
+                {
+                    //Throw exception
+                    throw new EmpNameException(value);
+                }
+                
+            }
         }
 
         public EmergencyContactRelation EmConRelation
@@ -127,13 +286,47 @@ namespace MediaBazaarApp
         public string EmConEmail
         {
             get { return this.emConEmail; }
-            set { this.emConEmail = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^[A-Za-z0-9]+[^A-Za-z0-9]?[A-Za-z0-9]*@[A-z-]+.[a-z]+$");
+                if (isValid)
+                {
+                    //Check if the emergency contact email differs from the employee's email
+                    if (value == this.Email)
+                    {
+                        throw new EmpEmailException(value);
+                    }
+                    else
+                    {
+                        this.emConEmail = value;
+                    }
+                }
+                else
+                {
+                    //Throw exception
+                    throw new EmpEmailException(value);
+                }
+                
+            }
         }
 
         public string EmConPhoneNum
         {
             get { return this.emConPhoneNum; }
-            set { this.emConPhoneNum = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^(\+|00){1}[0-9]{2,3}([ |-|/]{1}[0-9]{3}){3}$");
+                if (isValid)
+                {
+                    this.emConPhoneNum = value;
+                }
+                else
+                {
+                    //Throw exception
+                    throw new EmpPhoneException(value);
+                }
+                
+            }
         }
 
         //Job specifications
@@ -145,7 +338,17 @@ namespace MediaBazaarApp
         public double HourlyWages
         {
             get { return this.hourlyWages; }
-            set { this.hourlyWages = value; }
+            set
+            {
+                if (value >= 1 && value <= 20)
+                {
+                    this.hourlyWages = value;
+                }
+                else
+                {
+                    throw new EmpHourlyWagesException((int) value);
+                }
+            }
         }
         public Department Department
         {
@@ -159,48 +362,41 @@ namespace MediaBazaarApp
         }
 
         //Constructor
-        public Employee(int id, string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email,
+        public Employee(string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email,
             string phoneNumber, string street, string city, string country, string postcode, string bsn, string emConName, 
             EmergencyContactRelation emConRelation, string emConEmail, string emConPhoneNum, EmploymentType employmentType,
             double hourlyWages, Department department)
         {
-            this.id = id;
+            //this.id = id;
             //Personal information
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.dateOfBirth = dateOfBirth;
-            this.gender = gender;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.DateOfBirth = dateOfBirth;
+            this.Gender = gender;
 
             // Contact details
-            this.email = email;
-            this.phoneNumber = phoneNumber;
-            this.street = street;
-            this.city = city;
-            this.country = country;
-            this.postcode = postcode;
+            this.Email = email;
+            this.PhoneNumber = phoneNumber;
+            this.Street = street;
+            this.City = city;
+            this.Country = country;
+            this.Postcode = postcode;
             
-            if (bsn != "")
-            {
-                this.bsn = bsn;
-            }
+            this.Bsn = bsn;
+            
 
             //Emergency contact details
-            this.emConName = emConName;
-            this.emConRelation = emConRelation;
-            this.emConEmail = emConEmail;
-            this.emConPhoneNum = emConPhoneNum;
+            this.EmConName = emConName;
+            this.EmConRelation = emConRelation;
+            this.EmConEmail = emConEmail;
+            this.EmConPhoneNum = emConPhoneNum;
 
             //Job specification
-            this.employmentType = employmentType;
-            this.hourlyWages = hourlyWages;
-            this.department = department;
+            this.EmploymentType = employmentType;
+            this.HourlyWages = hourlyWages;
+            this.Department = department;
 
-            shifts = new List<Shift>();
-
-            // id 
-            // id = idCounter;
-            // idCounter++;
-
+            this.shifts = new List<Shift>();
         }
 
         //Methods
@@ -214,13 +410,13 @@ namespace MediaBazaarApp
             return 0;
         }
 
-        public bool AddShift(int id, ShiftType type, DateTime date, int assignedBy, bool wfh)
+        public bool AddShift(int id, ShiftType type, DateTime date, int assignedBy, bool wfh, bool hasAttended, string noShowReason)
         {
             int totalShiftsPerWeek = 0;
 
             foreach (Shift s in shifts)
             {
-                if (GetIso8601WeekOfYear(s.Date) == GetIso8601WeekOfYear(date))
+                if (GetIso8601WeekOfYear(s.Date) == GetIso8601WeekOfYear(date) && s.HasAttended == true)
                 {
                     totalShiftsPerWeek++;
                 }
@@ -228,7 +424,7 @@ namespace MediaBazaarApp
 
             if (totalShiftsPerWeek <= (int)this.employmentType)
             {
-                shifts.Add(new Shift(id, type, date, assignedBy, wfh));
+                shifts.Add(new Shift(id, type, date, assignedBy, wfh, hasAttended, noShowReason));
                 return true;
             }
             else
@@ -295,7 +491,6 @@ namespace MediaBazaarApp
             return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
         }
 
-        
 
     }
 }
