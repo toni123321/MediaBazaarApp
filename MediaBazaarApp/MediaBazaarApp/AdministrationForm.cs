@@ -100,7 +100,7 @@ namespace MediaBazaarApp
             }
 
             lbTime.Text = DateTime.Now.ToString("HH:mm");
-            lbDateDayOfWeek.Text = DateTime.Now.ToString("dddd, MMMM dd");
+            lbDateDayOfWeek.Text = DateTime.Now.ToString("dddd, MMMM dd, yyyy");
 
         }
 
@@ -1372,7 +1372,7 @@ namespace MediaBazaarApp
             if (current == last)
             {
                 afk++;
-                if(afk == 15)
+                if(afk == 900) // 15 min
                 {
                     MessageBox.Show("You have been logged out due to being idle. Please, log in again.");
                     afk = 0;

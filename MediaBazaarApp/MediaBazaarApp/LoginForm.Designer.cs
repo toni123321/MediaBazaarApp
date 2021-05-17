@@ -86,7 +86,7 @@ namespace MediaBazaarApp
             // 
             // btnLogIn
             // 
-            this.btnLogIn.BackColor = System.Drawing.Color.Tomato;
+            this.btnLogIn.BackColor = System.Drawing.Color.LightSalmon;
             this.btnLogIn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogIn.Location = new System.Drawing.Point(97, 428);
             this.btnLogIn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -130,7 +130,7 @@ namespace MediaBazaarApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.NavajoWhite;
+            this.BackColor = System.Drawing.Color.MediumTurquoise;
             this.ClientSize = new System.Drawing.Size(410, 533);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.cbDepartment);
