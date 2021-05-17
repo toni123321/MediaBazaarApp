@@ -26,11 +26,14 @@ namespace MediaBazaarApp
         private double weight = 0;
         Point last;
         int afk;
+       
+       
 
         public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp,
             SalesManagement salesManagement, StockManagement stockManagement)
         {
-            InitializeComponent();
+            InitializeComponent();           
+
             this.departmentManagement = departmentManagement;
             this.currentEmp = currentEmp;
             this.stockManagement = stockManagement;
@@ -1377,6 +1380,125 @@ namespace MediaBazaarApp
             last = Cursor.Position;
         }
 
+        private void GoToManageEmp()
+        {
+            tabControlAdministration.SelectedTab = EmployeesTab;
+            tabControlEmployees.SelectedTab = ManageEmpTab;
+        }
+        private void GoToHolidayLeaveRequests()
+        {
+            tabControlAdministration.SelectedTab = EmployeesTab;
+            tabControlEmployees.SelectedTab = HolidayRequestsTab;
+        }
+        private void GoToWeeklySchedule()
+        {
+            tabControlAdministration.SelectedTab = SchedulingTab;
+            tabControl1.SelectedTab = tbWeeklySchedule;
+        }
+        private void GoToManageAttendance()
+        {
+            tabControlAdministration.SelectedTab = SchedulingTab;
+            tabControl1.SelectedTab = tpManageAttendance;
+        }
+        private void GoToManageStock()
+        {
+            tabControlAdministration.SelectedTab = StocksTab;
+            tabControlStocks.SelectedTab = ManageStocksTab;
+        }
+        private void GoToManageDepartments()
+        {
+            tabControlAdministration.SelectedTab = ManageDepartmentsTab;
+        }
+
+        private void ManageEmpShortcut_Click(object sender, EventArgs e)
+        {
+            GoToManageEmp();
+        }
+
+        private void ManageEmpPic_Click(object sender, EventArgs e)
+        {
+            GoToManageEmp();
+        }
+
+        private void ManageEmpLBL_Click(object sender, EventArgs e)
+        {
+            GoToManageEmp();
+        }
+
+        private void HolidayLeaveRequestsShortcut_Click(object sender, EventArgs e)
+        {
+            GoToHolidayLeaveRequests();
+        }
+
+        private void HolidayLeavePic_Click(object sender, EventArgs e)
+        {
+            GoToHolidayLeaveRequests();
+        }
+
+        private void HolidayLeaveLBL_Click(object sender, EventArgs e)
+        {
+            GoToHolidayLeaveRequests();
+        }
+
+        private void WeeklySchedukeShortcut_Click(object sender, EventArgs e)
+        {
+            GoToWeeklySchedule();
+        }
+
+        private void WeekSchedulePic_Click(object sender, EventArgs e)
+        {
+            GoToWeeklySchedule();
+        }
+
+        private void WeeklyScheduleLBL_Click(object sender, EventArgs e)
+        {
+            GoToWeeklySchedule();
+        }
+
+        private void ManageAttendanceShortcut_Click(object sender, EventArgs e)
+        {
+            GoToManageAttendance();
+        }
+
+        private void ManageAttendancePic_Click(object sender, EventArgs e)
+        {
+            GoToManageAttendance();
+        }
+
+        private void ManageAttendanceLBL_Click(object sender, EventArgs e)
+        {
+            GoToManageAttendance();
+        }
+
+        private void ManageStockShortcut_Click(object sender, EventArgs e)
+        {
+            GoToManageStock();
+        }
+
+        private void ManageStockPic_Click(object sender, EventArgs e)
+        {
+            GoToManageStock();
+        }
+
+        private void ManageStockLBL_Click(object sender, EventArgs e)
+        {
+            GoToManageStock();
+        }
+
+        private void ManageDepartmentsShortcut_Click(object sender, EventArgs e)
+        {
+            GoToManageDepartments();
+        }
+
+        private void ManageDepPic_Click(object sender, EventArgs e)
+        {
+            GoToManageDepartments();
+        }
+
+        private void ManageDepLBL_Click(object sender, EventArgs e)
+        {
+            GoToManageDepartments();
+        }
     }
 }
 
