@@ -1367,7 +1367,7 @@ namespace MediaBazaarApp
             if (current == last)
             {
                 afk++;
-                if (afk == 15)
+                if (afk == 900)
                 {
                     MessageBox.Show("You have been logged out due to being idle. Please, log in again.");
                     afk = 0;
