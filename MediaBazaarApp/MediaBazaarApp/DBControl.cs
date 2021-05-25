@@ -270,6 +270,22 @@ namespace MediaBazaarApp
             }
         }
 
+        public void AcceptUpdateDetails(string todo)
+        {
+            // get emps
+            // search for such an employee by id locally - if not display error
+            // new emp - duplicate of an existing one + apply new changes
+            // edit emp DB (newly created object)
+            // delete entry from the table containing pending changes by id - new method to be created regarding this and called here
+            // get emps
+        }
+
+        public void DeclineUpdateDetails(string todo)
+        {
+            // get emps
+            // delete entry from the table containing pending changes by id - new method to be created regarding this and called here
+        }
+
 
         //Stocks
         public void AddStock(string model, string brand, double price, int quantity, double height,
