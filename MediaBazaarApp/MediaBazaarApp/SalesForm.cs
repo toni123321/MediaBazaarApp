@@ -80,7 +80,7 @@ namespace MediaBazaarApp
                 ID = x.Id,
                 Brand = x.Brand,
                 Model = x.Model,
-                Quantity = x.Quantity
+                AvailableQuantity = x.Quantity
             }).ToList();
 
             dgvStock.DataSource = stockDataSource;
@@ -112,6 +112,7 @@ namespace MediaBazaarApp
                 ID = x.ID,
                 Brand = x.Stock.Brand,
                 Model = x.Stock.Model,
+                RequestedQuantity = x.RequestedQuantity,
                 Status = x.Status
             }).ToList();
 
@@ -196,7 +197,7 @@ namespace MediaBazaarApp
                 ID = x.Id,
                 Brand = x.Brand,
                 Model = x.Model,
-                Quantity = x.Quantity
+                AvailableQuantity = x.Quantity
             }).ToList();
 
             dgvStock.DataSource = stockDataSource;
