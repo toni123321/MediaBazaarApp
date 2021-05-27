@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace MediaBazaarApp
 {
@@ -34,7 +35,7 @@ namespace MediaBazaarApp
         public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp,
             SalesManagement salesManagement, StockManagement stockManagement)
         {
-            InitializeComponent();           
+            InitializeComponent();
 
             this.departmentManagement = departmentManagement;
             this.currentEmp = currentEmp;
@@ -47,7 +48,7 @@ namespace MediaBazaarApp
             gbChooseEmp.Visible = true;
             gbAssignShiftManually.Visible = false;
             gbViewRemoveShifts.Visible = false;
-
+            UpdateDGVStock();
             UpdateWeekNumberCB();
             cbWeekNumber.SelectedIndex = 1;
 
@@ -603,50 +604,22 @@ namespace MediaBazaarApp
 
             }
 
+            UpdateDGVStock();
+
+
         }
 
         private void BtnShowAllStocks_Click(object sender, EventArgs e)
         {
-            lbAllStocks.Items.Clear();
-            List<Stock> stocks = stockManagement.GetAllStocks();
-            foreach (Stock stock in stocks)
-            {
-                lbAllStocks.Items.Add(stock);
-            }
+            UpdateDGVStock();
         }
 
-        private void BtnSearchStock_Click(object sender, EventArgs e)
-        {
-            lbAllStocks.Items.Clear();
-            List<Stock> stocks = stockManagement.GetAllStocks();
-            string word = tbxSearchStock.Text;
-            foreach (Stock stock in stocks)
-            {
-                if (stock.Brand.Contains(word.ToUpper()) || stock.Model.Contains(word.ToUpper()))
-                {
-                    lbAllStocks.Items.Add(stock);
-                }
-            }
-        }
-
-        private void SearchByIdBTN_Click(object sender, EventArgs e)
-        {
-
-            lbAllStocks.Items.Clear();
-            List<Stock> stocks = stockManagement.GetAllStocks();
-            string word = tbxSearchStock.Text;
-            foreach (Stock stock in stocks)
-            {
-                if (word == stock.Id.ToString())
-                {
-                    lbAllStocks.Items.Add(stock);
-                }
-            }
-        }
 
         private void BtnRemoveStock_Click(object sender, EventArgs e)
         {
-            selectedStock = (Stock)lbAllStocks.SelectedItem;
+            int id = Convert.ToInt32(dgvStock.SelectedCells[0].Value.ToString());
+
+            selectedStock = stockManagement.GetStock(id);
 
             if (selectedStock != null)
             {
@@ -661,7 +634,10 @@ namespace MediaBazaarApp
 
         private void BtnEditStock_Click(object sender, EventArgs e)
         {
-            selectedStock = (Stock)lbAllStocks.SelectedItem;
+            int id = Convert.ToInt32(dgvStock.SelectedCells[0].Value.ToString());
+
+            selectedStock = stockManagement.GetStock(id);
+
             if (selectedStock != null)
             {
                 EditStockForm editStockForm = new EditStockForm(this);
@@ -671,11 +647,6 @@ namespace MediaBazaarApp
             {
                 MessageBox.Show("Please select the stock you wish to edit");
             }
-        }
-
-        private void BtnStocksClearSelected_Click(object sender, EventArgs e)
-        {
-            lbAllStocks.ClearSelected();
         }
 
         private void ClearStockTbx()
@@ -709,16 +680,6 @@ namespace MediaBazaarApp
         public StockManagement GetStockManagement()
         {
             return stockManagement;
-        }
-
-        public void StockListBoxRefresh()
-        {
-            lbAllStocks.Items.Clear();
-            List<Stock> stocks = stockManagement.GetAllStocks();
-            foreach (Stock stock in stocks)
-            {
-                lbAllStocks.Items.Add(stock);
-            }
         }
 
 
@@ -1074,14 +1035,6 @@ namespace MediaBazaarApp
         private void btnShowAllDep_Click(object sender, EventArgs e)
         {
             UpdateDepartments();
-        }
-
-        private void TbxSearchStock_Enter(object sender, EventArgs e)
-        {
-            if (tbxSearchStock.Text == "Search...")
-            {
-                tbxSearchStock.Text = "";
-            }
         }
 
         private void tabControlAdministration_SelectedIndexChanged(object sender, EventArgs e)
@@ -1582,6 +1535,73 @@ namespace MediaBazaarApp
 
             dbc.GetShifts(departmentManagement);
             //RefreshWeeklySchedule();
+        }
+
+        public void UpdateDGVStock()
+        {
+            var transactionsDataSource = stockManagement.GetAllStocks().Select(x => new
+            {
+                ID = x.Id,
+                Brand = x.Brand,
+                Model = x.Model,
+                Quantity = x.Quantity,
+                Price = x.Price,
+                Width = x.Width,
+                Height = x.Height,
+                Depth = x.Depth,
+                Weight = x.Weight,
+                Description = x.ShortDescription,
+                Location = x.Location
+            }).ToList();
+
+            dgvStock.DataSource = transactionsDataSource;
+
+            dgvStock.ClearSelection();
+
+        }
+
+        private void tbxSearchStock_TextChanged(object sender, EventArgs e)
+        {
+            string searchInput = tbxSearchStock.Text;
+
+            if (searchInput == "")
+            {
+                dgvStock.DataBindings.Clear();
+            }
+
+            List<Stock> searchResults = new List<Stock>();
+
+            foreach (Stock s in stockManagement.GetAllStocks())
+            {
+                if (s.Model.Contains(searchInput) || s.Brand.Contains(searchInput) || Convert.ToString(s.Id) == searchInput)
+                {
+                    searchResults.Add(s);
+                }
+            }
+
+            var transactionsDataSource = searchResults.Select(x => new
+            {
+                ID = x.Id,
+                Brand = x.Brand,
+                Model = x.Model,
+                Quantity = x.Quantity,
+                Price = x.Price,
+                Width = x.Width,
+                Height = x.Height,
+                Depth = x.Depth,
+                Weight = x.Weight,
+                Description = x.ShortDescription,
+                Location = x.Location
+            }).ToList();
+
+            dgvStock.DataSource = transactionsDataSource;
+
+
+        }
+
+        private void btnStocksClearSelected_Click(object sender, EventArgs e)
+        {
+            dgvStock.ClearSelection();
         }
     }
 }

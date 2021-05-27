@@ -45,7 +45,7 @@ namespace MediaBazaarApp
                     stock.ShortDescription = tbxStockShortDescription.Text;
                 }
                 MessageBox.Show("Changes applied.");
-                parent.StockListBoxRefresh();
+                parent.UpdateDGVStock();
                 DBControl dbControl = new DBControl();
                 dbControl.EditStock(stock);
                 this.Close();

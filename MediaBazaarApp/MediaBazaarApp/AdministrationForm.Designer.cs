@@ -84,18 +84,19 @@ namespace MediaBazaarApp
             this.lbStockModel = new System.Windows.Forms.Label();
             this.tbxStockModel = new System.Windows.Forms.TextBox();
             this.ManageStocksTab = new System.Windows.Forms.TabPage();
+            this.dgvStock = new System.Windows.Forms.DataGridView();
             this.btnShowAllStocks = new System.Windows.Forms.Button();
             this.gbxSearchStock = new System.Windows.Forms.GroupBox();
-            this.searchByIdBTN = new System.Windows.Forms.Button();
-            this.btnSearchStock = new System.Windows.Forms.Button();
             this.tbxSearchStock = new System.Windows.Forms.TextBox();
             this.btnStocksClearSelected = new System.Windows.Forms.Button();
             this.btnEditStock = new System.Windows.Forms.Button();
             this.btnRemoveStock = new System.Windows.Forms.Button();
-            this.lbAllStocks = new System.Windows.Forms.ListBox();
             this.SchedulingTab = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbWeeklySchedule = new System.Windows.Forms.TabPage();
+            this.btnGenAS = new System.Windows.Forms.Button();
+            this.lbWeekNrAS = new System.Windows.Forms.Label();
+            this.cbWeekAS = new System.Windows.Forms.ComboBox();
             this.lbWeekNumber = new System.Windows.Forms.Label();
             this.cbWeekNumber = new System.Windows.Forms.ComboBox();
             this.lbxWeeklySchedule = new System.Windows.Forms.ListBox();
@@ -222,9 +223,6 @@ namespace MediaBazaarApp
             this.lbDateDayOfWeek = new System.Windows.Forms.Label();
             this.lbGreetingMsg = new System.Windows.Forms.Label();
             this.tabControlAdministration = new System.Windows.Forms.TabControl();
-            this.btnGenAS = new System.Windows.Forms.Button();
-            this.lbWeekNrAS = new System.Windows.Forms.Label();
-            this.cbWeekAS = new System.Windows.Forms.ComboBox();
             this.ManageDepartmentsTab.SuspendLayout();
             this.gbxSearchDep.SuspendLayout();
             this.gbxEditDepartment.SuspendLayout();
@@ -233,6 +231,7 @@ namespace MediaBazaarApp
             this.tabControlStocks.SuspendLayout();
             this.AddStocksTab.SuspendLayout();
             this.ManageStocksTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             this.gbxSearchStock.SuspendLayout();
             this.SchedulingTab.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -835,12 +834,12 @@ namespace MediaBazaarApp
             // ManageStocksTab
             // 
             this.ManageStocksTab.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.ManageStocksTab.Controls.Add(this.dgvStock);
             this.ManageStocksTab.Controls.Add(this.btnShowAllStocks);
             this.ManageStocksTab.Controls.Add(this.gbxSearchStock);
             this.ManageStocksTab.Controls.Add(this.btnStocksClearSelected);
             this.ManageStocksTab.Controls.Add(this.btnEditStock);
             this.ManageStocksTab.Controls.Add(this.btnRemoveStock);
-            this.ManageStocksTab.Controls.Add(this.lbAllStocks);
             this.ManageStocksTab.Location = new System.Drawing.Point(4, 29);
             this.ManageStocksTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ManageStocksTab.Name = "ManageStocksTab";
@@ -848,6 +847,21 @@ namespace MediaBazaarApp
             this.ManageStocksTab.Size = new System.Drawing.Size(1082, 738);
             this.ManageStocksTab.TabIndex = 1;
             this.ManageStocksTab.Text = "Manage stocks";
+            // 
+            // dgvStock
+            // 
+            this.dgvStock.AllowUserToAddRows = false;
+            this.dgvStock.AllowUserToDeleteRows = false;
+            this.dgvStock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStock.Location = new System.Drawing.Point(10, 165);
+            this.dgvStock.Name = "dgvStock";
+            this.dgvStock.ReadOnly = true;
+            this.dgvStock.RowHeadersWidth = 51;
+            this.dgvStock.RowTemplate.Height = 24;
+            this.dgvStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvStock.Size = new System.Drawing.Size(1066, 366);
+            this.dgvStock.TabIndex = 24;
             // 
             // btnShowAllStocks
             // 
@@ -863,40 +877,15 @@ namespace MediaBazaarApp
             // 
             // gbxSearchStock
             // 
-            this.gbxSearchStock.Controls.Add(this.searchByIdBTN);
-            this.gbxSearchStock.Controls.Add(this.btnSearchStock);
             this.gbxSearchStock.Controls.Add(this.tbxSearchStock);
             this.gbxSearchStock.Location = new System.Drawing.Point(333, 21);
             this.gbxSearchStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxSearchStock.Name = "gbxSearchStock";
             this.gbxSearchStock.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbxSearchStock.Size = new System.Drawing.Size(697, 126);
+            this.gbxSearchStock.Size = new System.Drawing.Size(403, 126);
             this.gbxSearchStock.TabIndex = 22;
             this.gbxSearchStock.TabStop = false;
             this.gbxSearchStock.Text = "Search for specific stock";
-            // 
-            // searchByIdBTN
-            // 
-            this.searchByIdBTN.BackColor = System.Drawing.Color.LightSalmon;
-            this.searchByIdBTN.Location = new System.Drawing.Point(401, 71);
-            this.searchByIdBTN.Name = "searchByIdBTN";
-            this.searchByIdBTN.Size = new System.Drawing.Size(239, 36);
-            this.searchByIdBTN.TabIndex = 8;
-            this.searchByIdBTN.Text = "Search by ID";
-            this.searchByIdBTN.UseVisualStyleBackColor = false;
-            this.searchByIdBTN.Click += new System.EventHandler(this.SearchByIdBTN_Click);
-            // 
-            // btnSearchStock
-            // 
-            this.btnSearchStock.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnSearchStock.Location = new System.Drawing.Point(401, 23);
-            this.btnSearchStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSearchStock.Name = "btnSearchStock";
-            this.btnSearchStock.Size = new System.Drawing.Size(239, 40);
-            this.btnSearchStock.TabIndex = 6;
-            this.btnSearchStock.Text = "Search by model or brand";
-            this.btnSearchStock.UseVisualStyleBackColor = false;
-            this.btnSearchStock.Click += new System.EventHandler(this.BtnSearchStock_Click);
             // 
             // tbxSearchStock
             // 
@@ -906,8 +895,7 @@ namespace MediaBazaarApp
             this.tbxSearchStock.Name = "tbxSearchStock";
             this.tbxSearchStock.Size = new System.Drawing.Size(344, 27);
             this.tbxSearchStock.TabIndex = 7;
-            this.tbxSearchStock.Text = "Search...";
-            this.tbxSearchStock.Enter += new System.EventHandler(this.TbxSearchStock_Enter);
+            this.tbxSearchStock.TextChanged += new System.EventHandler(this.tbxSearchStock_TextChanged);
             // 
             // btnStocksClearSelected
             // 
@@ -919,7 +907,7 @@ namespace MediaBazaarApp
             this.btnStocksClearSelected.TabIndex = 21;
             this.btnStocksClearSelected.Text = "Unmark selected";
             this.btnStocksClearSelected.UseVisualStyleBackColor = false;
-            this.btnStocksClearSelected.Click += new System.EventHandler(this.BtnStocksClearSelected_Click);
+            this.btnStocksClearSelected.Click += new System.EventHandler(this.btnStocksClearSelected_Click);
             // 
             // btnEditStock
             // 
@@ -944,18 +932,6 @@ namespace MediaBazaarApp
             this.btnRemoveStock.Text = "Remove stock";
             this.btnRemoveStock.UseVisualStyleBackColor = false;
             this.btnRemoveStock.Click += new System.EventHandler(this.BtnRemoveStock_Click);
-            // 
-            // lbAllStocks
-            // 
-            this.lbAllStocks.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lbAllStocks.FormattingEnabled = true;
-            this.lbAllStocks.HorizontalScrollbar = true;
-            this.lbAllStocks.ItemHeight = 20;
-            this.lbAllStocks.Location = new System.Drawing.Point(42, 158);
-            this.lbAllStocks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbAllStocks.Name = "lbAllStocks";
-            this.lbAllStocks.Size = new System.Drawing.Size(1010, 364);
-            this.lbAllStocks.TabIndex = 18;
             // 
             // SchedulingTab
             // 
@@ -992,6 +968,88 @@ namespace MediaBazaarApp
             this.tbWeeklySchedule.Size = new System.Drawing.Size(1084, 787);
             this.tbWeeklySchedule.TabIndex = 3;
             this.tbWeeklySchedule.Text = "Weekly schedule";
+            // 
+            // btnGenAS
+            // 
+            this.btnGenAS.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnGenAS.Location = new System.Drawing.Point(858, 35);
+            this.btnGenAS.Name = "btnGenAS";
+            this.btnGenAS.Size = new System.Drawing.Size(170, 66);
+            this.btnGenAS.TabIndex = 11;
+            this.btnGenAS.Text = "Generate schedule";
+            this.btnGenAS.UseVisualStyleBackColor = false;
+            this.btnGenAS.Click += new System.EventHandler(this.btnGenAS_Click_1);
+            // 
+            // lbWeekNrAS
+            // 
+            this.lbWeekNrAS.AutoSize = true;
+            this.lbWeekNrAS.Location = new System.Drawing.Point(731, 35);
+            this.lbWeekNrAS.Name = "lbWeekNrAS";
+            this.lbWeekNrAS.Size = new System.Drawing.Size(48, 20);
+            this.lbWeekNrAS.TabIndex = 10;
+            this.lbWeekNrAS.Text = "Week:";
+            // 
+            // cbWeekAS
+            // 
+            this.cbWeekAS.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbWeekAS.FormattingEnabled = true;
+            this.cbWeekAS.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52"});
+            this.cbWeekAS.Location = new System.Drawing.Point(735, 58);
+            this.cbWeekAS.Name = "cbWeekAS";
+            this.cbWeekAS.Size = new System.Drawing.Size(108, 28);
+            this.cbWeekAS.TabIndex = 9;
             // 
             // lbWeekNumber
             // 
@@ -2441,88 +2499,6 @@ namespace MediaBazaarApp
             this.tabControlAdministration.TabIndex = 0;
             this.tabControlAdministration.SelectedIndexChanged += new System.EventHandler(this.tabControlAdministration_SelectedIndexChanged);
             // 
-            // btnGenAS
-            // 
-            this.btnGenAS.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnGenAS.Location = new System.Drawing.Point(858, 35);
-            this.btnGenAS.Name = "btnGenAS";
-            this.btnGenAS.Size = new System.Drawing.Size(170, 66);
-            this.btnGenAS.TabIndex = 11;
-            this.btnGenAS.Text = "Generate schedule";
-            this.btnGenAS.UseVisualStyleBackColor = false;
-            this.btnGenAS.Click += new System.EventHandler(this.btnGenAS_Click_1);
-            // 
-            // lbWeekNrAS
-            // 
-            this.lbWeekNrAS.AutoSize = true;
-            this.lbWeekNrAS.Location = new System.Drawing.Point(731, 35);
-            this.lbWeekNrAS.Name = "lbWeekNrAS";
-            this.lbWeekNrAS.Size = new System.Drawing.Size(48, 20);
-            this.lbWeekNrAS.TabIndex = 10;
-            this.lbWeekNrAS.Text = "Week:";
-            // 
-            // cbWeekAS
-            // 
-            this.cbWeekAS.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbWeekAS.FormattingEnabled = true;
-            this.cbWeekAS.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-            "32",
-            "33",
-            "34",
-            "35",
-            "36",
-            "37",
-            "38",
-            "39",
-            "40",
-            "41",
-            "42",
-            "43",
-            "44",
-            "45",
-            "46",
-            "47",
-            "48",
-            "49",
-            "50",
-            "51",
-            "52"});
-            this.cbWeekAS.Location = new System.Drawing.Point(735, 58);
-            this.cbWeekAS.Name = "cbWeekAS";
-            this.cbWeekAS.Size = new System.Drawing.Size(108, 28);
-            this.cbWeekAS.TabIndex = 9;
-            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -2549,6 +2525,7 @@ namespace MediaBazaarApp
             this.AddStocksTab.ResumeLayout(false);
             this.AddStocksTab.PerformLayout();
             this.ManageStocksTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).EndInit();
             this.gbxSearchStock.ResumeLayout(false);
             this.gbxSearchStock.PerformLayout();
             this.SchedulingTab.ResumeLayout(false);
@@ -2660,13 +2637,10 @@ namespace MediaBazaarApp
         private System.Windows.Forms.TabPage ManageStocksTab;
         private System.Windows.Forms.Button btnShowAllStocks;
         private System.Windows.Forms.GroupBox gbxSearchStock;
-        private System.Windows.Forms.Button searchByIdBTN;
-        private System.Windows.Forms.Button btnSearchStock;
         private System.Windows.Forms.TextBox tbxSearchStock;
         private System.Windows.Forms.Button btnStocksClearSelected;
         private System.Windows.Forms.Button btnEditStock;
         private System.Windows.Forms.Button btnRemoveStock;
-        private System.Windows.Forms.ListBox lbAllStocks;
         private System.Windows.Forms.TabPage SchedulingTab;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tbWeeklySchedule;
@@ -2799,5 +2773,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnGenAS;
         private System.Windows.Forms.Label lbWeekNrAS;
         private System.Windows.Forms.ComboBox cbWeekAS;
+        private System.Windows.Forms.DataGridView dgvStock;
     }
 }
