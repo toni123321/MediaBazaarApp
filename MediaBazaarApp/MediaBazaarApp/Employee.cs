@@ -390,7 +390,7 @@ namespace MediaBazaarApp
 
             //Job specification
             this.EmploymentType = employmentType;
-            this.HourlyWages = hourlyWages;
+            this.HourlyWages = Math.Round(hourlyWages, 2);
             this.Department = department;
 
             this.shifts = new List<Shift>();
