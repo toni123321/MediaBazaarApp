@@ -16,6 +16,7 @@ namespace MediaBazaarApp
         private Employee currentEmp;
         private StockManagement stockManagement;
         private Dictionary<string, bool> stockSotrage;
+        private Dictionary<Point, bool> shortcutLocations;
         private Stock selectedStock;
         private SalesManagement salesManagement;
         private DBControl dbc;
@@ -44,6 +45,8 @@ namespace MediaBazaarApp
             this.salesManagement = salesManagement;
             ash = new AutomatedScheduleHandler(departmentManagement);
             dbc = new DBControl();
+            shortcutLocations = new Dictionary<Point, bool>();
+            setShortcutLocationtions();
 
             gbChooseEmp.Visible = true;
             gbAssignShiftManually.Visible = false;
@@ -1602,6 +1605,73 @@ namespace MediaBazaarApp
         private void btnStocksClearSelected_Click(object sender, EventArgs e)
         {
             dgvStock.ClearSelection();
+        }
+
+        private void setShortcutLocationtions()
+        {
+            shortcutLocations.Add(new Point(704, 102), true);
+            shortcutLocations.Add(new Point(704, 188), true);
+            shortcutLocations.Add(new Point(704, 275), true);
+            shortcutLocations.Add(new Point(704, 362), true);
+            shortcutLocations.Add(new Point(704, 448), true);
+            shortcutLocations.Add(new Point(704, 535), true);
+        }
+        private void checkForShortcuts()
+        {
+            manageEmpShortcut.Visible = false;
+            holidayLeaveRequestsShortcut.Visible = false;
+            weeklySchedukeShortcut.Visible = false;
+            manageAttendanceShortcut.Visible = false;
+            manageStockShortcut.Visible = false;
+
+
+
+            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+
+            foreach (Point k in keys)
+            {
+                shortcutLocations[k] = true;
+            }
+
+            if (manageEmpCH.Checked)
+            {
+                activateShortCut(manageEmpShortcut);
+            }
+            if (holidayLeaveReqCH.Checked)
+            {
+                activateShortCut(holidayLeaveRequestsShortcut);
+            }
+            if (weeklyScheduleCH.Checked)
+            {
+                activateShortCut(weeklySchedukeShortcut);
+            }
+            if (manageAttendanceCH.Checked)
+            {
+                activateShortCut(manageAttendanceShortcut);
+            }
+            if (manageStockCH.Checked)
+            {
+                activateShortCut(manageStockShortcut);
+            }
+        }
+        private void activateShortCut(Panel shortcut)
+        {
+            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+            foreach (Point k in keys)
+            {
+                if (shortcutLocations[k] == true)
+                {
+                    shortcut.Location = k;
+                    shortcut.Visible = true;
+                    shortcutLocations[k] = false;
+                    break;
+                }
+            }
+        }
+
+        private void ApplyShortcutsBTN_Click(object sender, EventArgs e)
+        {
+            checkForShortcuts();
         }
     }
 }

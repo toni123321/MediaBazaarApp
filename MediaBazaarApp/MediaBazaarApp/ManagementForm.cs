@@ -130,9 +130,7 @@ namespace MediaBazaarApp
             {
                 if (d.GetAllEmployees().Count > 0)
                 {
-                    EmpPerDepChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{d.GetAllEmployees().Count}");
-                    EmpPerDepChart.Series["Series1"].Label = "#PERCENT{P2}";
-                    EmpPerDepChart.Series["Series1"].LegendText = "#VALX";
+                    EmpPerDepChart.Series["Series1"].Points.AddXY($"{d.Name} - {d.GetAllEmployees().Count} employees", $"{d.GetAllEmployees().Count}");
                 }
             }
 
@@ -144,15 +142,13 @@ namespace MediaBazaarApp
             {
                 if (d.GetAllEmployees().Count > 0)
                 {
-                    AvgWageChart.Series["Series1"].Points.AddXY($"{d.Name}", $"{se.AveregeWageOfEmployee(d.GetAllEmployees())}");
-                    AvgWageChart.Series["Series1"].Label = "#PERCENT{P2}";
-                    AvgWageChart.Series["Series1"].LegendText = "#VALX";
+                    AvgWageChart.Series["Series1"].Points.AddXY($"{d.Name} - €{Math.Round(se.AveregeWageOfEmployee(d.GetAllEmployees()),2)}", $"{se.AveregeWageOfEmployee(d.GetAllEmployees())}");
                 }
             }
 
             foreach (Stock s in stockManagement.GetAllStocks())
             {
-                StocksChart.Series["Price"].Points.AddXY($"{s.Brand} {s.Model}", $"{s.Price}");
+                StocksChart.Series["Price in €"].Points.AddXY($"{s.Brand} {s.Model}", $"{s.Price}");
             }
 
 
@@ -219,7 +215,7 @@ namespace MediaBazaarApp
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AgeChart.Series["Age"].Points.Clear();
+            AgeChart.Series["Employees Age"].Points.Clear();
             int index = cbxAge.SelectedIndex;
             string department = cbxAge.SelectedItem.ToString();
             List<string> age = new List<string>();
@@ -247,7 +243,7 @@ namespace MediaBazaarApp
                             }
 
                         }
-                        AgeChart.Series["Age"].Points.AddXY($"{a}", count);
+                        AgeChart.Series["Employees Age"].Points.AddXY($"{a}", count);
                     }
 
                 }
@@ -284,7 +280,7 @@ namespace MediaBazaarApp
                             }
 
                         }
-                        AgeChart.Series["Age"].Points.AddXY($"{a}", count);
+                        AgeChart.Series["Employees Age"].Points.AddXY($"{a}", count);
                     }
 
 
@@ -299,7 +295,7 @@ namespace MediaBazaarApp
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            ResidenceChart1.Series["Series1"].Points.Clear();
+            ResidenceChart1.Series["Employees"].Points.Clear();
             int index = cbxCity.SelectedIndex;
             string department = cbxCity.SelectedItem.ToString();
             List<string> cities = new List<string>();
@@ -327,7 +323,7 @@ namespace MediaBazaarApp
                             }
 
                         }
-                        ResidenceChart1.Series["Series1"].Points.AddXY($"{city}", count);
+                        ResidenceChart1.Series["Employees"].Points.AddXY($"{city}", count);
                     }
 
                 }
@@ -364,7 +360,7 @@ namespace MediaBazaarApp
                             }
 
                         }
-                        ResidenceChart1.Series["Series1"].Points.AddXY($"{city}", count);
+                        ResidenceChart1.Series["Employees"].Points.AddXY($"{city}", count);
                     }
 
 
