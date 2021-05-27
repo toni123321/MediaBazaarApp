@@ -1542,7 +1542,7 @@ namespace MediaBazaarApp
 
         public void UpdateDGVStock()
         {
-            var transactionsDataSource = stockManagement.GetAllStocks().Select(x => new
+            var stockDataSource = stockManagement.GetAllStocks().Select(x => new
             {
                 ID = x.Id,
                 Brand = x.Brand,
@@ -1557,7 +1557,7 @@ namespace MediaBazaarApp
                 Location = x.Location
             }).ToList();
 
-            dgvStock.DataSource = transactionsDataSource;
+            dgvStock.DataSource = stockDataSource;
 
             dgvStock.ClearSelection();
 
@@ -1582,7 +1582,7 @@ namespace MediaBazaarApp
                 }
             }
 
-            var transactionsDataSource = searchResults.Select(x => new
+            var stockDataSource = searchResults.Select(x => new
             {
                 ID = x.Id,
                 Brand = x.Brand,
@@ -1597,7 +1597,7 @@ namespace MediaBazaarApp
                 Location = x.Location
             }).ToList();
 
-            dgvStock.DataSource = transactionsDataSource;
+            dgvStock.DataSource = stockDataSource;
 
 
         }
