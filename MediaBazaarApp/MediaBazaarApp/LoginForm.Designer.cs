@@ -52,8 +52,8 @@ namespace MediaBazaarApp
             "Depot"});
             this.cbDepartment.Location = new System.Drawing.Point(51, 306);
             this.cbDepartment.Name = "cbDepartment";
-            this.cbDepartment.Size = new System.Drawing.Size(281, 26);
-            this.cbDepartment.TabIndex = 9;
+            this.cbDepartment.Size = new System.Drawing.Size(281, 30);
+            this.cbDepartment.TabIndex = 1;
             // 
             // lbDepartment
             // 
@@ -61,7 +61,7 @@ namespace MediaBazaarApp
             this.lbDepartment.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDepartment.Location = new System.Drawing.Point(48, 285);
             this.lbDepartment.Name = "lbDepartment";
-            this.lbDepartment.Size = new System.Drawing.Size(88, 20);
+            this.lbDepartment.Size = new System.Drawing.Size(105, 25);
             this.lbDepartment.TabIndex = 10;
             this.lbDepartment.Text = "Department";
             // 
@@ -71,8 +71,8 @@ namespace MediaBazaarApp
             this.tbxEmpEmail.Location = new System.Drawing.Point(51, 254);
             this.tbxEmpEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpEmail.Name = "tbxEmpEmail";
-            this.tbxEmpEmail.Size = new System.Drawing.Size(281, 24);
-            this.tbxEmpEmail.TabIndex = 5;
+            this.tbxEmpEmail.Size = new System.Drawing.Size(281, 28);
+            this.tbxEmpEmail.TabIndex = 0;
             // 
             // lbEmpEmail
             // 
@@ -80,7 +80,7 @@ namespace MediaBazaarApp
             this.lbEmpEmail.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEmpEmail.Location = new System.Drawing.Point(48, 232);
             this.lbEmpEmail.Name = "lbEmpEmail";
-            this.lbEmpEmail.Size = new System.Drawing.Size(44, 20);
+            this.lbEmpEmail.Size = new System.Drawing.Size(53, 25);
             this.lbEmpEmail.TabIndex = 6;
             this.lbEmpEmail.Text = "Email";
             // 
@@ -92,7 +92,7 @@ namespace MediaBazaarApp
             this.btnLogIn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLogIn.Name = "btnLogIn";
             this.btnLogIn.Size = new System.Drawing.Size(200, 49);
-            this.btnLogIn.TabIndex = 11;
+            this.btnLogIn.TabIndex = 3;
             this.btnLogIn.Text = "Log in";
             this.btnLogIn.UseVisualStyleBackColor = false;
             this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
@@ -103,8 +103,8 @@ namespace MediaBazaarApp
             this.tbxEmpId.Location = new System.Drawing.Point(51, 362);
             this.tbxEmpId.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpId.Name = "tbxEmpId";
-            this.tbxEmpId.Size = new System.Drawing.Size(95, 24);
-            this.tbxEmpId.TabIndex = 7;
+            this.tbxEmpId.Size = new System.Drawing.Size(95, 28);
+            this.tbxEmpId.TabIndex = 2;
             // 
             // lbEmpId
             // 
@@ -112,7 +112,7 @@ namespace MediaBazaarApp
             this.lbEmpId.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEmpId.Location = new System.Drawing.Point(48, 340);
             this.lbEmpId.Name = "lbEmpId";
-            this.lbEmpId.Size = new System.Drawing.Size(92, 20);
+            this.lbEmpId.Size = new System.Drawing.Size(107, 25);
             this.lbEmpId.TabIndex = 8;
             this.lbEmpId.Text = "Employee ID";
             // 
@@ -128,7 +128,7 @@ namespace MediaBazaarApp
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumTurquoise;
             this.ClientSize = new System.Drawing.Size(410, 533);

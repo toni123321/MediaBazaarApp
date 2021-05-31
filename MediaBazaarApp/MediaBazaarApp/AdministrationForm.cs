@@ -127,7 +127,8 @@ namespace MediaBazaarApp
             {
                 ID = x.Id,
                 DepCode = x.DeptId,
-                Name = x.Name,
+                x.Name,
+                Manager = x.Manager != null? $"{x.Manager.FirstName} {x.Manager.LastName}": "No manager",
                 //Manager = $"{x.Manager.FirstName} {x.Manager.LastName}",
                 NumberOfEmployees = x.GetAllEmployees().Count
             }).ToList();
@@ -1715,8 +1716,9 @@ namespace MediaBazaarApp
             {
                 ID = x.Id,
                 DepCode = x.DeptId,
-                Name = x.Name,
-                // Manager = $"{x.Manager.FirstName} {x.Manager.LastName}",
+                x.Name,
+                Manager = x.Manager != null ? $"{x.Manager.FirstName} {x.Manager.LastName}" : "No manager",
+                //Manager = $"{x.Manager.FirstName} {x.Manager.LastName}",
                 NumberOfEmployees = x.GetAllEmployees().Count
             }).ToList();
 
