@@ -137,6 +137,12 @@ namespace MediaBazaarApp
             this.EmployeesTab = new System.Windows.Forms.TabPage();
             this.tabControlEmployees = new System.Windows.Forms.TabControl();
             this.AddEmpTab = new System.Windows.Forms.TabPage();
+            this.dtpEmpEndDate = new System.Windows.Forms.DateTimePicker();
+            this.lbEmpEndDate = new System.Windows.Forms.Label();
+            this.dtpEmpStartDate = new System.Windows.Forms.DateTimePicker();
+            this.lbEmpStartDate = new System.Windows.Forms.Label();
+            this.lbEmpNationality = new System.Windows.Forms.Label();
+            this.tbxEmpNationality = new System.Windows.Forms.TextBox();
             this.cbEmConRelation = new System.Windows.Forms.ComboBox();
             this.lbEmConRelation = new System.Windows.Forms.Label();
             this.tbxEmConName = new System.Windows.Forms.TextBox();
@@ -179,11 +185,10 @@ namespace MediaBazaarApp
             this.tbxEmpFname = new System.Windows.Forms.TextBox();
             this.lbEmpFname = new System.Windows.Forms.Label();
             this.ManageEmpTab = new System.Windows.Forms.TabPage();
+            this.dgvEmployees = new System.Windows.Forms.DataGridView();
             this.gbxShowEmp = new System.Windows.Forms.GroupBox();
             this.cbSelectEmpDepartment = new System.Windows.Forms.ComboBox();
-            this.btnShowEmp = new System.Windows.Forms.Button();
             this.gbxSearchEmp = new System.Windows.Forms.GroupBox();
-            this.btnSearchEmp = new System.Windows.Forms.Button();
             this.tbxSearchEmp = new System.Windows.Forms.TextBox();
             this.btnClearSelectedEmp = new System.Windows.Forms.Button();
             this.btnEditEmp = new System.Windows.Forms.Button();
@@ -229,13 +234,6 @@ namespace MediaBazaarApp
             this.weeklyScheduleCH = new System.Windows.Forms.CheckBox();
             this.holidayLeaveReqCH = new System.Windows.Forms.CheckBox();
             this.manageEmpCH = new System.Windows.Forms.CheckBox();
-            this.lbEmpNationality = new System.Windows.Forms.Label();
-            this.tbxEmpNationality = new System.Windows.Forms.TextBox();
-            this.dtpEmpEndDate = new System.Windows.Forms.DateTimePicker();
-            this.lbEmpEndDate = new System.Windows.Forms.Label();
-            this.dtpEmpStartDate = new System.Windows.Forms.DateTimePicker();
-            this.lbEmpStartDate = new System.Windows.Forms.Label();
-            this.dgvEmployees = new System.Windows.Forms.DataGridView();
             this.ManageDepartmentsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.gbxSearchDep.SuspendLayout();
@@ -260,6 +258,7 @@ namespace MediaBazaarApp
             this.AddEmpTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEmpHourlyWages)).BeginInit();
             this.ManageEmpTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.gbxShowEmp.SuspendLayout();
             this.gbxSearchEmp.SuspendLayout();
             this.HolidayRequestsTab.SuspendLayout();
@@ -281,7 +280,6 @@ namespace MediaBazaarApp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.tabControlAdministration.SuspendLayout();
             this.settingsTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -1498,6 +1496,7 @@ namespace MediaBazaarApp
             this.tabControlEmployees.SelectedIndex = 0;
             this.tabControlEmployees.Size = new System.Drawing.Size(1101, 821);
             this.tabControlEmployees.TabIndex = 0;
+            this.tabControlEmployees.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlEmployees_Selected);
             // 
             // AddEmpTab
             // 
@@ -1556,6 +1555,61 @@ namespace MediaBazaarApp
             this.AddEmpTab.Size = new System.Drawing.Size(1093, 783);
             this.AddEmpTab.TabIndex = 0;
             this.AddEmpTab.Text = "AddEmployees";
+            // 
+            // dtpEmpEndDate
+            // 
+            this.dtpEmpEndDate.Location = new System.Drawing.Point(266, 364);
+            this.dtpEmpEndDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtpEmpEndDate.Name = "dtpEmpEndDate";
+            this.dtpEmpEndDate.Size = new System.Drawing.Size(161, 31);
+            this.dtpEmpEndDate.TabIndex = 81;
+            // 
+            // lbEmpEndDate
+            // 
+            this.lbEmpEndDate.AutoSize = true;
+            this.lbEmpEndDate.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpEndDate.Location = new System.Drawing.Point(261, 333);
+            this.lbEmpEndDate.Name = "lbEmpEndDate";
+            this.lbEmpEndDate.Size = new System.Drawing.Size(80, 25);
+            this.lbEmpEndDate.TabIndex = 80;
+            this.lbEmpEndDate.Text = "End date";
+            // 
+            // dtpEmpStartDate
+            // 
+            this.dtpEmpStartDate.Location = new System.Drawing.Point(266, 291);
+            this.dtpEmpStartDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtpEmpStartDate.Name = "dtpEmpStartDate";
+            this.dtpEmpStartDate.Size = new System.Drawing.Size(161, 31);
+            this.dtpEmpStartDate.TabIndex = 79;
+            // 
+            // lbEmpStartDate
+            // 
+            this.lbEmpStartDate.AutoSize = true;
+            this.lbEmpStartDate.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpStartDate.Location = new System.Drawing.Point(261, 262);
+            this.lbEmpStartDate.Name = "lbEmpStartDate";
+            this.lbEmpStartDate.Size = new System.Drawing.Size(87, 25);
+            this.lbEmpStartDate.TabIndex = 78;
+            this.lbEmpStartDate.Text = "Start date";
+            // 
+            // lbEmpNationality
+            // 
+            this.lbEmpNationality.AutoSize = true;
+            this.lbEmpNationality.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpNationality.Location = new System.Drawing.Point(14, 391);
+            this.lbEmpNationality.Name = "lbEmpNationality";
+            this.lbEmpNationality.Size = new System.Drawing.Size(95, 25);
+            this.lbEmpNationality.TabIndex = 72;
+            this.lbEmpNationality.Text = "Nationality";
+            // 
+            // tbxEmpNationality
+            // 
+            this.tbxEmpNationality.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tbxEmpNationality.Location = new System.Drawing.Point(19, 420);
+            this.tbxEmpNationality.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxEmpNationality.Name = "tbxEmpNationality";
+            this.tbxEmpNationality.Size = new System.Drawing.Size(161, 31);
+            this.tbxEmpNationality.TabIndex = 73;
             // 
             // cbEmConRelation
             // 
@@ -1995,10 +2049,19 @@ namespace MediaBazaarApp
             this.ManageEmpTab.TabIndex = 1;
             this.ManageEmpTab.Text = "Manage employees";
             // 
+            // dgvEmployees
+            // 
+            this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmployees.Location = new System.Drawing.Point(35, 176);
+            this.dgvEmployees.Name = "dgvEmployees";
+            this.dgvEmployees.RowHeadersWidth = 62;
+            this.dgvEmployees.RowTemplate.Height = 28;
+            this.dgvEmployees.Size = new System.Drawing.Size(998, 352);
+            this.dgvEmployees.TabIndex = 20;
+            // 
             // gbxShowEmp
             // 
             this.gbxShowEmp.Controls.Add(this.cbSelectEmpDepartment);
-            this.gbxShowEmp.Controls.Add(this.btnShowEmp);
             this.gbxShowEmp.Location = new System.Drawing.Point(35, 24);
             this.gbxShowEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxShowEmp.Name = "gbxShowEmp";
@@ -2018,29 +2081,17 @@ namespace MediaBazaarApp
             "Management",
             "Sales",
             "Depot"});
-            this.cbSelectEmpDepartment.Location = new System.Drawing.Point(27, 50);
+            this.cbSelectEmpDepartment.Location = new System.Drawing.Point(21, 51);
             this.cbSelectEmpDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbSelectEmpDepartment.Name = "cbSelectEmpDepartment";
             this.cbSelectEmpDepartment.Size = new System.Drawing.Size(209, 33);
             this.cbSelectEmpDepartment.TabIndex = 8;
             this.cbSelectEmpDepartment.Text = "All";
-            // 
-            // btnShowEmp
-            // 
-            this.btnShowEmp.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnShowEmp.Location = new System.Drawing.Point(270, 41);
-            this.btnShowEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnShowEmp.Name = "btnShowEmp";
-            this.btnShowEmp.Size = new System.Drawing.Size(165, 50);
-            this.btnShowEmp.TabIndex = 5;
-            this.btnShowEmp.Text = "Show";
-            this.btnShowEmp.UseVisualStyleBackColor = false;
-            this.btnShowEmp.Click += new System.EventHandler(this.btnShowEmp_Click);
+            this.cbSelectEmpDepartment.SelectedIndexChanged += new System.EventHandler(this.cbSelectEmpDepartment_SelectedIndexChanged);
             // 
             // gbxSearchEmp
             // 
             this.gbxSearchEmp.BackColor = System.Drawing.Color.Transparent;
-            this.gbxSearchEmp.Controls.Add(this.btnSearchEmp);
             this.gbxSearchEmp.Controls.Add(this.tbxSearchEmp);
             this.gbxSearchEmp.Location = new System.Drawing.Point(528, 24);
             this.gbxSearchEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -2051,28 +2102,17 @@ namespace MediaBazaarApp
             this.gbxSearchEmp.TabStop = false;
             this.gbxSearchEmp.Text = "Search for specific employee";
             // 
-            // btnSearchEmp
-            // 
-            this.btnSearchEmp.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnSearchEmp.Location = new System.Drawing.Point(295, 41);
-            this.btnSearchEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSearchEmp.Name = "btnSearchEmp";
-            this.btnSearchEmp.Size = new System.Drawing.Size(186, 50);
-            this.btnSearchEmp.TabIndex = 6;
-            this.btnSearchEmp.Text = "Search";
-            this.btnSearchEmp.UseVisualStyleBackColor = false;
-            this.btnSearchEmp.Click += new System.EventHandler(this.btnSearchEmp_Click);
-            // 
             // tbxSearchEmp
             // 
             this.tbxSearchEmp.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxSearchEmp.Location = new System.Drawing.Point(21, 53);
+            this.tbxSearchEmp.Location = new System.Drawing.Point(14, 53);
             this.tbxSearchEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxSearchEmp.Name = "tbxSearchEmp";
             this.tbxSearchEmp.Size = new System.Drawing.Size(247, 31);
             this.tbxSearchEmp.TabIndex = 7;
             this.tbxSearchEmp.Text = "Search...";
             this.tbxSearchEmp.Click += new System.EventHandler(this.tbxSearchEmp_Click);
+            this.tbxSearchEmp.TextChanged += new System.EventHandler(this.tbxSearchEmp_TextChanged);
             // 
             // btnClearSelectedEmp
             // 
@@ -2594,71 +2634,6 @@ namespace MediaBazaarApp
             this.manageEmpCH.Text = "Manage employees shortcut";
             this.manageEmpCH.UseVisualStyleBackColor = true;
             // 
-            // lbEmpNationality
-            // 
-            this.lbEmpNationality.AutoSize = true;
-            this.lbEmpNationality.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmpNationality.Location = new System.Drawing.Point(14, 391);
-            this.lbEmpNationality.Name = "lbEmpNationality";
-            this.lbEmpNationality.Size = new System.Drawing.Size(95, 25);
-            this.lbEmpNationality.TabIndex = 72;
-            this.lbEmpNationality.Text = "Nationality";
-            // 
-            // tbxEmpNationality
-            // 
-            this.tbxEmpNationality.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmpNationality.Location = new System.Drawing.Point(19, 420);
-            this.tbxEmpNationality.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbxEmpNationality.Name = "tbxEmpNationality";
-            this.tbxEmpNationality.Size = new System.Drawing.Size(161, 31);
-            this.tbxEmpNationality.TabIndex = 73;
-            // 
-            // dtpEmpEndDate
-            // 
-            this.dtpEmpEndDate.Location = new System.Drawing.Point(266, 364);
-            this.dtpEmpEndDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtpEmpEndDate.Name = "dtpEmpEndDate";
-            this.dtpEmpEndDate.Size = new System.Drawing.Size(161, 31);
-            this.dtpEmpEndDate.TabIndex = 81;
-            // 
-            // lbEmpEndDate
-            // 
-            this.lbEmpEndDate.AutoSize = true;
-            this.lbEmpEndDate.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmpEndDate.Location = new System.Drawing.Point(261, 333);
-            this.lbEmpEndDate.Name = "lbEmpEndDate";
-            this.lbEmpEndDate.Size = new System.Drawing.Size(80, 25);
-            this.lbEmpEndDate.TabIndex = 80;
-            this.lbEmpEndDate.Text = "End date";
-            // 
-            // dtpEmpStartDate
-            // 
-            this.dtpEmpStartDate.Location = new System.Drawing.Point(266, 291);
-            this.dtpEmpStartDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtpEmpStartDate.Name = "dtpEmpStartDate";
-            this.dtpEmpStartDate.Size = new System.Drawing.Size(161, 31);
-            this.dtpEmpStartDate.TabIndex = 79;
-            // 
-            // lbEmpStartDate
-            // 
-            this.lbEmpStartDate.AutoSize = true;
-            this.lbEmpStartDate.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmpStartDate.Location = new System.Drawing.Point(261, 262);
-            this.lbEmpStartDate.Name = "lbEmpStartDate";
-            this.lbEmpStartDate.Size = new System.Drawing.Size(87, 25);
-            this.lbEmpStartDate.TabIndex = 78;
-            this.lbEmpStartDate.Text = "Start date";
-            // 
-            // dgvEmployees
-            // 
-            this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmployees.Location = new System.Drawing.Point(35, 176);
-            this.dgvEmployees.Name = "dgvEmployees";
-            this.dgvEmployees.RowHeadersWidth = 62;
-            this.dgvEmployees.RowTemplate.Height = 28;
-            this.dgvEmployees.Size = new System.Drawing.Size(998, 352);
-            this.dgvEmployees.TabIndex = 20;
-            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -2707,6 +2682,7 @@ namespace MediaBazaarApp
             this.AddEmpTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEmpHourlyWages)).EndInit();
             this.ManageEmpTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.gbxShowEmp.ResumeLayout(false);
             this.gbxSearchEmp.ResumeLayout(false);
             this.gbxSearchEmp.PerformLayout();
@@ -2739,7 +2715,6 @@ namespace MediaBazaarApp
             this.tabControlAdministration.ResumeLayout(false);
             this.settingsTab.ResumeLayout(false);
             this.settingsTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2891,9 +2866,7 @@ namespace MediaBazaarApp
         private System.Windows.Forms.TabPage ManageEmpTab;
         private System.Windows.Forms.GroupBox gbxShowEmp;
         private System.Windows.Forms.ComboBox cbSelectEmpDepartment;
-        private System.Windows.Forms.Button btnShowEmp;
         private System.Windows.Forms.GroupBox gbxSearchEmp;
-        private System.Windows.Forms.Button btnSearchEmp;
         private System.Windows.Forms.TextBox tbxSearchEmp;
         private System.Windows.Forms.Button btnClearSelectedEmp;
         private System.Windows.Forms.Button btnEditEmp;

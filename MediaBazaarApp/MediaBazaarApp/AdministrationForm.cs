@@ -31,8 +31,8 @@ namespace MediaBazaarApp
         private double weight = 0;
         Point last;
         int afk;
-       
-       
+
+
 
         public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp,
             SalesManagement salesManagement, StockManagement stockManagement)
@@ -233,7 +233,7 @@ namespace MediaBazaarApp
         {
             if (!String.IsNullOrEmpty(tbxEmpFname.Text) && !String.IsNullOrEmpty(tbxEmpLname.Text) &&
                 !String.IsNullOrEmpty(dtpEmpDateOfBirth.Text) && cbEmpGender.Items.Contains(cbEmpGender.Text) &&
-                !String.IsNullOrEmpty(tbxEmpNationality.Text) && !String.IsNullOrEmpty(tbxEmpEmail.Text) && 
+                !String.IsNullOrEmpty(tbxEmpNationality.Text) && !String.IsNullOrEmpty(tbxEmpEmail.Text) &&
                 !String.IsNullOrEmpty(tbxEmpPhone.Text) &&
                 !String.IsNullOrEmpty(tbxEmpAddressStreet.Text) && !String.IsNullOrEmpty(tbxEmpAddressCity.Text) &&
                 !String.IsNullOrEmpty(tbxEmpAddressCountry.Text) && !String.IsNullOrEmpty(tbxEmpAddressPostCode.Text) &&
@@ -266,13 +266,13 @@ namespace MediaBazaarApp
             int hourlyWages;
             Department department;
 
-            
+
             if (CheckEmployeeFields())
             {
                 fname = tbxEmpFname.Text;
                 lname = tbxEmpLname.Text;
                 dateOfBirth = dtpEmpDateOfBirth.Value;
-                gender = (Gender)(Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
+                gender = (Gender) (Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
                 nationality = tbxEmpNationality.Text;
 
                 email = tbxEmpEmail.Text;
@@ -284,12 +284,12 @@ namespace MediaBazaarApp
                 bsn = tbxEmpBsn.Text;
 
                 emConName = tbxEmConName.Text;
-                emConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation),
+                emConRelation = (EmergencyContactRelation) Enum.Parse(typeof(EmergencyContactRelation),
                     cbEmConRelation.Text.ToString());
                 emConEmail = tbxEmConEmail.Text;
                 emConPhone = tbxEmConPhone.Text;
 
-                empType = (EmploymentType)(Enum.Parse(typeof(EmploymentType),
+                empType = (EmploymentType) (Enum.Parse(typeof(EmploymentType),
                     cbEmpEmploymentType.SelectedItem.ToString()));
 
                 hourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
@@ -301,7 +301,8 @@ namespace MediaBazaarApp
 
                 try
                 {
-                    if (department.AddEmployee(departmentManagement, fname, lname, dateOfBirth, nationality, gender, email,phone, street, city, country,
+                    if (department.AddEmployee(departmentManagement, fname, lname, dateOfBirth, nationality, gender,
+                        email, phone, street, city, country,
                         postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages,
                         startDate, endDate, department))
                     {
@@ -310,9 +311,10 @@ namespace MediaBazaarApp
                             bsn = "999999990";
                         }
 
-                        dbControl.AddEmployee(fname, lname, dateOfBirth, nationality, gender, email, phone, street, city, country,
+                        dbControl.AddEmployee(fname, lname, dateOfBirth, nationality, gender, email, phone, street,
+                            city, country,
                             postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages,
-                            startDate, endDate,department);
+                            startDate, endDate, department);
                         dbControl.GetEmployees(this.departmentManagement);
                         MessageBox.Show("You have successfully hired a new employee!");
                         ClearFields();
@@ -324,7 +326,7 @@ namespace MediaBazaarApp
                         MessageBox.Show("There is already an employee with the same email!");
                     }
                 }
-                catch(InputFieldException ex)
+                catch (InputFieldException ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -346,9 +348,9 @@ namespace MediaBazaarApp
                     .Select(x => new
                     {
                         ID = x.Id,
-                        FirstName = x.FirstName,
-                        LastName = x.LastName,
-                        Email = x.Email,
+                        x.FirstName,
+                        x.LastName,
+                        x.Email,
                         Department = x.Department.Name
 
                     }).ToList();
@@ -366,30 +368,32 @@ namespace MediaBazaarApp
             }*/
         }
 
-        private void btnShowEmp_Click(object sender, EventArgs e)
+        private void tabControlEmployees_Selected(object sender, TabControlEventArgs e)
+        {
+            if (tabControlEmployees.SelectedTab.Name == "ManageEmpTab")
+            {
+                cbSelectEmpDepartment.SelectedIndex = 0;
+                ShowEmployeesList(departmentManagement.GetAllEmployees());
+            }
+        }
+
+
+        private void cbSelectEmpDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             DBControl dbc = new DBControl();
             dbc.GetEmployees(this.departmentManagement);
             string departmentName;
 
-            if (cbSelectEmpDepartment.Items.Contains(cbSelectEmpDepartment.Text))
+
+            if (cbSelectEmpDepartment.SelectedItem.ToString() == "All")
             {
-                if (cbSelectEmpDepartment.Text == "All")
-                {
-                    ShowEmployeesList(departmentManagement.GetAllEmployees());
-                }
-                else
-                {
-                    departmentName = cbSelectEmpDepartment.SelectedItem.ToString();
-                    ShowEmployeesList(departmentManagement.GetEmployeesByDepartment(departmentName));
-                }
+                ShowEmployeesList(departmentManagement.GetAllEmployees());
             }
             else
             {
-                MessageBox.Show("Please, choose a filter to show list of employees!");
+                departmentName = cbSelectEmpDepartment.SelectedItem.ToString();
+                ShowEmployeesList(departmentManagement.GetEmployeesByDepartment(departmentName));
             }
-
-
         }
 
         public void RefreshEmployeesList()
@@ -416,11 +420,10 @@ namespace MediaBazaarApp
         {
             if (dgvEmployees.SelectedRows.Count > 0)
             {
-                int selectedEmpID = Convert.ToInt32(dgvEmployees.
-                    SelectedCells[0].Value.ToString());
+                int selectedEmpID = Convert.ToInt32(dgvEmployees.SelectedCells[0].Value.ToString());
                 string selectedEmpDepName = dgvEmployees.SelectedCells[4].Value.ToString();
-                Employee selectedEmp = departmentManagement.
-                    GetDepartment(selectedEmpDepName).GetEmployeeById(selectedEmpID);
+                Employee selectedEmp = departmentManagement.GetDepartment(selectedEmpDepName)
+                    .GetEmployeeById(selectedEmpID);
                 //Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
 
 
@@ -454,33 +457,47 @@ namespace MediaBazaarApp
             }
         }
 
-        private void btnSearchEmp_Click(object sender, EventArgs e)
+        private void tbxSearchEmp_TextChanged(object sender, EventArgs e)
         {
-            //lbxAllEmployees.Items.Clear();
-            dgvEmployees.DataBindings.Clear();
+            string searchInput = tbxSearchEmp.Text;
 
-            //TODO: Update search
-            /*string fullname;
-            if (!String.IsNullOrEmpty(tbxSearchEmp.Text))
+            if (searchInput == "")
             {
-                foreach (Employee emp in departmentManagement.GetAllEmployees())
-                {
-                    fullname = $"{emp.FirstName} {emp.LastName}";
-                    // case first name
-                    if (emp.FirstName == tbxSearchEmp.Text || emp.LastName == tbxSearchEmp.Text ||
-                        fullname == tbxSearchEmp.Text)
-                    {
-                        lbxAllEmployees.Items.Add(emp);
-                    }
-                }
-
-                tbxSearchEmp.Text = "Search...";
+                dgvDepartments.DataBindings.Clear();
             }
-            else
+
+            List<Employee> searchResults = new List<Employee>();
+
+            string fullname;
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
             {
-                MessageBox.Show("Please, write first name/last name or full name to search for employee!");
-            }*/
+                fullname = $"{emp.FirstName} {emp.LastName}";
+                
+                if(emp.FirstName.Contains(searchInput) || 
+                   emp.LastName.Contains(searchInput) ||
+                   fullname.Contains(searchInput))
+                {
+                    searchResults.Add(emp);
+                }
+                
+            }
+            var employeesDataSource =
+                searchResults.Where(x => x.Email != currentEmp.Email)
+                    .Select(x => new
+                    {
+                        ID = x.Id,
+                        x.FirstName,
+                        x.LastName,
+                        x.Email,
+                        Department = x.Department.Name
+
+                    }).ToList();
+
+            dgvEmployees.DataSource = employeesDataSource;
+            dgvEmployees.ClearSelection();
         }
+
+
 
         private void tbxSearchEmp_Click(object sender, EventArgs e)
         {
@@ -500,14 +517,13 @@ namespace MediaBazaarApp
                     isSuperuser = true;
                 }
 
-                int selectedEmpID = Convert.ToInt32(dgvEmployees.
-                    SelectedCells[0].Value.ToString());
+                int selectedEmpID = Convert.ToInt32(dgvEmployees.SelectedCells[0].Value.ToString());
                 string selectedEmpDepName = dgvEmployees.SelectedCells[4].Value.ToString();
-                Employee selectedEmp = departmentManagement.
-                    GetDepartment(selectedEmpDepName).GetEmployeeById(selectedEmpID);
-                 //Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
+                Employee selectedEmp = departmentManagement.GetDepartment(selectedEmpDepName)
+                    .GetEmployeeById(selectedEmpID);
+                //Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
 
-                 EditEmployeeForm editEmployeeForm = new EditEmployeeForm(this, departmentManagement,
+                EditEmployeeForm editEmployeeForm = new EditEmployeeForm(this, departmentManagement,
                     departmentManagement.GetDepartment(selectedEmp.Department.Name)
                         .GetEmployeeByEmail(selectedEmp.Email));
                 editEmployeeForm.FillComboBoxDepartments(isSuperuser);
@@ -536,6 +552,7 @@ namespace MediaBazaarApp
                 {
                     MessageBox.Show("The value you entered for the field price is not numeric.");
                 }
+
                 try
                 {
                     quantity = int.Parse(tbxStockQuantity.Text);
@@ -544,6 +561,7 @@ namespace MediaBazaarApp
                 {
                     MessageBox.Show("The value you entered for the field quantity is not a whole number.");
                 }
+
                 try
                 {
                     height = double.Parse(tbxStockHeight.Text);
@@ -552,6 +570,7 @@ namespace MediaBazaarApp
                 {
                     MessageBox.Show("The value you entered for the field height is not numeric.");
                 }
+
                 try
                 {
                     width = double.Parse(tbxStockWidth.Text);
@@ -560,6 +579,7 @@ namespace MediaBazaarApp
                 {
                     MessageBox.Show("The value you entered for the field width is not numeric.");
                 }
+
                 try
                 {
                     depth = double.Parse(tbxStockDepth.Text);
@@ -568,6 +588,7 @@ namespace MediaBazaarApp
                 {
                     MessageBox.Show("The value you entered for the field depth is not numeric.");
                 }
+
                 try
                 {
                     weight = double.Parse(tbxStockWeight.Text);
@@ -602,7 +623,8 @@ namespace MediaBazaarApp
                     DBControl dbControl = new DBControl();
                     if (stockManagement.SearchForStock(model, brand) == null)
                     {
-                        dbControl.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription, stockManagement);
+                        dbControl.AddStock(model, brand, price, quantity, height, width, depth, weight,
+                            shortDescription, stockManagement);
                     }
                     else
                     {
@@ -679,10 +701,13 @@ namespace MediaBazaarApp
 
         private bool StockTBXCheck()
         {
-            if (tbxStockModel.Text == "" || tbxStockBrand.Text == "" || tbxStockPrice.Text == "" || tbxStockQuantity.Text == "" || tbxStockWeight.Text == "" || tbxStockWidth.Text == "" || tbxStockHeight.Text == "" || tbxStockDepth.Text == "")
+            if (tbxStockModel.Text == "" || tbxStockBrand.Text == "" || tbxStockPrice.Text == "" ||
+                tbxStockQuantity.Text == "" || tbxStockWeight.Text == "" || tbxStockWidth.Text == "" ||
+                tbxStockHeight.Text == "" || tbxStockDepth.Text == "")
             {
                 return false;
             }
+
             return true;
 
         }
@@ -698,16 +723,16 @@ namespace MediaBazaarApp
         }
 
 
-        
 
-        
+
+
 
         private void lbxScheduleAllEmp_SelectedIndexChanged(object sender, EventArgs e)
         {
             Employee emp = null;
             DBControl dbc = new DBControl();
 
-            emp = (Employee)cbEmps.SelectedItem;
+            emp = (Employee) cbEmps.SelectedItem;
             dbc.GetShifts(departmentManagement);
 
             lbxSelectedEmpShifts.Items.Clear();
@@ -723,8 +748,8 @@ namespace MediaBazaarApp
 
         private void btnShift_Click(object sender, EventArgs e)
         {
-            Shift shift = (Shift)lbxSelectedEmpShifts.SelectedItem;
-            Employee emp = (Employee)cbEmps.SelectedItem;
+            Shift shift = (Shift) lbxSelectedEmpShifts.SelectedItem;
+            Employee emp = (Employee) cbEmps.SelectedItem;
 
             DBControl dbc = new DBControl();
 
@@ -791,7 +816,7 @@ namespace MediaBazaarApp
                         if (cbDepartmentManager.SelectedIndex != -1)
                         {
                             //dep with manager
-                            manager = (Employee)cbDepartmentManager.SelectedItem;
+                            manager = (Employee) cbDepartmentManager.SelectedItem;
                             //add locally and catch exceptions
 
                             //add to DB
@@ -933,7 +958,7 @@ namespace MediaBazaarApp
                     newName = tbxDepartmentNameEdit.Text;
                     if (cbDepartmentManagerEdit.SelectedIndex != -1)
                     {
-                        manager = (Employee)cbDepartmentManagerEdit.SelectedItem;
+                        manager = (Employee) cbDepartmentManagerEdit.SelectedItem;
                         //Update department locally and catch exceptions
                         dep.Name = newName;
                         //Update department into DB
@@ -1051,9 +1076,10 @@ namespace MediaBazaarApp
                 gbAssignShiftManually.Visible = true;
                 gbViewRemoveShifts.Visible = false;
 
-                Employee selectedEmp = (Employee)cbEmps.SelectedItem;
+                Employee selectedEmp = (Employee) cbEmps.SelectedItem;
 
-                lbEmpInfo.Text = $"Currently selected employee: {selectedEmp.FirstName} {selectedEmp.LastName} ({selectedEmp.Id})";
+                lbEmpInfo.Text =
+                    $"Currently selected employee: {selectedEmp.FirstName} {selectedEmp.LastName} ({selectedEmp.Id})";
             }
 
         }
@@ -1073,7 +1099,7 @@ namespace MediaBazaarApp
             }
             else
             {
-                Employee selectedEmp = (Employee)cbEmps.SelectedItem;
+                Employee selectedEmp = (Employee) cbEmps.SelectedItem;
                 bool wfh;
                 ShiftType type = new ShiftType();
                 DateTime date = dtpShiftDate.Value;
@@ -1099,6 +1125,7 @@ namespace MediaBazaarApp
                 {
                     type = ShiftType.Evening;
                 }
+
                 dbc.AddShift(type, date, currentEmp.Id, wfh, selectedEmp);
 
                 dbc.GetShifts(departmentManagement);
@@ -1130,7 +1157,7 @@ namespace MediaBazaarApp
         {
             lbxSelectedEmpShifts.Items.Clear();
 
-            Employee selectedEmp = (Employee)cbEmps.SelectedItem;
+            Employee selectedEmp = (Employee) cbEmps.SelectedItem;
 
             foreach (Shift s in selectedEmp.GetAllShifts())
             {
@@ -1152,7 +1179,7 @@ namespace MediaBazaarApp
 
         private void cbSelectedEmp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Employee selectedEmp = (Employee)cbSelectedEmp.SelectedItem;
+            Employee selectedEmp = (Employee) cbSelectedEmp.SelectedItem;
 
             cbEmployeesShifts.Items.Clear();
 
@@ -1182,7 +1209,7 @@ namespace MediaBazaarApp
 
         private void cbEmployeesShifts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Shift selectedShift = (Shift)cbEmployeesShifts.SelectedItem;
+            Shift selectedShift = (Shift) cbEmployeesShifts.SelectedItem;
 
             if (selectedShift != null)
             {
@@ -1209,7 +1236,7 @@ namespace MediaBazaarApp
 
         private void btnApplyAttendanceChanges_Click(object sender, EventArgs e)
         {
-            Shift selectedShift = (Shift)cbEmployeesShifts.SelectedItem;
+            Shift selectedShift = (Shift) cbEmployeesShifts.SelectedItem;
             bool attended;
 
             if (selectedShift != null)
@@ -1252,7 +1279,7 @@ namespace MediaBazaarApp
             {
                 foreach (Shift s in e.GetAllShifts())
                 {
-                    if (GetIso8601WeekOfYear(s.Date) == (int)cbWeekNumber.SelectedItem)
+                    if (GetIso8601WeekOfYear(s.Date) == (int) cbWeekNumber.SelectedItem)
                     {
                         if (s.ID != -1)
                         {
@@ -1279,7 +1306,8 @@ namespace MediaBazaarApp
                 time = time.AddDays(3);
             }
 
-            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek,
+                DayOfWeek.Monday);
         }
 
         private void cbWeekNumber_SelectedIndexChanged(object sender, EventArgs e)
@@ -1316,6 +1344,7 @@ namespace MediaBazaarApp
                     this.Close();
                 }
             }
+
             last = Cursor.Position;
         }
 
@@ -1324,26 +1353,31 @@ namespace MediaBazaarApp
             tabControlAdministration.SelectedTab = EmployeesTab;
             tabControlEmployees.SelectedTab = ManageEmpTab;
         }
+
         private void GoToHolidayLeaveRequests()
         {
             tabControlAdministration.SelectedTab = EmployeesTab;
             tabControlEmployees.SelectedTab = HolidayRequestsTab;
         }
+
         private void GoToWeeklySchedule()
         {
             tabControlAdministration.SelectedTab = SchedulingTab;
             tabControl1.SelectedTab = tbWeeklySchedule;
         }
+
         private void GoToManageAttendance()
         {
             tabControlAdministration.SelectedTab = SchedulingTab;
             tabControl1.SelectedTab = tpManageAttendance;
         }
+
         private void GoToManageStock()
         {
             tabControlAdministration.SelectedTab = StocksTab;
             tabControlStocks.SelectedTab = ManageStocksTab;
         }
+
         private void GoToManageDepartments()
         {
             tabControlAdministration.SelectedTab = ManageDepartmentsTab;
@@ -1511,7 +1545,7 @@ namespace MediaBazaarApp
                 }
             }
 
-            
+
 
             dbc.GetShifts(departmentManagement);
             //RefreshWeeklySchedule();
@@ -1553,7 +1587,8 @@ namespace MediaBazaarApp
 
             foreach (Stock s in stockManagement.GetAllStocks())
             {
-                if (s.Model.Contains(searchInput) || s.Brand.Contains(searchInput) || Convert.ToString(s.Id) == searchInput)
+                if (s.Model.Contains(searchInput) || s.Brand.Contains(searchInput) ||
+                    Convert.ToString(s.Id) == searchInput)
                 {
                     searchResults.Add(s);
                 }
@@ -1593,6 +1628,7 @@ namespace MediaBazaarApp
             shortcutLocations.Add(new Point(704, 448), true);
             shortcutLocations.Add(new Point(704, 535), true);
         }
+
         private void checkForShortcuts()
         {
             manageEmpShortcut.Visible = false;
@@ -1614,23 +1650,28 @@ namespace MediaBazaarApp
             {
                 activateShortCut(manageEmpShortcut);
             }
+
             if (holidayLeaveReqCH.Checked)
             {
                 activateShortCut(holidayLeaveRequestsShortcut);
             }
+
             if (weeklyScheduleCH.Checked)
             {
                 activateShortCut(weeklySchedukeShortcut);
             }
+
             if (manageAttendanceCH.Checked)
             {
                 activateShortCut(manageAttendanceShortcut);
             }
+
             if (manageStockCH.Checked)
             {
                 activateShortCut(manageStockShortcut);
             }
         }
+
         private void activateShortCut(Panel shortcut)
         {
             List<Point> keys = new List<Point>(shortcutLocations.Keys);
@@ -1675,13 +1716,14 @@ namespace MediaBazaarApp
                 ID = x.Id,
                 DepCode = x.DeptId,
                 Name = x.Name,
-               // Manager = $"{x.Manager.FirstName} {x.Manager.LastName}",
+                // Manager = $"{x.Manager.FirstName} {x.Manager.LastName}",
                 NumberOfEmployees = x.GetAllEmployees().Count
             }).ToList();
 
             dgvDepartments.DataSource = departmentDataSource;
             dgvDepartments.ClearSelection();
         }
+
     }
 }
 
