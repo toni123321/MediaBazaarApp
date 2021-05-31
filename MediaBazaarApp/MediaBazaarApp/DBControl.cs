@@ -25,7 +25,7 @@ namespace MediaBazaarApp
 
         public DBControl()
         {
-            this.ConnString = "Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345";
+            this.ConnString = "Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345;convert zero datetime=True;";
             //this.ConnString = "Server=localhost;Uid=root;Database=dbi453373;Pwd=123";
             // Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=yourPassword;
             //conn = new MySqlConnection("Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345;");
@@ -33,21 +33,22 @@ namespace MediaBazaarApp
         }
 
         // Employees
-        public void AddEmployee(string fname, string lname, DateTime dateOfBirth, Gender gender, string email,
+        public void AddEmployee(string fname, string lname, DateTime dateOfBirth, string nationality, Gender gender, string email,
             string phone, string street, string city, string country, string postcode, string bsn,
             string emConName, EmergencyContactRelation emConRelation, string emConEmail, string emConPhone,
-            EmploymentType empType, double hourlyWages, Department department)
+            EmploymentType empType, double hourlyWages, DateTime startDate, DateTime endDate, Department department)
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
-                    string sql = "INSERT INTO employee (FirstName, LastName, DateOfBirth, Gender, Email, PhoneNumber, Street, City, " +
+                    string sql = "INSERT INTO employee (FirstName, LastName, DateOfBirth, Nationality, Gender, Email, PhoneNumber, Street, City, " +
                                  "Country, PostCode, BSN, EmergencyContactName, EmergencyContactRelation, " +
-                                 "EmergencyContactEmail, EmergencyContactPhone, EmploymentType, HourlyWages, DepartmentID, " +
-                                 "RemainingHolidayDays) " +
-                                 "VALUES(@fname, @lname, @dob, @gender, @email, @phone, @street, @city, @country, @postcode, " +
-                                 "@bsn, @emConName, @emConRelation, @emConEmail, @emConPhone, @employmentType, @hourlyWages, @depId, " +
+                                 "EmergencyContactEmail, EmergencyContactPhone, EmploymentType, HourlyWages, StartDate, EndDate, " +
+                                 "DepartmentID, RemainingHolidayDays) " +
+                                 "VALUES(@fname, @lname, @dob, @nationality, @gender, @email, @phone, @street, @city, @country, @postcode, " +
+                                 "@bsn, @emConName, @emConRelation, @emConEmail, @emConPhone, @employmentType, @hourlyWages, @startDate, " +
+                                 "@endDate, @depId, " +
                                  "@remainingHolidayDays)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -55,6 +56,9 @@ namespace MediaBazaarApp
                     cmd.Parameters.AddWithValue("@fname", fname);
                     cmd.Parameters.AddWithValue("@lname", lname);
                     cmd.Parameters.AddWithValue("@dob", dateOfBirth);
+                    cmd.Parameters.AddWithValue("@nationality", nationality);
+
+
 
                     cmd.Parameters.AddWithValue("@gender", Convert.ToInt32(gender) + 1);
                     cmd.Parameters.AddWithValue("@email", email);
@@ -87,6 +91,9 @@ namespace MediaBazaarApp
 
                     cmd.Parameters.AddWithValue("@employmentType", employmentTypeInt);
                     cmd.Parameters.AddWithValue("@hourlyWages", hourlyWages);
+                    cmd.Parameters.AddWithValue("@startDate", startDate);
+                    cmd.Parameters.AddWithValue("@endDate", endDate);
+
                     cmd.Parameters.AddWithValue("@depId", department.Id);
 
 
@@ -141,6 +148,7 @@ namespace MediaBazaarApp
                                  "set FirstName = @fname, " +
                                  "LastName = @lname, " +
                                  "DateOfBirth = @dob, " +
+                                 "Nationality = @nationality, " +
                                  "Gender = @gender, " +
                                  "Email = @email, " +
                                  "PhoneNumber = @phone, " +
@@ -155,6 +163,8 @@ namespace MediaBazaarApp
                                  "EmergencyContactPhone = @emConPhone, " +
                                  "EmploymentType = @employmentType, " +
                                  "HourlyWages = @hourlyWages, " +
+                                 "StartDate = @startDate, " +
+                                 "EndDate = @endDate, " +
                                  "DepartmentID = @depId, " +
                                  "RemainingHolidayDays = @remainingHolidayDays " +
                                  "where id = @id";
@@ -164,6 +174,8 @@ namespace MediaBazaarApp
                     cmd.Parameters.AddWithValue("@fname", emp.FirstName);
                     cmd.Parameters.AddWithValue("@lname", emp.LastName);
                     cmd.Parameters.AddWithValue("@dob", emp.DateOfBirth);
+                    cmd.Parameters.AddWithValue("@nationality", emp.Nationality);
+
 
                     cmd.Parameters.AddWithValue("@gender", Convert.ToInt32(emp.Gender) + 1);
                     cmd.Parameters.AddWithValue("@email", emp.Email);
@@ -196,6 +208,9 @@ namespace MediaBazaarApp
 
                     cmd.Parameters.AddWithValue("@employmentType", employmentTypeInt);
                     cmd.Parameters.AddWithValue("@hourlyWages", emp.HourlyWages);
+                    cmd.Parameters.AddWithValue("@startDate", emp.StartDate);
+                    cmd.Parameters.AddWithValue("@endDate", emp.EndDate);
+
                     cmd.Parameters.AddWithValue("@depId", emp.Department.Id);
                     cmd.Parameters.AddWithValue("@remainingHolidayDays", emp.RemainingHolidayDays);
 
@@ -235,6 +250,7 @@ namespace MediaBazaarApp
                         string fname = dr[1].ToString();
                         string lname = dr[2].ToString();
                         DateTime dob = (DateTime)dr[3];
+                        string nationality = dr[4].ToString();
                         Gender gender = (Gender)Enum.Parse(typeof(Gender), dr[5].ToString());
                         string email = dr[6].ToString();
                         string phone = dr[7].ToString();
@@ -249,14 +265,27 @@ namespace MediaBazaarApp
                         string emConPhone = dr[16].ToString();
                         EmploymentType employmentType = (EmploymentType)Enum.Parse(typeof(EmploymentType), dr[17].ToString());
                         double hourlyWages = Convert.ToDouble(dr[18]);
+                        
+                        DateTime startDate = startDate = (DateTime)dr[19];
+                        
+                        DateTime endDate;
+                        if (String.IsNullOrEmpty(dr[20].ToString()))
+                        {
+                            endDate = DateTime.MinValue;
+                        }
+                        else
+                        {
+                            endDate = (DateTime) dr[20];
+                        }
+
                         int depId = Convert.ToInt32(dr[21]);
                         int remainingHolidayDays = Convert.ToInt32(dr[22]);
                         string depName = dr[23].ToString();
 
                         Department dep = departmentManagement.GetDepartment(depName);
-                        dep.AddEmployee(departmentManagement, fname, lname, dob, gender, email, phone,
+                        dep.AddEmployee(departmentManagement, fname, lname, dob, nationality, gender, email, phone,
                             street, city, country, postcode, bsn, emConName, emConRelation, emConEmail,
-                            emConPhone, employmentType, hourlyWages, dep);
+                            emConPhone, employmentType, hourlyWages, startDate, endDate, dep);
                         dep.GetEmployeeByEmail(email).Id = id;
                         dep.GetEmployeeByEmail(email).RemainingHolidayDays = remainingHolidayDays;
 

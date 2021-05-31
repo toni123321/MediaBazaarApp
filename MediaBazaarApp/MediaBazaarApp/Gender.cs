@@ -4,7 +4,6 @@
     {
         MALE,
         FEMALE,
-        NONBINARY,
         OTHER
     }
 }
