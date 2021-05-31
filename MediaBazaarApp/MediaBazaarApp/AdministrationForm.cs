@@ -341,14 +341,29 @@ namespace MediaBazaarApp
 
         public void ShowEmployeesList(List<Employee> employees)
         {
-            lbxAllEmployees.Items.Clear();
+            var employeesDataSource =
+                employees.Where(x => x.Email != currentEmp.Email)
+                    .Select(x => new
+                    {
+                        ID = x.Id,
+                        FirstName = x.FirstName,
+                        LastName = x.LastName,
+                        Email = x.Email,
+                        Department = x.Department.Name
+
+                    }).ToList();
+            dgvEmployees.DataSource = employeesDataSource;
+
+            dgvEmployees.ClearSelection();
+
+            /*lbxAllEmployees.Items.Clear();
             foreach (Employee emp in employees)
             {
                 if (emp.Email != currentEmp.Email) // Check if the emp is the currently logged user
                 {
                     lbxAllEmployees.Items.Add(emp);
                 }
-            }
+            }*/
         }
 
         private void btnShowEmp_Click(object sender, EventArgs e)
@@ -399,9 +414,14 @@ namespace MediaBazaarApp
 
         private void btnRemoveEmp_Click(object sender, EventArgs e)
         {
-            if (lbxAllEmployees.SelectedIndex != -1)
+            if (dgvEmployees.SelectedRows.Count > 0)
             {
-                Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
+                int selectedEmpID = Convert.ToInt32(dgvEmployees.
+                    SelectedCells[0].Value.ToString());
+                string selectedEmpDepName = dgvEmployees.SelectedCells[4].Value.ToString();
+                Employee selectedEmp = departmentManagement.
+                    GetDepartment(selectedEmpDepName).GetEmployeeById(selectedEmpID);
+                //Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
 
 
                 //Remove selected emp locally
@@ -436,9 +456,11 @@ namespace MediaBazaarApp
 
         private void btnSearchEmp_Click(object sender, EventArgs e)
         {
-            lbxAllEmployees.Items.Clear();
+            //lbxAllEmployees.Items.Clear();
+            dgvEmployees.DataBindings.Clear();
 
-            string fullname;
+            //TODO: Update search
+            /*string fullname;
             if (!String.IsNullOrEmpty(tbxSearchEmp.Text))
             {
                 foreach (Employee emp in departmentManagement.GetAllEmployees())
@@ -457,7 +479,7 @@ namespace MediaBazaarApp
             else
             {
                 MessageBox.Show("Please, write first name/last name or full name to search for employee!");
-            }
+            }*/
         }
 
         private void tbxSearchEmp_Click(object sender, EventArgs e)
@@ -470,15 +492,22 @@ namespace MediaBazaarApp
         private void btnEditEmp_Click(object sender, EventArgs e)
         {
             bool isSuperuser = false;
-            if (lbxAllEmployees.SelectedIndex != -1)
+
+            if (dgvEmployees.SelectedRows.Count > 0)
             {
                 if (currentEmp.Id == 1)
                 {
                     isSuperuser = true;
                 }
 
-                Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
-                EditEmployeeForm editEmployeeForm = new EditEmployeeForm(this, departmentManagement,
+                int selectedEmpID = Convert.ToInt32(dgvEmployees.
+                    SelectedCells[0].Value.ToString());
+                string selectedEmpDepName = dgvEmployees.SelectedCells[4].Value.ToString();
+                Employee selectedEmp = departmentManagement.
+                    GetDepartment(selectedEmpDepName).GetEmployeeById(selectedEmpID);
+                 //Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
+
+                 EditEmployeeForm editEmployeeForm = new EditEmployeeForm(this, departmentManagement,
                     departmentManagement.GetDepartment(selectedEmp.Department.Name)
                         .GetEmployeeByEmail(selectedEmp.Email));
                 editEmployeeForm.FillComboBoxDepartments(isSuperuser);
@@ -669,16 +698,9 @@ namespace MediaBazaarApp
         }
 
 
-        private void btnScheduleClearSelected_Click(object sender, EventArgs e)
-        {
-            ClearSelectionSchedule();
-        }
+        
 
-        private void ClearSelectionSchedule()
-        {
-            lbxSelectedEmpShifts.Items.Clear();
-            lbxAllEmployees.SelectedIndex = -1;
-        }
+        
 
         private void lbxScheduleAllEmp_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -971,9 +993,9 @@ namespace MediaBazaarApp
 
         private void btnClearSelectedEmp_Click(object sender, EventArgs e)
         {
-            if (lbxAllEmployees.SelectedIndex != -1)
+            if (dgvEmployees.SelectedRows.Count > 0)
             {
-                lbxAllEmployees.SelectedIndex = -1;
+                dgvEmployees.ClearSelection();
             }
             else
             {

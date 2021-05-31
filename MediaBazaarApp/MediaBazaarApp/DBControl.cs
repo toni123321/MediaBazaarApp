@@ -265,13 +265,14 @@ namespace MediaBazaarApp
                         string emConPhone = dr[16].ToString();
                         EmploymentType employmentType = (EmploymentType)Enum.Parse(typeof(EmploymentType), dr[17].ToString());
                         double hourlyWages = Convert.ToDouble(dr[18]);
-                        
-                        DateTime startDate = startDate = (DateTime)dr[19];
-                        
+
+                        DateTime startDate = (DateTime)dr[19];
+
                         DateTime endDate;
                         if (String.IsNullOrEmpty(dr[20].ToString()))
                         {
-                            endDate = DateTime.MinValue;
+                            //TODO: Update with real date
+                            endDate = DateTime.Now;
                         }
                         else
                         {
