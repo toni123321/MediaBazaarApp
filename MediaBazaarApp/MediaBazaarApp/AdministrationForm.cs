@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.Linq;
 
+
 namespace MediaBazaarApp
 {
     public partial class AdministrationForm : Form
@@ -56,7 +57,7 @@ namespace MediaBazaarApp
             cbWeekNumber.SelectedIndex = 1;
 
             RefreshWeeklySchedule();
-            UpdateDepartments();
+            UpdateDepartmentsDGV();
             UpdateCBXDepManager(cbDepartmentManager);
             UpdateDepsManualShiftPlanning();
 
@@ -120,14 +121,20 @@ namespace MediaBazaarApp
         }
 
 
-        private void UpdateDepartments()
+        private void UpdateDepartmentsDGV()
         {
-            lbxAllDepartments.Items.Clear();
-
-            foreach (Department dep in this.departmentManagement.GetAllDepartments())
+            var departmentsDataSource = departmentManagement.GetAllDepartments().Select(x => new
             {
-                lbxAllDepartments.Items.Add(dep);
-            }
+                ID = x.Id,
+                DepCode = x.DeptId,
+                Name = x.Name,
+                //Manager = $"{x.Manager.FirstName} {x.Manager.LastName}",
+                NumberOfEmployees = x.GetAllEmployees().Count
+            }).ToList();
+
+            dgvDepartments.DataSource = departmentsDataSource;
+
+            dgvDepartments.ClearSelection();
         }
 
         public bool CheckIsSuperuser()
@@ -411,7 +418,7 @@ namespace MediaBazaarApp
 
                     RefreshEmployeesList();
                     UpdateCBXDepManager(cbDepartmentManager);
-                    UpdateDepartments();
+                    UpdateDepartmentsDGV();
                     RefreshCbSelectEmpDepartment();
                     FillComboBoxDepartments();
 
@@ -781,7 +788,7 @@ namespace MediaBazaarApp
 
                         }
 
-                        UpdateDepartments();
+                        UpdateDepartmentsDGV();
                         tbxDepartmentName.Clear();
                         UpdateCBXDepManager(cbDepartmentManager);
                         cbDepartmentManager.Text = "Choose a manager";
@@ -808,9 +815,12 @@ namespace MediaBazaarApp
 
         private void btnRemoveDepartment_Click(object sender, EventArgs e)
         {
-            if (lbxAllDepartments.SelectedIndex != -1)
+            if (dgvDepartments.SelectedRows.Count > 0)
             {
-                Department dep = (Department)lbxAllDepartments.SelectedItem;
+
+                int id = Convert.ToInt32(dgvDepartments.SelectedCells[0].Value.ToString());
+                Department dep = departmentManagement.GetDepartment(id);
+
                 DBControl dbControl = new DBControl();
 
                 if (dep.GetAllEmployees().Count == 0)
@@ -820,7 +830,7 @@ namespace MediaBazaarApp
                     //dbControl.GetDepartments(this.departmentManagement);
                     MessageBox.Show($"You have successfully removed department with name:{dep.Name}");
 
-                    UpdateDepartments();
+                    UpdateDepartmentsDGV();
                     UpdateCBXDepManager(cbDepartmentManager);
                     RefreshCbSelectEmpDepartment();
                     FillComboBoxDepartments();
@@ -857,9 +867,11 @@ namespace MediaBazaarApp
 
         private void btnEditDepartment_Click(object sender, EventArgs e)
         {
-            if (lbxAllDepartments.SelectedIndex != -1)
+            if (dgvDepartments.SelectedRows.Count > 0)
             {
-                Department dep = (Department)lbxAllDepartments.SelectedItem;
+                int id = Convert.ToInt32(dgvDepartments.SelectedCells[0].Value.ToString());
+                Department dep = departmentManagement.GetDepartment(id);
+
                 tbxDepartmentNameEdit.Text = dep.Name;
                 UpdateCBXDepManager(cbDepartmentManagerEdit);
                 if (dep.Manager != null)
@@ -932,7 +944,7 @@ namespace MediaBazaarApp
                     cbDepartmentManagerEdit.Text = "Choose a manager";
                     gbxEditDepartment.Visible = false;
 
-                    UpdateDepartments();
+                    UpdateDepartmentsDGV();
                     UpdateCBXDepManager(cbDepartmentManager);
                     RefreshCbSelectEmpDepartment();
                     FillComboBoxDepartments();
@@ -953,14 +965,8 @@ namespace MediaBazaarApp
 
         private void btnDepartmentsClearSelected_Click(object sender, EventArgs e)
         {
-            if (lbxAllDepartments.SelectedIndex != -1)
-            {
-                lbxAllDepartments.SelectedIndex = -1;
-            }
-            else
-            {
-                MessageBox.Show("To unmark a line, you should have selected one beforehand!");
-            }
+            dgvDepartments.ClearSelection();
+
         }
 
         private void btnClearSelectedEmp_Click(object sender, EventArgs e)
@@ -975,33 +981,6 @@ namespace MediaBazaarApp
             }
         }
 
-        private void btnSearchDep_Click(object sender, EventArgs e)
-        {
-            lbxAllDepartments.Items.Clear();
-
-            if (!String.IsNullOrEmpty(tbxSearchDep.Text))
-            {
-                foreach (Department dep in departmentManagement.GetAllDepartments())
-                {
-                    // case first name
-                    if (dep.Name == tbxSearchDep.Text ||
-                        dep.DeptId == tbxSearchDep.Text)
-                    {
-                        lbxAllDepartments.Items.Add(dep);
-                    }
-                    else if ((dep.Manager != null && dep.Manager.FirstName == tbxSearchDep.Text))
-                    {
-                        lbxAllDepartments.Items.Add(dep);
-                    }
-                }
-                tbxSearchDep.Text = "Search...";
-            }
-            else
-            {
-                MessageBox.Show("Please, write down department Name to search!");
-            }
-        }
-
 
         private void tbxSearchDep_Click(object sender, EventArgs e)
         {
@@ -1013,7 +992,7 @@ namespace MediaBazaarApp
 
         private void btnShowAllDep_Click(object sender, EventArgs e)
         {
-            UpdateDepartments();
+            UpdateDepartmentsDGV();
         }
 
         private void tabControlAdministration_SelectedIndexChanged(object sender, EventArgs e)
@@ -1518,7 +1497,7 @@ namespace MediaBazaarApp
 
         public void UpdateDGVStock()
         {
-            var transactionsDataSource = stockManagement.GetAllStocks().Select(x => new
+            var stockDataSource = stockManagement.GetAllStocks().Select(x => new
             {
                 ID = x.Id,
                 Brand = x.Brand,
@@ -1533,7 +1512,7 @@ namespace MediaBazaarApp
                 Location = x.Location
             }).ToList();
 
-            dgvStock.DataSource = transactionsDataSource;
+            dgvStock.DataSource = stockDataSource;
 
             dgvStock.ClearSelection();
 
@@ -1558,7 +1537,7 @@ namespace MediaBazaarApp
                 }
             }
 
-            var transactionsDataSource = searchResults.Select(x => new
+            var stockDataSource = searchResults.Select(x => new
             {
                 ID = x.Id,
                 Brand = x.Brand,
@@ -1573,7 +1552,7 @@ namespace MediaBazaarApp
                 Location = x.Location
             }).ToList();
 
-            dgvStock.DataSource = transactionsDataSource;
+            dgvStock.DataSource = stockDataSource;
 
 
         }
@@ -1648,6 +1627,38 @@ namespace MediaBazaarApp
         private void ApplyShortcutsBTN_Click(object sender, EventArgs e)
         {
             checkForShortcuts();
+        }
+
+        private void tbxSearchDep_TextChanged(object sender, EventArgs e)
+        {
+            string searchInput = tbxSearchDep.Text;
+
+            if (searchInput == "")
+            {
+                dgvDepartments.DataBindings.Clear();
+            }
+
+            List<Department> searchResults = new List<Department>();
+
+            foreach (Department dep in departmentManagement.GetAllDepartments())
+            {
+                if (Convert.ToString(dep.Id) == searchInput || dep.Name.Contains(searchInput))
+                {
+                    searchResults.Add(dep);
+                }
+            }
+
+            var departmentDataSource = searchResults.Select(x => new
+            {
+                ID = x.Id,
+                DepCode = x.DeptId,
+                Name = x.Name,
+               // Manager = $"{x.Manager.FirstName} {x.Manager.LastName}",
+                NumberOfEmployees = x.GetAllEmployees().Count
+            }).ToList();
+
+            dgvDepartments.DataSource = departmentDataSource;
+            dgvDepartments.ClearSelection();
         }
     }
 }

@@ -32,24 +32,26 @@ namespace MediaBazaarApp
             this.components = new System.ComponentModel.Container();
             this.tabControlDepotWorkers = new System.Windows.Forms.TabControl();
             this.HomeTab = new System.Windows.Forms.TabPage();
-            this.MakeShelfRestockRequestsTab = new System.Windows.Forms.TabPage();
-            this.btnSehflRestockRequestsClearSelected = new System.Windows.Forms.Button();
-            this.btnShelftRestockRequestsMarkAsDone = new System.Windows.Forms.Button();
-            this.btnShelftRestockRequestsDecline = new System.Windows.Forms.Button();
-            this.lbxAllShelfRestockRequests = new System.Windows.Forms.ListBox();
-            this.HistoryShelfRestockTab = new System.Windows.Forms.TabPage();
-            this.lbHistoryShelfRestockRequests = new System.Windows.Forms.Label();
-            this.lbxHistoryShelfRestockRequests = new System.Windows.Forms.ListBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.lbTime = new System.Windows.Forms.Label();
             this.lbDateDayOfWeek = new System.Windows.Forms.Label();
             this.lbGreetingMsg = new System.Windows.Forms.Label();
+            this.MakeShelfRestockRequestsTab = new System.Windows.Forms.TabPage();
+            this.btnSehflRestockRequestsClearSelected = new System.Windows.Forms.Button();
+            this.btnShelftRestockRequestsMarkAsDone = new System.Windows.Forms.Button();
+            this.btnShelftRestockRequestsDecline = new System.Windows.Forms.Button();
+            this.HistoryShelfRestockTab = new System.Windows.Forms.TabPage();
+            this.lbHistoryShelfRestockRequests = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.dgvSRRdone = new System.Windows.Forms.DataGridView();
+            this.dgvSRRPending = new System.Windows.Forms.DataGridView();
             this.tabControlDepotWorkers.SuspendLayout();
             this.HomeTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.MakeShelfRestockRequestsTab.SuspendLayout();
             this.HistoryShelfRestockTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSRRdone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSRRPending)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlDepotWorkers
@@ -79,13 +81,54 @@ namespace MediaBazaarApp
             this.HomeTab.TabIndex = 3;
             this.HomeTab.Text = "Home";
             // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::MediaBazaarApp.Properties.Resources.MediaBazaarLogo;
+            this.pictureBox7.Location = new System.Drawing.Point(19, 395);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(223, 191);
+            this.pictureBox7.TabIndex = 15;
+            this.pictureBox7.TabStop = false;
+            // 
+            // lbTime
+            // 
+            this.lbTime.AutoSize = true;
+            this.lbTime.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTime.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbTime.Location = new System.Drawing.Point(51, 217);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(120, 54);
+            this.lbTime.TabIndex = 14;
+            this.lbTime.Text = "12:30";
+            // 
+            // lbDateDayOfWeek
+            // 
+            this.lbDateDayOfWeek.AutoSize = true;
+            this.lbDateDayOfWeek.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDateDayOfWeek.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbDateDayOfWeek.Location = new System.Drawing.Point(51, 277);
+            this.lbDateDayOfWeek.Name = "lbDateDayOfWeek";
+            this.lbDateDayOfWeek.Size = new System.Drawing.Size(278, 54);
+            this.lbDateDayOfWeek.TabIndex = 13;
+            this.lbDateDayOfWeek.Text = "Monday, 1 Jan";
+            // 
+            // lbGreetingMsg
+            // 
+            this.lbGreetingMsg.AutoSize = true;
+            this.lbGreetingMsg.Font = new System.Drawing.Font("Segoe UI", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbGreetingMsg.Location = new System.Drawing.Point(49, 142);
+            this.lbGreetingMsg.Name = "lbGreetingMsg";
+            this.lbGreetingMsg.Size = new System.Drawing.Size(533, 65);
+            this.lbGreetingMsg.TabIndex = 12;
+            this.lbGreetingMsg.Text = "Good morning, Name!";
+            // 
             // MakeShelfRestockRequestsTab
             // 
             this.MakeShelfRestockRequestsTab.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.MakeShelfRestockRequestsTab.Controls.Add(this.dgvSRRPending);
             this.MakeShelfRestockRequestsTab.Controls.Add(this.btnSehflRestockRequestsClearSelected);
             this.MakeShelfRestockRequestsTab.Controls.Add(this.btnShelftRestockRequestsMarkAsDone);
             this.MakeShelfRestockRequestsTab.Controls.Add(this.btnShelftRestockRequestsDecline);
-            this.MakeShelfRestockRequestsTab.Controls.Add(this.lbxAllShelfRestockRequests);
             this.MakeShelfRestockRequestsTab.Location = new System.Drawing.Point(4, 27);
             this.MakeShelfRestockRequestsTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MakeShelfRestockRequestsTab.Name = "MakeShelfRestockRequestsTab";
@@ -130,23 +173,11 @@ namespace MediaBazaarApp
             this.btnShelftRestockRequestsDecline.UseVisualStyleBackColor = false;
             this.btnShelftRestockRequestsDecline.Click += new System.EventHandler(this.btnShelftRestockRequestsDecline_Click);
             // 
-            // lbxAllShelfRestockRequests
-            // 
-            this.lbxAllShelfRestockRequests.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lbxAllShelfRestockRequests.FormattingEnabled = true;
-            this.lbxAllShelfRestockRequests.HorizontalScrollbar = true;
-            this.lbxAllShelfRestockRequests.ItemHeight = 18;
-            this.lbxAllShelfRestockRequests.Location = new System.Drawing.Point(26, 54);
-            this.lbxAllShelfRestockRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxAllShelfRestockRequests.Name = "lbxAllShelfRestockRequests";
-            this.lbxAllShelfRestockRequests.Size = new System.Drawing.Size(837, 418);
-            this.lbxAllShelfRestockRequests.TabIndex = 16;
-            // 
             // HistoryShelfRestockTab
             // 
             this.HistoryShelfRestockTab.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.HistoryShelfRestockTab.Controls.Add(this.dgvSRRdone);
             this.HistoryShelfRestockTab.Controls.Add(this.lbHistoryShelfRestockRequests);
-            this.HistoryShelfRestockTab.Controls.Add(this.lbxHistoryShelfRestockRequests);
             this.HistoryShelfRestockTab.Location = new System.Drawing.Point(4, 27);
             this.HistoryShelfRestockTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HistoryShelfRestockTab.Name = "HistoryShelfRestockTab";
@@ -164,64 +195,41 @@ namespace MediaBazaarApp
             this.lbHistoryShelfRestockRequests.TabIndex = 13;
             this.lbHistoryShelfRestockRequests.Text = "History of shelf restock requests";
             // 
-            // lbxHistoryShelfRestockRequests
-            // 
-            this.lbxHistoryShelfRestockRequests.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lbxHistoryShelfRestockRequests.FormattingEnabled = true;
-            this.lbxHistoryShelfRestockRequests.HorizontalScrollbar = true;
-            this.lbxHistoryShelfRestockRequests.ItemHeight = 18;
-            this.lbxHistoryShelfRestockRequests.Location = new System.Drawing.Point(28, 134);
-            this.lbxHistoryShelfRestockRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxHistoryShelfRestockRequests.Name = "lbxHistoryShelfRestockRequests";
-            this.lbxHistoryShelfRestockRequests.Size = new System.Drawing.Size(829, 382);
-            this.lbxHistoryShelfRestockRequests.TabIndex = 12;
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // pictureBox7
+            // dgvSRRdone
             // 
-            this.pictureBox7.Image = global::MediaBazaarApp.Properties.Resources.MediaBazaarLogo;
-            this.pictureBox7.Location = new System.Drawing.Point(19, 395);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(223, 191);
-            this.pictureBox7.TabIndex = 15;
-            this.pictureBox7.TabStop = false;
+            this.dgvSRRdone.AllowUserToAddRows = false;
+            this.dgvSRRdone.AllowUserToDeleteRows = false;
+            this.dgvSRRdone.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSRRdone.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSRRdone.Location = new System.Drawing.Point(17, 123);
+            this.dgvSRRdone.Name = "dgvSRRdone";
+            this.dgvSRRdone.ReadOnly = true;
+            this.dgvSRRdone.RowHeadersWidth = 51;
+            this.dgvSRRdone.RowTemplate.Height = 24;
+            this.dgvSRRdone.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSRRdone.Size = new System.Drawing.Size(860, 417);
+            this.dgvSRRdone.TabIndex = 25;
             // 
-            // lbTime
+            // dgvSRRPending
             // 
-            this.lbTime.AutoSize = true;
-            this.lbTime.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTime.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbTime.Location = new System.Drawing.Point(51, 217);
-            this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(120, 54);
-            this.lbTime.TabIndex = 14;
-            this.lbTime.Text = "12:30";
-            // 
-            // lbDateDayOfWeek
-            // 
-            this.lbDateDayOfWeek.AutoSize = true;
-            this.lbDateDayOfWeek.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDateDayOfWeek.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbDateDayOfWeek.Location = new System.Drawing.Point(51, 277);
-            this.lbDateDayOfWeek.Name = "lbDateDayOfWeek";
-            this.lbDateDayOfWeek.Size = new System.Drawing.Size(278, 54);
-            this.lbDateDayOfWeek.TabIndex = 13;
-            this.lbDateDayOfWeek.Text = "Monday, 1 Jan";
-            // 
-            // lbGreetingMsg
-            // 
-            this.lbGreetingMsg.AutoSize = true;
-            this.lbGreetingMsg.Font = new System.Drawing.Font("Segoe UI", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbGreetingMsg.Location = new System.Drawing.Point(49, 142);
-            this.lbGreetingMsg.Name = "lbGreetingMsg";
-            this.lbGreetingMsg.Size = new System.Drawing.Size(533, 65);
-            this.lbGreetingMsg.TabIndex = 12;
-            this.lbGreetingMsg.Text = "Good morning, Name!";
+            this.dgvSRRPending.AllowUserToAddRows = false;
+            this.dgvSRRPending.AllowUserToDeleteRows = false;
+            this.dgvSRRPending.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSRRPending.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSRRPending.Location = new System.Drawing.Point(6, 31);
+            this.dgvSRRPending.Name = "dgvSRRPending";
+            this.dgvSRRPending.ReadOnly = true;
+            this.dgvSRRPending.RowHeadersWidth = 51;
+            this.dgvSRRPending.RowTemplate.Height = 24;
+            this.dgvSRRPending.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSRRPending.Size = new System.Drawing.Size(880, 443);
+            this.dgvSRRPending.TabIndex = 25;
             // 
             // DepotWorkersForm
             // 
@@ -238,10 +246,12 @@ namespace MediaBazaarApp
             this.tabControlDepotWorkers.ResumeLayout(false);
             this.HomeTab.ResumeLayout(false);
             this.HomeTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.MakeShelfRestockRequestsTab.ResumeLayout(false);
             this.HistoryShelfRestockTab.ResumeLayout(false);
             this.HistoryShelfRestockTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSRRdone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSRRPending)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -253,15 +263,15 @@ namespace MediaBazaarApp
         private System.Windows.Forms.TabPage MakeShelfRestockRequestsTab;
         private System.Windows.Forms.TabPage HistoryShelfRestockTab;
         private System.Windows.Forms.Label lbHistoryShelfRestockRequests;
-        private System.Windows.Forms.ListBox lbxHistoryShelfRestockRequests;
         private System.Windows.Forms.Button btnSehflRestockRequestsClearSelected;
         private System.Windows.Forms.Button btnShelftRestockRequestsMarkAsDone;
         private System.Windows.Forms.Button btnShelftRestockRequestsDecline;
-        private System.Windows.Forms.ListBox lbxAllShelfRestockRequests;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Label lbDateDayOfWeek;
         private System.Windows.Forms.Label lbGreetingMsg;
+        private System.Windows.Forms.DataGridView dgvSRRPending;
+        private System.Windows.Forms.DataGridView dgvSRRdone;
     }
 }

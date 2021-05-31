@@ -1,6 +1,11 @@
 ﻿using System;
-using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace MediaBazaarApp
 {
@@ -21,7 +26,8 @@ namespace MediaBazaarApp
             this.stockManagement = stockManagement;
             this.dbc = new DBControl();
 
-            UpdateHistoryListBox();
+            UpdateStockDGV();
+            UpdateAllSRR_DGV();
             WelcomeMessage();
         }
 
@@ -67,32 +73,64 @@ namespace MediaBazaarApp
             loginForm.Show();
         }
 
-        private void btnShowAllStocks_Click(object sender, EventArgs e)
+        public void UpdateStockDGV()
         {
-            foreach (Stock stock in stockManagement.GetAllStocks())
+            var stockDataSource = stockManagement.GetAllStocks().Select(x => new
             {
-                lbxAllStocks.Items.Add(stock);
-            }
+                ID = x.Id,
+                Brand = x.Brand,
+                Model = x.Model,
+                AvailableQuantity = x.Quantity
+            }).ToList();
+
+            dgvStock.DataSource = stockDataSource;
+
+            dgvStock.ClearSelection();
         }
 
         private void btnClearSelected_Click(object sender, EventArgs e)
         {
-            lbxAllStocks.SelectedIndex = -1;
+            dgvStock.ClearSelection();
         }
 
-        public void UpdateHistoryListBox()
+        public void UpdateAllSRR_DGV()
         {
-            foreach (ShelfRestockRequest srr in salesManagement.GetAllSRRRequests())
+            List<ShelfRestockRequest> SRR_all = new List<ShelfRestockRequest>();
+
+            dbc.GetShelfRestockRequests(salesManagement, stockManagement);
+
+            if (salesManagement != null)
             {
-                lbxHistoryShelfRestockRequests.Items.Add(srr.ToString());
+                foreach (ShelfRestockRequest srr in salesManagement.GetAllSRRRequests())
+                {
+                    SRR_all.Add(srr);
+                }
             }
+
+            var doneSRRDataSource = SRR_all.Select(x => new
+            {
+                ID = x.ID,
+                Brand = x.Stock.Brand,
+                Model = x.Stock.Model,
+                RequestedQuantity = x.RequestedQuantity,
+                Status = x.Status
+            }).ToList();
+
+
+            dgvSRRall.DataSource = doneSRRDataSource;
+            dgvSRRall.ClearSelection();
         }
 
         private void btnMakeShelfRestockRequest_Click(object sender, EventArgs e)
         {
-            Stock stock = (Stock)lbxAllStocks.SelectedItem;
-            gbxStockChooseQuantity.Visible = true;
-            lbStockInfo.Text = $"{stock.Brand} {stock.Model}";
+            if (dgvStock.SelectedRows.Count > 0)
+            {   
+                int id = Convert.ToInt32(dgvStock.SelectedCells[0].Value.ToString());
+                Stock stock = stockManagement.GetStock(id);
+
+                gbxStockChooseQuantity.Visible = true;
+                lbStockInfo.Text = $"{stock.Brand} {stock.Model}";
+            }
         }
 
         private void btnConfirmRequest_Click(object sender, EventArgs e)
@@ -101,18 +139,23 @@ namespace MediaBazaarApp
 
             if (isValid)
             {
-                Stock stock = (Stock)lbxAllStocks.SelectedItem;
+                int id = Convert.ToInt32(dgvStock.SelectedCells[0].Value.ToString());
+                Stock stock = stockManagement.GetStock(id);
+
                 int quantity = Convert.ToInt32(tbxStockQuantity.Text);
 
-                dbc.AddShelfRestockRequest(stock, quantity, this.currentEmp.Id, SRRstatus.Pending);
+                if (stock != null)
+                {
+                    dbc.AddShelfRestockRequest(stock, quantity, this.currentEmp.Id, SRRstatus.Pending);
+                }
+
                 dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
 
-                //salesManagement.AddRequest(stock, quantity, this.currentEmp.Id);
 
                 gbxStockChooseQuantity.Visible = false;
                 lbStockQuantity.Text = "";
 
-                UpdateHistoryListBox();
+                UpdateAllSRR_DGV();
             }
             else
             {
@@ -120,35 +163,44 @@ namespace MediaBazaarApp
             }
         }
 
-        private void btnSearchStock_Click(object sender, EventArgs e)
-        {
-            foreach (Stock s in stockManagement.GetAllStocks())
-            {
-                if (s.Brand.Contains(tbxSearchStock.Text) || s.Model.Contains(tbxSearchStock.Text))
-                {
-                    lbxAllStocks.Items.Add(s);
-                }
-            }
-        }
-
-        private void SalesForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnShowAllStocks_Click_1(object sender, EventArgs e)
         {
-            lbxAllStocks.Items.Clear();
-
-            foreach (Stock s in stockManagement.GetAllStocks())
-            {
-                lbxAllStocks.Items.Add(s);
-            }
+            UpdateStockDGV();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             WelcomeMessage();
+        }
+
+        private void tbxSearchStock_TextChanged(object sender, EventArgs e)
+        {
+            string searchInput = tbxSearchStock.Text;
+
+            if (searchInput == "")
+            {
+                dgvStock.DataBindings.Clear();
+            }
+
+            List<Stock> searchResults = new List<Stock>();
+
+            foreach (Stock s in stockManagement.GetAllStocks())
+            {
+                if (s.Model.Contains(searchInput) || s.Brand.Contains(searchInput) || Convert.ToString(s.Id) == searchInput)
+                {
+                    searchResults.Add(s);
+                }
+            }
+
+            var stockDataSource = searchResults.Select(x => new
+            {
+                ID = x.Id,
+                Brand = x.Brand,
+                Model = x.Model,
+                AvailableQuantity = x.Quantity
+            }).ToList();
+
+            dgvStock.DataSource = stockDataSource;
         }
     }
 }
