@@ -246,6 +246,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\outline_history_black_24dp.png" />
+    <None Include="Resources\outline_swap_horiz_black_24dp.png" />
     <None Include="Resources\MediaBazaarLogo1.png" />
     <None Include="Resources\round_circle_notifications_black_48dp.png" />
     <None Include="Resources\MediaBazaarLogo.png" />

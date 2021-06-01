@@ -15,7 +15,7 @@ namespace MediaBazaarApp
         private Employee currentEmp;
         private StockManagement stockManagement;
         private DBControl dbc;
-
+        private Dictionary<Point, bool> shortcutLocations;
 
         public DepotWorkersForm(DepartmentManagement departmentManagement, Employee currentEmp, SalesManagement salesManagement, StockManagement stockManagement)
         {
@@ -25,6 +25,9 @@ namespace MediaBazaarApp
             this.salesManagement = salesManagement;
             this.stockManagement = stockManagement;
             this.dbc = new DBControl();
+            shortcutLocations = new Dictionary<Point, bool>();
+
+            setShortcutLocationtions();
 
             lbGreetingMsg.Text = $"Hello, {currentEmp.FirstName}";
 
@@ -166,6 +169,92 @@ namespace MediaBazaarApp
         private void timer1_Tick(object sender, EventArgs e)
         {
             WelcomeMessage();
+        }
+        private void setShortcutLocationtions()
+        {
+            shortcutLocations.Add(new Point(514, 395), true);
+            shortcutLocations.Add(new Point(514, 481), true);
+        }
+        private void checkForShortcuts()
+        {
+            requestShortcut.Visible = false;
+            historyShortcut.Visible = false;
+
+            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+
+            foreach (Point k in keys)
+            {
+                shortcutLocations[k] = true;
+            }
+
+            if (reqCH.Checked)
+            {
+                activateShortCut(requestShortcut);
+            }
+
+            if (historyCH.Checked)
+            {
+                activateShortCut(historyShortcut);
+            }
+        }
+
+        private void activateShortCut(Panel shortcut)
+        {
+            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+            foreach (Point k in keys)
+            {
+                if (shortcutLocations[k] == true)
+                {
+                    shortcut.Location = k;
+                    shortcut.Visible = true;
+                    shortcutLocations[k] = false;
+                    break;
+                }
+            }
+        }
+
+        private void ApplyShortcutsBTN_Click_1(object sender, EventArgs e)
+        {
+            checkForShortcuts();
+        }
+
+        private void GoToRequests()
+        {
+            tabControlDepotWorkers.SelectedTab = MakeShelfRestockRequestsTab;
+        }
+        private void GoToHistory()
+        {
+            tabControlDepotWorkers.SelectedTab = HistoryShelfRestockTab;
+        }
+
+        private void RequestShortcut_Click(object sender, EventArgs e)
+        {
+            GoToRequests();
+        }
+
+        private void ReqLBL_Click(object sender, EventArgs e)
+        {
+            GoToRequests();
+        }
+
+        private void ReqPic_Click(object sender, EventArgs e)
+        {
+            GoToRequests();
+        }
+
+        private void HistoryShortcut_Click(object sender, EventArgs e)
+        {
+            GoToHistory();
+        }
+
+        private void HistoryLBL_Click(object sender, EventArgs e)
+        {
+            GoToHistory();
+        }
+
+        private void HistoryPic_Click(object sender, EventArgs e)
+        {
+            GoToHistory();
         }
     }
 }
