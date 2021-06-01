@@ -1049,6 +1049,10 @@ namespace MediaBazaarApp
             {
                 UpdateCBXDepManager(cbDepartmentManager);
             }
+            else if (tabControlAdministration.SelectedTab == tabPageEditAccountRequests)
+            {
+                UpdateDVGEditAccountRequests();
+            }
         }
 
 
@@ -1725,6 +1729,18 @@ namespace MediaBazaarApp
             dgvDepartments.DataSource = departmentDataSource;
             dgvDepartments.ClearSelection();
         }
+
+        public void UpdateDVGEditAccountRequests()
+        {
+            // TODO:
+            // 1) Get requests here from departmentManagement or from db
+            // 2) Add new values to data grid view
+
+            //var editAccountRequestsDataSource = ;
+        }
+
+        // TODO: Make Accept, Decline buttons to work for the requests
+
 
     }
 }
