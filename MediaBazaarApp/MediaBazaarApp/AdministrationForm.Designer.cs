@@ -189,11 +189,9 @@ namespace MediaBazaarApp
             this.btnRemoveEmp = new System.Windows.Forms.Button();
             this.lbxAllEmployees = new System.Windows.Forms.ListBox();
             this.HolidayRequestsTab = new System.Windows.Forms.TabPage();
-            this.lbHolidayRequestsInfo = new System.Windows.Forms.Label();
             this.btnHolidayRequestsClearSelected = new System.Windows.Forms.Button();
             this.btnHolidayRequestsDecline = new System.Windows.Forms.Button();
             this.btnHolidayRequestsAccept = new System.Windows.Forms.Button();
-            this.lbxAllHolidayRequests = new System.Windows.Forms.ListBox();
             this.HomeTab = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
@@ -2096,27 +2094,15 @@ namespace MediaBazaarApp
             // HolidayRequestsTab
             // 
             this.HolidayRequestsTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.HolidayRequestsTab.Controls.Add(this.lbHolidayRequestsInfo);
             this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsClearSelected);
             this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsDecline);
             this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsAccept);
-            this.HolidayRequestsTab.Controls.Add(this.lbxAllHolidayRequests);
             this.HolidayRequestsTab.Location = new System.Drawing.Point(4, 29);
             this.HolidayRequestsTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HolidayRequestsTab.Name = "HolidayRequestsTab";
             this.HolidayRequestsTab.Size = new System.Drawing.Size(1093, 788);
             this.HolidayRequestsTab.TabIndex = 2;
             this.HolidayRequestsTab.Text = "Holiday requests";
-            // 
-            // lbHolidayRequestsInfo
-            // 
-            this.lbHolidayRequestsInfo.AutoSize = true;
-            this.lbHolidayRequestsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHolidayRequestsInfo.Location = new System.Drawing.Point(429, 58);
-            this.lbHolidayRequestsInfo.Name = "lbHolidayRequestsInfo";
-            this.lbHolidayRequestsInfo.Size = new System.Drawing.Size(160, 18);
-            this.lbHolidayRequestsInfo.TabIndex = 9;
-            this.lbHolidayRequestsInfo.Text = "New holiday request";
             // 
             // btnHolidayRequestsClearSelected
             // 
@@ -2147,17 +2133,6 @@ namespace MediaBazaarApp
             this.btnHolidayRequestsAccept.TabIndex = 6;
             this.btnHolidayRequestsAccept.Text = "Accept";
             this.btnHolidayRequestsAccept.UseVisualStyleBackColor = true;
-            // 
-            // lbxAllHolidayRequests
-            // 
-            this.lbxAllHolidayRequests.FormattingEnabled = true;
-            this.lbxAllHolidayRequests.HorizontalScrollbar = true;
-            this.lbxAllHolidayRequests.ItemHeight = 20;
-            this.lbxAllHolidayRequests.Location = new System.Drawing.Point(229, 118);
-            this.lbxAllHolidayRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxAllHolidayRequests.Name = "lbxAllHolidayRequests";
-            this.lbxAllHolidayRequests.Size = new System.Drawing.Size(562, 364);
-            this.lbxAllHolidayRequests.TabIndex = 5;
             // 
             // HomeTab
             // 
@@ -2643,7 +2618,6 @@ namespace MediaBazaarApp
             this.gbxSearchEmp.ResumeLayout(false);
             this.gbxSearchEmp.PerformLayout();
             this.HolidayRequestsTab.ResumeLayout(false);
-            this.HolidayRequestsTab.PerformLayout();
             this.HomeTab.ResumeLayout(false);
             this.HomeTab.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -2832,11 +2806,9 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnRemoveEmp;
         private System.Windows.Forms.ListBox lbxAllEmployees;
         private System.Windows.Forms.TabPage HolidayRequestsTab;
-        private System.Windows.Forms.Label lbHolidayRequestsInfo;
         private System.Windows.Forms.Button btnHolidayRequestsClearSelected;
         private System.Windows.Forms.Button btnHolidayRequestsDecline;
         private System.Windows.Forms.Button btnHolidayRequestsAccept;
-        private System.Windows.Forms.ListBox lbxAllHolidayRequests;
         private System.Windows.Forms.TabPage HomeTab;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label8;
