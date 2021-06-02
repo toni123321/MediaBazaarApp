@@ -24,6 +24,19 @@ namespace MediaBazaarApp
             return false;
         }
 
+        public Employee GetEmployeeById(int id)
+        {
+            foreach (Employee emp in GetAllEmployees())
+            {
+                if (emp.Id == id)
+                {
+                    return emp;
+                }
+            }
+
+            return null;
+        }
+
         public bool AddDepartment(string name, Employee manager)
         {
             if (GetDepartment(name) == null)

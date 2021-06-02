@@ -1768,13 +1768,14 @@ namespace MediaBazaarApp
 
                 if (curRequest.Status != "InProgress")
                 {
-                    MessageBox.Show("This request is already proceed!");
+                    MessageBox.Show("This request is already processed!");
                 }
                 else
                 {
-                    editAccountRequestsManager.AcceptRequest(requestId);
+                    editAccountRequestsManager.AcceptRequest(requestId, this.departmentManagement);
                     cbFilterEditAccountRequests.SelectedIndex = 0;
                     UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                    MessageBox.Show("You have accepted this request!");
                 }
             }
             else
@@ -1793,13 +1794,14 @@ namespace MediaBazaarApp
 
                 if (curRequest.Status != "InProgress")
                 {
-                    MessageBox.Show("This request is already proceed!");
+                    MessageBox.Show("This request is already processed!");
                 }
                 else
                 {
                     editAccountRequestsManager.DeclineRequest(requestId);
                     cbFilterEditAccountRequests.SelectedIndex = 0;
                     UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                    MessageBox.Show("You have declined this request!");
                 }
             }
             else

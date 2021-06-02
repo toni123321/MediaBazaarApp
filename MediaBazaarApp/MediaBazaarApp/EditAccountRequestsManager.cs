@@ -36,13 +36,32 @@ namespace MediaBazaarApp
             return null;
         }
 
-        public void AcceptRequest(int requestId)
+        public void AcceptRequest(int requestId, DepartmentManagement departmentManagement)
         {
             // Update db with new request status
             EditAccountRequest editedRequest = GetEditAccountRequest(requestId);
             editedRequest.Status = "Accepted";
+            // Update the edit account request
             this.storage.UpdateEditAccountRequest(editedRequest);
             LoadDataFromStorage();
+
+            Employee currEmp = departmentManagement.GetEmployeeById(requestId);
+            
+            currEmp.Email = editedRequest.Email;
+            currEmp.PhoneNumber = editedRequest.PhoneNumber;
+            currEmp.Street = editedRequest.Street;
+            currEmp.City = editedRequest.City;
+            currEmp.Country = editedRequest.Country;
+            currEmp.Postcode = editedRequest.Postcode;
+
+            //Emergency contact details
+            currEmp.EmConName = editedRequest.EmConName; 
+            currEmp.EmConRelation = editedRequest.EmConRelation;
+            currEmp.EmConEmail = editedRequest.EmConEmail;
+            currEmp.EmConPhoneNum = editedRequest.EmConPhone;
+            storage.EditEmployee(currEmp);
+            storage.GetEmployees(departmentManagement);
+
         }
 
         public void DeclineRequest(int requestId)
