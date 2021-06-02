@@ -281,6 +281,7 @@ namespace MediaBazaarApp
 
                         int depId = Convert.ToInt32(dr[21]);
                         int remainingHolidayDays = Convert.ToInt32(dr[22]);
+                        
                         string depName = dr[23].ToString();
 
                         Department dep = departmentManagement.GetDepartment(depName);
@@ -1010,6 +1011,106 @@ namespace MediaBazaarApp
             }
         }
 
+        public IList<EditAccountRequest> GetEditAccountRequests()
+        {
+            IList<EditAccountRequest> editAccountRequests = new List<EditAccountRequest>();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
 
+                    string sql = "SELECT * FROM pending_changed_details";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        int id = Convert.ToInt32(dr[0]);
+                        string email = dr[1].ToString();
+                        string phone = dr[2].ToString();
+                        string street = dr[3].ToString();
+                        string city = dr[4].ToString();
+                        string country = dr[5].ToString();
+                        string postcode = dr[6].ToString();
+                        string emConName = dr[7].ToString();
+                        EmergencyContactRelation emConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation), dr[8].ToString());
+                        string emConEmail = dr[9].ToString();
+                        string emConPhone = dr[10].ToString();
+                        string status = dr[11].ToString();
+                        DateTime requestDate = (DateTime)dr[12];
+
+                        EditAccountRequest editAccountRequest = new
+                            EditAccountRequest(id, email, phone, street, city, country,
+                                postcode, emConName, emConRelation, emConEmail,
+                                emConPhone, status, requestDate);
+                        editAccountRequests.Add(editAccountRequest);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+            return editAccountRequests;
+        }
+
+        public void UpdateEditAccountRequest(EditAccountRequest editAccountRequest)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "UPDATE pending_changed_details " +
+                                 "set Email = @email, " +
+                                 "PhoneNumber = @phone, " +
+                                 "Street = @street, " +
+                                 "City = @city, " +
+                                 "Country = @country, " +
+                                 "PostCode = @postcode, " +
+                                 "EmergencyContactName = @emConName, " +
+                                 "EmergencyContactRelation = @emConRelation, " +
+                                 "EmergencyContactEmail = @emConEmail, " +
+                                 "Status = @status, " +
+                                 "RequestDate = @requestDate " +
+                                 "where id = @id";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@email", editAccountRequest.Email);
+                    cmd.Parameters.AddWithValue("@phone", editAccountRequest.PhoneNumber);
+
+                    cmd.Parameters.AddWithValue("@street", editAccountRequest.Street);
+                    cmd.Parameters.AddWithValue("@city", editAccountRequest.City);
+                    cmd.Parameters.AddWithValue("@country", editAccountRequest.Country);
+
+                    cmd.Parameters.AddWithValue("@postcode", editAccountRequest.Postcode);
+                    cmd.Parameters.AddWithValue("@emConName", editAccountRequest.EmConName);
+                    cmd.Parameters.AddWithValue("@emConRelation", Convert.ToInt32(editAccountRequest.EmConRelation) + 1);
+                    cmd.Parameters.AddWithValue("@emConEmail", editAccountRequest.EmConEmail);
+                    cmd.Parameters.AddWithValue("@emConPhone", editAccountRequest.EmConPhone);
+
+                    cmd.Parameters.AddWithValue("@status", editAccountRequest.Status);
+                    cmd.Parameters.AddWithValue("@requestDate", editAccountRequest.RequestDate);
+
+                    cmd.Parameters.AddWithValue("@id", editAccountRequest.Id);
+                    
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

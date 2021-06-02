@@ -32,6 +32,8 @@ namespace MediaBazaarApp
         Point last;
         int afk;
 
+        // Manager for edit account requests
+        private EditAccountRequestsManager editAccountRequestsManager;
 
 
         public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp,
@@ -72,6 +74,9 @@ namespace MediaBazaarApp
             EmpFillDefaultValues();
 
             WelcomeMessage();
+
+            // Initializing the edit account requests manager
+            editAccountRequestsManager = new EditAccountRequestsManager();
 
         }
 
@@ -1736,7 +1741,25 @@ namespace MediaBazaarApp
             // 1) Get requests here from departmentManagement or from db
             // 2) Add new values to data grid view
 
-            //var editAccountRequestsDataSource = ;
+            var editAccountRequestsDataSource =
+                editAccountRequestsManager.GetAllEditAccountRequests().Select(x => new
+                {
+                    ID = x.Id,
+                    x.Email,
+                    x.PhoneNumber,
+                    x.Street,
+                    x.City,
+                    x.Country,
+                    x.Postcode,
+                    EmergencyContactName = x.EmConName,
+                    EmergencyContactRelation = x.EmConRelation,
+                    EmergencyContactEmail = x.EmConEmail,
+                    EmergencyContactPhone = x.EmConPhone,
+                    x.Status,
+                    x.RequestDate
+                }).ToList();
+            dgvEditAccountRequests.DataSource = editAccountRequestsDataSource;
+            dgvEditAccountRequests.ClearSelection();
         }
 
         // TODO: Make Accept, Decline buttons to work for the requests

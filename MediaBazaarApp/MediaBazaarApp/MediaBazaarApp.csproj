@@ -125,6 +125,8 @@
     <Compile Include="DBControl.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="DepartmentManagement.cs" />
+    <Compile Include="EditAccountRequest.cs" />
+    <Compile Include="EditAccountRequestsManager.cs" />
     <Compile Include="IntegerValueExpected.cs" />
     <Compile Include="NotAllFieldFilled.cs" />
     <Compile Include="SalesForm.cs">
