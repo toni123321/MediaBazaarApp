@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using MediaBazaarApp;
 
 namespace MediaBazaarApp
 {
@@ -10,11 +11,7 @@ namespace MediaBazaarApp
     {
         //private MySqlConnection conn;
 
-        public string ConnString
-        {
-            get;
-            set;
-        }
+        public string ConnString { get; set; }
 
         public DBControl(string connString)
         {
@@ -25,7 +22,8 @@ namespace MediaBazaarApp
 
         public DBControl()
         {
-            this.ConnString = "Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345;convert zero datetime=True;";
+            this.ConnString =
+                "Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345;convert zero datetime=True;";
             //this.ConnString = "Server=localhost;Uid=root;Database=dbi453373;Pwd=123";
             // Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=yourPassword;
             //conn = new MySqlConnection("Server=studmysql01.fhict.local;Uid=dbi453373;Database=dbi453373;Pwd=12345;");
@@ -33,7 +31,8 @@ namespace MediaBazaarApp
         }
 
         // Employees
-        public void AddEmployee(string fname, string lname, DateTime dateOfBirth, string nationality, Gender gender, string email,
+        public void AddEmployee(string fname, string lname, DateTime dateOfBirth, string nationality, Gender gender,
+            string email,
             string phone, string street, string city, string country, string postcode, string bsn,
             string emConName, EmergencyContactRelation emConRelation, string emConEmail, string emConPhone,
             EmploymentType empType, double hourlyWages, DateTime startDate, DateTime endDate, Department department)
@@ -42,14 +41,15 @@ namespace MediaBazaarApp
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
-                    string sql = "INSERT INTO employee (FirstName, LastName, DateOfBirth, Nationality, Gender, Email, PhoneNumber, Street, City, " +
-                                 "Country, PostCode, BSN, EmergencyContactName, EmergencyContactRelation, " +
-                                 "EmergencyContactEmail, EmergencyContactPhone, EmploymentType, HourlyWages, StartDate, EndDate, " +
-                                 "DepartmentID, RemainingHolidayDays) " +
-                                 "VALUES(@fname, @lname, @dob, @nationality, @gender, @email, @phone, @street, @city, @country, @postcode, " +
-                                 "@bsn, @emConName, @emConRelation, @emConEmail, @emConPhone, @employmentType, @hourlyWages, @startDate, " +
-                                 "@endDate, @depId, " +
-                                 "@remainingHolidayDays)";
+                    string sql =
+                        "INSERT INTO employee (FirstName, LastName, DateOfBirth, Nationality, Gender, Email, PhoneNumber, Street, City, " +
+                        "Country, PostCode, BSN, EmergencyContactName, EmergencyContactRelation, " +
+                        "EmergencyContactEmail, EmergencyContactPhone, EmploymentType, HourlyWages, StartDate, EndDate, " +
+                        "DepartmentID, RemainingHolidayDays) " +
+                        "VALUES(@fname, @lname, @dob, @nationality, @gender, @email, @phone, @street, @city, @country, @postcode, " +
+                        "@bsn, @emConName, @emConRelation, @emConEmail, @emConPhone, @employmentType, @hourlyWages, @startDate, " +
+                        "@endDate, @depId, " +
+                        "@remainingHolidayDays)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -227,6 +227,7 @@ namespace MediaBazaarApp
                 MessageBox.Show(ex.Message);
             }
         }
+
         public void GetEmployees(DepartmentManagement departmentManagement)
         {
             try
@@ -249,9 +250,9 @@ namespace MediaBazaarApp
                         int id = Convert.ToInt32(dr[0]);
                         string fname = dr[1].ToString();
                         string lname = dr[2].ToString();
-                        DateTime dob = (DateTime)dr[3];
+                        DateTime dob = (DateTime) dr[3];
                         string nationality = dr[4].ToString();
-                        Gender gender = (Gender)Enum.Parse(typeof(Gender), dr[5].ToString());
+                        Gender gender = (Gender) Enum.Parse(typeof(Gender), dr[5].ToString());
                         string email = dr[6].ToString();
                         string phone = dr[7].ToString();
                         string street = dr[8].ToString();
@@ -260,13 +261,15 @@ namespace MediaBazaarApp
                         string postcode = dr[11].ToString();
                         string bsn = dr[12].ToString();
                         string emConName = dr[13].ToString();
-                        EmergencyContactRelation emConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation), dr[14].ToString());
+                        EmergencyContactRelation emConRelation =
+                            (EmergencyContactRelation) Enum.Parse(typeof(EmergencyContactRelation), dr[14].ToString());
                         string emConEmail = dr[15].ToString();
                         string emConPhone = dr[16].ToString();
-                        EmploymentType employmentType = (EmploymentType)Enum.Parse(typeof(EmploymentType), dr[17].ToString());
+                        EmploymentType employmentType =
+                            (EmploymentType) Enum.Parse(typeof(EmploymentType), dr[17].ToString());
                         double hourlyWages = Convert.ToDouble(dr[18]);
 
-                        DateTime startDate = (DateTime)dr[19];
+                        DateTime startDate = (DateTime) dr[19];
 
                         DateTime endDate;
                         if (String.IsNullOrEmpty(dr[20].ToString()))
@@ -281,7 +284,7 @@ namespace MediaBazaarApp
 
                         int depId = Convert.ToInt32(dr[21]);
                         int remainingHolidayDays = Convert.ToInt32(dr[22]);
-                        
+
                         string depName = dr[23].ToString();
 
                         Department dep = departmentManagement.GetDepartment(depName);
@@ -320,7 +323,7 @@ namespace MediaBazaarApp
 
         //Stocks
         public void AddStock(string model, string brand, double price, int quantity, double height,
-             double width, double depth, double weight, string shortDescription, StockManagement stockManagement)
+            double width, double depth, double weight, string shortDescription, StockManagement stockManagement)
         {
             try
             {
@@ -509,7 +512,7 @@ namespace MediaBazaarApp
                         string location = dr[10].ToString();
 
                         stockManagement.AddStock(id, model, brand, price, quantity, height, width, depth,
-                                 weight, description, location);
+                            weight, description, location);
 
 
                     }
@@ -754,8 +757,9 @@ namespace MediaBazaarApp
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
-                    string sql = "INSERT INTO shift (EmployeeID, Date, AssignedByID, HasAttended, NoShowReason, Type, wfh) " +
-                                 "VALUES(@empID, @date, @assignedBy, @hasAttended, @noShowReason, @type, @wfh)";
+                    string sql =
+                        "INSERT INTO shift (EmployeeID, Date, AssignedByID, HasAttended, NoShowReason, Type, wfh) " +
+                        "VALUES(@empID, @date, @assignedBy, @hasAttended, @noShowReason, @type, @wfh)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -836,6 +840,7 @@ namespace MediaBazaarApp
                 MessageBox.Show(ex.Message);
             }
         }
+
         public void GetShifts(DepartmentManagement departmentManagement)
         {
             try
@@ -844,10 +849,10 @@ namespace MediaBazaarApp
                 {
 
                     string sql = "SELECT s.*, d.Name FROM shift as s " +
-                         "inner join employee as e " +
-                         "on s.EmployeeID = e.ID " +
-                         "inner join department as d " +
-                         "on e.DepartmentID = d.ID";
+                                 "inner join employee as e " +
+                                 "on s.EmployeeID = e.ID " +
+                                 "inner join department as d " +
+                                 "on e.DepartmentID = d.ID";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -859,11 +864,11 @@ namespace MediaBazaarApp
                     {
                         int id = Convert.ToInt32(dr[0]);
                         int employeeID = Convert.ToInt32(dr[1]);
-                        DateTime date = (DateTime)dr[2];
+                        DateTime date = (DateTime) dr[2];
                         int assignedBy = Convert.ToInt32(dr[3]);
                         bool hasAttended = Convert.ToBoolean(dr[4]);
                         string noShowReason = dr[5].ToString();
-                        ShiftType type = (ShiftType)Enum.Parse(typeof(ShiftType), dr[6].ToString());
+                        ShiftType type = (ShiftType) Enum.Parse(typeof(ShiftType), dr[6].ToString());
                         bool wfh = Convert.ToBoolean(dr[7]);
                         string depName = dr[8].ToString();
 
@@ -871,7 +876,8 @@ namespace MediaBazaarApp
 
                         if (s == null)
                         {
-                            departmentManagement.GetDepartment(depName).GetEmployeeById(employeeID).AddShift(id, type, date, assignedBy, wfh, hasAttended, noShowReason);
+                            departmentManagement.GetDepartment(depName).GetEmployeeById(employeeID).AddShift(id, type,
+                                date, assignedBy, wfh, hasAttended, noShowReason);
                         }
                     }
                 }
@@ -992,13 +998,14 @@ namespace MediaBazaarApp
                         int stockID = Convert.ToInt32(dr[1]);
                         int requestedQuantity = Convert.ToInt32(dr[2]);
                         int senderID = Convert.ToInt32(dr[3]);
-                        SRRstatus status = (SRRstatus)Enum.Parse(typeof(SRRstatus), dr[4].ToString());
+                        SRRstatus status = (SRRstatus) Enum.Parse(typeof(SRRstatus), dr[4].ToString());
 
                         ShelfRestockRequest srr = salesManagement.GetSRR(id);
 
                         if (srr == null)
                         {
-                            salesManagement.AddRequest(id, stockManagement.GetStock(stockID), requestedQuantity, senderID, status);
+                            salesManagement.AddRequest(id, stockManagement.GetStock(stockID), requestedQuantity,
+                                senderID, status);
 
                         }
                     }
@@ -1037,11 +1044,12 @@ namespace MediaBazaarApp
                         string country = dr[5].ToString();
                         string postcode = dr[6].ToString();
                         string emConName = dr[7].ToString();
-                        EmergencyContactRelation emConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation), dr[8].ToString());
+                        EmergencyContactRelation emConRelation =
+                            (EmergencyContactRelation) Enum.Parse(typeof(EmergencyContactRelation), dr[8].ToString());
                         string emConEmail = dr[9].ToString();
                         string emConPhone = dr[10].ToString();
                         string status = dr[11].ToString();
-                        DateTime requestDate = (DateTime)dr[12];
+                        DateTime requestDate = (DateTime) dr[12];
 
                         EditAccountRequest editAccountRequest = new
                             EditAccountRequest(id, email, phone, street, city, country,
@@ -1092,7 +1100,8 @@ namespace MediaBazaarApp
 
                     cmd.Parameters.AddWithValue("@postcode", editAccountRequest.Postcode);
                     cmd.Parameters.AddWithValue("@emConName", editAccountRequest.EmConName);
-                    cmd.Parameters.AddWithValue("@emConRelation", Convert.ToInt32(editAccountRequest.EmConRelation) + 1);
+                    cmd.Parameters.AddWithValue("@emConRelation",
+                        Convert.ToInt32(editAccountRequest.EmConRelation) + 1);
                     cmd.Parameters.AddWithValue("@emConEmail", editAccountRequest.EmConEmail);
                     cmd.Parameters.AddWithValue("@emConPhone", editAccountRequest.EmConPhone);
 
@@ -1100,7 +1109,7 @@ namespace MediaBazaarApp
                     cmd.Parameters.AddWithValue("@requestDate", editAccountRequest.RequestDate);
 
                     cmd.Parameters.AddWithValue("@id", editAccountRequest.Id);
-                    
+
                     conn.Open();
 
                     int effectedRows = cmd.ExecuteNonQuery();
@@ -1111,6 +1120,101 @@ namespace MediaBazaarApp
 
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public List<string> GetActivatedShortcuts(Employee emp)
+        {
+            try
+            {
+                int empId = emp.Id;
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "SELECT Name FROM shortcut WHERE empId = @empId";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@empId", empId);
+
+                    conn.Open();
+
+                    MySqlDataReader dr = cmd.ExecuteReader();
+                    List<string> shortcuts = new List<string>();
+
+                    while (dr.Read())
+                    {
+                        string shortcut = dr[0].ToString();
+                        shortcuts.Add(shortcut);
+                    }
+
+                    return shortcuts;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+        public void SaveShortcut(Employee employee, string shortcutName)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    int empId = employee.Id;
+                    string sql = "";
+
+
+                    sql = "INSERT INTO shortcut (Name, empId)" +
+                              "VALUES(@shortcutName, @empId)";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@shortcutName", shortcutName);
+                    cmd.Parameters.AddWithValue("@empId", empId);
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public void RemoveShortcut(Employee employee, string shortcutName)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+                    int empId = employee.Id;
+
+                    string sql = "DELETE from shortcut WHERE empId = @empId AND Name = @shortcutName";
+
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@empId", empId);
+                    cmd.Parameters.AddWithValue("@shortcutName", shortcutName);
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
-    }
+    
+
 }
