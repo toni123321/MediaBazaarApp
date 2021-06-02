@@ -29,6 +29,7 @@ namespace MediaBazaarApp
             shortcutLocations = new Dictionary<Point, bool>();
 
             setShortcutLocationtions();
+            checkForShortcuts();
             UpdateStockDGV();
             UpdateAllSRR_DGV();
             WelcomeMessage();
@@ -215,26 +216,41 @@ namespace MediaBazaarApp
             requestShortcut.Visible = false;
             historyShortcut.Visible = false;
 
-            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+            reqCH.Checked = false;
+            historyCH.Checked = false;
 
+            List<Panel> allShortcuts = new List<Panel>();
+
+            allShortcuts.Add(requestShortcut);
+            allShortcuts.Add(historyShortcut);
+
+            List<string> shortcutsSTR = dbc.GetActivatedShortcuts(currentEmp);
+            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+            
             foreach (Point k in keys)
             {
                 shortcutLocations[k] = true;
             }
-
-            if (reqCH.Checked)
+            foreach (Panel s in allShortcuts)
             {
-                activateShortCut(requestShortcut);
-            }
-
-            if (historyCH.Checked)
-            {
-                activateShortCut(historyShortcut);
+                if (shortcutsSTR.Contains(s.Name))
+                {
+                    activateShortCut(s);
+                    if (s.Name == requestShortcut.Name)
+                    {
+                        reqCH.Checked = true;
+                    }
+                    else if (s.Name == historyShortcut.Name)
+                    {
+                        historyCH.Checked = true;
+                    }
+                }
             }
         }
 
         private void activateShortCut(Panel shortcut)
         {
+            dbc.RemoveShortcut(currentEmp, shortcut.Name);
             List<Point> keys = new List<Point>(shortcutLocations.Keys);
             foreach (Point k in keys)
             {
@@ -243,6 +259,7 @@ namespace MediaBazaarApp
                     shortcut.Location = k;
                     shortcut.Visible = true;
                     shortcutLocations[k] = false;
+                    dbc.SaveShortcut(currentEmp, shortcut.Name);
                     break;
                 }
             }
@@ -250,7 +267,14 @@ namespace MediaBazaarApp
 
         private void ApplyShortcutsBTN_Click(object sender, EventArgs e)
         {
-            checkForShortcuts();
+            if (reqCH.Checked)
+            {
+                activateShortCut(requestShortcut);
+            }
+            if (historyCH.Checked)
+            {
+                activateShortCut(historyShortcut);
+            }
         }
 
         private void GoToRequests()

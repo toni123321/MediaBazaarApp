@@ -50,6 +50,7 @@ namespace MediaBazaarApp
             dbc = new DBControl();
             shortcutLocations = new Dictionary<Point, bool>();
             setShortcutLocationtions();
+            checkForShortcuts();
 
             gbChooseEmp.Visible = true;
             gbAssignShiftManually.Visible = false;
@@ -1647,9 +1648,24 @@ namespace MediaBazaarApp
             weeklySchedukeShortcut.Visible = false;
             manageAttendanceShortcut.Visible = false;
             manageStockShortcut.Visible = false;
+            manageDepartmentsShortcut.Visible = false;
 
+            manageEmpCH.Checked = false;
+            holidayLeaveReqCH.Checked = false;
+            weeklyScheduleCH.Checked = false;
+            manageAttendanceCH.Checked = false;
+            manageStockCH.Checked = false;
 
+            List<Panel> allShortcuts = new List<Panel>();
 
+            allShortcuts.Add(manageEmpShortcut);
+            allShortcuts.Add(holidayLeaveRequestsShortcut);
+            allShortcuts.Add(weeklySchedukeShortcut);
+            allShortcuts.Add(manageAttendanceShortcut);
+            allShortcuts.Add(manageStockShortcut);
+            allShortcuts.Add(manageDepartmentsShortcut);
+
+            List<string> shortcutsSTR = dbc.GetActivatedShortcuts(currentEmp);
             List<Point> keys = new List<Point>(shortcutLocations.Keys);
 
             foreach (Point k in keys)
@@ -1657,6 +1673,58 @@ namespace MediaBazaarApp
                 shortcutLocations[k] = true;
             }
 
+            foreach (Panel s in allShortcuts)
+            {
+                if (shortcutsSTR.Contains(s.Name))
+                {
+                    activateShortCut(s);
+                    if (s.Name == manageEmpShortcut.Name)
+                    {
+                        manageEmpCH.Checked = true;
+                    }
+                    else if (s.Name == holidayLeaveRequestsShortcut.Name)
+                    {
+                        holidayLeaveReqCH.Checked = true;
+                    }
+                    else if (s.Name == weeklySchedukeShortcut.Name)
+                    {
+                        weeklyScheduleCH.Checked = true;
+                    }
+                    else if (s.Name == manageAttendanceShortcut.Name)
+                    {
+                        manageAttendanceCH.Checked = true;
+                    }
+                    else if (s.Name == manageStockShortcut.Name)
+                    {
+                        manageStockCH.Checked = true;
+                    }
+                    else if (s.Name == manageDepartmentsShortcut.Name)
+                    {
+                        manageDepCH.Checked = true;
+                    }
+                }
+            }
+        }
+
+        private void activateShortCut(Panel shortcut)
+        {
+            dbc.RemoveShortcut(currentEmp, shortcut.Name);
+            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+            foreach (Point k in keys)
+            {
+                if (shortcutLocations[k] == true)
+                {
+                    shortcut.Location = k;
+                    shortcut.Visible = true;
+                    shortcutLocations[k] = false;
+                    dbc.SaveShortcut(currentEmp, shortcut.Name);
+                    break;
+                }
+            }
+        }
+
+        private void ApplyShortcutsBTN_Click(object sender, EventArgs e)
+        {
             if (manageEmpCH.Checked)
             {
                 activateShortCut(manageEmpShortcut);
@@ -1681,26 +1749,10 @@ namespace MediaBazaarApp
             {
                 activateShortCut(manageStockShortcut);
             }
-        }
-
-        private void activateShortCut(Panel shortcut)
-        {
-            List<Point> keys = new List<Point>(shortcutLocations.Keys);
-            foreach (Point k in keys)
+            if (manageDepCH.Checked)
             {
-                if (shortcutLocations[k] == true)
-                {
-                    shortcut.Location = k;
-                    shortcut.Visible = true;
-                    shortcutLocations[k] = false;
-                    break;
-                }
+                activateShortCut(manageDepartmentsShortcut);
             }
-        }
-
-        private void ApplyShortcutsBTN_Click(object sender, EventArgs e)
-        {
-            checkForShortcuts();
         }
 
         private void tbxSearchDep_TextChanged(object sender, EventArgs e)
