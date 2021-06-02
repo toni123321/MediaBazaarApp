@@ -226,6 +226,11 @@ namespace MediaBazaarApp
             this.lbDateDayOfWeek = new System.Windows.Forms.Label();
             this.lbGreetingMsg = new System.Windows.Forms.Label();
             this.tabControlAdministration = new System.Windows.Forms.TabControl();
+            this.tabPageEditAccountRequests = new System.Windows.Forms.TabPage();
+            this.lbTitleEditAccountRequests = new System.Windows.Forms.Label();
+            this.btnDeclineEditAccountRequest = new System.Windows.Forms.Button();
+            this.btnAcceptEditAccountRequest = new System.Windows.Forms.Button();
+            this.dgvEditAccountRequests = new System.Windows.Forms.DataGridView();
             this.settingsTab = new System.Windows.Forms.TabPage();
             this.applyShortcutsBTN = new System.Windows.Forms.Button();
             this.manageAttendanceCH = new System.Windows.Forms.CheckBox();
@@ -234,11 +239,9 @@ namespace MediaBazaarApp
             this.weeklyScheduleCH = new System.Windows.Forms.CheckBox();
             this.holidayLeaveReqCH = new System.Windows.Forms.CheckBox();
             this.manageEmpCH = new System.Windows.Forms.CheckBox();
-            this.tabPageEditAccountRequests = new System.Windows.Forms.TabPage();
-            this.dgvEditAccountRequests = new System.Windows.Forms.DataGridView();
-            this.btnAcceptEditAccountRequest = new System.Windows.Forms.Button();
-            this.btnDeclineEditAccountRequest = new System.Windows.Forms.Button();
-            this.lbTitleEditAccountRequests = new System.Windows.Forms.Label();
+            this.cbFilterEditAccountRequests = new System.Windows.Forms.ComboBox();
+            this.lbFilterEditAccountRequests = new System.Windows.Forms.Label();
+            this.btnUnmarkSelectedEditAccountRequest = new System.Windows.Forms.Button();
             this.ManageDepartmentsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.gbxSearchDep.SuspendLayout();
@@ -284,9 +287,9 @@ namespace MediaBazaarApp
             ((System.ComponentModel.ISupportInitialize)(this.manageEmpPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.tabControlAdministration.SuspendLayout();
-            this.settingsTab.SuspendLayout();
             this.tabPageEditAccountRequests.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEditAccountRequests)).BeginInit();
+            this.settingsTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -2555,6 +2558,65 @@ namespace MediaBazaarApp
             this.tabControlAdministration.TabIndex = 0;
             this.tabControlAdministration.SelectedIndexChanged += new System.EventHandler(this.tabControlAdministration_SelectedIndexChanged);
             // 
+            // tabPageEditAccountRequests
+            // 
+            this.tabPageEditAccountRequests.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.tabPageEditAccountRequests.Controls.Add(this.btnUnmarkSelectedEditAccountRequest);
+            this.tabPageEditAccountRequests.Controls.Add(this.lbFilterEditAccountRequests);
+            this.tabPageEditAccountRequests.Controls.Add(this.cbFilterEditAccountRequests);
+            this.tabPageEditAccountRequests.Controls.Add(this.lbTitleEditAccountRequests);
+            this.tabPageEditAccountRequests.Controls.Add(this.btnDeclineEditAccountRequest);
+            this.tabPageEditAccountRequests.Controls.Add(this.btnAcceptEditAccountRequest);
+            this.tabPageEditAccountRequests.Controls.Add(this.dgvEditAccountRequests);
+            this.tabPageEditAccountRequests.Location = new System.Drawing.Point(4, 34);
+            this.tabPageEditAccountRequests.Name = "tabPageEditAccountRequests";
+            this.tabPageEditAccountRequests.Size = new System.Drawing.Size(1097, 694);
+            this.tabPageEditAccountRequests.TabIndex = 9;
+            this.tabPageEditAccountRequests.Text = "Edit Account requests";
+            // 
+            // lbTitleEditAccountRequests
+            // 
+            this.lbTitleEditAccountRequests.AutoSize = true;
+            this.lbTitleEditAccountRequests.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbTitleEditAccountRequests.Location = new System.Drawing.Point(298, 48);
+            this.lbTitleEditAccountRequests.Name = "lbTitleEditAccountRequests";
+            this.lbTitleEditAccountRequests.Size = new System.Drawing.Size(471, 32);
+            this.lbTitleEditAccountRequests.TabIndex = 3;
+            this.lbTitleEditAccountRequests.Text = "Requests for edit account by employees";
+            // 
+            // btnDeclineEditAccountRequest
+            // 
+            this.btnDeclineEditAccountRequest.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnDeclineEditAccountRequest.Location = new System.Drawing.Point(769, 553);
+            this.btnDeclineEditAccountRequest.Name = "btnDeclineEditAccountRequest";
+            this.btnDeclineEditAccountRequest.Size = new System.Drawing.Size(159, 53);
+            this.btnDeclineEditAccountRequest.TabIndex = 2;
+            this.btnDeclineEditAccountRequest.Text = "Decline";
+            this.btnDeclineEditAccountRequest.UseVisualStyleBackColor = false;
+            this.btnDeclineEditAccountRequest.Click += new System.EventHandler(this.btnDeclineEditAccountRequest_Click);
+            // 
+            // btnAcceptEditAccountRequest
+            // 
+            this.btnAcceptEditAccountRequest.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnAcceptEditAccountRequest.Location = new System.Drawing.Point(552, 553);
+            this.btnAcceptEditAccountRequest.Name = "btnAcceptEditAccountRequest";
+            this.btnAcceptEditAccountRequest.Size = new System.Drawing.Size(159, 53);
+            this.btnAcceptEditAccountRequest.TabIndex = 1;
+            this.btnAcceptEditAccountRequest.Text = "Accept";
+            this.btnAcceptEditAccountRequest.UseVisualStyleBackColor = false;
+            this.btnAcceptEditAccountRequest.Click += new System.EventHandler(this.btnAcceptEditAccountRequest_Click);
+            // 
+            // dgvEditAccountRequests
+            // 
+            this.dgvEditAccountRequests.BackgroundColor = System.Drawing.Color.Honeydew;
+            this.dgvEditAccountRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEditAccountRequests.Location = new System.Drawing.Point(113, 229);
+            this.dgvEditAccountRequests.Name = "dgvEditAccountRequests";
+            this.dgvEditAccountRequests.RowHeadersWidth = 62;
+            this.dgvEditAccountRequests.RowTemplate.Height = 28;
+            this.dgvEditAccountRequests.Size = new System.Drawing.Size(815, 277);
+            this.dgvEditAccountRequests.TabIndex = 0;
+            // 
             // settingsTab
             // 
             this.settingsTab.BackColor = System.Drawing.Color.MediumTurquoise;
@@ -2642,59 +2704,40 @@ namespace MediaBazaarApp
             this.manageEmpCH.Text = "Manage employees shortcut";
             this.manageEmpCH.UseVisualStyleBackColor = true;
             // 
-            // tabPageEditAccountRequests
+            // cbFilterEditAccountRequests
             // 
-            this.tabPageEditAccountRequests.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.tabPageEditAccountRequests.Controls.Add(this.lbTitleEditAccountRequests);
-            this.tabPageEditAccountRequests.Controls.Add(this.btnDeclineEditAccountRequest);
-            this.tabPageEditAccountRequests.Controls.Add(this.btnAcceptEditAccountRequest);
-            this.tabPageEditAccountRequests.Controls.Add(this.dgvEditAccountRequests);
-            this.tabPageEditAccountRequests.Location = new System.Drawing.Point(4, 34);
-            this.tabPageEditAccountRequests.Name = "tabPageEditAccountRequests";
-            this.tabPageEditAccountRequests.Size = new System.Drawing.Size(1097, 694);
-            this.tabPageEditAccountRequests.TabIndex = 9;
-            this.tabPageEditAccountRequests.Text = "Edit Account requests";
+            this.cbFilterEditAccountRequests.FormattingEnabled = true;
+            this.cbFilterEditAccountRequests.Items.AddRange(new object[] {
+            "All",
+            "Accepted",
+            "Declined",
+            "InProgress"});
+            this.cbFilterEditAccountRequests.Location = new System.Drawing.Point(463, 159);
+            this.cbFilterEditAccountRequests.Name = "cbFilterEditAccountRequests";
+            this.cbFilterEditAccountRequests.Size = new System.Drawing.Size(354, 33);
+            this.cbFilterEditAccountRequests.TabIndex = 4;
+            this.cbFilterEditAccountRequests.SelectedIndexChanged += new System.EventHandler(this.cbFilterEditAccountRequests_SelectedIndexChanged);
             // 
-            // dgvEditAccountRequests
+            // lbFilterEditAccountRequests
             // 
-            this.dgvEditAccountRequests.BackgroundColor = System.Drawing.Color.Honeydew;
-            this.dgvEditAccountRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEditAccountRequests.Location = new System.Drawing.Point(119, 96);
-            this.dgvEditAccountRequests.Name = "dgvEditAccountRequests";
-            this.dgvEditAccountRequests.RowHeadersWidth = 62;
-            this.dgvEditAccountRequests.RowTemplate.Height = 28;
-            this.dgvEditAccountRequests.Size = new System.Drawing.Size(815, 243);
-            this.dgvEditAccountRequests.TabIndex = 0;
+            this.lbFilterEditAccountRequests.AutoSize = true;
+            this.lbFilterEditAccountRequests.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbFilterEditAccountRequests.Location = new System.Drawing.Point(154, 159);
+            this.lbFilterEditAccountRequests.Name = "lbFilterEditAccountRequests";
+            this.lbFilterEditAccountRequests.Size = new System.Drawing.Size(274, 28);
+            this.lbFilterEditAccountRequests.TabIndex = 5;
+            this.lbFilterEditAccountRequests.Text = "Filter requests on status >>";
             // 
-            // btnAcceptEditAccountRequest
+            // btnUnmarkSelectedEditAccountRequest
             // 
-            this.btnAcceptEditAccountRequest.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnAcceptEditAccountRequest.Location = new System.Drawing.Point(348, 374);
-            this.btnAcceptEditAccountRequest.Name = "btnAcceptEditAccountRequest";
-            this.btnAcceptEditAccountRequest.Size = new System.Drawing.Size(159, 53);
-            this.btnAcceptEditAccountRequest.TabIndex = 1;
-            this.btnAcceptEditAccountRequest.Text = "Accept";
-            this.btnAcceptEditAccountRequest.UseVisualStyleBackColor = false;
-            // 
-            // btnDeclineEditAccountRequest
-            // 
-            this.btnDeclineEditAccountRequest.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnDeclineEditAccountRequest.Location = new System.Drawing.Point(565, 374);
-            this.btnDeclineEditAccountRequest.Name = "btnDeclineEditAccountRequest";
-            this.btnDeclineEditAccountRequest.Size = new System.Drawing.Size(159, 53);
-            this.btnDeclineEditAccountRequest.TabIndex = 2;
-            this.btnDeclineEditAccountRequest.Text = "Decline";
-            this.btnDeclineEditAccountRequest.UseVisualStyleBackColor = false;
-            // 
-            // lbTitleEditAccountRequests
-            // 
-            this.lbTitleEditAccountRequests.AutoSize = true;
-            this.lbTitleEditAccountRequests.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbTitleEditAccountRequests.Location = new System.Drawing.Point(333, 46);
-            this.lbTitleEditAccountRequests.Name = "lbTitleEditAccountRequests";
-            this.lbTitleEditAccountRequests.Size = new System.Drawing.Size(391, 28);
-            this.lbTitleEditAccountRequests.TabIndex = 3;
-            this.lbTitleEditAccountRequests.Text = "Requests for edit account by employees";
+            this.btnUnmarkSelectedEditAccountRequest.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnUnmarkSelectedEditAccountRequest.Location = new System.Drawing.Point(113, 553);
+            this.btnUnmarkSelectedEditAccountRequest.Name = "btnUnmarkSelectedEditAccountRequest";
+            this.btnUnmarkSelectedEditAccountRequest.Size = new System.Drawing.Size(348, 53);
+            this.btnUnmarkSelectedEditAccountRequest.TabIndex = 6;
+            this.btnUnmarkSelectedEditAccountRequest.Text = "Unmark selected row";
+            this.btnUnmarkSelectedEditAccountRequest.UseVisualStyleBackColor = false;
+            this.btnUnmarkSelectedEditAccountRequest.Click += new System.EventHandler(this.btnUnmarkSelectedEditAccountRequest_Click);
             // 
             // AdministrationForm
             // 
@@ -2775,11 +2818,11 @@ namespace MediaBazaarApp
             ((System.ComponentModel.ISupportInitialize)(this.manageEmpPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.tabControlAdministration.ResumeLayout(false);
-            this.settingsTab.ResumeLayout(false);
-            this.settingsTab.PerformLayout();
             this.tabPageEditAccountRequests.ResumeLayout(false);
             this.tabPageEditAccountRequests.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEditAccountRequests)).EndInit();
+            this.settingsTab.ResumeLayout(false);
+            this.settingsTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2994,5 +3037,8 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnAcceptEditAccountRequest;
         private System.Windows.Forms.DataGridView dgvEditAccountRequests;
         private System.Windows.Forms.Label lbTitleEditAccountRequests;
+        private System.Windows.Forms.Label lbFilterEditAccountRequests;
+        private System.Windows.Forms.ComboBox cbFilterEditAccountRequests;
+        private System.Windows.Forms.Button btnUnmarkSelectedEditAccountRequest;
     }
 }

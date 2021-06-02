@@ -1056,7 +1056,8 @@ namespace MediaBazaarApp
             }
             else if (tabControlAdministration.SelectedTab == tabPageEditAccountRequests)
             {
-                UpdateDVGEditAccountRequests();
+                cbFilterEditAccountRequests.SelectedIndex = 0;
+                UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
             }
         }
 
@@ -1735,14 +1736,10 @@ namespace MediaBazaarApp
             dgvDepartments.ClearSelection();
         }
 
-        public void UpdateDVGEditAccountRequests()
+        public void UpdateDVGEditAccountRequests(IList<EditAccountRequest> requests)
         {
-            // TODO:
-            // 1) Get requests here from departmentManagement or from db
-            // 2) Add new values to data grid view
-
             var editAccountRequestsDataSource =
-                editAccountRequestsManager.GetAllEditAccountRequests().Select(x => new
+                requests.Select(x => new
                 {
                     ID = x.Id,
                     x.Email,
@@ -1762,9 +1759,86 @@ namespace MediaBazaarApp
             dgvEditAccountRequests.ClearSelection();
         }
 
-        // TODO: Make Accept, Decline buttons to work for the requests
+        private void btnAcceptEditAccountRequest_Click(object sender, EventArgs e)
+        {
+            if (dgvEditAccountRequests.SelectedRows.Count == 1)
+            {
+                int requestId = Convert.ToInt32(dgvEditAccountRequests.SelectedCells[0].Value);
+                EditAccountRequest curRequest = editAccountRequestsManager.GetEditAccountRequest(requestId);
 
+                if (curRequest.Status != "InProgress")
+                {
+                    MessageBox.Show("This request is already proceed!");
+                }
+                else
+                {
+                    editAccountRequestsManager.AcceptRequest(requestId);
+                    cbFilterEditAccountRequests.SelectedIndex = 0;
+                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, select a request to mark it as /Accepted/");
+            }
+        }
 
+        private void btnDeclineEditAccountRequest_Click(object sender, EventArgs e)
+        {
+            if (dgvEditAccountRequests.SelectedRows.Count == 1)
+            {
+                int requestId = Convert.ToInt32(dgvEditAccountRequests.SelectedCells[0].Value);
+
+                EditAccountRequest curRequest = editAccountRequestsManager.GetEditAccountRequest(requestId);
+
+                if (curRequest.Status != "InProgress")
+                {
+                    MessageBox.Show("This request is already proceed!");
+                }
+                else
+                {
+                    editAccountRequestsManager.DeclineRequest(requestId);
+                    cbFilterEditAccountRequests.SelectedIndex = 0;
+                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, select a request to mark it as /Declined/");
+            }
+        }
+
+        private void cbFilterEditAccountRequests_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string status = cbFilterEditAccountRequests.SelectedItem.ToString();
+            switch (status)
+            {
+                case "All":
+                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                    break;
+                case "Accepted":
+                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAcceptedEditAccountRequests());
+                    break;
+                case "Declined":
+                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetDeclinedEditAccountRequests());
+                    break;
+                case "InProgress":
+                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetInProgressEditAccountRequests());
+                    break;
+            }
+        }
+
+        private void btnUnmarkSelectedEditAccountRequest_Click(object sender, EventArgs e)
+        {
+            if (dgvEditAccountRequests.SelectedRows.Count == 1)
+            {
+                dgvEditAccountRequests.ClearSelection();
+            }
+            else
+            {
+                MessageBox.Show("To unmark request, you should have selected one beforehand!");
+            }
+        }
     }
 }
 
