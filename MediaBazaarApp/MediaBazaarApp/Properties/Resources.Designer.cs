@@ -83,6 +83,26 @@ namespace MediaBazaarApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap outline_history_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_history_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_swap_horiz_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_swap_horiz_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap round_calendar_today_black_48dp {
             get {
                 object obj = ResourceManager.GetObject("round_calendar_today_black_48dp", resourceCulture);
