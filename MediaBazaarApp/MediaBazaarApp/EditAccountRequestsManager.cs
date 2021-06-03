@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MediaBazaarApp
 {
@@ -63,6 +66,36 @@ namespace MediaBazaarApp
             storage.GetEmployees(departmentManagement);
 
         }
+
+        public void SendEmailToNotify()
+        {
+
+            MailAddress to = new MailAddress("george@gmail.com");
+            MailAddress from = new MailAddress("758b1e48c8-dc8967@inbox.mailtrap.io");
+
+            MailMessage message = new MailMessage(from, to);
+            message.Subject = "Good morning, Elizabeth";
+            message.IsBodyHtml = true;
+
+            message.Body = "<a href='http://localhost/s2-prj-cb03-1-webiste/HTML-PHP/accountPage.php'>Here</a>";
+
+            SmtpClient client = new SmtpClient("smtp.mailtrap.io", 2525)
+            {
+                Credentials = new NetworkCredential("f6ba1fe10a5e88", "e05fd608218765"),
+                EnableSsl = true
+            };
+            // code in brackets above needed if authentication required
+
+            try
+            {
+                client.Send(message);
+            }
+            catch (SmtpException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
 
         public void DeclineRequest(int requestId)
         {

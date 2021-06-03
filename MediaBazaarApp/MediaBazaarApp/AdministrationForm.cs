@@ -1893,6 +1893,11 @@ namespace MediaBazaarApp
                 MessageBox.Show("To unmark request, you should have selected one beforehand!");
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            editAccountRequestsManager.SendEmailToNotify();
+        }
     }
 }
 
