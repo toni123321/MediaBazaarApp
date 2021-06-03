@@ -1577,8 +1577,8 @@ namespace MediaBazaarApp
                 Height = x.Height,
                 Depth = x.Depth,
                 Weight = x.Weight,
-                Description = x.ShortDescription,
-                Location = x.Location
+                Description = x.ShortDescription != null ? $"{x.ShortDescription}" : "n/a",
+                Location = x.Location != null ? $"{x.Location}" : "n/a"
             }).ToList();
 
             dgvStock.DataSource = stockDataSource;
@@ -1618,8 +1618,8 @@ namespace MediaBazaarApp
                 Height = x.Height,
                 Depth = x.Depth,
                 Weight = x.Weight,
-                Description = x.ShortDescription,
-                Location = x.Location
+                Description = x.ShortDescription != null ? $"{x.ShortDescription}" : "n/a",
+                Location = x.Location != null ? $"{x.Location}" : "n/a"
             }).ToList();
 
             dgvStock.DataSource = stockDataSource;
