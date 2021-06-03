@@ -123,7 +123,8 @@ namespace MediaBazaarApp
             {
                 ID = x.ID,
                 Brand = x.Stock.Brand,
-                Model = x.Stock.Model
+                Model = x.Stock.Model,
+                Status = x.Status
             }).ToList();
 
             dgvSRRdone.DataSource = doneSRRDataSource;
