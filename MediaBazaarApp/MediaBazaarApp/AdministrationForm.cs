@@ -1650,11 +1650,6 @@ namespace MediaBazaarApp
             manageStockShortcut.Visible = false;
             manageDepartmentsShortcut.Visible = false;
 
-            manageEmpCH.Checked = false;
-            holidayLeaveReqCH.Checked = false;
-            weeklyScheduleCH.Checked = false;
-            manageAttendanceCH.Checked = false;
-            manageStockCH.Checked = false;
 
             List<Panel> allShortcuts = new List<Panel>();
 
@@ -1725,6 +1720,52 @@ namespace MediaBazaarApp
 
         private void ApplyShortcutsBTN_Click(object sender, EventArgs e)
         {
+            if (manageEmpCH.Checked == false)
+            {
+                manageEmpShortcut.Visible = false;
+                Point location = manageEmpShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, manageEmpShortcut.Name);
+            }
+
+            if (holidayLeaveReqCH.Checked==false)
+            {
+                holidayLeaveRequestsShortcut.Visible= false;
+                Point location = holidayLeaveRequestsShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, holidayLeaveRequestsShortcut.Name);
+            }
+
+            if (weeklyScheduleCH.Checked==false)
+            {
+                weeklySchedukeShortcut.Visible = false;
+                Point location = weeklySchedukeShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, weeklySchedukeShortcut.Name);
+            }
+
+            if (manageAttendanceCH.Checked==false)
+            {
+                manageAttendanceShortcut.Visible = false;
+                Point location = manageAttendanceShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, manageAttendanceShortcut.Name);
+            }
+
+            if (manageStockCH.Checked==false)
+            {
+                manageStockShortcut.Visible = false;
+                Point location = manageStockShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, manageStockShortcut.Name);
+            }
+            if (manageDepCH.Checked==false)
+            {
+                manageDepartmentsShortcut.Visible = false;
+                Point location = manageStockShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, manageDepartmentsShortcut.Name);
+            }
             if (manageEmpCH.Checked)
             {
                 activateShortCut(manageEmpShortcut);
@@ -1753,6 +1794,7 @@ namespace MediaBazaarApp
             {
                 activateShortCut(manageDepartmentsShortcut);
             }
+
         }
 
         private void tbxSearchDep_TextChanged(object sender, EventArgs e)
