@@ -267,6 +267,21 @@ namespace MediaBazaarApp
 
         private void ApplyShortcutsBTN_Click(object sender, EventArgs e)
         {
+            if (reqCH.Checked == false)
+            {
+                requestShortcut.Visible = false;
+                Point location = requestShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, requestShortcut.Name);
+            }
+
+            if (historyCH.Checked == false)
+            {
+                historyShortcut.Visible = false;
+                Point location = historyShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, historyShortcut.Name);
+            }
             if (reqCH.Checked)
             {
                 activateShortCut(requestShortcut);
