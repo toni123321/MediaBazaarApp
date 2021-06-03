@@ -242,7 +242,6 @@ namespace MediaBazaarApp
             this.weeklyScheduleCH = new System.Windows.Forms.CheckBox();
             this.holidayLeaveReqCH = new System.Windows.Forms.CheckBox();
             this.manageEmpCH = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.ManageDepartmentsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.gbxSearchDep.SuspendLayout();
@@ -2562,7 +2561,6 @@ namespace MediaBazaarApp
             // tabPageEditAccountRequests
             // 
             this.tabPageEditAccountRequests.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.tabPageEditAccountRequests.Controls.Add(this.button1);
             this.tabPageEditAccountRequests.Controls.Add(this.btnUnmarkSelectedEditAccountRequest);
             this.tabPageEditAccountRequests.Controls.Add(this.lbFilterEditAccountRequests);
             this.tabPageEditAccountRequests.Controls.Add(this.cbFilterEditAccountRequests);
@@ -2740,17 +2738,6 @@ namespace MediaBazaarApp
             this.manageEmpCH.TabIndex = 6;
             this.manageEmpCH.Text = "Manage employees shortcut";
             this.manageEmpCH.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.LightSalmon;
-            this.button1.Location = new System.Drawing.Point(463, 623);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 53);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "TEST";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // AdministrationForm
             // 
@@ -3053,6 +3040,5 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbFilterEditAccountRequests;
         private System.Windows.Forms.ComboBox cbFilterEditAccountRequests;
         private System.Windows.Forms.Button btnUnmarkSelectedEditAccountRequest;
-        private System.Windows.Forms.Button button1;
     }
 }

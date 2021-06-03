@@ -134,7 +134,7 @@ namespace MediaBazaarApp
                 ID = x.Id,
                 DepCode = x.DeptId,
                 x.Name,
-                Manager = x.Manager != null? $"{x.Manager.FirstName} {x.Manager.LastName}": "No manager",
+                Manager = x.Manager != null ? $"{x.Manager.FirstName} {x.Manager.LastName}" : "No manager",
                 //Manager = $"{x.Manager.FirstName} {x.Manager.LastName}",
                 NumberOfEmployees = x.GetAllEmployees().Count
             }).ToList();
@@ -479,15 +479,16 @@ namespace MediaBazaarApp
             foreach (Employee emp in departmentManagement.GetAllEmployees())
             {
                 fullname = $"{emp.FirstName} {emp.LastName}";
-                
-                if(emp.FirstName.Contains(searchInput) || 
-                   emp.LastName.Contains(searchInput) ||
-                   fullname.Contains(searchInput))
+
+                if (emp.FirstName.Contains(searchInput) ||
+                    emp.LastName.Contains(searchInput) ||
+                    fullname.Contains(searchInput))
                 {
                     searchResults.Add(emp);
                 }
-                
+
             }
+
             var employeesDataSource =
                 searchResults.Where(x => x.Email != currentEmp.Email)
                     .Select(x => new
@@ -1728,15 +1729,15 @@ namespace MediaBazaarApp
                 dbc.RemoveShortcut(currentEmp, manageEmpShortcut.Name);
             }
 
-            if (holidayLeaveReqCH.Checked==false)
+            if (holidayLeaveReqCH.Checked == false)
             {
-                holidayLeaveRequestsShortcut.Visible= false;
+                holidayLeaveRequestsShortcut.Visible = false;
                 Point location = holidayLeaveRequestsShortcut.Location;
                 shortcutLocations[location] = true;
                 dbc.RemoveShortcut(currentEmp, holidayLeaveRequestsShortcut.Name);
             }
 
-            if (weeklyScheduleCH.Checked==false)
+            if (weeklyScheduleCH.Checked == false)
             {
                 weeklySchedukeShortcut.Visible = false;
                 Point location = weeklySchedukeShortcut.Location;
@@ -1744,7 +1745,7 @@ namespace MediaBazaarApp
                 dbc.RemoveShortcut(currentEmp, weeklySchedukeShortcut.Name);
             }
 
-            if (manageAttendanceCH.Checked==false)
+            if (manageAttendanceCH.Checked == false)
             {
                 manageAttendanceShortcut.Visible = false;
                 Point location = manageAttendanceShortcut.Location;
@@ -1752,20 +1753,22 @@ namespace MediaBazaarApp
                 dbc.RemoveShortcut(currentEmp, manageAttendanceShortcut.Name);
             }
 
-            if (manageStockCH.Checked==false)
+            if (manageStockCH.Checked == false)
             {
                 manageStockShortcut.Visible = false;
                 Point location = manageStockShortcut.Location;
                 shortcutLocations[location] = true;
                 dbc.RemoveShortcut(currentEmp, manageStockShortcut.Name);
             }
-            if (manageDepCH.Checked==false)
+
+            if (manageDepCH.Checked == false)
             {
                 manageDepartmentsShortcut.Visible = false;
                 Point location = manageStockShortcut.Location;
                 shortcutLocations[location] = true;
                 dbc.RemoveShortcut(currentEmp, manageDepartmentsShortcut.Name);
             }
+
             if (manageEmpCH.Checked)
             {
                 activateShortCut(manageEmpShortcut);
@@ -1790,6 +1793,7 @@ namespace MediaBazaarApp
             {
                 activateShortCut(manageStockShortcut);
             }
+
             if (manageDepCH.Checked)
             {
                 activateShortCut(manageDepartmentsShortcut);
@@ -1892,7 +1896,7 @@ namespace MediaBazaarApp
                 }
                 else
                 {
-                    editAccountRequestsManager.DeclineRequest(requestId);
+                    editAccountRequestsManager.DeclineRequest(requestId, this.departmentManagement);
                     cbFilterEditAccountRequests.SelectedIndex = 0;
                     UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
                     MessageBox.Show("You have declined this request!");
@@ -1935,11 +1939,7 @@ namespace MediaBazaarApp
                 MessageBox.Show("To unmark request, you should have selected one beforehand!");
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            editAccountRequestsManager.SendEmailToNotify();
-        }
+        
     }
 }
 
