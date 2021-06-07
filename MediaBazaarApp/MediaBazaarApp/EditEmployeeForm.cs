@@ -1,5 +1,6 @@
 ﻿using MediaBazaarApp.Custom_exceptions;
 using System;
+using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -35,6 +36,45 @@ namespace MediaBazaarApp
 
         }
 
+        private void ManageEndDateViewFields()
+        {
+            // Points for date time picker
+            
+            
+            // Points for text box
+            Point locationEndDateLabelDTP = new Point(835, 394);
+            Point locationEndDateDateTimePicker = new Point(933, 389);
+
+            Point locationEndDateLabelTBX = new Point(796, 442);
+            Point locationEndDateTextBox = new Point(934, 439);
+
+
+            if (currEmp.EndDate == DateTime.MaxValue)
+            {
+                tbxEmpEndDate.Visible = true;
+                dtpEmpEndDate.Visible = true;
+                lbEmpNewEndDate.Visible = true;
+                cbxEmpIndefiniteContract.Visible = false;
+
+                tbxEmpEndDate.Location = locationEndDateDateTimePicker;
+                tbxEmpEndDate.Text = "Indefinite";
+                
+                dtpEmpEndDate.Location = locationEndDateTextBox;
+
+            }
+            else
+            {
+                tbxEmpEndDate.Visible = false;
+                dtpEmpEndDate.Visible = true;
+                lbEmpNewEndDate.Visible = false;
+                cbxEmpIndefiniteContract.Visible = true;
+
+                dtpEmpEndDate.Location = locationEndDateDateTimePicker;
+                dtpEmpEndDate.Value = currEmp.EndDate;
+                cbxEmpIndefiniteContract.Location = locationEndDateTextBox;
+            }
+        }
+
         private void ShowDetailsFilled()
         {
             //Personal information
@@ -65,7 +105,8 @@ namespace MediaBazaarApp
             cbEmpDepartment.Text = currEmp.Department.Name;
             previousDepartment = currEmp.Department;
             dtpEmpStartDate.Value = currEmp.StartDate;
-            dtpEmpEndDate.Value = currEmp.EndDate;
+
+            ManageEndDateViewFields();
         }
 
         private void EditEmployeeForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -126,6 +167,11 @@ namespace MediaBazaarApp
                     currEmp.Department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
                     currEmp.StartDate = dtpEmpStartDate.Value;
                     currEmp.EndDate = dtpEmpEndDate.Value;
+
+                    if (cbxEmpIndefiniteContract.Checked)
+                    {
+                        currEmp.EndDate = DateTime.MaxValue;
+                    }
 
                     DBControl dbControl = new DBControl();
                     dbControl.EditEmployee(currEmp);

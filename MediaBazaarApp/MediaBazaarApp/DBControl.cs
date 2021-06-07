@@ -45,11 +45,10 @@ namespace MediaBazaarApp
                         "INSERT INTO employee (FirstName, LastName, DateOfBirth, Nationality, Gender, Email, PhoneNumber, Street, City, " +
                         "Country, PostCode, BSN, EmergencyContactName, EmergencyContactRelation, " +
                         "EmergencyContactEmail, EmergencyContactPhone, EmploymentType, HourlyWages, StartDate, EndDate, " +
-                        "DepartmentID, RemainingHolidayDays) " +
+                        "DepartmentID) " +
                         "VALUES(@fname, @lname, @dob, @nationality, @gender, @email, @phone, @street, @city, @country, @postcode, " +
                         "@bsn, @emConName, @emConRelation, @emConEmail, @emConPhone, @employmentType, @hourlyWages, @startDate, " +
-                        "@endDate, @depId, " +
-                        "@remainingHolidayDays)";
+                        "@endDate, @depId)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -92,12 +91,17 @@ namespace MediaBazaarApp
                     cmd.Parameters.AddWithValue("@employmentType", employmentTypeInt);
                     cmd.Parameters.AddWithValue("@hourlyWages", hourlyWages);
                     cmd.Parameters.AddWithValue("@startDate", startDate);
-                    cmd.Parameters.AddWithValue("@endDate", endDate);
+
+                    if (endDate == DateTime.MaxValue)
+                    {
+                        cmd.Parameters.AddWithValue("@endDate", null);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@endDate", endDate);
+                    }
 
                     cmd.Parameters.AddWithValue("@depId", department.Id);
-
-
-                    cmd.Parameters.AddWithValue("@remainingHolidayDays", 50);
 
                     conn.Open();
 
@@ -165,8 +169,7 @@ namespace MediaBazaarApp
                                  "HourlyWages = @hourlyWages, " +
                                  "StartDate = @startDate, " +
                                  "EndDate = @endDate, " +
-                                 "DepartmentID = @depId, " +
-                                 "RemainingHolidayDays = @remainingHolidayDays " +
+                                 "DepartmentID = @depId " +
                                  "where id = @id";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -209,11 +212,20 @@ namespace MediaBazaarApp
                     cmd.Parameters.AddWithValue("@employmentType", employmentTypeInt);
                     cmd.Parameters.AddWithValue("@hourlyWages", emp.HourlyWages);
                     cmd.Parameters.AddWithValue("@startDate", emp.StartDate);
-                    cmd.Parameters.AddWithValue("@endDate", emp.EndDate);
+                    
+
+                    // TODO: Check end date in the db
+                    if (emp.EndDate == DateTime.MaxValue)
+                    {
+                        cmd.Parameters.AddWithValue("@endDate", null);
+
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@endDate", emp.EndDate);
+                    }
 
                     cmd.Parameters.AddWithValue("@depId", emp.Department.Id);
-                    cmd.Parameters.AddWithValue("@remainingHolidayDays", emp.RemainingHolidayDays);
-
                     cmd.Parameters.AddWithValue("@id", emp.Id);
 
 
@@ -274,8 +286,9 @@ namespace MediaBazaarApp
                         DateTime endDate;
                         if (String.IsNullOrEmpty(dr[20].ToString()))
                         {
-                            //TODO: Update with real date
-                            endDate = DateTime.Now;
+                            //TODO: Update with real date;
+                            // try with datetime max value
+                            endDate = DateTime.MaxValue;
                         }
                         else
                         {
@@ -283,17 +296,14 @@ namespace MediaBazaarApp
                         }
 
                         int depId = Convert.ToInt32(dr[21]);
-                        int remainingHolidayDays = Convert.ToInt32(dr[22]);
 
-                        string depName = dr[23].ToString();
+                        string depName = dr[22].ToString();
 
                         Department dep = departmentManagement.GetDepartment(depName);
                         dep.AddEmployee(departmentManagement, fname, lname, dob, nationality, gender, email, phone,
                             street, city, country, postcode, bsn, emConName, emConRelation, emConEmail,
                             emConPhone, employmentType, hourlyWages, startDate, endDate, dep);
                         dep.GetEmployeeByEmail(email).Id = id;
-                        dep.GetEmployeeByEmail(email).RemainingHolidayDays = remainingHolidayDays;
-
                     }
                 }
             }

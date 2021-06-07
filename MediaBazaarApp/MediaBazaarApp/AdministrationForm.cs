@@ -302,6 +302,10 @@ namespace MediaBazaarApp
                 hourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
                 startDate = dtpEmpStartDate.Value;
                 endDate = dtpEmpEndDate.Value;
+                if(cbxEmpIndefiniteContract.Checked)
+                {
+                    endDate = DateTime.MaxValue;
+                }
                 department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
 
                 DBControl dbControl = new DBControl();

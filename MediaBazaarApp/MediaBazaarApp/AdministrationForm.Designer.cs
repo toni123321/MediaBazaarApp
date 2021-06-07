@@ -242,6 +242,7 @@ namespace MediaBazaarApp
             this.weeklyScheduleCH = new System.Windows.Forms.CheckBox();
             this.holidayLeaveReqCH = new System.Windows.Forms.CheckBox();
             this.manageEmpCH = new System.Windows.Forms.CheckBox();
+            this.cbxEmpIndefiniteContract = new System.Windows.Forms.CheckBox();
             this.ManageDepartmentsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.gbxSearchDep.SuspendLayout();
@@ -1511,6 +1512,7 @@ namespace MediaBazaarApp
             // AddEmpTab
             // 
             this.AddEmpTab.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.AddEmpTab.Controls.Add(this.cbxEmpIndefiniteContract);
             this.AddEmpTab.Controls.Add(this.dtpEmpEndDate);
             this.AddEmpTab.Controls.Add(this.lbEmpEndDate);
             this.AddEmpTab.Controls.Add(this.dtpEmpStartDate);
@@ -2739,6 +2741,16 @@ namespace MediaBazaarApp
             this.manageEmpCH.Text = "Manage employees shortcut";
             this.manageEmpCH.UseVisualStyleBackColor = true;
             // 
+            // cbxEmpIndefiniteContract
+            // 
+            this.cbxEmpIndefiniteContract.AutoSize = true;
+            this.cbxEmpIndefiniteContract.Location = new System.Drawing.Point(265, 420);
+            this.cbxEmpIndefiniteContract.Name = "cbxEmpIndefiniteContract";
+            this.cbxEmpIndefiniteContract.Size = new System.Drawing.Size(181, 29);
+            this.cbxEmpIndefiniteContract.TabIndex = 82;
+            this.cbxEmpIndefiniteContract.Text = "Indefinite contract";
+            this.cbxEmpIndefiniteContract.UseVisualStyleBackColor = true;
+            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -3040,5 +3052,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbFilterEditAccountRequests;
         private System.Windows.Forms.ComboBox cbFilterEditAccountRequests;
         private System.Windows.Forms.Button btnUnmarkSelectedEditAccountRequest;
+        private System.Windows.Forms.CheckBox cbxEmpIndefiniteContract;
     }
 }

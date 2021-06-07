@@ -73,17 +73,20 @@ namespace MediaBazaarApp
             this.lbEmpFname = new System.Windows.Forms.Label();
             this.lbEmpNationality = new System.Windows.Forms.Label();
             this.tbxEmpNationality = new System.Windows.Forms.TextBox();
-            this.dtpEmpEndDate = new System.Windows.Forms.DateTimePicker();
-            this.lbEmpEndDate = new System.Windows.Forms.Label();
             this.dtpEmpStartDate = new System.Windows.Forms.DateTimePicker();
             this.lbEmpStartDate = new System.Windows.Forms.Label();
+            this.tbxEmpEndDate = new System.Windows.Forms.TextBox();
+            this.lbEmpNewEndDate = new System.Windows.Forms.Label();
+            this.dtpEmpEndDate = new System.Windows.Forms.DateTimePicker();
+            this.lbEmpEndDate = new System.Windows.Forms.Label();
+            this.cbxEmpIndefiniteContract = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudEmpHourlyWages)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEditEmpoyee
             // 
             this.btnEditEmpoyee.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnEditEmpoyee.Location = new System.Drawing.Point(524, 504);
+            this.btnEditEmpoyee.Location = new System.Drawing.Point(515, 633);
             this.btnEditEmpoyee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditEmpoyee.Name = "btnEditEmpoyee";
             this.btnEditEmpoyee.Size = new System.Drawing.Size(263, 80);
@@ -111,7 +114,7 @@ namespace MediaBazaarApp
             "Friend",
             "Colleague",
             "Other"});
-            this.cbEmConRelation.Location = new System.Drawing.Point(787, 205);
+            this.cbEmConRelation.Location = new System.Drawing.Point(135, 562);
             this.cbEmConRelation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEmConRelation.Name = "cbEmConRelation";
             this.cbEmConRelation.Size = new System.Drawing.Size(167, 33);
@@ -120,7 +123,7 @@ namespace MediaBazaarApp
             // lbEmConRelation
             // 
             this.lbEmConRelation.AutoSize = true;
-            this.lbEmConRelation.Location = new System.Drawing.Point(699, 209);
+            this.lbEmConRelation.Location = new System.Drawing.Point(47, 566);
             this.lbEmConRelation.Name = "lbEmConRelation";
             this.lbEmConRelation.Size = new System.Drawing.Size(79, 25);
             this.lbEmConRelation.TabIndex = 17;
@@ -129,7 +132,7 @@ namespace MediaBazaarApp
             // tbxEmConName
             // 
             this.tbxEmConName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmConName.Location = new System.Drawing.Point(786, 161);
+            this.tbxEmConName.Location = new System.Drawing.Point(134, 518);
             this.tbxEmConName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmConName.Name = "tbxEmConName";
             this.tbxEmConName.Size = new System.Drawing.Size(168, 31);
@@ -138,7 +141,7 @@ namespace MediaBazaarApp
             // lbEmConName
             // 
             this.lbEmConName.AutoSize = true;
-            this.lbEmConName.Location = new System.Drawing.Point(713, 163);
+            this.lbEmConName.Location = new System.Drawing.Point(61, 520);
             this.lbEmConName.Name = "lbEmConName";
             this.lbEmConName.Size = new System.Drawing.Size(63, 25);
             this.lbEmConName.TabIndex = 16;
@@ -147,7 +150,7 @@ namespace MediaBazaarApp
             // tbxEmConEmail
             // 
             this.tbxEmConEmail.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmConEmail.Location = new System.Drawing.Point(1066, 158);
+            this.tbxEmConEmail.Location = new System.Drawing.Point(414, 515);
             this.tbxEmConEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmConEmail.Name = "tbxEmConEmail";
             this.tbxEmConEmail.Size = new System.Drawing.Size(168, 31);
@@ -156,7 +159,7 @@ namespace MediaBazaarApp
             // lbEmConEmail
             // 
             this.lbEmConEmail.AutoSize = true;
-            this.lbEmConEmail.Location = new System.Drawing.Point(990, 161);
+            this.lbEmConEmail.Location = new System.Drawing.Point(338, 518);
             this.lbEmConEmail.Name = "lbEmConEmail";
             this.lbEmConEmail.Size = new System.Drawing.Size(58, 25);
             this.lbEmConEmail.TabIndex = 18;
@@ -165,7 +168,7 @@ namespace MediaBazaarApp
             // tbxEmConPhone
             // 
             this.tbxEmConPhone.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmConPhone.Location = new System.Drawing.Point(1066, 205);
+            this.tbxEmConPhone.Location = new System.Drawing.Point(414, 562);
             this.tbxEmConPhone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmConPhone.Name = "tbxEmConPhone";
             this.tbxEmConPhone.Size = new System.Drawing.Size(168, 31);
@@ -174,7 +177,7 @@ namespace MediaBazaarApp
             // lbEmConPhone
             // 
             this.lbEmConPhone.AutoSize = true;
-            this.lbEmConPhone.Location = new System.Drawing.Point(987, 209);
+            this.lbEmConPhone.Location = new System.Drawing.Point(335, 566);
             this.lbEmConPhone.Name = "lbEmConPhone";
             this.lbEmConPhone.Size = new System.Drawing.Size(66, 25);
             this.lbEmConPhone.TabIndex = 19;
@@ -184,7 +187,7 @@ namespace MediaBazaarApp
             // 
             this.lbEmpEmConDetails.AutoSize = true;
             this.lbEmpEmConDetails.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lbEmpEmConDetails.Location = new System.Drawing.Point(817, 101);
+            this.lbEmpEmConDetails.Location = new System.Drawing.Point(165, 458);
             this.lbEmpEmConDetails.Name = "lbEmpEmConDetails";
             this.lbEmpEmConDetails.Size = new System.Drawing.Size(306, 32);
             this.lbEmpEmConDetails.TabIndex = 22;
@@ -193,7 +196,7 @@ namespace MediaBazaarApp
             // lbEmpBsn
             // 
             this.lbEmpBsn.AutoSize = true;
-            this.lbEmpBsn.Location = new System.Drawing.Point(58, 358);
+            this.lbEmpBsn.Location = new System.Drawing.Point(86, 358);
             this.lbEmpBsn.Name = "lbEmpBsn";
             this.lbEmpBsn.Size = new System.Drawing.Size(44, 25);
             this.lbEmpBsn.TabIndex = 15;
@@ -202,7 +205,7 @@ namespace MediaBazaarApp
             // tbxEmpBsn
             // 
             this.tbxEmpBsn.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmpBsn.Location = new System.Drawing.Point(137, 358);
+            this.tbxEmpBsn.Location = new System.Drawing.Point(165, 358);
             this.tbxEmpBsn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpBsn.Name = "tbxEmpBsn";
             this.tbxEmpBsn.Size = new System.Drawing.Size(160, 31);
@@ -211,7 +214,7 @@ namespace MediaBazaarApp
             // nudEmpHourlyWages
             // 
             this.nudEmpHourlyWages.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.nudEmpHourlyWages.Location = new System.Drawing.Point(793, 374);
+            this.nudEmpHourlyWages.Location = new System.Drawing.Point(933, 227);
             this.nudEmpHourlyWages.Name = "nudEmpHourlyWages";
             this.nudEmpHourlyWages.Size = new System.Drawing.Size(160, 31);
             this.nudEmpHourlyWages.TabIndex = 7;
@@ -226,7 +229,7 @@ namespace MediaBazaarApp
             // 
             this.cbEmpDepartment.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cbEmpDepartment.FormattingEnabled = true;
-            this.cbEmpDepartment.Location = new System.Drawing.Point(793, 429);
+            this.cbEmpDepartment.Location = new System.Drawing.Point(933, 282);
             this.cbEmpDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEmpDepartment.Name = "cbEmpDepartment";
             this.cbEmpDepartment.Size = new System.Drawing.Size(160, 33);
@@ -235,7 +238,7 @@ namespace MediaBazaarApp
             // lbEmpDepartment
             // 
             this.lbEmpDepartment.AutoSize = true;
-            this.lbEmpDepartment.Location = new System.Drawing.Point(676, 434);
+            this.lbEmpDepartment.Location = new System.Drawing.Point(816, 287);
             this.lbEmpDepartment.Name = "lbEmpDepartment";
             this.lbEmpDepartment.Size = new System.Drawing.Size(111, 25);
             this.lbEmpDepartment.TabIndex = 8;
@@ -252,7 +255,7 @@ namespace MediaBazaarApp
             "FULLTIME",
             "PARTTIME1",
             "PARTTIME2"});
-            this.cbEmpEmploymentType.Location = new System.Drawing.Point(794, 315);
+            this.cbEmpEmploymentType.Location = new System.Drawing.Point(934, 168);
             this.cbEmpEmploymentType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEmpEmploymentType.Name = "cbEmpEmploymentType";
             this.cbEmpEmploymentType.Size = new System.Drawing.Size(160, 33);
@@ -262,7 +265,7 @@ namespace MediaBazaarApp
             // 
             this.lbEmpJobSpec.AutoSize = true;
             this.lbEmpJobSpec.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lbEmpJobSpec.Location = new System.Drawing.Point(892, 267);
+            this.lbEmpJobSpec.Location = new System.Drawing.Point(856, 101);
             this.lbEmpJobSpec.Name = "lbEmpJobSpec";
             this.lbEmpJobSpec.Size = new System.Drawing.Size(211, 32);
             this.lbEmpJobSpec.TabIndex = 5;
@@ -271,7 +274,7 @@ namespace MediaBazaarApp
             // lbEmpAddressStreet
             // 
             this.lbEmpAddressStreet.AutoSize = true;
-            this.lbEmpAddressStreet.Location = new System.Drawing.Point(370, 274);
+            this.lbEmpAddressStreet.Location = new System.Drawing.Point(439, 263);
             this.lbEmpAddressStreet.Name = "lbEmpAddressStreet";
             this.lbEmpAddressStreet.Size = new System.Drawing.Size(61, 25);
             this.lbEmpAddressStreet.TabIndex = 11;
@@ -281,7 +284,7 @@ namespace MediaBazaarApp
             // 
             this.lbEmpPersonalInfo.AutoSize = true;
             this.lbEmpPersonalInfo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lbEmpPersonalInfo.Location = new System.Drawing.Point(101, 101);
+            this.lbEmpPersonalInfo.Location = new System.Drawing.Point(129, 101);
             this.lbEmpPersonalInfo.Name = "lbEmpPersonalInfo";
             this.lbEmpPersonalInfo.Size = new System.Drawing.Size(248, 32);
             this.lbEmpPersonalInfo.TabIndex = 1;
@@ -290,7 +293,7 @@ namespace MediaBazaarApp
             // tbxEmpAddressStreet
             // 
             this.tbxEmpAddressStreet.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmpAddressStreet.Location = new System.Drawing.Point(446, 271);
+            this.tbxEmpAddressStreet.Location = new System.Drawing.Point(515, 260);
             this.tbxEmpAddressStreet.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpAddressStreet.Name = "tbxEmpAddressStreet";
             this.tbxEmpAddressStreet.Size = new System.Drawing.Size(168, 31);
@@ -299,7 +302,7 @@ namespace MediaBazaarApp
             // tbxEmpAddressCity
             // 
             this.tbxEmpAddressCity.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmpAddressCity.Location = new System.Drawing.Point(446, 319);
+            this.tbxEmpAddressCity.Location = new System.Drawing.Point(515, 308);
             this.tbxEmpAddressCity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpAddressCity.Name = "tbxEmpAddressCity";
             this.tbxEmpAddressCity.Size = new System.Drawing.Size(168, 31);
@@ -314,7 +317,7 @@ namespace MediaBazaarApp
             "FEMALE",
             "NONBINARY",
             "OTHER"});
-            this.cbEmpGender.Location = new System.Drawing.Point(137, 304);
+            this.cbEmpGender.Location = new System.Drawing.Point(165, 304);
             this.cbEmpGender.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEmpGender.Name = "cbEmpGender";
             this.cbEmpGender.Size = new System.Drawing.Size(161, 33);
@@ -324,7 +327,7 @@ namespace MediaBazaarApp
             // lbEmpAddressCity
             // 
             this.lbEmpAddressCity.AutoSize = true;
-            this.lbEmpAddressCity.Location = new System.Drawing.Point(385, 323);
+            this.lbEmpAddressCity.Location = new System.Drawing.Point(454, 312);
             this.lbEmpAddressCity.Name = "lbEmpAddressCity";
             this.lbEmpAddressCity.Size = new System.Drawing.Size(46, 25);
             this.lbEmpAddressCity.TabIndex = 12;
@@ -333,7 +336,7 @@ namespace MediaBazaarApp
             // tbxEmpEmail
             // 
             this.tbxEmpEmail.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmpEmail.Location = new System.Drawing.Point(446, 168);
+            this.tbxEmpEmail.Location = new System.Drawing.Point(515, 157);
             this.tbxEmpEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpEmail.Name = "tbxEmpEmail";
             this.tbxEmpEmail.Size = new System.Drawing.Size(168, 31);
@@ -342,7 +345,7 @@ namespace MediaBazaarApp
             // tbxEmpAddressCountry
             // 
             this.tbxEmpAddressCountry.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmpAddressCountry.Location = new System.Drawing.Point(446, 369);
+            this.tbxEmpAddressCountry.Location = new System.Drawing.Point(515, 358);
             this.tbxEmpAddressCountry.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpAddressCountry.Name = "tbxEmpAddressCountry";
             this.tbxEmpAddressCountry.Size = new System.Drawing.Size(168, 31);
@@ -351,7 +354,7 @@ namespace MediaBazaarApp
             // lbEmpEmail
             // 
             this.lbEmpEmail.AutoSize = true;
-            this.lbEmpEmail.Location = new System.Drawing.Point(366, 171);
+            this.lbEmpEmail.Location = new System.Drawing.Point(435, 160);
             this.lbEmpEmail.Name = "lbEmpEmail";
             this.lbEmpEmail.Size = new System.Drawing.Size(58, 25);
             this.lbEmpEmail.TabIndex = 9;
@@ -360,7 +363,7 @@ namespace MediaBazaarApp
             // lbEmpAddressPostCode
             // 
             this.lbEmpAddressPostCode.AutoSize = true;
-            this.lbEmpAddressPostCode.Location = new System.Drawing.Point(347, 418);
+            this.lbEmpAddressPostCode.Location = new System.Drawing.Point(416, 407);
             this.lbEmpAddressPostCode.Name = "lbEmpAddressPostCode";
             this.lbEmpAddressPostCode.Size = new System.Drawing.Size(92, 25);
             this.lbEmpAddressPostCode.TabIndex = 14;
@@ -369,7 +372,7 @@ namespace MediaBazaarApp
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 308);
+            this.label1.Location = new System.Drawing.Point(80, 308);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 25);
             this.label1.TabIndex = 4;
@@ -378,7 +381,7 @@ namespace MediaBazaarApp
             // lbEmpAddressCountry
             // 
             this.lbEmpAddressCountry.AutoSize = true;
-            this.lbEmpAddressCountry.Location = new System.Drawing.Point(358, 373);
+            this.lbEmpAddressCountry.Location = new System.Drawing.Point(427, 362);
             this.lbEmpAddressCountry.Name = "lbEmpAddressCountry";
             this.lbEmpAddressCountry.Size = new System.Drawing.Size(79, 25);
             this.lbEmpAddressCountry.TabIndex = 13;
@@ -386,16 +389,16 @@ namespace MediaBazaarApp
             // 
             // dtpEmpDateOfBirth
             // 
-            this.dtpEmpDateOfBirth.Location = new System.Drawing.Point(137, 258);
+            this.dtpEmpDateOfBirth.Location = new System.Drawing.Point(165, 258);
             this.dtpEmpDateOfBirth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpEmpDateOfBirth.Name = "dtpEmpDateOfBirth";
-            this.dtpEmpDateOfBirth.Size = new System.Drawing.Size(161, 31);
+            this.dtpEmpDateOfBirth.Size = new System.Drawing.Size(212, 31);
             this.dtpEmpDateOfBirth.TabIndex = 3;
             // 
             // tbxEmpAddressPostCode
             // 
             this.tbxEmpAddressPostCode.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmpAddressPostCode.Location = new System.Drawing.Point(446, 413);
+            this.tbxEmpAddressPostCode.Location = new System.Drawing.Point(515, 402);
             this.tbxEmpAddressPostCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpAddressPostCode.Name = "tbxEmpAddressPostCode";
             this.tbxEmpAddressPostCode.Size = new System.Drawing.Size(168, 31);
@@ -404,7 +407,7 @@ namespace MediaBazaarApp
             // lbEmpEmployementType
             // 
             this.lbEmpEmployementType.AutoSize = true;
-            this.lbEmpEmployementType.Location = new System.Drawing.Point(647, 318);
+            this.lbEmpEmployementType.Location = new System.Drawing.Point(787, 171);
             this.lbEmpEmployementType.Name = "lbEmpEmployementType";
             this.lbEmpEmployementType.Size = new System.Drawing.Size(141, 25);
             this.lbEmpEmployementType.TabIndex = 5;
@@ -413,7 +416,7 @@ namespace MediaBazaarApp
             // lbEmpDateOfBirth
             // 
             this.lbEmpDateOfBirth.AutoSize = true;
-            this.lbEmpDateOfBirth.Location = new System.Drawing.Point(21, 258);
+            this.lbEmpDateOfBirth.Location = new System.Drawing.Point(49, 258);
             this.lbEmpDateOfBirth.Name = "lbEmpDateOfBirth";
             this.lbEmpDateOfBirth.Size = new System.Drawing.Size(117, 25);
             this.lbEmpDateOfBirth.TabIndex = 3;
@@ -422,7 +425,7 @@ namespace MediaBazaarApp
             // lbEmpHourlyWages
             // 
             this.lbEmpHourlyWages.AutoSize = true;
-            this.lbEmpHourlyWages.Location = new System.Drawing.Point(668, 374);
+            this.lbEmpHourlyWages.Location = new System.Drawing.Point(808, 227);
             this.lbEmpHourlyWages.Name = "lbEmpHourlyWages";
             this.lbEmpHourlyWages.Size = new System.Drawing.Size(124, 25);
             this.lbEmpHourlyWages.TabIndex = 7;
@@ -431,7 +434,7 @@ namespace MediaBazaarApp
             // tbxEmpPhone
             // 
             this.tbxEmpPhone.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmpPhone.Location = new System.Drawing.Point(446, 220);
+            this.tbxEmpPhone.Location = new System.Drawing.Point(515, 209);
             this.tbxEmpPhone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpPhone.Name = "tbxEmpPhone";
             this.tbxEmpPhone.Size = new System.Drawing.Size(168, 31);
@@ -440,7 +443,7 @@ namespace MediaBazaarApp
             // lbEmpPhone
             // 
             this.lbEmpPhone.AutoSize = true;
-            this.lbEmpPhone.Location = new System.Drawing.Point(366, 224);
+            this.lbEmpPhone.Location = new System.Drawing.Point(435, 213);
             this.lbEmpPhone.Name = "lbEmpPhone";
             this.lbEmpPhone.Size = new System.Drawing.Size(66, 25);
             this.lbEmpPhone.TabIndex = 10;
@@ -450,7 +453,7 @@ namespace MediaBazaarApp
             // 
             this.lbEmployeeAddress.AutoSize = true;
             this.lbEmployeeAddress.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lbEmployeeAddress.Location = new System.Drawing.Point(441, 101);
+            this.lbEmployeeAddress.Location = new System.Drawing.Point(474, 101);
             this.lbEmployeeAddress.Name = "lbEmployeeAddress";
             this.lbEmployeeAddress.Size = new System.Drawing.Size(184, 32);
             this.lbEmployeeAddress.TabIndex = 9;
@@ -459,7 +462,7 @@ namespace MediaBazaarApp
             // tbxEmpLname
             // 
             this.tbxEmpLname.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmpLname.Location = new System.Drawing.Point(138, 212);
+            this.tbxEmpLname.Location = new System.Drawing.Point(166, 212);
             this.tbxEmpLname.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpLname.Name = "tbxEmpLname";
             this.tbxEmpLname.Size = new System.Drawing.Size(160, 31);
@@ -468,7 +471,7 @@ namespace MediaBazaarApp
             // lbEmpLname
             // 
             this.lbEmpLname.AutoSize = true;
-            this.lbEmpLname.Location = new System.Drawing.Point(34, 212);
+            this.lbEmpLname.Location = new System.Drawing.Point(62, 212);
             this.lbEmpLname.Name = "lbEmpLname";
             this.lbEmpLname.Size = new System.Drawing.Size(96, 25);
             this.lbEmpLname.TabIndex = 2;
@@ -477,7 +480,7 @@ namespace MediaBazaarApp
             // tbxEmpFname
             // 
             this.tbxEmpFname.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmpFname.Location = new System.Drawing.Point(138, 157);
+            this.tbxEmpFname.Location = new System.Drawing.Point(166, 157);
             this.tbxEmpFname.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpFname.Name = "tbxEmpFname";
             this.tbxEmpFname.Size = new System.Drawing.Size(160, 31);
@@ -486,7 +489,7 @@ namespace MediaBazaarApp
             // lbEmpFname
             // 
             this.lbEmpFname.AutoSize = true;
-            this.lbEmpFname.Location = new System.Drawing.Point(34, 157);
+            this.lbEmpFname.Location = new System.Drawing.Point(62, 157);
             this.lbEmpFname.Name = "lbEmpFname";
             this.lbEmpFname.Size = new System.Drawing.Size(98, 25);
             this.lbEmpFname.TabIndex = 1;
@@ -496,7 +499,7 @@ namespace MediaBazaarApp
             // 
             this.lbEmpNationality.AutoSize = true;
             this.lbEmpNationality.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmpNationality.Location = new System.Drawing.Point(21, 418);
+            this.lbEmpNationality.Location = new System.Drawing.Point(49, 418);
             this.lbEmpNationality.Name = "lbEmpNationality";
             this.lbEmpNationality.Size = new System.Drawing.Size(99, 25);
             this.lbEmpNationality.TabIndex = 70;
@@ -505,47 +508,74 @@ namespace MediaBazaarApp
             // tbxEmpNationality
             // 
             this.tbxEmpNationality.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxEmpNationality.Location = new System.Drawing.Point(137, 418);
+            this.tbxEmpNationality.Location = new System.Drawing.Point(165, 418);
             this.tbxEmpNationality.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxEmpNationality.Name = "tbxEmpNationality";
             this.tbxEmpNationality.Size = new System.Drawing.Size(161, 31);
             this.tbxEmpNationality.TabIndex = 71;
             // 
-            // dtpEmpEndDate
-            // 
-            this.dtpEmpEndDate.Location = new System.Drawing.Point(1127, 374);
-            this.dtpEmpEndDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtpEmpEndDate.Name = "dtpEmpEndDate";
-            this.dtpEmpEndDate.Size = new System.Drawing.Size(161, 31);
-            this.dtpEmpEndDate.TabIndex = 77;
-            // 
-            // lbEmpEndDate
-            // 
-            this.lbEmpEndDate.AutoSize = true;
-            this.lbEmpEndDate.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmpEndDate.Location = new System.Drawing.Point(1023, 376);
-            this.lbEmpEndDate.Name = "lbEmpEndDate";
-            this.lbEmpEndDate.Size = new System.Drawing.Size(84, 25);
-            this.lbEmpEndDate.TabIndex = 76;
-            this.lbEmpEndDate.Text = "End date:";
-            // 
             // dtpEmpStartDate
             // 
-            this.dtpEmpStartDate.Location = new System.Drawing.Point(1127, 315);
+            this.dtpEmpStartDate.Location = new System.Drawing.Point(933, 341);
             this.dtpEmpStartDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpEmpStartDate.Name = "dtpEmpStartDate";
-            this.dtpEmpStartDate.Size = new System.Drawing.Size(161, 31);
+            this.dtpEmpStartDate.Size = new System.Drawing.Size(208, 31);
             this.dtpEmpStartDate.TabIndex = 75;
             // 
             // lbEmpStartDate
             // 
             this.lbEmpStartDate.AutoSize = true;
             this.lbEmpStartDate.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmpStartDate.Location = new System.Drawing.Point(1022, 319);
+            this.lbEmpStartDate.Location = new System.Drawing.Point(828, 345);
             this.lbEmpStartDate.Name = "lbEmpStartDate";
             this.lbEmpStartDate.Size = new System.Drawing.Size(91, 25);
             this.lbEmpStartDate.TabIndex = 74;
             this.lbEmpStartDate.Text = "Start date:";
+            // 
+            // tbxEmpEndDate
+            // 
+            this.tbxEmpEndDate.Location = new System.Drawing.Point(934, 439);
+            this.tbxEmpEndDate.Name = "tbxEmpEndDate";
+            this.tbxEmpEndDate.Size = new System.Drawing.Size(208, 31);
+            this.tbxEmpEndDate.TabIndex = 78;
+            // 
+            // lbEmpNewEndDate
+            // 
+            this.lbEmpNewEndDate.AutoSize = true;
+            this.lbEmpNewEndDate.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpNewEndDate.Location = new System.Drawing.Point(795, 442);
+            this.lbEmpNewEndDate.Name = "lbEmpNewEndDate";
+            this.lbEmpNewEndDate.Size = new System.Drawing.Size(124, 25);
+            this.lbEmpNewEndDate.TabIndex = 79;
+            this.lbEmpNewEndDate.Text = "New end date:";
+            // 
+            // dtpEmpEndDate
+            // 
+            this.dtpEmpEndDate.Location = new System.Drawing.Point(933, 389);
+            this.dtpEmpEndDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtpEmpEndDate.Name = "dtpEmpEndDate";
+            this.dtpEmpEndDate.Size = new System.Drawing.Size(208, 31);
+            this.dtpEmpEndDate.TabIndex = 83;
+            // 
+            // lbEmpEndDate
+            // 
+            this.lbEmpEndDate.AutoSize = true;
+            this.lbEmpEndDate.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpEndDate.Location = new System.Drawing.Point(835, 394);
+            this.lbEmpEndDate.Name = "lbEmpEndDate";
+            this.lbEmpEndDate.Size = new System.Drawing.Size(84, 25);
+            this.lbEmpEndDate.TabIndex = 82;
+            this.lbEmpEndDate.Text = "End date:";
+            // 
+            // cbxEmpIndefiniteContract
+            // 
+            this.cbxEmpIndefiniteContract.AutoSize = true;
+            this.cbxEmpIndefiniteContract.Location = new System.Drawing.Point(961, 489);
+            this.cbxEmpIndefiniteContract.Name = "cbxEmpIndefiniteContract";
+            this.cbxEmpIndefiniteContract.Size = new System.Drawing.Size(181, 29);
+            this.cbxEmpIndefiniteContract.TabIndex = 84;
+            this.cbxEmpIndefiniteContract.Text = "Indefinite contract";
+            this.cbxEmpIndefiniteContract.UseVisualStyleBackColor = true;
             // 
             // EditEmployeeForm
             // 
@@ -553,9 +583,12 @@ namespace MediaBazaarApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.ClientSize = new System.Drawing.Size(1310, 607);
+            this.ClientSize = new System.Drawing.Size(1310, 726);
+            this.Controls.Add(this.cbxEmpIndefiniteContract);
             this.Controls.Add(this.dtpEmpEndDate);
             this.Controls.Add(this.lbEmpEndDate);
+            this.Controls.Add(this.lbEmpNewEndDate);
+            this.Controls.Add(this.tbxEmpEndDate);
             this.Controls.Add(this.dtpEmpStartDate);
             this.Controls.Add(this.lbEmpStartDate);
             this.Controls.Add(this.lbEmpNationality);
@@ -658,9 +691,12 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbEmpFname;
         private System.Windows.Forms.Label lbEmpNationality;
         private System.Windows.Forms.TextBox tbxEmpNationality;
-        private System.Windows.Forms.DateTimePicker dtpEmpEndDate;
-        private System.Windows.Forms.Label lbEmpEndDate;
         private System.Windows.Forms.DateTimePicker dtpEmpStartDate;
         private System.Windows.Forms.Label lbEmpStartDate;
+        private System.Windows.Forms.TextBox tbxEmpEndDate;
+        private System.Windows.Forms.Label lbEmpNewEndDate;
+        private System.Windows.Forms.DateTimePicker dtpEmpEndDate;
+        private System.Windows.Forms.Label lbEmpEndDate;
+        private System.Windows.Forms.CheckBox cbxEmpIndefiniteContract;
     }
 }
