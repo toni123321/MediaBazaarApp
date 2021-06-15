@@ -116,14 +116,16 @@ namespace MediaBazaarApp
 
         private void ManagementForm_Load(object sender, EventArgs e)
         {
+            comboBox1.Items.Add("Overall");
             DBControl db = new DBControl();
+            
             foreach (Department department in departmentManagement.GetAllDepartments())
             {
                 cbxGenderChart.Items.Add(department.Name);
                 cbxAge.Items.Add(department.Name);
                 cbxCity.Items.Add(department.Name);
+                comboBox1.Items.Add(department.Name);
             }
-
 
 
             foreach (Department d in departmentManagement.GetAllDepartments())
@@ -134,7 +136,7 @@ namespace MediaBazaarApp
                 }
             }
 
-
+           
 
             StatisticsEmployee se = new StatisticsEmployee();
 
@@ -213,82 +215,202 @@ namespace MediaBazaarApp
             }
         }
 
+
+        private Dictionary<string, int> ShowAges(List<Employee> employees)
+        {
+            Dictionary<string, int> ageRanges = new Dictionary<string, int>();
+
+            ageRanges.Add("14-17", 0);
+            ageRanges.Add("18-24", 0);
+            ageRanges.Add("25-34", 0);
+            ageRanges.Add("35-44", 0);
+            ageRanges.Add("45-54", 0);
+            ageRanges.Add("55-64", 0);
+            ageRanges.Add("65-74", 0);
+            ageRanges.Add("75+", 0);
+
+
+
+            List<int> allAges = new List<int>();
+
+            foreach (Employee emp in employees)
+            {
+                allAges.Add(DateTime.Now.Year - emp.DateOfBirth.Year);
+                
+            }
+            foreach (int age in allAges)
+            {
+                if (age >= 14 && age <= 17)
+                {
+                    ageRanges["14-17"]++;
+                }
+                else if (age >= 18 && age <= 24)
+                {
+                    ageRanges["18-24"]++;
+                }
+                if (age >= 25 && age <= 34)
+                {
+                    ageRanges["25-34"]++;
+                }
+                if (age >= 35 && age <= 44)
+                {
+                    ageRanges["35-44"]++;
+                }
+                if (age >= 45 && age <= 54)
+                {
+                    ageRanges["45-54"]++;
+                }
+                if (age >= 55 && age <= 64)
+                {
+                    ageRanges["55-64"]++;
+                }
+                if (age >= 65 && age <= 74)
+                {
+                    ageRanges["65-74"]++;
+                }
+                if (age >= 75)
+                {
+                    ageRanges["75+"]++;
+                }
+            }
+            return ageRanges;
+        } 
+
+        private Dictionary<string, int> ShowAgesPerDepartment(string depName)
+        {
+            foreach (Department dep in departmentManagement.GetAllDepartments())
+            {
+                if(dep.Name == depName)
+                {
+                    return ShowAges(dep.GetAllEmployees());
+                }
+            }
+            return null;
+        }
+
+        private Dictionary<string, int> ShowAllAges()
+        {
+            return ShowAges(departmentManagement.GetAllEmployees());
+        }
+
+
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             AgeChart.Series["Employees Age"].Points.Clear();
             int index = cbxAge.SelectedIndex;
             string department = cbxAge.SelectedItem.ToString();
-            List<string> age = new List<string>();
 
             if (index != -1)
             {
-
-                if (index == 0)
+                if(index == 0)
                 {
-                    foreach (Employee emp in departmentManagement.GetAllEmployees())
+                    Dictionary<string, int> ageRanges = ShowAllAges();
+                    for (int i = 0; i < ShowAllAges().Count; i++)
                     {
-                        age.Add($"{ DateTime.Now.Year - emp.DateOfBirth.Year}");
+                        AgeChart.Series["Employees Age"].Points.AddXY(ageRanges.Keys.ElementAt(i), ageRanges.Values.ElementAt(i));
                     }
-
-                    var uniqueage = age.Distinct();
-                    foreach (string a in uniqueage)
+                }
+                else
+                {
+                    Dictionary<string, int> ageRanges = ShowAgesPerDepartment(cbxAge.SelectedItem.ToString());
+                    for (int i = 0; i < ageRanges.Count; i++)
                     {
-                        int count = 0;
-                        foreach (Employee emp in departmentManagement.GetAllEmployees())
+                        AgeChart.Series["Employees Age"].Points.AddXY(ageRanges.Keys.ElementAt(i), ageRanges.Values.ElementAt(i));
+                    }
+                }
+                
+            }
+            
+
+
+           
+           
+
+
+
+
+            /*
+                        if (index != -1)
                         {
 
-                            if ($"{ DateTime.Now.Year - emp.DateOfBirth.Year}" == a)
+                            if (index == 0)
                             {
-                                count += 1;
+                                foreach (Employee emp in departmentManagement.GetAllEmployees())
+                                {
+                                    age.Add($"{ DateTime.Now.Year - emp.DateOfBirth.Year}");
+                                }
+
+                                var uniqueage = age.Distinct();
+                                foreach (string a in uniqueage)
+                                {
+                                    int count = 0;
+                                    foreach (Employee emp in departmentManagement.GetAllEmployees())
+                                    {
+
+                                        if ($"{ DateTime.Now.Year - emp.DateOfBirth.Year}" == a)
+                                        {
+                                            count += 1;
+                                        }
+
+                                    }
+                                    ShowAgesInGeneral();
+                                    AgeChart.Series["Employees Age"].Points.AddXY($"{a}", count);
+                                }
+
                             }
+                        }*/
 
-                        }
-                        AgeChart.Series["Employees Age"].Points.AddXY($"{a}", count);
-                    }
-
-                }
-            }
-
-
-            foreach (Department d in departmentManagement.GetAllDepartments())
-            {
-
-                if (department == d.Name)
-                {
-                    age.Clear();
-
-
-
-
-                    foreach (Employee emp in departmentManagement.GetAllEmployees())
-                    {
-                        age.Add($"{ DateTime.Now.Year - emp.DateOfBirth.Year}");
-                    }
-
-
-
-
-                    var uniqueage = age.Distinct();
-                    foreach (string a in uniqueage)
-                    {
-                        int count = 0;
-                        foreach (Employee employee in d.GetAllEmployees())
+            /*
+                        foreach (Department d in departmentManagement.GetAllDepartments())
                         {
-                            if ($"{ DateTime.Now.Year - employee.DateOfBirth.Year}" == a)
+
+                            if (department == d.Name)
                             {
-                                count += 1;
+                                age.Clear();
+
+
+
+
+                                foreach (Employee emp in departmentManagement.GetAllEmployees())
+                                {
+                                    age.Add($"{ DateTime.Now.Year - emp.DateOfBirth.Year}");
+                                }
+
+
+
+
+
+
+
+
+                                foreach (var item in collection)
+                                {
+
+                                }
+
+
+                                var uniqueage = age.Distinct();
+                                foreach (string a in uniqueage)
+                                {
+                                    int count = 0;
+                                    foreach (Employee employee in d.GetAllEmployees())
+                                    {
+                                        if ($"{ DateTime.Now.Year - employee.DateOfBirth.Year}" == a)
+                                        {
+                                            count += 1;
+                                        }
+
+                                    }
+                                    AgeChart.Series["Employees Age"].Points.AddXY($"25-30", count);
+                                }
+
+
+
+
                             }
 
-                        }
-                        AgeChart.Series["Employees Age"].Points.AddXY($"{a}", count);
-                    }
-
-
-
-
-                }
-
-            }
+                        }*/
 
 
         }
@@ -370,11 +492,274 @@ namespace MediaBazaarApp
 
             }
         }
+       /* private Dictionary<string, int> ShowAllMonths()
+        {
+            return ShowMonths(departmentManagement.GetAllEmployees());
+        }
+        private Dictionary<string, int> ShowMonths(List<Employee> employees)
+        {
+            Dictionary<string, int> Months = new Dictionary<string, int>();
+
+            Months.Add("January", 0);
+            Months.Add("February", 0);
+            Months.Add("March", 0);
+            Months.Add("April", 0);
+            Months.Add("May", 0);
+            Months.Add("June", 0);
+            Months.Add("July", 0);
+            Months.Add("August", 0);
+            Months.Add("September", 0);
+            Months.Add("October", 0);
+            Months.Add("November", 0);
+            Months.Add("December", 0);
+
+            List<string> allMonths = new List<string>();
+            string[] Month = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+
+
+            List<int> allAges = new List<int>();
+
+            foreach (Employee emp in employees)
+            {
+                allAges.Add(DateTime.Now.Year - emp.DateOfBirth.Year);
+            }
+            foreach (string m in Month)
+            {
+                foreach (Employee e in departmentManagement.GetAllEmployees())
+                {
+                    if (e.StartDate.Month == 01)
+                    {
+                        Months["January"]++;
+                    }
+                    else if (e.StartDate.Month == 02)
+                    {
+                        Months["February"]++;
+                    }
+                    if (e.StartDate.Month == 03)
+                    {
+                        Months["March"]++;
+                    }
+                    if (e.StartDate.Month == 04)
+                    {
+                        Months["April"]++;
+                    }
+                    if (e.StartDate.Month == 05)
+                    {
+                        Months["May"]++;
+                    }
+                    if (e.StartDate.Month == 06)
+                    {
+                        Months["June"]++;
+                    }
+                    if (e.StartDate.Month == 07)
+                    {
+                        Months["July"]++;
+                    }
+                    if (e.StartDate.Month == 08)
+                    {
+                        Months["August"]++;
+                    }
+                    if (e.StartDate.Month == 09)
+                    {
+                        Months["September"]++;
+                    }
+                    if (e.StartDate.Month == 10)
+                    {
+                        Months["October"]++;
+                    }
+                    if (e.StartDate.Month == 11)
+                    {
+                        Months["November"]++;
+                    }
+                    if (e.StartDate.Month == 12)
+                    {
+                        Months["December"]++;
+                    }
+                }
+                
+            }
+            return Months;
+        }
+
+*/
+
+
+
+        private void comboBox1_SelectedIndexChanged_2(object sender, EventArgs e)
+        {
+            EmpIncrChart.Series["EmplLine"].Points.Clear();
+            EmpIncrChart.ChartAreas[0].AxisX.RoundAxisValues();
+            int index = comboBox1.SelectedIndex;
+            string[] Month = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+            Dictionary<string, int> Months = new Dictionary<string, int>();
+            string department = comboBox1.SelectedItem.ToString();
 
 
 
 
+            Months.Add("January", 0);
+            Months.Add("February", 0);
+            Months.Add("March", 0);
+            Months.Add("April", 0);
+            Months.Add("May", 0);
+            Months.Add("June", 0);
+            Months.Add("July", 0);
+            Months.Add("August", 0);
+            Months.Add("September", 0);
+            Months.Add("October", 0);
+            Months.Add("November", 0);
+            Months.Add("December", 0);
 
+
+            if (index != -1)
+            {
+                if (index == 0)
+                {
+                    EmpIncrChart.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+                    EmpIncrChart.ChartAreas["ChartArea1"].AxisY.Interval = 1;
+
+
+                    EmpIncrChart.ChartAreas[0].AxisY.RoundAxisValues();
+
+                    /*Dictionary<string, int> Months = ShowAllMonths();
+                    for (int i = 0; i < ShowAllAges().Count; i++)
+                    {
+                        EmpIncrChart.Series["EmplLine"].Points.AddXY(Months.Keys.ElementAt(i), Months.Values.ElementAt(i));
+                    }*/
+
+
+                    foreach (Employee employee in departmentManagement.GetAllEmployees())
+                        {
+                            if (employee.StartDate.Month == 01)
+                            {
+                                Months["January"]++;
+                            }
+                            else if (employee.StartDate.Month == 02)
+                            {
+                                Months["February"]++;
+                            }
+                            if (employee.StartDate.Month == 03)
+                            {
+                                Months["March"]++;
+                            }
+                            if (employee.StartDate.Month == 04)
+                            {
+                                Months["April"]++;
+                            }
+                            if (employee.StartDate.Month == 05)
+                            {
+                                Months["May"]++;
+                            }
+                            if (employee.StartDate.Month == 06)
+                            {
+                                Months["June"]++;
+                            }
+                            if (employee.StartDate.Month == 07)
+                            {
+                                Months["July"]++;
+                            }
+                            if (employee.StartDate.Month == 08)
+                            {
+                                Months["August"]++;
+                            }
+                            if (employee.StartDate.Month == 09)
+                            {
+                                Months["September"]++;
+                            }
+                            if (employee.StartDate.Month == 10)
+                            {
+                                Months["October"]++;
+                            }
+                            if (employee.StartDate.Month == 11)
+                            {
+                                Months["November"]++;
+                            }
+                            if (employee.StartDate.Month == 12)
+                            {
+                                Months["December"]++;
+                            }
+                        }
+                        for (int i = 0; i < 12; i++)
+                        {
+                            EmpIncrChart.Series["EmplLine"].Points.AddXY(Months.Keys.ElementAt(i), Months.Values.ElementAt(i));
+                        }
+                    
+                }
+                else
+                {
+                    EmpIncrChart.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+                    EmpIncrChart.ChartAreas["ChartArea1"].AxisY.Interval = 1;
+
+
+                    EmpIncrChart.ChartAreas[0].AxisY.RoundAxisValues();
+                    foreach (Department d in departmentManagement.GetAllDepartments())
+                    {
+                        if (department == d.Name)
+                        {
+                            foreach (Employee employee in d.GetAllEmployees())
+                            {
+                                if (employee.StartDate.Month == 01)
+                                {
+                                    Months["January"]++;
+                                }
+                                else if (employee.StartDate.Month == 02)
+                                {
+                                    Months["February"]++;
+                                }
+                                if (employee.StartDate.Month == 03)
+                                {
+                                    Months["March"]++;
+                                }
+                                if (employee.StartDate.Month == 04)
+                                {
+                                    Months["April"]++;
+                                }
+                                if (employee.StartDate.Month == 05)
+                                {
+                                    Months["May"]++;
+                                }
+                                if (employee.StartDate.Month == 06)
+                                {
+                                    Months["June"]++;
+                                }
+                                if (employee.StartDate.Month == 07)
+                                {
+                                    Months["July"]++;
+                                }
+                                if (employee.StartDate.Month == 08)
+                                {
+                                    Months["August"]++;
+                                }
+                                if (employee.StartDate.Month == 09)
+                                {
+                                    Months["September"]++;
+                                }
+                                if (employee.StartDate.Month == 10)
+                                {
+                                    Months["October"]++;
+                                }
+                                if (employee.StartDate.Month == 11)
+                                {
+                                    Months["November"]++;
+                                }
+                                if (employee.StartDate.Month == 12)
+                                {
+                                    Months["December"]++;
+                                }
+                            }
+                            for (int i = 0; i < 12; i++)
+                            {
+                                EmpIncrChart.Series["EmplLine"].Points.AddXY(Months.Keys.ElementAt(i), Months.Values.ElementAt(i));
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            
+
+
+        }
     }
 }
 
