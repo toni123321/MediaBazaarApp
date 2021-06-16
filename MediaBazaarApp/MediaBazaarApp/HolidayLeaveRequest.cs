@@ -28,9 +28,14 @@ namespace MediaBazaarApp
 
 
 
-        /*public HolidayLeaveRequest(emp)
+        public HolidayLeaveRequest(Employee emp, DateTime st, DateTime et, int totalDays, string status, string comments)
         {
-            emp
-        }*/
+            this.employee = emp;
+            this.startDate = st;
+            this.endDate = et;
+            this.totalDays = totalDays;
+            this.status = status;
+            this.comments = comments;
+        }
     }
 }
