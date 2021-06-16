@@ -1131,6 +1131,79 @@ namespace MediaBazaarApp
                 MessageBox.Show(ex.Message);
             }
         }
+        
+        // Holiday requests
+        public IList<HolidayLeaveRequest> GetHLRs()
+        {
+            IList<HolidayLeaveRequest> hlrs = new List<HolidayLeaveRequest>();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "SELECT * FROM holiday_leave_request";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        int id = Convert.ToInt32(dr[0]);
+                        int empId = Convert.ToInt32(dr[1]);
+                        DateTime startDay = (DateTime) dr[2];
+                        DateTime endDay = (DateTime)dr[3];
+                        int totalDays = Convert.ToInt32(dr[4]);
+                        string status = dr[5].ToString();
+                        string comments = dr[6].ToString();
+                        DateTime requestDate = (DateTime) dr[7];
+                        
+
+                        HolidayLeaveRequest holidayLeaveRequest = new
+                            HolidayLeaveRequest(id, empId, startDay, endDay, totalDays,
+                                status, comments, requestDate);
+                        hlrs.Add(holidayLeaveRequest);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+            return hlrs;
+        }
+
+        public void UpdateHLR(HolidayLeaveRequest holidayLeaveRequest)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "UPDATE  holiday_leave_request " +
+                                 "set Status = @status " +
+                                 "where id = @id";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@status", holidayLeaveRequest.Status);
+                    cmd.Parameters.AddWithValue("@id", holidayLeaveRequest.Id);
+                    
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         public List<string> GetActivatedShortcuts(Employee emp)
         {

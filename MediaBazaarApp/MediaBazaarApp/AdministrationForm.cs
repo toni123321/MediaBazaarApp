@@ -34,6 +34,7 @@ namespace MediaBazaarApp
 
         // Manager for edit account requests
         private EditAccountRequestsManager editAccountRequestsManager;
+        private HLRManager hlrManager;
 
 
         public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp,
@@ -78,6 +79,7 @@ namespace MediaBazaarApp
 
             // Initializing the edit account requests manager
             editAccountRequestsManager = new EditAccountRequestsManager();
+            hlrManager = new HLRManager();
 
         }
 
@@ -1063,9 +1065,10 @@ namespace MediaBazaarApp
             else if (tabControlAdministration.SelectedTab == tabPageEditAccountRequests)
             {
                 cbFilterEditAccountRequests.SelectedIndex = 0;
-                UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
             }
         }
+
 
 
         private void UpdateDepsManualShiftPlanning()
@@ -1838,7 +1841,7 @@ namespace MediaBazaarApp
             dgvDepartments.ClearSelection();
         }
 
-        public void UpdateDVGEditAccountRequests(IList<EditAccountRequest> requests)
+        public void UpdateDGVEditAccountRequests(IList<EditAccountRequest> requests)
         {
             var editAccountRequestsDataSource =
                 requests.Select(x => new
@@ -1876,7 +1879,7 @@ namespace MediaBazaarApp
                 {
                     editAccountRequestsManager.AcceptRequest(requestId, this.departmentManagement);
                     cbFilterEditAccountRequests.SelectedIndex = 0;
-                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
                     MessageBox.Show("You have accepted this request!");
                 }
             }
@@ -1902,7 +1905,8 @@ namespace MediaBazaarApp
                 {
                     editAccountRequestsManager.DeclineRequest(requestId, this.departmentManagement);
                     cbFilterEditAccountRequests.SelectedIndex = 0;
-                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                    
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
                     MessageBox.Show("You have declined this request!");
                 }
             }
@@ -1918,16 +1922,16 @@ namespace MediaBazaarApp
             switch (status)
             {
                 case "All":
-                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
                     break;
                 case "Accepted":
-                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAcceptedEditAccountRequests());
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAcceptedEditAccountRequests());
                     break;
                 case "Declined":
-                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetDeclinedEditAccountRequests());
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetDeclinedEditAccountRequests());
                     break;
                 case "InProgress":
-                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetInProgressEditAccountRequests());
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetInProgressEditAccountRequests());
                     break;
             }
         }
@@ -1941,6 +1945,120 @@ namespace MediaBazaarApp
             else
             {
                 MessageBox.Show("To unmark request, you should have selected one beforehand!");
+            }
+        }
+
+
+        private void tabControlEmployees_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlEmployees.SelectedTab == HolidayRequestsTab)
+            {
+                cbFilterHLR.SelectedIndex = 0;
+                UpdateDGVHLR(hlrManager.GetAllRequests());
+            }
+        }
+        // HLR
+
+
+        private void cbFilterHLR_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string status = cbFilterHLR.SelectedItem.ToString();
+            switch (status)
+            {
+                case "All":
+                    UpdateDGVHLR(hlrManager.GetAllRequests());
+                    break;
+                case "Accepted":
+                    UpdateDGVHLR(hlrManager.GetAcceptedRequests());
+                    break;
+                case "Declined":
+                    UpdateDGVHLR(hlrManager.GetDeclinedRequests());
+                    break;
+                case "InProgress":
+                    UpdateDGVHLR(hlrManager.GetPendingRequests());
+                    break;
+            }
+        }
+
+        private void UpdateDGVHLR(IList<HolidayLeaveRequest> requests)
+        {
+            var HLRDataSource =
+                requests.Select(x => new
+                {
+                    ID = x.Id,
+                    Employee = $"{departmentManagement.GetEmployeeById(x.EmployeeId).FirstName} {departmentManagement.GetEmployeeById(x.EmployeeId).LastName}",
+                    x.StartDate,
+                    x.EndDate,
+                    x.TotalDays,
+                    x.Status,
+                    Reason = x.Comments,
+                    x.RequestDate
+                }).ToList();
+
+            dgvHLR.DataSource = HLRDataSource;
+            dgvHLR.ClearSelection();
+        }
+
+        private void btnHolidayRequestsAccept_Click(object sender, EventArgs e)
+        {
+            if (dgvHLR.SelectedRows.Count == 1)
+            {
+                int requestId = Convert.ToInt32(dgvHLR.SelectedCells[0].Value);
+                HolidayLeaveRequest currRequest = hlrManager.GetHLR(requestId);
+                
+                if (currRequest.Status != "InProgress")
+                {
+                    MessageBox.Show("This request is already processed!");
+                }
+                else
+                {
+                    hlrManager.AcceptHLR(currRequest, this.departmentManagement);
+                    cbFilterHLR.SelectedIndex = 0; // All
+                    UpdateDGVHLR(hlrManager.GetAllRequests());
+                    MessageBox.Show("You have accepted this request!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, select a request to mark it as /Accepted/");
+            }
+        }
+
+        private void btnHolidayRequestsDecline_Click(object sender, EventArgs e)
+        {
+            if (dgvHLR.SelectedRows.Count == 1)
+            {
+                int requestId = Convert.ToInt32(dgvHLR.SelectedCells[0].Value);
+                HolidayLeaveRequest currRequest = hlrManager.GetHLR(requestId);
+
+                if (currRequest.Status != "InProgress")
+                {
+                    MessageBox.Show("This request is already processed!");
+                }
+                else
+                {
+                    hlrManager.DeclineHLR(currRequest, this.departmentManagement);
+                    cbFilterHLR.SelectedIndex = 0; // All
+                    UpdateDGVHLR(hlrManager.GetAllRequests());
+                    MessageBox.Show("You have declined this request!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, select a request to mark it as /Declined/");
+            }
+        }
+
+
+        private void btnHolidayRequestsClearSelected_Click(object sender, EventArgs e)
+        {
+            if (dgvHLR.SelectedRows.Count == 1)
+            {
+                dgvHLR.ClearSelection();
+            }
+            else
+            {
+                MessageBox.Show("To unmark request, you should have selected one beforehand! ");
             }
         }
 
@@ -1986,6 +2104,7 @@ namespace MediaBazaarApp
         {
             ChangeSettingsButtonColor(manageDepCH);
         }
+
     }
 }
 

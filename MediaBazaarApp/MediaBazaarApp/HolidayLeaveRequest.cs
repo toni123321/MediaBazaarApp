@@ -8,7 +8,8 @@ namespace MediaBazaarApp
 {
     public class HolidayLeaveRequest
     {
-        private Employee employee;
+        private int id;
+        private int employeeId;
         private DateTime startDate;
         private DateTime endDate;
         private int totalDays;
@@ -16,8 +17,9 @@ namespace MediaBazaarApp
         private string comments;
         private DateTime requestDate;
 
-        
-        public Employee Employee { get;  set; }
+
+        public int Id { get; set; }
+        public int EmployeeId { get;  set; }
         public DateTime StartDate { get;  set; }
         public DateTime EndDate { get;  set; }
         public int TotalDays { get;  set; }
@@ -28,14 +30,16 @@ namespace MediaBazaarApp
 
 
 
-        public HolidayLeaveRequest(Employee emp, DateTime st, DateTime et, int totalDays, string status, string comments)
+        public HolidayLeaveRequest(int id, int employeeId, DateTime st, DateTime et, int totalDays, string status, string comments, DateTime requestDate)
         {
-            this.employee = emp;
-            this.startDate = st;
-            this.endDate = et;
-            this.totalDays = totalDays;
-            this.status = status;
-            this.comments = comments;
+            this.Id = id;
+            this.EmployeeId = employeeId;
+            this.StartDate = st;
+            this.EndDate = et;
+            this.TotalDays = totalDays;
+            this.Status = status;
+            this.Comments = comments;
+            this.RequestDate = requestDate;
         }
     }
 }
