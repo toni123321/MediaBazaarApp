@@ -14,14 +14,19 @@ namespace MediaBazaarApp
         private int totalDays;
         private string status;
         private string comments;
+        private DateTime requestDate;
 
         
-        public Employee Employee { get; private set; }
-        public DateTime StartDate { get; private set; }
-        public DateTime EndDate { get; private set; }
-        public int TotalDays { get; private set; }
-        public string Status { get; private set; }
-        public string Comments { get; private set; }
+        public Employee Employee { get;  set; }
+        public DateTime StartDate { get;  set; }
+        public DateTime EndDate { get;  set; }
+        public int TotalDays { get;  set; }
+        public string Status { get;  set; }
+        public string Comments { get;  set; }
+
+        public DateTime RequestDate { get; set; }
+
+
 
         /*public HolidayLeaveRequest(emp)
         {
