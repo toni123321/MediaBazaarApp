@@ -9,12 +9,160 @@ namespace MediaBazaarApp
 {
     public class AutomatedScheduleHandler
     {
+        Dictionary<DateTime, int> weekDays = new Dictionary<DateTime, int>();
+        
+
         public DepartmentManagement DepartmentManagement { get; set; }
         DBControl dbc;
         public AutomatedScheduleHandler(DepartmentManagement departmentManagement)
         {
             this.DepartmentManagement = departmentManagement;
             this.dbc = new DBControl();
+                
+        }
+
+        public DateTime DateNeededShifts(Dictionary<DateTime, int> weekDays)
+        {
+            var orderedWeekDays = weekDays.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            return orderedWeekDays.Keys.ElementAt(0);
+        }
+        public void AssignShiftsREEEE(int week, int year)
+        {
+            var ordered = weekDays.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+
+            Random rand = new Random();
+
+            //get all needed shifts (employees) and randomise it
+            List<Employee> neededShifts = new List<Employee>();
+            List<Shift> tempSchedule = new List<Shift>();
+
+            foreach (Employee emp in DepartmentManagement.GetAllEmployees())
+            {
+                for (int i = 0; i < (int)emp.EmploymentType; i++)
+                {
+                    neededShifts.Add(emp);
+                }
+            }
+            Employee[] randomNeededShifts = neededShifts.OrderBy(x => rand.Next()).ToArray();
+            List<Employee> randomNeededShiftsList = new List<Employee>(randomNeededShifts);
+
+            //finds out how many shifts per day and how many remaiming
+            int shiftsPerDay = (int)neededShifts.Count / 7;
+            int remainingShifts = neededShifts.Count % 7;
+            DateTime firstDayOfTheWeek = FirstDateOfWeekISO8601(year, week);
+            int lastAssignedShiftType = 0; //0 - next shift is going to be morning, 1 - evening
+            int noonShifts = (int)Math.Ceiling(shiftsPerDay / 2.00);
+
+            weekDays.Add(firstDayOfTheWeek, 0);
+            weekDays.Add(firstDayOfTheWeek.AddDays(1), 0);
+            weekDays.Add(firstDayOfTheWeek.AddDays(2), 0);
+            weekDays.Add(firstDayOfTheWeek.AddDays(3), 0);
+            weekDays.Add(firstDayOfTheWeek.AddDays(4), 0);
+            weekDays.Add(firstDayOfTheWeek.AddDays(5), 0);
+            weekDays.Add(firstDayOfTheWeek.AddDays(6), 0);
+
+            List<int> remShifts = new List<int>();
+            int number;
+            for (int i = 0; i < remainingShifts; i++)
+            {
+                do
+                {
+                    number = rand.Next(0, 7);
+                } while (remShifts.Contains(number));
+
+                remShifts.Add(number);
+            }
+
+            for (int i = 0; i < 7; i++) // 0-6 == mon-sun
+            {
+                int totalShifts = shiftsPerDay;
+
+                if (remShifts.Contains(i))
+                {
+                    totalShifts = shiftsPerDay + 1;
+                }
+
+                noonShifts = (int)Math.Ceiling(totalShifts / 2.00);
+                int otherShifts = totalShifts - noonShifts;
+                DateTime weekDay = firstDayOfTheWeek.AddDays(i);
+
+                for (int j = 0; j < noonShifts; j++)
+                {
+                    tempSchedule.Add(new Shift(-1, ShiftType.Afternoon, weekDay, -1, false, true, null));
+                }
+
+                for (int x = 0; x < otherShifts; x++)
+                {
+                    if (lastAssignedShiftType == 0)
+                    {
+                        tempSchedule.Add(new Shift(-1, ShiftType.Morning, weekDay, -1, false, true, null));
+                        lastAssignedShiftType = 1;
+                    }
+                    else if (lastAssignedShiftType == 1)
+                    {
+                        tempSchedule.Add(new Shift(-1, ShiftType.Evening, weekDay, -1, false, true, null));
+                        lastAssignedShiftType = 0;
+                    }
+                }
+            }
+
+            //check if the emp doesnt have more than 2/day
+            //check if the emp doesnt have already a shift with the same type and date
+            //assing shifts to employees
+
+            //while (tempSchedule.Count > 0)
+            //{
+            //    foreach (Employee emp in DepartmentManagement.GetAllEmployees())
+            //    {
+
+            //        int employeeMaxShifts = (int)emp.EmploymentType;
+            //        int shiftsCounter = 0;
+
+            //        foreach (Shift s in tempSchedule.ToList())
+            //        {
+
+            //            if (CheckForExistingShift(s.Date, s.Type, emp) == false && GetEmployeeShiftsPerDay(s.Date, emp) < 2 && shiftsCounter < employeeMaxShifts)
+            //            {
+            //                emp.AddExistingShift(s);
+            //                tempSchedule.Remove(s);
+
+            //                shiftsCounter++;
+            //            }
+            //        }
+            //    }
+            //}
+
+            while (tempSchedule.Count > 0)
+            {
+                foreach (Employee emp in DepartmentManagement.GetAllEmployees())
+                {
+
+                    int employeeMaxShifts = (int)emp.EmploymentType;
+                    int shiftsCounter = 0;
+
+                    Shift selectedShift = null;
+
+                    if (shiftsCounter < employeeMaxShifts)
+                    {
+                        foreach (Shift s in tempSchedule.ToList())
+                        {
+
+                            if (CheckForExistingShift(s.Date, s.Type, emp) == false && GetEmployeeShiftsPerDay(s.Date, emp) < 2)
+                            {
+                                selectedShift = s;
+                            }
+                        }
+
+                        if (selectedShift != null)
+                        {
+                            emp.AddExistingShift(selectedShift);
+                            tempSchedule.Remove(selectedShift);
+
+                            shiftsCounter++;
+                        }
+                    }
+                }
+            }
         }
 
         public void AssignShifts(int week, int year)

@@ -1943,7 +1943,49 @@ namespace MediaBazaarApp
                 MessageBox.Show("To unmark request, you should have selected one beforehand!");
             }
         }
-        
+
+        private void ChangeSettingsButtonColor(CheckBox cb)
+        {
+            if (cb.Checked == true)
+            {
+
+                cb.BackColor = Color.FromArgb(82, 255, 163);
+            }
+            else
+            {
+                cb.BackColor = Color.FromArgb(250, 69, 60);
+            }
+        }
+
+        private void manageEmpCH_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeSettingsButtonColor(manageEmpCH);  
+        }
+
+        private void weeklyScheduleCH_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeSettingsButtonColor(weeklyScheduleCH);
+        }
+
+        private void holidayLeaveReqCH_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeSettingsButtonColor(holidayLeaveReqCH);
+        }
+
+        private void manageAttendanceCH_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeSettingsButtonColor(manageAttendanceCH);
+        }
+
+        private void manageStockCH_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeSettingsButtonColor(manageStockCH);
+        }
+
+        private void manageDepCH_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeSettingsButtonColor(manageDepCH);
+        }
     }
 }
 
