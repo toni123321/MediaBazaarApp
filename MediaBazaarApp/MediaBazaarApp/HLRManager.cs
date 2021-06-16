@@ -33,7 +33,7 @@ namespace MediaBazaarApp
             string DeclinedRequestBody =
                 $@"
                 <p><span style='font-family: Verdana, Geneva, sans-serif;font-size:25px;'>Hello {firstname}</span></p>
-                <p><span style='font-family: Verdana, Geneva, sans-serif;'>On <strong>{requestDate}</strong> you submitted a request for your personal details on the Media Bazaar&apos;s website to be changed.</span></p>
+                <p><span style='font-family: Verdana, Geneva, sans-serif;'>On <strong>{requestDate}</strong> you submitted a request for a holiday leave starting from {HLR_sd} until {HLR_et}.</span></p>
                 <p><span style='font-family: Verdana, Geneva, sans-serif;'>We would like to let you know that the HR team has reviewed and <strong>declined&nbsp;</strong>your request.</span></p>
                 <p><span style='font-family: Verdana, Geneva, sans-serif;'>If you believe that your request was wrongfully declined, feel free to contact the HR team by phone or email.</span></p>
                 <p><span style='font-family: Verdana, Geneva, sans-serif;'><em><span style='font-size: 12px;'>This is an automated email; therefore, replying to it is not possible and if you do so, your email will not be received by us.</span></em></span></p>
@@ -43,7 +43,7 @@ namespace MediaBazaarApp
             string AcceptedRequestBody =
                 $@"
                 <p><span style='font-family: Verdana, Geneva, sans-serif;font-size:25px;'>Hello {firstname}</span></p>
-                <p><span style='font-family: Verdana, Geneva, sans-serif;'>On <strong>{requestDate}</strong> you submitted a request for your personal details on the Media Bazaar&apos;s website to be changed.</span></p>
+                <p><span style='font-family: Verdana, Geneva, sans-serif;'>On <strong>{requestDate}</strong> you submitted a request for a holiday leave starting from {HLR_sd} until {HLR_et}.</span></p>
                 <p><span style='font-family: Verdana, Geneva, sans-serif;'>We would like to let you know that the HR team has reviewed and <strong>accepted&nbsp;</strong>your request.</span></p>
                 <p><a href='http://localhost/s2-prj-cb03-1-webiste/HTML-PHP/accountPage.php'><span style='font-family: Verdana, Geneva, sans-serif;'>Click here to view your account with the applied changes (logging in might be needed).</span></a></p>
                 <p><span style='font-family: Verdana, Geneva, sans-serif;'><em><span style='font-size: 12px;'>This is an automated email; therefore, replying to it is not possible and if you do so, your email will not be received by us.</span></em></span></p>
