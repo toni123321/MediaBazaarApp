@@ -194,12 +194,6 @@ namespace MediaBazaarApp
             this.btnClearSelectedEmp = new System.Windows.Forms.Button();
             this.btnEditEmp = new System.Windows.Forms.Button();
             this.btnRemoveEmp = new System.Windows.Forms.Button();
-            this.HolidayRequestsTab = new System.Windows.Forms.TabPage();
-            this.lbHolidayRequestsInfo = new System.Windows.Forms.Label();
-            this.btnHolidayRequestsClearSelected = new System.Windows.Forms.Button();
-            this.btnHolidayRequestsDecline = new System.Windows.Forms.Button();
-            this.btnHolidayRequestsAccept = new System.Windows.Forms.Button();
-            this.lbxAllHolidayRequests = new System.Windows.Forms.ListBox();
             this.HomeTab = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
@@ -243,6 +237,14 @@ namespace MediaBazaarApp
             this.weeklyScheduleCH = new System.Windows.Forms.CheckBox();
             this.holidayLeaveReqCH = new System.Windows.Forms.CheckBox();
             this.manageEmpCH = new System.Windows.Forms.CheckBox();
+            this.btnHolidayRequestsAccept = new System.Windows.Forms.Button();
+            this.btnHolidayRequestsDecline = new System.Windows.Forms.Button();
+            this.btnHolidayRequestsClearSelected = new System.Windows.Forms.Button();
+            this.dgvHLR = new System.Windows.Forms.DataGridView();
+            this.HolidayRequestsTab = new System.Windows.Forms.TabPage();
+            this.cbHLRselection = new System.Windows.Forms.ComboBox();
+            this.lbHLR = new System.Windows.Forms.Label();
+            this.lblHLRstatus = new System.Windows.Forms.Label();
             this.ManageDepartmentsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.gbxSearchDep.SuspendLayout();
@@ -270,7 +272,6 @@ namespace MediaBazaarApp
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.gbxShowEmp.SuspendLayout();
             this.gbxSearchEmp.SuspendLayout();
-            this.HolidayRequestsTab.SuspendLayout();
             this.HomeTab.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -291,6 +292,8 @@ namespace MediaBazaarApp
             this.tabPageEditAccountRequests.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEditAccountRequests)).BeginInit();
             this.settingsTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHLR)).BeginInit();
+            this.HolidayRequestsTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -2073,6 +2076,7 @@ namespace MediaBazaarApp
             // 
             // dgvEmployees
             // 
+            this.dgvEmployees.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmployees.Location = new System.Drawing.Point(35, 176);
             this.dgvEmployees.Name = "dgvEmployees";
@@ -2162,7 +2166,7 @@ namespace MediaBazaarApp
             // 
             // btnRemoveEmp
             // 
-            this.btnRemoveEmp.BackColor = System.Drawing.Color.Coral;
+            this.btnRemoveEmp.BackColor = System.Drawing.Color.LightSalmon;
             this.btnRemoveEmp.Location = new System.Drawing.Point(814, 579);
             this.btnRemoveEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRemoveEmp.Name = "btnRemoveEmp";
@@ -2171,72 +2175,6 @@ namespace MediaBazaarApp
             this.btnRemoveEmp.Text = "Remove employee";
             this.btnRemoveEmp.UseVisualStyleBackColor = false;
             this.btnRemoveEmp.Click += new System.EventHandler(this.btnRemoveEmp_Click);
-            // 
-            // HolidayRequestsTab
-            // 
-            this.HolidayRequestsTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.HolidayRequestsTab.Controls.Add(this.lbHolidayRequestsInfo);
-            this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsClearSelected);
-            this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsDecline);
-            this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsAccept);
-            this.HolidayRequestsTab.Controls.Add(this.lbxAllHolidayRequests);
-            this.HolidayRequestsTab.Location = new System.Drawing.Point(4, 29);
-            this.HolidayRequestsTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.HolidayRequestsTab.Name = "HolidayRequestsTab";
-            this.HolidayRequestsTab.Size = new System.Drawing.Size(1093, 788);
-            this.HolidayRequestsTab.TabIndex = 2;
-            this.HolidayRequestsTab.Text = "Holiday requests";
-            // 
-            // lbHolidayRequestsInfo
-            // 
-            this.lbHolidayRequestsInfo.AutoSize = true;
-            this.lbHolidayRequestsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHolidayRequestsInfo.Location = new System.Drawing.Point(429, 58);
-            this.lbHolidayRequestsInfo.Name = "lbHolidayRequestsInfo";
-            this.lbHolidayRequestsInfo.Size = new System.Drawing.Size(160, 18);
-            this.lbHolidayRequestsInfo.TabIndex = 9;
-            this.lbHolidayRequestsInfo.Text = "New holiday request";
-            // 
-            // btnHolidayRequestsClearSelected
-            // 
-            this.btnHolidayRequestsClearSelected.Location = new System.Drawing.Point(229, 599);
-            this.btnHolidayRequestsClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnHolidayRequestsClearSelected.Name = "btnHolidayRequestsClearSelected";
-            this.btnHolidayRequestsClearSelected.Size = new System.Drawing.Size(163, 54);
-            this.btnHolidayRequestsClearSelected.TabIndex = 8;
-            this.btnHolidayRequestsClearSelected.Text = "Unmark selected";
-            this.btnHolidayRequestsClearSelected.UseVisualStyleBackColor = true;
-            // 
-            // btnHolidayRequestsDecline
-            // 
-            this.btnHolidayRequestsDecline.Location = new System.Drawing.Point(628, 599);
-            this.btnHolidayRequestsDecline.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnHolidayRequestsDecline.Name = "btnHolidayRequestsDecline";
-            this.btnHolidayRequestsDecline.Size = new System.Drawing.Size(163, 54);
-            this.btnHolidayRequestsDecline.TabIndex = 7;
-            this.btnHolidayRequestsDecline.Text = "Decline";
-            this.btnHolidayRequestsDecline.UseVisualStyleBackColor = true;
-            // 
-            // btnHolidayRequestsAccept
-            // 
-            this.btnHolidayRequestsAccept.Location = new System.Drawing.Point(425, 599);
-            this.btnHolidayRequestsAccept.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnHolidayRequestsAccept.Name = "btnHolidayRequestsAccept";
-            this.btnHolidayRequestsAccept.Size = new System.Drawing.Size(163, 54);
-            this.btnHolidayRequestsAccept.TabIndex = 6;
-            this.btnHolidayRequestsAccept.Text = "Accept";
-            this.btnHolidayRequestsAccept.UseVisualStyleBackColor = true;
-            // 
-            // lbxAllHolidayRequests
-            // 
-            this.lbxAllHolidayRequests.FormattingEnabled = true;
-            this.lbxAllHolidayRequests.HorizontalScrollbar = true;
-            this.lbxAllHolidayRequests.ItemHeight = 20;
-            this.lbxAllHolidayRequests.Location = new System.Drawing.Point(229, 118);
-            this.lbxAllHolidayRequests.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxAllHolidayRequests.Name = "lbxAllHolidayRequests";
-            this.lbxAllHolidayRequests.Size = new System.Drawing.Size(562, 324);
-            this.lbxAllHolidayRequests.TabIndex = 5;
             // 
             // HomeTab
             // 
@@ -2633,7 +2571,7 @@ namespace MediaBazaarApp
             // 
             // btnDeclineEditAccountRequest
             // 
-            this.btnDeclineEditAccountRequest.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnDeclineEditAccountRequest.BackColor = System.Drawing.Color.OrangeRed;
             this.btnDeclineEditAccountRequest.Location = new System.Drawing.Point(769, 553);
             this.btnDeclineEditAccountRequest.Name = "btnDeclineEditAccountRequest";
             this.btnDeclineEditAccountRequest.Size = new System.Drawing.Size(159, 53);
@@ -2644,8 +2582,8 @@ namespace MediaBazaarApp
             // 
             // btnAcceptEditAccountRequest
             // 
-            this.btnAcceptEditAccountRequest.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnAcceptEditAccountRequest.Location = new System.Drawing.Point(552, 553);
+            this.btnAcceptEditAccountRequest.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnAcceptEditAccountRequest.Location = new System.Drawing.Point(604, 553);
             this.btnAcceptEditAccountRequest.Name = "btnAcceptEditAccountRequest";
             this.btnAcceptEditAccountRequest.Size = new System.Drawing.Size(159, 53);
             this.btnAcceptEditAccountRequest.TabIndex = 1;
@@ -2655,7 +2593,7 @@ namespace MediaBazaarApp
             // 
             // dgvEditAccountRequests
             // 
-            this.dgvEditAccountRequests.BackgroundColor = System.Drawing.Color.Honeydew;
+            this.dgvEditAccountRequests.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvEditAccountRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEditAccountRequests.Location = new System.Drawing.Point(113, 229);
             this.dgvEditAccountRequests.Name = "dgvEditAccountRequests";
@@ -2763,6 +2701,101 @@ namespace MediaBazaarApp
             this.manageEmpCH.UseVisualStyleBackColor = true;
             this.manageEmpCH.CheckedChanged += new System.EventHandler(this.manageEmpCH_CheckedChanged);
             // 
+            // btnHolidayRequestsAccept
+            // 
+            this.btnHolidayRequestsAccept.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnHolidayRequestsAccept.Location = new System.Drawing.Point(719, 567);
+            this.btnHolidayRequestsAccept.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnHolidayRequestsAccept.Name = "btnHolidayRequestsAccept";
+            this.btnHolidayRequestsAccept.Size = new System.Drawing.Size(163, 54);
+            this.btnHolidayRequestsAccept.TabIndex = 6;
+            this.btnHolidayRequestsAccept.Text = "Accept";
+            this.btnHolidayRequestsAccept.UseVisualStyleBackColor = false;
+            // 
+            // btnHolidayRequestsDecline
+            // 
+            this.btnHolidayRequestsDecline.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnHolidayRequestsDecline.Location = new System.Drawing.Point(888, 567);
+            this.btnHolidayRequestsDecline.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnHolidayRequestsDecline.Name = "btnHolidayRequestsDecline";
+            this.btnHolidayRequestsDecline.Size = new System.Drawing.Size(163, 54);
+            this.btnHolidayRequestsDecline.TabIndex = 7;
+            this.btnHolidayRequestsDecline.Text = "Decline";
+            this.btnHolidayRequestsDecline.UseVisualStyleBackColor = false;
+            // 
+            // btnHolidayRequestsClearSelected
+            // 
+            this.btnHolidayRequestsClearSelected.BackColor = System.Drawing.Color.DarkSalmon;
+            this.btnHolidayRequestsClearSelected.Location = new System.Drawing.Point(101, 567);
+            this.btnHolidayRequestsClearSelected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnHolidayRequestsClearSelected.Name = "btnHolidayRequestsClearSelected";
+            this.btnHolidayRequestsClearSelected.Size = new System.Drawing.Size(163, 54);
+            this.btnHolidayRequestsClearSelected.TabIndex = 8;
+            this.btnHolidayRequestsClearSelected.Text = "Unmark selected";
+            this.btnHolidayRequestsClearSelected.UseVisualStyleBackColor = false;
+            // 
+            // dgvHLR
+            // 
+            this.dgvHLR.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvHLR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHLR.Location = new System.Drawing.Point(82, 163);
+            this.dgvHLR.Name = "dgvHLR";
+            this.dgvHLR.RowHeadersWidth = 51;
+            this.dgvHLR.RowTemplate.Height = 24;
+            this.dgvHLR.Size = new System.Drawing.Size(969, 370);
+            this.dgvHLR.TabIndex = 12;
+            // 
+            // HolidayRequestsTab
+            // 
+            this.HolidayRequestsTab.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.HolidayRequestsTab.Controls.Add(this.lblHLRstatus);
+            this.HolidayRequestsTab.Controls.Add(this.lbHLR);
+            this.HolidayRequestsTab.Controls.Add(this.cbHLRselection);
+            this.HolidayRequestsTab.Controls.Add(this.dgvHLR);
+            this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsClearSelected);
+            this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsDecline);
+            this.HolidayRequestsTab.Controls.Add(this.btnHolidayRequestsAccept);
+            this.HolidayRequestsTab.Location = new System.Drawing.Point(4, 29);
+            this.HolidayRequestsTab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.HolidayRequestsTab.Name = "HolidayRequestsTab";
+            this.HolidayRequestsTab.Size = new System.Drawing.Size(1093, 788);
+            this.HolidayRequestsTab.TabIndex = 2;
+            this.HolidayRequestsTab.Text = "Holiday requests";
+            // 
+            // cbHLRselection
+            // 
+            this.cbHLRselection.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbHLRselection.FormattingEnabled = true;
+            this.cbHLRselection.Items.AddRange(new object[] {
+            "All",
+            "In progress",
+            "Accepted",
+            "Declined"});
+            this.cbHLRselection.Location = new System.Drawing.Point(429, 102);
+            this.cbHLRselection.Name = "cbHLRselection";
+            this.cbHLRselection.Size = new System.Drawing.Size(216, 28);
+            this.cbHLRselection.TabIndex = 13;
+            // 
+            // lbHLR
+            // 
+            this.lbHLR.AutoSize = true;
+            this.lbHLR.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbHLR.Location = new System.Drawing.Point(424, 43);
+            this.lbHLR.Name = "lbHLR";
+            this.lbHLR.Size = new System.Drawing.Size(227, 28);
+            this.lbHLR.TabIndex = 14;
+            this.lbHLR.Text = "Holiday leave requests\r\n";
+            // 
+            // lblHLRstatus
+            // 
+            this.lblHLRstatus.AutoSize = true;
+            this.lblHLRstatus.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblHLRstatus.Location = new System.Drawing.Point(175, 102);
+            this.lblHLRstatus.Name = "lblHLRstatus";
+            this.lblHLRstatus.Size = new System.Drawing.Size(230, 23);
+            this.lblHLRstatus.TabIndex = 15;
+            this.lblHLRstatus.Text = "Filter requests on status >>";
+            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -2815,8 +2848,6 @@ namespace MediaBazaarApp
             this.gbxShowEmp.ResumeLayout(false);
             this.gbxSearchEmp.ResumeLayout(false);
             this.gbxSearchEmp.PerformLayout();
-            this.HolidayRequestsTab.ResumeLayout(false);
-            this.HolidayRequestsTab.PerformLayout();
             this.HomeTab.ResumeLayout(false);
             this.HomeTab.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -2846,6 +2877,9 @@ namespace MediaBazaarApp
             this.tabPageEditAccountRequests.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEditAccountRequests)).EndInit();
             this.settingsTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHLR)).EndInit();
+            this.HolidayRequestsTab.ResumeLayout(false);
+            this.HolidayRequestsTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3002,12 +3036,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnClearSelectedEmp;
         private System.Windows.Forms.Button btnEditEmp;
         private System.Windows.Forms.Button btnRemoveEmp;
-        private System.Windows.Forms.TabPage HolidayRequestsTab;
-        private System.Windows.Forms.Label lbHolidayRequestsInfo;
-        private System.Windows.Forms.Button btnHolidayRequestsClearSelected;
-        private System.Windows.Forms.Button btnHolidayRequestsDecline;
-        private System.Windows.Forms.Button btnHolidayRequestsAccept;
-        private System.Windows.Forms.ListBox lbxAllHolidayRequests;
         private System.Windows.Forms.TabPage HomeTab;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label8;
@@ -3064,5 +3092,13 @@ namespace MediaBazaarApp
         private System.Windows.Forms.ComboBox cbFilterEditAccountRequests;
         private System.Windows.Forms.Button btnUnmarkSelectedEditAccountRequest;
         private System.Windows.Forms.CheckBox cbxEmpIndefiniteContract;
+        private System.Windows.Forms.TabPage HolidayRequestsTab;
+        private System.Windows.Forms.ComboBox cbHLRselection;
+        private System.Windows.Forms.DataGridView dgvHLR;
+        private System.Windows.Forms.Button btnHolidayRequestsClearSelected;
+        private System.Windows.Forms.Button btnHolidayRequestsDecline;
+        private System.Windows.Forms.Button btnHolidayRequestsAccept;
+        private System.Windows.Forms.Label lblHLRstatus;
+        private System.Windows.Forms.Label lbHLR;
     }
 }
