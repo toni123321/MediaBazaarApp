@@ -776,7 +776,7 @@ namespace MediaBazaarApp
                     cmd.Parameters.AddWithValue("@empID", emp.Id);
                     cmd.Parameters.AddWithValue("@date", date);
                     cmd.Parameters.AddWithValue("@assignedBy", assignedBy);
-                    cmd.Parameters.AddWithValue("@hasAttended", true);
+                    cmd.Parameters.AddWithValue("@hasAttended", false);
                     cmd.Parameters.AddWithValue("@noShowReason", null);
                     cmd.Parameters.AddWithValue("@type", Convert.ToInt32(type) + 1);
                     cmd.Parameters.AddWithValue("@wfh", wfh);
