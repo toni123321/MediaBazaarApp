@@ -92,13 +92,25 @@ namespace MediaBazaarApp
             {
                 for (int i = 0; i < (int)emp.EmploymentType; i++)
                 {
-                    if (hlrManager.CheckForLeaveShiftPlanner(emp, DateNeededShifts(weekDays)) == true)
-                    {
-                        tempSchedule.Add(new Shift(-1, GetShiftType(tempSchedule, DateNeededShifts(weekDays)), DateNeededShifts(weekDays), -1, false, false, null));
-                        dbc.AddShift(GetShiftType(tempSchedule, DateNeededShifts(weekDays)), DateNeededShifts(weekDays), assignedBy, false, emp);
-                        weekDays[DateNeededShifts(weekDays)]--;
-                    }
                     
+                    DateTime shiftDate = DateNeededShifts(weekDays);
+                    ShiftType type = GetShiftType(tempSchedule, shiftDate);
+
+                    tempSchedule.Add(new Shift(-1, type, shiftDate, -1, false, false, null));
+                    dbc.AddShift(type, shiftDate, assignedBy, false, emp);
+                    weekDays[DateNeededShifts(weekDays)]--;
+
+                    /* if (hlrManager.CheckForLeaveShiftPlanner(emp, DateNeededShifts(weekDays)) == false)
+                     {
+                         shiftDate.AddDays(1);
+                     }
+                     else
+                     {
+                         tempSchedule.Add(new Shift(-1, type, shiftDate, -1, false, false, null));
+                         dbc.AddShift(type, shiftDate, assignedBy, false, emp);
+                         weekDays[DateNeededShifts(weekDays)]--;
+                     }*/
+
                 }
             }
 
