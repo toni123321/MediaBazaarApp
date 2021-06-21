@@ -240,6 +240,87 @@ namespace MediaBazaarApp
             }
         }
 
+
+        public IList<Employee> GetEmployeesWithExpiringContracts(DepartmentManagement departmentManagement)
+        {
+            IList<Employee> employeeWithExpiredContract = new List<Employee>();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "SELECT e.*, d.Name FROM employee as e " +
+                                 "inner join department as d " +
+                                 "on e.DepartmentID = d.ID " +
+                                 "where EndDate < CURDATE()";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        int id = Convert.ToInt32(dr[0]);
+                        string fname = dr[1].ToString();
+                        string lname = dr[2].ToString();
+                        DateTime dob = (DateTime)dr[3];
+                        string nationality = dr[4].ToString();
+                        Gender gender = (Gender)Enum.Parse(typeof(Gender), dr[5].ToString());
+                        string email = dr[6].ToString();
+                        string phone = dr[7].ToString();
+                        string street = dr[8].ToString();
+                        string city = dr[9].ToString();
+                        string country = dr[10].ToString();
+                        string postcode = dr[11].ToString();
+                        string bsn = dr[12].ToString();
+                        string emConName = dr[13].ToString();
+                        EmergencyContactRelation emConRelation =
+                            (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation), dr[14].ToString());
+                        string emConEmail = dr[15].ToString();
+                        string emConPhone = dr[16].ToString();
+                        EmploymentType employmentType =
+                            (EmploymentType)Enum.Parse(typeof(EmploymentType), dr[17].ToString());
+                        double hourlyWages = Convert.ToDouble(dr[18]);
+
+                        DateTime startDate = (DateTime)dr[19];
+
+                        DateTime endDate;
+                        if (String.IsNullOrEmpty(dr[20].ToString()))
+                        {
+                            // try with datetime max value
+                            endDate = DateTime.MaxValue;
+                        }
+                        else
+                        {
+                            endDate = (DateTime)dr[20];
+                        }
+
+                        int depId = Convert.ToInt32(dr[21]);
+
+                        string depName = dr[22].ToString();
+                        Department dep = departmentManagement.GetDepartment(depName);
+
+                        Employee emp = new Employee(fname, lname, dob, nationality, gender, email, phone,
+                            street, city, country, postcode, bsn, emConName, emConRelation, emConEmail,
+                            emConPhone, employmentType, hourlyWages, startDate, endDate, dep);
+                        emp.Id = id;
+                        employeeWithExpiredContract.Add(emp);
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+            return employeeWithExpiredContract;
+        }
+
+
         public void GetEmployees(DepartmentManagement departmentManagement)
         {
             try
@@ -249,7 +330,8 @@ namespace MediaBazaarApp
 
                     string sql = "SELECT e.*, d.Name FROM employee as e " +
                                  "inner join department as d " +
-                                 "on e.DepartmentID = d.ID";
+                                 "on e.DepartmentID = d.ID " +
+                                 "where EndDate >= CURDATE() or EndDate is NULL";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -286,7 +368,6 @@ namespace MediaBazaarApp
                         DateTime endDate;
                         if (String.IsNullOrEmpty(dr[20].ToString()))
                         {
-                            //TODO: Update with real date;
                             // try with datetime max value
                             endDate = DateTime.MaxValue;
                         }
