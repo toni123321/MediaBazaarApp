@@ -343,9 +343,9 @@ namespace MediaBazaarApp
                     string location = "";
 
                     string sql = "INSERT INTO stock (Brand, Model, Quantity, Price, " +
-                                 "Width, Height, Depth, Weight, ShortDescription, Location) " +
+                                 "Width, Height, Depth, Weight, ShortDescription, Location, Discontinued) " +
                                  "VALUES(@brand, @model, @quantity, @price, @width, @height, @depth, " +
-                                 "@weight, @description, @location)";
+                                 "@weight, @description, @location, @discontinued)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -372,6 +372,7 @@ namespace MediaBazaarApp
                             cmd.Parameters.AddWithValue("@weight", weight);
                             cmd.Parameters.AddWithValue("@description", shortDescription);
                             cmd.Parameters.AddWithValue("@location", location);
+                            cmd.Parameters.AddWithValue("@discontinued", "No");
 
 
                             conn.Open();
@@ -401,12 +402,14 @@ namespace MediaBazaarApp
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
 
-                    string sql = "DELETE from stock WHERE id=@id";
+                    string sql = "UPDATE stock SET Location=@location, Discontinued=@discontinued WHERE id=@id";
 
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
                     cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@location", "None");
+                    cmd.Parameters.AddWithValue("@discontinued", "Yes");
 
 
                     conn.Open();
@@ -494,6 +497,7 @@ namespace MediaBazaarApp
 
         public void GetStocks(StockManagement stockManagement)
         {
+            stockManagement.ClearAllStocks();
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
@@ -535,7 +539,6 @@ namespace MediaBazaarApp
             }
 
         }
-
         // Departments
         public void AddDepartment(string name)
         {
