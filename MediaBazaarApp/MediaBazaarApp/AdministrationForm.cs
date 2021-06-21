@@ -1499,76 +1499,40 @@ namespace MediaBazaarApp
 
             if (week > 0 && week < 53)
             {
-                ash.AssignShifts(week, 2021);
-            }
+                ash.AssignShifts(week, 2021, currentEmp.Id);
 
-            List<Shift> toRemoveExistingSameWeek = new List<Shift>();
-
-            foreach (Employee emp in departmentManagement.GetAllEmployees())
-            {
-                foreach (Shift s in emp.GetAllShifts())
+                List<Shift> toRemoveExistingSameWeek = new List<Shift>();
+                foreach (Employee emp in departmentManagement.GetAllEmployees())
                 {
-                    if (GetIso8601WeekOfYear(s.Date) == week)
+                    foreach (Shift s in emp.GetAllShifts())
                     {
-                        toRemoveExistingSameWeek.Add(s);
-                    }
-                }
-            }
-
-            foreach (Employee emp in departmentManagement.GetAllEmployees())
-            {
-                for (int i = 0; i < toRemoveExistingSameWeek.Count; i++)
-                {
-                    Shift shift = toRemoveExistingSameWeek[i];
-
-                    if (emp.GetAllShifts().Contains(shift) == true)
-                    {
-                        dbc.RemoveShift(shift);
-                        emp.RemoveSpecificShift(shift);
-                    }
-                }
-            }
-
-
-
-            dbc.GetShifts(departmentManagement);
-
-            foreach (Employee emp in departmentManagement.GetAllEmployees())
-            {
-                foreach (Shift s in emp.GetAllShifts())
-                {
-                    dbc.AddShift(s.Type, s.Date, currentEmp.Id, s.WFH, emp);
-
-                }
-            }
-
-            List<Shift> toRemove = new List<Shift>();
-
-            foreach (Employee emp in departmentManagement.GetAllEmployees())
-            {
-                foreach (Shift s in emp.GetAllShifts())
-                {
-                    if (s.ID == -1)
-                    {
-                        toRemove.Add(s);
+                        if (GetIso8601WeekOfYear(s.Date) == week)
+                        {
+                            toRemoveExistingSameWeek.Add(s);
+                        }
                     }
                 }
 
-                for (int i = 0; i < emp.GetAllShifts().Count; i++)
+                foreach (Employee emp in departmentManagement.GetAllEmployees())
                 {
-                    Shift shift = emp.GetAllShifts()[i];
-
-                    if (emp.GetAllShifts()[i].ID == -1)
+                    for (int i = 0; i < toRemoveExistingSameWeek.Count; i++)
                     {
-                        emp.Shifts.Remove(shift);
+                        Shift shift = toRemoveExistingSameWeek[i];
+
+                        if (emp.GetAllShifts().Contains(shift) == true)
+                        {
+                            dbc.RemoveShift(shift);
+                            emp.RemoveSpecificShift(shift);
+                        }
                     }
                 }
+
+
+                dbc.GetShifts(departmentManagement);
+                //RefreshWeeklySchedule();
             }
 
 
-
-            dbc.GetShifts(departmentManagement);
-            //RefreshWeeklySchedule();
         }
 
         public void UpdateDGVStock()
