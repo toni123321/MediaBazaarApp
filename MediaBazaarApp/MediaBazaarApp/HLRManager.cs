@@ -139,7 +139,7 @@ namespace MediaBazaarApp
         {
             foreach (HolidayLeaveRequest hlr in hlrs)
             {
-                if (shiftDate >= hlr.StartDate && shiftDate <= hlr.EndDate && hlr.Status == "Accepted")
+                if (shiftDate >= hlr.StartDate && shiftDate <= hlr.EndDate && hlr.Status == "Accepted" && hlr.EmployeeId == emp.Id)
                 {
                     return false; // shift can not be created for that day
                 }
