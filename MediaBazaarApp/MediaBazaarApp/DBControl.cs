@@ -213,8 +213,7 @@ namespace MediaBazaarApp
                     cmd.Parameters.AddWithValue("@hourlyWages", emp.HourlyWages);
                     cmd.Parameters.AddWithValue("@startDate", emp.StartDate);
                     
-
-                    // TODO: Check end date in the db
+                    
                     if (emp.EndDate == DateTime.MaxValue)
                     {
                         cmd.Parameters.AddWithValue("@endDate", null);
@@ -946,7 +945,8 @@ namespace MediaBazaarApp
                                  "inner join employee as e " +
                                  "on s.EmployeeID = e.ID " +
                                  "inner join department as d " +
-                                 "on e.DepartmentID = d.ID";
+                                 "on e.DepartmentID = d.ID " +
+                                 "where e.EndDate >= CURDATE() or e.EndDate is NULL";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 

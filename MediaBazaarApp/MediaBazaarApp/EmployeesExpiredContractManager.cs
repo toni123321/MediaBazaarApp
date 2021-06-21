@@ -40,7 +40,6 @@ namespace MediaBazaarApp
 
         public void RenewEmployeeContract(Employee emp)
         {
-            // TODO: Calls employee update method from dbControl
             storage.EditEmployee(emp);
             departmentManagement.GetAllEmployees();
             LoadDataFromStorage();

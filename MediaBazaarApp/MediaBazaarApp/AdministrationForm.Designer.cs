@@ -195,6 +195,15 @@ namespace MediaBazaarApp
             this.btnEditEmp = new System.Windows.Forms.Button();
             this.btnRemoveEmp = new System.Windows.Forms.Button();
             this.EmpExpiredContractTab = new System.Windows.Forms.TabPage();
+            this.gbxEmpRenewContract = new System.Windows.Forms.GroupBox();
+            this.lbEmpIdRenewContract = new System.Windows.Forms.Label();
+            this.lbNamesEmpRenewContract = new System.Windows.Forms.Label();
+            this.btnEmpSubmitChangesNewContract = new System.Windows.Forms.Button();
+            this.cbxEmpMakeNewContractIndefinite = new System.Windows.Forms.CheckBox();
+            this.dtpEndDateNewContract = new System.Windows.Forms.DateTimePicker();
+            this.lbEmpEndDateNewContract = new System.Windows.Forms.Label();
+            this.dtpEmpStartDateNewContract = new System.Windows.Forms.DateTimePicker();
+            this.lbEmpStartDateNewContract = new System.Windows.Forms.Label();
             this.btnEmpExpiredContractUnmarkSelected = new System.Windows.Forms.Button();
             this.btnEmpRenewContract = new System.Windows.Forms.Button();
             this.dgvEmployeesExpiredContract = new System.Windows.Forms.DataGridView();
@@ -249,15 +258,9 @@ namespace MediaBazaarApp
             this.weeklyScheduleCH = new System.Windows.Forms.CheckBox();
             this.holidayLeaveReqCH = new System.Windows.Forms.CheckBox();
             this.manageEmpCH = new System.Windows.Forms.CheckBox();
-            this.gbxEmpRenewContract = new System.Windows.Forms.GroupBox();
-            this.cbxEmpMakeNewContractIndefinite = new System.Windows.Forms.CheckBox();
-            this.dtpEndDateNewContract = new System.Windows.Forms.DateTimePicker();
-            this.lbEmpEndDateNewContract = new System.Windows.Forms.Label();
-            this.dtpEmpStartDateNewContract = new System.Windows.Forms.DateTimePicker();
-            this.lbEmpStartDateNewContract = new System.Windows.Forms.Label();
-            this.btnEmpSubmitChangesNewContract = new System.Windows.Forms.Button();
-            this.lbNamesEmpRenewContract = new System.Windows.Forms.Label();
-            this.lbEmpIdRenewContract = new System.Windows.Forms.Label();
+            this.panelEmpExpiredContract = new System.Windows.Forms.Panel();
+            this.lbEmpExpiredContract = new System.Windows.Forms.Label();
+            this.pbxEmpExpiredContract = new System.Windows.Forms.PictureBox();
             this.ManageDepartmentsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.gbxSearchDep.SuspendLayout();
@@ -286,6 +289,7 @@ namespace MediaBazaarApp
             this.gbxShowEmp.SuspendLayout();
             this.gbxSearchEmp.SuspendLayout();
             this.EmpExpiredContractTab.SuspendLayout();
+            this.gbxEmpRenewContract.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesExpiredContract)).BeginInit();
             this.HolidayRequestsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHLR)).BeginInit();
@@ -309,7 +313,8 @@ namespace MediaBazaarApp
             this.tabPageEditAccountRequests.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEditAccountRequests)).BeginInit();
             this.settingsTab.SuspendLayout();
-            this.gbxEmpRenewContract.SuspendLayout();
+            this.panelEmpExpiredContract.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxEmpExpiredContract)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -2207,6 +2212,99 @@ namespace MediaBazaarApp
             this.EmpExpiredContractTab.TabIndex = 3;
             this.EmpExpiredContractTab.Text = "Employees with expired contract";
             // 
+            // gbxEmpRenewContract
+            // 
+            this.gbxEmpRenewContract.Controls.Add(this.lbEmpIdRenewContract);
+            this.gbxEmpRenewContract.Controls.Add(this.lbNamesEmpRenewContract);
+            this.gbxEmpRenewContract.Controls.Add(this.btnEmpSubmitChangesNewContract);
+            this.gbxEmpRenewContract.Controls.Add(this.cbxEmpMakeNewContractIndefinite);
+            this.gbxEmpRenewContract.Controls.Add(this.dtpEndDateNewContract);
+            this.gbxEmpRenewContract.Controls.Add(this.lbEmpEndDateNewContract);
+            this.gbxEmpRenewContract.Controls.Add(this.dtpEmpStartDateNewContract);
+            this.gbxEmpRenewContract.Controls.Add(this.lbEmpStartDateNewContract);
+            this.gbxEmpRenewContract.Location = new System.Drawing.Point(806, 36);
+            this.gbxEmpRenewContract.Name = "gbxEmpRenewContract";
+            this.gbxEmpRenewContract.Size = new System.Drawing.Size(269, 378);
+            this.gbxEmpRenewContract.TabIndex = 24;
+            this.gbxEmpRenewContract.TabStop = false;
+            this.gbxEmpRenewContract.Text = "Renew contract";
+            // 
+            // lbEmpIdRenewContract
+            // 
+            this.lbEmpIdRenewContract.AutoSize = true;
+            this.lbEmpIdRenewContract.Location = new System.Drawing.Point(16, 35);
+            this.lbEmpIdRenewContract.Name = "lbEmpIdRenewContract";
+            this.lbEmpIdRenewContract.Size = new System.Drawing.Size(29, 20);
+            this.lbEmpIdRenewContract.TabIndex = 89;
+            this.lbEmpIdRenewContract.Text = "Id: ";
+            // 
+            // lbNamesEmpRenewContract
+            // 
+            this.lbNamesEmpRenewContract.AutoSize = true;
+            this.lbNamesEmpRenewContract.Location = new System.Drawing.Point(16, 67);
+            this.lbNamesEmpRenewContract.Name = "lbNamesEmpRenewContract";
+            this.lbNamesEmpRenewContract.Size = new System.Drawing.Size(221, 20);
+            this.lbNamesEmpRenewContract.TabIndex = 88;
+            this.lbNamesEmpRenewContract.Text = "Employee: First name Last name";
+            // 
+            // btnEmpSubmitChangesNewContract
+            // 
+            this.btnEmpSubmitChangesNewContract.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnEmpSubmitChangesNewContract.Location = new System.Drawing.Point(38, 312);
+            this.btnEmpSubmitChangesNewContract.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnEmpSubmitChangesNewContract.Name = "btnEmpSubmitChangesNewContract";
+            this.btnEmpSubmitChangesNewContract.Size = new System.Drawing.Size(199, 38);
+            this.btnEmpSubmitChangesNewContract.TabIndex = 25;
+            this.btnEmpSubmitChangesNewContract.Text = "Renew contract";
+            this.btnEmpSubmitChangesNewContract.UseVisualStyleBackColor = false;
+            this.btnEmpSubmitChangesNewContract.Click += new System.EventHandler(this.btnEmpSubmitChangesNewContract_Click);
+            // 
+            // cbxEmpMakeNewContractIndefinite
+            // 
+            this.cbxEmpMakeNewContractIndefinite.AutoSize = true;
+            this.cbxEmpMakeNewContractIndefinite.Location = new System.Drawing.Point(38, 266);
+            this.cbxEmpMakeNewContractIndefinite.Name = "cbxEmpMakeNewContractIndefinite";
+            this.cbxEmpMakeNewContractIndefinite.Size = new System.Drawing.Size(152, 24);
+            this.cbxEmpMakeNewContractIndefinite.TabIndex = 87;
+            this.cbxEmpMakeNewContractIndefinite.Text = "Indefinite contract";
+            this.cbxEmpMakeNewContractIndefinite.UseVisualStyleBackColor = true;
+            // 
+            // dtpEndDateNewContract
+            // 
+            this.dtpEndDateNewContract.Location = new System.Drawing.Point(39, 210);
+            this.dtpEndDateNewContract.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtpEndDateNewContract.Name = "dtpEndDateNewContract";
+            this.dtpEndDateNewContract.Size = new System.Drawing.Size(198, 27);
+            this.dtpEndDateNewContract.TabIndex = 86;
+            // 
+            // lbEmpEndDateNewContract
+            // 
+            this.lbEmpEndDateNewContract.AutoSize = true;
+            this.lbEmpEndDateNewContract.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpEndDateNewContract.Location = new System.Drawing.Point(34, 179);
+            this.lbEmpEndDateNewContract.Name = "lbEmpEndDateNewContract";
+            this.lbEmpEndDateNewContract.Size = new System.Drawing.Size(68, 20);
+            this.lbEmpEndDateNewContract.TabIndex = 85;
+            this.lbEmpEndDateNewContract.Text = "End date";
+            // 
+            // dtpEmpStartDateNewContract
+            // 
+            this.dtpEmpStartDateNewContract.Location = new System.Drawing.Point(39, 137);
+            this.dtpEmpStartDateNewContract.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtpEmpStartDateNewContract.Name = "dtpEmpStartDateNewContract";
+            this.dtpEmpStartDateNewContract.Size = new System.Drawing.Size(198, 27);
+            this.dtpEmpStartDateNewContract.TabIndex = 84;
+            // 
+            // lbEmpStartDateNewContract
+            // 
+            this.lbEmpStartDateNewContract.AutoSize = true;
+            this.lbEmpStartDateNewContract.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpStartDateNewContract.Location = new System.Drawing.Point(34, 108);
+            this.lbEmpStartDateNewContract.Name = "lbEmpStartDateNewContract";
+            this.lbEmpStartDateNewContract.Size = new System.Drawing.Size(74, 20);
+            this.lbEmpStartDateNewContract.TabIndex = 83;
+            this.lbEmpStartDateNewContract.Text = "Start date";
+            // 
             // btnEmpExpiredContractUnmarkSelected
             // 
             this.btnEmpExpiredContractUnmarkSelected.BackColor = System.Drawing.Color.LightSalmon;
@@ -2344,6 +2442,7 @@ namespace MediaBazaarApp
             // HomeTab
             // 
             this.HomeTab.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.HomeTab.Controls.Add(this.panelEmpExpiredContract);
             this.HomeTab.Controls.Add(this.panelHLRNotifications);
             this.HomeTab.Controls.Add(this.manageDepartmentsShortcut);
             this.HomeTab.Controls.Add(this.manageStockShortcut);
@@ -2370,9 +2469,9 @@ namespace MediaBazaarApp
             this.panelHLRNotifications.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelHLRNotifications.Controls.Add(this.lbHLRNotifications);
             this.panelHLRNotifications.Controls.Add(this.pbxHLRNotifications);
-            this.panelHLRNotifications.Location = new System.Drawing.Point(47, 24);
+            this.panelHLRNotifications.Location = new System.Drawing.Point(34, 102);
             this.panelHLRNotifications.Name = "panelHLRNotifications";
-            this.panelHLRNotifications.Size = new System.Drawing.Size(557, 63);
+            this.panelHLRNotifications.Size = new System.Drawing.Size(580, 63);
             this.panelHLRNotifications.TabIndex = 13;
             this.panelHLRNotifications.Visible = false;
             // 
@@ -2867,98 +2966,39 @@ namespace MediaBazaarApp
             this.manageEmpCH.UseVisualStyleBackColor = true;
             this.manageEmpCH.CheckedChanged += new System.EventHandler(this.manageEmpCH_CheckedChanged);
             // 
-            // gbxEmpRenewContract
+            // panelEmpExpiredContract
             // 
-            this.gbxEmpRenewContract.Controls.Add(this.lbEmpIdRenewContract);
-            this.gbxEmpRenewContract.Controls.Add(this.lbNamesEmpRenewContract);
-            this.gbxEmpRenewContract.Controls.Add(this.btnEmpSubmitChangesNewContract);
-            this.gbxEmpRenewContract.Controls.Add(this.cbxEmpMakeNewContractIndefinite);
-            this.gbxEmpRenewContract.Controls.Add(this.dtpEndDateNewContract);
-            this.gbxEmpRenewContract.Controls.Add(this.lbEmpEndDateNewContract);
-            this.gbxEmpRenewContract.Controls.Add(this.dtpEmpStartDateNewContract);
-            this.gbxEmpRenewContract.Controls.Add(this.lbEmpStartDateNewContract);
-            this.gbxEmpRenewContract.Location = new System.Drawing.Point(806, 36);
-            this.gbxEmpRenewContract.Name = "gbxEmpRenewContract";
-            this.gbxEmpRenewContract.Size = new System.Drawing.Size(269, 378);
-            this.gbxEmpRenewContract.TabIndex = 24;
-            this.gbxEmpRenewContract.TabStop = false;
-            this.gbxEmpRenewContract.Text = "Renew contract";
+            this.panelEmpExpiredContract.BackColor = System.Drawing.Color.Red;
+            this.panelEmpExpiredContract.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelEmpExpiredContract.Controls.Add(this.lbEmpExpiredContract);
+            this.panelEmpExpiredContract.Controls.Add(this.pbxEmpExpiredContract);
+            this.panelEmpExpiredContract.Location = new System.Drawing.Point(34, 18);
+            this.panelEmpExpiredContract.Name = "panelEmpExpiredContract";
+            this.panelEmpExpiredContract.Size = new System.Drawing.Size(632, 63);
+            this.panelEmpExpiredContract.TabIndex = 15;
+            this.panelEmpExpiredContract.Visible = false;
             // 
-            // cbxEmpMakeNewContractIndefinite
+            // lbEmpExpiredContract
             // 
-            this.cbxEmpMakeNewContractIndefinite.AutoSize = true;
-            this.cbxEmpMakeNewContractIndefinite.Location = new System.Drawing.Point(38, 266);
-            this.cbxEmpMakeNewContractIndefinite.Name = "cbxEmpMakeNewContractIndefinite";
-            this.cbxEmpMakeNewContractIndefinite.Size = new System.Drawing.Size(152, 24);
-            this.cbxEmpMakeNewContractIndefinite.TabIndex = 87;
-            this.cbxEmpMakeNewContractIndefinite.Text = "Indefinite contract";
-            this.cbxEmpMakeNewContractIndefinite.UseVisualStyleBackColor = true;
+            this.lbEmpExpiredContract.AutoSize = true;
+            this.lbEmpExpiredContract.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmpExpiredContract.Location = new System.Drawing.Point(74, 16);
+            this.lbEmpExpiredContract.Name = "lbEmpExpiredContract";
+            this.lbEmpExpiredContract.Size = new System.Drawing.Size(532, 28);
+            this.lbEmpExpiredContract.TabIndex = 1;
+            this.lbEmpExpiredContract.Text = "There are 3 people with expired contract (click to manange).";
+            this.lbEmpExpiredContract.Click += new System.EventHandler(this.lbEmpExpiredContract_Click);
             // 
-            // dtpEndDateNewContract
+            // pbxEmpExpiredContract
             // 
-            this.dtpEndDateNewContract.Location = new System.Drawing.Point(39, 210);
-            this.dtpEndDateNewContract.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtpEndDateNewContract.Name = "dtpEndDateNewContract";
-            this.dtpEndDateNewContract.Size = new System.Drawing.Size(198, 27);
-            this.dtpEndDateNewContract.TabIndex = 86;
-            // 
-            // lbEmpEndDateNewContract
-            // 
-            this.lbEmpEndDateNewContract.AutoSize = true;
-            this.lbEmpEndDateNewContract.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmpEndDateNewContract.Location = new System.Drawing.Point(34, 179);
-            this.lbEmpEndDateNewContract.Name = "lbEmpEndDateNewContract";
-            this.lbEmpEndDateNewContract.Size = new System.Drawing.Size(68, 20);
-            this.lbEmpEndDateNewContract.TabIndex = 85;
-            this.lbEmpEndDateNewContract.Text = "End date";
-            // 
-            // dtpEmpStartDateNewContract
-            // 
-            this.dtpEmpStartDateNewContract.Location = new System.Drawing.Point(39, 137);
-            this.dtpEmpStartDateNewContract.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtpEmpStartDateNewContract.Name = "dtpEmpStartDateNewContract";
-            this.dtpEmpStartDateNewContract.Size = new System.Drawing.Size(198, 27);
-            this.dtpEmpStartDateNewContract.TabIndex = 84;
-            // 
-            // lbEmpStartDateNewContract
-            // 
-            this.lbEmpStartDateNewContract.AutoSize = true;
-            this.lbEmpStartDateNewContract.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEmpStartDateNewContract.Location = new System.Drawing.Point(34, 108);
-            this.lbEmpStartDateNewContract.Name = "lbEmpStartDateNewContract";
-            this.lbEmpStartDateNewContract.Size = new System.Drawing.Size(74, 20);
-            this.lbEmpStartDateNewContract.TabIndex = 83;
-            this.lbEmpStartDateNewContract.Text = "Start date";
-            // 
-            // btnEmpSubmitChangesNewContract
-            // 
-            this.btnEmpSubmitChangesNewContract.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnEmpSubmitChangesNewContract.Location = new System.Drawing.Point(38, 312);
-            this.btnEmpSubmitChangesNewContract.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnEmpSubmitChangesNewContract.Name = "btnEmpSubmitChangesNewContract";
-            this.btnEmpSubmitChangesNewContract.Size = new System.Drawing.Size(199, 38);
-            this.btnEmpSubmitChangesNewContract.TabIndex = 25;
-            this.btnEmpSubmitChangesNewContract.Text = "Renew contract";
-            this.btnEmpSubmitChangesNewContract.UseVisualStyleBackColor = false;
-            this.btnEmpSubmitChangesNewContract.Click += new System.EventHandler(this.btnEmpSubmitChangesNewContract_Click);
-            // 
-            // lbNamesEmpRenewContract
-            // 
-            this.lbNamesEmpRenewContract.AutoSize = true;
-            this.lbNamesEmpRenewContract.Location = new System.Drawing.Point(16, 67);
-            this.lbNamesEmpRenewContract.Name = "lbNamesEmpRenewContract";
-            this.lbNamesEmpRenewContract.Size = new System.Drawing.Size(221, 20);
-            this.lbNamesEmpRenewContract.TabIndex = 88;
-            this.lbNamesEmpRenewContract.Text = "Employee: First name Last name";
-            // 
-            // lbEmpIdRenewContract
-            // 
-            this.lbEmpIdRenewContract.AutoSize = true;
-            this.lbEmpIdRenewContract.Location = new System.Drawing.Point(16, 35);
-            this.lbEmpIdRenewContract.Name = "lbEmpIdRenewContract";
-            this.lbEmpIdRenewContract.Size = new System.Drawing.Size(29, 20);
-            this.lbEmpIdRenewContract.TabIndex = 89;
-            this.lbEmpIdRenewContract.Text = "Id: ";
+            this.pbxEmpExpiredContract.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pbxEmpExpiredContract.Image = global::MediaBazaarApp.Properties.Resources.round_circle_notifications_black_48dp;
+            this.pbxEmpExpiredContract.Location = new System.Drawing.Point(12, 11);
+            this.pbxEmpExpiredContract.Name = "pbxEmpExpiredContract";
+            this.pbxEmpExpiredContract.Size = new System.Drawing.Size(56, 44);
+            this.pbxEmpExpiredContract.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxEmpExpiredContract.TabIndex = 0;
+            this.pbxEmpExpiredContract.TabStop = false;
             // 
             // AdministrationForm
             // 
@@ -3013,6 +3053,8 @@ namespace MediaBazaarApp
             this.gbxSearchEmp.ResumeLayout(false);
             this.gbxSearchEmp.PerformLayout();
             this.EmpExpiredContractTab.ResumeLayout(false);
+            this.gbxEmpRenewContract.ResumeLayout(false);
+            this.gbxEmpRenewContract.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesExpiredContract)).EndInit();
             this.HolidayRequestsTab.ResumeLayout(false);
             this.HolidayRequestsTab.PerformLayout();
@@ -3046,8 +3088,9 @@ namespace MediaBazaarApp
             this.tabPageEditAccountRequests.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEditAccountRequests)).EndInit();
             this.settingsTab.ResumeLayout(false);
-            this.gbxEmpRenewContract.ResumeLayout(false);
-            this.gbxEmpRenewContract.PerformLayout();
+            this.panelEmpExpiredContract.ResumeLayout(false);
+            this.panelEmpExpiredContract.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxEmpExpiredContract)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3281,5 +3324,8 @@ namespace MediaBazaarApp
         private System.Windows.Forms.DateTimePicker dtpEmpStartDateNewContract;
         private System.Windows.Forms.Label lbEmpStartDateNewContract;
         private System.Windows.Forms.Label lbEmpIdRenewContract;
+        private System.Windows.Forms.Panel panelEmpExpiredContract;
+        private System.Windows.Forms.Label lbEmpExpiredContract;
+        private System.Windows.Forms.PictureBox pbxEmpExpiredContract;
     }
 }
