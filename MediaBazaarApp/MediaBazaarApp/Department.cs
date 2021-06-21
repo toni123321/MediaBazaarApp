@@ -159,7 +159,6 @@ namespace MediaBazaarApp
 
         public override string ToString()
         {
-            // TODO
             return $"DepId:{this.DeptId}; Name:{this.name}";
         }
 

@@ -85,8 +85,9 @@ namespace MediaBazaarApp
             timer1.Enabled = false;
             empExpiredContractManager = new EmployeesExpiredContractManager(this.departmentManagement);
 
-            // HLR notifications after login
+            // HLR, employees with expired contract notifications after login
             ShowHLRNotifications();
+            ShowEmpExpiredContractNotifications();
         }
 
         public void WelcomeMessage()
@@ -388,6 +389,30 @@ namespace MediaBazaarApp
             }
         }
 
+        private void lbEmpExpiredContract_Click(object sender, EventArgs e)
+        {
+            tabControlAdministration.SelectedTab = EmployeesTab;
+            tabControlEmployees.SelectedTab = EmpExpiredContractTab;
+        }
+
+
+        public void ShowEmpExpiredContractNotifications()
+        {
+            empExpiredContractManager.LoadDataFromStorage();
+            int nrEmpWithExpiredContract = empExpiredContractManager.GetEmployeesWithExpiredContract().Count;
+            panelEmpExpiredContract.Visible = nrEmpWithExpiredContract > 0;
+
+            if (nrEmpWithExpiredContract > 0)
+            {
+                
+                lbEmpExpiredContract.Text = nrEmpWithExpiredContract > 1 ?
+                        $"There are {nrEmpWithExpiredContract} people with expired contract (click to manage)."
+                        : $"There is {nrEmpWithExpiredContract} person with expired contract (click to manage).";
+                
+            }
+
+        }
+
         //TODO: Consider the email check statement
         public void ShowEmployeesWithExpiredContract(List<Employee> employees)
         {
@@ -431,11 +456,6 @@ namespace MediaBazaarApp
                 gbxEmpRenewContract.Visible = true;
                 lbNamesEmpRenewContract.Text = $"Employee: {selectedEmp.FirstName} {selectedEmp.LastName}";
                 lbEmpIdRenewContract.Text = $"Id: {selectedEmpID}";
-
-                //TODO: Make contract renew here
-                //empExpiredContractManager.RenewEmployeeContract(selectedEmp);
-
-
             }
             else
             {
@@ -1162,6 +1182,7 @@ namespace MediaBazaarApp
             else if (tabControlAdministration.SelectedTab == HomeTab)
             {
                 ShowHLRNotifications();
+                ShowEmpExpiredContractNotifications();
             }
         }
 
@@ -2174,7 +2195,7 @@ namespace MediaBazaarApp
             ChangeSettingsButtonColor(manageDepCH);
         }
 
-        
+      
     }
 }
 
