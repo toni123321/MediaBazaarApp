@@ -24,16 +24,27 @@ namespace MediaBazaarApp
             {
                 Stock stock = new Stock(id, model, brand, price, quantity, height, width, depth, weight, shortDescription);
                 stock.Location = location;
-                stockStorage[location] = false;
+                if (stock.Location!="None")
+                {
+                    stockStorage[location] = false;
+                }
+                else
+                {
+                    stock.Discontinued = true;
+                }
                 stocks.Add(stock);
             }
+        }
+        public void ClearAllStocks()
+        {
+            stocks.Clear();
         }
 
         public Stock SearchForStock(string model, string brand)
         {
             foreach (Stock stock in stocks)
             {
-                if (stock.Model == model && stock.Brand == brand)
+                if (stock.Model == model && stock.Brand == brand && stock.Discontinued==false)
                 {
                     return stock;
                 }
@@ -45,7 +56,8 @@ namespace MediaBazaarApp
         {
             string stockLocation = stock.Location;
             stockStorage[stockLocation] = true;
-            stocks.Remove(stock);
+            stock.Location = "None";
+            stock.Discontinued = true;
         }
 
         public Stock GetStock(int id)
@@ -332,6 +344,6 @@ namespace MediaBazaarApp
         {
             return stockStorage;
         }
-
+      
     }
 }

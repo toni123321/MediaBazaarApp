@@ -82,6 +82,7 @@ namespace MediaBazaarApp
             // Initializing the edit account requests manager
             editAccountRequestsManager = new EditAccountRequestsManager();
             hlrManager = new HLRManager();
+            timer1.Enabled = false;
             empExpiredContractManager = new EmployeesExpiredContractManager(this.departmentManagement);
 
         }
@@ -1678,7 +1679,8 @@ namespace MediaBazaarApp
                 Depth = x.Depth,
                 Weight = x.Weight,
                 Description = x.ShortDescription != null ? $"{x.ShortDescription}" : "n/a",
-                Location = x.Location != null ? $"{x.Location}" : "n/a"
+                Location = x.Location != null ? $"{x.Location}" : "n/a",
+                Disontinued=x.Discontinued
             }).ToList();
 
             dgvStock.DataSource = stockDataSource;
