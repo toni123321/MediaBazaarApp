@@ -937,6 +937,11 @@ namespace MediaBazaarApp
 
         public void GetShifts(DepartmentManagement departmentManagement)
         {
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
+            {
+                emp.Shifts.Clear();
+            }
+
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))

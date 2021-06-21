@@ -1598,27 +1598,14 @@ namespace MediaBazaarApp
                 ash.AssignShifts(week, 2021, currentEmp.Id);
 
                 List<Shift> toRemoveExistingSameWeek = new List<Shift>();
+
                 foreach (Employee emp in departmentManagement.GetAllEmployees())
                 {
                     foreach (Shift s in emp.GetAllShifts())
                     {
                         if (GetIso8601WeekOfYear(s.Date) == week)
                         {
-                            toRemoveExistingSameWeek.Add(s);
-                        }
-                    }
-                }
-
-                foreach (Employee emp in departmentManagement.GetAllEmployees())
-                {
-                    for (int i = 0; i < toRemoveExistingSameWeek.Count; i++)
-                    {
-                        Shift shift = toRemoveExistingSameWeek[i];
-
-                        if (emp.GetAllShifts().Contains(shift) == true)
-                        {
-                            dbc.RemoveShift(shift);
-                            emp.RemoveSpecificShift(shift);
+                            dbc.RemoveShift(s);
                         }
                     }
                 }
