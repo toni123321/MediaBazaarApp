@@ -85,6 +85,8 @@ namespace MediaBazaarApp
             timer1.Enabled = false;
             empExpiredContractManager = new EmployeesExpiredContractManager(this.departmentManagement);
 
+            // HLR notifications after login
+            ShowHLRNotifications();
         }
 
         public void WelcomeMessage()
@@ -152,11 +154,7 @@ namespace MediaBazaarApp
 
         public bool CheckIsSuperuser()
         {
-            bool isSuperuser = false;
-            if (currentEmp.Email == "john@gmail.com" && currentEmp.Id == 1)
-            {
-                isSuperuser = true;
-            }
+            bool isSuperuser = currentEmp.Email == "john@gmail.com" && currentEmp.Id == 1;
 
             return isSuperuser;
         }
@@ -1161,6 +1159,10 @@ namespace MediaBazaarApp
                 cbFilterEditAccountRequests.SelectedIndex = 0;
                 UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
             }
+            else if (tabControlAdministration.SelectedTab == HomeTab)
+            {
+                ShowHLRNotifications();
+            }
         }
 
 
@@ -2073,6 +2075,27 @@ namespace MediaBazaarApp
                     UpdateDGVHLR(hlrManager.GetPendingRequests());
                     break;
             }
+        }
+
+        private void ShowHLRNotifications()
+        {
+            hlrManager.LoadDataFromStorage();
+            IList<HolidayLeaveRequest> pendingHlrs = hlrManager.GetPendingRequests();
+            int nrPendingRequests = pendingHlrs.Count;
+            panelHLRNotifications.Visible = nrPendingRequests > 0;
+
+            if (nrPendingRequests > 0)
+            {
+                lbHLRNotifications.Text = nrPendingRequests > 1 ? 
+                    $"There are {nrPendingRequests} new holiday requests (click to manage)." 
+                    : $"There is {nrPendingRequests} new holiday requests (click to manage).";
+            }
+        }
+
+        private void lbHLRNotifications_Click(object sender, EventArgs e)
+        {
+            tabControlAdministration.SelectedTab = EmployeesTab;
+            tabControlEmployees.SelectedTab = HolidayRequestsTab;
         }
 
         private void UpdateDGVHLR(IList<HolidayLeaveRequest> requests)

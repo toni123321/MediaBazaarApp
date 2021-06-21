@@ -207,9 +207,9 @@ namespace MediaBazaarApp
             this.btnHolidayRequestsDecline = new System.Windows.Forms.Button();
             this.btnHolidayRequestsAccept = new System.Windows.Forms.Button();
             this.HomeTab = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.panelHLRNotifications = new System.Windows.Forms.Panel();
+            this.lbHLRNotifications = new System.Windows.Forms.Label();
+            this.pbxHLRNotifications = new System.Windows.Forms.PictureBox();
             this.manageDepartmentsShortcut = new System.Windows.Forms.Panel();
             this.manageDepLBL = new System.Windows.Forms.Label();
             this.manageDepPic = new System.Windows.Forms.PictureBox();
@@ -290,8 +290,8 @@ namespace MediaBazaarApp
             this.HolidayRequestsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHLR)).BeginInit();
             this.HomeTab.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.panelHLRNotifications.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxHLRNotifications)).BeginInit();
             this.manageDepartmentsShortcut.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.manageDepPic)).BeginInit();
             this.manageStockShortcut.SuspendLayout();
@@ -2344,7 +2344,7 @@ namespace MediaBazaarApp
             // HomeTab
             // 
             this.HomeTab.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.HomeTab.Controls.Add(this.panel1);
+            this.HomeTab.Controls.Add(this.panelHLRNotifications);
             this.HomeTab.Controls.Add(this.manageDepartmentsShortcut);
             this.HomeTab.Controls.Add(this.manageStockShortcut);
             this.HomeTab.Controls.Add(this.manageAttendanceShortcut);
@@ -2364,38 +2364,39 @@ namespace MediaBazaarApp
             this.HomeTab.TabIndex = 0;
             this.HomeTab.Text = "Home";
             // 
-            // panel1
+            // panelHLRNotifications
             // 
-            this.panel1.BackColor = System.Drawing.Color.Red;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.pictureBox8);
-            this.panel1.Location = new System.Drawing.Point(47, 24);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(557, 63);
-            this.panel1.TabIndex = 13;
-            this.panel1.Visible = false;
+            this.panelHLRNotifications.BackColor = System.Drawing.Color.Red;
+            this.panelHLRNotifications.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelHLRNotifications.Controls.Add(this.lbHLRNotifications);
+            this.panelHLRNotifications.Controls.Add(this.pbxHLRNotifications);
+            this.panelHLRNotifications.Location = new System.Drawing.Point(47, 24);
+            this.panelHLRNotifications.Name = "panelHLRNotifications";
+            this.panelHLRNotifications.Size = new System.Drawing.Size(557, 63);
+            this.panelHLRNotifications.TabIndex = 13;
+            this.panelHLRNotifications.Visible = false;
             // 
-            // label8
+            // lbHLRNotifications
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(74, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(465, 28);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "There are 3 new holiday requests (click to manange).";
+            this.lbHLRNotifications.AutoSize = true;
+            this.lbHLRNotifications.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHLRNotifications.Location = new System.Drawing.Point(74, 16);
+            this.lbHLRNotifications.Name = "lbHLRNotifications";
+            this.lbHLRNotifications.Size = new System.Drawing.Size(465, 28);
+            this.lbHLRNotifications.TabIndex = 1;
+            this.lbHLRNotifications.Text = "There are 3 new holiday requests (click to manange).";
+            this.lbHLRNotifications.Click += new System.EventHandler(this.lbHLRNotifications_Click);
             // 
-            // pictureBox8
+            // pbxHLRNotifications
             // 
-            this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureBox8.Image = global::MediaBazaarApp.Properties.Resources.round_circle_notifications_black_48dp;
-            this.pictureBox8.Location = new System.Drawing.Point(12, 11);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(56, 44);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 0;
-            this.pictureBox8.TabStop = false;
+            this.pbxHLRNotifications.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pbxHLRNotifications.Image = global::MediaBazaarApp.Properties.Resources.round_circle_notifications_black_48dp;
+            this.pbxHLRNotifications.Location = new System.Drawing.Point(12, 11);
+            this.pbxHLRNotifications.Name = "pbxHLRNotifications";
+            this.pbxHLRNotifications.Size = new System.Drawing.Size(56, 44);
+            this.pbxHLRNotifications.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxHLRNotifications.TabIndex = 0;
+            this.pbxHLRNotifications.TabStop = false;
             // 
             // manageDepartmentsShortcut
             // 
@@ -3018,9 +3019,9 @@ namespace MediaBazaarApp
             ((System.ComponentModel.ISupportInitialize)(this.dgvHLR)).EndInit();
             this.HomeTab.ResumeLayout(false);
             this.HomeTab.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            this.panelHLRNotifications.ResumeLayout(false);
+            this.panelHLRNotifications.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxHLRNotifications)).EndInit();
             this.manageDepartmentsShortcut.ResumeLayout(false);
             this.manageDepartmentsShortcut.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.manageDepPic)).EndInit();
@@ -3204,9 +3205,9 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Button btnEditEmp;
         private System.Windows.Forms.Button btnRemoveEmp;
         private System.Windows.Forms.TabPage HomeTab;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.Panel panelHLRNotifications;
+        private System.Windows.Forms.Label lbHLRNotifications;
+        private System.Windows.Forms.PictureBox pbxHLRNotifications;
         private System.Windows.Forms.Panel manageDepartmentsShortcut;
         private System.Windows.Forms.Label manageDepLBL;
         private System.Windows.Forms.PictureBox manageDepPic;
