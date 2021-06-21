@@ -135,7 +135,18 @@ namespace MediaBazaarApp
             SendEmailToNotifyEmployee(receiver.FirstName, receiver.Email, request, false);
         }
 
+        public bool CheckForLeaveShiftPlanner(Employee emp, DateTime shiftDate)
+        {
+            foreach (HolidayLeaveRequest hlr in hlrs)
+            {
+                if (shiftDate >= hlr.StartDate && shiftDate <= hlr.EndDate && hlr.Status == "Accepted")
+                {
+                    return false; // shift can not be created for that day
+                }
+            }
 
+            return true;
+        }
 
     }
 }
