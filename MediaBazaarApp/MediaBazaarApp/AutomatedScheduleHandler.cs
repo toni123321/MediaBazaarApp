@@ -31,6 +31,7 @@ namespace MediaBazaarApp
         {
             DBControl dbc = new DBControl();
             Random rand = new Random();
+            HLRManager hlrManager = new HLRManager();
 
             var ordered = weekDays.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
@@ -91,9 +92,13 @@ namespace MediaBazaarApp
             {
                 for (int i = 0; i < (int)emp.EmploymentType; i++)
                 {
-                    tempSchedule.Add(new Shift(-1, GetShiftType(tempSchedule, DateNeededShifts(weekDays)), DateNeededShifts(weekDays), -1, false, false, null));
-                    dbc.AddShift(GetShiftType(tempSchedule, DateNeededShifts(weekDays)), DateNeededShifts(weekDays), assignedBy, false, emp);
-                    weekDays[DateNeededShifts(weekDays)]--;
+                    if (hlrManager.CheckForLeaveShiftPlanner(emp, DateNeededShifts(weekDays)) == true)
+                    {
+                        tempSchedule.Add(new Shift(-1, GetShiftType(tempSchedule, DateNeededShifts(weekDays)), DateNeededShifts(weekDays), -1, false, false, null));
+                        dbc.AddShift(GetShiftType(tempSchedule, DateNeededShifts(weekDays)), DateNeededShifts(weekDays), assignedBy, false, emp);
+                        weekDays[DateNeededShifts(weekDays)]--;
+                    }
+                    
                 }
             }
 
