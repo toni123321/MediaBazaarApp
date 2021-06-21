@@ -42,7 +42,6 @@ namespace MediaBazaarApp
         }
 
 
-
         private int checkForEmployeeCredentials(string email, int employeeId, string depName)
         {
             int index = -1;
@@ -115,7 +114,16 @@ namespace MediaBazaarApp
                 }
                 else
                 {
-                    MessageBox.Show("The credentials you provide are incorrect!");
+                    // TODO: Check if credentials are correct but contract is expired
+                    
+                    if (dbControl.CheckCredentialsEmpWithExpiredContract(email, empId, departmentName))
+                    {
+                        MessageBox.Show("Provided credentials are correct! But your contract with Media Bazaar has expired so you can't log in. Please contact Administration department!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("The credentials you provide are incorrect!");
+                    }
                 }
             }
         }

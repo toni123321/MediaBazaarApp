@@ -159,13 +159,13 @@ namespace MediaBazaarApp
 
             return isSuperuser;
         }
-
+        
         public void FillComboBoxDepartments()
         {
             cbEmpDepartment.Items.Clear();
             foreach (Department dep in departmentManagement.GetAllDepartments())
             {
-                if (CheckIsSuperuser() && dep.Name == "Administration")
+                if (!CheckIsSuperuser() && dep.Name == "Administration")
                 {
                     continue;
                 }
@@ -380,6 +380,7 @@ namespace MediaBazaarApp
             if (tabControlEmployees.SelectedTab.Name == "ManageEmpTab")
             {
                 cbSelectEmpDepartment.SelectedIndex = 0;
+                dbControl.GetEmployees(departmentManagement);
                 ShowEmployeesList(departmentManagement.GetAllEmployees());
             }
             else if(tabControlEmployees.SelectedTab.Name  == "EmpExpiredContractTab")
