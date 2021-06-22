@@ -1029,6 +1029,7 @@ namespace MediaBazaarApp
             // 
             // dgvSchedule
             // 
+            this.dgvSchedule.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
