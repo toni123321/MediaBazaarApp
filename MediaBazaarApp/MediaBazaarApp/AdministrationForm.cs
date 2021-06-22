@@ -60,9 +60,8 @@ namespace MediaBazaarApp
             //.Visible = false;
             UpdateDGVStock();
             UpdateWeekNumberCB();
-            cbWeekNumber.SelectedIndex = 1;
 
-            //RefreshWeeklySchedule();
+            RefreshWeeklyScheduleDGV(0);
             UpdateDepartmentsDGV();
             UpdateCBXDepManager(cbDepartmentManager);
             UpdateDepsManualShiftPlanning();
@@ -1369,21 +1368,37 @@ namespace MediaBazaarApp
             }
         }
 
-        private void RefreshWeeklySchedule(List<Shift> shifts)
+        private void RefreshWeeklyScheduleDGV(int week)
         {
-            //var HLRDataSource =
-            //    shifts.Select(x => new
-            //    {
-            //        Employee = $"",
-            //        Date = x.Date,
-            //        Type = x.Type,
-            //        Attended = x.HasAttended = false ? "" : $"Yes",
-            //        Description = x.ShortDescription != null ? $"{x.ShortDescription}" : "n/a",
-            //        Location = x.Location != null ? $"{x.Location}" : "n/a"
-            //    });.ToList();
+            if (week < 1)
+            {
+                week = (int)GetIso8601WeekOfYear(DateTime.Now);
+            }
 
-            //dgvHLR.DataSource = HLRDataSource;
-            //dgvHLR.ClearSelection();
+            dgvSchedule.Rows.Clear();
+            dbc.GetShifts(departmentManagement);
+
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
+            {
+                foreach (Shift s in emp.GetAllShifts())
+                {
+                    if (GetIso8601WeekOfYear(s.Date) == week)
+                    {
+                        object[] RowValues = { "", "", "", "", "", "", "", "" };
+
+                        RowValues[0] = s.ID;
+                        RowValues[1] = $"{emp.FirstName} {emp.LastName}";
+                        RowValues[2] = s.Date.ToString("dd/MM/yyyy");
+                        RowValues[3] = s.Type;
+                        RowValues[4] = s.WFH;
+                        RowValues[5] = $"{departmentManagement.GetEmployeeById(s.AssignedBy).FirstName} {departmentManagement.GetEmployeeById(s.AssignedBy).LastName}";
+                        RowValues[6] = s.HasAttended;
+                        RowValues[7] = s.NoShowReason;
+
+                        dgvSchedule.Rows.Add(RowValues);
+                    }
+                }
+            }
         }
 
         private void UpdateWeekNumberCB()
@@ -1408,27 +1423,9 @@ namespace MediaBazaarApp
 
         private void cbWeekNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            dbc.GetShifts(departmentManagement);
+            int week = (int)cbWeekNumber.SelectedItem;
 
-            foreach (Employee emp in departmentManagement.GetAllEmployees())
-            {
-                foreach (Shift s in emp.GetAllShifts())
-                {
-                    object[] RowValues = { "", "", "", "", "", "", "" };
-
-                    RowValues[0] = s.ID;
-                    RowValues[1] = $"{emp.FirstName} {emp.LastName}";
-                    RowValues[2] = s.Date.ToString("dd/MM/yyyy");
-                    RowValues[3] = s.WFH;
-                    RowValues[4] = $"{departmentManagement.GetEmployeeById(s.AssignedBy).FirstName} {departmentManagement.GetEmployeeById(s.AssignedBy).LastName}";
-                    RowValues[5] = s.HasAttended;
-                    RowValues[6] = s.NoShowReason;
-
-                    dgvSchedule.Rows.Add(RowValues);
-                }
-            }
-            //RefreshWeeklySchedule();
+            RefreshWeeklyScheduleDGV(week);
         }
 
         private void cbDeps_SelectedIndexChanged(object sender, EventArgs e)
