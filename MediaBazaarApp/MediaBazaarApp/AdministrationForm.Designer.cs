@@ -266,6 +266,8 @@ namespace MediaBazaarApp
             this.colAssignedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAttended = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colNSR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbFilterWFH = new System.Windows.Forms.CheckBox();
+            this.cbFilterAttended = new System.Windows.Forms.CheckBox();
             this.ManageDepartmentsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.gbxSearchDep.SuspendLayout();
@@ -1001,6 +1003,8 @@ namespace MediaBazaarApp
             // tbWeeklySchedule
             // 
             this.tbWeeklySchedule.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.tbWeeklySchedule.Controls.Add(this.cbFilterAttended);
+            this.tbWeeklySchedule.Controls.Add(this.cbFilterWFH);
             this.tbWeeklySchedule.Controls.Add(this.btnRemShift);
             this.tbWeeklySchedule.Controls.Add(this.dgvSchedule);
             this.tbWeeklySchedule.Controls.Add(this.lbWeekNumber);
@@ -1025,6 +1029,7 @@ namespace MediaBazaarApp
             // 
             // dgvSchedule
             // 
+            this.dgvSchedule.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
@@ -3054,6 +3059,28 @@ namespace MediaBazaarApp
             this.colNSR.ReadOnly = true;
             this.colNSR.Width = 125;
             // 
+            // cbFilterWFH
+            // 
+            this.cbFilterWFH.AutoSize = true;
+            this.cbFilterWFH.Location = new System.Drawing.Point(191, 60);
+            this.cbFilterWFH.Name = "cbFilterWFH";
+            this.cbFilterWFH.Size = new System.Drawing.Size(63, 24);
+            this.cbFilterWFH.TabIndex = 29;
+            this.cbFilterWFH.Text = "WFH";
+            this.cbFilterWFH.UseVisualStyleBackColor = true;
+            this.cbFilterWFH.CheckedChanged += new System.EventHandler(this.cbFilterWFH_CheckedChanged);
+            // 
+            // cbFilterAttended
+            // 
+            this.cbFilterAttended.AutoSize = true;
+            this.cbFilterAttended.Location = new System.Drawing.Point(260, 60);
+            this.cbFilterAttended.Name = "cbFilterAttended";
+            this.cbFilterAttended.Size = new System.Drawing.Size(93, 24);
+            this.cbFilterAttended.TabIndex = 30;
+            this.cbFilterAttended.Text = "Attended";
+            this.cbFilterAttended.UseVisualStyleBackColor = true;
+            this.cbFilterAttended.CheckedChanged += new System.EventHandler(this.cbFilterAttended_CheckedChanged);
+            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -3386,5 +3413,7 @@ namespace MediaBazaarApp
         private System.Windows.Forms.DataGridViewTextBoxColumn colAssignedBy;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colAttended;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNSR;
+        private System.Windows.Forms.CheckBox cbFilterAttended;
+        private System.Windows.Forms.CheckBox cbFilterWFH;
     }
 }
