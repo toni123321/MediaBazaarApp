@@ -95,13 +95,6 @@ namespace MediaBazaarApp
             this.tbWeeklySchedule = new System.Windows.Forms.TabPage();
             this.btnRemShift = new System.Windows.Forms.Button();
             this.dgvSchedule = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDatee = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colWFH = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colAssignedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAttended = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colNSR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbWeekNumber = new System.Windows.Forms.Label();
             this.cbWeekNumber = new System.Windows.Forms.ComboBox();
             this.tpCreateSchedule = new System.Windows.Forms.TabPage();
@@ -265,6 +258,14 @@ namespace MediaBazaarApp
             this.weeklyScheduleCH = new System.Windows.Forms.CheckBox();
             this.holidayLeaveReqCH = new System.Windows.Forms.CheckBox();
             this.manageEmpCH = new System.Windows.Forms.CheckBox();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDatee = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colWFH = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colAssignedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAttended = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colNSR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ManageDepartmentsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.gbxSearchDep.SuspendLayout();
@@ -1029,6 +1030,7 @@ namespace MediaBazaarApp
             this.colID,
             this.colEmp,
             this.colDatee,
+            this.colType,
             this.colWFH,
             this.colAssignedBy,
             this.colAttended,
@@ -1040,62 +1042,6 @@ namespace MediaBazaarApp
             this.dgvSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSchedule.Size = new System.Drawing.Size(924, 388);
             this.dgvSchedule.TabIndex = 12;
-            // 
-            // colID
-            // 
-            this.colID.HeaderText = "ID";
-            this.colID.MinimumWidth = 6;
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Width = 125;
-            // 
-            // colEmp
-            // 
-            this.colEmp.HeaderText = "Employee";
-            this.colEmp.MinimumWidth = 6;
-            this.colEmp.Name = "colEmp";
-            this.colEmp.ReadOnly = true;
-            this.colEmp.Width = 125;
-            // 
-            // colDatee
-            // 
-            this.colDatee.HeaderText = "Date";
-            this.colDatee.MinimumWidth = 6;
-            this.colDatee.Name = "colDatee";
-            this.colDatee.ReadOnly = true;
-            this.colDatee.Width = 125;
-            // 
-            // colWFH
-            // 
-            this.colWFH.HeaderText = "WFH";
-            this.colWFH.MinimumWidth = 6;
-            this.colWFH.Name = "colWFH";
-            this.colWFH.ReadOnly = true;
-            this.colWFH.Width = 125;
-            // 
-            // colAssignedBy
-            // 
-            this.colAssignedBy.HeaderText = "Assigned by";
-            this.colAssignedBy.MinimumWidth = 6;
-            this.colAssignedBy.Name = "colAssignedBy";
-            this.colAssignedBy.ReadOnly = true;
-            this.colAssignedBy.Width = 125;
-            // 
-            // colAttended
-            // 
-            this.colAttended.HeaderText = "Attended";
-            this.colAttended.MinimumWidth = 6;
-            this.colAttended.Name = "colAttended";
-            this.colAttended.ReadOnly = true;
-            this.colAttended.Width = 125;
-            // 
-            // colNSR
-            // 
-            this.colNSR.HeaderText = "No show reason";
-            this.colNSR.MinimumWidth = 6;
-            this.colNSR.Name = "colNSR";
-            this.colNSR.ReadOnly = true;
-            this.colNSR.Width = 125;
             // 
             // lbWeekNumber
             // 
@@ -3044,6 +2990,70 @@ namespace MediaBazaarApp
             this.manageEmpCH.UseVisualStyleBackColor = true;
             this.manageEmpCH.CheckedChanged += new System.EventHandler(this.manageEmpCH_CheckedChanged);
             // 
+            // colID
+            // 
+            this.colID.HeaderText = "ID";
+            this.colID.MinimumWidth = 6;
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Width = 125;
+            // 
+            // colEmp
+            // 
+            this.colEmp.HeaderText = "Employee";
+            this.colEmp.MinimumWidth = 6;
+            this.colEmp.Name = "colEmp";
+            this.colEmp.ReadOnly = true;
+            this.colEmp.Width = 125;
+            // 
+            // colDatee
+            // 
+            this.colDatee.HeaderText = "Date";
+            this.colDatee.MinimumWidth = 6;
+            this.colDatee.Name = "colDatee";
+            this.colDatee.ReadOnly = true;
+            this.colDatee.Width = 125;
+            // 
+            // colType
+            // 
+            this.colType.HeaderText = "Type";
+            this.colType.MinimumWidth = 6;
+            this.colType.Name = "colType";
+            this.colType.ReadOnly = true;
+            this.colType.Width = 125;
+            // 
+            // colWFH
+            // 
+            this.colWFH.HeaderText = "WFH";
+            this.colWFH.MinimumWidth = 6;
+            this.colWFH.Name = "colWFH";
+            this.colWFH.ReadOnly = true;
+            this.colWFH.Width = 125;
+            // 
+            // colAssignedBy
+            // 
+            this.colAssignedBy.HeaderText = "Assigned by";
+            this.colAssignedBy.MinimumWidth = 6;
+            this.colAssignedBy.Name = "colAssignedBy";
+            this.colAssignedBy.ReadOnly = true;
+            this.colAssignedBy.Width = 125;
+            // 
+            // colAttended
+            // 
+            this.colAttended.HeaderText = "Attended";
+            this.colAttended.MinimumWidth = 6;
+            this.colAttended.Name = "colAttended";
+            this.colAttended.ReadOnly = true;
+            this.colAttended.Width = 125;
+            // 
+            // colNSR
+            // 
+            this.colNSR.HeaderText = "No show reason";
+            this.colNSR.MinimumWidth = 6;
+            this.colNSR.Name = "colNSR";
+            this.colNSR.ReadOnly = true;
+            this.colNSR.Width = 125;
+            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -3332,13 +3342,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.TabPage tbWeeklySchedule;
         private System.Windows.Forms.Button btnRemShift;
         private System.Windows.Forms.DataGridView dgvSchedule;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEmp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDatee;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colWFH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAssignedBy;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colAttended;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNSR;
         private System.Windows.Forms.Label lbWeekNumber;
         private System.Windows.Forms.ComboBox cbWeekNumber;
         private System.Windows.Forms.TabPage tpCreateSchedule;
@@ -3375,5 +3378,13 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbSelectedDep;
         private System.Windows.Forms.ComboBox cbSelectedEmp;
         private System.Windows.Forms.ComboBox cbAllDeps;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEmp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDatee;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colType;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colWFH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAssignedBy;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colAttended;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNSR;
     }
 }
