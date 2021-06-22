@@ -30,6 +30,7 @@ namespace MediaBazaarApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministrationForm));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.ManageDepartmentsTab = new System.Windows.Forms.TabPage();
@@ -93,8 +94,18 @@ namespace MediaBazaarApp
             this.SchedulingTab = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbWeeklySchedule = new System.Windows.Forms.TabPage();
+            this.cbFilterAttended = new System.Windows.Forms.CheckBox();
+            this.cbFilterWFH = new System.Windows.Forms.CheckBox();
             this.btnRemShift = new System.Windows.Forms.Button();
             this.dgvSchedule = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDatee = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colWFH = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colAssignedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAttended = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colNSR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbWeekNumber = new System.Windows.Forms.Label();
             this.cbWeekNumber = new System.Windows.Forms.ComboBox();
             this.tpCreateSchedule = new System.Windows.Forms.TabPage();
@@ -258,16 +269,6 @@ namespace MediaBazaarApp
             this.weeklyScheduleCH = new System.Windows.Forms.CheckBox();
             this.holidayLeaveReqCH = new System.Windows.Forms.CheckBox();
             this.manageEmpCH = new System.Windows.Forms.CheckBox();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDatee = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colWFH = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colAssignedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAttended = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colNSR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbFilterWFH = new System.Windows.Forms.CheckBox();
-            this.cbFilterAttended = new System.Windows.Forms.CheckBox();
             this.ManageDepartmentsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.gbxSearchDep.SuspendLayout();
@@ -363,7 +364,8 @@ namespace MediaBazaarApp
             // 
             this.dgvDepartments.AllowUserToAddRows = false;
             this.dgvDepartments.AllowUserToDeleteRows = false;
-            this.dgvDepartments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvDepartments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDepartments.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvDepartments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDepartments.Location = new System.Drawing.Point(15, 166);
             this.dgvDepartments.Name = "dgvDepartments";
@@ -898,7 +900,8 @@ namespace MediaBazaarApp
             // 
             this.dgvStock.AllowUserToAddRows = false;
             this.dgvStock.AllowUserToDeleteRows = false;
-            this.dgvStock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvStock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvStock.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStock.Location = new System.Drawing.Point(10, 165);
             this.dgvStock.Name = "dgvStock";
@@ -1015,6 +1018,28 @@ namespace MediaBazaarApp
             this.tbWeeklySchedule.TabIndex = 3;
             this.tbWeeklySchedule.Text = "Weekly schedule";
             // 
+            // cbFilterAttended
+            // 
+            this.cbFilterAttended.AutoSize = true;
+            this.cbFilterAttended.Location = new System.Drawing.Point(260, 60);
+            this.cbFilterAttended.Name = "cbFilterAttended";
+            this.cbFilterAttended.Size = new System.Drawing.Size(93, 24);
+            this.cbFilterAttended.TabIndex = 30;
+            this.cbFilterAttended.Text = "Attended";
+            this.cbFilterAttended.UseVisualStyleBackColor = true;
+            this.cbFilterAttended.CheckedChanged += new System.EventHandler(this.cbFilterAttended_CheckedChanged);
+            // 
+            // cbFilterWFH
+            // 
+            this.cbFilterWFH.AutoSize = true;
+            this.cbFilterWFH.Location = new System.Drawing.Point(191, 60);
+            this.cbFilterWFH.Name = "cbFilterWFH";
+            this.cbFilterWFH.Size = new System.Drawing.Size(63, 24);
+            this.cbFilterWFH.TabIndex = 29;
+            this.cbFilterWFH.Text = "WFH";
+            this.cbFilterWFH.UseVisualStyleBackColor = true;
+            this.cbFilterWFH.CheckedChanged += new System.EventHandler(this.cbFilterWFH_CheckedChanged);
+            // 
             // btnRemShift
             // 
             this.btnRemShift.BackColor = System.Drawing.Color.OrangeRed;
@@ -1029,6 +1054,7 @@ namespace MediaBazaarApp
             // 
             // dgvSchedule
             // 
+            this.dgvSchedule.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvSchedule.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1040,6 +1066,14 @@ namespace MediaBazaarApp
             this.colAssignedBy,
             this.colAttended,
             this.colNSR});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSchedule.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSchedule.Location = new System.Drawing.Point(13, 120);
             this.dgvSchedule.Name = "dgvSchedule";
             this.dgvSchedule.RowHeadersWidth = 51;
@@ -1047,6 +1081,70 @@ namespace MediaBazaarApp
             this.dgvSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSchedule.Size = new System.Drawing.Size(1054, 388);
             this.dgvSchedule.TabIndex = 12;
+            // 
+            // colID
+            // 
+            this.colID.HeaderText = "ID";
+            this.colID.MinimumWidth = 6;
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Width = 125;
+            // 
+            // colEmp
+            // 
+            this.colEmp.HeaderText = "Employee";
+            this.colEmp.MinimumWidth = 6;
+            this.colEmp.Name = "colEmp";
+            this.colEmp.ReadOnly = true;
+            this.colEmp.Width = 125;
+            // 
+            // colDatee
+            // 
+            this.colDatee.HeaderText = "Date";
+            this.colDatee.MinimumWidth = 6;
+            this.colDatee.Name = "colDatee";
+            this.colDatee.ReadOnly = true;
+            this.colDatee.Width = 125;
+            // 
+            // colType
+            // 
+            this.colType.HeaderText = "Type";
+            this.colType.MinimumWidth = 6;
+            this.colType.Name = "colType";
+            this.colType.ReadOnly = true;
+            this.colType.Width = 125;
+            // 
+            // colWFH
+            // 
+            this.colWFH.HeaderText = "WFH";
+            this.colWFH.MinimumWidth = 6;
+            this.colWFH.Name = "colWFH";
+            this.colWFH.ReadOnly = true;
+            this.colWFH.Width = 125;
+            // 
+            // colAssignedBy
+            // 
+            this.colAssignedBy.HeaderText = "Assigned by";
+            this.colAssignedBy.MinimumWidth = 6;
+            this.colAssignedBy.Name = "colAssignedBy";
+            this.colAssignedBy.ReadOnly = true;
+            this.colAssignedBy.Width = 125;
+            // 
+            // colAttended
+            // 
+            this.colAttended.HeaderText = "Attended";
+            this.colAttended.MinimumWidth = 6;
+            this.colAttended.Name = "colAttended";
+            this.colAttended.ReadOnly = true;
+            this.colAttended.Width = 125;
+            // 
+            // colNSR
+            // 
+            this.colNSR.HeaderText = "No show reason";
+            this.colNSR.MinimumWidth = 6;
+            this.colNSR.Name = "colNSR";
+            this.colNSR.ReadOnly = true;
+            this.colNSR.Width = 125;
             // 
             // lbWeekNumber
             // 
@@ -2090,7 +2188,7 @@ namespace MediaBazaarApp
             // 
             // dgvEmployees
             // 
-            this.dgvEmployees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEmployees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvEmployees.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmployees.Location = new System.Drawing.Point(35, 176);
@@ -2323,7 +2421,7 @@ namespace MediaBazaarApp
             // 
             // dgvEmployeesExpiredContract
             // 
-            this.dgvEmployeesExpiredContract.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEmployeesExpiredContract.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvEmployeesExpiredContract.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvEmployeesExpiredContract.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmployeesExpiredContract.Location = new System.Drawing.Point(22, 47);
@@ -2387,7 +2485,7 @@ namespace MediaBazaarApp
             // 
             // dgvHLR
             // 
-            this.dgvHLR.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvHLR.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvHLR.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvHLR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHLR.Location = new System.Drawing.Point(82, 163);
@@ -2820,7 +2918,7 @@ namespace MediaBazaarApp
             // btnUnmarkSelectedEditAccountRequest
             // 
             this.btnUnmarkSelectedEditAccountRequest.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnUnmarkSelectedEditAccountRequest.Location = new System.Drawing.Point(113, 553);
+            this.btnUnmarkSelectedEditAccountRequest.Location = new System.Drawing.Point(111, 617);
             this.btnUnmarkSelectedEditAccountRequest.Name = "btnUnmarkSelectedEditAccountRequest";
             this.btnUnmarkSelectedEditAccountRequest.Size = new System.Drawing.Size(348, 53);
             this.btnUnmarkSelectedEditAccountRequest.TabIndex = 6;
@@ -2865,7 +2963,7 @@ namespace MediaBazaarApp
             // btnDeclineEditAccountRequest
             // 
             this.btnDeclineEditAccountRequest.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnDeclineEditAccountRequest.Location = new System.Drawing.Point(769, 553);
+            this.btnDeclineEditAccountRequest.Location = new System.Drawing.Point(769, 617);
             this.btnDeclineEditAccountRequest.Name = "btnDeclineEditAccountRequest";
             this.btnDeclineEditAccountRequest.Size = new System.Drawing.Size(159, 53);
             this.btnDeclineEditAccountRequest.TabIndex = 2;
@@ -2876,7 +2974,7 @@ namespace MediaBazaarApp
             // btnAcceptEditAccountRequest
             // 
             this.btnAcceptEditAccountRequest.BackColor = System.Drawing.Color.SpringGreen;
-            this.btnAcceptEditAccountRequest.Location = new System.Drawing.Point(604, 553);
+            this.btnAcceptEditAccountRequest.Location = new System.Drawing.Point(604, 617);
             this.btnAcceptEditAccountRequest.Name = "btnAcceptEditAccountRequest";
             this.btnAcceptEditAccountRequest.Size = new System.Drawing.Size(159, 53);
             this.btnAcceptEditAccountRequest.TabIndex = 1;
@@ -2886,14 +2984,14 @@ namespace MediaBazaarApp
             // 
             // dgvEditAccountRequests
             // 
-            this.dgvEditAccountRequests.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEditAccountRequests.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvEditAccountRequests.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvEditAccountRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEditAccountRequests.Location = new System.Drawing.Point(113, 229);
+            this.dgvEditAccountRequests.ColumnHeadersHeight = 29;
+            this.dgvEditAccountRequests.Location = new System.Drawing.Point(46, 229);
             this.dgvEditAccountRequests.Name = "dgvEditAccountRequests";
             this.dgvEditAccountRequests.RowHeadersWidth = 62;
             this.dgvEditAccountRequests.RowTemplate.Height = 28;
-            this.dgvEditAccountRequests.Size = new System.Drawing.Size(815, 277);
+            this.dgvEditAccountRequests.Size = new System.Drawing.Size(961, 368);
             this.dgvEditAccountRequests.TabIndex = 0;
             // 
             // settingsTab
@@ -2994,92 +3092,6 @@ namespace MediaBazaarApp
             this.manageEmpCH.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.manageEmpCH.UseVisualStyleBackColor = true;
             this.manageEmpCH.CheckedChanged += new System.EventHandler(this.manageEmpCH_CheckedChanged);
-            // 
-            // colID
-            // 
-            this.colID.HeaderText = "ID";
-            this.colID.MinimumWidth = 6;
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Width = 125;
-            // 
-            // colEmp
-            // 
-            this.colEmp.HeaderText = "Employee";
-            this.colEmp.MinimumWidth = 6;
-            this.colEmp.Name = "colEmp";
-            this.colEmp.ReadOnly = true;
-            this.colEmp.Width = 125;
-            // 
-            // colDatee
-            // 
-            this.colDatee.HeaderText = "Date";
-            this.colDatee.MinimumWidth = 6;
-            this.colDatee.Name = "colDatee";
-            this.colDatee.ReadOnly = true;
-            this.colDatee.Width = 125;
-            // 
-            // colType
-            // 
-            this.colType.HeaderText = "Type";
-            this.colType.MinimumWidth = 6;
-            this.colType.Name = "colType";
-            this.colType.ReadOnly = true;
-            this.colType.Width = 125;
-            // 
-            // colWFH
-            // 
-            this.colWFH.HeaderText = "WFH";
-            this.colWFH.MinimumWidth = 6;
-            this.colWFH.Name = "colWFH";
-            this.colWFH.ReadOnly = true;
-            this.colWFH.Width = 125;
-            // 
-            // colAssignedBy
-            // 
-            this.colAssignedBy.HeaderText = "Assigned by";
-            this.colAssignedBy.MinimumWidth = 6;
-            this.colAssignedBy.Name = "colAssignedBy";
-            this.colAssignedBy.ReadOnly = true;
-            this.colAssignedBy.Width = 125;
-            // 
-            // colAttended
-            // 
-            this.colAttended.HeaderText = "Attended";
-            this.colAttended.MinimumWidth = 6;
-            this.colAttended.Name = "colAttended";
-            this.colAttended.ReadOnly = true;
-            this.colAttended.Width = 125;
-            // 
-            // colNSR
-            // 
-            this.colNSR.HeaderText = "No show reason";
-            this.colNSR.MinimumWidth = 6;
-            this.colNSR.Name = "colNSR";
-            this.colNSR.ReadOnly = true;
-            this.colNSR.Width = 125;
-            // 
-            // cbFilterWFH
-            // 
-            this.cbFilterWFH.AutoSize = true;
-            this.cbFilterWFH.Location = new System.Drawing.Point(191, 60);
-            this.cbFilterWFH.Name = "cbFilterWFH";
-            this.cbFilterWFH.Size = new System.Drawing.Size(63, 24);
-            this.cbFilterWFH.TabIndex = 29;
-            this.cbFilterWFH.Text = "WFH";
-            this.cbFilterWFH.UseVisualStyleBackColor = true;
-            this.cbFilterWFH.CheckedChanged += new System.EventHandler(this.cbFilterWFH_CheckedChanged);
-            // 
-            // cbFilterAttended
-            // 
-            this.cbFilterAttended.AutoSize = true;
-            this.cbFilterAttended.Location = new System.Drawing.Point(260, 60);
-            this.cbFilterAttended.Name = "cbFilterAttended";
-            this.cbFilterAttended.Size = new System.Drawing.Size(93, 24);
-            this.cbFilterAttended.TabIndex = 30;
-            this.cbFilterAttended.Text = "Attended";
-            this.cbFilterAttended.UseVisualStyleBackColor = true;
-            this.cbFilterAttended.CheckedChanged += new System.EventHandler(this.cbFilterAttended_CheckedChanged);
             // 
             // AdministrationForm
             // 
