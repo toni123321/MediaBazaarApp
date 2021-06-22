@@ -3061,7 +3061,7 @@ namespace MediaBazaarApp
             // cbFilterWFH
             // 
             this.cbFilterWFH.AutoSize = true;
-            this.cbFilterWFH.Location = new System.Drawing.Point(192, 44);
+            this.cbFilterWFH.Location = new System.Drawing.Point(191, 60);
             this.cbFilterWFH.Name = "cbFilterWFH";
             this.cbFilterWFH.Size = new System.Drawing.Size(63, 24);
             this.cbFilterWFH.TabIndex = 29;
@@ -3072,7 +3072,7 @@ namespace MediaBazaarApp
             // cbFilterAttended
             // 
             this.cbFilterAttended.AutoSize = true;
-            this.cbFilterAttended.Location = new System.Drawing.Point(192, 75);
+            this.cbFilterAttended.Location = new System.Drawing.Point(260, 60);
             this.cbFilterAttended.Name = "cbFilterAttended";
             this.cbFilterAttended.Size = new System.Drawing.Size(93, 24);
             this.cbFilterAttended.TabIndex = 30;
