@@ -30,28 +30,31 @@ namespace MediaBazaarApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend16 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title7 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend17 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title8 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend18 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title9 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend13 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend15 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControlManagement = new System.Windows.Forms.TabControl();
             this.Home = new System.Windows.Forms.TabPage();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -68,6 +71,7 @@ namespace MediaBazaarApp
             this.tbxNrEmp = new System.Windows.Forms.TextBox();
             this.lbNrEmp = new System.Windows.Forms.Label();
             this.ViewStatisticsStocksTab = new System.Windows.Forms.TabPage();
+            this.dgvStockStatistics = new System.Windows.Forms.DataGridView();
             this.cbStatisticType = new System.Windows.Forms.ComboBox();
             this.ViewChartsEmp = new System.Windows.Forms.TabPage();
             this.AvgWageChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -82,19 +86,26 @@ namespace MediaBazaarApp
             this.label2 = new System.Windows.Forms.Label();
             this.cbxCity = new System.Windows.Forms.ComboBox();
             this.ResidenceChart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.EmployeesIncreaseTab = new System.Windows.Forms.TabPage();
+            this.lineChartEmployeeNrIncrease = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.gbxFilterByYearNrEmpIncrease = new System.Windows.Forms.GroupBox();
+            this.cbFilterByYearNrEmpIncrease = new System.Windows.Forms.ComboBox();
+            this.gbxFilterByDepNrEmpIncrease = new System.Windows.Forms.GroupBox();
+            this.cbFilterByDepEmpNrIncrease = new System.Windows.Forms.ComboBox();
             this.NrEmployeesStartedTab = new System.Windows.Forms.TabPage();
-            this.cbEmpNrIncrease = new System.Windows.Forms.ComboBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.chartEmployeeNrIncrease = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.gbxFilterByYearNrEmpStarted = new System.Windows.Forms.GroupBox();
+            this.cbFilterByYearNrEmpStarted = new System.Windows.Forms.ComboBox();
             this.gbxFilterByDepNrEmpStarted = new System.Windows.Forms.GroupBox();
-            this.gbxChooseYearNrEmpStarted = new System.Windows.Forms.GroupBox();
-            this.cbChooseYearNrEmpStarted = new System.Windows.Forms.ComboBox();
-            this.dgvStockStatistics = new System.Windows.Forms.DataGridView();
+            this.cbFilterByDepNrEmpStarted = new System.Windows.Forms.ComboBox();
+            this.chartEmployeeNrStarted = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
             this.tabControlManagement.SuspendLayout();
             this.Home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.ViewStatisticsEmpTab.SuspendLayout();
             this.ViewStatisticsStocksTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStockStatistics)).BeginInit();
             this.ViewChartsEmp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AvgWageChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmpPerDepChart)).BeginInit();
@@ -104,11 +115,14 @@ namespace MediaBazaarApp
             ((System.ComponentModel.ISupportInitialize)(this.AgeChart)).BeginInit();
             this.City.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResidenceChart1)).BeginInit();
+            this.EmployeesIncreaseTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lineChartEmployeeNrIncrease)).BeginInit();
+            this.gbxFilterByYearNrEmpIncrease.SuspendLayout();
+            this.gbxFilterByDepNrEmpIncrease.SuspendLayout();
             this.NrEmployeesStartedTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartEmployeeNrIncrease)).BeginInit();
+            this.gbxFilterByYearNrEmpStarted.SuspendLayout();
             this.gbxFilterByDepNrEmpStarted.SuspendLayout();
-            this.gbxChooseYearNrEmpStarted.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStockStatistics)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartEmployeeNrStarted)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlManagement
@@ -120,6 +134,7 @@ namespace MediaBazaarApp
             this.tabControlManagement.Controls.Add(this.ViewChartStocks);
             this.tabControlManagement.Controls.Add(this.Age);
             this.tabControlManagement.Controls.Add(this.City);
+            this.tabControlManagement.Controls.Add(this.EmployeesIncreaseTab);
             this.tabControlManagement.Controls.Add(this.NrEmployeesStartedTab);
             this.tabControlManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControlManagement.Location = new System.Drawing.Point(4, 5);
@@ -226,7 +241,7 @@ namespace MediaBazaarApp
             this.lbxAvgWageEmpDepartment.Location = new System.Drawing.Point(889, 238);
             this.lbxAvgWageEmpDepartment.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.lbxAvgWageEmpDepartment.Name = "lbxAvgWageEmpDepartment";
-            this.lbxAvgWageEmpDepartment.Size = new System.Drawing.Size(509, 364);
+            this.lbxAvgWageEmpDepartment.Size = new System.Drawing.Size(509, 346);
             this.lbxAvgWageEmpDepartment.TabIndex = 14;
             // 
             // tbxAvgWageEmp
@@ -270,7 +285,7 @@ namespace MediaBazaarApp
             this.lbxNrEmpPerDepartment.Location = new System.Drawing.Point(71, 238);
             this.lbxNrEmpPerDepartment.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.lbxNrEmpPerDepartment.Name = "lbxNrEmpPerDepartment";
-            this.lbxNrEmpPerDepartment.Size = new System.Drawing.Size(509, 364);
+            this.lbxNrEmpPerDepartment.Size = new System.Drawing.Size(509, 346);
             this.lbxNrEmpPerDepartment.TabIndex = 10;
             // 
             // tbxNrEmp
@@ -307,6 +322,18 @@ namespace MediaBazaarApp
             this.ViewStatisticsStocksTab.TabIndex = 1;
             this.ViewStatisticsStocksTab.Text = "Stocks statistics";
             // 
+            // dgvStockStatistics
+            // 
+            this.dgvStockStatistics.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvStockStatistics.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvStockStatistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStockStatistics.Location = new System.Drawing.Point(216, 143);
+            this.dgvStockStatistics.Name = "dgvStockStatistics";
+            this.dgvStockStatistics.RowHeadersWidth = 51;
+            this.dgvStockStatistics.RowTemplate.Height = 28;
+            this.dgvStockStatistics.Size = new System.Drawing.Size(901, 364);
+            this.dgvStockStatistics.TabIndex = 8;
+            // 
             // cbStatisticType
             // 
             this.cbStatisticType.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -340,48 +367,48 @@ namespace MediaBazaarApp
             // AvgWageChart
             // 
             this.AvgWageChart.BackColor = System.Drawing.Color.MediumTurquoise;
-            chartArea16.Name = "ChartArea1";
-            this.AvgWageChart.ChartAreas.Add(chartArea16);
-            legend16.Name = "Legend1";
-            this.AvgWageChart.Legends.Add(legend16);
+            chartArea1.Name = "ChartArea1";
+            this.AvgWageChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.AvgWageChart.Legends.Add(legend1);
             this.AvgWageChart.Location = new System.Drawing.Point(728, 5);
             this.AvgWageChart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AvgWageChart.Name = "AvgWageChart";
-            series18.ChartArea = "ChartArea1";
-            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series18.Legend = "Legend1";
-            series18.Name = "Series1";
-            this.AvgWageChart.Series.Add(series18);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.AvgWageChart.Series.Add(series1);
             this.AvgWageChart.Size = new System.Drawing.Size(737, 678);
             this.AvgWageChart.TabIndex = 1;
             this.AvgWageChart.Text = "chart1";
-            title7.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title7.Name = "Averege Wage Per Department";
-            title7.Text = "Averege Wage Per Department";
-            this.AvgWageChart.Titles.Add(title7);
+            title1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Averege Wage Per Department";
+            title1.Text = "Averege Wage Per Department";
+            this.AvgWageChart.Titles.Add(title1);
             // 
             // EmpPerDepChart
             // 
             this.EmpPerDepChart.BackColor = System.Drawing.Color.MediumTurquoise;
-            chartArea17.Name = "ChartArea1";
-            this.EmpPerDepChart.ChartAreas.Add(chartArea17);
-            legend17.Name = "Legend1";
-            this.EmpPerDepChart.Legends.Add(legend17);
+            chartArea2.Name = "ChartArea1";
+            this.EmpPerDepChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.EmpPerDepChart.Legends.Add(legend2);
             this.EmpPerDepChart.Location = new System.Drawing.Point(0, 5);
             this.EmpPerDepChart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.EmpPerDepChart.Name = "EmpPerDepChart";
-            series19.ChartArea = "ChartArea1";
-            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series19.Legend = "Legend1";
-            series19.Name = "Series1";
-            this.EmpPerDepChart.Series.Add(series19);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.EmpPerDepChart.Series.Add(series2);
             this.EmpPerDepChart.Size = new System.Drawing.Size(749, 678);
             this.EmpPerDepChart.TabIndex = 0;
             this.EmpPerDepChart.Text = "chart1";
-            title8.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title8.Name = "Employees Per Department";
-            title8.Text = "Employees Per Department";
-            this.EmpPerDepChart.Titles.Add(title8);
+            title2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Employees Per Department";
+            title2.Text = "Employees Per Department";
+            this.EmpPerDepChart.Titles.Add(title2);
             // 
             // ViewChartStocks
             // 
@@ -398,31 +425,31 @@ namespace MediaBazaarApp
             // StocksChart
             // 
             this.StocksChart.BackColor = System.Drawing.Color.MediumTurquoise;
-            chartArea18.Name = "ChartArea1";
-            this.StocksChart.ChartAreas.Add(chartArea18);
-            legend18.Name = "Legend1";
-            this.StocksChart.Legends.Add(legend18);
+            chartArea3.Name = "ChartArea1";
+            this.StocksChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.StocksChart.Legends.Add(legend3);
             this.StocksChart.Location = new System.Drawing.Point(7, 9);
             this.StocksChart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.StocksChart.Name = "StocksChart";
-            series20.ChartArea = "ChartArea1";
-            series20.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series20.Legend = "Legend1";
-            series20.Name = "Price in €";
-            series20.YValuesPerPoint = 4;
-            series21.ChartArea = "ChartArea1";
-            series21.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series21.Legend = "Legend1";
-            series21.Name = "Quantity";
-            this.StocksChart.Series.Add(series20);
-            this.StocksChart.Series.Add(series21);
+            series3.ChartArea = "ChartArea1";
+            series3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series3.Legend = "Legend1";
+            series3.Name = "Price in €";
+            series3.YValuesPerPoint = 4;
+            series4.ChartArea = "ChartArea1";
+            series4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series4.Legend = "Legend1";
+            series4.Name = "Quantity";
+            this.StocksChart.Series.Add(series3);
+            this.StocksChart.Series.Add(series4);
             this.StocksChart.Size = new System.Drawing.Size(1458, 678);
             this.StocksChart.TabIndex = 0;
             this.StocksChart.Text = "chart1";
-            title9.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title9.Name = "Stocks";
-            title9.Text = "Stocks";
-            this.StocksChart.Titles.Add(title9);
+            title3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.Name = "Stocks";
+            title3.Text = "Stocks";
+            this.StocksChart.Titles.Add(title3);
             // 
             // Age
             // 
@@ -464,17 +491,17 @@ namespace MediaBazaarApp
             // 
             // AgeChart
             // 
-            chartArea13.Name = "ChartArea1";
-            this.AgeChart.ChartAreas.Add(chartArea13);
-            legend13.Name = "Legend1";
-            this.AgeChart.Legends.Add(legend13);
+            chartArea4.Name = "ChartArea1";
+            this.AgeChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.AgeChart.Legends.Add(legend4);
             this.AgeChart.Location = new System.Drawing.Point(282, 9);
             this.AgeChart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AgeChart.Name = "AgeChart";
-            series15.ChartArea = "ChartArea1";
-            series15.Legend = "Legend1";
-            series15.Name = "Employees Age";
-            this.AgeChart.Series.Add(series15);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Employees Age";
+            this.AgeChart.Series.Add(series5);
             this.AgeChart.Size = new System.Drawing.Size(951, 661);
             this.AgeChart.TabIndex = 0;
             this.AgeChart.Text = "chart1";
@@ -519,105 +546,160 @@ namespace MediaBazaarApp
             // 
             // ResidenceChart1
             // 
-            chartArea14.Name = "ChartArea1";
-            this.ResidenceChart1.ChartAreas.Add(chartArea14);
-            legend14.Name = "Legend1";
-            this.ResidenceChart1.Legends.Add(legend14);
+            chartArea5.Name = "ChartArea1";
+            this.ResidenceChart1.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.ResidenceChart1.Legends.Add(legend5);
             this.ResidenceChart1.Location = new System.Drawing.Point(414, 101);
             this.ResidenceChart1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ResidenceChart1.Name = "ResidenceChart1";
-            series16.ChartArea = "ChartArea1";
-            series16.Legend = "Legend1";
-            series16.Name = "Employees";
-            this.ResidenceChart1.Series.Add(series16);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Employees";
+            this.ResidenceChart1.Series.Add(series6);
             this.ResidenceChart1.Size = new System.Drawing.Size(746, 509);
             this.ResidenceChart1.TabIndex = 0;
             this.ResidenceChart1.Text = "chart1";
             // 
+            // EmployeesIncreaseTab
+            // 
+            this.EmployeesIncreaseTab.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.EmployeesIncreaseTab.Controls.Add(this.lineChartEmployeeNrIncrease);
+            this.EmployeesIncreaseTab.Controls.Add(this.gbxFilterByYearNrEmpIncrease);
+            this.EmployeesIncreaseTab.Controls.Add(this.gbxFilterByDepNrEmpIncrease);
+            this.EmployeesIncreaseTab.Location = new System.Drawing.Point(4, 27);
+            this.EmployeesIncreaseTab.Name = "EmployeesIncreaseTab";
+            this.EmployeesIncreaseTab.Size = new System.Drawing.Size(1487, 750);
+            this.EmployeesIncreaseTab.TabIndex = 8;
+            this.EmployeesIncreaseTab.Text = "Employee increase";
+            // 
+            // lineChartEmployeeNrIncrease
+            // 
+            chartArea6.Name = "ChartArea1";
+            this.lineChartEmployeeNrIncrease.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.lineChartEmployeeNrIncrease.Legends.Add(legend6);
+            this.lineChartEmployeeNrIncrease.Location = new System.Drawing.Point(68, 122);
+            this.lineChartEmployeeNrIncrease.Name = "lineChartEmployeeNrIncrease";
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series7.Legend = "Legend1";
+            series7.Name = "EmployeesNrIncrease";
+            this.lineChartEmployeeNrIncrease.Series.Add(series7);
+            this.lineChartEmployeeNrIncrease.Size = new System.Drawing.Size(1329, 557);
+            this.lineChartEmployeeNrIncrease.TabIndex = 5;
+            this.lineChartEmployeeNrIncrease.Text = "chart1";
+            // 
+            // gbxFilterByYearNrEmpIncrease
+            // 
+            this.gbxFilterByYearNrEmpIncrease.Controls.Add(this.cbFilterByYearNrEmpIncrease);
+            this.gbxFilterByYearNrEmpIncrease.Location = new System.Drawing.Point(754, 33);
+            this.gbxFilterByYearNrEmpIncrease.Name = "gbxFilterByYearNrEmpIncrease";
+            this.gbxFilterByYearNrEmpIncrease.Size = new System.Drawing.Size(327, 70);
+            this.gbxFilterByYearNrEmpIncrease.TabIndex = 4;
+            this.gbxFilterByYearNrEmpIncrease.TabStop = false;
+            this.gbxFilterByYearNrEmpIncrease.Text = "Choose year";
+            // 
+            // cbFilterByYearNrEmpIncrease
+            // 
+            this.cbFilterByYearNrEmpIncrease.FormattingEnabled = true;
+            this.cbFilterByYearNrEmpIncrease.Location = new System.Drawing.Point(112, 23);
+            this.cbFilterByYearNrEmpIncrease.Name = "cbFilterByYearNrEmpIncrease";
+            this.cbFilterByYearNrEmpIncrease.Size = new System.Drawing.Size(166, 26);
+            this.cbFilterByYearNrEmpIncrease.TabIndex = 0;
+            this.cbFilterByYearNrEmpIncrease.SelectedIndexChanged += new System.EventHandler(this.cbChooseYearNrEmpIncrease_SelectedIndexChanged);
+            // 
+            // gbxFilterByDepNrEmpIncrease
+            // 
+            this.gbxFilterByDepNrEmpIncrease.Controls.Add(this.cbFilterByDepEmpNrIncrease);
+            this.gbxFilterByDepNrEmpIncrease.Location = new System.Drawing.Point(352, 33);
+            this.gbxFilterByDepNrEmpIncrease.Name = "gbxFilterByDepNrEmpIncrease";
+            this.gbxFilterByDepNrEmpIncrease.Size = new System.Drawing.Size(327, 70);
+            this.gbxFilterByDepNrEmpIncrease.TabIndex = 3;
+            this.gbxFilterByDepNrEmpIncrease.TabStop = false;
+            this.gbxFilterByDepNrEmpIncrease.Text = "Filter by department";
+            // 
+            // cbFilterByDepEmpNrIncrease
+            // 
+            this.cbFilterByDepEmpNrIncrease.FormattingEnabled = true;
+            this.cbFilterByDepEmpNrIncrease.Location = new System.Drawing.Point(87, 23);
+            this.cbFilterByDepEmpNrIncrease.Name = "cbFilterByDepEmpNrIncrease";
+            this.cbFilterByDepEmpNrIncrease.Size = new System.Drawing.Size(205, 26);
+            this.cbFilterByDepEmpNrIncrease.TabIndex = 0;
+            this.cbFilterByDepEmpNrIncrease.SelectedIndexChanged += new System.EventHandler(this.cbFilterByDepEmpNrIncrease_SelectedIndexChanged);
+            // 
             // NrEmployeesStartedTab
             // 
             this.NrEmployeesStartedTab.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.NrEmployeesStartedTab.Controls.Add(this.gbxChooseYearNrEmpStarted);
+            this.NrEmployeesStartedTab.Controls.Add(this.gbxFilterByYearNrEmpStarted);
             this.NrEmployeesStartedTab.Controls.Add(this.gbxFilterByDepNrEmpStarted);
-            this.NrEmployeesStartedTab.Controls.Add(this.chartEmployeeNrIncrease);
+            this.NrEmployeesStartedTab.Controls.Add(this.chartEmployeeNrStarted);
             this.NrEmployeesStartedTab.Location = new System.Drawing.Point(4, 27);
             this.NrEmployeesStartedTab.Name = "NrEmployeesStartedTab";
             this.NrEmployeesStartedTab.Size = new System.Drawing.Size(1487, 750);
-            this.NrEmployeesStartedTab.TabIndex = 8;
-            this.NrEmployeesStartedTab.Text = "Employee increase";
+            this.NrEmployeesStartedTab.TabIndex = 9;
+            this.NrEmployeesStartedTab.Text = "New Employees statistics";
             // 
-            // cbEmpNrIncrease
+            // gbxFilterByYearNrEmpStarted
             // 
-            this.cbEmpNrIncrease.FormattingEnabled = true;
-            this.cbEmpNrIncrease.Location = new System.Drawing.Point(87, 23);
-            this.cbEmpNrIncrease.Name = "cbEmpNrIncrease";
-            this.cbEmpNrIncrease.Size = new System.Drawing.Size(205, 26);
-            this.cbEmpNrIncrease.TabIndex = 0;
-            this.cbEmpNrIncrease.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_2);
+            this.gbxFilterByYearNrEmpStarted.Controls.Add(this.cbFilterByYearNrEmpStarted);
+            this.gbxFilterByYearNrEmpStarted.Location = new System.Drawing.Point(771, 32);
+            this.gbxFilterByYearNrEmpStarted.Name = "gbxFilterByYearNrEmpStarted";
+            this.gbxFilterByYearNrEmpStarted.Size = new System.Drawing.Size(327, 70);
+            this.gbxFilterByYearNrEmpStarted.TabIndex = 6;
+            this.gbxFilterByYearNrEmpStarted.TabStop = false;
+            this.gbxFilterByYearNrEmpStarted.Text = "Choose year";
+            // 
+            // cbFilterByYearNrEmpStarted
+            // 
+            this.cbFilterByYearNrEmpStarted.FormattingEnabled = true;
+            this.cbFilterByYearNrEmpStarted.Location = new System.Drawing.Point(112, 23);
+            this.cbFilterByYearNrEmpStarted.Name = "cbFilterByYearNrEmpStarted";
+            this.cbFilterByYearNrEmpStarted.Size = new System.Drawing.Size(166, 26);
+            this.cbFilterByYearNrEmpStarted.TabIndex = 0;
+            this.cbFilterByYearNrEmpStarted.SelectedIndexChanged += new System.EventHandler(this.cbFilterByYearNrEmpStarted_SelectedIndexChanged);
+            // 
+            // gbxFilterByDepNrEmpStarted
+            // 
+            this.gbxFilterByDepNrEmpStarted.Controls.Add(this.cbFilterByDepNrEmpStarted);
+            this.gbxFilterByDepNrEmpStarted.Location = new System.Drawing.Point(309, 32);
+            this.gbxFilterByDepNrEmpStarted.Name = "gbxFilterByDepNrEmpStarted";
+            this.gbxFilterByDepNrEmpStarted.Size = new System.Drawing.Size(327, 70);
+            this.gbxFilterByDepNrEmpStarted.TabIndex = 5;
+            this.gbxFilterByDepNrEmpStarted.TabStop = false;
+            this.gbxFilterByDepNrEmpStarted.Text = "Filter by department";
+            // 
+            // cbFilterByDepNrEmpStarted
+            // 
+            this.cbFilterByDepNrEmpStarted.FormattingEnabled = true;
+            this.cbFilterByDepNrEmpStarted.Location = new System.Drawing.Point(87, 23);
+            this.cbFilterByDepNrEmpStarted.Name = "cbFilterByDepNrEmpStarted";
+            this.cbFilterByDepNrEmpStarted.Size = new System.Drawing.Size(205, 26);
+            this.cbFilterByDepNrEmpStarted.TabIndex = 0;
+            this.cbFilterByDepNrEmpStarted.SelectedIndexChanged += new System.EventHandler(this.cbFilterByDepNrEmpStarted_SelectedIndexChanged);
+            // 
+            // chartEmployeeNrStarted
+            // 
+            chartArea7.Name = "ChartArea1";
+            this.chartEmployeeNrStarted.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chartEmployeeNrStarted.Legends.Add(legend7);
+            this.chartEmployeeNrStarted.Location = new System.Drawing.Point(110, 136);
+            this.chartEmployeeNrStarted.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chartEmployeeNrStarted.Name = "chartEmployeeNrStarted";
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "EmployeesNrStarted";
+            this.chartEmployeeNrStarted.Series.Add(series8);
+            this.chartEmployeeNrStarted.Size = new System.Drawing.Size(1197, 545);
+            this.chartEmployeeNrStarted.TabIndex = 3;
+            this.chartEmployeeNrStarted.Text = "chart1";
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // chartEmployeeNrIncrease
-            // 
-            chartArea15.Name = "ChartArea1";
-            this.chartEmployeeNrIncrease.ChartAreas.Add(chartArea15);
-            legend15.Name = "Legend1";
-            this.chartEmployeeNrIncrease.Legends.Add(legend15);
-            this.chartEmployeeNrIncrease.Location = new System.Drawing.Point(161, 127);
-            this.chartEmployeeNrIncrease.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.chartEmployeeNrIncrease.Name = "chartEmployeeNrIncrease";
-            series17.ChartArea = "ChartArea1";
-            series17.Legend = "Legend1";
-            series17.Name = "EmployeesNrStarted";
-            this.chartEmployeeNrIncrease.Series.Add(series17);
-            this.chartEmployeeNrIncrease.Size = new System.Drawing.Size(1039, 614);
-            this.chartEmployeeNrIncrease.TabIndex = 2;
-            this.chartEmployeeNrIncrease.Text = "chart1";
-            // 
-            // gbxFilterByDepNrEmpStarted
-            // 
-            this.gbxFilterByDepNrEmpStarted.Controls.Add(this.cbEmpNrIncrease);
-            this.gbxFilterByDepNrEmpStarted.Location = new System.Drawing.Point(161, 33);
-            this.gbxFilterByDepNrEmpStarted.Name = "gbxFilterByDepNrEmpStarted";
-            this.gbxFilterByDepNrEmpStarted.Size = new System.Drawing.Size(327, 70);
-            this.gbxFilterByDepNrEmpStarted.TabIndex = 3;
-            this.gbxFilterByDepNrEmpStarted.TabStop = false;
-            this.gbxFilterByDepNrEmpStarted.Text = "Filter by department";
-            // 
-            // gbxChooseYearNrEmpStarted
-            // 
-            this.gbxChooseYearNrEmpStarted.Controls.Add(this.cbChooseYearNrEmpStarted);
-            this.gbxChooseYearNrEmpStarted.Location = new System.Drawing.Point(591, 33);
-            this.gbxChooseYearNrEmpStarted.Name = "gbxChooseYearNrEmpStarted";
-            this.gbxChooseYearNrEmpStarted.Size = new System.Drawing.Size(327, 70);
-            this.gbxChooseYearNrEmpStarted.TabIndex = 4;
-            this.gbxChooseYearNrEmpStarted.TabStop = false;
-            this.gbxChooseYearNrEmpStarted.Text = "Choose year";
-            // 
-            // cbChooseYearNrEmpStarted
-            // 
-            this.cbChooseYearNrEmpStarted.FormattingEnabled = true;
-            this.cbChooseYearNrEmpStarted.Location = new System.Drawing.Point(112, 23);
-            this.cbChooseYearNrEmpStarted.Name = "cbChooseYearNrEmpStarted";
-            this.cbChooseYearNrEmpStarted.Size = new System.Drawing.Size(166, 26);
-            this.cbChooseYearNrEmpStarted.TabIndex = 0;
-            this.cbChooseYearNrEmpStarted.SelectedIndexChanged += new System.EventHandler(this.cbChooseYearNrEmpStarted_SelectedIndexChanged);
-            // 
-            // dgvStockStatistics
-            // 
-            this.dgvStockStatistics.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvStockStatistics.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvStockStatistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStockStatistics.Location = new System.Drawing.Point(216, 143);
-            this.dgvStockStatistics.Name = "dgvStockStatistics";
-            this.dgvStockStatistics.RowHeadersWidth = 51;
-            this.dgvStockStatistics.RowTemplate.Height = 28;
-            this.dgvStockStatistics.Size = new System.Drawing.Size(901, 364);
-            this.dgvStockStatistics.TabIndex = 8;
             // 
             // ManagementForm
             // 
@@ -639,6 +721,7 @@ namespace MediaBazaarApp
             this.ViewStatisticsEmpTab.ResumeLayout(false);
             this.ViewStatisticsEmpTab.PerformLayout();
             this.ViewStatisticsStocksTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStockStatistics)).EndInit();
             this.ViewChartsEmp.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AvgWageChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmpPerDepChart)).EndInit();
@@ -650,11 +733,14 @@ namespace MediaBazaarApp
             this.City.ResumeLayout(false);
             this.City.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResidenceChart1)).EndInit();
+            this.EmployeesIncreaseTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lineChartEmployeeNrIncrease)).EndInit();
+            this.gbxFilterByYearNrEmpIncrease.ResumeLayout(false);
+            this.gbxFilterByDepNrEmpIncrease.ResumeLayout(false);
             this.NrEmployeesStartedTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartEmployeeNrIncrease)).EndInit();
+            this.gbxFilterByYearNrEmpStarted.ResumeLayout(false);
             this.gbxFilterByDepNrEmpStarted.ResumeLayout(false);
-            this.gbxChooseYearNrEmpStarted.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStockStatistics)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartEmployeeNrStarted)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -692,12 +778,19 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbDateDayOfWeek;
         private System.Windows.Forms.Label lbGreetingMsg;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TabPage NrEmployeesStartedTab;
-        private System.Windows.Forms.ComboBox cbEmpNrIncrease;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartEmployeeNrIncrease;
-        private System.Windows.Forms.GroupBox gbxChooseYearNrEmpStarted;
-        private System.Windows.Forms.GroupBox gbxFilterByDepNrEmpStarted;
-        private System.Windows.Forms.ComboBox cbChooseYearNrEmpStarted;
+        private System.Windows.Forms.TabPage EmployeesIncreaseTab;
+        private System.Windows.Forms.ComboBox cbFilterByDepEmpNrIncrease;
+        private System.Windows.Forms.GroupBox gbxFilterByYearNrEmpIncrease;
+        private System.Windows.Forms.GroupBox gbxFilterByDepNrEmpIncrease;
+        private System.Windows.Forms.ComboBox cbFilterByYearNrEmpIncrease;
         private System.Windows.Forms.DataGridView dgvStockStatistics;
+        private System.Windows.Forms.DataVisualization.Charting.Chart lineChartEmployeeNrIncrease;
+        private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
+        private System.Windows.Forms.TabPage NrEmployeesStartedTab;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartEmployeeNrStarted;
+        private System.Windows.Forms.GroupBox gbxFilterByYearNrEmpStarted;
+        private System.Windows.Forms.ComboBox cbFilterByYearNrEmpStarted;
+        private System.Windows.Forms.GroupBox gbxFilterByDepNrEmpStarted;
+        private System.Windows.Forms.ComboBox cbFilterByDepNrEmpStarted;
     }
 }

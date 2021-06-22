@@ -37,7 +37,8 @@ namespace MediaBazaarApp
 
             int minYear = 2000;
             int maxYear = DateTime.Now.Year;
-            cbChooseYearNrEmpStarted.DataSource = Enumerable.Range(minYear, maxYear - minYear + 1).Reverse().ToList();
+            cbFilterByYearNrEmpIncrease.DataSource = Enumerable.Range(minYear, maxYear - minYear + 1).Reverse().ToList();
+            cbFilterByYearNrEmpStarted.DataSource = Enumerable.Range(minYear, maxYear - minYear + 1).Reverse().ToList();
         }
 
         public void WelcomeMessage()
@@ -134,7 +135,8 @@ namespace MediaBazaarApp
 
         private void ManagementForm_Load(object sender, EventArgs e)
         {
-            cbEmpNrIncrease.Items.Add("Overall");
+            cbFilterByDepEmpNrIncrease.Items.Add("Overall");
+            cbFilterByDepNrEmpStarted.Items.Add("Overall");
             DBControl db = new DBControl();
             
             foreach (Department department in departmentManagement.GetAllDepartments())
@@ -142,7 +144,8 @@ namespace MediaBazaarApp
 /*                cbxGenderChart.Items.Add(department.Name);
 */                cbxAge.Items.Add(department.Name);
                 cbxCity.Items.Add(department.Name);
-                cbEmpNrIncrease.Items.Add(department.Name);
+                cbFilterByDepEmpNrIncrease.Items.Add(department.Name);
+                cbFilterByDepNrEmpStarted.Items.Add(department.Name);
             } 
 
 
@@ -515,19 +518,7 @@ namespace MediaBazaarApp
        private Dictionary<string, int> SetNrEmployeesStartedPerPeriod(int year, List<Employee> employees)
        {
            Dictionary<string, int> employeesNrStartedPerMonths = new Dictionary<string, int>();
-           /*employeesNrStartedPerMonths.Add("January", 0);
-           employeesNrStartedPerMonths.Add("February", 0);
-           employeesNrStartedPerMonths.Add("March", 0);
-           employeesNrStartedPerMonths.Add("April", 0);
-           employeesNrStartedPerMonths.Add("May", 0);
-           employeesNrStartedPerMonths.Add("June", 0);
-           employeesNrStartedPerMonths.Add("July", 0);
-           employeesNrStartedPerMonths.Add("August", 0);
-           employeesNrStartedPerMonths.Add("September", 0);
-           employeesNrStartedPerMonths.Add("October", 0);
-           employeesNrStartedPerMonths.Add("November", 0);
-           employeesNrStartedPerMonths.Add("December", 0);*/
-
+           
            employeesNrStartedPerMonths.Add("Jan", 0);
            employeesNrStartedPerMonths.Add("Feb", 0);
            employeesNrStartedPerMonths.Add("Mar", 0);
@@ -556,11 +547,18 @@ namespace MediaBazaarApp
 
        private void ShowStatisticNrEmpStarted()
        {
-           chartEmployeeNrIncrease.ChartAreas.FirstOrDefault().AxisX.Interval = 1;
-           chartEmployeeNrIncrease.Series["EmployeesNrStarted"].Points.Clear();
-           int index = cbEmpNrIncrease.SelectedIndex;
+           chartEmployeeNrStarted.ChartAreas.FirstOrDefault().AxisX.Interval = 1;
+           chartEmployeeNrStarted.Series["EmployeesNrStarted"].Points.Clear();
 
-           int year = Convert.ToInt32(cbChooseYearNrEmpStarted.SelectedItem);
+
+
+           //lineChartEmployeeNrIncrease.ChartAreas.FirstOrDefault().AxisX.Interval = 1;
+           //lineChartEmployeeNrIncrease.ChartAreas.FirstOrDefault().AxisY.Interval = 1;
+           //lineChartEmployeeNrIncrease.Series["EmployeesNrStarted"].Points.Clear();
+
+            int index = cbFilterByDepNrEmpStarted.SelectedIndex;
+
+           int year = Convert.ToInt32(cbFilterByYearNrEmpStarted.SelectedItem);
 
            if (index != -1)
            {
@@ -570,50 +568,153 @@ namespace MediaBazaarApp
 
                    for (int i = 0; i<empNrPerMonths.Count; i++)
                    {
-                       chartEmployeeNrIncrease.Series["EmployeesNrStarted"].Points.AddXY(
+                       chartEmployeeNrStarted.Series["EmployeesNrStarted"].Points.AddXY(
                            empNrPerMonths.Keys.ElementAt(i),
                            empNrPerMonths.Values.ElementAt(i));
-                   }
+
+                       /*lineChartEmployeeNrIncrease.Series["EmployeesNrStarted"].Points.AddXY(
+                           empNrPerMonths.Keys.ElementAt(i),
+                           empNrPerMonths.Values.ElementAt(i));*/
+                    }
                }
                else
                {
-                   string department = cbEmpNrIncrease.SelectedItem.ToString();
+                   string department = cbFilterByDepNrEmpStarted.SelectedItem.ToString();
                    Department selectedDep = departmentManagement.GetDepartment(department);
 
                    Dictionary<string, int> empNrPerMonths = SetNrEmployeesStartedPerPeriod(year, selectedDep.GetAllEmployees());
 
                    for (int i = 0; i < empNrPerMonths.Count; i++)
                    {
-                       chartEmployeeNrIncrease.Series["EmployeesNrStarted"].Points.AddXY(
+                       chartEmployeeNrStarted.Series["EmployeesNrStarted"].Points.AddXY(
                            empNrPerMonths.Keys.ElementAt(i),
                            empNrPerMonths.Values.ElementAt(i));
-                   }
+                       /*lineChartEmployeeNrIncrease.Series["EmployeesNrStarted"].Points.AddXY(
+                           empNrPerMonths.Keys.ElementAt(i),
+                           empNrPerMonths.Values.ElementAt(i));*/
+                    }
                }
 
            }
        }
-       private void comboBox1_SelectedIndexChanged_2(object sender, EventArgs e)
-       {
-           ShowStatisticNrEmpStarted();
-       }
-
-       private void cbChooseYearNrEmpStarted_SelectedIndexChanged(object sender, EventArgs e)
-       {
-           ShowStatisticNrEmpStarted();
-       }
 
 
-        private void tabControlManagement_SelectedIndexChanged(object sender, EventArgs e)
+       private Dictionary<string, int> SetEmployeesIncreasePerPeriod(int year, List<Employee> employees)
        {
-            if (tabControlManagement.SelectedTab == NrEmployeesStartedTab)
-            {
-                cbEmpNrIncrease.SelectedIndex = 0;
+           Dictionary<string, int> employeesNrStartedPerMonths = new Dictionary<string, int>();
+
+           employeesNrStartedPerMonths.Add("Jan", 0);
+           employeesNrStartedPerMonths.Add("Feb", 0);
+           employeesNrStartedPerMonths.Add("Mar", 0);
+           employeesNrStartedPerMonths.Add("Apr", 0);
+           employeesNrStartedPerMonths.Add("May", 0);
+           employeesNrStartedPerMonths.Add("Jun", 0);
+           employeesNrStartedPerMonths.Add("Jul", 0);
+           employeesNrStartedPerMonths.Add("Aug", 0);
+           employeesNrStartedPerMonths.Add("Sep", 0);
+           employeesNrStartedPerMonths.Add("Oct", 0);
+           employeesNrStartedPerMonths.Add("Nov", 0);
+           employeesNrStartedPerMonths.Add("Dec", 0);
+
+           
+
+           foreach (Employee emp in employees)
+           {
+               if (emp.StartDate.Year == year)
+               {
+                   employeesNrStartedPerMonths[emp.StartDate.ToString("MMM")]++;
+               }
+           }
+           
+           for (int i = 0; i < employeesNrStartedPerMonths.Keys.Count; i++)
+           {
+               if (i > 0)
+               {
+                   employeesNrStartedPerMonths[employeesNrStartedPerMonths.Keys.ElementAt(i)] += 
+                       employeesNrStartedPerMonths[employeesNrStartedPerMonths.Keys.ElementAt(i-1)];
+                }
                
-                cbChooseYearNrEmpStarted.SelectedIndex = cbChooseYearNrEmpStarted.Items.IndexOf(DateTime.Now.Year);
+           }
 
+           return employeesNrStartedPerMonths;
+       }
+
+
+       private void ShowStatisticsNrEmpIncrease()
+       {
+            lineChartEmployeeNrIncrease.ChartAreas.FirstOrDefault().AxisX.Interval = 1;
+            lineChartEmployeeNrIncrease.ChartAreas.FirstOrDefault().AxisY.Interval = 1;
+            lineChartEmployeeNrIncrease.Series["EmployeesNrIncrease"].Points.Clear();
+
+            int index = cbFilterByDepEmpNrIncrease.SelectedIndex;
+
+            int year = Convert.ToInt32(cbFilterByYearNrEmpIncrease.SelectedItem);
+
+            if (index != -1)
+            {
+                if (index == 0)
+                {
+                    Dictionary<string, int> empNrPerMonths = SetEmployeesIncreasePerPeriod(year, departmentManagement.GetAllEmployees());
+
+                    for (int i = 0; i < empNrPerMonths.Count; i++)
+                    {
+                        lineChartEmployeeNrIncrease.Series["EmployeesNrIncrease"].Points.AddXY(
+                            empNrPerMonths.Keys.ElementAt(i),
+                            empNrPerMonths.Values.ElementAt(i));
+                    }
+                }
+                else
+                {
+                    string department = cbFilterByDepEmpNrIncrease.SelectedItem.ToString();
+                    Department selectedDep = departmentManagement.GetDepartment(department);
+
+                    Dictionary<string, int> empNrPerMonths = SetEmployeesIncreasePerPeriod(year, selectedDep.GetAllEmployees());
+
+                    for (int i = 0; i < empNrPerMonths.Count; i++)
+                    {
+                        lineChartEmployeeNrIncrease.Series["EmployeesNrIncrease"].Points.AddXY(
+                            empNrPerMonths.Keys.ElementAt(i),
+                            empNrPerMonths.Values.ElementAt(i));
+                    }
+                }
 
             }
+        }
+       
+       private void cbChooseYearNrEmpIncrease_SelectedIndexChanged(object sender, EventArgs e)
+       {
+           ShowStatisticsNrEmpIncrease();
        }
+
+        private void cbFilterByDepEmpNrIncrease_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowStatisticsNrEmpIncrease();
+        }
+
+        private void cbFilterByDepNrEmpStarted_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowStatisticNrEmpStarted();
+        }
+        private void cbFilterByYearNrEmpStarted_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowStatisticNrEmpStarted();
+        }
+
+        private void tabControlManagement_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlManagement.SelectedTab == EmployeesIncreaseTab)
+            {
+                cbFilterByDepEmpNrIncrease.SelectedIndex = 0;
+               
+                cbFilterByYearNrEmpIncrease.SelectedIndex = cbFilterByYearNrEmpIncrease.Items.IndexOf(DateTime.Now.Year);
+            }
+            else if(tabControlManagement.SelectedTab == NrEmployeesStartedTab)
+            {
+                cbFilterByDepNrEmpStarted.SelectedIndex = 0;
+                cbFilterByYearNrEmpStarted.SelectedIndex = cbFilterByYearNrEmpStarted.Items.IndexOf(DateTime.Now.Year);
+            }
+        }
+        
 
         
     }
