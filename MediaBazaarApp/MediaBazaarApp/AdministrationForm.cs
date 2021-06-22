@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Linq;
+using System.Data;
 
 
 namespace MediaBazaarApp
@@ -55,14 +56,13 @@ namespace MediaBazaarApp
             setShortcutLocationtions();
             checkForShortcuts();
 
-            gbChooseEmp.Visible = true;
-            gbAssignShiftManually.Visible = false;
-            gbViewRemoveShifts.Visible = false;
+            //gbChooseEmp.Visible = true;
+            //.Visible = false;
             UpdateDGVStock();
             UpdateWeekNumberCB();
             cbWeekNumber.SelectedIndex = 1;
 
-            RefreshWeeklySchedule();
+            //RefreshWeeklySchedule();
             UpdateDepartmentsDGV();
             UpdateCBXDepManager(cbDepartmentManager);
             UpdateDepsManualShiftPlanning();
@@ -861,34 +861,34 @@ namespace MediaBazaarApp
             emp = (Employee) cbEmps.SelectedItem;
             dbc.GetShifts(departmentManagement);
 
-            lbxSelectedEmpShifts.Items.Clear();
+          //  lbxSelectedEmpShifts.Items.Clear();
 
             if (emp.GetAllShifts() != null)
             {
                 foreach (Shift s in emp.GetAllShifts())
                 {
-                    lbxSelectedEmpShifts.Items.Add(s);
+                   // lbxSelectedEmpShifts.Items.Add(s);
                 }
             }
         }
 
         private void btnShift_Click(object sender, EventArgs e)
         {
-            Shift shift = (Shift) lbxSelectedEmpShifts.SelectedItem;
-            Employee emp = (Employee) cbEmps.SelectedItem;
+           // Shift shift = (Shift) lbxSelectedEmpShifts.SelectedItem;
+            //Employee emp = (Employee) cbEmps.SelectedItem;
 
             DBControl dbc = new DBControl();
 
-            if (shift != null)
-            {
-                dbc.RemoveShift(shift);
-                dbc.GetShifts(departmentManagement);
+            //if (shift != null)
+            //{
+            //    dbc.RemoveShift(shift);
+            //    dbc.GetShifts(departmentManagement);
 
-                emp.RemoveShift(shift.ID); // to improve
+            //    emp.RemoveShift(shift.ID); // to improve
 
-                dbc.GetShifts(departmentManagement);
-                UpdateShiftsPerEmployee();
-            }
+            //    dbc.GetShifts(departmentManagement);
+            //    UpdateShiftsPerEmployee();
+            //}
         }
 
         private List<Employee> GetDepManagers()
@@ -1200,33 +1200,7 @@ namespace MediaBazaarApp
             }
         }
 
-
-        private void btnAddShift_Click(object sender, EventArgs e)
-        {
-            if (cbDeps.SelectedIndex < 0 || cbEmps.SelectedIndex < 0)
-            {
-                throw new NotAllFieldFilled();
-            }
-            else
-            {
-                gbChooseEmp.Visible = false;
-                gbAssignShiftManually.Visible = true;
-                gbViewRemoveShifts.Visible = false;
-
-                Employee selectedEmp = (Employee) cbEmps.SelectedItem;
-
-                lbEmpInfo.Text =
-                    $"Currently selected employee: {selectedEmp.FirstName} {selectedEmp.LastName} ({selectedEmp.Id})";
-            }
-
-        }
-
-        private void btnReturnAssign_Click(object sender, EventArgs e)
-        {
-            gbChooseEmp.Visible = true;
-            gbAssignShiftManually.Visible = false;
-            gbViewRemoveShifts.Visible = false;
-        }
+       
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
@@ -1271,47 +1245,23 @@ namespace MediaBazaarApp
 
         }
 
-        private void btnViewRemoveShifts_Click(object sender, EventArgs e)
-        {
-            if (cbDeps.SelectedIndex < 0 || cbEmps.SelectedIndex < 0)
-            {
-                throw new NotAllFieldFilled();
-            }
-            else
-            {
-
-                lbxSelectedEmpShifts.Items.Clear();
-
-                gbChooseEmp.Visible = false;
-                gbAssignShiftManually.Visible = false;
-                gbViewRemoveShifts.Visible = true;
-
-                UpdateShiftsPerEmployee();
-            }
-        }
+      
 
         private void UpdateShiftsPerEmployee()
         {
-            lbxSelectedEmpShifts.Items.Clear();
+           // lbxSelectedEmpShifts.Items.Clear();
 
             Employee selectedEmp = (Employee) cbEmps.SelectedItem;
 
             foreach (Shift s in selectedEmp.GetAllShifts())
             {
-                lbxSelectedEmpShifts.Items.Add(s);
+               // lbxSelectedEmpShifts.Items.Add(s);
             }
         }
 
         private void btnScheduleClearSelected_Click_1(object sender, EventArgs e)
         {
-            lbxSelectedEmpShifts.SelectedIndex = -1;
-        }
-
-        private void btnReturnViewRemove_Click(object sender, EventArgs e)
-        {
-            gbChooseEmp.Visible = true;
-            gbAssignShiftManually.Visible = false;
-            gbViewRemoveShifts.Visible = false;
+           // lbxSelectedEmpShifts.SelectedIndex = -1;
         }
 
         private void cbSelectedEmp_SelectedIndexChanged(object sender, EventArgs e)
@@ -1402,29 +1352,27 @@ namespace MediaBazaarApp
 
                 dbc.EditShiftAttendance(attended, tbReasonForAbsence.Text, selectedShift.ID);
                 dbc.GetShifts(departmentManagement);
-                RefreshWeeklySchedule();
+                //RefreshWeeklySchedule();
                 UpdateDepsManualShiftPlanning();
 
             }
         }
 
-        private void RefreshWeeklySchedule()
+        private void RefreshWeeklySchedule(List<Shift> shifts)
         {
-            lbxWeeklySchedule.Items.Clear();
+            //var HLRDataSource =
+            //    shifts.Select(x => new
+            //    {
+            //        Employee = $"",
+            //        Date = x.Date,
+            //        Type = x.Type,
+            //        Attended = x.HasAttended = false ? "" : $"Yes",
+            //        Description = x.ShortDescription != null ? $"{x.ShortDescription}" : "n/a",
+            //        Location = x.Location != null ? $"{x.Location}" : "n/a"
+            //    });.ToList();
 
-            foreach (Employee e in departmentManagement.GetAllEmployees())
-            {
-                foreach (Shift s in e.GetAllShifts())
-                {
-                    if (GetIso8601WeekOfYear(s.Date) == (int) cbWeekNumber.SelectedItem)
-                    {
-                        if (s.ID != -1)
-                        {
-                            lbxWeeklySchedule.Items.Add($"{e.FirstName} {e.LastName} - {s.ToString()}");
-                        }
-                    }
-                }
-            }
+            //dgvHLR.DataSource = HLRDataSource;
+            //dgvHLR.ClearSelection();
         }
 
         private void UpdateWeekNumberCB()
@@ -1449,8 +1397,27 @@ namespace MediaBazaarApp
 
         private void cbWeekNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             dbc.GetShifts(departmentManagement);
-            RefreshWeeklySchedule();
+
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
+            {
+                foreach (Shift s in emp.GetAllShifts())
+                {
+                    object[] RowValues = { "", "", "", "", "", "", "" };
+
+                    RowValues[0] = s.ID;
+                    RowValues[1] = $"{emp.FirstName} {emp.LastName}";
+                    RowValues[2] = s.Date.ToString("dd/MM/yyyy");
+                    RowValues[3] = s.WFH;
+                    RowValues[4] = $"{departmentManagement.GetEmployeeById(s.AssignedBy).FirstName} {departmentManagement.GetEmployeeById(s.AssignedBy).LastName}";
+                    RowValues[5] = s.HasAttended;
+                    RowValues[6] = s.NoShowReason;
+
+                    dgvSchedule.Rows.Add(RowValues);
+                }
+            }
+            //RefreshWeeklySchedule();
         }
 
         private void cbDeps_SelectedIndexChanged(object sender, EventArgs e)
@@ -1610,34 +1577,7 @@ namespace MediaBazaarApp
             GoToManageDepartments();
         }
 
-        private void btnGenAS_Click_1(object sender, EventArgs e)
-        {
-            int week = Convert.ToInt32(cbWeekAS.SelectedItem);
-
-            if (week > 0 && week < 53)
-            {
-                ash.AssignShifts(week, 2021, currentEmp.Id);
-
-                List<Shift> toRemoveExistingSameWeek = new List<Shift>();
-
-                foreach (Employee emp in departmentManagement.GetAllEmployees())
-                {
-                    foreach (Shift s in emp.GetAllShifts())
-                    {
-                        if (GetIso8601WeekOfYear(s.Date) == week)
-                        {
-                            dbc.RemoveShift(s);
-                        }
-                    }
-                }
-
-
-                dbc.GetShifts(departmentManagement);
-                //RefreshWeeklySchedule();
-            }
-
-
-        }
+        
 
         public void UpdateDGVStock()
         {
@@ -2195,7 +2135,106 @@ namespace MediaBazaarApp
             ChangeSettingsButtonColor(manageDepCH);
         }
 
-      
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //RefreshWeeklySchedule();
+        }
+
+        private void btnRemShift_Click(object sender, EventArgs e)
+        {
+
+            int shiftID = 0;
+
+            if (dgvSchedule.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = dgvSchedule.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dgvSchedule.Rows[selectedrowindex];
+                string id = Convert.ToString(selectedRow.Cells["colID"].Value);
+
+                shiftID = Convert.ToInt32(id);
+            }
+
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
+            {
+                foreach (Shift s in emp.GetAllShifts())
+                {
+                    if (shiftID == s.ID)
+                    {
+                        dbc.RemoveShift(s);
+                    }
+                }
+            }
+        }
+
+        private void btnEditShift_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbEmps_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Employee with Id: (id)
+            Employee emp = (Employee)cbEmps.SelectedItem;
+
+            if (emp != null)
+            {
+                lbEmpInfo.Text = $"Selected {emp.FirstName} {emp.LastName} ({emp.Id})";
+            }
+               
+        }
+
+        private void btnGoBackManual_Click(object sender, EventArgs e)
+        {
+            gbAssignShiftManually.Visible = false;
+            btnAutoShifts.Visible = true;
+            btnManShifts.Visible = true;
+        }
+
+        private void btnManShifts_Click(object sender, EventArgs e)
+        {
+            gbAssignShiftManually.Visible = true;
+            btnAutoShifts.Visible = false;
+            btnManShifts.Visible = false;
+
+        }
+
+        private void btnAutoShifts_Click(object sender, EventArgs e)
+        {
+            gbAutoSch.Visible = true;
+            btnAutoShifts.Visible = false;
+            btnManShifts.Visible = false;
+        }
+
+        private void btnGoBackAuto_Click(object sender, EventArgs e)
+        {
+            gbAutoSch.Visible = false;
+            btnAutoShifts.Visible = true;
+            btnManShifts.Visible = true;
+        }
+
+        private void btnGenAS_Click(object sender, EventArgs e)
+        {
+            int week = Convert.ToInt32(cbWeekAS.SelectedItem);
+
+            if (week > 0 && week < 53)
+            {
+                foreach (Employee emp in departmentManagement.GetAllEmployees())
+                {
+                    foreach (Shift s in emp.GetAllShifts())
+                    {
+                        if (GetIso8601WeekOfYear(s.Date) == week)
+                        {
+                            dbc.RemoveShift(s);
+                        }
+                    }
+                }
+
+                ash.AssignShifts(week, 2021, currentEmp.Id);
+
+                dbc.GetShifts(departmentManagement);
+                //RefreshWeeklySchedule();
+            }
+        }
     }
 }
 

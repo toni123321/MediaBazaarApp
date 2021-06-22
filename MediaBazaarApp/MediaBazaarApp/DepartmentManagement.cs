@@ -108,5 +108,21 @@ namespace MediaBazaarApp
             return GetDepartment(depName).GetAllEmployees();
         }
 
+        public Shift GetShiftByID(int id)
+        {
+            foreach (Employee emp in GetAllEmployees())
+            {
+                foreach (Shift s in emp.GetAllShifts())
+                {
+                    if (s.ID == id)
+                    {
+                        return s;
+                    }
+                }
+            }
+
+            return null;
+        }
+
     }
 }
