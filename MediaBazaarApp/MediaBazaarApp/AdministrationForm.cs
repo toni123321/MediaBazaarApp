@@ -22,6 +22,7 @@ namespace MediaBazaarApp
         private SalesManagement salesManagement;
         private DBControl dbc;
         private AutomatedScheduleHandler ash;
+        private DBControl dbControl = new DBControl();
 
         private double price = 0;
         private int quantity = 0;
@@ -34,6 +35,8 @@ namespace MediaBazaarApp
 
         // Manager for edit account requests
         private EditAccountRequestsManager editAccountRequestsManager;
+        private HLRManager hlrManager;
+        private EmployeesExpiredContractManager empExpiredContractManager;
 
 
         public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp,
@@ -78,7 +81,13 @@ namespace MediaBazaarApp
 
             // Initializing the edit account requests manager
             editAccountRequestsManager = new EditAccountRequestsManager();
+            hlrManager = new HLRManager();
+            timer1.Enabled = false;
+            empExpiredContractManager = new EmployeesExpiredContractManager(this.departmentManagement);
 
+            // HLR, employees with expired contract notifications after login
+            ShowHLRNotifications();
+            ShowEmpExpiredContractNotifications();
         }
 
         public void WelcomeMessage()
@@ -146,21 +155,17 @@ namespace MediaBazaarApp
 
         public bool CheckIsSuperuser()
         {
-            bool isSuperuser = false;
-            if (currentEmp.Email == "john@gmail.com" && currentEmp.Id == 1)
-            {
-                isSuperuser = true;
-            }
+            bool isSuperuser = currentEmp.Email == "john@gmail.com" && currentEmp.Id == 1;
 
             return isSuperuser;
         }
-
+        
         public void FillComboBoxDepartments()
         {
             cbEmpDepartment.Items.Clear();
             foreach (Department dep in departmentManagement.GetAllDepartments())
             {
-                if (CheckIsSuperuser() && dep.Name == "Administration")
+                if (!CheckIsSuperuser() && dep.Name == "Administration")
                 {
                     continue;
                 }
@@ -368,15 +373,6 @@ namespace MediaBazaarApp
             dgvEmployees.DataSource = employeesDataSource;
 
             dgvEmployees.ClearSelection();
-
-            /*lbxAllEmployees.Items.Clear();
-            foreach (Employee emp in employees)
-            {
-                if (emp.Email != currentEmp.Email) // Check if the emp is the currently logged user
-                {
-                    lbxAllEmployees.Items.Add(emp);
-                }
-            }*/
         }
 
         private void tabControlEmployees_Selected(object sender, TabControlEventArgs e)
@@ -384,10 +380,129 @@ namespace MediaBazaarApp
             if (tabControlEmployees.SelectedTab.Name == "ManageEmpTab")
             {
                 cbSelectEmpDepartment.SelectedIndex = 0;
+                dbControl.GetEmployees(departmentManagement);
                 ShowEmployeesList(departmentManagement.GetAllEmployees());
+            }
+            else if(tabControlEmployees.SelectedTab.Name  == "EmpExpiredContractTab")
+            {
+                gbxEmpRenewContract.Visible = false;
+                ShowEmployeesWithExpiredContract(empExpiredContractManager.GetEmployeesWithExpiredContract().ToList());
             }
         }
 
+        private void lbEmpExpiredContract_Click(object sender, EventArgs e)
+        {
+            tabControlAdministration.SelectedTab = EmployeesTab;
+            tabControlEmployees.SelectedTab = EmpExpiredContractTab;
+        }
+
+
+        public void ShowEmpExpiredContractNotifications()
+        {
+            empExpiredContractManager.LoadDataFromStorage();
+            int nrEmpWithExpiredContract = empExpiredContractManager.GetEmployeesWithExpiredContract().Count;
+            panelEmpExpiredContract.Visible = nrEmpWithExpiredContract > 0;
+
+            if (nrEmpWithExpiredContract > 0)
+            {
+                
+                lbEmpExpiredContract.Text = nrEmpWithExpiredContract > 1 ?
+                        $"There are {nrEmpWithExpiredContract} people with expired contract (click to manage)."
+                        : $"There is {nrEmpWithExpiredContract} person with expired contract (click to manage).";
+                
+            }
+
+        }
+
+        //TODO: Consider the email check statement
+        public void ShowEmployeesWithExpiredContract(List<Employee> employees)
+        {
+            var employeesWithExpiredContractDataSource =
+                employees.Where(x => x.Email != currentEmp.Email)
+                    .Select(x => new
+                    {
+                        ID = x.Id,
+                        x.FirstName,
+                        x.LastName,
+                        x.Email,
+                        Department = x.Department.Name,
+                        ExpiredOn = x.EndDate
+
+                    }).ToList();
+            dgvEmployeesExpiredContract.DataSource = employeesWithExpiredContractDataSource;
+
+            dgvEmployeesExpiredContract.ClearSelection();
+        }
+
+
+        private void btnEmpExpiredContractUnmarkSelected_Click(object sender, EventArgs e)
+        {
+            if (dgvEmployeesExpiredContract.SelectedRows.Count > 0)
+            {
+                dgvEmployeesExpiredContract.ClearSelection();
+            }
+            else
+            {
+                MessageBox.Show("To unmark a selected employee, choose one beforehand!");
+            }
+        }
+
+        private void btnEmpRenewContract_Click(object sender, EventArgs e)
+        {
+            if(dgvEmployeesExpiredContract.SelectedRows.Count == 1)
+            {
+                int selectedEmpID = Convert.ToInt32(dgvEmployeesExpiredContract.SelectedCells[0].Value.ToString());
+                Employee selectedEmp = empExpiredContractManager.GetEmployeeById(selectedEmpID);
+
+                gbxEmpRenewContract.Visible = true;
+                lbNamesEmpRenewContract.Text = $"Employee: {selectedEmp.FirstName} {selectedEmp.LastName}";
+                lbEmpIdRenewContract.Text = $"Id: {selectedEmpID}";
+            }
+            else
+            {
+                MessageBox.Show("Please, choose one employee to renew their contract!");
+            }
+            
+        }
+
+        
+
+
+        private void btnEmpSubmitChangesNewContract_Click(object sender, EventArgs e)
+        {
+            if(!String.IsNullOrEmpty(dtpEmpStartDateNewContract.Text) && 
+               (!String.IsNullOrEmpty(dtpEndDateNewContract.Text) || cbxEmpMakeNewContractIndefinite.Checked))
+            {
+                DateTime startDate = dtpEmpStartDateNewContract.Value;
+                DateTime endDate;
+                if(cbxEmpMakeNewContractIndefinite.Checked)
+                {
+                    endDate = DateTime.MaxValue;
+                }
+                else
+                {
+                    endDate = dtpEndDateNewContract.Value;
+                }
+
+                int empId = Convert.ToInt32(lbEmpIdRenewContract.Text.Split(' ')[1]);
+                Employee emp = empExpiredContractManager.GetEmployeeById(empId);
+                emp.StartDate = startDate;
+                emp.EndDate = endDate;
+                empExpiredContractManager.RenewEmployeeContract(emp);
+                
+                ShowEmployeesWithExpiredContract(empExpiredContractManager.GetEmployeesWithExpiredContract().ToList());
+                dbControl.GetEmployees(departmentManagement);
+
+                MessageBox.Show($"You have successfully renew contract of {emp.FirstName} {emp.LastName}");
+                gbxEmpRenewContract.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("Please, fill all the required boxes!\n" +
+                                "Info: Start date must be provided, End date can be missed only " +
+                                "if you have choosen contract to be Indefinite");
+            }
+        }
 
         private void cbSelectEmpDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1063,9 +1178,15 @@ namespace MediaBazaarApp
             else if (tabControlAdministration.SelectedTab == tabPageEditAccountRequests)
             {
                 cbFilterEditAccountRequests.SelectedIndex = 0;
-                UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+            }
+            else if (tabControlAdministration.SelectedTab == HomeTab)
+            {
+                ShowHLRNotifications();
+                ShowEmpExpiredContractNotifications();
             }
         }
+
 
 
         private void UpdateDepsManualShiftPlanning()
@@ -1496,76 +1617,27 @@ namespace MediaBazaarApp
 
             if (week > 0 && week < 53)
             {
-                ash.AssignShifts(week, 2021);
-            }
+                ash.AssignShifts(week, 2021, currentEmp.Id);
 
-            List<Shift> toRemoveExistingSameWeek = new List<Shift>();
+                List<Shift> toRemoveExistingSameWeek = new List<Shift>();
 
-            foreach (Employee emp in departmentManagement.GetAllEmployees())
-            {
-                foreach (Shift s in emp.GetAllShifts())
+                foreach (Employee emp in departmentManagement.GetAllEmployees())
                 {
-                    if (GetIso8601WeekOfYear(s.Date) == week)
+                    foreach (Shift s in emp.GetAllShifts())
                     {
-                        toRemoveExistingSameWeek.Add(s);
-                    }
-                }
-            }
-
-            foreach (Employee emp in departmentManagement.GetAllEmployees())
-            {
-                for (int i = 0; i < toRemoveExistingSameWeek.Count; i++)
-                {
-                    Shift shift = toRemoveExistingSameWeek[i];
-
-                    if (emp.GetAllShifts().Contains(shift) == true)
-                    {
-                        dbc.RemoveShift(shift);
-                        emp.RemoveSpecificShift(shift);
-                    }
-                }
-            }
-
-
-
-            dbc.GetShifts(departmentManagement);
-
-            foreach (Employee emp in departmentManagement.GetAllEmployees())
-            {
-                foreach (Shift s in emp.GetAllShifts())
-                {
-                    dbc.AddShift(s.Type, s.Date, currentEmp.Id, s.WFH, emp);
-
-                }
-            }
-
-            List<Shift> toRemove = new List<Shift>();
-
-            foreach (Employee emp in departmentManagement.GetAllEmployees())
-            {
-                foreach (Shift s in emp.GetAllShifts())
-                {
-                    if (s.ID == -1)
-                    {
-                        toRemove.Add(s);
+                        if (GetIso8601WeekOfYear(s.Date) == week)
+                        {
+                            dbc.RemoveShift(s);
+                        }
                     }
                 }
 
-                for (int i = 0; i < emp.GetAllShifts().Count; i++)
-                {
-                    Shift shift = emp.GetAllShifts()[i];
 
-                    if (emp.GetAllShifts()[i].ID == -1)
-                    {
-                        emp.Shifts.Remove(shift);
-                    }
-                }
+                dbc.GetShifts(departmentManagement);
+                //RefreshWeeklySchedule();
             }
 
 
-
-            dbc.GetShifts(departmentManagement);
-            //RefreshWeeklySchedule();
         }
 
         public void UpdateDGVStock()
@@ -1582,7 +1654,8 @@ namespace MediaBazaarApp
                 Depth = x.Depth,
                 Weight = x.Weight,
                 Description = x.ShortDescription != null ? $"{x.ShortDescription}" : "n/a",
-                Location = x.Location != null ? $"{x.Location}" : "n/a"
+                Location = x.Location != null ? $"{x.Location}" : "n/a",
+                Disontinued=x.Discontinued
             }).ToList();
 
             dgvStock.DataSource = stockDataSource;
@@ -1838,7 +1911,7 @@ namespace MediaBazaarApp
             dgvDepartments.ClearSelection();
         }
 
-        public void UpdateDVGEditAccountRequests(IList<EditAccountRequest> requests)
+        public void UpdateDGVEditAccountRequests(IList<EditAccountRequest> requests)
         {
             var editAccountRequestsDataSource =
                 requests.Select(x => new
@@ -1876,7 +1949,7 @@ namespace MediaBazaarApp
                 {
                     editAccountRequestsManager.AcceptRequest(requestId, this.departmentManagement);
                     cbFilterEditAccountRequests.SelectedIndex = 0;
-                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
                     MessageBox.Show("You have accepted this request!");
                 }
             }
@@ -1902,7 +1975,8 @@ namespace MediaBazaarApp
                 {
                     editAccountRequestsManager.DeclineRequest(requestId, this.departmentManagement);
                     cbFilterEditAccountRequests.SelectedIndex = 0;
-                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                    
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
                     MessageBox.Show("You have declined this request!");
                 }
             }
@@ -1918,16 +1992,16 @@ namespace MediaBazaarApp
             switch (status)
             {
                 case "All":
-                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
                     break;
                 case "Accepted":
-                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetAcceptedEditAccountRequests());
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAcceptedEditAccountRequests());
                     break;
                 case "Declined":
-                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetDeclinedEditAccountRequests());
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetDeclinedEditAccountRequests());
                     break;
                 case "InProgress":
-                    UpdateDVGEditAccountRequests(editAccountRequestsManager.GetInProgressEditAccountRequests());
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetInProgressEditAccountRequests());
                     break;
             }
         }
@@ -1943,7 +2017,186 @@ namespace MediaBazaarApp
                 MessageBox.Show("To unmark request, you should have selected one beforehand!");
             }
         }
-        
+
+
+        private void tabControlEmployees_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlEmployees.SelectedTab == HolidayRequestsTab)
+            {
+                cbFilterHLR.SelectedIndex = 0;
+                UpdateDGVHLR(hlrManager.GetAllRequests());
+            }
+        }
+        // HLR
+
+
+        private void cbFilterHLR_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string status = cbFilterHLR.SelectedItem.ToString();
+            switch (status)
+            {
+                case "All":
+                    UpdateDGVHLR(hlrManager.GetAllRequests());
+                    break;
+                case "Accepted":
+                    UpdateDGVHLR(hlrManager.GetAcceptedRequests());
+                    break;
+                case "Declined":
+                    UpdateDGVHLR(hlrManager.GetDeclinedRequests());
+                    break;
+                case "InProgress":
+                    UpdateDGVHLR(hlrManager.GetPendingRequests());
+                    break;
+            }
+        }
+
+        private void ShowHLRNotifications()
+        {
+            hlrManager.LoadDataFromStorage();
+            IList<HolidayLeaveRequest> pendingHlrs = hlrManager.GetPendingRequests();
+            int nrPendingRequests = pendingHlrs.Count;
+            panelHLRNotifications.Visible = nrPendingRequests > 0;
+
+            if (nrPendingRequests > 0)
+            {
+                lbHLRNotifications.Text = nrPendingRequests > 1 ? 
+                    $"There are {nrPendingRequests} new holiday requests (click to manage)." 
+                    : $"There is {nrPendingRequests} new holiday requests (click to manage).";
+            }
+        }
+
+        private void lbHLRNotifications_Click(object sender, EventArgs e)
+        {
+            tabControlAdministration.SelectedTab = EmployeesTab;
+            tabControlEmployees.SelectedTab = HolidayRequestsTab;
+        }
+
+        private void UpdateDGVHLR(IList<HolidayLeaveRequest> requests)
+        {
+            var HLRDataSource =
+                requests.Select(x => new
+                {
+                    ID = x.Id,
+                    Employee = $"{departmentManagement.GetEmployeeById(x.EmployeeId).FirstName} {departmentManagement.GetEmployeeById(x.EmployeeId).LastName}",
+                    x.StartDate,
+                    x.EndDate,
+                    x.TotalDays,
+                    x.Status,
+                    Reason = x.Comments,
+                    x.RequestDate
+                }).ToList();
+
+            dgvHLR.DataSource = HLRDataSource;
+            dgvHLR.ClearSelection();
+        }
+
+        private void btnHolidayRequestsAccept_Click(object sender, EventArgs e)
+        {
+            if (dgvHLR.SelectedRows.Count == 1)
+            {
+                int requestId = Convert.ToInt32(dgvHLR.SelectedCells[0].Value);
+                HolidayLeaveRequest currRequest = hlrManager.GetHLR(requestId);
+                
+                if (currRequest.Status != "InProgress")
+                {
+                    MessageBox.Show("This request is already processed!");
+                }
+                else
+                {
+                    hlrManager.AcceptHLR(currRequest, this.departmentManagement);
+                    cbFilterHLR.SelectedIndex = 0; // All
+                    UpdateDGVHLR(hlrManager.GetAllRequests());
+                    MessageBox.Show("You have accepted this request!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, select a request to mark it as /Accepted/");
+            }
+        }
+
+        private void btnHolidayRequestsDecline_Click(object sender, EventArgs e)
+        {
+            if (dgvHLR.SelectedRows.Count == 1)
+            {
+                int requestId = Convert.ToInt32(dgvHLR.SelectedCells[0].Value);
+                HolidayLeaveRequest currRequest = hlrManager.GetHLR(requestId);
+
+                if (currRequest.Status != "InProgress")
+                {
+                    MessageBox.Show("This request is already processed!");
+                }
+                else
+                {
+                    hlrManager.DeclineHLR(currRequest, this.departmentManagement);
+                    cbFilterHLR.SelectedIndex = 0; // All
+                    UpdateDGVHLR(hlrManager.GetAllRequests());
+                    MessageBox.Show("You have declined this request!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, select a request to mark it as /Declined/");
+            }
+        }
+
+
+        private void btnHolidayRequestsClearSelected_Click(object sender, EventArgs e)
+        {
+            if (dgvHLR.SelectedRows.Count == 1)
+            {
+                dgvHLR.ClearSelection();
+            }
+            else
+            {
+                MessageBox.Show("To unmark request, you should have selected one beforehand! ");
+            }
+        }
+
+        private void ChangeSettingsButtonColor(CheckBox cb)
+        {
+            if (cb.Checked == true)
+            {
+
+                cb.BackColor = Color.FromArgb(82, 255, 163);
+            }
+            else
+            {
+                cb.BackColor = Color.FromArgb(250, 69, 60);
+            }
+        }
+
+        private void manageEmpCH_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeSettingsButtonColor(manageEmpCH);  
+        }
+
+        private void weeklyScheduleCH_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeSettingsButtonColor(weeklyScheduleCH);
+        }
+
+        private void holidayLeaveReqCH_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeSettingsButtonColor(holidayLeaveReqCH);
+        }
+
+        private void manageAttendanceCH_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeSettingsButtonColor(manageAttendanceCH);
+        }
+
+        private void manageStockCH_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeSettingsButtonColor(manageStockCH);
+        }
+
+        private void manageDepCH_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeSettingsButtonColor(manageDepCH);
+        }
+
+      
     }
 }
 

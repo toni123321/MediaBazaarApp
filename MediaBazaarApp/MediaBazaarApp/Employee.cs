@@ -180,7 +180,7 @@ namespace MediaBazaarApp
             get { return this.phoneNumber; }
             set
             {
-                bool isValid = Regex.IsMatch(value, @"^(\+|00){1}[0-9]{2,3}([ |-|/]{1}[0-9]{3}){3}$");
+                bool isValid = Regex.IsMatch(value, @"^(\+|00){1}[0-9]{2,3}([ |\-|/|]?[0-9]{3}){3}$");
                 if (isValid)
                 {
                     this.phoneNumber = value;
@@ -400,14 +400,14 @@ namespace MediaBazaarApp
             set
             {
                 this.endDate = value;
-                /*if (value > this.StartDate)
+                if (value > this.StartDate)
                 {
                     this.endDate = value;
                 }
                 else
                 {
                     throw new InputFieldException($"End date must be a date after start date!");
-                }*/
+                }
             }
         }
 

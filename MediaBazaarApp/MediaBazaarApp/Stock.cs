@@ -14,6 +14,7 @@
         private double weight;
         private string shortDescription;
         private string location;
+        private bool discontinued;
         StockManagement s;
         public int Id
         {
@@ -72,6 +73,11 @@
             get { return this.location; }
             set { this.location = value; }
         }
+        public bool Discontinued
+        {
+            get { return this.discontinued; }
+            set { this.discontinued = value; }
+        }
 
         public Stock(int id, string model, string brand, double price, int quantity, double height, double width, double depth, double weight, string shortDescription)
         {
@@ -85,6 +91,7 @@
             this.depth = depth;
             this.weight = weight;
             this.shortDescription = shortDescription;
+            this.discontinued = false;
 
             //id = idCounter;
             //idCounter++;

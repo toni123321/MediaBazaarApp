@@ -213,8 +213,7 @@ namespace MediaBazaarApp
                     cmd.Parameters.AddWithValue("@hourlyWages", emp.HourlyWages);
                     cmd.Parameters.AddWithValue("@startDate", emp.StartDate);
                     
-
-                    // TODO: Check end date in the db
+                    
                     if (emp.EndDate == DateTime.MaxValue)
                     {
                         cmd.Parameters.AddWithValue("@endDate", null);
@@ -240,6 +239,122 @@ namespace MediaBazaarApp
             }
         }
 
+
+        public IList<Employee> GetEmployeesWithExpiringContracts(DepartmentManagement departmentManagement)
+        {
+            IList<Employee> employeeWithExpiredContract = new List<Employee>();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "SELECT e.*, d.Name FROM employee as e " +
+                                 "inner join department as d " +
+                                 "on e.DepartmentID = d.ID " +
+                                 "where EndDate < CURDATE()";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        int id = Convert.ToInt32(dr[0]);
+                        string fname = dr[1].ToString();
+                        string lname = dr[2].ToString();
+                        DateTime dob = (DateTime)dr[3];
+                        string nationality = dr[4].ToString();
+                        Gender gender = (Gender)Enum.Parse(typeof(Gender), dr[5].ToString());
+                        string email = dr[6].ToString();
+                        string phone = dr[7].ToString();
+                        string street = dr[8].ToString();
+                        string city = dr[9].ToString();
+                        string country = dr[10].ToString();
+                        string postcode = dr[11].ToString();
+                        string bsn = dr[12].ToString();
+                        string emConName = dr[13].ToString();
+                        EmergencyContactRelation emConRelation =
+                            (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation), dr[14].ToString());
+                        string emConEmail = dr[15].ToString();
+                        string emConPhone = dr[16].ToString();
+                        EmploymentType employmentType =
+                            (EmploymentType)Enum.Parse(typeof(EmploymentType), dr[17].ToString());
+                        double hourlyWages = Convert.ToDouble(dr[18]);
+
+                        DateTime startDate = (DateTime)dr[19];
+
+                        DateTime endDate;
+                        if (String.IsNullOrEmpty(dr[20].ToString()))
+                        {
+                            // try with datetime max value
+                            endDate = DateTime.MaxValue;
+                        }
+                        else
+                        {
+                            endDate = (DateTime)dr[20];
+                        }
+
+                        int depId = Convert.ToInt32(dr[21]);
+
+                        string depName = dr[22].ToString();
+                        Department dep = departmentManagement.GetDepartment(depName);
+
+                        Employee emp = new Employee(fname, lname, dob, nationality, gender, email, phone,
+                            street, city, country, postcode, bsn, emConName, emConRelation, emConEmail,
+                            emConPhone, employmentType, hourlyWages, startDate, endDate, dep);
+                        emp.Id = id;
+                        employeeWithExpiredContract.Add(emp);
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+            return employeeWithExpiredContract;
+        }
+
+        public bool CheckCredentialsEmpWithExpiredContract(string email, int empId, string departmentName)
+        {
+            bool isCredentialsValid = false;
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "SELECT count(*) FROM employee as e " +
+                                 "inner join department as d " +
+                                 "on e.DepartmentID = d.ID " +
+                                 "where EndDate < CURDATE() and e.ID = @id " +
+                                 "and e.Email = @email and d.Name = @depName";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@id", empId);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@depName", departmentName);
+
+                    conn.Open();
+
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    isCredentialsValid = count == 1;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+            return isCredentialsValid;
+        }
+
         public void GetEmployees(DepartmentManagement departmentManagement)
         {
             try
@@ -249,7 +364,8 @@ namespace MediaBazaarApp
 
                     string sql = "SELECT e.*, d.Name FROM employee as e " +
                                  "inner join department as d " +
-                                 "on e.DepartmentID = d.ID";
+                                 "on e.DepartmentID = d.ID " +
+                                 "where EndDate >= CURDATE() or EndDate is NULL";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -286,7 +402,6 @@ namespace MediaBazaarApp
                         DateTime endDate;
                         if (String.IsNullOrEmpty(dr[20].ToString()))
                         {
-                            //TODO: Update with real date;
                             // try with datetime max value
                             endDate = DateTime.MaxValue;
                         }
@@ -343,9 +458,9 @@ namespace MediaBazaarApp
                     string location = "";
 
                     string sql = "INSERT INTO stock (Brand, Model, Quantity, Price, " +
-                                 "Width, Height, Depth, Weight, ShortDescription, Location) " +
+                                 "Width, Height, Depth, Weight, ShortDescription, Location, Discontinued) " +
                                  "VALUES(@brand, @model, @quantity, @price, @width, @height, @depth, " +
-                                 "@weight, @description, @location)";
+                                 "@weight, @description, @location, @discontinued)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -372,6 +487,7 @@ namespace MediaBazaarApp
                             cmd.Parameters.AddWithValue("@weight", weight);
                             cmd.Parameters.AddWithValue("@description", shortDescription);
                             cmd.Parameters.AddWithValue("@location", location);
+                            cmd.Parameters.AddWithValue("@discontinued", "No");
 
 
                             conn.Open();
@@ -401,12 +517,14 @@ namespace MediaBazaarApp
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
 
-                    string sql = "DELETE from stock WHERE id=@id";
+                    string sql = "UPDATE stock SET Location=@location, Discontinued=@discontinued WHERE id=@id";
 
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
                     cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@location", "None");
+                    cmd.Parameters.AddWithValue("@discontinued", "Yes");
 
 
                     conn.Open();
@@ -494,6 +612,7 @@ namespace MediaBazaarApp
 
         public void GetStocks(StockManagement stockManagement)
         {
+            stockManagement.ClearAllStocks();
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
@@ -535,7 +654,6 @@ namespace MediaBazaarApp
             }
 
         }
-
         // Departments
         public void AddDepartment(string name)
         {
@@ -776,7 +894,7 @@ namespace MediaBazaarApp
                     cmd.Parameters.AddWithValue("@empID", emp.Id);
                     cmd.Parameters.AddWithValue("@date", date);
                     cmd.Parameters.AddWithValue("@assignedBy", assignedBy);
-                    cmd.Parameters.AddWithValue("@hasAttended", true);
+                    cmd.Parameters.AddWithValue("@hasAttended", false);
                     cmd.Parameters.AddWithValue("@noShowReason", null);
                     cmd.Parameters.AddWithValue("@type", Convert.ToInt32(type) + 1);
                     cmd.Parameters.AddWithValue("@wfh", wfh);
@@ -853,6 +971,11 @@ namespace MediaBazaarApp
 
         public void GetShifts(DepartmentManagement departmentManagement)
         {
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
+            {
+                emp.Shifts.Clear();
+            }
+
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
@@ -862,7 +985,8 @@ namespace MediaBazaarApp
                                  "inner join employee as e " +
                                  "on s.EmployeeID = e.ID " +
                                  "inner join department as d " +
-                                 "on e.DepartmentID = d.ID";
+                                 "on e.DepartmentID = d.ID " +
+                                 "where e.EndDate >= CURDATE() or e.EndDate is NULL";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -1120,6 +1244,79 @@ namespace MediaBazaarApp
 
                     cmd.Parameters.AddWithValue("@id", editAccountRequest.Id);
 
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
+        // Holiday requests
+        public IList<HolidayLeaveRequest> GetHLRs()
+        {
+            IList<HolidayLeaveRequest> hlrs = new List<HolidayLeaveRequest>();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "SELECT * FROM holiday_leave_request";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    conn.Open();
+
+                    MySqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        int id = Convert.ToInt32(dr[0]);
+                        int empId = Convert.ToInt32(dr[1]);
+                        DateTime startDay = (DateTime) dr[2];
+                        DateTime endDay = (DateTime)dr[3];
+                        int totalDays = Convert.ToInt32(dr[4]);
+                        string status = dr[5].ToString();
+                        string comments = dr[6].ToString();
+                        DateTime requestDate = (DateTime) dr[7];
+                        
+
+                        HolidayLeaveRequest holidayLeaveRequest = new
+                            HolidayLeaveRequest(id, empId, startDay, endDay, totalDays,
+                                status, comments, requestDate);
+                        hlrs.Add(holidayLeaveRequest);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+            return hlrs;
+        }
+
+        public void UpdateHLR(HolidayLeaveRequest holidayLeaveRequest)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "UPDATE  holiday_leave_request " +
+                                 "set Status = @status " +
+                                 "where id = @id";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@status", holidayLeaveRequest.Status);
+                    cmd.Parameters.AddWithValue("@id", holidayLeaveRequest.Id);
+                    
                     conn.Open();
 
                     int effectedRows = cmd.ExecuteNonQuery();

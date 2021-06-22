@@ -127,6 +127,9 @@
     <Compile Include="DepartmentManagement.cs" />
     <Compile Include="EditAccountRequest.cs" />
     <Compile Include="EditAccountRequestsManager.cs" />
+    <Compile Include="EmployeesExpiredContractManager.cs" />
+    <Compile Include="HLRManager.cs" />
+    <Compile Include="HolidayLeaveRequest.cs" />
     <Compile Include="IntegerValueExpected.cs" />
     <Compile Include="NotAllFieldFilled.cs" />
     <Compile Include="SalesForm.cs">
