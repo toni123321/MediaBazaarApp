@@ -319,6 +319,41 @@ namespace MediaBazaarApp
             return employeeWithExpiredContract;
         }
 
+        public bool CheckCredentialsEmpWithExpiredContract(string email, int empId, string departmentName)
+        {
+            bool isCredentialsValid = false;
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "SELECT count(*) FROM employee as e " +
+                                 "inner join department as d " +
+                                 "on e.DepartmentID = d.ID " +
+                                 "where EndDate < CURDATE() and e.ID = @id " +
+                                 "and e.Email = @email and d.Name = @depName";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@id", empId);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@depName", departmentName);
+
+                    conn.Open();
+
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    isCredentialsValid = count == 1;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+            return isCredentialsValid;
+        }
 
         public void GetEmployees(DepartmentManagement departmentManagement)
         {

@@ -121,11 +121,11 @@ namespace MediaBazaarApp
             
             foreach (Department department in departmentManagement.GetAllDepartments())
             {
-                cbxGenderChart.Items.Add(department.Name);
-                cbxAge.Items.Add(department.Name);
+/*                cbxGenderChart.Items.Add(department.Name);
+*/                cbxAge.Items.Add(department.Name);
                 cbxCity.Items.Add(department.Name);
                 comboBox1.Items.Add(department.Name);
-            }
+            } 
 
 
             foreach (Department d in departmentManagement.GetAllDepartments())
@@ -171,7 +171,7 @@ namespace MediaBazaarApp
 
 
 
-
+/*
         private void cbxGenderChart_SelectedIndexChanged(object sender, EventArgs e)
         {
             GenderPieChart.Series["Gender"].Points.Clear();
@@ -187,25 +187,25 @@ namespace MediaBazaarApp
                         if (emp.Gender.ToString() == "MALE")
                         {
                             count += 1;
-                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", count);
+                            GenderPieChart.Series["Gender"].Points.AddXY($"Male", count);
                         }
 
                         if (emp.Gender.ToString() == "FEMALE")
                         {
                             count += 1;
-                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", count);
+                            GenderPieChart.Series["Gender"].Points.AddXY($"Female", count);
                         }
 
                         if (emp.Gender.ToString() == "NONBINARY")
                         {
                             count += 1;
-                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", count);
+                            GenderPieChart.Series["Gender"].Points.AddXY($"NONBIARY", count);
                         }
 
                         if (emp.Gender.ToString() == "OTHER")
                         {
                             count += 1;
-                            GenderPieChart.Series["Gender"].Points.AddXY($"{emp.Gender}", count);
+                            GenderPieChart.Series["Gender"].Points.AddXY($"OTHER", count);
                         }
                     }
 
@@ -213,7 +213,7 @@ namespace MediaBazaarApp
 
 
             }
-        }
+        }*/
 
 
         private Dictionary<string, int> ShowAges(List<Employee> employees)

@@ -159,13 +159,13 @@ namespace MediaBazaarApp
 
             return isSuperuser;
         }
-
+        
         public void FillComboBoxDepartments()
         {
             cbEmpDepartment.Items.Clear();
             foreach (Department dep in departmentManagement.GetAllDepartments())
             {
-                if (CheckIsSuperuser() && dep.Name == "Administration")
+                if (!CheckIsSuperuser() && dep.Name == "Administration")
                 {
                     continue;
                 }
@@ -380,6 +380,7 @@ namespace MediaBazaarApp
             if (tabControlEmployees.SelectedTab.Name == "ManageEmpTab")
             {
                 cbSelectEmpDepartment.SelectedIndex = 0;
+                dbControl.GetEmployees(departmentManagement);
                 ShowEmployeesList(departmentManagement.GetAllEmployees());
             }
             else if(tabControlEmployees.SelectedTab.Name  == "EmpExpiredContractTab")
@@ -485,15 +486,24 @@ namespace MediaBazaarApp
 
                 int empId = Convert.ToInt32(lbEmpIdRenewContract.Text.Split(' ')[1]);
                 Employee emp = empExpiredContractManager.GetEmployeeById(empId);
-                emp.StartDate = startDate;
-                emp.EndDate = endDate;
-                empExpiredContractManager.RenewEmployeeContract(emp);
-                
-                ShowEmployeesWithExpiredContract(empExpiredContractManager.GetEmployeesWithExpiredContract().ToList());
-                dbControl.GetEmployees(departmentManagement);
+                try
+                {
+                    emp.StartDate = startDate;
 
-                MessageBox.Show($"You have successfully renew contract of {emp.FirstName} {emp.LastName}");
-                gbxEmpRenewContract.Visible = false;
+                    emp.EndDate = endDate;
+                    empExpiredContractManager.RenewEmployeeContract(emp);
+
+                    ShowEmployeesWithExpiredContract(empExpiredContractManager.GetEmployeesWithExpiredContract()
+                        .ToList());
+                    dbControl.GetEmployees(departmentManagement);
+
+                    MessageBox.Show($"You have successfully renew contract of {emp.FirstName} {emp.LastName}");
+                    gbxEmpRenewContract.Visible = false;
+                }
+                catch (InputFieldException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {
