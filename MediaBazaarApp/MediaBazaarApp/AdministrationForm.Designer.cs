@@ -1035,12 +1035,12 @@ namespace MediaBazaarApp
             this.colAssignedBy,
             this.colAttended,
             this.colNSR});
-            this.dgvSchedule.Location = new System.Drawing.Point(52, 135);
+            this.dgvSchedule.Location = new System.Drawing.Point(13, 120);
             this.dgvSchedule.Name = "dgvSchedule";
             this.dgvSchedule.RowHeadersWidth = 51;
             this.dgvSchedule.RowTemplate.Height = 24;
             this.dgvSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSchedule.Size = new System.Drawing.Size(924, 388);
+            this.dgvSchedule.Size = new System.Drawing.Size(1054, 388);
             this.dgvSchedule.TabIndex = 12;
             // 
             // lbWeekNumber
