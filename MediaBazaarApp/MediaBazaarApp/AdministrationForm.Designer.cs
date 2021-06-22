@@ -91,6 +91,53 @@ namespace MediaBazaarApp
             this.btnEditStock = new System.Windows.Forms.Button();
             this.btnRemoveStock = new System.Windows.Forms.Button();
             this.SchedulingTab = new System.Windows.Forms.TabPage();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tbWeeklySchedule = new System.Windows.Forms.TabPage();
+            this.btnRemShift = new System.Windows.Forms.Button();
+            this.dgvSchedule = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDatee = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colWFH = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colAssignedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAttended = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colNSR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbWeekNumber = new System.Windows.Forms.Label();
+            this.cbWeekNumber = new System.Windows.Forms.ComboBox();
+            this.tpCreateSchedule = new System.Windows.Forms.TabPage();
+            this.gbAutoSch = new System.Windows.Forms.GroupBox();
+            this.lbWeekNrAS = new System.Windows.Forms.Label();
+            this.btnGenAS = new System.Windows.Forms.Button();
+            this.cbWeekAS = new System.Windows.Forms.ComboBox();
+            this.btnGoBackAuto = new System.Windows.Forms.Button();
+            this.btnAutoShifts = new System.Windows.Forms.Button();
+            this.btnManShifts = new System.Windows.Forms.Button();
+            this.gbAssignShiftManually = new System.Windows.Forms.GroupBox();
+            this.btnGoBackManual = new System.Windows.Forms.Button();
+            this.lbEmp = new System.Windows.Forms.Label();
+            this.cbWFH = new System.Windows.Forms.CheckBox();
+            this.lbDep = new System.Windows.Forms.Label();
+            this.lbEmpInfo = new System.Windows.Forms.Label();
+            this.lbWFH = new System.Windows.Forms.Label();
+            this.cbEmps = new System.Windows.Forms.ComboBox();
+            this.cbDeps = new System.Windows.Forms.ComboBox();
+            this.btnAssign = new System.Windows.Forms.Button();
+            this.lbShiftType = new System.Windows.Forms.Label();
+            this.dtpShiftDate = new System.Windows.Forms.DateTimePicker();
+            this.lbShiftDate = new System.Windows.Forms.Label();
+            this.cbShiftType = new System.Windows.Forms.ComboBox();
+            this.tpManageAttendance = new System.Windows.Forms.TabPage();
+            this.btnApplyAttendanceChanges = new System.Windows.Forms.Button();
+            this.tbReasonForAbsence = new System.Windows.Forms.TextBox();
+            this.cbHasAttended = new System.Windows.Forms.CheckBox();
+            this.lbReason = new System.Windows.Forms.Label();
+            this.lbHasAttended = new System.Windows.Forms.Label();
+            this.lbShift = new System.Windows.Forms.Label();
+            this.cbEmployeesShifts = new System.Windows.Forms.ComboBox();
+            this.lbSelectedEmp = new System.Windows.Forms.Label();
+            this.lbSelectedDep = new System.Windows.Forms.Label();
+            this.cbSelectedEmp = new System.Windows.Forms.ComboBox();
+            this.cbAllDeps = new System.Windows.Forms.ComboBox();
             this.EmployeesTab = new System.Windows.Forms.TabPage();
             this.tabControlEmployees = new System.Windows.Forms.TabControl();
             this.AddEmpTab = new System.Windows.Forms.TabPage();
@@ -218,53 +265,6 @@ namespace MediaBazaarApp
             this.weeklyScheduleCH = new System.Windows.Forms.CheckBox();
             this.holidayLeaveReqCH = new System.Windows.Forms.CheckBox();
             this.manageEmpCH = new System.Windows.Forms.CheckBox();
-            this.tpManageAttendance = new System.Windows.Forms.TabPage();
-            this.cbAllDeps = new System.Windows.Forms.ComboBox();
-            this.cbSelectedEmp = new System.Windows.Forms.ComboBox();
-            this.lbSelectedDep = new System.Windows.Forms.Label();
-            this.lbSelectedEmp = new System.Windows.Forms.Label();
-            this.cbEmployeesShifts = new System.Windows.Forms.ComboBox();
-            this.lbShift = new System.Windows.Forms.Label();
-            this.lbHasAttended = new System.Windows.Forms.Label();
-            this.lbReason = new System.Windows.Forms.Label();
-            this.cbHasAttended = new System.Windows.Forms.CheckBox();
-            this.tbReasonForAbsence = new System.Windows.Forms.TextBox();
-            this.btnApplyAttendanceChanges = new System.Windows.Forms.Button();
-            this.tpCreateSchedule = new System.Windows.Forms.TabPage();
-            this.gbAssignShiftManually = new System.Windows.Forms.GroupBox();
-            this.cbShiftType = new System.Windows.Forms.ComboBox();
-            this.lbShiftDate = new System.Windows.Forms.Label();
-            this.dtpShiftDate = new System.Windows.Forms.DateTimePicker();
-            this.lbShiftType = new System.Windows.Forms.Label();
-            this.btnAssign = new System.Windows.Forms.Button();
-            this.cbDeps = new System.Windows.Forms.ComboBox();
-            this.cbEmps = new System.Windows.Forms.ComboBox();
-            this.lbWFH = new System.Windows.Forms.Label();
-            this.lbEmpInfo = new System.Windows.Forms.Label();
-            this.lbDep = new System.Windows.Forms.Label();
-            this.cbWFH = new System.Windows.Forms.CheckBox();
-            this.lbEmp = new System.Windows.Forms.Label();
-            this.btnManShifts = new System.Windows.Forms.Button();
-            this.btnAutoShifts = new System.Windows.Forms.Button();
-            this.tbWeeklySchedule = new System.Windows.Forms.TabPage();
-            this.cbWeekNumber = new System.Windows.Forms.ComboBox();
-            this.lbWeekNumber = new System.Windows.Forms.Label();
-            this.dgvSchedule = new System.Windows.Forms.DataGridView();
-            this.colNSR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAttended = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colAssignedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colWFH = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colDatee = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnRemShift = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.gbAutoSch = new System.Windows.Forms.GroupBox();
-            this.btnGoBackAuto = new System.Windows.Forms.Button();
-            this.btnGoBackManual = new System.Windows.Forms.Button();
-            this.btnGenAS = new System.Windows.Forms.Button();
-            this.lbWeekNrAS = new System.Windows.Forms.Label();
-            this.cbWeekAS = new System.Windows.Forms.ComboBox();
             this.ManageDepartmentsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.gbxSearchDep.SuspendLayout();
@@ -277,6 +277,13 @@ namespace MediaBazaarApp
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             this.gbxSearchStock.SuspendLayout();
             this.SchedulingTab.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tbWeeklySchedule.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSchedule)).BeginInit();
+            this.tpCreateSchedule.SuspendLayout();
+            this.gbAutoSch.SuspendLayout();
+            this.gbAssignShiftManually.SuspendLayout();
+            this.tpManageAttendance.SuspendLayout();
             this.EmployeesTab.SuspendLayout();
             this.tabControlEmployees.SuspendLayout();
             this.AddEmpTab.SuspendLayout();
@@ -312,13 +319,6 @@ namespace MediaBazaarApp
             this.tabPageEditAccountRequests.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEditAccountRequests)).BeginInit();
             this.settingsTab.SuspendLayout();
-            this.tpManageAttendance.SuspendLayout();
-            this.tpCreateSchedule.SuspendLayout();
-            this.gbAssignShiftManually.SuspendLayout();
-            this.tbWeeklySchedule.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSchedule)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.gbAutoSch.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -986,6 +986,568 @@ namespace MediaBazaarApp
             this.SchedulingTab.Text = "Scheduling";
             this.SchedulingTab.UseVisualStyleBackColor = true;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tbWeeklySchedule);
+            this.tabControl1.Controls.Add(this.tpCreateSchedule);
+            this.tabControl1.Controls.Add(this.tpManageAttendance);
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1092, 820);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tbWeeklySchedule
+            // 
+            this.tbWeeklySchedule.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.tbWeeklySchedule.Controls.Add(this.btnRemShift);
+            this.tbWeeklySchedule.Controls.Add(this.dgvSchedule);
+            this.tbWeeklySchedule.Controls.Add(this.lbWeekNumber);
+            this.tbWeeklySchedule.Controls.Add(this.cbWeekNumber);
+            this.tbWeeklySchedule.Location = new System.Drawing.Point(4, 29);
+            this.tbWeeklySchedule.Name = "tbWeeklySchedule";
+            this.tbWeeklySchedule.Size = new System.Drawing.Size(1084, 787);
+            this.tbWeeklySchedule.TabIndex = 3;
+            this.tbWeeklySchedule.Text = "Weekly schedule";
+            // 
+            // btnRemShift
+            // 
+            this.btnRemShift.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnRemShift.Location = new System.Drawing.Point(64, 558);
+            this.btnRemShift.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRemShift.Name = "btnRemShift";
+            this.btnRemShift.Size = new System.Drawing.Size(261, 49);
+            this.btnRemShift.TabIndex = 28;
+            this.btnRemShift.Text = "Remove selected";
+            this.btnRemShift.UseVisualStyleBackColor = false;
+            this.btnRemShift.Click += new System.EventHandler(this.btnRemShift_Click);
+            // 
+            // dgvSchedule
+            // 
+            this.dgvSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colID,
+            this.colEmp,
+            this.colDatee,
+            this.colWFH,
+            this.colAssignedBy,
+            this.colAttended,
+            this.colNSR});
+            this.dgvSchedule.Location = new System.Drawing.Point(52, 135);
+            this.dgvSchedule.Name = "dgvSchedule";
+            this.dgvSchedule.RowHeadersWidth = 51;
+            this.dgvSchedule.RowTemplate.Height = 24;
+            this.dgvSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSchedule.Size = new System.Drawing.Size(924, 388);
+            this.dgvSchedule.TabIndex = 12;
+            // 
+            // colID
+            // 
+            this.colID.HeaderText = "ID";
+            this.colID.MinimumWidth = 6;
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Width = 125;
+            // 
+            // colEmp
+            // 
+            this.colEmp.HeaderText = "Employee";
+            this.colEmp.MinimumWidth = 6;
+            this.colEmp.Name = "colEmp";
+            this.colEmp.ReadOnly = true;
+            this.colEmp.Width = 125;
+            // 
+            // colDatee
+            // 
+            this.colDatee.HeaderText = "Date";
+            this.colDatee.MinimumWidth = 6;
+            this.colDatee.Name = "colDatee";
+            this.colDatee.ReadOnly = true;
+            this.colDatee.Width = 125;
+            // 
+            // colWFH
+            // 
+            this.colWFH.HeaderText = "WFH";
+            this.colWFH.MinimumWidth = 6;
+            this.colWFH.Name = "colWFH";
+            this.colWFH.ReadOnly = true;
+            this.colWFH.Width = 125;
+            // 
+            // colAssignedBy
+            // 
+            this.colAssignedBy.HeaderText = "Assigned by";
+            this.colAssignedBy.MinimumWidth = 6;
+            this.colAssignedBy.Name = "colAssignedBy";
+            this.colAssignedBy.ReadOnly = true;
+            this.colAssignedBy.Width = 125;
+            // 
+            // colAttended
+            // 
+            this.colAttended.HeaderText = "Attended";
+            this.colAttended.MinimumWidth = 6;
+            this.colAttended.Name = "colAttended";
+            this.colAttended.ReadOnly = true;
+            this.colAttended.Width = 125;
+            // 
+            // colNSR
+            // 
+            this.colNSR.HeaderText = "No show reason";
+            this.colNSR.MinimumWidth = 6;
+            this.colNSR.Name = "colNSR";
+            this.colNSR.ReadOnly = true;
+            this.colNSR.Width = 125;
+            // 
+            // lbWeekNumber
+            // 
+            this.lbWeekNumber.AutoSize = true;
+            this.lbWeekNumber.Location = new System.Drawing.Point(48, 35);
+            this.lbWeekNumber.Name = "lbWeekNumber";
+            this.lbWeekNumber.Size = new System.Drawing.Size(48, 20);
+            this.lbWeekNumber.TabIndex = 5;
+            this.lbWeekNumber.Text = "Week:";
+            // 
+            // cbWeekNumber
+            // 
+            this.cbWeekNumber.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbWeekNumber.FormattingEnabled = true;
+            this.cbWeekNumber.Location = new System.Drawing.Point(52, 58);
+            this.cbWeekNumber.Name = "cbWeekNumber";
+            this.cbWeekNumber.Size = new System.Drawing.Size(108, 28);
+            this.cbWeekNumber.TabIndex = 4;
+            this.cbWeekNumber.SelectedIndexChanged += new System.EventHandler(this.cbWeekNumber_SelectedIndexChanged);
+            // 
+            // tpCreateSchedule
+            // 
+            this.tpCreateSchedule.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.tpCreateSchedule.Controls.Add(this.gbAutoSch);
+            this.tpCreateSchedule.Controls.Add(this.btnAutoShifts);
+            this.tpCreateSchedule.Controls.Add(this.btnManShifts);
+            this.tpCreateSchedule.Controls.Add(this.gbAssignShiftManually);
+            this.tpCreateSchedule.Location = new System.Drawing.Point(4, 29);
+            this.tpCreateSchedule.Name = "tpCreateSchedule";
+            this.tpCreateSchedule.Size = new System.Drawing.Size(1084, 787);
+            this.tpCreateSchedule.TabIndex = 1;
+            this.tpCreateSchedule.Text = "Create schedule";
+            // 
+            // gbAutoSch
+            // 
+            this.gbAutoSch.Controls.Add(this.lbWeekNrAS);
+            this.gbAutoSch.Controls.Add(this.btnGenAS);
+            this.gbAutoSch.Controls.Add(this.cbWeekAS);
+            this.gbAutoSch.Controls.Add(this.btnGoBackAuto);
+            this.gbAutoSch.Location = new System.Drawing.Point(431, 144);
+            this.gbAutoSch.Name = "gbAutoSch";
+            this.gbAutoSch.Size = new System.Drawing.Size(232, 301);
+            this.gbAutoSch.TabIndex = 30;
+            this.gbAutoSch.TabStop = false;
+            this.gbAutoSch.Text = "Automated schedule";
+            this.gbAutoSch.Visible = false;
+            // 
+            // lbWeekNrAS
+            // 
+            this.lbWeekNrAS.AutoSize = true;
+            this.lbWeekNrAS.Location = new System.Drawing.Point(48, 80);
+            this.lbWeekNrAS.Name = "lbWeekNrAS";
+            this.lbWeekNrAS.Size = new System.Drawing.Size(48, 20);
+            this.lbWeekNrAS.TabIndex = 32;
+            this.lbWeekNrAS.Text = "Week:";
+            // 
+            // btnGenAS
+            // 
+            this.btnGenAS.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnGenAS.Location = new System.Drawing.Point(30, 184);
+            this.btnGenAS.Name = "btnGenAS";
+            this.btnGenAS.Size = new System.Drawing.Size(170, 39);
+            this.btnGenAS.TabIndex = 33;
+            this.btnGenAS.Text = "Generate schedule";
+            this.btnGenAS.UseVisualStyleBackColor = false;
+            this.btnGenAS.Click += new System.EventHandler(this.btnGenAS_Click);
+            // 
+            // cbWeekAS
+            // 
+            this.cbWeekAS.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbWeekAS.FormattingEnabled = true;
+            this.cbWeekAS.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52"});
+            this.cbWeekAS.Location = new System.Drawing.Point(52, 105);
+            this.cbWeekAS.Name = "cbWeekAS";
+            this.cbWeekAS.Size = new System.Drawing.Size(108, 28);
+            this.cbWeekAS.TabIndex = 31;
+            // 
+            // btnGoBackAuto
+            // 
+            this.btnGoBackAuto.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnGoBackAuto.Location = new System.Drawing.Point(61, 227);
+            this.btnGoBackAuto.Name = "btnGoBackAuto";
+            this.btnGoBackAuto.Size = new System.Drawing.Size(119, 32);
+            this.btnGoBackAuto.TabIndex = 30;
+            this.btnGoBackAuto.Text = "Go back";
+            this.btnGoBackAuto.UseVisualStyleBackColor = false;
+            this.btnGoBackAuto.Click += new System.EventHandler(this.btnGoBackAuto_Click);
+            // 
+            // btnAutoShifts
+            // 
+            this.btnAutoShifts.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnAutoShifts.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutoShifts.Location = new System.Drawing.Point(389, 191);
+            this.btnAutoShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAutoShifts.Name = "btnAutoShifts";
+            this.btnAutoShifts.Size = new System.Drawing.Size(318, 71);
+            this.btnAutoShifts.TabIndex = 26;
+            this.btnAutoShifts.Text = "Automated schedule";
+            this.btnAutoShifts.UseVisualStyleBackColor = false;
+            this.btnAutoShifts.Click += new System.EventHandler(this.btnAutoShifts_Click);
+            // 
+            // btnManShifts
+            // 
+            this.btnManShifts.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnManShifts.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManShifts.Location = new System.Drawing.Point(389, 271);
+            this.btnManShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnManShifts.Name = "btnManShifts";
+            this.btnManShifts.Size = new System.Drawing.Size(318, 71);
+            this.btnManShifts.TabIndex = 25;
+            this.btnManShifts.Text = "Create schedule manually";
+            this.btnManShifts.UseVisualStyleBackColor = false;
+            this.btnManShifts.Click += new System.EventHandler(this.btnManShifts_Click);
+            // 
+            // gbAssignShiftManually
+            // 
+            this.gbAssignShiftManually.Controls.Add(this.btnGoBackManual);
+            this.gbAssignShiftManually.Controls.Add(this.lbEmp);
+            this.gbAssignShiftManually.Controls.Add(this.cbWFH);
+            this.gbAssignShiftManually.Controls.Add(this.lbDep);
+            this.gbAssignShiftManually.Controls.Add(this.lbEmpInfo);
+            this.gbAssignShiftManually.Controls.Add(this.lbWFH);
+            this.gbAssignShiftManually.Controls.Add(this.cbEmps);
+            this.gbAssignShiftManually.Controls.Add(this.cbDeps);
+            this.gbAssignShiftManually.Controls.Add(this.btnAssign);
+            this.gbAssignShiftManually.Controls.Add(this.lbShiftType);
+            this.gbAssignShiftManually.Controls.Add(this.dtpShiftDate);
+            this.gbAssignShiftManually.Controls.Add(this.lbShiftDate);
+            this.gbAssignShiftManually.Controls.Add(this.cbShiftType);
+            this.gbAssignShiftManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbAssignShiftManually.Location = new System.Drawing.Point(339, 53);
+            this.gbAssignShiftManually.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbAssignShiftManually.Name = "gbAssignShiftManually";
+            this.gbAssignShiftManually.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbAssignShiftManually.Size = new System.Drawing.Size(384, 488);
+            this.gbAssignShiftManually.TabIndex = 25;
+            this.gbAssignShiftManually.TabStop = false;
+            this.gbAssignShiftManually.Text = "Assign work shift";
+            this.gbAssignShiftManually.Visible = false;
+            // 
+            // btnGoBackManual
+            // 
+            this.btnGoBackManual.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnGoBackManual.Location = new System.Drawing.Point(123, 434);
+            this.btnGoBackManual.Name = "btnGoBackManual";
+            this.btnGoBackManual.Size = new System.Drawing.Size(119, 32);
+            this.btnGoBackManual.TabIndex = 31;
+            this.btnGoBackManual.Text = "Go back";
+            this.btnGoBackManual.UseVisualStyleBackColor = false;
+            this.btnGoBackManual.Click += new System.EventHandler(this.btnGoBackManual_Click);
+            // 
+            // lbEmp
+            // 
+            this.lbEmp.AutoSize = true;
+            this.lbEmp.Location = new System.Drawing.Point(76, 140);
+            this.lbEmp.Name = "lbEmp";
+            this.lbEmp.Size = new System.Drawing.Size(78, 18);
+            this.lbEmp.TabIndex = 5;
+            this.lbEmp.Text = "Employee:";
+            // 
+            // cbWFH
+            // 
+            this.cbWFH.AutoSize = true;
+            this.cbWFH.Location = new System.Drawing.Point(79, 332);
+            this.cbWFH.Name = "cbWFH";
+            this.cbWFH.Size = new System.Drawing.Size(163, 22);
+            this.cbWFH.TabIndex = 9;
+            this.cbWFH.Text = "Working from home";
+            this.cbWFH.UseVisualStyleBackColor = true;
+            // 
+            // lbDep
+            // 
+            this.lbDep.AutoSize = true;
+            this.lbDep.Location = new System.Drawing.Point(73, 82);
+            this.lbDep.Name = "lbDep";
+            this.lbDep.Size = new System.Drawing.Size(89, 18);
+            this.lbDep.TabIndex = 4;
+            this.lbDep.Text = "Department:";
+            // 
+            // lbEmpInfo
+            // 
+            this.lbEmpInfo.AutoSize = true;
+            this.lbEmpInfo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lbEmpInfo.Location = new System.Drawing.Point(93, 39);
+            this.lbEmpInfo.Name = "lbEmpInfo";
+            this.lbEmpInfo.Size = new System.Drawing.Size(206, 28);
+            this.lbEmpInfo.TabIndex = 24;
+            this.lbEmpInfo.Text = "Employee with Id:(id)";
+            // 
+            // lbWFH
+            // 
+            this.lbWFH.AutoSize = true;
+            this.lbWFH.Location = new System.Drawing.Point(5, 176);
+            this.lbWFH.Name = "lbWFH";
+            this.lbWFH.Size = new System.Drawing.Size(0, 18);
+            this.lbWFH.TabIndex = 8;
+            // 
+            // cbEmps
+            // 
+            this.cbEmps.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbEmps.FormattingEnabled = true;
+            this.cbEmps.Location = new System.Drawing.Point(77, 163);
+            this.cbEmps.Name = "cbEmps";
+            this.cbEmps.Size = new System.Drawing.Size(202, 26);
+            this.cbEmps.TabIndex = 1;
+            this.cbEmps.SelectedIndexChanged += new System.EventHandler(this.cbEmps_SelectedIndexChanged);
+            // 
+            // cbDeps
+            // 
+            this.cbDeps.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbDeps.FormattingEnabled = true;
+            this.cbDeps.Location = new System.Drawing.Point(77, 105);
+            this.cbDeps.Name = "cbDeps";
+            this.cbDeps.Size = new System.Drawing.Size(202, 26);
+            this.cbDeps.TabIndex = 0;
+            this.cbDeps.SelectedIndexChanged += new System.EventHandler(this.cbDeps_SelectedIndexChanged);
+            // 
+            // btnAssign
+            // 
+            this.btnAssign.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnAssign.Location = new System.Drawing.Point(89, 394);
+            this.btnAssign.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAssign.Name = "btnAssign";
+            this.btnAssign.Size = new System.Drawing.Size(210, 39);
+            this.btnAssign.TabIndex = 7;
+            this.btnAssign.Text = "Assign shift to employee";
+            this.btnAssign.UseVisualStyleBackColor = false;
+            this.btnAssign.Click += new System.EventHandler(this.btnAssign_Click);
+            // 
+            // lbShiftType
+            // 
+            this.lbShiftType.AutoSize = true;
+            this.lbShiftType.Location = new System.Drawing.Point(76, 205);
+            this.lbShiftType.Name = "lbShiftType";
+            this.lbShiftType.Size = new System.Drawing.Size(72, 18);
+            this.lbShiftType.TabIndex = 1;
+            this.lbShiftType.Text = "Shift type:";
+            // 
+            // dtpShiftDate
+            // 
+            this.dtpShiftDate.Location = new System.Drawing.Point(79, 290);
+            this.dtpShiftDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtpShiftDate.Name = "dtpShiftDate";
+            this.dtpShiftDate.Size = new System.Drawing.Size(200, 24);
+            this.dtpShiftDate.TabIndex = 6;
+            // 
+            // lbShiftDate
+            // 
+            this.lbShiftDate.AutoSize = true;
+            this.lbShiftDate.Location = new System.Drawing.Point(76, 268);
+            this.lbShiftDate.Name = "lbShiftDate";
+            this.lbShiftDate.Size = new System.Drawing.Size(120, 18);
+            this.lbShiftDate.TabIndex = 3;
+            this.lbShiftDate.Text = "Date for the shift:";
+            // 
+            // cbShiftType
+            // 
+            this.cbShiftType.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbShiftType.FormattingEnabled = true;
+            this.cbShiftType.Items.AddRange(new object[] {
+            "Morning",
+            "Afternoon",
+            "Evening"});
+            this.cbShiftType.Location = new System.Drawing.Point(79, 227);
+            this.cbShiftType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbShiftType.Name = "cbShiftType";
+            this.cbShiftType.Size = new System.Drawing.Size(200, 26);
+            this.cbShiftType.TabIndex = 5;
+            this.cbShiftType.Text = "Choose shift type";
+            // 
+            // tpManageAttendance
+            // 
+            this.tpManageAttendance.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.tpManageAttendance.Controls.Add(this.btnApplyAttendanceChanges);
+            this.tpManageAttendance.Controls.Add(this.tbReasonForAbsence);
+            this.tpManageAttendance.Controls.Add(this.cbHasAttended);
+            this.tpManageAttendance.Controls.Add(this.lbReason);
+            this.tpManageAttendance.Controls.Add(this.lbHasAttended);
+            this.tpManageAttendance.Controls.Add(this.lbShift);
+            this.tpManageAttendance.Controls.Add(this.cbEmployeesShifts);
+            this.tpManageAttendance.Controls.Add(this.lbSelectedEmp);
+            this.tpManageAttendance.Controls.Add(this.lbSelectedDep);
+            this.tpManageAttendance.Controls.Add(this.cbSelectedEmp);
+            this.tpManageAttendance.Controls.Add(this.cbAllDeps);
+            this.tpManageAttendance.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tpManageAttendance.Location = new System.Drawing.Point(4, 29);
+            this.tpManageAttendance.Name = "tpManageAttendance";
+            this.tpManageAttendance.Size = new System.Drawing.Size(1084, 787);
+            this.tpManageAttendance.TabIndex = 2;
+            this.tpManageAttendance.Text = "Manage attendance";
+            // 
+            // btnApplyAttendanceChanges
+            // 
+            this.btnApplyAttendanceChanges.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnApplyAttendanceChanges.Location = new System.Drawing.Point(395, 385);
+            this.btnApplyAttendanceChanges.Name = "btnApplyAttendanceChanges";
+            this.btnApplyAttendanceChanges.Size = new System.Drawing.Size(254, 52);
+            this.btnApplyAttendanceChanges.TabIndex = 17;
+            this.btnApplyAttendanceChanges.Text = "Apply changes";
+            this.btnApplyAttendanceChanges.UseVisualStyleBackColor = false;
+            this.btnApplyAttendanceChanges.Click += new System.EventHandler(this.btnApplyAttendanceChanges_Click);
+            // 
+            // tbReasonForAbsence
+            // 
+            this.tbReasonForAbsence.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tbReasonForAbsence.Location = new System.Drawing.Point(395, 340);
+            this.tbReasonForAbsence.Name = "tbReasonForAbsence";
+            this.tbReasonForAbsence.Size = new System.Drawing.Size(254, 27);
+            this.tbReasonForAbsence.TabIndex = 16;
+            this.tbReasonForAbsence.Visible = false;
+            // 
+            // cbHasAttended
+            // 
+            this.cbHasAttended.AutoSize = true;
+            this.cbHasAttended.BackColor = System.Drawing.Color.Transparent;
+            this.cbHasAttended.Location = new System.Drawing.Point(395, 290);
+            this.cbHasAttended.Name = "cbHasAttended";
+            this.cbHasAttended.Size = new System.Drawing.Size(215, 24);
+            this.cbHasAttended.TabIndex = 15;
+            this.cbHasAttended.Text = "The employee has attended";
+            this.cbHasAttended.UseVisualStyleBackColor = false;
+            this.cbHasAttended.Visible = false;
+            // 
+            // lbReason
+            // 
+            this.lbReason.AutoSize = true;
+            this.lbReason.Location = new System.Drawing.Point(391, 317);
+            this.lbReason.Name = "lbReason";
+            this.lbReason.Size = new System.Drawing.Size(60, 20);
+            this.lbReason.TabIndex = 14;
+            this.lbReason.Text = "Reason:";
+            this.lbReason.Visible = false;
+            // 
+            // lbHasAttended
+            // 
+            this.lbHasAttended.AutoSize = true;
+            this.lbHasAttended.Location = new System.Drawing.Point(391, 262);
+            this.lbHasAttended.Name = "lbHasAttended";
+            this.lbHasAttended.Size = new System.Drawing.Size(74, 20);
+            this.lbHasAttended.TabIndex = 13;
+            this.lbHasAttended.Text = "Attended:";
+            this.lbHasAttended.Visible = false;
+            // 
+            // lbShift
+            // 
+            this.lbShift.AutoSize = true;
+            this.lbShift.Location = new System.Drawing.Point(391, 208);
+            this.lbShift.Name = "lbShift";
+            this.lbShift.Size = new System.Drawing.Size(42, 20);
+            this.lbShift.TabIndex = 12;
+            this.lbShift.Text = "Shift:";
+            // 
+            // cbEmployeesShifts
+            // 
+            this.cbEmployeesShifts.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbEmployeesShifts.FormattingEnabled = true;
+            this.cbEmployeesShifts.Location = new System.Drawing.Point(395, 231);
+            this.cbEmployeesShifts.Name = "cbEmployeesShifts";
+            this.cbEmployeesShifts.Size = new System.Drawing.Size(254, 28);
+            this.cbEmployeesShifts.TabIndex = 10;
+            this.cbEmployeesShifts.SelectedIndexChanged += new System.EventHandler(this.cbEmployeesShifts_SelectedIndexChanged);
+            // 
+            // lbSelectedEmp
+            // 
+            this.lbSelectedEmp.AutoSize = true;
+            this.lbSelectedEmp.Location = new System.Drawing.Point(391, 154);
+            this.lbSelectedEmp.Name = "lbSelectedEmp";
+            this.lbSelectedEmp.Size = new System.Drawing.Size(78, 20);
+            this.lbSelectedEmp.TabIndex = 9;
+            this.lbSelectedEmp.Text = "Employee:";
+            // 
+            // lbSelectedDep
+            // 
+            this.lbSelectedDep.AutoSize = true;
+            this.lbSelectedDep.Location = new System.Drawing.Point(391, 95);
+            this.lbSelectedDep.Name = "lbSelectedDep";
+            this.lbSelectedDep.Size = new System.Drawing.Size(92, 20);
+            this.lbSelectedDep.TabIndex = 8;
+            this.lbSelectedDep.Text = "Department:";
+            // 
+            // cbSelectedEmp
+            // 
+            this.cbSelectedEmp.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbSelectedEmp.FormattingEnabled = true;
+            this.cbSelectedEmp.Location = new System.Drawing.Point(395, 177);
+            this.cbSelectedEmp.Name = "cbSelectedEmp";
+            this.cbSelectedEmp.Size = new System.Drawing.Size(254, 28);
+            this.cbSelectedEmp.TabIndex = 7;
+            this.cbSelectedEmp.SelectedIndexChanged += new System.EventHandler(this.cbSelectedEmp_SelectedIndexChanged);
+            // 
+            // cbAllDeps
+            // 
+            this.cbAllDeps.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbAllDeps.FormattingEnabled = true;
+            this.cbAllDeps.Location = new System.Drawing.Point(395, 118);
+            this.cbAllDeps.Name = "cbAllDeps";
+            this.cbAllDeps.Size = new System.Drawing.Size(254, 28);
+            this.cbAllDeps.TabIndex = 6;
+            this.cbAllDeps.SelectedIndexChanged += new System.EventHandler(this.cbAllDeps_SelectedIndexChanged);
+            // 
             // EmployeesTab
             // 
             this.EmployeesTab.Controls.Add(this.tabControlEmployees);
@@ -1577,6 +2139,7 @@ namespace MediaBazaarApp
             // 
             // dgvEmployees
             // 
+            this.dgvEmployees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEmployees.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmployees.Location = new System.Drawing.Point(35, 176);
@@ -1809,6 +2372,7 @@ namespace MediaBazaarApp
             // 
             // dgvEmployeesExpiredContract
             // 
+            this.dgvEmployeesExpiredContract.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEmployeesExpiredContract.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvEmployeesExpiredContract.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmployeesExpiredContract.Location = new System.Drawing.Point(22, 47);
@@ -1872,6 +2436,7 @@ namespace MediaBazaarApp
             // 
             // dgvHLR
             // 
+            this.dgvHLR.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvHLR.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvHLR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHLR.Location = new System.Drawing.Point(82, 163);
@@ -2370,6 +2935,7 @@ namespace MediaBazaarApp
             // 
             // dgvEditAccountRequests
             // 
+            this.dgvEditAccountRequests.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEditAccountRequests.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvEditAccountRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEditAccountRequests.Location = new System.Drawing.Point(113, 229);
@@ -2478,568 +3044,6 @@ namespace MediaBazaarApp
             this.manageEmpCH.UseVisualStyleBackColor = true;
             this.manageEmpCH.CheckedChanged += new System.EventHandler(this.manageEmpCH_CheckedChanged);
             // 
-            // tpManageAttendance
-            // 
-            this.tpManageAttendance.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.tpManageAttendance.Controls.Add(this.btnApplyAttendanceChanges);
-            this.tpManageAttendance.Controls.Add(this.tbReasonForAbsence);
-            this.tpManageAttendance.Controls.Add(this.cbHasAttended);
-            this.tpManageAttendance.Controls.Add(this.lbReason);
-            this.tpManageAttendance.Controls.Add(this.lbHasAttended);
-            this.tpManageAttendance.Controls.Add(this.lbShift);
-            this.tpManageAttendance.Controls.Add(this.cbEmployeesShifts);
-            this.tpManageAttendance.Controls.Add(this.lbSelectedEmp);
-            this.tpManageAttendance.Controls.Add(this.lbSelectedDep);
-            this.tpManageAttendance.Controls.Add(this.cbSelectedEmp);
-            this.tpManageAttendance.Controls.Add(this.cbAllDeps);
-            this.tpManageAttendance.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tpManageAttendance.Location = new System.Drawing.Point(4, 29);
-            this.tpManageAttendance.Name = "tpManageAttendance";
-            this.tpManageAttendance.Size = new System.Drawing.Size(1084, 787);
-            this.tpManageAttendance.TabIndex = 2;
-            this.tpManageAttendance.Text = "Manage attendance";
-            // 
-            // cbAllDeps
-            // 
-            this.cbAllDeps.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbAllDeps.FormattingEnabled = true;
-            this.cbAllDeps.Location = new System.Drawing.Point(395, 118);
-            this.cbAllDeps.Name = "cbAllDeps";
-            this.cbAllDeps.Size = new System.Drawing.Size(254, 28);
-            this.cbAllDeps.TabIndex = 6;
-            this.cbAllDeps.SelectedIndexChanged += new System.EventHandler(this.cbAllDeps_SelectedIndexChanged);
-            // 
-            // cbSelectedEmp
-            // 
-            this.cbSelectedEmp.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbSelectedEmp.FormattingEnabled = true;
-            this.cbSelectedEmp.Location = new System.Drawing.Point(395, 177);
-            this.cbSelectedEmp.Name = "cbSelectedEmp";
-            this.cbSelectedEmp.Size = new System.Drawing.Size(254, 28);
-            this.cbSelectedEmp.TabIndex = 7;
-            this.cbSelectedEmp.SelectedIndexChanged += new System.EventHandler(this.cbSelectedEmp_SelectedIndexChanged);
-            // 
-            // lbSelectedDep
-            // 
-            this.lbSelectedDep.AutoSize = true;
-            this.lbSelectedDep.Location = new System.Drawing.Point(391, 95);
-            this.lbSelectedDep.Name = "lbSelectedDep";
-            this.lbSelectedDep.Size = new System.Drawing.Size(92, 20);
-            this.lbSelectedDep.TabIndex = 8;
-            this.lbSelectedDep.Text = "Department:";
-            // 
-            // lbSelectedEmp
-            // 
-            this.lbSelectedEmp.AutoSize = true;
-            this.lbSelectedEmp.Location = new System.Drawing.Point(391, 154);
-            this.lbSelectedEmp.Name = "lbSelectedEmp";
-            this.lbSelectedEmp.Size = new System.Drawing.Size(78, 20);
-            this.lbSelectedEmp.TabIndex = 9;
-            this.lbSelectedEmp.Text = "Employee:";
-            // 
-            // cbEmployeesShifts
-            // 
-            this.cbEmployeesShifts.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbEmployeesShifts.FormattingEnabled = true;
-            this.cbEmployeesShifts.Location = new System.Drawing.Point(395, 231);
-            this.cbEmployeesShifts.Name = "cbEmployeesShifts";
-            this.cbEmployeesShifts.Size = new System.Drawing.Size(254, 28);
-            this.cbEmployeesShifts.TabIndex = 10;
-            this.cbEmployeesShifts.SelectedIndexChanged += new System.EventHandler(this.cbEmployeesShifts_SelectedIndexChanged);
-            // 
-            // lbShift
-            // 
-            this.lbShift.AutoSize = true;
-            this.lbShift.Location = new System.Drawing.Point(391, 208);
-            this.lbShift.Name = "lbShift";
-            this.lbShift.Size = new System.Drawing.Size(42, 20);
-            this.lbShift.TabIndex = 12;
-            this.lbShift.Text = "Shift:";
-            // 
-            // lbHasAttended
-            // 
-            this.lbHasAttended.AutoSize = true;
-            this.lbHasAttended.Location = new System.Drawing.Point(391, 262);
-            this.lbHasAttended.Name = "lbHasAttended";
-            this.lbHasAttended.Size = new System.Drawing.Size(74, 20);
-            this.lbHasAttended.TabIndex = 13;
-            this.lbHasAttended.Text = "Attended:";
-            this.lbHasAttended.Visible = false;
-            // 
-            // lbReason
-            // 
-            this.lbReason.AutoSize = true;
-            this.lbReason.Location = new System.Drawing.Point(391, 317);
-            this.lbReason.Name = "lbReason";
-            this.lbReason.Size = new System.Drawing.Size(60, 20);
-            this.lbReason.TabIndex = 14;
-            this.lbReason.Text = "Reason:";
-            this.lbReason.Visible = false;
-            // 
-            // cbHasAttended
-            // 
-            this.cbHasAttended.AutoSize = true;
-            this.cbHasAttended.BackColor = System.Drawing.Color.Transparent;
-            this.cbHasAttended.Location = new System.Drawing.Point(395, 290);
-            this.cbHasAttended.Name = "cbHasAttended";
-            this.cbHasAttended.Size = new System.Drawing.Size(215, 24);
-            this.cbHasAttended.TabIndex = 15;
-            this.cbHasAttended.Text = "The employee has attended";
-            this.cbHasAttended.UseVisualStyleBackColor = false;
-            this.cbHasAttended.Visible = false;
-            // 
-            // tbReasonForAbsence
-            // 
-            this.tbReasonForAbsence.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbReasonForAbsence.Location = new System.Drawing.Point(395, 340);
-            this.tbReasonForAbsence.Name = "tbReasonForAbsence";
-            this.tbReasonForAbsence.Size = new System.Drawing.Size(254, 27);
-            this.tbReasonForAbsence.TabIndex = 16;
-            this.tbReasonForAbsence.Visible = false;
-            // 
-            // btnApplyAttendanceChanges
-            // 
-            this.btnApplyAttendanceChanges.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnApplyAttendanceChanges.Location = new System.Drawing.Point(395, 385);
-            this.btnApplyAttendanceChanges.Name = "btnApplyAttendanceChanges";
-            this.btnApplyAttendanceChanges.Size = new System.Drawing.Size(254, 52);
-            this.btnApplyAttendanceChanges.TabIndex = 17;
-            this.btnApplyAttendanceChanges.Text = "Apply changes";
-            this.btnApplyAttendanceChanges.UseVisualStyleBackColor = false;
-            this.btnApplyAttendanceChanges.Click += new System.EventHandler(this.btnApplyAttendanceChanges_Click);
-            // 
-            // tpCreateSchedule
-            // 
-            this.tpCreateSchedule.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.tpCreateSchedule.Controls.Add(this.gbAutoSch);
-            this.tpCreateSchedule.Controls.Add(this.btnAutoShifts);
-            this.tpCreateSchedule.Controls.Add(this.btnManShifts);
-            this.tpCreateSchedule.Controls.Add(this.gbAssignShiftManually);
-            this.tpCreateSchedule.Location = new System.Drawing.Point(4, 29);
-            this.tpCreateSchedule.Name = "tpCreateSchedule";
-            this.tpCreateSchedule.Size = new System.Drawing.Size(1084, 787);
-            this.tpCreateSchedule.TabIndex = 1;
-            this.tpCreateSchedule.Text = "Create schedule";
-            // 
-            // gbAssignShiftManually
-            // 
-            this.gbAssignShiftManually.Controls.Add(this.btnGoBackManual);
-            this.gbAssignShiftManually.Controls.Add(this.lbEmp);
-            this.gbAssignShiftManually.Controls.Add(this.cbWFH);
-            this.gbAssignShiftManually.Controls.Add(this.lbDep);
-            this.gbAssignShiftManually.Controls.Add(this.lbEmpInfo);
-            this.gbAssignShiftManually.Controls.Add(this.lbWFH);
-            this.gbAssignShiftManually.Controls.Add(this.cbEmps);
-            this.gbAssignShiftManually.Controls.Add(this.cbDeps);
-            this.gbAssignShiftManually.Controls.Add(this.btnAssign);
-            this.gbAssignShiftManually.Controls.Add(this.lbShiftType);
-            this.gbAssignShiftManually.Controls.Add(this.dtpShiftDate);
-            this.gbAssignShiftManually.Controls.Add(this.lbShiftDate);
-            this.gbAssignShiftManually.Controls.Add(this.cbShiftType);
-            this.gbAssignShiftManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbAssignShiftManually.Location = new System.Drawing.Point(339, 53);
-            this.gbAssignShiftManually.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbAssignShiftManually.Name = "gbAssignShiftManually";
-            this.gbAssignShiftManually.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbAssignShiftManually.Size = new System.Drawing.Size(384, 488);
-            this.gbAssignShiftManually.TabIndex = 25;
-            this.gbAssignShiftManually.TabStop = false;
-            this.gbAssignShiftManually.Text = "Assign work shift";
-            this.gbAssignShiftManually.Visible = false;
-            // 
-            // cbShiftType
-            // 
-            this.cbShiftType.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbShiftType.FormattingEnabled = true;
-            this.cbShiftType.Items.AddRange(new object[] {
-            "Morning",
-            "Afternoon",
-            "Evening"});
-            this.cbShiftType.Location = new System.Drawing.Point(79, 227);
-            this.cbShiftType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbShiftType.Name = "cbShiftType";
-            this.cbShiftType.Size = new System.Drawing.Size(200, 26);
-            this.cbShiftType.TabIndex = 5;
-            this.cbShiftType.Text = "Choose shift type";
-            // 
-            // lbShiftDate
-            // 
-            this.lbShiftDate.AutoSize = true;
-            this.lbShiftDate.Location = new System.Drawing.Point(76, 268);
-            this.lbShiftDate.Name = "lbShiftDate";
-            this.lbShiftDate.Size = new System.Drawing.Size(120, 18);
-            this.lbShiftDate.TabIndex = 3;
-            this.lbShiftDate.Text = "Date for the shift:";
-            // 
-            // dtpShiftDate
-            // 
-            this.dtpShiftDate.Location = new System.Drawing.Point(79, 290);
-            this.dtpShiftDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtpShiftDate.Name = "dtpShiftDate";
-            this.dtpShiftDate.Size = new System.Drawing.Size(200, 24);
-            this.dtpShiftDate.TabIndex = 6;
-            // 
-            // lbShiftType
-            // 
-            this.lbShiftType.AutoSize = true;
-            this.lbShiftType.Location = new System.Drawing.Point(76, 205);
-            this.lbShiftType.Name = "lbShiftType";
-            this.lbShiftType.Size = new System.Drawing.Size(72, 18);
-            this.lbShiftType.TabIndex = 1;
-            this.lbShiftType.Text = "Shift type:";
-            // 
-            // btnAssign
-            // 
-            this.btnAssign.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnAssign.Location = new System.Drawing.Point(89, 394);
-            this.btnAssign.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAssign.Name = "btnAssign";
-            this.btnAssign.Size = new System.Drawing.Size(210, 39);
-            this.btnAssign.TabIndex = 7;
-            this.btnAssign.Text = "Assign shift to employee";
-            this.btnAssign.UseVisualStyleBackColor = false;
-            this.btnAssign.Click += new System.EventHandler(this.btnAssign_Click);
-            // 
-            // cbDeps
-            // 
-            this.cbDeps.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbDeps.FormattingEnabled = true;
-            this.cbDeps.Location = new System.Drawing.Point(77, 105);
-            this.cbDeps.Name = "cbDeps";
-            this.cbDeps.Size = new System.Drawing.Size(202, 26);
-            this.cbDeps.TabIndex = 0;
-            this.cbDeps.SelectedIndexChanged += new System.EventHandler(this.cbDeps_SelectedIndexChanged);
-            // 
-            // cbEmps
-            // 
-            this.cbEmps.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbEmps.FormattingEnabled = true;
-            this.cbEmps.Location = new System.Drawing.Point(77, 163);
-            this.cbEmps.Name = "cbEmps";
-            this.cbEmps.Size = new System.Drawing.Size(202, 26);
-            this.cbEmps.TabIndex = 1;
-            this.cbEmps.SelectedIndexChanged += new System.EventHandler(this.cbEmps_SelectedIndexChanged);
-            // 
-            // lbWFH
-            // 
-            this.lbWFH.AutoSize = true;
-            this.lbWFH.Location = new System.Drawing.Point(5, 176);
-            this.lbWFH.Name = "lbWFH";
-            this.lbWFH.Size = new System.Drawing.Size(0, 18);
-            this.lbWFH.TabIndex = 8;
-            // 
-            // lbEmpInfo
-            // 
-            this.lbEmpInfo.AutoSize = true;
-            this.lbEmpInfo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lbEmpInfo.Location = new System.Drawing.Point(93, 39);
-            this.lbEmpInfo.Name = "lbEmpInfo";
-            this.lbEmpInfo.Size = new System.Drawing.Size(206, 28);
-            this.lbEmpInfo.TabIndex = 24;
-            this.lbEmpInfo.Text = "Employee with Id:(id)";
-            // 
-            // lbDep
-            // 
-            this.lbDep.AutoSize = true;
-            this.lbDep.Location = new System.Drawing.Point(73, 82);
-            this.lbDep.Name = "lbDep";
-            this.lbDep.Size = new System.Drawing.Size(89, 18);
-            this.lbDep.TabIndex = 4;
-            this.lbDep.Text = "Department:";
-            // 
-            // cbWFH
-            // 
-            this.cbWFH.AutoSize = true;
-            this.cbWFH.Location = new System.Drawing.Point(79, 332);
-            this.cbWFH.Name = "cbWFH";
-            this.cbWFH.Size = new System.Drawing.Size(163, 22);
-            this.cbWFH.TabIndex = 9;
-            this.cbWFH.Text = "Working from home";
-            this.cbWFH.UseVisualStyleBackColor = true;
-            // 
-            // lbEmp
-            // 
-            this.lbEmp.AutoSize = true;
-            this.lbEmp.Location = new System.Drawing.Point(76, 140);
-            this.lbEmp.Name = "lbEmp";
-            this.lbEmp.Size = new System.Drawing.Size(78, 18);
-            this.lbEmp.TabIndex = 5;
-            this.lbEmp.Text = "Employee:";
-            // 
-            // btnManShifts
-            // 
-            this.btnManShifts.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnManShifts.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManShifts.Location = new System.Drawing.Point(389, 271);
-            this.btnManShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnManShifts.Name = "btnManShifts";
-            this.btnManShifts.Size = new System.Drawing.Size(318, 71);
-            this.btnManShifts.TabIndex = 25;
-            this.btnManShifts.Text = "Create schedule manually";
-            this.btnManShifts.UseVisualStyleBackColor = false;
-            this.btnManShifts.Click += new System.EventHandler(this.btnManShifts_Click);
-            // 
-            // btnAutoShifts
-            // 
-            this.btnAutoShifts.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnAutoShifts.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAutoShifts.Location = new System.Drawing.Point(389, 191);
-            this.btnAutoShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAutoShifts.Name = "btnAutoShifts";
-            this.btnAutoShifts.Size = new System.Drawing.Size(318, 71);
-            this.btnAutoShifts.TabIndex = 26;
-            this.btnAutoShifts.Text = "Automated schedule";
-            this.btnAutoShifts.UseVisualStyleBackColor = false;
-            this.btnAutoShifts.Click += new System.EventHandler(this.btnAutoShifts_Click);
-            // 
-            // tbWeeklySchedule
-            // 
-            this.tbWeeklySchedule.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.tbWeeklySchedule.Controls.Add(this.btnRemShift);
-            this.tbWeeklySchedule.Controls.Add(this.dgvSchedule);
-            this.tbWeeklySchedule.Controls.Add(this.lbWeekNumber);
-            this.tbWeeklySchedule.Controls.Add(this.cbWeekNumber);
-            this.tbWeeklySchedule.Location = new System.Drawing.Point(4, 29);
-            this.tbWeeklySchedule.Name = "tbWeeklySchedule";
-            this.tbWeeklySchedule.Size = new System.Drawing.Size(1084, 787);
-            this.tbWeeklySchedule.TabIndex = 3;
-            this.tbWeeklySchedule.Text = "Weekly schedule";
-            // 
-            // cbWeekNumber
-            // 
-            this.cbWeekNumber.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbWeekNumber.FormattingEnabled = true;
-            this.cbWeekNumber.Location = new System.Drawing.Point(52, 58);
-            this.cbWeekNumber.Name = "cbWeekNumber";
-            this.cbWeekNumber.Size = new System.Drawing.Size(108, 28);
-            this.cbWeekNumber.TabIndex = 4;
-            this.cbWeekNumber.SelectedIndexChanged += new System.EventHandler(this.cbWeekNumber_SelectedIndexChanged);
-            // 
-            // lbWeekNumber
-            // 
-            this.lbWeekNumber.AutoSize = true;
-            this.lbWeekNumber.Location = new System.Drawing.Point(48, 35);
-            this.lbWeekNumber.Name = "lbWeekNumber";
-            this.lbWeekNumber.Size = new System.Drawing.Size(48, 20);
-            this.lbWeekNumber.TabIndex = 5;
-            this.lbWeekNumber.Text = "Week:";
-            // 
-            // dgvSchedule
-            // 
-            this.dgvSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colID,
-            this.colEmp,
-            this.colDatee,
-            this.colWFH,
-            this.colAssignedBy,
-            this.colAttended,
-            this.colNSR});
-            this.dgvSchedule.Location = new System.Drawing.Point(52, 135);
-            this.dgvSchedule.Name = "dgvSchedule";
-            this.dgvSchedule.RowHeadersWidth = 51;
-            this.dgvSchedule.RowTemplate.Height = 24;
-            this.dgvSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSchedule.Size = new System.Drawing.Size(924, 388);
-            this.dgvSchedule.TabIndex = 12;
-            // 
-            // colNSR
-            // 
-            this.colNSR.HeaderText = "No show reason";
-            this.colNSR.MinimumWidth = 6;
-            this.colNSR.Name = "colNSR";
-            this.colNSR.ReadOnly = true;
-            this.colNSR.Width = 125;
-            // 
-            // colAttended
-            // 
-            this.colAttended.HeaderText = "Attended";
-            this.colAttended.MinimumWidth = 6;
-            this.colAttended.Name = "colAttended";
-            this.colAttended.ReadOnly = true;
-            this.colAttended.Width = 125;
-            // 
-            // colAssignedBy
-            // 
-            this.colAssignedBy.HeaderText = "Assigned by";
-            this.colAssignedBy.MinimumWidth = 6;
-            this.colAssignedBy.Name = "colAssignedBy";
-            this.colAssignedBy.ReadOnly = true;
-            this.colAssignedBy.Width = 125;
-            // 
-            // colWFH
-            // 
-            this.colWFH.HeaderText = "WFH";
-            this.colWFH.MinimumWidth = 6;
-            this.colWFH.Name = "colWFH";
-            this.colWFH.ReadOnly = true;
-            this.colWFH.Width = 125;
-            // 
-            // colDatee
-            // 
-            this.colDatee.HeaderText = "Date";
-            this.colDatee.MinimumWidth = 6;
-            this.colDatee.Name = "colDatee";
-            this.colDatee.ReadOnly = true;
-            this.colDatee.Width = 125;
-            // 
-            // colEmp
-            // 
-            this.colEmp.HeaderText = "Employee";
-            this.colEmp.MinimumWidth = 6;
-            this.colEmp.Name = "colEmp";
-            this.colEmp.ReadOnly = true;
-            this.colEmp.Width = 125;
-            // 
-            // colID
-            // 
-            this.colID.HeaderText = "ID";
-            this.colID.MinimumWidth = 6;
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Width = 125;
-            // 
-            // btnRemShift
-            // 
-            this.btnRemShift.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnRemShift.Location = new System.Drawing.Point(64, 558);
-            this.btnRemShift.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnRemShift.Name = "btnRemShift";
-            this.btnRemShift.Size = new System.Drawing.Size(261, 49);
-            this.btnRemShift.TabIndex = 28;
-            this.btnRemShift.Text = "Remove selected";
-            this.btnRemShift.UseVisualStyleBackColor = false;
-            this.btnRemShift.Click += new System.EventHandler(this.btnRemShift_Click);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tbWeeklySchedule);
-            this.tabControl1.Controls.Add(this.tpCreateSchedule);
-            this.tabControl1.Controls.Add(this.tpManageAttendance);
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1092, 820);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // gbAutoSch
-            // 
-            this.gbAutoSch.Controls.Add(this.lbWeekNrAS);
-            this.gbAutoSch.Controls.Add(this.btnGenAS);
-            this.gbAutoSch.Controls.Add(this.cbWeekAS);
-            this.gbAutoSch.Controls.Add(this.btnGoBackAuto);
-            this.gbAutoSch.Location = new System.Drawing.Point(431, 144);
-            this.gbAutoSch.Name = "gbAutoSch";
-            this.gbAutoSch.Size = new System.Drawing.Size(232, 301);
-            this.gbAutoSch.TabIndex = 30;
-            this.gbAutoSch.TabStop = false;
-            this.gbAutoSch.Text = "Automated schedule";
-            this.gbAutoSch.Visible = false;
-            // 
-            // btnGoBackAuto
-            // 
-            this.btnGoBackAuto.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnGoBackAuto.Location = new System.Drawing.Point(61, 227);
-            this.btnGoBackAuto.Name = "btnGoBackAuto";
-            this.btnGoBackAuto.Size = new System.Drawing.Size(119, 32);
-            this.btnGoBackAuto.TabIndex = 30;
-            this.btnGoBackAuto.Text = "Go back";
-            this.btnGoBackAuto.UseVisualStyleBackColor = false;
-            this.btnGoBackAuto.Click += new System.EventHandler(this.btnGoBackAuto_Click);
-            // 
-            // btnGoBackManual
-            // 
-            this.btnGoBackManual.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnGoBackManual.Location = new System.Drawing.Point(123, 434);
-            this.btnGoBackManual.Name = "btnGoBackManual";
-            this.btnGoBackManual.Size = new System.Drawing.Size(119, 32);
-            this.btnGoBackManual.TabIndex = 31;
-            this.btnGoBackManual.Text = "Go back";
-            this.btnGoBackManual.UseVisualStyleBackColor = false;
-            this.btnGoBackManual.Click += new System.EventHandler(this.btnGoBackManual_Click);
-            // 
-            // btnGenAS
-            // 
-            this.btnGenAS.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnGenAS.Location = new System.Drawing.Point(30, 184);
-            this.btnGenAS.Name = "btnGenAS";
-            this.btnGenAS.Size = new System.Drawing.Size(170, 39);
-            this.btnGenAS.TabIndex = 33;
-            this.btnGenAS.Text = "Generate schedule";
-            this.btnGenAS.UseVisualStyleBackColor = false;
-            this.btnGenAS.Click += new System.EventHandler(this.btnGenAS_Click);
-            // 
-            // lbWeekNrAS
-            // 
-            this.lbWeekNrAS.AutoSize = true;
-            this.lbWeekNrAS.Location = new System.Drawing.Point(48, 80);
-            this.lbWeekNrAS.Name = "lbWeekNrAS";
-            this.lbWeekNrAS.Size = new System.Drawing.Size(48, 20);
-            this.lbWeekNrAS.TabIndex = 32;
-            this.lbWeekNrAS.Text = "Week:";
-            // 
-            // cbWeekAS
-            // 
-            this.cbWeekAS.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbWeekAS.FormattingEnabled = true;
-            this.cbWeekAS.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-            "32",
-            "33",
-            "34",
-            "35",
-            "36",
-            "37",
-            "38",
-            "39",
-            "40",
-            "41",
-            "42",
-            "43",
-            "44",
-            "45",
-            "46",
-            "47",
-            "48",
-            "49",
-            "50",
-            "51",
-            "52"});
-            this.cbWeekAS.Location = new System.Drawing.Point(52, 105);
-            this.cbWeekAS.Name = "cbWeekAS";
-            this.cbWeekAS.Size = new System.Drawing.Size(108, 28);
-            this.cbWeekAS.TabIndex = 31;
-            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -3071,6 +3075,17 @@ namespace MediaBazaarApp
             this.gbxSearchStock.ResumeLayout(false);
             this.gbxSearchStock.PerformLayout();
             this.SchedulingTab.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tbWeeklySchedule.ResumeLayout(false);
+            this.tbWeeklySchedule.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSchedule)).EndInit();
+            this.tpCreateSchedule.ResumeLayout(false);
+            this.gbAutoSch.ResumeLayout(false);
+            this.gbAutoSch.PerformLayout();
+            this.gbAssignShiftManually.ResumeLayout(false);
+            this.gbAssignShiftManually.PerformLayout();
+            this.tpManageAttendance.ResumeLayout(false);
+            this.tpManageAttendance.PerformLayout();
             this.EmployeesTab.ResumeLayout(false);
             this.tabControlEmployees.ResumeLayout(false);
             this.AddEmpTab.ResumeLayout(false);
@@ -3120,17 +3135,6 @@ namespace MediaBazaarApp
             this.tabPageEditAccountRequests.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEditAccountRequests)).EndInit();
             this.settingsTab.ResumeLayout(false);
-            this.tpManageAttendance.ResumeLayout(false);
-            this.tpManageAttendance.PerformLayout();
-            this.tpCreateSchedule.ResumeLayout(false);
-            this.gbAssignShiftManually.ResumeLayout(false);
-            this.gbAssignShiftManually.PerformLayout();
-            this.tbWeeklySchedule.ResumeLayout(false);
-            this.tbWeeklySchedule.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSchedule)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.gbAutoSch.ResumeLayout(false);
-            this.gbAutoSch.PerformLayout();
             this.ResumeLayout(false);
 
         }
