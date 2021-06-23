@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace MediaBazaarApp
 {
@@ -13,6 +14,8 @@ namespace MediaBazaarApp
         SalesManagement salesManagement;
         StatisticsEmployee se = new StatisticsEmployee();
         StatisticsStock ss = new StatisticsStock();
+        private DBControl dbc;
+        private Dictionary<Point, bool> shortcutLocations;
         public string ConnString
         {
             get;
@@ -25,12 +28,16 @@ namespace MediaBazaarApp
             this.currentEmp = currentEmp;
             this.stockManagement = stockManagement;
             this.salesManagement = salesManagement;
+            this.dbc = new DBControl();
+            this.shortcutLocations = new Dictionary<Point, bool>();
+            this.setShortcutLocationtions();
+            this.checkForShortcuts();
 
 
-           /* tbxNrEmp.Text = $"{se.GetAllEmployees(departmentManagement.GetAllEmployees()).Count()}";
-            tbxAvgWageEmp.Text = $"{se.AveregeWageOfEmployee(departmentManagement.GetAllEmployees())}";
-            lbxAvgWageEmpDepartment.Items.AddRange(se.AveregeWagePerDepartmenr(departmentManagement.GetAllDepartments(), departmentManagement.GetAllEmployees()).ToArray());
-            lbxNrEmpPerDepartment.Items.AddRange(se.EmpPerDepToString(departmentManagement.GetAllDepartments()).ToArray());*/
+            /* tbxNrEmp.Text = $"{se.GetAllEmployees(departmentManagement.GetAllEmployees()).Count()}";
+             tbxAvgWageEmp.Text = $"{se.AveregeWageOfEmployee(departmentManagement.GetAllEmployees())}";
+             lbxAvgWageEmpDepartment.Items.AddRange(se.AveregeWagePerDepartmenr(departmentManagement.GetAllDepartments(), departmentManagement.GetAllEmployees()).ToArray());
+             lbxNrEmpPerDepartment.Items.AddRange(se.EmpPerDepToString(departmentManagement.GetAllDepartments()).ToArray());*/
 
             WelcomeMessage();
 
@@ -714,9 +721,287 @@ namespace MediaBazaarApp
                 cbFilterByYearNrEmpStarted.SelectedIndex = cbFilterByYearNrEmpStarted.Items.IndexOf(DateTime.Now.Year);
             }
         }
-        
 
-        
+        private void ApplyShortcutsBTN_Click(object sender, EventArgs e)
+        {
+            if (empChartsCH.Checked == false)
+            {
+                empChartsShortcut.Visible = false;
+                Point location = empChartsShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, empChartsShortcut.Name);
+            }
+
+            if (stocksChartCH.Checked == false)
+            {
+                stockChartShortcut.Visible = false;
+                Point location = stockChartShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, stockChartShortcut.Name);
+            }
+
+            if (empAgeCH.Checked == false)
+            {
+                empAgeChartShortcut.Visible = false;
+                Point location = empAgeChartShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, empAgeChartShortcut.Name);
+            }
+
+            if (empIncreaseCH.Checked == false)
+            {
+                empIncreaseShortcut.Visible = false;
+                Point location = empIncreaseShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, empIncreaseShortcut.Name);
+            }
+
+            if (empCityCH.Checked == false)
+            {
+                empCityChartShortcut.Visible = false;
+                Point location = empCityChartShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, empCityChartShortcut.Name);
+            }
+
+            if (newEmpCH.Checked == false)
+            {
+                newEmpStatsShortcut.Visible = false;
+                Point location = newEmpStatsShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, newEmpStatsShortcut.Name);
+            }
+
+            if (empChartsCH.Checked)
+            {
+                activateShortCut(empChartsShortcut);
+            }
+
+            if (stocksChartCH.Checked)
+            {
+                activateShortCut(stockChartShortcut);
+            }
+
+            if (empAgeCH.Checked)
+            {
+                activateShortCut(empAgeChartShortcut);
+            }
+
+            if (newEmpCH.Checked)
+            {
+                activateShortCut(newEmpStatsShortcut);
+            }
+
+            if (empIncreaseCH.Checked)
+            {
+                activateShortCut(empIncreaseShortcut);
+            }
+
+            if (empCityCH.Checked)
+            {
+                activateShortCut(empCityChartShortcut);
+            }
+        }
+        private void activateShortCut(Panel shortcut)
+        {
+            Point location = shortcut.Location;
+            shortcutLocations[location] = true;
+            dbc.RemoveShortcut(currentEmp, shortcut.Name);
+            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+            foreach (Point k in keys)
+            {
+                if (shortcutLocations[k] == true)
+                {
+                    shortcut.Location = k;
+                    shortcut.Visible = true;
+                    shortcutLocations[k] = false;
+                    dbc.SaveShortcut(currentEmp, shortcut.Name);
+                    break;
+                }
+            }
+        }
+        private void checkForShortcuts()
+        {
+            empChartsShortcut.Visible = false;
+            stockChartShortcut.Visible = false;
+            empAgeChartShortcut.Visible = false;
+            newEmpStatsShortcut.Visible = false;
+            empIncreaseShortcut.Visible = false;
+            empCityChartShortcut.Visible = false;
+
+
+            List<Panel> allShortcuts = new List<Panel>();
+
+            allShortcuts.Add(empChartsShortcut);
+            allShortcuts.Add(stockChartShortcut);
+            allShortcuts.Add(empAgeChartShortcut);
+            allShortcuts.Add(newEmpStatsShortcut);
+            allShortcuts.Add(empIncreaseShortcut);
+            allShortcuts.Add(empCityChartShortcut);
+
+            List<string> shortcutsSTR = dbc.GetActivatedShortcuts(currentEmp);
+            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+
+            foreach (Point k in keys)
+            {
+                shortcutLocations[k] = true;
+            }
+
+            foreach (Panel s in allShortcuts)
+            {
+                if (shortcutsSTR.Contains(s.Name))
+                {
+                    activateShortCut(s);
+                    if (s.Name == empChartsShortcut.Name)
+                    {
+                        empChartsCH.Checked = true;
+                    }
+                    else if (s.Name == stockChartShortcut.Name)
+                    {
+                        stocksChartCH.Checked = true;
+                    }
+                    else if (s.Name == empAgeChartShortcut.Name)
+                    {
+                        empAgeCH.Checked = true;
+                    }
+                    else if (s.Name == newEmpStatsShortcut.Name)
+                    {
+                        newEmpCH.Checked = true;
+                    }
+                    else if (s.Name == empIncreaseShortcut.Name)
+                    {
+                        empIncreaseCH.Checked = true;
+                    }
+                    else if (s.Name == empCityChartShortcut.Name)
+                    {
+                        empCityCH.Checked = true;
+                    }
+                }
+            }
+        }
+        private void setShortcutLocationtions()
+        {
+            shortcutLocations.Add(new Point(1112, 74), true);
+            shortcutLocations.Add(new Point(1112, 160), true);
+            shortcutLocations.Add(new Point(1112, 246), true);
+            shortcutLocations.Add(new Point(1112, 332), true);
+            shortcutLocations.Add(new Point(1112, 418), true);
+            shortcutLocations.Add(new Point(1112, 504), true);
+        }
+        private void GoToEmpCharts()
+        {
+            tabControlManagement.SelectedTab = ViewChartsEmp;
+        }
+        private void GoToStockChart()
+        {
+            tabControlManagement.SelectedTab = ViewChartStocks;
+        }
+        private void GoToEmpAgeChart()
+        {
+            tabControlManagement.SelectedTab = Age;
+        }
+        private void GoToEmpCityChart()
+        {
+            tabControlManagement.SelectedTab = City;
+        }
+        private void GoToEmpIncreaseChart()
+        {
+            tabControlManagement.SelectedTab = EmployeesIncreaseTab;
+        }
+        private void GoToNewEmpStats()
+        {
+            tabControlManagement.SelectedTab = NrEmployeesStartedTab;
+        }
+
+        private void EmpChartsShortcut_Click(object sender, EventArgs e)
+        {
+            GoToEmpCharts();
+        }
+
+        private void EmpChartsLBL_Click(object sender, EventArgs e)
+        {
+            GoToEmpCharts();
+        }
+
+        private void EmpChartShortcut_Click(object sender, EventArgs e)
+        {
+            GoToEmpCharts();
+        }
+
+        private void StockChartShortcut_Click(object sender, EventArgs e)
+        {
+            GoToStockChart();
+        }
+
+        private void StockChartLBL_Click(object sender, EventArgs e)
+        {
+            GoToStockChart();
+        }
+
+        private void StockChartPic_Click(object sender, EventArgs e)
+        {
+            GoToStockChart();
+        }
+
+        private void EmpAgeChartShortcut_Click(object sender, EventArgs e)
+        {
+            GoToEmpAgeChart();
+        }
+
+        private void EmpAgeLBL_Click(object sender, EventArgs e)
+        {
+            GoToEmpAgeChart();
+        }
+
+        private void EmpAgeChartPic_Click(object sender, EventArgs e)
+        {
+            GoToEmpAgeChart();
+        }
+
+        private void EmpCityChartShortcut_Click(object sender, EventArgs e)
+        {
+            GoToEmpCityChart();
+        }
+
+        private void EmpCityChartLBL_Click(object sender, EventArgs e)
+        {
+            GoToEmpCityChart();
+        }
+
+        private void EmpCityChartPic_Click(object sender, EventArgs e)
+        {
+            GoToEmpCityChart();
+        }
+
+        private void EmpIncreaseShortcut_Click(object sender, EventArgs e)
+        {
+            GoToEmpIncreaseChart();
+        }
+
+        private void EmpIncreaseLBL_Click(object sender, EventArgs e)
+        {
+            GoToEmpIncreaseChart();
+        }
+
+        private void EmpIncreasePic_Click(object sender, EventArgs e)
+        {
+            GoToEmpIncreaseChart();
+        }
+
+        private void NewEmpStatsShortcut_Click(object sender, EventArgs e)
+        {
+            GoToNewEmpStats();
+        }
+
+        private void NewEmpStatsLBL_Click(object sender, EventArgs e)
+        {
+            GoToNewEmpStats();
+        }
+
+        private void NewEmpStatsPic_Click(object sender, EventArgs e)
+        {
+            GoToNewEmpStats();
+        }
     }
 }
 

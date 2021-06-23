@@ -213,6 +213,9 @@ namespace MediaBazaarApp
 
         private void activateShortCut(Panel shortcut)
         {
+            Point location = shortcut.Location;
+            shortcutLocations[location] = true;
+            shortcut.Visible = false;
             dbc.RemoveShortcut(currentEmp, shortcut.Name);
             List<Point> keys = new List<Point>(shortcutLocations.Keys);
             foreach (Point k in keys)

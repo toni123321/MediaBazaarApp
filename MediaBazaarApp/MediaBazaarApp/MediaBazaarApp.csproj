@@ -242,6 +242,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\outline_group_add_black_24dp.png" />
+    <None Include="Resources\outline_location_city_black_24dp.png" />
+    <None Include="Resources\outline_equalizer_black_24dp.png" />
+    <None Include="Resources\outline_analytics_black_24dp.png" />
+    <None Include="Resources\outline_badge_black_24dp2.png" />
+    <None Include="Resources\outline_badge_black_24dp1.png" />
+    <None Include="Resources\outline_badge_black_24dp.png" />
     <None Include="Resources\outline_history_black_24dp.png" />
     <None Include="Resources\outline_swap_horiz_black_24dp.png" />
     <None Include="Resources\MediaBazaarLogo1.png" />

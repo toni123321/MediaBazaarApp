@@ -1822,6 +1822,9 @@ namespace MediaBazaarApp
 
         private void activateShortCut(Panel shortcut)
         {
+            Point location = shortcut.Location;
+            shortcutLocations[location] = true;
+            shortcut.Visible = false;
             dbc.RemoveShortcut(currentEmp, shortcut.Name);
             List<Point> keys = new List<Point>(shortcutLocations.Keys);
             foreach (Point k in keys)
@@ -1882,7 +1885,7 @@ namespace MediaBazaarApp
             if (manageDepCH.Checked == false)
             {
                 manageDepartmentsShortcut.Visible = false;
-                Point location = manageStockShortcut.Location;
+                Point location = manageDepartmentsShortcut.Location;
                 shortcutLocations[location] = true;
                 dbc.RemoveShortcut(currentEmp, manageDepartmentsShortcut.Name);
             }
@@ -2209,32 +2212,32 @@ namespace MediaBazaarApp
 
         private void manageEmpCH_CheckedChanged(object sender, EventArgs e)
         {
-            ChangeSettingsButtonColor(manageEmpCH);  
+            //ChangeSettingsButtonColor(manageEmpCH);  
         }
 
         private void weeklyScheduleCH_CheckedChanged(object sender, EventArgs e)
         {
-            ChangeSettingsButtonColor(weeklyScheduleCH);
+            //ChangeSettingsButtonColor(weeklyScheduleCH);
         }
 
         private void holidayLeaveReqCH_CheckedChanged(object sender, EventArgs e)
         {
-            ChangeSettingsButtonColor(holidayLeaveReqCH);
+            //ChangeSettingsButtonColor(holidayLeaveReqCH);
         }
 
         private void manageAttendanceCH_CheckedChanged(object sender, EventArgs e)
         {
-            ChangeSettingsButtonColor(manageAttendanceCH);
+            //ChangeSettingsButtonColor(manageAttendanceCH);
         }
 
         private void manageStockCH_CheckedChanged(object sender, EventArgs e)
         {
-            ChangeSettingsButtonColor(manageStockCH);
+            //ChangeSettingsButtonColor(manageStockCH);
         }
 
         private void manageDepCH_CheckedChanged(object sender, EventArgs e)
         {
-            ChangeSettingsButtonColor(manageDepCH);
+            //ChangeSettingsButtonColor(manageDepCH);
         }
 
         private void button1_Click(object sender, EventArgs e)
