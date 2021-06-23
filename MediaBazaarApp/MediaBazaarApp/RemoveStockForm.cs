@@ -23,8 +23,8 @@ namespace MediaBazaarApp
             stockManagement.RemoveStock(stock);
             DBControl dbControl = new DBControl();
             dbControl.RemoveStock(stock.Id);
-            MessageBox.Show($"Stock ID: {stock.Id} - Brand: {stock.Brand} - Model: {stock.Model} was removed.");
-            parent.StockListBoxRefresh();
+            MessageBox.Show($"Stock ID: {stock.Id} - Brand: {stock.Brand} - Model: {stock.Model} has been marked as discontinued.");
+            parent.UpdateDGVStock();
             this.Close();
         }
 
@@ -40,7 +40,7 @@ namespace MediaBazaarApp
                         DBControl dbControl = new DBControl();
                         dbControl.UpdateStockQuantity(stock);
                         MessageBox.Show($"Stock ID: {stock.Id} - Brand: {stock.Brand} - Model: {stock.Model} quantity was reduced to {stock.Quantity}.");
-                        parent.StockListBoxRefresh();
+                        parent.UpdateDGVStock();
                         this.Close();
                     }
                     else

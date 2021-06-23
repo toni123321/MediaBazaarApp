@@ -16,6 +16,7 @@ namespace MediaBazaarApp
         private string firstName;
         private string lastName;
         private DateTime dateOfBirth;
+        private string nationality;
         private Gender gender;
 
         //Contact details
@@ -37,6 +38,10 @@ namespace MediaBazaarApp
         // Job specifications
         private EmploymentType employmentType;
         private double hourlyWages;
+
+        //Contract specifications
+        private DateTime startDate;
+        private DateTime endDate;
         private Department department;
 
         private int remainingHolidayDays;
@@ -64,7 +69,7 @@ namespace MediaBazaarApp
                 else
                 {
                     //Throw exception
-                    throw new EmpNameException(value);
+                    throw new InputFieldException("First name is not in the correct format!");
                 }
             }
         }
@@ -81,7 +86,7 @@ namespace MediaBazaarApp
                 else
                 {
                     //Throw exception
-                    throw new EmpNameException(value);
+                    throw new InputFieldException("Last name is not in the correct format!");
                 }
             }
         }
@@ -107,17 +112,49 @@ namespace MediaBazaarApp
                 else
                 {
                     // throw age exception
-                    throw new EmpAgeException(value);
+                    throw new InputFieldException($"Invalid birth date({value.ToString("dd/MM/yyyy")}), your age should be at least 18");
                 }
             }
         }
+
+        public string Nationality
+        {
+            get
+            {
+                return this.nationality;
+            }
+            
+            set
+            {
+                bool isValid = Regex.IsMatch(value, @"^[A-Z][a-z]+$");
+                if (isValid)
+                {
+                    this.nationality = value;
+                }
+                else
+                {
+                    throw new InputFieldException($"Invalid format for Nationality. Your input: {value}");
+                }
+            }
+        }
+
         public Gender Gender
         {
             get { return this.gender; }
-            set { this.gender = value; }
+            set
+            {
+                bool isValid = Regex.IsMatch(value.ToString(), @"^(MALE|FEMALE|OTHER)$");
+                if (isValid)
+                {
+                    this.gender = value;
+                }
+                else
+                {
+                    throw new InputFieldException($"Invalid input({value}) for Gender. Possible: MALE, FEMALE, OTHER");
+                }
+                
+            }
         }
-
-
 
 
         //Contact details
@@ -133,8 +170,7 @@ namespace MediaBazaarApp
                 }
                 else
                 {
-                    //Throw exception
-                    throw new EmpEmailException(value);
+                    throw new InputFieldException($"This email:{value} has invalid format!");
                 }
 
             }
@@ -144,7 +180,7 @@ namespace MediaBazaarApp
             get { return this.phoneNumber; }
             set
             {
-                bool isValid = Regex.IsMatch(value, @"^(\+|00){1}[0-9]{2,3}([ |-|/]{1}[0-9]{3}){3}$");
+                bool isValid = Regex.IsMatch(value, @"^(\+|00){1}[0-9]{2,3}([ |\-|/|]?[0-9]{3}){3}$");
                 if (isValid)
                 {
                     this.phoneNumber = value;
@@ -152,7 +188,7 @@ namespace MediaBazaarApp
                 else
                 {
                     //Throw exception
-                    throw new EmpPhoneException(value);
+                    throw new InputFieldException($"This phone:{value} is in incorrect format!");
                 }
 
             }
@@ -170,7 +206,7 @@ namespace MediaBazaarApp
                 else
                 {
                     //Throw exception
-                    throw new EmpStreetException(value);
+                    throw new InputFieldException($"This street:{value} is in incorrect format!");
                 }
 
             }
@@ -188,7 +224,7 @@ namespace MediaBazaarApp
                 else
                 {
                     //Throw exception
-                    throw new EmpCityException(value);
+                    throw new InputFieldException($"This city:{value} is in incorrect format!");
                 }
             }
         }
@@ -205,7 +241,7 @@ namespace MediaBazaarApp
                 else
                 {
                     //Throw exception
-                    throw new EmpCountryException(value);
+                    throw new InputFieldException($"This country:{value} is in incorrect format!");
                 }
             }
         }
@@ -222,7 +258,7 @@ namespace MediaBazaarApp
                 else
                 {
                     //Throw exception
-                    throw new EmpPostcodeException(value);
+                    throw new InputFieldException($"This postcode:{value} is in incorrect format!");
                 }
 
             }
@@ -243,7 +279,7 @@ namespace MediaBazaarApp
                     else
                     {
                         //Throw exception
-                        throw new EmpBsnException(value);
+                        throw new InputFieldException($"This bsn:{value} is in incorrect format!");
                     }
                 }
                 else
@@ -268,7 +304,7 @@ namespace MediaBazaarApp
                 else
                 {
                     //Throw exception
-                    throw new EmpNameException(value);
+                    throw new InputFieldException($"This name:{value} is invalid!");
                 }
 
             }
@@ -291,7 +327,7 @@ namespace MediaBazaarApp
                     //Check if the emergency contact email differs from the employee's email
                     if (value == this.Email)
                     {
-                        throw new EmpEmailException(value);
+                        throw new InputFieldException($"This email:{value} has invalid format!");
                     }
                     else
                     {
@@ -320,7 +356,7 @@ namespace MediaBazaarApp
                 else
                 {
                     //Throw exception
-                    throw new EmpPhoneException(value);
+                    throw new InputFieldException($"This phone:{value} is in incorrect format!");
                 }
 
             }
@@ -343,10 +379,38 @@ namespace MediaBazaarApp
                 }
                 else
                 {
-                    throw new EmpHourlyWagesException((int)value);
+                    throw new InputFieldException($"The chosen hourlyWages:{value} are out of the limit(1 - 20)");
                 }
             }
         }
+
+        public DateTime StartDate
+        {
+            get { return this.startDate; }
+            set
+            {
+                this.startDate = value;
+            }
+        }
+
+        public DateTime EndDate
+        {
+            get { return this.endDate; }
+            
+            set
+            {
+                this.endDate = value;
+                if (value > this.StartDate)
+                {
+                    this.endDate = value;
+                }
+                else
+                {
+                    throw new InputFieldException($"End date must be a date after start date!");
+                }
+            }
+        }
+
         public Department Department
         {
             get { return this.department; }
@@ -359,16 +423,17 @@ namespace MediaBazaarApp
         }
 
         //Constructor
-        public Employee(string firstName, string lastName, DateTime dateOfBirth, Gender gender, string email,
+        public Employee(string firstName, string lastName, DateTime dateOfBirth, string nationality,Gender gender, string email,
             string phoneNumber, string street, string city, string country, string postcode, string bsn, string emConName,
             EmergencyContactRelation emConRelation, string emConEmail, string emConPhoneNum, EmploymentType employmentType,
-            double hourlyWages, Department department)
+            double hourlyWages, DateTime startDate, DateTime endDate, Department department)
         {
             //this.id = id;
             //Personal information
             this.FirstName = firstName;
             this.LastName = lastName;
             this.DateOfBirth = dateOfBirth;
+            this.Nationality = nationality;
             this.Gender = gender;
 
             // Contact details
@@ -390,7 +455,9 @@ namespace MediaBazaarApp
 
             //Job specification
             this.EmploymentType = employmentType;
-            this.HourlyWages = hourlyWages;
+            this.HourlyWages = Math.Round(hourlyWages, 2);
+            this.StartDate = startDate;
+            this.EndDate = endDate;
             this.Department = department;
 
             this.shifts = new List<Shift>();
@@ -405,7 +472,6 @@ namespace MediaBazaarApp
         //Methods
         public override string ToString()
         {
-            //TODO
             return $"Id:{this.Id} - {this.firstName} {this.lastName}";
         }
         public int Attendance(int days)

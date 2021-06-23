@@ -36,11 +36,11 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Protobuf, Version=3.11.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Protobuf.3.11.4\lib\net45\Google.Protobuf.dll</HintPath>
+    <Reference Include="Google.Protobuf, Version=3.14.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.14.0\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="K4os.Compression.LZ4, Version=1.1.11.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Compression.LZ4.1.1.11\lib\net46\K4os.Compression.LZ4.dll</HintPath>
@@ -51,8 +51,8 @@
     <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=8.0.23.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.23\lib\net452\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data, Version=8.0.25.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.25\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Renci.SshNet, Version=2020.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2020.0.0\lib\net40\Renci.SshNet.dll</HintPath>
@@ -89,10 +89,10 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.23\lib\net452\Ubiety.Dns.Core.dll</HintPath>
+      <HintPath>..\packages\MySql.Data.8.0.25\lib\net452\Ubiety.Dns.Core.dll</HintPath>
     </Reference>
     <Reference Include="Zstandard.Net, Version=1.1.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.23\lib\net452\Zstandard.Net.dll</HintPath>
+      <HintPath>..\packages\MySql.Data.8.0.25\lib\net452\Zstandard.Net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +121,15 @@
     <Compile Include="Custom exceptions\EmpPostcodeException.cs" />
     <Compile Include="Custom exceptions\EmpStreetException.cs" />
     <Compile Include="ComboBoxEnteredValueException.cs" />
+    <Compile Include="Custom exceptions\InputFieldException.cs" />
     <Compile Include="DBControl.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="DepartmentManagement.cs" />
+    <Compile Include="EditAccountRequest.cs" />
+    <Compile Include="EditAccountRequestsManager.cs" />
+    <Compile Include="EmployeesExpiredContractManager.cs" />
+    <Compile Include="HLRManager.cs" />
+    <Compile Include="HolidayLeaveRequest.cs" />
     <Compile Include="IntegerValueExpected.cs" />
     <Compile Include="NotAllFieldFilled.cs" />
     <Compile Include="SalesForm.cs">
@@ -153,12 +159,6 @@
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ManageAttendanceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ManageAttendanceForm.Designer.cs">
-      <DependentUpon>ManageAttendanceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ManagementForm.cs">
       <SubType>Form</SubType>
@@ -207,9 +207,6 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageAttendanceForm.resx">
-      <DependentUpon>ManageAttendanceForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ManagementForm.resx">
       <DependentUpon>ManagementForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,6 +242,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\outline_group_add_black_24dp.png" />
+    <None Include="Resources\outline_location_city_black_24dp.png" />
+    <None Include="Resources\outline_equalizer_black_24dp.png" />
+    <None Include="Resources\outline_analytics_black_24dp.png" />
+    <None Include="Resources\outline_badge_black_24dp2.png" />
+    <None Include="Resources\outline_badge_black_24dp1.png" />
+    <None Include="Resources\outline_badge_black_24dp.png" />
+    <None Include="Resources\outline_history_black_24dp.png" />
+    <None Include="Resources\outline_swap_horiz_black_24dp.png" />
     <None Include="Resources\MediaBazaarLogo1.png" />
     <None Include="Resources\round_circle_notifications_black_48dp.png" />
     <None Include="Resources\MediaBazaarLogo.png" />

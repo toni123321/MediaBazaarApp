@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using System.Linq;
+using System.Data;
+
 
 namespace MediaBazaarApp
 {
@@ -15,10 +18,12 @@ namespace MediaBazaarApp
         private Employee currentEmp;
         private StockManagement stockManagement;
         private Dictionary<string, bool> stockSotrage;
+        private Dictionary<Point, bool> shortcutLocations;
         private Stock selectedStock;
         private SalesManagement salesManagement;
         private DBControl dbc;
         private AutomatedScheduleHandler ash;
+        private DBControl dbControl = new DBControl();
 
         private double price = 0;
         private int quantity = 0;
@@ -28,13 +33,17 @@ namespace MediaBazaarApp
         private double weight = 0;
         Point last;
         int afk;
-       
-       
+
+        // Manager for edit account requests
+        private EditAccountRequestsManager editAccountRequestsManager;
+        private HLRManager hlrManager;
+        private EmployeesExpiredContractManager empExpiredContractManager;
+
 
         public AdministrationForm(DepartmentManagement departmentManagement, Employee currentEmp,
             SalesManagement salesManagement, StockManagement stockManagement)
         {
-            InitializeComponent();           
+            InitializeComponent();
 
             this.departmentManagement = departmentManagement;
             this.currentEmp = currentEmp;
@@ -43,16 +52,17 @@ namespace MediaBazaarApp
             this.salesManagement = salesManagement;
             ash = new AutomatedScheduleHandler(departmentManagement);
             dbc = new DBControl();
+            shortcutLocations = new Dictionary<Point, bool>();
+            setShortcutLocationtions();
+            checkForShortcuts();
 
-            gbChooseEmp.Visible = true;
-            gbAssignShiftManually.Visible = false;
-            gbViewRemoveShifts.Visible = false;
-
+            //gbChooseEmp.Visible = true;
+            //.Visible = false;
+            UpdateDGVStock();
             UpdateWeekNumberCB();
-            cbWeekNumber.SelectedIndex = 1;
 
-            RefreshWeeklySchedule();
-            UpdateDepartments();
+            RefreshWeeklyScheduleDGV(0);
+            UpdateDepartmentsDGV();
             UpdateCBXDepManager(cbDepartmentManager);
             UpdateDepsManualShiftPlanning();
 
@@ -68,6 +78,15 @@ namespace MediaBazaarApp
 
             WelcomeMessage();
 
+            // Initializing the edit account requests manager
+            editAccountRequestsManager = new EditAccountRequestsManager();
+            hlrManager = new HLRManager();
+            timer1.Enabled = false;
+            empExpiredContractManager = new EmployeesExpiredContractManager(this.departmentManagement);
+
+            // HLR, employees with expired contract notifications after login
+            ShowHLRNotifications();
+            ShowEmpExpiredContractNotifications();
         }
 
         public void WelcomeMessage()
@@ -116,33 +135,36 @@ namespace MediaBazaarApp
         }
 
 
-        private void UpdateDepartments()
+        private void UpdateDepartmentsDGV()
         {
-            lbxAllDepartments.Items.Clear();
-
-            foreach (Department dep in this.departmentManagement.GetAllDepartments())
+            var departmentsDataSource = departmentManagement.GetAllDepartments().Select(x => new
             {
-                lbxAllDepartments.Items.Add(dep);
-            }
+                ID = x.Id,
+                DepCode = x.DeptId,
+                x.Name,
+                Manager = x.Manager != null ? $"{x.Manager.FirstName} {x.Manager.LastName}" : "No manager",
+                //Manager = $"{x.Manager.FirstName} {x.Manager.LastName}",
+                NumberOfEmployees = x.GetAllEmployees().Count
+            }).ToList();
+
+            dgvDepartments.DataSource = departmentsDataSource;
+
+            dgvDepartments.ClearSelection();
         }
 
         public bool CheckIsSuperuser()
         {
-            bool isSuperuser = false;
-            if (currentEmp.Email == "john@gmail.com" && currentEmp.Id == 1)
-            {
-                isSuperuser = true;
-            }
+            bool isSuperuser = currentEmp.Email == "john@gmail.com" && currentEmp.Id == 1;
 
             return isSuperuser;
         }
-
+        
         public void FillComboBoxDepartments()
         {
             cbEmpDepartment.Items.Clear();
             foreach (Department dep in departmentManagement.GetAllDepartments())
             {
-                if (CheckIsSuperuser() && dep.Name == "Administration")
+                if (!CheckIsSuperuser() && dep.Name == "Administration")
                 {
                     continue;
                 }
@@ -222,13 +244,16 @@ namespace MediaBazaarApp
         {
             if (!String.IsNullOrEmpty(tbxEmpFname.Text) && !String.IsNullOrEmpty(tbxEmpLname.Text) &&
                 !String.IsNullOrEmpty(dtpEmpDateOfBirth.Text) && cbEmpGender.Items.Contains(cbEmpGender.Text) &&
-                !String.IsNullOrEmpty(tbxEmpEmail.Text) && !String.IsNullOrEmpty(tbxEmpPhone.Text) &&
+                !String.IsNullOrEmpty(tbxEmpNationality.Text) && !String.IsNullOrEmpty(tbxEmpEmail.Text) &&
+                !String.IsNullOrEmpty(tbxEmpPhone.Text) &&
                 !String.IsNullOrEmpty(tbxEmpAddressStreet.Text) && !String.IsNullOrEmpty(tbxEmpAddressCity.Text) &&
                 !String.IsNullOrEmpty(tbxEmpAddressCountry.Text) && !String.IsNullOrEmpty(tbxEmpAddressPostCode.Text) &&
                 !String.IsNullOrEmpty(tbxEmConName.Text) && cbEmConRelation.Items.Contains(cbEmConRelation.Text) &&
                 !String.IsNullOrEmpty(tbxEmConEmail.Text) && !String.IsNullOrEmpty(tbxEmConPhone.Text) &&
+                !String.IsNullOrEmpty(dtpEmpStartDate.Text) && !String.IsNullOrEmpty(dtpEmpEndDate.Text) &&
                 cbEmpEmploymentType.Items.Contains(cbEmpEmploymentType.Text) &&
                 cbEmpDepartment.Items.Contains(cbEmpDepartment.Text))
+
             {
                 return true;
             }
@@ -241,6 +266,8 @@ namespace MediaBazaarApp
             string fname, lname;
             DateTime dateOfBirth;
             Gender gender;
+            string nationality;
+            DateTime startDate, endDate;
 
             string email, phone, street, city, country, postcode, bsn, emConName;
             EmergencyContactRelation emConRelation;
@@ -250,12 +277,14 @@ namespace MediaBazaarApp
             int hourlyWages;
             Department department;
 
+
             if (CheckEmployeeFields())
             {
                 fname = tbxEmpFname.Text;
                 lname = tbxEmpLname.Text;
                 dateOfBirth = dtpEmpDateOfBirth.Value;
-                gender = (Gender)(Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
+                gender = (Gender) (Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
+                nationality = tbxEmpNationality.Text;
 
                 email = tbxEmpEmail.Text;
                 phone = tbxEmpPhone.Text;
@@ -266,35 +295,56 @@ namespace MediaBazaarApp
                 bsn = tbxEmpBsn.Text;
 
                 emConName = tbxEmConName.Text;
-                emConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation),
+                emConRelation = (EmergencyContactRelation) Enum.Parse(typeof(EmergencyContactRelation),
                     cbEmConRelation.Text.ToString());
                 emConEmail = tbxEmConEmail.Text;
                 emConPhone = tbxEmConPhone.Text;
 
-                empType = (EmploymentType)(Enum.Parse(typeof(EmploymentType),
+                empType = (EmploymentType) (Enum.Parse(typeof(EmploymentType),
                     cbEmpEmploymentType.SelectedItem.ToString()));
 
                 hourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
+                startDate = dtpEmpStartDate.Value;
+                endDate = dtpEmpEndDate.Value;
+                if(cbxEmpIndefiniteContract.Checked)
+                {
+                    endDate = DateTime.MaxValue;
+                }
                 department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
+
+
+                int HLRdays = Convert.ToInt32(tbxHLRDays.Text);
 
                 DBControl dbControl = new DBControl();
 
-                // TODO: Here catch exceptions
                 try
                 {
-                    if (department.AddEmployee(departmentManagement, fname, lname, dateOfBirth, gender, email, phone, street, city, country,
+                    if (department.AddEmployee(departmentManagement, fname, lname, dateOfBirth, nationality, gender,
+                        email, phone, street, city, country,
                         postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages,
-                        department))
+                        startDate, endDate, department))
                     {
                         if (String.IsNullOrEmpty(bsn))
                         {
                             bsn = "999999990";
                         }
 
-                        dbControl.AddEmployee(fname, lname, dateOfBirth, gender, email, phone, street, city, country,
+                        dbControl.AddEmployee(fname, lname, dateOfBirth, nationality, gender, email, phone, street,
+                            city, country,
                             postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages,
-                            department);
+                            startDate, endDate, department);
+
+                        
+
                         dbControl.GetEmployees(this.departmentManagement);
+
+                        Employee newEmp = departmentManagement.GetDepartment(department.Name).GetEmployeeByEmail(email);
+
+                        if (HLRdays > 0)
+                        {
+                            this.dbControl.InsertRemainingHLR(HLRdays, newEmp.Id);
+                        }
+
                         MessageBox.Show("You have successfully hired a new employee!");
                         ClearFields();
                         UpdateCBXDepManager(cbDepartmentManager);
@@ -305,39 +355,7 @@ namespace MediaBazaarApp
                         MessageBox.Show("There is already an employee with the same email!");
                     }
                 }
-                catch (EmpNameException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpAgeException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpEmailException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpPhoneException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpStreetException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpCityException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpCountryException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpPostcodeException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpBsnException ex)
+                catch (InputFieldException ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -354,40 +372,177 @@ namespace MediaBazaarApp
 
         public void ShowEmployeesList(List<Employee> employees)
         {
-            lbxAllEmployees.Items.Clear();
-            foreach (Employee emp in employees)
+            var employeesDataSource =
+                employees.Where(x => x.Email != currentEmp.Email)
+                    .Select(x => new
+                    {
+                        ID = x.Id,
+                        x.FirstName,
+                        x.LastName,
+                        x.Email,
+                        Department = x.Department.Name
+
+                    }).ToList();
+            dgvEmployees.DataSource = employeesDataSource;
+
+            dgvEmployees.ClearSelection();
+        }
+
+        private void tabControlEmployees_Selected(object sender, TabControlEventArgs e)
+        {
+            if (tabControlEmployees.SelectedTab.Name == "ManageEmpTab")
             {
-                if (emp.Email != currentEmp.Email) // Check if the emp is the currently logged user
-                {
-                    lbxAllEmployees.Items.Add(emp);
-                }
+                cbSelectEmpDepartment.SelectedIndex = 0;
+                dbControl.GetEmployees(departmentManagement);
+                ShowEmployeesList(departmentManagement.GetAllEmployees());
+            }
+            else if(tabControlEmployees.SelectedTab.Name  == "EmpExpiredContractTab")
+            {
+                gbxEmpRenewContract.Visible = false;
+                ShowEmployeesWithExpiredContract(empExpiredContractManager.GetEmployeesWithExpiredContract().ToList());
             }
         }
 
-        private void btnShowEmp_Click(object sender, EventArgs e)
+        private void lbEmpExpiredContract_Click(object sender, EventArgs e)
+        {
+            tabControlAdministration.SelectedTab = EmployeesTab;
+            tabControlEmployees.SelectedTab = EmpExpiredContractTab;
+        }
+
+
+        public void ShowEmpExpiredContractNotifications()
+        {
+            empExpiredContractManager.LoadDataFromStorage();
+            int nrEmpWithExpiredContract = empExpiredContractManager.GetEmployeesWithExpiredContract().Count;
+            panelEmpExpiredContract.Visible = nrEmpWithExpiredContract > 0;
+
+            if (nrEmpWithExpiredContract > 0)
+            {
+                
+                lbEmpExpiredContract.Text = nrEmpWithExpiredContract > 1 ?
+                        $"There are {nrEmpWithExpiredContract} people with expired contract (click to manage)."
+                        : $"There is {nrEmpWithExpiredContract} person with expired contract (click to manage).";
+                
+            }
+
+        }
+
+
+        //TODO: Consider the email check statement
+        public void ShowEmployeesWithExpiredContract(List<Employee> employees)
+        {
+            var employeesWithExpiredContractDataSource =
+                employees.Where(x => x.Email != currentEmp.Email)
+                    .Select(x => new
+                    {
+                        ID = x.Id,
+                        x.FirstName,
+                        x.LastName,
+                        x.Email,
+                        Department = x.Department.Name,
+                        ExpiredOn = x.EndDate
+
+                    }).ToList();
+            dgvEmployeesExpiredContract.DataSource = employeesWithExpiredContractDataSource;
+
+            dgvEmployeesExpiredContract.ClearSelection();
+        }
+
+
+        private void btnEmpExpiredContractUnmarkSelected_Click(object sender, EventArgs e)
+        {
+            if (dgvEmployeesExpiredContract.SelectedRows.Count > 0)
+            {
+                dgvEmployeesExpiredContract.ClearSelection();
+            }
+            else
+            {
+                MessageBox.Show("To unmark a selected employee, choose one beforehand!");
+            }
+        }
+
+        private void btnEmpRenewContract_Click(object sender, EventArgs e)
+        {
+            if(dgvEmployeesExpiredContract.SelectedRows.Count == 1)
+            {
+                int selectedEmpID = Convert.ToInt32(dgvEmployeesExpiredContract.SelectedCells[0].Value.ToString());
+                Employee selectedEmp = empExpiredContractManager.GetEmployeeById(selectedEmpID);
+
+                gbxEmpRenewContract.Visible = true;
+                lbNamesEmpRenewContract.Text = $"Employee: {selectedEmp.FirstName} {selectedEmp.LastName}";
+                lbEmpIdRenewContract.Text = $"Id: {selectedEmpID}";
+            }
+            else
+            {
+                MessageBox.Show("Please, choose one employee to renew their contract!");
+            }
+            
+        }
+
+        
+
+
+        private void btnEmpSubmitChangesNewContract_Click(object sender, EventArgs e)
+        {
+            if(!String.IsNullOrEmpty(dtpEmpStartDateNewContract.Text) && 
+               (!String.IsNullOrEmpty(dtpEndDateNewContract.Text) || cbxEmpMakeNewContractIndefinite.Checked))
+            {
+                DateTime startDate = dtpEmpStartDateNewContract.Value;
+                DateTime endDate;
+                if(cbxEmpMakeNewContractIndefinite.Checked)
+                {
+                    endDate = DateTime.MaxValue;
+                }
+                else
+                {
+                    endDate = dtpEndDateNewContract.Value;
+                }
+
+                int empId = Convert.ToInt32(lbEmpIdRenewContract.Text.Split(' ')[1]);
+                Employee emp = empExpiredContractManager.GetEmployeeById(empId);
+                try
+                {
+                    emp.StartDate = startDate;
+
+                    emp.EndDate = endDate;
+                    empExpiredContractManager.RenewEmployeeContract(emp);
+
+                    ShowEmployeesWithExpiredContract(empExpiredContractManager.GetEmployeesWithExpiredContract()
+                        .ToList());
+                    dbControl.GetEmployees(departmentManagement);
+
+                    MessageBox.Show($"You have successfully renew contract of {emp.FirstName} {emp.LastName}");
+                    gbxEmpRenewContract.Visible = false;
+                }
+                catch (InputFieldException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, fill all the required boxes!\n" +
+                                "Info: Start date must be provided, End date can be missed only " +
+                                "if you have choosen contract to be Indefinite");
+            }
+        }
+
+        private void cbSelectEmpDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             DBControl dbc = new DBControl();
             dbc.GetEmployees(this.departmentManagement);
             string departmentName;
 
-            if (cbSelectEmpDepartment.Items.Contains(cbSelectEmpDepartment.Text))
+
+            if (cbSelectEmpDepartment.SelectedItem.ToString() == "All")
             {
-                if (cbSelectEmpDepartment.Text == "All")
-                {
-                    ShowEmployeesList(departmentManagement.GetAllEmployees());
-                }
-                else
-                {
-                    departmentName = cbSelectEmpDepartment.SelectedItem.ToString();
-                    ShowEmployeesList(departmentManagement.GetEmployeesByDepartment(departmentName));
-                }
+                ShowEmployeesList(departmentManagement.GetAllEmployees());
             }
             else
             {
-                MessageBox.Show("Please, choose a filter to show list of employees!");
+                departmentName = cbSelectEmpDepartment.SelectedItem.ToString();
+                ShowEmployeesList(departmentManagement.GetEmployeesByDepartment(departmentName));
             }
-
-
         }
 
         public void RefreshEmployeesList()
@@ -412,9 +567,13 @@ namespace MediaBazaarApp
 
         private void btnRemoveEmp_Click(object sender, EventArgs e)
         {
-            if (lbxAllEmployees.SelectedIndex != -1)
+            if (dgvEmployees.SelectedRows.Count > 0)
             {
-                Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
+                int selectedEmpID = Convert.ToInt32(dgvEmployees.SelectedCells[0].Value.ToString());
+                string selectedEmpDepName = dgvEmployees.SelectedCells[4].Value.ToString();
+                Employee selectedEmp = departmentManagement.GetDepartment(selectedEmpDepName)
+                    .GetEmployeeById(selectedEmpID);
+                //Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
 
 
                 //Remove selected emp locally
@@ -431,7 +590,7 @@ namespace MediaBazaarApp
 
                     RefreshEmployeesList();
                     UpdateCBXDepManager(cbDepartmentManager);
-                    UpdateDepartments();
+                    UpdateDepartmentsDGV();
                     RefreshCbSelectEmpDepartment();
                     FillComboBoxDepartments();
 
@@ -447,31 +606,48 @@ namespace MediaBazaarApp
             }
         }
 
-        private void btnSearchEmp_Click(object sender, EventArgs e)
+        private void tbxSearchEmp_TextChanged(object sender, EventArgs e)
         {
-            lbxAllEmployees.Items.Clear();
+            string searchInput = tbxSearchEmp.Text;
+
+            if (searchInput == "")
+            {
+                dgvDepartments.DataBindings.Clear();
+            }
+
+            List<Employee> searchResults = new List<Employee>();
 
             string fullname;
-            if (!String.IsNullOrEmpty(tbxSearchEmp.Text))
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
             {
-                foreach (Employee emp in departmentManagement.GetAllEmployees())
+                fullname = $"{emp.FirstName} {emp.LastName}";
+
+                if (emp.FirstName.Contains(searchInput) ||
+                    emp.LastName.Contains(searchInput) ||
+                    fullname.Contains(searchInput))
                 {
-                    fullname = $"{emp.FirstName} {emp.LastName}";
-                    // case first name
-                    if (emp.FirstName == tbxSearchEmp.Text || emp.LastName == tbxSearchEmp.Text ||
-                        fullname == tbxSearchEmp.Text)
-                    {
-                        lbxAllEmployees.Items.Add(emp);
-                    }
+                    searchResults.Add(emp);
                 }
 
-                tbxSearchEmp.Text = "Search...";
             }
-            else
-            {
-                MessageBox.Show("Please, write first name/last name or full name to search for employee!");
-            }
+
+            var employeesDataSource =
+                searchResults.Where(x => x.Email != currentEmp.Email)
+                    .Select(x => new
+                    {
+                        ID = x.Id,
+                        x.FirstName,
+                        x.LastName,
+                        x.Email,
+                        Department = x.Department.Name
+
+                    }).ToList();
+
+            dgvEmployees.DataSource = employeesDataSource;
+            dgvEmployees.ClearSelection();
         }
+
+
 
         private void tbxSearchEmp_Click(object sender, EventArgs e)
         {
@@ -483,14 +659,20 @@ namespace MediaBazaarApp
         private void btnEditEmp_Click(object sender, EventArgs e)
         {
             bool isSuperuser = false;
-            if (lbxAllEmployees.SelectedIndex != -1)
+
+            if (dgvEmployees.SelectedRows.Count > 0)
             {
                 if (currentEmp.Id == 1)
                 {
                     isSuperuser = true;
                 }
 
-                Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
+                int selectedEmpID = Convert.ToInt32(dgvEmployees.SelectedCells[0].Value.ToString());
+                string selectedEmpDepName = dgvEmployees.SelectedCells[4].Value.ToString();
+                Employee selectedEmp = departmentManagement.GetDepartment(selectedEmpDepName)
+                    .GetEmployeeById(selectedEmpID);
+                //Employee selectedEmp = (Employee)lbxAllEmployees.SelectedItem;
+
                 EditEmployeeForm editEmployeeForm = new EditEmployeeForm(this, departmentManagement,
                     departmentManagement.GetDepartment(selectedEmp.Department.Name)
                         .GetEmployeeByEmail(selectedEmp.Email));
@@ -520,6 +702,7 @@ namespace MediaBazaarApp
                 {
                     MessageBox.Show("The value you entered for the field price is not numeric.");
                 }
+
                 try
                 {
                     quantity = int.Parse(tbxStockQuantity.Text);
@@ -528,6 +711,7 @@ namespace MediaBazaarApp
                 {
                     MessageBox.Show("The value you entered for the field quantity is not a whole number.");
                 }
+
                 try
                 {
                     height = double.Parse(tbxStockHeight.Text);
@@ -536,6 +720,7 @@ namespace MediaBazaarApp
                 {
                     MessageBox.Show("The value you entered for the field height is not numeric.");
                 }
+
                 try
                 {
                     width = double.Parse(tbxStockWidth.Text);
@@ -544,6 +729,7 @@ namespace MediaBazaarApp
                 {
                     MessageBox.Show("The value you entered for the field width is not numeric.");
                 }
+
                 try
                 {
                     depth = double.Parse(tbxStockDepth.Text);
@@ -552,6 +738,7 @@ namespace MediaBazaarApp
                 {
                     MessageBox.Show("The value you entered for the field depth is not numeric.");
                 }
+
                 try
                 {
                     weight = double.Parse(tbxStockWeight.Text);
@@ -586,7 +773,8 @@ namespace MediaBazaarApp
                     DBControl dbControl = new DBControl();
                     if (stockManagement.SearchForStock(model, brand) == null)
                     {
-                        dbControl.AddStock(model, brand, price, quantity, height, width, depth, weight, shortDescription, stockManagement);
+                        dbControl.AddStock(model, brand, price, quantity, height, width, depth, weight,
+                            shortDescription, stockManagement);
                     }
                     else
                     {
@@ -603,50 +791,22 @@ namespace MediaBazaarApp
 
             }
 
+            UpdateDGVStock();
+
+
         }
 
         private void BtnShowAllStocks_Click(object sender, EventArgs e)
         {
-            lbAllStocks.Items.Clear();
-            List<Stock> stocks = stockManagement.GetAllStocks();
-            foreach (Stock stock in stocks)
-            {
-                lbAllStocks.Items.Add(stock);
-            }
+            UpdateDGVStock();
         }
 
-        private void BtnSearchStock_Click(object sender, EventArgs e)
-        {
-            lbAllStocks.Items.Clear();
-            List<Stock> stocks = stockManagement.GetAllStocks();
-            string word = tbxSearchStock.Text;
-            foreach (Stock stock in stocks)
-            {
-                if (stock.Brand.Contains(word.ToUpper()) || stock.Model.Contains(word.ToUpper()))
-                {
-                    lbAllStocks.Items.Add(stock);
-                }
-            }
-        }
-
-        private void SearchByIdBTN_Click(object sender, EventArgs e)
-        {
-
-            lbAllStocks.Items.Clear();
-            List<Stock> stocks = stockManagement.GetAllStocks();
-            string word = tbxSearchStock.Text;
-            foreach (Stock stock in stocks)
-            {
-                if (word == stock.Id.ToString())
-                {
-                    lbAllStocks.Items.Add(stock);
-                }
-            }
-        }
 
         private void BtnRemoveStock_Click(object sender, EventArgs e)
         {
-            selectedStock = (Stock)lbAllStocks.SelectedItem;
+            int id = Convert.ToInt32(dgvStock.SelectedCells[0].Value.ToString());
+
+            selectedStock = stockManagement.GetStock(id);
 
             if (selectedStock != null)
             {
@@ -661,7 +821,10 @@ namespace MediaBazaarApp
 
         private void BtnEditStock_Click(object sender, EventArgs e)
         {
-            selectedStock = (Stock)lbAllStocks.SelectedItem;
+            int id = Convert.ToInt32(dgvStock.SelectedCells[0].Value.ToString());
+
+            selectedStock = stockManagement.GetStock(id);
+
             if (selectedStock != null)
             {
                 EditStockForm editStockForm = new EditStockForm(this);
@@ -671,11 +834,6 @@ namespace MediaBazaarApp
             {
                 MessageBox.Show("Please select the stock you wish to edit");
             }
-        }
-
-        private void BtnStocksClearSelected_Click(object sender, EventArgs e)
-        {
-            lbAllStocks.ClearSelected();
         }
 
         private void ClearStockTbx()
@@ -693,10 +851,13 @@ namespace MediaBazaarApp
 
         private bool StockTBXCheck()
         {
-            if (tbxStockModel.Text == "" || tbxStockBrand.Text == "" || tbxStockPrice.Text == "" || tbxStockQuantity.Text == "" || tbxStockWeight.Text == "" || tbxStockWidth.Text == "" || tbxStockHeight.Text == "" || tbxStockDepth.Text == "")
+            if (tbxStockModel.Text == "" || tbxStockBrand.Text == "" || tbxStockPrice.Text == "" ||
+                tbxStockQuantity.Text == "" || tbxStockWeight.Text == "" || tbxStockWidth.Text == "" ||
+                tbxStockHeight.Text == "" || tbxStockDepth.Text == "")
             {
                 return false;
             }
+
             return true;
 
         }
@@ -711,64 +872,47 @@ namespace MediaBazaarApp
             return stockManagement;
         }
 
-        public void StockListBoxRefresh()
-        {
-            lbAllStocks.Items.Clear();
-            List<Stock> stocks = stockManagement.GetAllStocks();
-            foreach (Stock stock in stocks)
-            {
-                lbAllStocks.Items.Add(stock);
-            }
-        }
 
 
-        private void btnScheduleClearSelected_Click(object sender, EventArgs e)
-        {
-            ClearSelectionSchedule();
-        }
 
-        private void ClearSelectionSchedule()
-        {
-            lbxSelectedEmpShifts.Items.Clear();
-            lbxAllEmployees.SelectedIndex = -1;
-        }
+
 
         private void lbxScheduleAllEmp_SelectedIndexChanged(object sender, EventArgs e)
         {
             Employee emp = null;
             DBControl dbc = new DBControl();
 
-            emp = (Employee)cbEmps.SelectedItem;
+            emp = (Employee) cbEmps.SelectedItem;
             dbc.GetShifts(departmentManagement);
 
-            lbxSelectedEmpShifts.Items.Clear();
+          //  lbxSelectedEmpShifts.Items.Clear();
 
             if (emp.GetAllShifts() != null)
             {
                 foreach (Shift s in emp.GetAllShifts())
                 {
-                    lbxSelectedEmpShifts.Items.Add(s);
+                   // lbxSelectedEmpShifts.Items.Add(s);
                 }
             }
         }
 
         private void btnShift_Click(object sender, EventArgs e)
         {
-            Shift shift = (Shift)lbxSelectedEmpShifts.SelectedItem;
-            Employee emp = (Employee)cbEmps.SelectedItem;
+           // Shift shift = (Shift) lbxSelectedEmpShifts.SelectedItem;
+            //Employee emp = (Employee) cbEmps.SelectedItem;
 
             DBControl dbc = new DBControl();
 
-            if (shift != null)
-            {
-                dbc.RemoveShift(shift);
-                dbc.GetShifts(departmentManagement);
+            //if (shift != null)
+            //{
+            //    dbc.RemoveShift(shift);
+            //    dbc.GetShifts(departmentManagement);
 
-                emp.RemoveShift(shift.ID); // to improve
+            //    emp.RemoveShift(shift.ID); // to improve
 
-                dbc.GetShifts(departmentManagement);
-                UpdateShiftsPerEmployee();
-            }
+            //    dbc.GetShifts(departmentManagement);
+            //    UpdateShiftsPerEmployee();
+            //}
         }
 
         private List<Employee> GetDepManagers()
@@ -822,7 +966,7 @@ namespace MediaBazaarApp
                         if (cbDepartmentManager.SelectedIndex != -1)
                         {
                             //dep with manager
-                            manager = (Employee)cbDepartmentManager.SelectedItem;
+                            manager = (Employee) cbDepartmentManager.SelectedItem;
                             //add locally and catch exceptions
 
                             //add to DB
@@ -841,7 +985,7 @@ namespace MediaBazaarApp
 
                         }
 
-                        UpdateDepartments();
+                        UpdateDepartmentsDGV();
                         tbxDepartmentName.Clear();
                         UpdateCBXDepManager(cbDepartmentManager);
                         cbDepartmentManager.Text = "Choose a manager";
@@ -868,9 +1012,12 @@ namespace MediaBazaarApp
 
         private void btnRemoveDepartment_Click(object sender, EventArgs e)
         {
-            if (lbxAllDepartments.SelectedIndex != -1)
+            if (dgvDepartments.SelectedRows.Count > 0)
             {
-                Department dep = (Department)lbxAllDepartments.SelectedItem;
+
+                int id = Convert.ToInt32(dgvDepartments.SelectedCells[0].Value.ToString());
+                Department dep = departmentManagement.GetDepartment(id);
+
                 DBControl dbControl = new DBControl();
 
                 if (dep.GetAllEmployees().Count == 0)
@@ -880,7 +1027,7 @@ namespace MediaBazaarApp
                     //dbControl.GetDepartments(this.departmentManagement);
                     MessageBox.Show($"You have successfully removed department with name:{dep.Name}");
 
-                    UpdateDepartments();
+                    UpdateDepartmentsDGV();
                     UpdateCBXDepManager(cbDepartmentManager);
                     RefreshCbSelectEmpDepartment();
                     FillComboBoxDepartments();
@@ -917,9 +1064,11 @@ namespace MediaBazaarApp
 
         private void btnEditDepartment_Click(object sender, EventArgs e)
         {
-            if (lbxAllDepartments.SelectedIndex != -1)
+            if (dgvDepartments.SelectedRows.Count > 0)
             {
-                Department dep = (Department)lbxAllDepartments.SelectedItem;
+                int id = Convert.ToInt32(dgvDepartments.SelectedCells[0].Value.ToString());
+                Department dep = departmentManagement.GetDepartment(id);
+
                 tbxDepartmentNameEdit.Text = dep.Name;
                 UpdateCBXDepManager(cbDepartmentManagerEdit);
                 if (dep.Manager != null)
@@ -959,7 +1108,7 @@ namespace MediaBazaarApp
                     newName = tbxDepartmentNameEdit.Text;
                     if (cbDepartmentManagerEdit.SelectedIndex != -1)
                     {
-                        manager = (Employee)cbDepartmentManagerEdit.SelectedItem;
+                        manager = (Employee) cbDepartmentManagerEdit.SelectedItem;
                         //Update department locally and catch exceptions
                         dep.Name = newName;
                         //Update department into DB
@@ -992,7 +1141,7 @@ namespace MediaBazaarApp
                     cbDepartmentManagerEdit.Text = "Choose a manager";
                     gbxEditDepartment.Visible = false;
 
-                    UpdateDepartments();
+                    UpdateDepartmentsDGV();
                     UpdateCBXDepManager(cbDepartmentManager);
                     RefreshCbSelectEmpDepartment();
                     FillComboBoxDepartments();
@@ -1013,52 +1162,19 @@ namespace MediaBazaarApp
 
         private void btnDepartmentsClearSelected_Click(object sender, EventArgs e)
         {
-            if (lbxAllDepartments.SelectedIndex != -1)
-            {
-                lbxAllDepartments.SelectedIndex = -1;
-            }
-            else
-            {
-                MessageBox.Show("To unmark a line, you should have selected one beforehand!");
-            }
+            dgvDepartments.ClearSelection();
+
         }
 
         private void btnClearSelectedEmp_Click(object sender, EventArgs e)
         {
-            if (lbxAllEmployees.SelectedIndex != -1)
+            if (dgvEmployees.SelectedRows.Count > 0)
             {
-                lbxAllEmployees.SelectedIndex = -1;
+                dgvEmployees.ClearSelection();
             }
             else
             {
                 MessageBox.Show("To unmark a selected employee, choose one beforehand!");
-            }
-        }
-
-        private void btnSearchDep_Click(object sender, EventArgs e)
-        {
-            lbxAllDepartments.Items.Clear();
-
-            if (!String.IsNullOrEmpty(tbxSearchDep.Text))
-            {
-                foreach (Department dep in departmentManagement.GetAllDepartments())
-                {
-                    // case first name
-                    if (dep.Name == tbxSearchDep.Text ||
-                        dep.DeptId == tbxSearchDep.Text)
-                    {
-                        lbxAllDepartments.Items.Add(dep);
-                    }
-                    else if ((dep.Manager != null && dep.Manager.FirstName == tbxSearchDep.Text))
-                    {
-                        lbxAllDepartments.Items.Add(dep);
-                    }
-                }
-                tbxSearchDep.Text = "Search...";
-            }
-            else
-            {
-                MessageBox.Show("Please, write down department Name to search!");
             }
         }
 
@@ -1073,15 +1189,7 @@ namespace MediaBazaarApp
 
         private void btnShowAllDep_Click(object sender, EventArgs e)
         {
-            UpdateDepartments();
-        }
-
-        private void TbxSearchStock_Enter(object sender, EventArgs e)
-        {
-            if (tbxSearchStock.Text == "Search...")
-            {
-                tbxSearchStock.Text = "";
-            }
+            UpdateDepartmentsDGV();
         }
 
         private void tabControlAdministration_SelectedIndexChanged(object sender, EventArgs e)
@@ -1090,7 +1198,18 @@ namespace MediaBazaarApp
             {
                 UpdateCBXDepManager(cbDepartmentManager);
             }
+            else if (tabControlAdministration.SelectedTab == tabPageEditAccountRequests)
+            {
+                cbFilterEditAccountRequests.SelectedIndex = 0;
+                UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+            }
+            else if (tabControlAdministration.SelectedTab == HomeTab)
+            {
+                ShowHLRNotifications();
+                ShowEmpExpiredContractNotifications();
+            }
         }
+
 
 
         private void UpdateDepsManualShiftPlanning()
@@ -1105,32 +1224,7 @@ namespace MediaBazaarApp
             }
         }
 
-
-        private void btnAddShift_Click(object sender, EventArgs e)
-        {
-            if (cbDeps.SelectedIndex < 0 || cbEmps.SelectedIndex < 0)
-            {
-                throw new NotAllFieldFilled();
-            }
-            else
-            {
-                gbChooseEmp.Visible = false;
-                gbAssignShiftManually.Visible = true;
-                gbViewRemoveShifts.Visible = false;
-
-                Employee selectedEmp = (Employee)cbEmps.SelectedItem;
-
-                lbEmpInfo.Text = $"Currently selected employee: {selectedEmp.FirstName} {selectedEmp.LastName} ({selectedEmp.Id})";
-            }
-
-        }
-
-        private void btnReturnAssign_Click(object sender, EventArgs e)
-        {
-            gbChooseEmp.Visible = true;
-            gbAssignShiftManually.Visible = false;
-            gbViewRemoveShifts.Visible = false;
-        }
+       
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
@@ -1140,7 +1234,7 @@ namespace MediaBazaarApp
             }
             else
             {
-                Employee selectedEmp = (Employee)cbEmps.SelectedItem;
+                Employee selectedEmp = (Employee) cbEmps.SelectedItem;
                 bool wfh;
                 ShiftType type = new ShiftType();
                 DateTime date = dtpShiftDate.Value;
@@ -1166,6 +1260,14 @@ namespace MediaBazaarApp
                 {
                     type = ShiftType.Evening;
                 }
+
+                cbEmps.SelectedIndex = -1;
+                dtpShiftDate.Value = DateTime.Today;
+                cbWFH.Checked = false;
+                cbShiftType.SelectedIndex = -1;
+
+                MessageBox.Show($"You have added a new shift for {selectedEmp.FirstName} {selectedEmp.LastName}");
+
                 dbc.AddShift(type, date, currentEmp.Id, wfh, selectedEmp);
 
                 dbc.GetShifts(departmentManagement);
@@ -1174,52 +1276,28 @@ namespace MediaBazaarApp
 
         }
 
-        private void btnViewRemoveShifts_Click(object sender, EventArgs e)
-        {
-            if (cbDeps.SelectedIndex < 0 || cbEmps.SelectedIndex < 0)
-            {
-                throw new NotAllFieldFilled();
-            }
-            else
-            {
-
-                lbxSelectedEmpShifts.Items.Clear();
-
-                gbChooseEmp.Visible = false;
-                gbAssignShiftManually.Visible = false;
-                gbViewRemoveShifts.Visible = true;
-
-                UpdateShiftsPerEmployee();
-            }
-        }
+      
 
         private void UpdateShiftsPerEmployee()
         {
-            lbxSelectedEmpShifts.Items.Clear();
+           // lbxSelectedEmpShifts.Items.Clear();
 
-            Employee selectedEmp = (Employee)cbEmps.SelectedItem;
+            Employee selectedEmp = (Employee) cbEmps.SelectedItem;
 
             foreach (Shift s in selectedEmp.GetAllShifts())
             {
-                lbxSelectedEmpShifts.Items.Add(s);
+               // lbxSelectedEmpShifts.Items.Add(s);
             }
         }
 
         private void btnScheduleClearSelected_Click_1(object sender, EventArgs e)
         {
-            lbxSelectedEmpShifts.SelectedIndex = -1;
-        }
-
-        private void btnReturnViewRemove_Click(object sender, EventArgs e)
-        {
-            gbChooseEmp.Visible = true;
-            gbAssignShiftManually.Visible = false;
-            gbViewRemoveShifts.Visible = false;
+           // lbxSelectedEmpShifts.SelectedIndex = -1;
         }
 
         private void cbSelectedEmp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Employee selectedEmp = (Employee)cbSelectedEmp.SelectedItem;
+            Employee selectedEmp = (Employee) cbSelectedEmp.SelectedItem;
 
             cbEmployeesShifts.Items.Clear();
 
@@ -1249,7 +1327,7 @@ namespace MediaBazaarApp
 
         private void cbEmployeesShifts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Shift selectedShift = (Shift)cbEmployeesShifts.SelectedItem;
+            Shift selectedShift = (Shift) cbEmployeesShifts.SelectedItem;
 
             if (selectedShift != null)
             {
@@ -1276,7 +1354,7 @@ namespace MediaBazaarApp
 
         private void btnApplyAttendanceChanges_Click(object sender, EventArgs e)
         {
-            Shift selectedShift = (Shift)cbEmployeesShifts.SelectedItem;
+            Shift selectedShift = (Shift) cbEmployeesShifts.SelectedItem;
             bool attended;
 
             if (selectedShift != null)
@@ -1305,29 +1383,120 @@ namespace MediaBazaarApp
 
                 dbc.EditShiftAttendance(attended, tbReasonForAbsence.Text, selectedShift.ID);
                 dbc.GetShifts(departmentManagement);
-                RefreshWeeklySchedule();
+                //RefreshWeeklySchedule();
                 UpdateDepsManualShiftPlanning();
 
             }
         }
 
-        private void RefreshWeeklySchedule()
+        private void RefreshWeeklyScheduleDGV(int week)
         {
-            lbxWeeklySchedule.Items.Clear();
-
-            foreach (Employee e in departmentManagement.GetAllEmployees())
+            if (week < 1)
             {
-                foreach (Shift s in e.GetAllShifts())
+                week = (int)GetIso8601WeekOfYear(DateTime.Now);
+            }
+
+            dgvSchedule.Rows.Clear();
+            dbc.GetShifts(departmentManagement);
+
+            if (cbFilterAttended.Checked == true && cbFilterWFH.Checked == true)
+            {
+                foreach (Employee emp in departmentManagement.GetAllEmployees())
                 {
-                    if (GetIso8601WeekOfYear(s.Date) == (int)cbWeekNumber.SelectedItem)
+                    foreach (Shift s in emp.GetAllShifts())
                     {
-                        if (s.ID != -1)
+                        if (GetIso8601WeekOfYear(s.Date) == week && s.HasAttended == true && s.WFH == true)
                         {
-                            lbxWeeklySchedule.Items.Add($"{e.FirstName} {e.LastName} - {s.ToString()}");
+                            object[] RowValues = { "", "", "", "", "", "", "", "" };
+
+                            RowValues[0] = s.ID;
+                            RowValues[1] = $"{emp.FirstName} {emp.LastName}";
+                            RowValues[2] = s.Date.ToString("dd/MM/yyyy");
+                            RowValues[3] = s.Type;
+                            RowValues[4] = s.WFH;
+                            RowValues[5] = $"{departmentManagement.GetEmployeeById(s.AssignedBy).FirstName} {departmentManagement.GetEmployeeById(s.AssignedBy).LastName}";
+                            RowValues[6] = s.HasAttended;
+                            RowValues[7] = s.NoShowReason;
+
+                            dgvSchedule.Rows.Add(RowValues);
                         }
                     }
                 }
             }
+            else if (cbFilterAttended.Checked == true)
+            {
+                foreach (Employee emp in departmentManagement.GetAllEmployees())
+                {
+                    foreach (Shift s in emp.GetAllShifts())
+                    {
+                        if (GetIso8601WeekOfYear(s.Date) == week && s.HasAttended == true)
+                        {
+                            object[] RowValues = { "", "", "", "", "", "", "", "" };
+
+                            RowValues[0] = s.ID;
+                            RowValues[1] = $"{emp.FirstName} {emp.LastName}";
+                            RowValues[2] = s.Date.ToString("dd/MM/yyyy");
+                            RowValues[3] = s.Type;
+                            RowValues[4] = s.WFH;
+                            RowValues[5] = $"{departmentManagement.GetEmployeeById(s.AssignedBy).FirstName} {departmentManagement.GetEmployeeById(s.AssignedBy).LastName}";
+                            RowValues[6] = s.HasAttended;
+                            RowValues[7] = s.NoShowReason;
+
+                            dgvSchedule.Rows.Add(RowValues);
+                        }
+                    }
+                }
+            }
+            else if (cbFilterWFH.Checked == true)
+            {
+                foreach (Employee emp in departmentManagement.GetAllEmployees())
+                {
+                    foreach (Shift s in emp.GetAllShifts())
+                    {
+                        if (GetIso8601WeekOfYear(s.Date) == week && s.WFH == true)
+                        {
+                            object[] RowValues = { "", "", "", "", "", "", "", "" };
+
+                            RowValues[0] = s.ID;
+                            RowValues[1] = $"{emp.FirstName} {emp.LastName}";
+                            RowValues[2] = s.Date.ToString("dd/MM/yyyy");
+                            RowValues[3] = s.Type;
+                            RowValues[4] = s.WFH;
+                            RowValues[5] = $"{departmentManagement.GetEmployeeById(s.AssignedBy).FirstName} {departmentManagement.GetEmployeeById(s.AssignedBy).LastName}";
+                            RowValues[6] = s.HasAttended;
+                            RowValues[7] = s.NoShowReason;
+
+                            dgvSchedule.Rows.Add(RowValues);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (Employee emp in departmentManagement.GetAllEmployees())
+                {
+                    foreach (Shift s in emp.GetAllShifts())
+                    {
+                        if (GetIso8601WeekOfYear(s.Date) == week)
+                        {
+                            object[] RowValues = { "", "", "", "", "", "", "", "" };
+
+                            RowValues[0] = s.ID;
+                            RowValues[1] = $"{emp.FirstName} {emp.LastName}";
+                            RowValues[2] = s.Date.ToString("dd/MM/yyyy");
+                            RowValues[3] = s.Type;
+                            RowValues[4] = s.WFH;
+                            RowValues[5] = $"{departmentManagement.GetEmployeeById(s.AssignedBy).FirstName} {departmentManagement.GetEmployeeById(s.AssignedBy).LastName}";
+                            RowValues[6] = s.HasAttended;
+                            RowValues[7] = s.NoShowReason;
+
+                            dgvSchedule.Rows.Add(RowValues);
+                        }
+                    }
+                }
+            }
+
+            
         }
 
         private void UpdateWeekNumberCB()
@@ -1346,13 +1515,25 @@ namespace MediaBazaarApp
                 time = time.AddDays(3);
             }
 
-            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek,
+                DayOfWeek.Monday);
         }
 
         private void cbWeekNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dbc.GetShifts(departmentManagement);
-            RefreshWeeklySchedule();
+            int week;
+
+            if (cbWeekNumber.SelectedIndex != -1)
+            {
+                week = (int)cbWeekNumber.SelectedItem;
+            }
+            else
+            {
+                week = GetIso8601WeekOfYear(DateTime.Now);
+            }
+            
+
+            RefreshWeeklyScheduleDGV(week);
         }
 
         private void cbDeps_SelectedIndexChanged(object sender, EventArgs e)
@@ -1383,6 +1564,7 @@ namespace MediaBazaarApp
                     this.Close();
                 }
             }
+
             last = Cursor.Position;
         }
 
@@ -1391,26 +1573,31 @@ namespace MediaBazaarApp
             tabControlAdministration.SelectedTab = EmployeesTab;
             tabControlEmployees.SelectedTab = ManageEmpTab;
         }
+
         private void GoToHolidayLeaveRequests()
         {
             tabControlAdministration.SelectedTab = EmployeesTab;
             tabControlEmployees.SelectedTab = HolidayRequestsTab;
         }
+
         private void GoToWeeklySchedule()
         {
             tabControlAdministration.SelectedTab = SchedulingTab;
             tabControl1.SelectedTab = tbWeeklySchedule;
         }
+
         private void GoToManageAttendance()
         {
             tabControlAdministration.SelectedTab = SchedulingTab;
             tabControl1.SelectedTab = tpManageAttendance;
         }
+
         private void GoToManageStock()
         {
             tabControlAdministration.SelectedTab = StocksTab;
             tabControlStocks.SelectedTab = ManageStocksTab;
         }
+
         private void GoToManageDepartments()
         {
             tabControlAdministration.SelectedTab = ManageDepartmentsTab;
@@ -1506,50 +1693,704 @@ namespace MediaBazaarApp
             GoToManageDepartments();
         }
 
-        private void btnGenAS_Click_1(object sender, EventArgs e)
+        
+
+        public void UpdateDGVStock()
+        {
+            var stockDataSource = stockManagement.GetAllStocks().Select(x => new
+            {
+                ID = x.Id,
+                Brand = x.Brand,
+                Model = x.Model,
+                Quantity = x.Quantity,
+                Price = x.Price,
+                Width = x.Width,
+                Height = x.Height,
+                Depth = x.Depth,
+                Weight = x.Weight,
+                Description = x.ShortDescription != null ? $"{x.ShortDescription}" : "n/a",
+                Location = x.Location != null ? $"{x.Location}" : "n/a",
+                Disontinued=x.Discontinued
+            }).ToList();
+
+            dgvStock.DataSource = stockDataSource;
+
+            dgvStock.ClearSelection();
+
+        }
+
+        private void tbxSearchStock_TextChanged(object sender, EventArgs e)
+        {
+            string searchInput = tbxSearchStock.Text;
+
+            if (searchInput == "")
+            {
+                dgvStock.DataBindings.Clear();
+            }
+
+            List<Stock> searchResults = new List<Stock>();
+
+            foreach (Stock s in stockManagement.GetAllStocks())
+            {
+                if (s.Model.Contains(searchInput) || s.Brand.Contains(searchInput) ||
+                    Convert.ToString(s.Id) == searchInput)
+                {
+                    searchResults.Add(s);
+                }
+            }
+
+            var stockDataSource = searchResults.Select(x => new
+            {
+                ID = x.Id,
+                Brand = x.Brand,
+                Model = x.Model,
+                Quantity = x.Quantity,
+                Price = x.Price,
+                Width = x.Width,
+                Height = x.Height,
+                Depth = x.Depth,
+                Weight = x.Weight,
+                Description = x.ShortDescription != null ? $"{x.ShortDescription}" : "n/a",
+                Location = x.Location != null ? $"{x.Location}" : "n/a"
+            }).ToList();
+
+            dgvStock.DataSource = stockDataSource;
+
+
+        }
+
+        private void btnStocksClearSelected_Click(object sender, EventArgs e)
+        {
+            dgvStock.ClearSelection();
+        }
+
+        private void setShortcutLocationtions()
+        {
+            shortcutLocations.Add(new Point(704, 102), true);
+            shortcutLocations.Add(new Point(704, 188), true);
+            shortcutLocations.Add(new Point(704, 275), true);
+            shortcutLocations.Add(new Point(704, 362), true);
+            shortcutLocations.Add(new Point(704, 448), true);
+            shortcutLocations.Add(new Point(704, 535), true);
+        }
+
+        private void checkForShortcuts()
+        {
+            manageEmpShortcut.Visible = false;
+            holidayLeaveRequestsShortcut.Visible = false;
+            weeklySchedukeShortcut.Visible = false;
+            manageAttendanceShortcut.Visible = false;
+            manageStockShortcut.Visible = false;
+            manageDepartmentsShortcut.Visible = false;
+
+
+            List<Panel> allShortcuts = new List<Panel>();
+
+            allShortcuts.Add(manageEmpShortcut);
+            allShortcuts.Add(holidayLeaveRequestsShortcut);
+            allShortcuts.Add(weeklySchedukeShortcut);
+            allShortcuts.Add(manageAttendanceShortcut);
+            allShortcuts.Add(manageStockShortcut);
+            allShortcuts.Add(manageDepartmentsShortcut);
+
+            List<string> shortcutsSTR = dbc.GetActivatedShortcuts(currentEmp);
+            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+
+            foreach (Point k in keys)
+            {
+                shortcutLocations[k] = true;
+            }
+
+            foreach (Panel s in allShortcuts)
+            {
+                if (shortcutsSTR.Contains(s.Name))
+                {
+                    activateShortCut(s);
+                    if (s.Name == manageEmpShortcut.Name)
+                    {
+                        manageEmpCH.Checked = true;
+                    }
+                    else if (s.Name == holidayLeaveRequestsShortcut.Name)
+                    {
+                        holidayLeaveReqCH.Checked = true;
+                    }
+                    else if (s.Name == weeklySchedukeShortcut.Name)
+                    {
+                        weeklyScheduleCH.Checked = true;
+                    }
+                    else if (s.Name == manageAttendanceShortcut.Name)
+                    {
+                        manageAttendanceCH.Checked = true;
+                    }
+                    else if (s.Name == manageStockShortcut.Name)
+                    {
+                        manageStockCH.Checked = true;
+                    }
+                    else if (s.Name == manageDepartmentsShortcut.Name)
+                    {
+                        manageDepCH.Checked = true;
+                    }
+                }
+            }
+        }
+
+        private void activateShortCut(Panel shortcut)
+        {
+            Point location = shortcut.Location;
+            shortcutLocations[location] = true;
+            shortcut.Visible = false;
+            dbc.RemoveShortcut(currentEmp, shortcut.Name);
+            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+            foreach (Point k in keys)
+            {
+                if (shortcutLocations[k] == true)
+                {
+                    shortcut.Location = k;
+                    shortcut.Visible = true;
+                    shortcutLocations[k] = false;
+                    dbc.SaveShortcut(currentEmp, shortcut.Name);
+                    break;
+                }
+            }
+        }
+
+        private void ApplyShortcutsBTN_Click(object sender, EventArgs e)
+        {
+            if (manageEmpCH.Checked == false)
+            {
+                manageEmpShortcut.Visible = false;
+                Point location = manageEmpShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, manageEmpShortcut.Name);
+            }
+
+            if (holidayLeaveReqCH.Checked == false)
+            {
+                holidayLeaveRequestsShortcut.Visible = false;
+                Point location = holidayLeaveRequestsShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, holidayLeaveRequestsShortcut.Name);
+            }
+
+            if (weeklyScheduleCH.Checked == false)
+            {
+                weeklySchedukeShortcut.Visible = false;
+                Point location = weeklySchedukeShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, weeklySchedukeShortcut.Name);
+            }
+
+            if (manageAttendanceCH.Checked == false)
+            {
+                manageAttendanceShortcut.Visible = false;
+                Point location = manageAttendanceShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, manageAttendanceShortcut.Name);
+            }
+
+            if (manageStockCH.Checked == false)
+            {
+                manageStockShortcut.Visible = false;
+                Point location = manageStockShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, manageStockShortcut.Name);
+            }
+
+            if (manageDepCH.Checked == false)
+            {
+                manageDepartmentsShortcut.Visible = false;
+                Point location = manageDepartmentsShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, manageDepartmentsShortcut.Name);
+            }
+
+            if (manageEmpCH.Checked)
+            {
+                activateShortCut(manageEmpShortcut);
+            }
+
+            if (holidayLeaveReqCH.Checked)
+            {
+                activateShortCut(holidayLeaveRequestsShortcut);
+            }
+
+            if (weeklyScheduleCH.Checked)
+            {
+                activateShortCut(weeklySchedukeShortcut);
+            }
+
+            if (manageAttendanceCH.Checked)
+            {
+                activateShortCut(manageAttendanceShortcut);
+            }
+
+            if (manageStockCH.Checked)
+            {
+                activateShortCut(manageStockShortcut);
+            }
+
+            if (manageDepCH.Checked)
+            {
+                activateShortCut(manageDepartmentsShortcut);
+            }
+
+        }
+
+        private void tbxSearchDep_TextChanged(object sender, EventArgs e)
+        {
+            string searchInput = tbxSearchDep.Text;
+
+            if (searchInput == "")
+            {
+                dgvDepartments.DataBindings.Clear();
+            }
+
+            List<Department> searchResults = new List<Department>();
+
+            foreach (Department dep in departmentManagement.GetAllDepartments())
+            {
+                if (Convert.ToString(dep.Id) == searchInput || dep.Name.Contains(searchInput))
+                {
+                    searchResults.Add(dep);
+                }
+            }
+
+            var departmentDataSource = searchResults.Select(x => new
+            {
+                ID = x.Id,
+                DepCode = x.DeptId,
+                x.Name,
+                Manager = x.Manager != null ? $"{x.Manager.FirstName} {x.Manager.LastName}" : "No manager",
+                //Manager = $"{x.Manager.FirstName} {x.Manager.LastName}",
+                NumberOfEmployees = x.GetAllEmployees().Count
+            }).ToList();
+
+            dgvDepartments.DataSource = departmentDataSource;
+            dgvDepartments.ClearSelection();
+        }
+
+        public void UpdateDGVEditAccountRequests(IList<EditAccountRequest> requests)
+        {
+            var editAccountRequestsDataSource =
+                requests.Select(x => new
+                {
+                    ID = x.Id,
+                    x.Email,
+                    x.PhoneNumber,
+                    x.Street,
+                    x.City,
+                    x.Country,
+                    x.Postcode,
+                    EmergencyContactName = x.EmConName,
+                    EmergencyContactRelation = x.EmConRelation,
+                    EmergencyContactEmail = x.EmConEmail,
+                    EmergencyContactPhone = x.EmConPhone,
+                    x.Status,
+                    x.RequestDate
+                }).ToList();
+            dgvEditAccountRequests.DataSource = editAccountRequestsDataSource;
+            dgvEditAccountRequests.ClearSelection();
+        }
+
+        private void btnAcceptEditAccountRequest_Click(object sender, EventArgs e)
+        {
+            if (dgvEditAccountRequests.SelectedRows.Count == 1)
+            {
+                int requestId = Convert.ToInt32(dgvEditAccountRequests.SelectedCells[0].Value);
+                EditAccountRequest curRequest = editAccountRequestsManager.GetEditAccountRequest(requestId);
+
+                if (curRequest.Status != "InProgress")
+                {
+                    MessageBox.Show("This request is already processed!");
+                }
+                else
+                {
+                    editAccountRequestsManager.AcceptRequest(curRequest, this.departmentManagement);
+                    cbFilterEditAccountRequests.SelectedIndex = 0;
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                    MessageBox.Show("You have accepted this request!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, select a request to mark it as /Accepted/");
+            }
+        }
+
+        private void btnDeclineEditAccountRequest_Click(object sender, EventArgs e)
+        {
+            if (dgvEditAccountRequests.SelectedRows.Count == 1)
+            {
+                int requestId = Convert.ToInt32(dgvEditAccountRequests.SelectedCells[0].Value);
+
+                EditAccountRequest curRequest = editAccountRequestsManager.GetEditAccountRequest(requestId);
+
+                if (curRequest.Status != "InProgress")
+                {
+                    MessageBox.Show("This request is already processed!");
+                }
+                else
+                {
+                    editAccountRequestsManager.DeclineRequest(curRequest, this.departmentManagement);
+                    cbFilterEditAccountRequests.SelectedIndex = 0;
+                    
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                    MessageBox.Show("You have declined this request!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, select a request to mark it as /Declined/");
+            }
+        }
+
+        private void cbFilterEditAccountRequests_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string status = cbFilterEditAccountRequests.SelectedItem.ToString();
+            switch (status)
+            {
+                case "All":
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
+                    break;
+                case "Accepted":
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAcceptedEditAccountRequests());
+                    break;
+                case "Declined":
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetDeclinedEditAccountRequests());
+                    break;
+                case "InProgress":
+                    UpdateDGVEditAccountRequests(editAccountRequestsManager.GetInProgressEditAccountRequests());
+                    break;
+            }
+        }
+
+        private void btnUnmarkSelectedEditAccountRequest_Click(object sender, EventArgs e)
+        {
+            if (dgvEditAccountRequests.SelectedRows.Count == 1)
+            {
+                dgvEditAccountRequests.ClearSelection();
+            }
+            else
+            {
+                MessageBox.Show("To unmark request, you should have selected one beforehand!");
+            }
+        }
+
+
+        private void tabControlEmployees_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlEmployees.SelectedTab == HolidayRequestsTab)
+            {
+                cbFilterHLR.SelectedIndex = 0;
+                UpdateDGVHLR(hlrManager.GetAllRequests());
+            }
+        }
+        // HLR
+
+
+        private void cbFilterHLR_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string status = cbFilterHLR.SelectedItem.ToString();
+            switch (status)
+            {
+                case "All":
+                    UpdateDGVHLR(hlrManager.GetAllRequests());
+                    break;
+                case "Accepted":
+                    UpdateDGVHLR(hlrManager.GetAcceptedRequests());
+                    break;
+                case "Declined":
+                    UpdateDGVHLR(hlrManager.GetDeclinedRequests());
+                    break;
+                case "InProgress":
+                    UpdateDGVHLR(hlrManager.GetPendingRequests());
+                    break;
+            }
+        }
+
+        private void ShowHLRNotifications()
+        {
+            hlrManager.LoadDataFromStorage();
+            IList<HolidayLeaveRequest> pendingHlrs = hlrManager.GetPendingRequests();
+            int nrPendingRequests = pendingHlrs.Count;
+            panelHLRNotifications.Visible = nrPendingRequests > 0;
+
+            if (nrPendingRequests > 0)
+            {
+                lbHLRNotifications.Text = nrPendingRequests > 1 ? 
+                    $"There are {nrPendingRequests} new holiday requests (click to manage)." 
+                    : $"There is {nrPendingRequests} new holiday requests (click to manage).";
+            }
+        }
+
+        private void lbHLRNotifications_Click(object sender, EventArgs e)
+        {
+            tabControlAdministration.SelectedTab = EmployeesTab;
+            tabControlEmployees.SelectedTab = HolidayRequestsTab;
+        }
+
+        private void UpdateDGVHLR(IList<HolidayLeaveRequest> requests)
+        {
+            var HLRDataSource =
+                requests.Select(x => new
+                {
+                    ID = x.Id,
+                    Employee = $"{departmentManagement.GetEmployeeById(x.EmployeeId).FirstName} {departmentManagement.GetEmployeeById(x.EmployeeId).LastName}",
+                    x.StartDate,
+                    x.EndDate,
+                    x.TotalDays,
+                    x.Status,
+                    Reason = x.Comments,
+                    x.RequestDate
+                }).ToList();
+
+            dgvHLR.DataSource = HLRDataSource;
+            dgvHLR.ClearSelection();
+        }
+
+        private void btnHolidayRequestsAccept_Click(object sender, EventArgs e)
+        {
+            if (dgvHLR.SelectedRows.Count == 1)
+            {
+                int requestId = Convert.ToInt32(dgvHLR.SelectedCells[0].Value);
+                HolidayLeaveRequest currRequest = hlrManager.GetHLR(requestId);
+                
+                if (currRequest.Status != "InProgress")
+                {
+                    MessageBox.Show("This request is already processed!");
+                }
+                else
+                {
+                    hlrManager.AcceptHLR(currRequest, this.departmentManagement);
+                    cbFilterHLR.SelectedIndex = 0; // All
+                    UpdateDGVHLR(hlrManager.GetAllRequests());
+                    MessageBox.Show("You have accepted this request!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, select a request to mark it as /Accepted/");
+            }
+        }
+
+        private void btnHolidayRequestsDecline_Click(object sender, EventArgs e)
+        {
+            if (dgvHLR.SelectedRows.Count == 1)
+            {
+                int requestId = Convert.ToInt32(dgvHLR.SelectedCells[0].Value);
+                HolidayLeaveRequest currRequest = hlrManager.GetHLR(requestId);
+
+                if (currRequest.Status != "InProgress")
+                {
+                    MessageBox.Show("This request is already processed!");
+                }
+                else
+                {
+                    hlrManager.DeclineHLR(currRequest, this.departmentManagement);
+                    cbFilterHLR.SelectedIndex = 0; // All
+                    UpdateDGVHLR(hlrManager.GetAllRequests());
+                    MessageBox.Show("You have declined this request!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, select a request to mark it as /Declined/");
+            }
+        }
+
+
+        private void btnHolidayRequestsClearSelected_Click(object sender, EventArgs e)
+        {
+            if (dgvHLR.SelectedRows.Count == 1)
+            {
+                dgvHLR.ClearSelection();
+            }
+            else
+            {
+                MessageBox.Show("To unmark request, you should have selected one beforehand! ");
+            }
+        }
+
+        private void ChangeSettingsButtonColor(CheckBox cb)
+        {
+            if (cb.Checked == true)
+            {
+
+                cb.BackColor = Color.FromArgb(82, 255, 163);
+            }
+            else
+            {
+                cb.BackColor = Color.FromArgb(250, 69, 60);
+            }
+        }
+
+        private void manageEmpCH_CheckedChanged(object sender, EventArgs e)
+        {
+            //ChangeSettingsButtonColor(manageEmpCH);  
+        }
+
+        private void weeklyScheduleCH_CheckedChanged(object sender, EventArgs e)
+        {
+            //ChangeSettingsButtonColor(weeklyScheduleCH);
+        }
+
+        private void holidayLeaveReqCH_CheckedChanged(object sender, EventArgs e)
+        {
+            //ChangeSettingsButtonColor(holidayLeaveReqCH);
+        }
+
+        private void manageAttendanceCH_CheckedChanged(object sender, EventArgs e)
+        {
+            //ChangeSettingsButtonColor(manageAttendanceCH);
+        }
+
+        private void manageStockCH_CheckedChanged(object sender, EventArgs e)
+        {
+            //ChangeSettingsButtonColor(manageStockCH);
+        }
+
+        private void manageDepCH_CheckedChanged(object sender, EventArgs e)
+        {
+            //ChangeSettingsButtonColor(manageDepCH);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //RefreshWeeklySchedule();
+        }
+
+        private void btnRemShift_Click(object sender, EventArgs e)
+        {
+
+            int shiftID = 0;
+
+            if (dgvSchedule.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = dgvSchedule.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dgvSchedule.Rows[selectedrowindex];
+                string id = Convert.ToString(selectedRow.Cells["colID"].Value);
+
+                shiftID = Convert.ToInt32(id);
+            }
+
+            foreach (Employee emp in departmentManagement.GetAllEmployees())
+            {
+                foreach (Shift s in emp.GetAllShifts())
+                {
+                    if (shiftID == s.ID)
+                    {
+                        dbc.RemoveShift(s);
+                    }
+                }
+            }
+        }
+
+        private void btnEditShift_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbEmps_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Employee with Id: (id)
+            Employee emp = (Employee)cbEmps.SelectedItem;
+
+            if (emp != null)
+            {
+                lbEmpInfo.Text = $"Selected {emp.FirstName} {emp.LastName} ({emp.Id})";
+            }
+               
+        }
+
+        private void btnGoBackManual_Click(object sender, EventArgs e)
+        {
+            gbAssignShiftManually.Visible = false;
+            btnAutoShifts.Visible = true;
+            btnManShifts.Visible = true;
+        }
+
+        private void btnManShifts_Click(object sender, EventArgs e)
+        {
+            gbAssignShiftManually.Visible = true;
+            btnAutoShifts.Visible = false;
+            btnManShifts.Visible = false;
+
+        }
+
+        private void btnAutoShifts_Click(object sender, EventArgs e)
+        {
+            gbAutoSch.Visible = true;
+            btnAutoShifts.Visible = false;
+            btnManShifts.Visible = false;
+        }
+
+        private void btnGoBackAuto_Click(object sender, EventArgs e)
+        {
+            gbAutoSch.Visible = false;
+            btnAutoShifts.Visible = true;
+            btnManShifts.Visible = true;
+        }
+
+        private void btnGenAS_Click(object sender, EventArgs e)
         {
             int week = Convert.ToInt32(cbWeekAS.SelectedItem);
 
             if (week > 0 && week < 53)
             {
-                ash.AssignShifts(week, 2021);
-            }
-
-            foreach (Employee emp in departmentManagement.GetAllEmployees())
-            {
-                foreach (Shift s in emp.GetAllShifts())
+                foreach (Employee emp in departmentManagement.GetAllEmployees())
                 {
-                    dbc.AddShift(s.Type, s.Date, currentEmp.Id, s.WFH, emp);
-                }
-            }
-
-            List<Shift> toRemove = new List<Shift>();
-
-            foreach (Employee emp in departmentManagement.GetAllEmployees())
-            {
-                foreach (Shift s in emp.GetAllShifts())
-                {
-                    if (s.ID == -1)
+                    foreach (Shift s in emp.GetAllShifts())
                     {
-                        toRemove.Add(s);
+                        if (GetIso8601WeekOfYear(s.Date) == week)
+                        {
+                            dbc.RemoveShift(s);
+                        }
                     }
                 }
 
-                for (int i = 0; i < emp.GetAllShifts().Count; i++)
-                {
-                    Shift shift = emp.GetAllShifts()[i];
+                MessageBox.Show($"You have generate a new schedule for week {week}.");
 
-                    if (emp.GetAllShifts()[i].ID == -1)
-                    {
-                        emp.Shifts.Remove(shift);
-                    }
-                }
+                cbWeekAS.SelectedIndex = -1;
+
+                ash.AssignShifts(week, 2021, currentEmp.Id);
+
+                dbc.GetShifts(departmentManagement);
+                //RefreshWeeklySchedule();
+            }
+        }
+
+        private void cbFilterWFH_CheckedChanged(object sender, EventArgs e)
+        {
+            int week;
+
+            if (cbWeekNumber.SelectedIndex != -1)
+            {
+                week = (int)cbWeekNumber.SelectedItem;
+            }
+            else
+            {
+                week = GetIso8601WeekOfYear(DateTime.Now);
             }
 
-            
 
-            dbc.GetShifts(departmentManagement);
-            //RefreshWeeklySchedule();
+            RefreshWeeklyScheduleDGV(week);
+        }
+
+        private void cbFilterAttended_CheckedChanged(object sender, EventArgs e)
+        {
+            int week;
+
+            if (cbWeekNumber.SelectedIndex != -1)
+            {
+                week = (int)cbWeekNumber.SelectedItem;
+            }
+            else
+            {
+                week = GetIso8601WeekOfYear(DateTime.Now);
+            }
+
+
+            RefreshWeeklyScheduleDGV(week);
         }
     }
 }

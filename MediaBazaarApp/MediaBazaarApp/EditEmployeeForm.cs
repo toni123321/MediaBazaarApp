@@ -1,5 +1,7 @@
 ﻿using MediaBazaarApp.Custom_exceptions;
 using System;
+using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace MediaBazaarApp
@@ -34,6 +36,45 @@ namespace MediaBazaarApp
 
         }
 
+        private void ManageEndDateViewFields()
+        {
+            // Points for date time picker
+            
+            
+            // Points for text box
+            Point locationEndDateLabelDTP = new Point(835, 394);
+            Point locationEndDateDateTimePicker = new Point(933, 389);
+
+            Point locationEndDateLabelTBX = new Point(796, 442);
+            Point locationEndDateTextBox = new Point(934, 439);
+
+
+            if (currEmp.EndDate == DateTime.MaxValue)
+            {
+                tbxEmpEndDate.Visible = true;
+                dtpEmpEndDate.Visible = true;
+                lbEmpNewEndDate.Visible = true;
+                cbxEmpIndefiniteContract.Visible = false;
+
+                tbxEmpEndDate.Location = locationEndDateDateTimePicker;
+                tbxEmpEndDate.Text = "Indefinite";
+                
+                dtpEmpEndDate.Location = locationEndDateTextBox;
+
+            }
+            else
+            {
+                tbxEmpEndDate.Visible = false;
+                dtpEmpEndDate.Visible = true;
+                lbEmpNewEndDate.Visible = false;
+                cbxEmpIndefiniteContract.Visible = true;
+
+                dtpEmpEndDate.Location = locationEndDateDateTimePicker;
+                dtpEmpEndDate.Value = currEmp.EndDate;
+                cbxEmpIndefiniteContract.Location = locationEndDateTextBox;
+            }
+        }
+
         private void ShowDetailsFilled()
         {
             //Personal information
@@ -41,6 +82,7 @@ namespace MediaBazaarApp
             tbxEmpLname.Text = currEmp.LastName;
             dtpEmpDateOfBirth.Value = currEmp.DateOfBirth;
             cbEmpGender.Text = currEmp.Gender.ToString();
+            tbxEmpNationality.Text = currEmp.Nationality;
 
             //Contact details
             tbxEmpEmail.Text = currEmp.Email;
@@ -59,10 +101,16 @@ namespace MediaBazaarApp
 
             //Job specifications
             cbEmpEmploymentType.Text = currEmp.EmploymentType.ToString();
-            nudEmpHourlyWages.Text = currEmp.HourlyWages.ToString();
+            nudEmpHourlyWages.Text = currEmp.HourlyWages.ToString(CultureInfo.InvariantCulture);
             cbEmpDepartment.Text = currEmp.Department.Name;
             previousDepartment = currEmp.Department;
+            dtpEmpStartDate.Value = currEmp.StartDate;
 
+            DBControl dbControl = new DBControl();
+
+            lbRemainingHLDays.Text = $"Remaining holiday days: {dbControl.GetRemainingHLR(currEmp.Id).ToString()}";
+
+            ManageEndDateViewFields();
         }
 
         private void EditEmployeeForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -72,16 +120,24 @@ namespace MediaBazaarApp
             this.administrationForm.RefreshEmployeesList();
         }
 
+        private bool CheckInputs()
+        {
+            bool isInputValid = !String.IsNullOrEmpty(tbxEmpFname.Text) && !String.IsNullOrEmpty(tbxEmpLname.Text) &&
+                                !String.IsNullOrEmpty(dtpEmpDateOfBirth.Text) && cbEmpGender.Items.Contains(cbEmpGender.Text) &&
+                                !String.IsNullOrEmpty(tbxEmpNationality.Text) &&
+                                !String.IsNullOrEmpty(tbxEmpEmail.Text) && !String.IsNullOrEmpty(tbxEmpPhone.Text) &&
+                                !String.IsNullOrEmpty(tbxEmpAddressStreet.Text) && !String.IsNullOrEmpty(tbxEmpAddressCity.Text) &&
+                                !String.IsNullOrEmpty(tbxEmpAddressCountry.Text) && !String.IsNullOrEmpty(tbxEmpAddressPostCode.Text) &&
+                                !String.IsNullOrEmpty(tbxEmConName.Text) && cbEmConRelation.Items.Contains(cbEmConRelation.Text) &&
+                                !String.IsNullOrEmpty(tbxEmConEmail.Text) && !String.IsNullOrEmpty(tbxEmConPhone.Text) &&
+                                !String.IsNullOrEmpty(dtpEmpStartDate.Text) && !String.IsNullOrEmpty(dtpEmpEndDate.Text) &&
+                                cbEmpEmploymentType.Items.Contains(cbEmpEmploymentType.Text) && cbEmpDepartment.Items.Contains(cbEmpDepartment.Text);
+            return isInputValid;
+        }
+
         private void btnEditEmpoyee_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(tbxEmpFname.Text) && !String.IsNullOrEmpty(tbxEmpLname.Text) &&
-                !String.IsNullOrEmpty(dtpEmpDateOfBirth.Text) && cbEmpGender.Items.Contains(cbEmpGender.Text) &&
-                !String.IsNullOrEmpty(tbxEmpEmail.Text) && !String.IsNullOrEmpty(tbxEmpPhone.Text) &&
-                !String.IsNullOrEmpty(tbxEmpAddressStreet.Text) && !String.IsNullOrEmpty(tbxEmpAddressCity.Text) &&
-                !String.IsNullOrEmpty(tbxEmpAddressCountry.Text) && !String.IsNullOrEmpty(tbxEmpAddressPostCode.Text) &&
-                !String.IsNullOrEmpty(tbxEmConName.Text) && cbEmConRelation.Items.Contains(cbEmConRelation.Text) &&
-                !String.IsNullOrEmpty(tbxEmConEmail.Text) && !String.IsNullOrEmpty(tbxEmConPhone.Text) &&
-                cbEmpEmploymentType.Items.Contains(cbEmpEmploymentType.Text) && cbEmpDepartment.Items.Contains(cbEmpDepartment.Text))
+            if (CheckInputs())
             {
                 try
                 {
@@ -89,7 +145,8 @@ namespace MediaBazaarApp
                     currEmp.FirstName = tbxEmpFname.Text;
                     currEmp.LastName = tbxEmpLname.Text;
                     currEmp.DateOfBirth = dtpEmpDateOfBirth.Value;
-                    currEmp.Gender = (Gender)(Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
+                    currEmp.Gender = (Gender) (Enum.Parse(typeof(Gender), cbEmpGender.SelectedItem.ToString()));
+                    currEmp.Nationality = tbxEmpNationality.Text;
 
                     //Contact details
                     currEmp.Email = tbxEmpEmail.Text;
@@ -102,56 +159,38 @@ namespace MediaBazaarApp
 
                     //Emergency contact details
                     currEmp.EmConName = tbxEmConName.Text;
-                    currEmp.EmConRelation = (EmergencyContactRelation)Enum.Parse(typeof(EmergencyContactRelation),
+                    currEmp.EmConRelation = (EmergencyContactRelation) Enum.Parse(typeof(EmergencyContactRelation),
                         cbEmConRelation.Text.ToString());
                     currEmp.EmConEmail = tbxEmConEmail.Text;
                     currEmp.EmConPhoneNum = tbxEmConPhone.Text;
 
                     //Job specifications
-                    currEmp.EmploymentType = (EmploymentType)(Enum.Parse(typeof(EmploymentType),
+                    currEmp.EmploymentType = (EmploymentType) (Enum.Parse(typeof(EmploymentType),
                         cbEmpEmploymentType.SelectedItem.ToString()));
                     currEmp.HourlyWages = Convert.ToInt32(nudEmpHourlyWages.Text);
                     currEmp.Department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
+                    currEmp.StartDate = dtpEmpStartDate.Value;
+                    currEmp.EndDate = dtpEmpEndDate.Value;
+
+                    if (cbxEmpIndefiniteContract.Checked)
+                    {
+                        currEmp.EndDate = DateTime.MaxValue;
+                    }
 
                     DBControl dbControl = new DBControl();
                     dbControl.EditEmployee(currEmp);
                     this.departmentManagement.GetDepartment(previousDepartment.Name).RemoveEmployee(currEmp.Email);
 
+                    int HLRdays = Convert.ToInt32(tbxHLRDays.Text);
+                    if (HLRdays > 0)
+                    {
+                        dbControl.InsertRemainingHLR(HLRdays, currEmp.Id);
+                    }
+                    
+
                     MessageBox.Show("You have successfully apply the new changes for this profile!");
                 }
-                catch (EmpNameException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpAgeException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpEmailException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpPhoneException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpStreetException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpCityException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpCountryException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpPostcodeException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (EmpBsnException ex)
+                catch (InputFieldException ex)
                 {
                     MessageBox.Show(ex.Message);
                 }

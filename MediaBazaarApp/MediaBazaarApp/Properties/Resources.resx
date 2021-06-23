@@ -118,31 +118,58 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="round_event_available_black_48dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\round_event_available_black_48dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MediaBazaarLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MediaBazaarLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="round_flight_takeoff_black_48dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\round_flight_takeoff_black_48dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="round_calendar_today_black_48dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\round_calendar_today_black_48dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="round_shopping_cart_black_48dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\round_shopping_cart_black_48dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="round_circle_notifications_black_48dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\round_circle_notifications_black_48dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="round_supervisor_account_black_48dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\round_supervisor_account_black_48dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="round_person_add_black_48dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\round_person_add_black_48dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="outline_location_city_black_24dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\outline_location_city_black_24dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="outline_analytics_black_24dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\outline_analytics_black_24dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="outline_badge_black_24dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\outline_badge_black_24dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="round_circle_notifications_black_48dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\round_circle_notifications_black_48dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="round_calendar_today_black_48dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\round_calendar_today_black_48dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="outline_badge_black_24dp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\outline_badge_black_24dp1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="outline_equalizer_black_24dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\outline_equalizer_black_24dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MediaBazaarLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MediaBazaarLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="outline_swap_horiz_black_24dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\outline_swap_horiz_black_24dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MediaBazaarLogo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MediaBazaarLogo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="round_event_available_black_48dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\round_event_available_black_48dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="round_person_add_black_48dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\round_person_add_black_48dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="outline_badge_black_24dp2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\outline_badge_black_24dp2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="round_flight_takeoff_black_48dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\round_flight_takeoff_black_48dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="outline_history_black_24dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\outline_history_black_24dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="outline_group_add_black_24dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\outline_group_add_black_24dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

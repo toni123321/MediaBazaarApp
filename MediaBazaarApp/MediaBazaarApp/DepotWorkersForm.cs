@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace MediaBazaarApp
 {
@@ -10,7 +15,7 @@ namespace MediaBazaarApp
         private Employee currentEmp;
         private StockManagement stockManagement;
         private DBControl dbc;
-
+        private Dictionary<Point, bool> shortcutLocations;
 
         public DepotWorkersForm(DepartmentManagement departmentManagement, Employee currentEmp, SalesManagement salesManagement, StockManagement stockManagement)
         {
@@ -20,10 +25,14 @@ namespace MediaBazaarApp
             this.salesManagement = salesManagement;
             this.stockManagement = stockManagement;
             this.dbc = new DBControl();
+            shortcutLocations = new Dictionary<Point, bool>();
+
+            setShortcutLocationtions();
+            checkForShortcuts();
 
             lbGreetingMsg.Text = $"Hello, {currentEmp.FirstName}";
 
-            UpdateRequestListboxes();
+            UpdateRequestsDGV();
 
             WelcomeMessage();
         }
@@ -77,15 +86,15 @@ namespace MediaBazaarApp
 
         private void btnSehflRestockRequestsClearSelected_Click(object sender, EventArgs e)
         {
-            lbxAllShelfRestockRequests.SelectedIndex = -1;
+            dgvSRRPending.ClearSelection();
         }
 
-        private void UpdateRequestListboxes()
+        private void UpdateRequestsDGV()
         {
-            dbc.GetShelfRestockRequests(salesManagement, stockManagement);
+            List<ShelfRestockRequest> SRR_done = new List<ShelfRestockRequest>();
+            List<ShelfRestockRequest> SRR_pending = new List<ShelfRestockRequest>();
 
-            lbxAllShelfRestockRequests.Items.Clear();
-            lbxHistoryShelfRestockRequests.Items.Clear();
+            dbc.GetShelfRestockRequests(salesManagement, stockManagement);
 
             if (salesManagement != null)
             {
@@ -93,43 +102,199 @@ namespace MediaBazaarApp
                 {
                     if (srr.Status == SRRstatus.Pending)
                     {
-                        lbxAllShelfRestockRequests.Items.Add(srr);
+                        SRR_pending.Add(srr);
                     }
                     else if (srr.Status == SRRstatus.Done || srr.Status == SRRstatus.Declined)
                     {
-                        lbxHistoryShelfRestockRequests.Items.Add(srr);
+                        SRR_done.Add(srr);
                     }
                 }
             }
+
+            var doneSRRDataSource = SRR_done.Select(x => new
+            {
+                ID = x.ID,
+                Brand = x.Stock.Brand,
+                Model = x.Stock.Model,
+                Status = x.Status
+            }).ToList();
+
+            var pendingSRRDataSource = SRR_pending.Select(x => new
+            {
+                ID = x.ID,
+                Brand = x.Stock.Brand,
+                Model = x.Stock.Model,
+                Status = x.Status
+            }).ToList();
+
+            dgvSRRdone.DataSource = doneSRRDataSource;
+            dgvSRRdone.ClearSelection();
+
+            dgvSRRPending.DataSource = pendingSRRDataSource;
+            dgvSRRPending.ClearSelection();
         }
 
         private void btnShelftRestockRequestsMarkAsDone_Click(object sender, EventArgs e)
         {
-            ShelfRestockRequest request = (ShelfRestockRequest)lbxAllShelfRestockRequests.SelectedItem;
-            dbc.UpdateShelfRestockStatus(request, SRRstatus.Done, salesManagement);
-            //dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
+            int id = Convert.ToInt32(dgvSRRPending.SelectedCells[0].Value.ToString());
+            ShelfRestockRequest request = salesManagement.GetSRR(id);
+
+            if (request != null)
+            {
+                dbc.UpdateShelfRestockStatus(request, SRRstatus.Done, salesManagement);
+            }
+
             dbc.GetShelfRestockRequests(salesManagement, stockManagement);
 
-            lbxAllShelfRestockRequests.SelectedIndex = -1;
+            dgvSRRPending.ClearSelection();
 
-            UpdateRequestListboxes();
+            UpdateRequestsDGV();
         }
 
         private void btnShelftRestockRequestsDecline_Click(object sender, EventArgs e)
         {
-            ShelfRestockRequest request = (ShelfRestockRequest)lbxAllShelfRestockRequests.SelectedItem;
-            dbc.UpdateShelfRestockStatus(request, SRRstatus.Declined, salesManagement);
-            //dbc.GetShelfRestockRequests(this.salesManagement, this.stockManagement);
+            int id = Convert.ToInt32(dgvSRRPending.SelectedCells[0].Value.ToString());
+            ShelfRestockRequest request = salesManagement.GetSRR(id);
+
+            if (request != null)
+            {
+                dbc.UpdateShelfRestockStatus(request, SRRstatus.Declined, salesManagement);
+            }
+
             dbc.GetShelfRestockRequests(salesManagement, stockManagement);
 
-            lbxAllShelfRestockRequests.SelectedIndex = -1;
+            dgvSRRPending.ClearSelection();
 
-            UpdateRequestListboxes();
+            UpdateRequestsDGV();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             WelcomeMessage();
+        }
+        private void setShortcutLocationtions()
+        {
+            shortcutLocations.Add(new Point(514, 395), true);
+            shortcutLocations.Add(new Point(514, 481), true);
+        }
+        private void checkForShortcuts()
+        {
+            requestShortcut.Visible = false;
+            historyShortcut.Visible = false;
+
+            List<Panel> allShortcuts = new List<Panel>();
+
+            allShortcuts.Add(requestShortcut);
+            allShortcuts.Add(historyShortcut);
+
+            List<string> shortcutsSTR = dbc.GetActivatedShortcuts(currentEmp);
+            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+
+            foreach (Point k in keys)
+            {
+                shortcutLocations[k] = true;
+            }
+            foreach (Panel s in allShortcuts)
+            {
+                if (shortcutsSTR.Contains(s.Name))
+                {
+                    activateShortCut(s);
+                    if (s.Name == requestShortcut.Name)
+                    {
+                        reqCH.Checked = true;
+                    }
+                    else if (s.Name == historyShortcut.Name)
+                    {
+                        historyCH.Checked = true;
+                    }
+                }
+            }
+        }
+
+        private void activateShortCut(Panel shortcut)
+        {
+            Point location = shortcut.Location;
+            shortcutLocations[location] = true;
+            shortcut.Visible = false;
+            dbc.RemoveShortcut(currentEmp, shortcut.Name);
+            List<Point> keys = new List<Point>(shortcutLocations.Keys);
+            foreach (Point k in keys)
+            {
+                if (shortcutLocations[k] == true)
+                {
+                    shortcut.Location = k;
+                    shortcut.Visible = true;
+                    shortcutLocations[k] = false;
+                    dbc.SaveShortcut(currentEmp, shortcut.Name);
+                    break;
+                }
+            }
+        }
+
+        private void ApplyShortcutsBTN_Click_1(object sender, EventArgs e)
+        {
+            if (reqCH.Checked == false)
+            {
+                requestShortcut.Visible = false;
+                Point location = requestShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, requestShortcut.Name);
+            }
+
+            if (historyCH.Checked == false)
+            {
+                historyShortcut.Visible = false;
+                Point location = historyShortcut.Location;
+                shortcutLocations[location] = true;
+                dbc.RemoveShortcut(currentEmp, historyShortcut.Name);
+            }
+            if (reqCH.Checked)
+            {
+                activateShortCut(requestShortcut);
+            }
+            if (historyCH.Checked)
+            {
+                activateShortCut(historyShortcut);
+            }
+        }
+
+        private void GoToRequests()
+        {
+            tabControlDepotWorkers.SelectedTab = MakeShelfRestockRequestsTab;
+        }
+        private void GoToHistory()
+        {
+            tabControlDepotWorkers.SelectedTab = HistoryShelfRestockTab;
+        }
+
+        private void RequestShortcut_Click(object sender, EventArgs e)
+        {
+            GoToRequests();
+        }
+
+        private void ReqLBL_Click(object sender, EventArgs e)
+        {
+            GoToRequests();
+        }
+
+        private void ReqPic_Click(object sender, EventArgs e)
+        {
+            GoToRequests();
+        }
+
+        private void HistoryShortcut_Click(object sender, EventArgs e)
+        {
+            GoToHistory();
+        }
+
+        private void HistoryLBL_Click(object sender, EventArgs e)
+        {
+            GoToHistory();
+        }
+
+        private void HistoryPic_Click(object sender, EventArgs e)
+        {
+            GoToHistory();
         }
     }
 }

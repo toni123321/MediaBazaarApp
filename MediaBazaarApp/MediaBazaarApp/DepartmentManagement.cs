@@ -24,6 +24,19 @@ namespace MediaBazaarApp
             return false;
         }
 
+        public Employee GetEmployeeById(int id)
+        {
+            foreach (Employee emp in GetAllEmployees())
+            {
+                if (emp.Id == id)
+                {
+                    return emp;
+                }
+            }
+
+            return null;
+        }
+
         public bool AddDepartment(string name, Employee manager)
         {
             if (GetDepartment(name) == null)
@@ -93,6 +106,22 @@ namespace MediaBazaarApp
         public List<Employee> GetEmployeesByDepartment(string depName)
         {
             return GetDepartment(depName).GetAllEmployees();
+        }
+
+        public Shift GetShiftByID(int id)
+        {
+            foreach (Employee emp in GetAllEmployees())
+            {
+                foreach (Shift s in emp.GetAllShifts())
+                {
+                    if (s.ID == id)
+                    {
+                        return s;
+                    }
+                }
+            }
+
+            return null;
         }
 
     }
