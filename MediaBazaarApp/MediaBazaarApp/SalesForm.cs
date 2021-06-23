@@ -139,7 +139,7 @@ namespace MediaBazaarApp
 
         private void btnConfirmRequest_Click(object sender, EventArgs e)
         {
-            bool isValid = Regex.IsMatch(tbxStockQuantity.Text, @"^[A-Za-z]{2,}$");
+            bool isValid = Regex.IsMatch(tbxStockQuantity.Text, @"^[0-9]{1,}$");
 
             if (isValid)
             {

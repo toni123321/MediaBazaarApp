@@ -367,7 +367,7 @@ namespace MediaBazaarApp
             // 
             this.dgvDepartments.AllowUserToAddRows = false;
             this.dgvDepartments.AllowUserToDeleteRows = false;
-            this.dgvDepartments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDepartments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDepartments.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvDepartments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDepartments.Location = new System.Drawing.Point(15, 166);
@@ -903,7 +903,7 @@ namespace MediaBazaarApp
             // 
             this.dgvStock.AllowUserToAddRows = false;
             this.dgvStock.AllowUserToDeleteRows = false;
-            this.dgvStock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvStock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStock.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStock.Location = new System.Drawing.Point(10, 165);
@@ -1087,6 +1087,7 @@ namespace MediaBazaarApp
             // 
             // colID
             // 
+            this.colID.FillWeight = 42.35764F;
             this.colID.HeaderText = "ID";
             this.colID.MinimumWidth = 6;
             this.colID.Name = "colID";
@@ -1095,6 +1096,7 @@ namespace MediaBazaarApp
             // 
             // colEmp
             // 
+            this.colEmp.FillWeight = 96.49577F;
             this.colEmp.HeaderText = "Employee";
             this.colEmp.MinimumWidth = 6;
             this.colEmp.Name = "colEmp";
@@ -1103,6 +1105,7 @@ namespace MediaBazaarApp
             // 
             // colDatee
             // 
+            this.colDatee.FillWeight = 70.16822F;
             this.colDatee.HeaderText = "Date";
             this.colDatee.MinimumWidth = 6;
             this.colDatee.Name = "colDatee";
@@ -1111,6 +1114,7 @@ namespace MediaBazaarApp
             // 
             // colType
             // 
+            this.colType.FillWeight = 76.12518F;
             this.colType.HeaderText = "Type";
             this.colType.MinimumWidth = 6;
             this.colType.Name = "colType";
@@ -1119,6 +1123,7 @@ namespace MediaBazaarApp
             // 
             // colWFH
             // 
+            this.colWFH.FillWeight = 56.31413F;
             this.colWFH.HeaderText = "WFH";
             this.colWFH.MinimumWidth = 6;
             this.colWFH.Name = "colWFH";
@@ -1127,6 +1132,7 @@ namespace MediaBazaarApp
             // 
             // colAssignedBy
             // 
+            this.colAssignedBy.FillWeight = 154.9191F;
             this.colAssignedBy.HeaderText = "Assigned by";
             this.colAssignedBy.MinimumWidth = 6;
             this.colAssignedBy.Name = "colAssignedBy";
@@ -1135,6 +1141,7 @@ namespace MediaBazaarApp
             // 
             // colAttended
             // 
+            this.colAttended.FillWeight = 102.3382F;
             this.colAttended.HeaderText = "Attended";
             this.colAttended.MinimumWidth = 6;
             this.colAttended.Name = "colAttended";
@@ -1143,6 +1150,7 @@ namespace MediaBazaarApp
             // 
             // colNSR
             // 
+            this.colNSR.FillWeight = 201.2818F;
             this.colNSR.HeaderText = "No show reason";
             this.colNSR.MinimumWidth = 6;
             this.colNSR.Name = "colNSR";
