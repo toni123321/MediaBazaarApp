@@ -1988,7 +1988,7 @@ namespace MediaBazaarApp
                 }
                 else
                 {
-                    editAccountRequestsManager.AcceptRequest(requestId, this.departmentManagement);
+                    editAccountRequestsManager.AcceptRequest(curRequest, this.departmentManagement);
                     cbFilterEditAccountRequests.SelectedIndex = 0;
                     UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());
                     MessageBox.Show("You have accepted this request!");
@@ -2014,7 +2014,7 @@ namespace MediaBazaarApp
                 }
                 else
                 {
-                    editAccountRequestsManager.DeclineRequest(requestId, this.departmentManagement);
+                    editAccountRequestsManager.DeclineRequest(curRequest, this.departmentManagement);
                     cbFilterEditAccountRequests.SelectedIndex = 0;
                     
                     UpdateDGVEditAccountRequests(editAccountRequestsManager.GetAllEditAccountRequests());

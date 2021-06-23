@@ -1171,22 +1171,23 @@ namespace MediaBazaarApp
                     while (dr.Read())
                     {
                         int id = Convert.ToInt32(dr[0]);
-                        string email = dr[1].ToString();
-                        string phone = dr[2].ToString();
-                        string street = dr[3].ToString();
-                        string city = dr[4].ToString();
-                        string country = dr[5].ToString();
-                        string postcode = dr[6].ToString();
-                        string emConName = dr[7].ToString();
+                        int employeeId = Convert.ToInt32(dr[1]);
+                        string email = dr[2].ToString();
+                        string phone = dr[3].ToString();
+                        string street = dr[4].ToString();
+                        string city = dr[5].ToString();
+                        string country = dr[6].ToString();
+                        string postcode = dr[7].ToString();
+                        string emConName = dr[8].ToString();
                         EmergencyContactRelation emConRelation =
-                            (EmergencyContactRelation) Enum.Parse(typeof(EmergencyContactRelation), dr[8].ToString());
-                        string emConEmail = dr[9].ToString();
-                        string emConPhone = dr[10].ToString();
-                        string status = dr[11].ToString();
-                        DateTime requestDate = (DateTime) dr[12];
+                            (EmergencyContactRelation) Enum.Parse(typeof(EmergencyContactRelation), dr[9].ToString());
+                        string emConEmail = dr[10].ToString();
+                        string emConPhone = dr[11].ToString();
+                        string status = dr[12].ToString();
+                        DateTime requestDate = (DateTime) dr[13];
 
                         EditAccountRequest editAccountRequest = new
-                            EditAccountRequest(id, email, phone, street, city, country,
+                            EditAccountRequest(id, employeeId, email, phone, street, city, country,
                                 postcode, emConName, emConRelation, emConEmail,
                                 emConPhone, status, requestDate);
                         editAccountRequests.Add(editAccountRequest);

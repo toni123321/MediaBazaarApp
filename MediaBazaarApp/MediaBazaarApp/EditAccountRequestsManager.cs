@@ -90,16 +90,16 @@ namespace MediaBazaarApp
             }
         }
 
-        public void AcceptRequest(int requestId, DepartmentManagement departmentManagement)
+        public void AcceptRequest(EditAccountRequest request, DepartmentManagement departmentManagement)
         {
             // Update db with new request status
-            EditAccountRequest editedRequest = GetEditAccountRequest(requestId);
+            EditAccountRequest editedRequest = GetEditAccountRequest(request.Id);
             editedRequest.Status = "Accepted";
             // Update the edit account request
             this.storage.UpdateEditAccountRequest(editedRequest);
             LoadDataFromStorage();
 
-            Employee currEmp = departmentManagement.GetEmployeeById(requestId);
+            Employee currEmp = departmentManagement.GetEmployeeById(request.EmployeeID);
             
             currEmp.Email = editedRequest.Email;
             currEmp.PhoneNumber = editedRequest.PhoneNumber;
@@ -123,15 +123,15 @@ namespace MediaBazaarApp
         }
 
 
-        public void DeclineRequest(int requestId, DepartmentManagement departmentManagement)
+        public void DeclineRequest(EditAccountRequest request, DepartmentManagement departmentManagement)
         {
             // Update db with new request status
-            EditAccountRequest editedRequest = GetEditAccountRequest(requestId);
+            EditAccountRequest editedRequest = GetEditAccountRequest(request.Id);
             editedRequest.Status = "Declined";
             this.storage.UpdateEditAccountRequest(editedRequest);
             LoadDataFromStorage();
 
-            Employee currEmp = departmentManagement.GetEmployeeById(requestId);
+            Employee currEmp = departmentManagement.GetEmployeeById(request.EmployeeID);
 
             // Send email to the specified employee
             SendEmailToNotifyEmployee(currEmp.FirstName, currEmp.Email, editedRequest.RequestDate,

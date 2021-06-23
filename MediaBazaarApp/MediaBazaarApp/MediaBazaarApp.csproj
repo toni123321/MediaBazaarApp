@@ -160,12 +160,6 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageAttendanceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ManageAttendanceForm.Designer.cs">
-      <DependentUpon>ManageAttendanceForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,9 +206,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ManageAttendanceForm.resx">
-      <DependentUpon>ManageAttendanceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagementForm.resx">
       <DependentUpon>ManagementForm.cs</DependentUpon>

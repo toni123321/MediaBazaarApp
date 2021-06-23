@@ -52,24 +52,15 @@ namespace MediaBazaarApp
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControlManagement = new System.Windows.Forms.TabControl();
             this.Home = new System.Windows.Forms.TabPage();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.lbTime = new System.Windows.Forms.Label();
             this.lbDateDayOfWeek = new System.Windows.Forms.Label();
             this.lbGreetingMsg = new System.Windows.Forms.Label();
-            this.ViewStatisticsEmpTab = new System.Windows.Forms.TabPage();
-            this.lbAvgWageEmpDepartment = new System.Windows.Forms.Label();
-            this.lbxAvgWageEmpDepartment = new System.Windows.Forms.ListBox();
-            this.tbxAvgWageEmp = new System.Windows.Forms.TextBox();
-            this.lbAvgWageEmp = new System.Windows.Forms.Label();
-            this.lbNrEmpPerDepartment = new System.Windows.Forms.Label();
-            this.lbxNrEmpPerDepartment = new System.Windows.Forms.ListBox();
-            this.tbxNrEmp = new System.Windows.Forms.TextBox();
-            this.lbNrEmp = new System.Windows.Forms.Label();
-            this.ViewStatisticsStocksTab = new System.Windows.Forms.TabPage();
-            this.cbStatisticType = new System.Windows.Forms.ComboBox();
-            this.lbxAllStocksStatistics = new System.Windows.Forms.ListBox();
             this.ViewChartsEmp = new System.Windows.Forms.TabPage();
             this.AvgWageChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.EmpPerDepChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -83,15 +74,23 @@ namespace MediaBazaarApp
             this.label2 = new System.Windows.Forms.Label();
             this.cbxCity = new System.Windows.Forms.ComboBox();
             this.ResidenceChart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.EmpIncrChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.EmployeesIncreaseTab = new System.Windows.Forms.TabPage();
+            this.lineChartEmployeeNrIncrease = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.gbxFilterByYearNrEmpIncrease = new System.Windows.Forms.GroupBox();
+            this.cbFilterByYearNrEmpIncrease = new System.Windows.Forms.ComboBox();
+            this.gbxFilterByDepNrEmpIncrease = new System.Windows.Forms.GroupBox();
+            this.cbFilterByDepEmpNrIncrease = new System.Windows.Forms.ComboBox();
+            this.NrEmployeesStartedTab = new System.Windows.Forms.TabPage();
+            this.gbxFilterByYearNrEmpStarted = new System.Windows.Forms.GroupBox();
+            this.cbFilterByYearNrEmpStarted = new System.Windows.Forms.ComboBox();
+            this.gbxFilterByDepNrEmpStarted = new System.Windows.Forms.GroupBox();
+            this.cbFilterByDepNrEmpStarted = new System.Windows.Forms.ComboBox();
+            this.chartEmployeeNrStarted = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
             this.tabControlManagement.SuspendLayout();
             this.Home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            this.ViewStatisticsEmpTab.SuspendLayout();
-            this.ViewStatisticsStocksTab.SuspendLayout();
             this.ViewChartsEmp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AvgWageChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmpPerDepChart)).BeginInit();
@@ -101,20 +100,25 @@ namespace MediaBazaarApp
             ((System.ComponentModel.ISupportInitialize)(this.AgeChart)).BeginInit();
             this.City.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResidenceChart1)).BeginInit();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EmpIncrChart)).BeginInit();
+            this.EmployeesIncreaseTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lineChartEmployeeNrIncrease)).BeginInit();
+            this.gbxFilterByYearNrEmpIncrease.SuspendLayout();
+            this.gbxFilterByDepNrEmpIncrease.SuspendLayout();
+            this.NrEmployeesStartedTab.SuspendLayout();
+            this.gbxFilterByYearNrEmpStarted.SuspendLayout();
+            this.gbxFilterByDepNrEmpStarted.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartEmployeeNrStarted)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlManagement
             // 
             this.tabControlManagement.Controls.Add(this.Home);
-            this.tabControlManagement.Controls.Add(this.ViewStatisticsEmpTab);
-            this.tabControlManagement.Controls.Add(this.ViewStatisticsStocksTab);
             this.tabControlManagement.Controls.Add(this.ViewChartsEmp);
             this.tabControlManagement.Controls.Add(this.ViewChartStocks);
             this.tabControlManagement.Controls.Add(this.Age);
             this.tabControlManagement.Controls.Add(this.City);
-            this.tabControlManagement.Controls.Add(this.tabPage1);
+            this.tabControlManagement.Controls.Add(this.EmployeesIncreaseTab);
+            this.tabControlManagement.Controls.Add(this.NrEmployeesStartedTab);
             this.tabControlManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControlManagement.Location = new System.Drawing.Point(4, 5);
             this.tabControlManagement.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -122,6 +126,7 @@ namespace MediaBazaarApp
             this.tabControlManagement.SelectedIndex = 0;
             this.tabControlManagement.Size = new System.Drawing.Size(1495, 781);
             this.tabControlManagement.TabIndex = 0;
+            this.tabControlManagement.SelectedIndexChanged += new System.EventHandler(this.tabControlManagement_SelectedIndexChanged);
             // 
             // Home
             // 
@@ -178,156 +183,6 @@ namespace MediaBazaarApp
             this.lbGreetingMsg.Size = new System.Drawing.Size(533, 65);
             this.lbGreetingMsg.TabIndex = 12;
             this.lbGreetingMsg.Text = "Good morning, Name!";
-            // 
-            // ViewStatisticsEmpTab
-            // 
-            this.ViewStatisticsEmpTab.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.ViewStatisticsEmpTab.Controls.Add(this.lbAvgWageEmpDepartment);
-            this.ViewStatisticsEmpTab.Controls.Add(this.lbxAvgWageEmpDepartment);
-            this.ViewStatisticsEmpTab.Controls.Add(this.tbxAvgWageEmp);
-            this.ViewStatisticsEmpTab.Controls.Add(this.lbAvgWageEmp);
-            this.ViewStatisticsEmpTab.Controls.Add(this.lbNrEmpPerDepartment);
-            this.ViewStatisticsEmpTab.Controls.Add(this.lbxNrEmpPerDepartment);
-            this.ViewStatisticsEmpTab.Controls.Add(this.tbxNrEmp);
-            this.ViewStatisticsEmpTab.Controls.Add(this.lbNrEmp);
-            this.ViewStatisticsEmpTab.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ViewStatisticsEmpTab.Location = new System.Drawing.Point(4, 27);
-            this.ViewStatisticsEmpTab.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ViewStatisticsEmpTab.Name = "ViewStatisticsEmpTab";
-            this.ViewStatisticsEmpTab.Padding = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ViewStatisticsEmpTab.Size = new System.Drawing.Size(1487, 750);
-            this.ViewStatisticsEmpTab.TabIndex = 0;
-            this.ViewStatisticsEmpTab.Text = "Employees statistics";
-            // 
-            // lbAvgWageEmpDepartment
-            // 
-            this.lbAvgWageEmpDepartment.AutoSize = true;
-            this.lbAvgWageEmpDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAvgWageEmpDepartment.Location = new System.Drawing.Point(885, 168);
-            this.lbAvgWageEmpDepartment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbAvgWageEmpDepartment.Name = "lbAvgWageEmpDepartment";
-            this.lbAvgWageEmpDepartment.Size = new System.Drawing.Size(435, 25);
-            this.lbAvgWageEmpDepartment.TabIndex = 15;
-            this.lbAvgWageEmpDepartment.Text = "Average wage of employees per department";
-            // 
-            // lbxAvgWageEmpDepartment
-            // 
-            this.lbxAvgWageEmpDepartment.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lbxAvgWageEmpDepartment.FormattingEnabled = true;
-            this.lbxAvgWageEmpDepartment.HorizontalScrollbar = true;
-            this.lbxAvgWageEmpDepartment.ItemHeight = 18;
-            this.lbxAvgWageEmpDepartment.Location = new System.Drawing.Point(889, 238);
-            this.lbxAvgWageEmpDepartment.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.lbxAvgWageEmpDepartment.Name = "lbxAvgWageEmpDepartment";
-            this.lbxAvgWageEmpDepartment.Size = new System.Drawing.Size(509, 364);
-            this.lbxAvgWageEmpDepartment.TabIndex = 14;
-            // 
-            // tbxAvgWageEmp
-            // 
-            this.tbxAvgWageEmp.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxAvgWageEmp.Location = new System.Drawing.Point(1198, 69);
-            this.tbxAvgWageEmp.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.tbxAvgWageEmp.Name = "tbxAvgWageEmp";
-            this.tbxAvgWageEmp.ReadOnly = true;
-            this.tbxAvgWageEmp.Size = new System.Drawing.Size(200, 24);
-            this.tbxAvgWageEmp.TabIndex = 13;
-            // 
-            // lbAvgWageEmp
-            // 
-            this.lbAvgWageEmp.AutoSize = true;
-            this.lbAvgWageEmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAvgWageEmp.Location = new System.Drawing.Point(885, 67);
-            this.lbAvgWageEmp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbAvgWageEmp.Name = "lbAvgWageEmp";
-            this.lbAvgWageEmp.Size = new System.Drawing.Size(280, 25);
-            this.lbAvgWageEmp.TabIndex = 12;
-            this.lbAvgWageEmp.Text = "Average wage of employee:";
-            // 
-            // lbNrEmpPerDepartment
-            // 
-            this.lbNrEmpPerDepartment.AutoSize = true;
-            this.lbNrEmpPerDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNrEmpPerDepartment.Location = new System.Drawing.Point(67, 168);
-            this.lbNrEmpPerDepartment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbNrEmpPerDepartment.Name = "lbNrEmpPerDepartment";
-            this.lbNrEmpPerDepartment.Size = new System.Drawing.Size(372, 25);
-            this.lbNrEmpPerDepartment.TabIndex = 11;
-            this.lbNrEmpPerDepartment.Text = "Number of employees per department";
-            // 
-            // lbxNrEmpPerDepartment
-            // 
-            this.lbxNrEmpPerDepartment.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lbxNrEmpPerDepartment.FormattingEnabled = true;
-            this.lbxNrEmpPerDepartment.HorizontalScrollbar = true;
-            this.lbxNrEmpPerDepartment.ItemHeight = 18;
-            this.lbxNrEmpPerDepartment.Location = new System.Drawing.Point(71, 238);
-            this.lbxNrEmpPerDepartment.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.lbxNrEmpPerDepartment.Name = "lbxNrEmpPerDepartment";
-            this.lbxNrEmpPerDepartment.Size = new System.Drawing.Size(509, 364);
-            this.lbxNrEmpPerDepartment.TabIndex = 10;
-            // 
-            // tbxNrEmp
-            // 
-            this.tbxNrEmp.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbxNrEmp.Location = new System.Drawing.Point(380, 69);
-            this.tbxNrEmp.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.tbxNrEmp.Name = "tbxNrEmp";
-            this.tbxNrEmp.ReadOnly = true;
-            this.tbxNrEmp.Size = new System.Drawing.Size(200, 24);
-            this.tbxNrEmp.TabIndex = 9;
-            // 
-            // lbNrEmp
-            // 
-            this.lbNrEmp.AutoSize = true;
-            this.lbNrEmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNrEmp.Location = new System.Drawing.Point(67, 67);
-            this.lbNrEmp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbNrEmp.Name = "lbNrEmp";
-            this.lbNrEmp.Size = new System.Drawing.Size(228, 25);
-            this.lbNrEmp.TabIndex = 8;
-            this.lbNrEmp.Text = "Number of employees:";
-            // 
-            // ViewStatisticsStocksTab
-            // 
-            this.ViewStatisticsStocksTab.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.ViewStatisticsStocksTab.Controls.Add(this.cbStatisticType);
-            this.ViewStatisticsStocksTab.Controls.Add(this.lbxAllStocksStatistics);
-            this.ViewStatisticsStocksTab.Location = new System.Drawing.Point(4, 27);
-            this.ViewStatisticsStocksTab.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ViewStatisticsStocksTab.Name = "ViewStatisticsStocksTab";
-            this.ViewStatisticsStocksTab.Padding = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ViewStatisticsStocksTab.Size = new System.Drawing.Size(1487, 750);
-            this.ViewStatisticsStocksTab.TabIndex = 1;
-            this.ViewStatisticsStocksTab.Text = "Stocks statistics";
-            // 
-            // cbStatisticType
-            // 
-            this.cbStatisticType.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbStatisticType.FormattingEnabled = true;
-            this.cbStatisticType.Items.AddRange(new object[] {
-            "lowest price",
-            "highest price",
-            "smallest quantity",
-            "biggest quantity"});
-            this.cbStatisticType.Location = new System.Drawing.Point(216, 58);
-            this.cbStatisticType.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.cbStatisticType.Name = "cbStatisticType";
-            this.cbStatisticType.Size = new System.Drawing.Size(368, 26);
-            this.cbStatisticType.TabIndex = 7;
-            this.cbStatisticType.Text = "Sort based on statistic type";
-            this.cbStatisticType.SelectedIndexChanged += new System.EventHandler(this.cbStatisticType_SelectedIndexChanged);
-            // 
-            // lbxAllStocksStatistics
-            // 
-            this.lbxAllStocksStatistics.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lbxAllStocksStatistics.FormattingEnabled = true;
-            this.lbxAllStocksStatistics.HorizontalScrollbar = true;
-            this.lbxAllStocksStatistics.ItemHeight = 18;
-            this.lbxAllStocksStatistics.Location = new System.Drawing.Point(216, 132);
-            this.lbxAllStocksStatistics.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.lbxAllStocksStatistics.Name = "lbxAllStocksStatistics";
-            this.lbxAllStocksStatistics.Size = new System.Drawing.Size(757, 454);
-            this.lbxAllStocksStatistics.TabIndex = 6;
             // 
             // ViewChartsEmp
             // 
@@ -539,42 +394,139 @@ namespace MediaBazaarApp
             this.ResidenceChart1.TabIndex = 0;
             this.ResidenceChart1.Text = "chart1";
             // 
-            // tabPage1
+            // EmployeesIncreaseTab
             // 
-            this.tabPage1.Controls.Add(this.EmpIncrChart);
-            this.tabPage1.Controls.Add(this.comboBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 27);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1487, 750);
-            this.tabPage1.TabIndex = 8;
-            this.tabPage1.Text = "Employee increment";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.EmployeesIncreaseTab.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.EmployeesIncreaseTab.Controls.Add(this.lineChartEmployeeNrIncrease);
+            this.EmployeesIncreaseTab.Controls.Add(this.gbxFilterByYearNrEmpIncrease);
+            this.EmployeesIncreaseTab.Controls.Add(this.gbxFilterByDepNrEmpIncrease);
+            this.EmployeesIncreaseTab.Location = new System.Drawing.Point(4, 27);
+            this.EmployeesIncreaseTab.Name = "EmployeesIncreaseTab";
+            this.EmployeesIncreaseTab.Size = new System.Drawing.Size(1487, 750);
+            this.EmployeesIncreaseTab.TabIndex = 8;
+            this.EmployeesIncreaseTab.Text = "Employee increase";
             // 
-            // EmpIncrChart
+            // lineChartEmployeeNrIncrease
             // 
             chartArea6.Name = "ChartArea1";
-            this.EmpIncrChart.ChartAreas.Add(chartArea6);
+            this.lineChartEmployeeNrIncrease.ChartAreas.Add(chartArea6);
             legend6.Name = "Legend1";
-            this.EmpIncrChart.Legends.Add(legend6);
-            this.EmpIncrChart.Location = new System.Drawing.Point(19, 95);
-            this.EmpIncrChart.Name = "EmpIncrChart";
+            this.lineChartEmployeeNrIncrease.Legends.Add(legend6);
+            this.lineChartEmployeeNrIncrease.Location = new System.Drawing.Point(68, 122);
+            this.lineChartEmployeeNrIncrease.Name = "lineChartEmployeeNrIncrease";
             series7.ChartArea = "ChartArea1";
             series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series7.Legend = "Legend1";
-            series7.Name = "EmplLine";
-            this.EmpIncrChart.Series.Add(series7);
-            this.EmpIncrChart.Size = new System.Drawing.Size(1312, 464);
-            this.EmpIncrChart.TabIndex = 1;
-            this.EmpIncrChart.Text = "chart1";
+            series7.Name = "EmployeesNrIncrease";
+            this.lineChartEmployeeNrIncrease.Series.Add(series7);
+            this.lineChartEmployeeNrIncrease.Size = new System.Drawing.Size(1329, 557);
+            this.lineChartEmployeeNrIncrease.TabIndex = 5;
+            this.lineChartEmployeeNrIncrease.Text = "chart1";
             // 
-            // comboBox1
+            // gbxFilterByYearNrEmpIncrease
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(19, 25);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(179, 26);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_2);
+            this.gbxFilterByYearNrEmpIncrease.Controls.Add(this.cbFilterByYearNrEmpIncrease);
+            this.gbxFilterByYearNrEmpIncrease.Location = new System.Drawing.Point(754, 33);
+            this.gbxFilterByYearNrEmpIncrease.Name = "gbxFilterByYearNrEmpIncrease";
+            this.gbxFilterByYearNrEmpIncrease.Size = new System.Drawing.Size(327, 70);
+            this.gbxFilterByYearNrEmpIncrease.TabIndex = 4;
+            this.gbxFilterByYearNrEmpIncrease.TabStop = false;
+            this.gbxFilterByYearNrEmpIncrease.Text = "Choose year";
+            // 
+            // cbFilterByYearNrEmpIncrease
+            // 
+            this.cbFilterByYearNrEmpIncrease.FormattingEnabled = true;
+            this.cbFilterByYearNrEmpIncrease.Location = new System.Drawing.Point(112, 23);
+            this.cbFilterByYearNrEmpIncrease.Name = "cbFilterByYearNrEmpIncrease";
+            this.cbFilterByYearNrEmpIncrease.Size = new System.Drawing.Size(166, 26);
+            this.cbFilterByYearNrEmpIncrease.TabIndex = 0;
+            this.cbFilterByYearNrEmpIncrease.SelectedIndexChanged += new System.EventHandler(this.cbChooseYearNrEmpIncrease_SelectedIndexChanged);
+            // 
+            // gbxFilterByDepNrEmpIncrease
+            // 
+            this.gbxFilterByDepNrEmpIncrease.Controls.Add(this.cbFilterByDepEmpNrIncrease);
+            this.gbxFilterByDepNrEmpIncrease.Location = new System.Drawing.Point(352, 33);
+            this.gbxFilterByDepNrEmpIncrease.Name = "gbxFilterByDepNrEmpIncrease";
+            this.gbxFilterByDepNrEmpIncrease.Size = new System.Drawing.Size(327, 70);
+            this.gbxFilterByDepNrEmpIncrease.TabIndex = 3;
+            this.gbxFilterByDepNrEmpIncrease.TabStop = false;
+            this.gbxFilterByDepNrEmpIncrease.Text = "Filter by department";
+            // 
+            // cbFilterByDepEmpNrIncrease
+            // 
+            this.cbFilterByDepEmpNrIncrease.FormattingEnabled = true;
+            this.cbFilterByDepEmpNrIncrease.Location = new System.Drawing.Point(87, 23);
+            this.cbFilterByDepEmpNrIncrease.Name = "cbFilterByDepEmpNrIncrease";
+            this.cbFilterByDepEmpNrIncrease.Size = new System.Drawing.Size(205, 26);
+            this.cbFilterByDepEmpNrIncrease.TabIndex = 0;
+            this.cbFilterByDepEmpNrIncrease.SelectedIndexChanged += new System.EventHandler(this.cbFilterByDepEmpNrIncrease_SelectedIndexChanged);
+            // 
+            // NrEmployeesStartedTab
+            // 
+            this.NrEmployeesStartedTab.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.NrEmployeesStartedTab.Controls.Add(this.gbxFilterByYearNrEmpStarted);
+            this.NrEmployeesStartedTab.Controls.Add(this.gbxFilterByDepNrEmpStarted);
+            this.NrEmployeesStartedTab.Controls.Add(this.chartEmployeeNrStarted);
+            this.NrEmployeesStartedTab.Location = new System.Drawing.Point(4, 27);
+            this.NrEmployeesStartedTab.Name = "NrEmployeesStartedTab";
+            this.NrEmployeesStartedTab.Size = new System.Drawing.Size(1487, 750);
+            this.NrEmployeesStartedTab.TabIndex = 9;
+            this.NrEmployeesStartedTab.Text = "New Employees statistics";
+            // 
+            // gbxFilterByYearNrEmpStarted
+            // 
+            this.gbxFilterByYearNrEmpStarted.Controls.Add(this.cbFilterByYearNrEmpStarted);
+            this.gbxFilterByYearNrEmpStarted.Location = new System.Drawing.Point(771, 32);
+            this.gbxFilterByYearNrEmpStarted.Name = "gbxFilterByYearNrEmpStarted";
+            this.gbxFilterByYearNrEmpStarted.Size = new System.Drawing.Size(327, 70);
+            this.gbxFilterByYearNrEmpStarted.TabIndex = 6;
+            this.gbxFilterByYearNrEmpStarted.TabStop = false;
+            this.gbxFilterByYearNrEmpStarted.Text = "Choose year";
+            // 
+            // cbFilterByYearNrEmpStarted
+            // 
+            this.cbFilterByYearNrEmpStarted.FormattingEnabled = true;
+            this.cbFilterByYearNrEmpStarted.Location = new System.Drawing.Point(112, 23);
+            this.cbFilterByYearNrEmpStarted.Name = "cbFilterByYearNrEmpStarted";
+            this.cbFilterByYearNrEmpStarted.Size = new System.Drawing.Size(166, 26);
+            this.cbFilterByYearNrEmpStarted.TabIndex = 0;
+            this.cbFilterByYearNrEmpStarted.SelectedIndexChanged += new System.EventHandler(this.cbFilterByYearNrEmpStarted_SelectedIndexChanged);
+            // 
+            // gbxFilterByDepNrEmpStarted
+            // 
+            this.gbxFilterByDepNrEmpStarted.Controls.Add(this.cbFilterByDepNrEmpStarted);
+            this.gbxFilterByDepNrEmpStarted.Location = new System.Drawing.Point(309, 32);
+            this.gbxFilterByDepNrEmpStarted.Name = "gbxFilterByDepNrEmpStarted";
+            this.gbxFilterByDepNrEmpStarted.Size = new System.Drawing.Size(327, 70);
+            this.gbxFilterByDepNrEmpStarted.TabIndex = 5;
+            this.gbxFilterByDepNrEmpStarted.TabStop = false;
+            this.gbxFilterByDepNrEmpStarted.Text = "Filter by department";
+            // 
+            // cbFilterByDepNrEmpStarted
+            // 
+            this.cbFilterByDepNrEmpStarted.FormattingEnabled = true;
+            this.cbFilterByDepNrEmpStarted.Location = new System.Drawing.Point(87, 23);
+            this.cbFilterByDepNrEmpStarted.Name = "cbFilterByDepNrEmpStarted";
+            this.cbFilterByDepNrEmpStarted.Size = new System.Drawing.Size(205, 26);
+            this.cbFilterByDepNrEmpStarted.TabIndex = 0;
+            this.cbFilterByDepNrEmpStarted.SelectedIndexChanged += new System.EventHandler(this.cbFilterByDepNrEmpStarted_SelectedIndexChanged);
+            // 
+            // chartEmployeeNrStarted
+            // 
+            chartArea7.Name = "ChartArea1";
+            this.chartEmployeeNrStarted.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chartEmployeeNrStarted.Legends.Add(legend7);
+            this.chartEmployeeNrStarted.Location = new System.Drawing.Point(110, 136);
+            this.chartEmployeeNrStarted.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chartEmployeeNrStarted.Name = "chartEmployeeNrStarted";
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "EmployeesNrStarted";
+            this.chartEmployeeNrStarted.Series.Add(series8);
+            this.chartEmployeeNrStarted.Size = new System.Drawing.Size(1197, 545);
+            this.chartEmployeeNrStarted.TabIndex = 3;
+            this.chartEmployeeNrStarted.Text = "chart1";
             // 
             // timer1
             // 
@@ -599,9 +551,6 @@ namespace MediaBazaarApp
             this.Home.ResumeLayout(false);
             this.Home.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            this.ViewStatisticsEmpTab.ResumeLayout(false);
-            this.ViewStatisticsEmpTab.PerformLayout();
-            this.ViewStatisticsStocksTab.ResumeLayout(false);
             this.ViewChartsEmp.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AvgWageChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmpPerDepChart)).EndInit();
@@ -613,8 +562,14 @@ namespace MediaBazaarApp
             this.City.ResumeLayout(false);
             this.City.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResidenceChart1)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.EmpIncrChart)).EndInit();
+            this.EmployeesIncreaseTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lineChartEmployeeNrIncrease)).EndInit();
+            this.gbxFilterByYearNrEmpIncrease.ResumeLayout(false);
+            this.gbxFilterByDepNrEmpIncrease.ResumeLayout(false);
+            this.NrEmployeesStartedTab.ResumeLayout(false);
+            this.gbxFilterByYearNrEmpStarted.ResumeLayout(false);
+            this.gbxFilterByDepNrEmpStarted.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartEmployeeNrStarted)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -622,18 +577,6 @@ namespace MediaBazaarApp
         #endregion
 
         private System.Windows.Forms.TabControl tabControlManagement;
-        private System.Windows.Forms.TabPage ViewStatisticsEmpTab;
-        private System.Windows.Forms.TabPage ViewStatisticsStocksTab;
-        private System.Windows.Forms.Label lbAvgWageEmpDepartment;
-        private System.Windows.Forms.ListBox lbxAvgWageEmpDepartment;
-        private System.Windows.Forms.TextBox tbxAvgWageEmp;
-        private System.Windows.Forms.Label lbAvgWageEmp;
-        private System.Windows.Forms.Label lbNrEmpPerDepartment;
-        private System.Windows.Forms.ListBox lbxNrEmpPerDepartment;
-        private System.Windows.Forms.TextBox tbxNrEmp;
-        private System.Windows.Forms.Label lbNrEmp;
-        private System.Windows.Forms.ComboBox cbStatisticType;
-        private System.Windows.Forms.ListBox lbxAllStocksStatistics;
         private System.Windows.Forms.TabPage Home;
         private System.Windows.Forms.TabPage ViewChartsEmp;
         private System.Windows.Forms.DataVisualization.Charting.Chart EmpPerDepChart;
@@ -653,8 +596,18 @@ namespace MediaBazaarApp
         private System.Windows.Forms.Label lbDateDayOfWeek;
         private System.Windows.Forms.Label lbGreetingMsg;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart EmpIncrChart;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TabPage EmployeesIncreaseTab;
+        private System.Windows.Forms.ComboBox cbFilterByDepEmpNrIncrease;
+        private System.Windows.Forms.GroupBox gbxFilterByYearNrEmpIncrease;
+        private System.Windows.Forms.GroupBox gbxFilterByDepNrEmpIncrease;
+        private System.Windows.Forms.ComboBox cbFilterByYearNrEmpIncrease;
+        private System.Windows.Forms.DataVisualization.Charting.Chart lineChartEmployeeNrIncrease;
+        private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
+        private System.Windows.Forms.TabPage NrEmployeesStartedTab;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartEmployeeNrStarted;
+        private System.Windows.Forms.GroupBox gbxFilterByYearNrEmpStarted;
+        private System.Windows.Forms.ComboBox cbFilterByYearNrEmpStarted;
+        private System.Windows.Forms.GroupBox gbxFilterByDepNrEmpStarted;
+        private System.Windows.Forms.ComboBox cbFilterByDepNrEmpStarted;
     }
 }

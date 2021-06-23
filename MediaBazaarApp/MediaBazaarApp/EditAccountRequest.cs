@@ -9,6 +9,7 @@ namespace MediaBazaarApp
     public class EditAccountRequest
     {
         public int Id { get; set; }
+        public int EmployeeID { get; set; }
         public string Email  { get; set; }
         public string PhoneNumber { get; set; }
         public string Street { get; set; }
@@ -23,9 +24,10 @@ namespace MediaBazaarApp
         public string Status { get; set; }
         public DateTime RequestDate { get; set; }
 
-        public EditAccountRequest(int id, string email, string phoneNumber, string street, string city, string country, string postcode, string emergencyContactName, EmergencyContactRelation emergencyContactRelation, string emergencyContactEmail, string emergencyContactPhone, string status, DateTime requestDate)
+        public EditAccountRequest(int id, int employeeId, string email, string phoneNumber, string street, string city, string country, string postcode, string emergencyContactName, EmergencyContactRelation emergencyContactRelation, string emergencyContactEmail, string emergencyContactPhone, string status, DateTime requestDate)
         {
             Id = id;
+            EmployeeID = employeeId;
             Email = email;
             PhoneNumber = phoneNumber;
             Street = street;
