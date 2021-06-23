@@ -30,31 +30,31 @@ namespace MediaBazaarApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea29 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend29 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series33 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title13 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea30 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend30 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series34 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title14 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea31 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend31 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series35 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series36 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title15 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea32 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend32 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series37 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea33 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend33 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series38 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea34 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend34 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series39 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea35 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend35 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series40 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControlManagement = new System.Windows.Forms.TabControl();
             this.Home = new System.Windows.Forms.TabPage();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -88,6 +88,9 @@ namespace MediaBazaarApp
             this.chartEmployeeNrStarted = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dgvStockStatistics = new System.Windows.Forms.DataGridView();
+            this.cbStatisticType = new System.Windows.Forms.ComboBox();
             this.tabControlManagement.SuspendLayout();
             this.Home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -108,11 +111,14 @@ namespace MediaBazaarApp
             this.gbxFilterByYearNrEmpStarted.SuspendLayout();
             this.gbxFilterByDepNrEmpStarted.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartEmployeeNrStarted)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStockStatistics)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlManagement
             // 
             this.tabControlManagement.Controls.Add(this.Home);
+            this.tabControlManagement.Controls.Add(this.tabPage1);
             this.tabControlManagement.Controls.Add(this.ViewChartsEmp);
             this.tabControlManagement.Controls.Add(this.ViewChartStocks);
             this.tabControlManagement.Controls.Add(this.Age);
@@ -200,48 +206,48 @@ namespace MediaBazaarApp
             // AvgWageChart
             // 
             this.AvgWageChart.BackColor = System.Drawing.Color.MediumTurquoise;
-            chartArea1.Name = "ChartArea1";
-            this.AvgWageChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.AvgWageChart.Legends.Add(legend1);
+            chartArea29.Name = "ChartArea1";
+            this.AvgWageChart.ChartAreas.Add(chartArea29);
+            legend29.Name = "Legend1";
+            this.AvgWageChart.Legends.Add(legend29);
             this.AvgWageChart.Location = new System.Drawing.Point(728, 5);
             this.AvgWageChart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AvgWageChart.Name = "AvgWageChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.AvgWageChart.Series.Add(series1);
+            series33.ChartArea = "ChartArea1";
+            series33.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series33.Legend = "Legend1";
+            series33.Name = "Series1";
+            this.AvgWageChart.Series.Add(series33);
             this.AvgWageChart.Size = new System.Drawing.Size(737, 678);
             this.AvgWageChart.TabIndex = 1;
             this.AvgWageChart.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Averege Wage Per Department";
-            title1.Text = "Averege Wage Per Department";
-            this.AvgWageChart.Titles.Add(title1);
+            title13.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title13.Name = "Averege Wage Per Department";
+            title13.Text = "Averege Wage Per Department";
+            this.AvgWageChart.Titles.Add(title13);
             // 
             // EmpPerDepChart
             // 
             this.EmpPerDepChart.BackColor = System.Drawing.Color.MediumTurquoise;
-            chartArea2.Name = "ChartArea1";
-            this.EmpPerDepChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.EmpPerDepChart.Legends.Add(legend2);
+            chartArea30.Name = "ChartArea1";
+            this.EmpPerDepChart.ChartAreas.Add(chartArea30);
+            legend30.Name = "Legend1";
+            this.EmpPerDepChart.Legends.Add(legend30);
             this.EmpPerDepChart.Location = new System.Drawing.Point(0, 5);
             this.EmpPerDepChart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.EmpPerDepChart.Name = "EmpPerDepChart";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.EmpPerDepChart.Series.Add(series2);
+            series34.ChartArea = "ChartArea1";
+            series34.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series34.Legend = "Legend1";
+            series34.Name = "Series1";
+            this.EmpPerDepChart.Series.Add(series34);
             this.EmpPerDepChart.Size = new System.Drawing.Size(749, 678);
             this.EmpPerDepChart.TabIndex = 0;
             this.EmpPerDepChart.Text = "chart1";
-            title2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title2.Name = "Employees Per Department";
-            title2.Text = "Employees Per Department";
-            this.EmpPerDepChart.Titles.Add(title2);
+            title14.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title14.Name = "Employees Per Department";
+            title14.Text = "Employees Per Department";
+            this.EmpPerDepChart.Titles.Add(title14);
             // 
             // ViewChartStocks
             // 
@@ -258,31 +264,31 @@ namespace MediaBazaarApp
             // StocksChart
             // 
             this.StocksChart.BackColor = System.Drawing.Color.MediumTurquoise;
-            chartArea3.Name = "ChartArea1";
-            this.StocksChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.StocksChart.Legends.Add(legend3);
+            chartArea31.Name = "ChartArea1";
+            this.StocksChart.ChartAreas.Add(chartArea31);
+            legend31.Name = "Legend1";
+            this.StocksChart.Legends.Add(legend31);
             this.StocksChart.Location = new System.Drawing.Point(7, 9);
             this.StocksChart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.StocksChart.Name = "StocksChart";
-            series3.ChartArea = "ChartArea1";
-            series3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series3.Legend = "Legend1";
-            series3.Name = "Price in €";
-            series3.YValuesPerPoint = 4;
-            series4.ChartArea = "ChartArea1";
-            series4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series4.Legend = "Legend1";
-            series4.Name = "Quantity";
-            this.StocksChart.Series.Add(series3);
-            this.StocksChart.Series.Add(series4);
+            series35.ChartArea = "ChartArea1";
+            series35.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series35.Legend = "Legend1";
+            series35.Name = "Price in €";
+            series35.YValuesPerPoint = 4;
+            series36.ChartArea = "ChartArea1";
+            series36.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series36.Legend = "Legend1";
+            series36.Name = "Quantity";
+            this.StocksChart.Series.Add(series35);
+            this.StocksChart.Series.Add(series36);
             this.StocksChart.Size = new System.Drawing.Size(1458, 678);
             this.StocksChart.TabIndex = 0;
             this.StocksChart.Text = "chart1";
-            title3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title3.Name = "Stocks";
-            title3.Text = "Stocks";
-            this.StocksChart.Titles.Add(title3);
+            title15.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title15.Name = "Stocks";
+            title15.Text = "Stocks";
+            this.StocksChart.Titles.Add(title15);
             // 
             // Age
             // 
@@ -324,17 +330,17 @@ namespace MediaBazaarApp
             // 
             // AgeChart
             // 
-            chartArea4.Name = "ChartArea1";
-            this.AgeChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.AgeChart.Legends.Add(legend4);
+            chartArea32.Name = "ChartArea1";
+            this.AgeChart.ChartAreas.Add(chartArea32);
+            legend32.Name = "Legend1";
+            this.AgeChart.Legends.Add(legend32);
             this.AgeChart.Location = new System.Drawing.Point(282, 9);
             this.AgeChart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AgeChart.Name = "AgeChart";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Employees Age";
-            this.AgeChart.Series.Add(series5);
+            series37.ChartArea = "ChartArea1";
+            series37.Legend = "Legend1";
+            series37.Name = "Employees Age";
+            this.AgeChart.Series.Add(series37);
             this.AgeChart.Size = new System.Drawing.Size(951, 661);
             this.AgeChart.TabIndex = 0;
             this.AgeChart.Text = "chart1";
@@ -379,17 +385,17 @@ namespace MediaBazaarApp
             // 
             // ResidenceChart1
             // 
-            chartArea5.Name = "ChartArea1";
-            this.ResidenceChart1.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.ResidenceChart1.Legends.Add(legend5);
+            chartArea33.Name = "ChartArea1";
+            this.ResidenceChart1.ChartAreas.Add(chartArea33);
+            legend33.Name = "Legend1";
+            this.ResidenceChart1.Legends.Add(legend33);
             this.ResidenceChart1.Location = new System.Drawing.Point(414, 101);
             this.ResidenceChart1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ResidenceChart1.Name = "ResidenceChart1";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Employees";
-            this.ResidenceChart1.Series.Add(series6);
+            series38.ChartArea = "ChartArea1";
+            series38.Legend = "Legend1";
+            series38.Name = "Employees";
+            this.ResidenceChart1.Series.Add(series38);
             this.ResidenceChart1.Size = new System.Drawing.Size(746, 509);
             this.ResidenceChart1.TabIndex = 0;
             this.ResidenceChart1.Text = "chart1";
@@ -408,17 +414,17 @@ namespace MediaBazaarApp
             // 
             // lineChartEmployeeNrIncrease
             // 
-            chartArea6.Name = "ChartArea1";
-            this.lineChartEmployeeNrIncrease.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.lineChartEmployeeNrIncrease.Legends.Add(legend6);
+            chartArea34.Name = "ChartArea1";
+            this.lineChartEmployeeNrIncrease.ChartAreas.Add(chartArea34);
+            legend34.Name = "Legend1";
+            this.lineChartEmployeeNrIncrease.Legends.Add(legend34);
             this.lineChartEmployeeNrIncrease.Location = new System.Drawing.Point(68, 122);
             this.lineChartEmployeeNrIncrease.Name = "lineChartEmployeeNrIncrease";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series7.Legend = "Legend1";
-            series7.Name = "EmployeesNrIncrease";
-            this.lineChartEmployeeNrIncrease.Series.Add(series7);
+            series39.ChartArea = "ChartArea1";
+            series39.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series39.Legend = "Legend1";
+            series39.Name = "EmployeesNrIncrease";
+            this.lineChartEmployeeNrIncrease.Series.Add(series39);
             this.lineChartEmployeeNrIncrease.Size = new System.Drawing.Size(1329, 557);
             this.lineChartEmployeeNrIncrease.TabIndex = 5;
             this.lineChartEmployeeNrIncrease.Text = "chart1";
@@ -513,17 +519,17 @@ namespace MediaBazaarApp
             // 
             // chartEmployeeNrStarted
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chartEmployeeNrStarted.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chartEmployeeNrStarted.Legends.Add(legend7);
+            chartArea35.Name = "ChartArea1";
+            this.chartEmployeeNrStarted.ChartAreas.Add(chartArea35);
+            legend35.Name = "Legend1";
+            this.chartEmployeeNrStarted.Legends.Add(legend35);
             this.chartEmployeeNrStarted.Location = new System.Drawing.Point(110, 136);
             this.chartEmployeeNrStarted.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chartEmployeeNrStarted.Name = "chartEmployeeNrStarted";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "EmployeesNrStarted";
-            this.chartEmployeeNrStarted.Series.Add(series8);
+            series40.ChartArea = "ChartArea1";
+            series40.Legend = "Legend1";
+            series40.Name = "EmployeesNrStarted";
+            this.chartEmployeeNrStarted.Series.Add(series40);
             this.chartEmployeeNrStarted.Size = new System.Drawing.Size(1197, 545);
             this.chartEmployeeNrStarted.TabIndex = 3;
             this.chartEmployeeNrStarted.Text = "chart1";
@@ -533,6 +539,45 @@ namespace MediaBazaarApp
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.tabPage1.Controls.Add(this.cbStatisticType);
+            this.tabPage1.Controls.Add(this.dgvStockStatistics);
+            this.tabPage1.ForeColor = System.Drawing.Color.Black;
+            this.tabPage1.Location = new System.Drawing.Point(4, 27);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1487, 750);
+            this.tabPage1.TabIndex = 10;
+            this.tabPage1.Text = "Stock stats";
+            // 
+            // dgvStockStatistics
+            // 
+            this.dgvStockStatistics.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvStockStatistics.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvStockStatistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStockStatistics.Location = new System.Drawing.Point(25, 74);
+            this.dgvStockStatistics.Name = "dgvStockStatistics";
+            this.dgvStockStatistics.RowHeadersWidth = 51;
+            this.dgvStockStatistics.RowTemplate.Height = 24;
+            this.dgvStockStatistics.Size = new System.Drawing.Size(1431, 536);
+            this.dgvStockStatistics.TabIndex = 0;
+            // 
+            // cbStatisticType
+            // 
+            this.cbStatisticType.FormattingEnabled = true;
+            this.cbStatisticType.Items.AddRange(new object[] {
+            "Lowest price",
+            "Highest price",
+            "SmallestQuantity",
+            "BiggestQuantity"});
+            this.cbStatisticType.Location = new System.Drawing.Point(25, 27);
+            this.cbStatisticType.Name = "cbStatisticType";
+            this.cbStatisticType.Size = new System.Drawing.Size(121, 26);
+            this.cbStatisticType.TabIndex = 1;
+            this.cbStatisticType.SelectedIndexChanged += new System.EventHandler(this.cbStatisticType_SelectedIndexChanged);
             // 
             // ManagementForm
             // 
@@ -570,6 +615,8 @@ namespace MediaBazaarApp
             this.gbxFilterByYearNrEmpStarted.ResumeLayout(false);
             this.gbxFilterByDepNrEmpStarted.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartEmployeeNrStarted)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStockStatistics)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -609,5 +656,8 @@ namespace MediaBazaarApp
         private System.Windows.Forms.ComboBox cbFilterByYearNrEmpStarted;
         private System.Windows.Forms.GroupBox gbxFilterByDepNrEmpStarted;
         private System.Windows.Forms.ComboBox cbFilterByDepNrEmpStarted;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView dgvStockStatistics;
+        private System.Windows.Forms.ComboBox cbStatisticType;
     }
 }

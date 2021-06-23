@@ -85,7 +85,7 @@ namespace MediaBazaarApp
 
         private void UpdateDGVStockStatistics(List<Stock> stocks)
         {
-            /*var stockStatisticsDataSource = stocks.Select(x => new
+            var stockStatisticsDataSource = stocks.Select(x => new
             {
                 ID = x.Id,
                 Brand = x.Brand,
@@ -103,13 +103,13 @@ namespace MediaBazaarApp
 
             dgvStockStatistics.DataSource = stockStatisticsDataSource;
 
-            dgvStockStatistics.ClearSelection();*/
+            dgvStockStatistics.ClearSelection();
         }
 
 
         private void cbStatisticType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*int index = cbStatisticType.SelectedIndex;
+            int index = cbStatisticType.SelectedIndex;
             if (index != -1)
             {
                 if (index == 0)
@@ -129,7 +129,7 @@ namespace MediaBazaarApp
                 {
                     UpdateDGVStockStatistics(ss.GetBiggestQuantity(stockManagement.GetAllStocks()));
                 }
-            }*/
+            }
 
         }
 
