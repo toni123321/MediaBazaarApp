@@ -114,8 +114,7 @@ namespace MediaBazaarApp
             this.btnGenAS = new System.Windows.Forms.Button();
             this.cbWeekAS = new System.Windows.Forms.ComboBox();
             this.btnGoBackAuto = new System.Windows.Forms.Button();
-            this.btnAutoShifts = new System.Windows.Forms.Button();
-            this.btnManShifts = new System.Windows.Forms.Button();
+            this.lbASHinfo = new System.Windows.Forms.Label();
             this.gbAssignShiftManually = new System.Windows.Forms.GroupBox();
             this.btnGoBackManual = new System.Windows.Forms.Button();
             this.lbEmp = new System.Windows.Forms.Label();
@@ -130,6 +129,8 @@ namespace MediaBazaarApp
             this.dtpShiftDate = new System.Windows.Forms.DateTimePicker();
             this.lbShiftDate = new System.Windows.Forms.Label();
             this.cbShiftType = new System.Windows.Forms.ComboBox();
+            this.btnManShifts = new System.Windows.Forms.Button();
+            this.btnAutoShifts = new System.Windows.Forms.Button();
             this.tpManageAttendance = new System.Windows.Forms.TabPage();
             this.btnApplyAttendanceChanges = new System.Windows.Forms.Button();
             this.tbReasonForAbsence = new System.Windows.Forms.TextBox();
@@ -269,7 +270,8 @@ namespace MediaBazaarApp
             this.weeklyScheduleCH = new System.Windows.Forms.CheckBox();
             this.holidayLeaveReqCH = new System.Windows.Forms.CheckBox();
             this.manageEmpCH = new System.Windows.Forms.CheckBox();
-            this.lbASHinfo = new System.Windows.Forms.Label();
+            this.lbHLRDays = new System.Windows.Forms.Label();
+            this.tbxHLRDays = new System.Windows.Forms.TextBox();
             this.ManageDepartmentsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.gbxSearchDep.SuspendLayout();
@@ -1287,31 +1289,16 @@ namespace MediaBazaarApp
             this.btnGoBackAuto.UseVisualStyleBackColor = false;
             this.btnGoBackAuto.Click += new System.EventHandler(this.btnGoBackAuto_Click);
             // 
-            // btnAutoShifts
+            // lbASHinfo
             // 
-            this.btnAutoShifts.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnAutoShifts.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAutoShifts.Location = new System.Drawing.Point(17, 19);
-            this.btnAutoShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAutoShifts.Name = "btnAutoShifts";
-            this.btnAutoShifts.Size = new System.Drawing.Size(301, 71);
-            this.btnAutoShifts.TabIndex = 26;
-            this.btnAutoShifts.Text = "Automated schedule";
-            this.btnAutoShifts.UseVisualStyleBackColor = false;
-            this.btnAutoShifts.Click += new System.EventHandler(this.btnAutoShifts_Click);
-            // 
-            // btnManShifts
-            // 
-            this.btnManShifts.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnManShifts.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManShifts.Location = new System.Drawing.Point(17, 98);
-            this.btnManShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnManShifts.Name = "btnManShifts";
-            this.btnManShifts.Size = new System.Drawing.Size(301, 71);
-            this.btnManShifts.TabIndex = 25;
-            this.btnManShifts.Text = "Create schedule manually";
-            this.btnManShifts.UseVisualStyleBackColor = false;
-            this.btnManShifts.Click += new System.EventHandler(this.btnManShifts_Click);
+            this.lbASHinfo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lbASHinfo.Location = new System.Drawing.Point(22, 35);
+            this.lbASHinfo.Name = "lbASHinfo";
+            this.lbASHinfo.Size = new System.Drawing.Size(260, 92);
+            this.lbASHinfo.TabIndex = 31;
+            this.lbASHinfo.Text = "Select a week for which you want to generate schedule.\r\nWarning, all existing shi" +
+    "fts for the selected week will be removed and replaced.";
+            this.lbASHinfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // gbAssignShiftManually
             // 
@@ -1468,6 +1455,32 @@ namespace MediaBazaarApp
             this.cbShiftType.Size = new System.Drawing.Size(200, 26);
             this.cbShiftType.TabIndex = 5;
             this.cbShiftType.Text = "Choose shift type";
+            // 
+            // btnManShifts
+            // 
+            this.btnManShifts.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnManShifts.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManShifts.Location = new System.Drawing.Point(17, 98);
+            this.btnManShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnManShifts.Name = "btnManShifts";
+            this.btnManShifts.Size = new System.Drawing.Size(301, 71);
+            this.btnManShifts.TabIndex = 25;
+            this.btnManShifts.Text = "Create schedule manually";
+            this.btnManShifts.UseVisualStyleBackColor = false;
+            this.btnManShifts.Click += new System.EventHandler(this.btnManShifts_Click);
+            // 
+            // btnAutoShifts
+            // 
+            this.btnAutoShifts.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnAutoShifts.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutoShifts.Location = new System.Drawing.Point(17, 19);
+            this.btnAutoShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAutoShifts.Name = "btnAutoShifts";
+            this.btnAutoShifts.Size = new System.Drawing.Size(301, 71);
+            this.btnAutoShifts.TabIndex = 26;
+            this.btnAutoShifts.Text = "Automated schedule";
+            this.btnAutoShifts.UseVisualStyleBackColor = false;
+            this.btnAutoShifts.Click += new System.EventHandler(this.btnAutoShifts_Click);
             // 
             // tpManageAttendance
             // 
@@ -1629,6 +1642,8 @@ namespace MediaBazaarApp
             // AddEmpTab
             // 
             this.AddEmpTab.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.AddEmpTab.Controls.Add(this.lbHLRDays);
+            this.AddEmpTab.Controls.Add(this.tbxHLRDays);
             this.AddEmpTab.Controls.Add(this.cbxEmpIndefiniteContract);
             this.AddEmpTab.Controls.Add(this.dtpEmpEndDate);
             this.AddEmpTab.Controls.Add(this.lbEmpEndDate);
@@ -2065,7 +2080,7 @@ namespace MediaBazaarApp
             // 
             this.btnAddEmpoyee.BackColor = System.Drawing.Color.LightSalmon;
             this.btnAddEmpoyee.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
-            this.btnAddEmpoyee.Location = new System.Drawing.Point(409, 496);
+            this.btnAddEmpoyee.Location = new System.Drawing.Point(391, 554);
             this.btnAddEmpoyee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddEmpoyee.Name = "btnAddEmpoyee";
             this.btnAddEmpoyee.Size = new System.Drawing.Size(303, 63);
@@ -3095,16 +3110,25 @@ namespace MediaBazaarApp
             this.manageEmpCH.UseVisualStyleBackColor = true;
             this.manageEmpCH.CheckedChanged += new System.EventHandler(this.manageEmpCH_CheckedChanged);
             // 
-            // lbASHinfo
+            // lbHLRDays
             // 
-            this.lbASHinfo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lbASHinfo.Location = new System.Drawing.Point(22, 35);
-            this.lbASHinfo.Name = "lbASHinfo";
-            this.lbASHinfo.Size = new System.Drawing.Size(260, 92);
-            this.lbASHinfo.TabIndex = 31;
-            this.lbASHinfo.Text = "Select a week for which you want to generate schedule.\r\nWarning, all existing shi" +
-    "fts for the selected week will be removed and replaced.";
-            this.lbASHinfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbHLRDays.AutoSize = true;
+            this.lbHLRDays.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHLRDays.Location = new System.Drawing.Point(261, 457);
+            this.lbHLRDays.Name = "lbHLRDays";
+            this.lbHLRDays.Size = new System.Drawing.Size(130, 20);
+            this.lbHLRDays.TabIndex = 83;
+            this.lbHLRDays.Text = "Holiday leave days";
+            // 
+            // tbxHLRDays
+            // 
+            this.tbxHLRDays.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tbxHLRDays.Location = new System.Drawing.Point(265, 488);
+            this.tbxHLRDays.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbxHLRDays.Name = "tbxHLRDays";
+            this.tbxHLRDays.Size = new System.Drawing.Size(168, 27);
+            this.tbxHLRDays.TabIndex = 84;
+            this.tbxHLRDays.Text = "0";
             // 
             // AdministrationForm
             // 
@@ -3441,5 +3465,7 @@ namespace MediaBazaarApp
         private System.Windows.Forms.CheckBox cbFilterAttended;
         private System.Windows.Forms.CheckBox cbFilterWFH;
         private System.Windows.Forms.Label lbASHinfo;
+        private System.Windows.Forms.Label lbHLRDays;
+        private System.Windows.Forms.TextBox tbxHLRDays;
     }
 }

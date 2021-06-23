@@ -1302,10 +1302,69 @@ namespace MediaBazaarApp
             return hlrs;
         }
 
-        public void UpdateHLR(HolidayLeaveRequest holidayLeaveRequest)
+        public void InsertRemainingHLR(int days, int id)
         {
             try
             {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+                    
+                    string sql;
+
+
+                    sql = "INSERT INTO remaining_holiday_days (EmployeeID, RemainingHolidayDays)" +
+                          "VALUES(@id, @days)";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@days", days);
+
+                    conn.Open();
+
+                    int effectedRows = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public int GetRemainingHLR(int id)
+        {
+            int remainingRequests = 0;
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(this.ConnString))
+                {
+
+                    string sql = "SELECT SUM(RemainingHolidayDays) FROM remaining_holiday_days WHERE EmployeeID = ?";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    conn.Open();
+
+                    remainingRequests = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+            return remainingRequests;
+        }
+
+
+        public void UpdateHLR(HolidayLeaveRequest holidayLeaveRequest)
+        {
+            try { 
+
                 using (MySqlConnection conn = new MySqlConnection(this.ConnString))
                 {
 

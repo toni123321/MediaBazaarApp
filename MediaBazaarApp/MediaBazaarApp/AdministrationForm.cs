@@ -312,6 +312,9 @@ namespace MediaBazaarApp
                 }
                 department = departmentManagement.GetDepartment(cbEmpDepartment.Text);
 
+
+                int HLRdays = Convert.ToInt32(tbxHLRDays.Text);
+
                 DBControl dbControl = new DBControl();
 
                 try
@@ -330,7 +333,18 @@ namespace MediaBazaarApp
                             city, country,
                             postcode, bsn, emConName, emConRelation, emConEmail, emConPhone, empType, hourlyWages,
                             startDate, endDate, department);
+
+                        
+
                         dbControl.GetEmployees(this.departmentManagement);
+
+                        Employee newEmp = departmentManagement.GetDepartment(department.Name).GetEmployeeByEmail(email);
+
+                        if (HLRdays > 0)
+                        {
+                            this.dbControl.InsertRemainingHLR(HLRdays, newEmp.Id);
+                        }
+
                         MessageBox.Show("You have successfully hired a new employee!");
                         ClearFields();
                         UpdateCBXDepManager(cbDepartmentManager);

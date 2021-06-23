@@ -106,6 +106,10 @@ namespace MediaBazaarApp
             previousDepartment = currEmp.Department;
             dtpEmpStartDate.Value = currEmp.StartDate;
 
+            DBControl dbControl = new DBControl();
+
+            lbRemainingHLDays.Text = $"Remaining holiday days: {dbControl.GetRemainingHLR(currEmp.Id).ToString()}";
+
             ManageEndDateViewFields();
         }
 
@@ -176,6 +180,13 @@ namespace MediaBazaarApp
                     DBControl dbControl = new DBControl();
                     dbControl.EditEmployee(currEmp);
                     this.departmentManagement.GetDepartment(previousDepartment.Name).RemoveEmployee(currEmp.Email);
+
+                    int HLRdays = Convert.ToInt32(tbxHLRDays.Text);
+                    if (HLRdays > 0)
+                    {
+                        dbControl.InsertRemainingHLR(HLRdays, currEmp.Id);
+                    }
+                    
 
                     MessageBox.Show("You have successfully apply the new changes for this profile!");
                 }
