@@ -93,8 +93,18 @@ namespace MediaBazaarApp
             this.SchedulingTab = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbWeeklySchedule = new System.Windows.Forms.TabPage();
+            this.cbFilterAttended = new System.Windows.Forms.CheckBox();
+            this.cbFilterWFH = new System.Windows.Forms.CheckBox();
             this.btnRemShift = new System.Windows.Forms.Button();
             this.dgvSchedule = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDatee = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colWFH = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colAssignedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAttended = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colNSR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbWeekNumber = new System.Windows.Forms.Label();
             this.cbWeekNumber = new System.Windows.Forms.ComboBox();
             this.tpCreateSchedule = new System.Windows.Forms.TabPage();
@@ -258,16 +268,7 @@ namespace MediaBazaarApp
             this.weeklyScheduleCH = new System.Windows.Forms.CheckBox();
             this.holidayLeaveReqCH = new System.Windows.Forms.CheckBox();
             this.manageEmpCH = new System.Windows.Forms.CheckBox();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEmp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDatee = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colWFH = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colAssignedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAttended = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colNSR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbFilterWFH = new System.Windows.Forms.CheckBox();
-            this.cbFilterAttended = new System.Windows.Forms.CheckBox();
+            this.lbASHinfo = new System.Windows.Forms.Label();
             this.ManageDepartmentsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.gbxSearchDep.SuspendLayout();
@@ -1015,6 +1016,28 @@ namespace MediaBazaarApp
             this.tbWeeklySchedule.TabIndex = 3;
             this.tbWeeklySchedule.Text = "Weekly schedule";
             // 
+            // cbFilterAttended
+            // 
+            this.cbFilterAttended.AutoSize = true;
+            this.cbFilterAttended.Location = new System.Drawing.Point(260, 60);
+            this.cbFilterAttended.Name = "cbFilterAttended";
+            this.cbFilterAttended.Size = new System.Drawing.Size(93, 24);
+            this.cbFilterAttended.TabIndex = 30;
+            this.cbFilterAttended.Text = "Attended";
+            this.cbFilterAttended.UseVisualStyleBackColor = true;
+            this.cbFilterAttended.CheckedChanged += new System.EventHandler(this.cbFilterAttended_CheckedChanged);
+            // 
+            // cbFilterWFH
+            // 
+            this.cbFilterWFH.AutoSize = true;
+            this.cbFilterWFH.Location = new System.Drawing.Point(191, 60);
+            this.cbFilterWFH.Name = "cbFilterWFH";
+            this.cbFilterWFH.Size = new System.Drawing.Size(63, 24);
+            this.cbFilterWFH.TabIndex = 29;
+            this.cbFilterWFH.Text = "WFH";
+            this.cbFilterWFH.UseVisualStyleBackColor = true;
+            this.cbFilterWFH.CheckedChanged += new System.EventHandler(this.cbFilterWFH_CheckedChanged);
+            // 
             // btnRemShift
             // 
             this.btnRemShift.BackColor = System.Drawing.Color.OrangeRed;
@@ -1048,6 +1071,70 @@ namespace MediaBazaarApp
             this.dgvSchedule.Size = new System.Drawing.Size(1054, 388);
             this.dgvSchedule.TabIndex = 12;
             // 
+            // colID
+            // 
+            this.colID.HeaderText = "ID";
+            this.colID.MinimumWidth = 6;
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Width = 125;
+            // 
+            // colEmp
+            // 
+            this.colEmp.HeaderText = "Employee";
+            this.colEmp.MinimumWidth = 6;
+            this.colEmp.Name = "colEmp";
+            this.colEmp.ReadOnly = true;
+            this.colEmp.Width = 125;
+            // 
+            // colDatee
+            // 
+            this.colDatee.HeaderText = "Date";
+            this.colDatee.MinimumWidth = 6;
+            this.colDatee.Name = "colDatee";
+            this.colDatee.ReadOnly = true;
+            this.colDatee.Width = 125;
+            // 
+            // colType
+            // 
+            this.colType.HeaderText = "Type";
+            this.colType.MinimumWidth = 6;
+            this.colType.Name = "colType";
+            this.colType.ReadOnly = true;
+            this.colType.Width = 125;
+            // 
+            // colWFH
+            // 
+            this.colWFH.HeaderText = "WFH";
+            this.colWFH.MinimumWidth = 6;
+            this.colWFH.Name = "colWFH";
+            this.colWFH.ReadOnly = true;
+            this.colWFH.Width = 125;
+            // 
+            // colAssignedBy
+            // 
+            this.colAssignedBy.HeaderText = "Assigned by";
+            this.colAssignedBy.MinimumWidth = 6;
+            this.colAssignedBy.Name = "colAssignedBy";
+            this.colAssignedBy.ReadOnly = true;
+            this.colAssignedBy.Width = 125;
+            // 
+            // colAttended
+            // 
+            this.colAttended.HeaderText = "Attended";
+            this.colAttended.MinimumWidth = 6;
+            this.colAttended.Name = "colAttended";
+            this.colAttended.ReadOnly = true;
+            this.colAttended.Width = 125;
+            // 
+            // colNSR
+            // 
+            this.colNSR.HeaderText = "No show reason";
+            this.colNSR.MinimumWidth = 6;
+            this.colNSR.Name = "colNSR";
+            this.colNSR.ReadOnly = true;
+            this.colNSR.Width = 125;
+            // 
             // lbWeekNumber
             // 
             this.lbWeekNumber.AutoSize = true;
@@ -1071,9 +1158,9 @@ namespace MediaBazaarApp
             // 
             this.tpCreateSchedule.BackColor = System.Drawing.Color.MediumTurquoise;
             this.tpCreateSchedule.Controls.Add(this.gbAutoSch);
-            this.tpCreateSchedule.Controls.Add(this.btnAutoShifts);
-            this.tpCreateSchedule.Controls.Add(this.btnManShifts);
             this.tpCreateSchedule.Controls.Add(this.gbAssignShiftManually);
+            this.tpCreateSchedule.Controls.Add(this.btnManShifts);
+            this.tpCreateSchedule.Controls.Add(this.btnAutoShifts);
             this.tpCreateSchedule.Location = new System.Drawing.Point(4, 29);
             this.tpCreateSchedule.Name = "tpCreateSchedule";
             this.tpCreateSchedule.Size = new System.Drawing.Size(1084, 787);
@@ -1086,9 +1173,10 @@ namespace MediaBazaarApp
             this.gbAutoSch.Controls.Add(this.btnGenAS);
             this.gbAutoSch.Controls.Add(this.cbWeekAS);
             this.gbAutoSch.Controls.Add(this.btnGoBackAuto);
-            this.gbAutoSch.Location = new System.Drawing.Point(431, 144);
+            this.gbAutoSch.Controls.Add(this.lbASHinfo);
+            this.gbAutoSch.Location = new System.Drawing.Point(34, 193);
             this.gbAutoSch.Name = "gbAutoSch";
-            this.gbAutoSch.Size = new System.Drawing.Size(232, 301);
+            this.gbAutoSch.Size = new System.Drawing.Size(284, 382);
             this.gbAutoSch.TabIndex = 30;
             this.gbAutoSch.TabStop = false;
             this.gbAutoSch.Text = "Automated schedule";
@@ -1097,7 +1185,7 @@ namespace MediaBazaarApp
             // lbWeekNrAS
             // 
             this.lbWeekNrAS.AutoSize = true;
-            this.lbWeekNrAS.Location = new System.Drawing.Point(48, 80);
+            this.lbWeekNrAS.Location = new System.Drawing.Point(87, 146);
             this.lbWeekNrAS.Name = "lbWeekNrAS";
             this.lbWeekNrAS.Size = new System.Drawing.Size(48, 20);
             this.lbWeekNrAS.TabIndex = 32;
@@ -1106,7 +1194,7 @@ namespace MediaBazaarApp
             // btnGenAS
             // 
             this.btnGenAS.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnGenAS.Location = new System.Drawing.Point(30, 184);
+            this.btnGenAS.Location = new System.Drawing.Point(66, 211);
             this.btnGenAS.Name = "btnGenAS";
             this.btnGenAS.Size = new System.Drawing.Size(170, 39);
             this.btnGenAS.TabIndex = 33;
@@ -1171,7 +1259,7 @@ namespace MediaBazaarApp
             "50",
             "51",
             "52"});
-            this.cbWeekAS.Location = new System.Drawing.Point(52, 105);
+            this.cbWeekAS.Location = new System.Drawing.Point(91, 171);
             this.cbWeekAS.Name = "cbWeekAS";
             this.cbWeekAS.Size = new System.Drawing.Size(108, 28);
             this.cbWeekAS.TabIndex = 31;
@@ -1179,7 +1267,7 @@ namespace MediaBazaarApp
             // btnGoBackAuto
             // 
             this.btnGoBackAuto.BackColor = System.Drawing.Color.LightSalmon;
-            this.btnGoBackAuto.Location = new System.Drawing.Point(61, 227);
+            this.btnGoBackAuto.Location = new System.Drawing.Point(100, 293);
             this.btnGoBackAuto.Name = "btnGoBackAuto";
             this.btnGoBackAuto.Size = new System.Drawing.Size(119, 32);
             this.btnGoBackAuto.TabIndex = 30;
@@ -1191,10 +1279,10 @@ namespace MediaBazaarApp
             // 
             this.btnAutoShifts.BackColor = System.Drawing.Color.LightSalmon;
             this.btnAutoShifts.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAutoShifts.Location = new System.Drawing.Point(389, 191);
+            this.btnAutoShifts.Location = new System.Drawing.Point(17, 19);
             this.btnAutoShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAutoShifts.Name = "btnAutoShifts";
-            this.btnAutoShifts.Size = new System.Drawing.Size(318, 71);
+            this.btnAutoShifts.Size = new System.Drawing.Size(301, 71);
             this.btnAutoShifts.TabIndex = 26;
             this.btnAutoShifts.Text = "Automated schedule";
             this.btnAutoShifts.UseVisualStyleBackColor = false;
@@ -1204,10 +1292,10 @@ namespace MediaBazaarApp
             // 
             this.btnManShifts.BackColor = System.Drawing.Color.LightSalmon;
             this.btnManShifts.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManShifts.Location = new System.Drawing.Point(389, 271);
+            this.btnManShifts.Location = new System.Drawing.Point(17, 98);
             this.btnManShifts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnManShifts.Name = "btnManShifts";
-            this.btnManShifts.Size = new System.Drawing.Size(318, 71);
+            this.btnManShifts.Size = new System.Drawing.Size(301, 71);
             this.btnManShifts.TabIndex = 25;
             this.btnManShifts.Text = "Create schedule manually";
             this.btnManShifts.UseVisualStyleBackColor = false;
@@ -1229,7 +1317,7 @@ namespace MediaBazaarApp
             this.gbAssignShiftManually.Controls.Add(this.lbShiftDate);
             this.gbAssignShiftManually.Controls.Add(this.cbShiftType);
             this.gbAssignShiftManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbAssignShiftManually.Location = new System.Drawing.Point(339, 53);
+            this.gbAssignShiftManually.Location = new System.Drawing.Point(433, 68);
             this.gbAssignShiftManually.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbAssignShiftManually.Name = "gbAssignShiftManually";
             this.gbAssignShiftManually.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -2995,91 +3083,16 @@ namespace MediaBazaarApp
             this.manageEmpCH.UseVisualStyleBackColor = true;
             this.manageEmpCH.CheckedChanged += new System.EventHandler(this.manageEmpCH_CheckedChanged);
             // 
-            // colID
+            // lbASHinfo
             // 
-            this.colID.HeaderText = "ID";
-            this.colID.MinimumWidth = 6;
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Width = 125;
-            // 
-            // colEmp
-            // 
-            this.colEmp.HeaderText = "Employee";
-            this.colEmp.MinimumWidth = 6;
-            this.colEmp.Name = "colEmp";
-            this.colEmp.ReadOnly = true;
-            this.colEmp.Width = 125;
-            // 
-            // colDatee
-            // 
-            this.colDatee.HeaderText = "Date";
-            this.colDatee.MinimumWidth = 6;
-            this.colDatee.Name = "colDatee";
-            this.colDatee.ReadOnly = true;
-            this.colDatee.Width = 125;
-            // 
-            // colType
-            // 
-            this.colType.HeaderText = "Type";
-            this.colType.MinimumWidth = 6;
-            this.colType.Name = "colType";
-            this.colType.ReadOnly = true;
-            this.colType.Width = 125;
-            // 
-            // colWFH
-            // 
-            this.colWFH.HeaderText = "WFH";
-            this.colWFH.MinimumWidth = 6;
-            this.colWFH.Name = "colWFH";
-            this.colWFH.ReadOnly = true;
-            this.colWFH.Width = 125;
-            // 
-            // colAssignedBy
-            // 
-            this.colAssignedBy.HeaderText = "Assigned by";
-            this.colAssignedBy.MinimumWidth = 6;
-            this.colAssignedBy.Name = "colAssignedBy";
-            this.colAssignedBy.ReadOnly = true;
-            this.colAssignedBy.Width = 125;
-            // 
-            // colAttended
-            // 
-            this.colAttended.HeaderText = "Attended";
-            this.colAttended.MinimumWidth = 6;
-            this.colAttended.Name = "colAttended";
-            this.colAttended.ReadOnly = true;
-            this.colAttended.Width = 125;
-            // 
-            // colNSR
-            // 
-            this.colNSR.HeaderText = "No show reason";
-            this.colNSR.MinimumWidth = 6;
-            this.colNSR.Name = "colNSR";
-            this.colNSR.ReadOnly = true;
-            this.colNSR.Width = 125;
-            // 
-            // cbFilterWFH
-            // 
-            this.cbFilterWFH.AutoSize = true;
-            this.cbFilterWFH.Location = new System.Drawing.Point(191, 60);
-            this.cbFilterWFH.Name = "cbFilterWFH";
-            this.cbFilterWFH.Size = new System.Drawing.Size(63, 24);
-            this.cbFilterWFH.TabIndex = 29;
-            this.cbFilterWFH.Text = "WFH";
-            this.cbFilterWFH.UseVisualStyleBackColor = true;
-            this.cbFilterWFH.CheckedChanged += new System.EventHandler(this.cbFilterWFH_CheckedChanged);
-            // 
-            // cbFilterAttended
-            // 
-            this.cbFilterAttended.AutoSize = true;
-            this.cbFilterAttended.Location = new System.Drawing.Point(260, 60);
-            this.cbFilterAttended.Name = "cbFilterAttended";
-            this.cbFilterAttended.Size = new System.Drawing.Size(93, 24);
-            this.cbFilterAttended.TabIndex = 30;
-            this.cbFilterAttended.Text = "Attended";
-            this.cbFilterAttended.UseVisualStyleBackColor = true;
-            this.cbFilterAttended.CheckedChanged += new System.EventHandler(this.cbFilterAttended_CheckedChanged);
+            this.lbASHinfo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lbASHinfo.Location = new System.Drawing.Point(22, 35);
+            this.lbASHinfo.Name = "lbASHinfo";
+            this.lbASHinfo.Size = new System.Drawing.Size(260, 92);
+            this.lbASHinfo.TabIndex = 31;
+            this.lbASHinfo.Text = "Select a week for which you want to generate schedule.\r\nWarning, all existing shi" +
+    "fts for the selected week will be removed and replaced.";
+            this.lbASHinfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AdministrationForm
             // 
@@ -3415,5 +3428,6 @@ namespace MediaBazaarApp
         private System.Windows.Forms.DataGridViewTextBoxColumn colNSR;
         private System.Windows.Forms.CheckBox cbFilterAttended;
         private System.Windows.Forms.CheckBox cbFilterWFH;
+        private System.Windows.Forms.Label lbASHinfo;
     }
 }

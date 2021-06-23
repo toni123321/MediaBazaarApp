@@ -1247,6 +1247,13 @@ namespace MediaBazaarApp
                     type = ShiftType.Evening;
                 }
 
+                cbEmps.SelectedIndex = -1;
+                dtpShiftDate.Value = DateTime.Today;
+                cbWFH.Checked = false;
+                cbShiftType.SelectedIndex = -1;
+
+                MessageBox.Show($"You have added a new shift for {selectedEmp.FirstName} {selectedEmp.LastName}");
+
                 dbc.AddShift(type, date, currentEmp.Id, wfh, selectedEmp);
 
                 dbc.GetShifts(departmentManagement);
@@ -2323,6 +2330,10 @@ namespace MediaBazaarApp
                         }
                     }
                 }
+
+                MessageBox.Show($"You have generate a new schedule for week {week}.");
+
+                cbWeekAS.SelectedIndex = -1;
 
                 ash.AssignShifts(week, 2021, currentEmp.Id);
 
