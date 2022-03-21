@@ -2135,7 +2135,9 @@ namespace MediaBazaarApp
                 requests.Select(x => new
                 {
                     ID = x.Id,
-                    Employee = $"{departmentManagement.GetEmployeeById(x.EmployeeId).FirstName} {departmentManagement.GetEmployeeById(x.EmployeeId).LastName}",
+                    Employee = departmentManagement.GetEmployeeById(x.EmployeeId) != null ? 
+                    $"{departmentManagement.GetEmployeeById(x.EmployeeId).FirstName} " +
+                    $"{departmentManagement.GetEmployeeById(x.EmployeeId).LastName}": "",
                     x.StartDate,
                     x.EndDate,
                     x.TotalDays,
